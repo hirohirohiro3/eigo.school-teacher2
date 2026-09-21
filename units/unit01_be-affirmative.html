@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 1　be動詞の肯定文（am / is / are）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab01_be-affirmative.html">この単元の単語帳 →</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 1</p>
+  <h1 class="unit-title">be動詞の肯定文（am / is / are）</h1>
+  <p class="unit-lead">英語の文には、動詞が必ず1つ入ります。この単元では、そのうちの一方である be動詞を扱います。形は3つしかなく、選び方も主語だけで決まります。手順そのものは短いので、入試で差がつくのは「主語をどこまで正しく数えられるか」です。</p>
+</header>
+
+<h2><span>2つの用語</span></h2>
+
+<p>説明に入る前に、これから何度も出てくる2つの語を先に押さえます。この2語がわかれば、この単元の内容はほぼ言い換えの繰り返しです。</p>
+
+<div class="term">
+  <p class="term-name">主語（しゅご）</p>
+  <p class="term-def">文の中で<strong>「〜は」「〜が」にあたる語</strong>です。英語では原則として文の先頭に置きます。1語とはかぎらず、<strong>2語以上のまとまりが主語になることもあります</strong>。</p>
+  <p class="term-ex"><span class="en">I</span> am a student.（<strong>私は</strong>生徒です）<br>
+  <span class="en">My father</span> is a teacher.（<strong>私の父は</strong>先生です）<br>
+  <span class="en">My sister and I</span> are busy.（<strong>姉と私は</strong>忙しいです）</p>
+</div>
+
+<div class="term">
+  <p class="term-name">be動詞（びーどうし）</p>
+  <p class="term-def"><strong>am / is / are</strong> の3つをまとめて呼ぶ名前です。主語とうしろの語をつなぎ、主語が<strong>何であるか・どんな状態か・どこにいるか</strong>を表します。</p>
+  <p class="term-ex"><span class="en">I <span class="be-w">am</span> a student.</span>（正体）<br>
+  <span class="en">You <span class="be-w">are</span> kind.</span>（状態）<br>
+  <span class="en">Ken <span class="be-w">is</span> in the art room.</span>（場所）<br>
+  <span class="en">We <span class="be-w">are</span> in the art club.</span>（所属）</p>
+</div>
+
+<h2><span>文の形</span></h2>
+
+<div class="diagram">
+  <p class="diagram-cap">be動詞：主語とうしろを<strong>つなぐ</strong></p>
+  <div class="flow">
+    <span class="node">I<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">am</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">a student<span class="node-label">正体・状態・場所</span></span>
+  </div>
+</div>
+
+<div class="diagram">
+  <p class="diagram-cap">主語が2人でも、形は変わらない</p>
+  <div class="flow">
+    <span class="node">Ken and Emma<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">are</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">busy<span class="node-label">正体・状態・場所</span></span>
+  </div>
+</div>
+
+<p>語の並びは<strong>「主語 → be動詞 → うしろの語」</strong>の1通りだけです。変わるのは真ん中の be動詞の形で、それは主語を見れば決まります。</p>
+
+<h2><span>主語と be動詞の対応</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>主語</th><th>be動詞</th><th>例文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>I</td>
+      <td class="be-cell">am</td>
+      <td><span class="en">I am fifteen years old.</span><br><span class="en">I am a member of the art club.</span><br><span class="en">I am ready.</span><br><span class="en">I am sleepy today.</span></td>
+    </tr>
+    <tr>
+      <td>You</td>
+      <td class="be-cell">are</td>
+      <td><span class="en">You are kind.</span><br><span class="en">You are a good tennis player.</span><br><span class="en">You are in the same class.</span></td>
+    </tr>
+    <tr>
+      <td>He / She / Ken / My father<br>など<strong>1人・1つ</strong></td>
+      <td class="be-cell">is</td>
+      <td><span class="en">My father is a teacher.</span><br><span class="en">My mother is a nurse.</span><br><span class="en">The art room is very big.</span><br><span class="en">My brother is very tall.</span></td>
+    </tr>
+    <tr>
+      <td>We / They / Ken and Emma<br>など<strong>2人・2つ以上</strong></td>
+      <td class="be-cell">are</td>
+      <td><span class="en">We are hungry.</span><br><span class="en">Ken and Emma are good friends.</span><br><span class="en">My sister and I are in the art club.</span><br><span class="en">We are in the music room now.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>なぜ主語で形が決まるのか</h3>
+
+<p>be動詞は、主語について「それが何であるか」を述べる語です。<strong>述べる相手が変われば、語の形も変える</strong>というのが英語の決まりで、これを「主語と動詞を一致させる」と言います。日本語には無い決まりなので、意味から考えても答えは出ません。<strong>主語を見て機械的に決める</strong>のが正しい進め方です。</p>
+
+<p>一致させる軸は2つだけです。1つめは<strong>「I か、You か、それ以外か」</strong>。2つめは、それ以外の場合の<strong>「1つか、2つ以上か」</strong>。この2点以外は、be動詞の形に影響しません。文が長くても、うしろの語が何であっても、見るのは主語だけです。</p>
+
+<h2><span>be動詞を決める手順</span></h2>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">主語を見つける</span>
+    <span class="step-d">文の「〜は」にあたるまとまり。多くは文の先頭にあります。</span>
+  </li>
+  <li>
+    <span class="step-t">主語が I なら am、You なら are</span>
+    <span class="step-d">この2つは数を考える必要がありません。</span>
+  </li>
+  <li>
+    <span class="step-t">それ以外なら、数を数えて is か are</span>
+    <span class="step-d">1人・1つなら is。2人・2つ以上なら are。</span>
+  </li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>and でつながれた主語は数え直す</h3>
+
+<p><span class="en">My sister and I</span> は「姉と私」で<strong>合計2人</strong>です。直前に I があっても am ではなく are を使います。<span class="en">Ken and Emma</span> も2人なので are です。<strong>主語が長いときほど、最後にもう一度、全部で何人・何個かを数える</strong>ようにしてください。</p>
+
+<h3>every のついた主語は1つ扱い</h3>
+
+<p><span class="en">every</span> は「どの〜も」という意味ですが、<strong>1つずつ取り上げて言う語</strong>なので、主語は1つ扱いになります。したがって be動詞は is です。日本語の「みんな」につられて are にしないでください。</p>
+
+<p><span class="en">Every student in our class is busy today.</span>（私たちのクラスのどの生徒も今日は忙しい）</p>
+
+<h3>うしろに語が続いても主語は変わらない</h3>
+
+<p><span class="en">The new student from Osaka is very kind.</span> の主語は <span class="en">The new student</span> で、1人です。<span class="en">from Osaka</span> は直前の語を説明しているだけなので、数には関係しません。<strong>be動詞の直前の語ではなく、主語の中心になる語を見る</strong>のが確実です。</p>
+
+<h3>短縮形</h3>
+
+<p>会話や英作文では、主語と be動詞をつなげて短く書くことがよくあります。意味は変わりません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>もとの形</th><th>短縮形</th><th>もとの形</th><th>短縮形</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">I am</span></td><td class="be-cell">I'm</td>
+      <td><span class="en">we are</span></td><td class="be-cell">we're</td>
+    </tr>
+    <tr>
+      <td><span class="en">you are</span></td><td class="be-cell">you're</td>
+      <td><span class="en">they are</span></td><td class="be-cell">they're</td>
+    </tr>
+    <tr>
+      <td><span class="en">he is</span></td><td class="be-cell">he's</td>
+      <td><span class="en">she is</span></td><td class="be-cell">she's</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>アポストロフィ（<span class="en">'</span>）は<strong>消えた文字の位置</strong>に入ります。<span class="en">I am</span> は a が消えるので <span class="en">I'm</span>、<span class="en">he is</span> は i が消えるので <span class="en">he's</span> です。語数を指定した英作文では、短縮形は<strong>1語</strong>として数えます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形式</th><th>問われ方</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>選択</td><td>主語を長くしたうえで am / is / are を選ばせる。<strong>and で結ばれた主語</strong>と <strong>every のついた主語</strong>が定番です。</td></tr>
+    <tr><td>並べ替え</td><td>主語のまとまりを崩して出します。先に主語を組み立ててから be動詞を置くと迷いません。</td></tr>
+    <tr><td>誤文訂正</td><td>be動詞の抜け、または数の不一致。<strong>訂正だけでなく理由を書かせる</strong>出題も増えています。</td></tr>
+    <tr><td>英作文</td><td>語数指定つきの自己紹介文。短縮形を1語と数える点に注意します。</td></tr>
+    <tr><td>読解</td><td>自己紹介文の内容一致。主語が I から Ken に変わると be動詞も変わるため、書き換えで問われます。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">My sister and I am hungry.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">My sister and I <span class="be-w">are</span> hungry.</span></div>
+  <p class="contrast-why">主語は「姉と私」で2人。直前の I につられて am にしないこと。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Every student in our class are busy.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">Every student in our class <span class="be-w">is</span> busy.</span></div>
+  <p class="contrast-why">every のついた主語は1つ扱いです。「みんな」という日本語の意味で判断しないこと。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I from Wakayama.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I <span class="be-w">am</span> from Wakayama.</span></div>
+  <p class="contrast-why">英語の文には動詞が必ず1つ必要です。be動詞を抜かさないこと。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">The new student from Osaka are kind.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">The new student from Osaka <span class="be-w">is</span> kind.</span></div>
+  <p class="contrast-why">主語の中心は <span class="en">student</span> で1人。be動詞の直前にある <span class="en">Osaka</span> で判断しないこと。</p>
+</div>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。主語がどこまでか、全部で何人・何個かを数えてから選びます。</p>
+
+<ol class="q" data-part="A">
+  <li><span class="en">My sister and I (　　　) in the same class.</span>
+    <p class="opts"><span>ア am</span><span>イ is</span><span>ウ are</span><span>エ be</span></p></li>
+  <li><span class="en">The new student from Osaka (　　　) very kind.</span>
+    <p class="opts"><span>ア am</span><span>イ is</span><span>ウ are</span><span>エ be</span></p></li>
+  <li><span class="en">Ken and Emma (　　　) good tennis players.</span>
+    <p class="opts"><span>ア am</span><span>イ is</span><span>ウ are</span><span>エ be</span></p></li>
+  <li><span class="en">I (　　　) a member of the music club.</span>
+    <p class="opts"><span>ア am</span><span>イ is</span><span>ウ are</span><span>エ be</span></p></li>
+  <li><span class="en">Every student in our class (　　　) busy today.</span>
+    <p class="opts"><span>ア am</span><span>イ is</span><span>ウ are</span><span>エ be</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べ替えましょう。文の先頭に来る語も小文字で示してあります。<strong>10と11には使わない語が1語ずつ混ざっています。</strong></p>
+
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+  <li>私は和歌山の出身です。<br><span class="en">[ from / I / am / Wakayama ] .</span><span class="write"></span></li>
+  <li>私の姉は看護師です。<br><span class="en">[ nurse / my / a / sister / is ] .</span><span class="write"></span></li>
+  <li>ケンと私は同じクラスです。<br><span class="en">[ same / the / Ken / I / are / and / in / class ] .</span><span class="write"></span></li>
+  <li>私たちは今、美術室にいます。<br><span class="en">[ art room / we / in / are / the ] now.</span><span class="write"></span></li>
+  <li data-extra="1">私の父はとても背が高いです。<span class="hint">1語不要</span><br><span class="en">[ tall / my / are / very / father / is ] .</span><span class="write"></span></li>
+  <li data-extra="1">私の姉と兄は音楽の先生です。<span class="hint">1語不要</span><br><span class="en">[ music / teachers / and / are / my / sister / is / brother ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">次の文には誤りが1つずつあります。正しい文に直し、<strong>なぜ誤りかを日本語で1行</strong>書きましょう。</p>
+
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+  <li><span class="en">My father and mother is music teachers.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">Every student in our class are ready.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">My mother a nurse.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">The new member of the art club are very kind.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">You and I is good friends.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">17から20は日本語を英語にしましょう。21から23は条件に合わせて書きましょう。</p>
+
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+  <li><span class="q-ja">私は15歳です。</span><span class="write"></span></li>
+  <li><span class="q-ja">私の兄は中学生です。</span><span class="write"></span></li>
+  <li><span class="q-ja">ケンと私は美術部の部員です。</span><span class="write"></span></li>
+  <li><span class="q-ja">その音楽室はとても大きいです。</span><span class="write"></span></li>
+  <li>短縮形を使って「あなたはとても親切です」と書く。<span class="cond">3語</span><span class="write"></span></li>
+  <li>自分の出身地を書く。<span class="cond">from を使う</span><span class="write"></span></li>
+  <li>友達を1人紹介する文を書く。<span class="cond">6語以上</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">次の自己紹介文を読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+  <p class="reading-cap">ケンの自己紹介</p>
+  <p>Hello. I am Sato Ken. I am fifteen years old. I am a junior high school student in Wakayama. My father is a music teacher. My mother is a nurse. <span class="num">①</span><span class="ul">My sister and I are in the art club.</span> Our art room is very big. My sister is a good student. I am happy today.</p>
+  <p class="reading-wc">55語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+    ア ケンの父は看護師である。<br>
+    イ ケンの母は看護師である。<br>
+    ウ ケンの姉は看護師である。<span class="write"></span></li>
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+    ア ケンは姉と同じ部に入っている。<br>
+    イ 美術室はあまり広くない。<br>
+    ウ ケンは今日、忙しい。<span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">Ken (　　　) fifteen years old.</span><span class="write"></span></li>
+  <li>下線部①を日本語にする。<span class="write"></span></li>
+  <li>ケンの母の仕事を、本文から1語で書き抜く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">正解は1つではありません。be動詞を使って書いてください。</p>
+
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+  <li>いまの自分の状態を1文で書く。<span class="hint">例：I am sleepy.</span><span class="write"></span></li>
+  <li>家族か友達について、2文で書く。<span class="hint">1文めの主語は1人、2文めの主語は2人にする</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>主語はどこまでか・全部で何人（何個）か</strong>を数え直すところからやり直すと定着します。</p>
+
+<ol class="a">
+  <li><span class="a-key">ウ　are</span><p class="a-why">主語は <span class="en">My sister and I</span> で2人。直前の I につられて am にしないこと。</p></li>
+  <li><span class="a-key">イ　is</span><p class="a-why">主語の中心は <span class="en">The new student</span> で1人。<span class="en">from Osaka</span> は説明を足しているだけで、数には関係しません。</p></li>
+  <li><span class="a-key">ウ　are</span><p class="a-why"><span class="en">Ken and Emma</span> で2人なので are です。</p></li>
+  <li><span class="a-key">ア　am</span><p class="a-why">主語が I なので am です。うしろが長くても変わりません。</p></li>
+  <li><span class="a-key">イ　is</span><p class="a-why">every のついた主語は1つ扱いです。「みんな」という意味につられて are にしないこと。</p></li>
+
+  <li><span class="a-key">I am from Wakayama.</span><p class="a-why">主語 I → be動詞 am → うしろの語 from Wakayama の順です。</p></li>
+  <li><span class="a-key">My sister is a nurse.</span><p class="a-why">主語 <span class="en">My sister</span> は1人なので is です。</p></li>
+  <li><span class="a-key">Ken and I are in the same class.</span><p class="a-why">先に主語 <span class="en">Ken and I</span> を組み立てます。2人なので are です。</p></li>
+  <li><span class="a-key">We are in the art room now.</span><p class="a-why">場所を表す文なので be動詞でつなぎます。時を表す now は文末です。</p></li>
+  <li><span class="a-key">My father is very tall.</span><p class="a-why">不要な語は are です。主語 <span class="en">My father</span> は1人なので is。very は tall の直前に置きます。</p></li>
+  <li><span class="a-key">My sister and brother are music teachers.</span><p class="a-why">不要な語は is です。<span class="en">My sister and brother</span> で2人なので are になります。</p></li>
+
+  <li><span class="a-key">My father and mother are music teachers.</span><p class="a-why">理由の例：主語が「父と母」で2人だから。<br>and で結ばれた主語は、最後にもう一度数え直します。</p></li>
+  <li><span class="a-key">Every student in our class is ready.</span><p class="a-why">理由の例：every のついた主語は1つ扱いだから。</p></li>
+  <li><span class="a-key">My mother is a nurse.</span><p class="a-why">理由の例：文に動詞が入っていないから。<br>英語の文には動詞が必ず1つ必要です。</p></li>
+  <li><span class="a-key">The new member of the art club is very kind.</span><p class="a-why">理由の例：主語の中心が <span class="en">member</span> で1人だから。<br>直前の club で判断しないこと。</p></li>
+  <li><span class="a-key">You and I are good friends.</span><p class="a-why">理由の例：主語が「あなたと私」で2人だから。</p></li>
+
+  <li><span class="a-key">I am fifteen years old.</span><p class="a-why"><span class="en">I'm fifteen years old.</span> でも正解です。</p></li>
+  <li><span class="a-key">My brother is a junior high school student.</span><p class="a-why">主語 <span class="en">My brother</span> は1人なので is です。</p></li>
+  <li><span class="a-key">Ken and I are members of the art club.</span><p class="a-why">2人なので are。<span class="en">Ken and I are in the art club.</span> でも正解です。</p></li>
+  <li><span class="a-key">The music room is very big.</span><p class="a-why">主語は1つなので is です。</p></li>
+  <li><span class="a-key">You're very kind.</span><p class="a-why"><span class="en">you are</span> の a が消えて you're になります。短縮形は1語と数えるので、これで3語です。</p></li>
+  <li><span class="a-key">解答例　I am from Wakayama.</span><p class="a-why">出身を表す文も be動詞でつなぎます。<span class="en">I'm from Osaka.</span> のような形でも正解です。</p></li>
+  <li><span class="a-key">解答例　My friend Ken is a good tennis player.</span><p class="a-why">6語以上あり、主語に合った be動詞が使えていれば正解です。</p></li>
+
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">My mother is a nurse.</span> とあります。父は音楽の先生です。</p></li>
+  <li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">My sister and I are in the art club.</span> とあります。美術室は大きく、忙しいとは書かれていません。</p></li>
+  <li><span class="a-key">is</span><p class="a-why">本文の <span class="en">I am fifteen years old.</span> の主語が Ken に変わります。1人なので is です。</p></li>
+  <li><span class="a-key">姉と私は美術部に入っています。</span><p class="a-why">「〜部にいる」は所属を表します。「私の姉と私は美術部の部員です」なども正解です。</p></li>
+  <li><span class="a-key">nurse</span><p class="a-why">本文に <span class="en">My mother is a nurse.</span> とあります。1語で書き抜きます。</p></li>
+
+  <li><span class="a-key">解答例　I am hungry. / I am busy today.</span><p class="a-why">「主語 I → am → 状態を表す語」の順に書けていれば正解です。</p></li>
+  <li><span class="a-key">解答例　My father is kind. My sister and I are in the same club.</span><p class="a-why">1文めは1人なので is、2文めは2人なので are。数に合った形になっているかを確認しましょう。</p></li>
+</ol>
+
+<div class="wrap-up">
+  <p class="wrap-up-t">この単元のまとめ</p>
+  <p style="margin:0">be動詞は am / is / are の3つだけで、どれを使うかは<strong>主語だけ</strong>で決まります。主語が I なら am、You なら are。それ以外は<strong>全部で何人・何個か</strong>を数えて、1つなら is、2つ以上なら are。入試で差がつくのは、and で結ばれた主語と、every のついた主語です。長い主語ほど、最後にもう一度数え直してください。</p>
+</div>
+</div>
+</body>
+</html>

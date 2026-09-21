@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 10　疑問詞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab10_question-words.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 10</p>
+<h1 class="unit-title">疑問詞</h1>
+<p class="unit-lead">Unit 2 と Unit 6 の疑問文は、<span class="en">yes</span> か <span class="en">no</span> で答えるものでした。この単元では、たずねたい内容そのものを聞く形を扱います。使う語は8つだけですが、入試では<strong>うしろの語順</strong>と<strong>答え方</strong>の両方が問われます。</p>
+</header>
+
+<h2><span>たずねたい内容を先に置く</span></h2>
+
+<p>Unit 6 で <span class="en">Do you like music?</span> という形を作りました。この問いに返るのは <span class="en">Yes, I do.</span> か <span class="en">No, I don't.</span> のどちらかです。ところが、相手が何を好きなのかを知りたいときは、この形では足りません。そこで <span class="en">What do you like?</span> と、たずねたい内容を表す語を文の先頭に置きます。</p>
+
+<p><strong>なぜ先頭に置くのか。</strong>英語は、聞き手にいちばん先に「どの種類の答えがほしいのか」を知らせます。<span class="en">what</span> と聞こえた時点で、相手は物の名前を答えればよいと分かります。<span class="en">where</span> なら場所、<span class="en">why</span> なら理由です。答えの種類を先に示すので、疑問詞はいつも文の先頭に来ます。<strong>先頭を見れば、答えの種類が決まります。</strong></p>
+
+<div class="transform">
+<p><span class="en">Do you like music?</span></p>
+<p class="tf-arrow">↓　たずねたい内容を <span class="en">what</span> にして先頭へ</p>
+<p><span class="en">What do you like?</span></p>
+</div>
+
+<h2><span>8つの疑問詞と答え方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問詞</th><th>たずねる内容</th><th>答えの例</th></tr>
+<tr><td>what</td><td class="be-cell">何・何の</td><td class="be-cell"><span class="en">A book.</span></td></tr>
+<tr><td>who</td><td class="be-cell">だれ</td><td class="be-cell"><span class="en">My cousin.</span></td></tr>
+<tr><td>whose</td><td class="be-cell">だれの・だれのもの</td><td class="be-cell"><span class="en">Mine.</span></td></tr>
+<tr><td>which</td><td class="be-cell">どちら・どの</td><td class="be-cell"><span class="en">The red one.</span></td></tr>
+<tr><td>where</td><td class="be-cell">どこ</td><td class="be-cell"><span class="en">In the kitchen.</span></td></tr>
+<tr><td>when</td><td class="be-cell">いつ</td><td class="be-cell"><span class="en">After school.</span></td></tr>
+<tr><td>why</td><td class="be-cell">なぜ</td><td class="be-cell"><span class="en">Because it is useful.</span></td></tr>
+<tr><td>how</td><td class="be-cell">どのように・どんな</td><td class="be-cell"><span class="en">By train.</span></td></tr>
+</table>
+</div>
+
+<p>この8つがすべてです。<strong>これ以外の語は出てきません。</strong>それぞれの語には答えの種類が決まっているので、答えを見ればどの疑問詞で聞かれたのかも分かります。<span class="en">Where is your favorite place?</span> と聞かれたら場所を、<span class="en">Who is your favorite singer?</span> と聞かれたら人を答えます。</p>
+
+<h2><span>うしろの形は2通り</span></h2>
+
+<p>疑問詞のうしろは、Unit 7 で扱った見分け方がそのまま効きます。be動詞の文か、一般動詞の文かで形が分かれます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文の種類</th><th>語順</th><th>例</th></tr>
+<tr><td>be動詞の文</td><td class="be-cell">疑問詞 + be動詞 + 主語</td><td class="be-cell"><span class="en">Where is the museum?</span>　<span class="en">Who is that tall man?</span></td></tr>
+<tr><td>一般動詞の文</td><td class="be-cell">疑問詞 + do / does + 主語 + 原形</td><td class="be-cell"><span class="en">Where do you live?</span>　<span class="en">What subject does your brother like?</span></td></tr>
+</table>
+</div>
+
+<p>どちらも、疑問詞を取り去れば Unit 2 と Unit 6 の疑問文に戻ります。<span class="en">Where is the museum?</span> から <span class="en">where</span> を取れば <span class="en">Is the museum ...?</span> の形です。<strong>疑問詞は、もとの疑問文の前に足しただけ</strong>です。だから、うしろの語順は今までと変わりません。</p>
+
+<p>一般動詞の文では、主語が1人のときに <span class="en">does</span> を使います。<span class="en">does</span> が <span class="en">s</span> を引き受けるので、動詞は原形に戻ります。<span class="en">What food does she like?</span>／<span class="en">When does the store close?</span>／<span class="en">When does the class start?</span>　どれも動詞に <span class="en">s</span> はつきません。Unit 9 の規則がそのまま続きます。</p>
+
+<div class="diagram">
+<p class="diagram-cap">be動詞の文　疑問詞を先頭に足す</p>
+<div class="flow">
+<span class="node">Where<span class="node-label">場所をたずねる</span></span>
+<span class="link">
+<span class="link-word">is</span>
+<span class="rail"></span>
+</span>
+<span class="node">the museum<span class="node-label">主語</span></span>
+</div>
+</div>
+
+<div class="diagram is-general">
+<p class="diagram-cap">一般動詞の文　do のうしろは原形</p>
+<div class="flow">
+<span class="node">Where<span class="node-label">場所をたずねる</span></span>
+<span class="link">
+<span class="link-word">do you eat</span>
+<span class="rail"></span>
+</span>
+<span class="node">lunch<span class="node-label">目的語</span></span>
+</div>
+</div>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">たずねたい内容を決め、疑問詞を選ぶ</span>
+<span class="step-d">物なら <span class="en">what</span>、人なら <span class="en">who</span>、場所なら <span class="en">where</span> です。8つの表から1つ選びます。</span>
+</li>
+<li>
+<span class="step-t">疑問詞が主語かどうかを見る</span>
+<span class="step-d">主語なら、うしろはふつうの文の語順のままです。この場合だけ <span class="en">do</span> <span class="en">does</span> を使いません。次の節で扱います。</span>
+</li>
+<li>
+<span class="step-t">be動詞の文か一般動詞の文かを見分ける</span>
+<span class="step-d">Unit 7 の手順です。be動詞なら主語の前に出し、一般動詞なら <span class="en">do</span> <span class="en">does</span> を置きます。</span>
+</li>
+<li>
+<span class="step-t">一般動詞なら、動詞を原形に戻す</span>
+<span class="step-d"><span class="en">does</span> が <span class="en">s</span> を引き受けます。1つの文で2度 <span class="en">s</span> をつけることはありません。</span>
+</li>
+</ol>
+
+<h2><span>疑問詞が主語になるとき</span></h2>
+
+<p>ここまでの形では、疑問詞のうしろに主語がありました。ところが、<strong>疑問詞そのものが主語になる</strong>ことがあります。このときだけ形が変わるので、独立して覚えます。</p>
+
+<p><span class="en">What is in the box?</span> という文を見ます。たずねているのは箱の中にある物で、それが主語です。うしろは <span class="en">is in the box</span> と、ふつうの文の語順のままです。<span class="en">What is it in the box?</span> とはしません。</p>
+
+<p>一般動詞でも同じです。<span class="en">Who plays the piano?</span> は「だれが」をたずねています。<span class="en">Who</span> が主語なので <span class="en">do</span> <span class="en">does</span> は使いません。<strong>主語は1人として扱う</strong>ので、動詞には <span class="en">s</span> がつきます。<span class="en">Who dances well?</span>／<span class="en">Which bus goes to the zoo?</span>　どちらも動詞の形は Unit 9 のとおりです。</p>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Who does play the piano?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Who <span class="gen-w">plays</span> the piano?</span></div>
+<p class="contrast-why">疑問詞が主語なので <span class="en">does</span> は入りません。動詞に <span class="en">s</span> をつけて終わりです。</p>
+</div>
+
+<div class="diagram is-general">
+<p class="diagram-cap">疑問詞が主語　do does は入らない</p>
+<div class="flow">
+<span class="node">Who<span class="node-label">疑問詞が主語</span></span>
+<span class="link">
+<span class="link-word">plays</span>
+<span class="rail"></span>
+</span>
+<span class="node">the piano<span class="node-label">目的語</span></span>
+</div>
+</div>
+
+<p>見分け方は1つです。<strong>疑問詞を取り去って、主語が残るかどうか</strong>を見ます。<span class="en">Who plays the piano?</span> から <span class="en">who</span> を取ると主語がなくなります。<span class="en">What does she like?</span> から <span class="en">what</span> を取ると <span class="en">she</span> が残ります。残らなければ、疑問詞が主語です。</p>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>yes と no では答えない</h3>
+<p>疑問詞のある文に <span class="en">Yes, I do.</span> と答えることはできません。<span class="en">Where do you live?</span> には <span class="en">In the town.</span> のように内容を答えます。<strong>疑問詞が先頭にあるかどうか</strong>を見れば、答え方はすぐ決まります。</p>
+
+<h3>whose は持ち主をたずねる</h3>
+<p><span class="en">whose</span> は「だれの」と「だれのもの」の両方に使います。名詞をつけて <span class="en">Whose notebook is this?</span>、名詞をつけずに <span class="en">Whose is this notebook?</span> です。答えは <span class="en">It is mine.</span> のように Unit 8 の所有代名詞を使います。</p>
+
+<h3>which は選ばせるとき</h3>
+<p><span class="en">which</span> は、答えの候補がはっきりしているときに使います。<span class="en">Which do you choose, a pen or a pencil?</span> のように <span class="en">or</span> で候補を並べます。名詞をつけて <span class="en">Which restaurant do you like?</span> ともいえます。候補が決まっていないときは <span class="en">what</span> です。</p>
+
+<h3>what と which は名詞をつけられる</h3>
+<p><span class="en">What color is it?</span>／<span class="en">What food do you like?</span>／<span class="en">Which country do you like?</span>　——疑問詞のうしろに名詞をつけると、たずねる範囲がせまくなります。2語でひとまとまりなので、間に他の語は入りません。</p>
+
+<h3>why には because で答える</h3>
+<p><span class="en">Why do you like this song?</span> には <span class="en">Because it is beautiful.</span> と答えます。<span class="en">because</span> は理由を示す語で、文と文をつなぎます。<span class="en">He always helps me, because he knows my sister very well.</span> のように、1つの文の中で使うこともできます。</p>
+
+<h3>how は方法と様子の両方に使う</h3>
+<p>方法をたずねるときは <span class="en">How do you go to school?</span> です。答えは <span class="en">By train.</span> や <span class="en">On foot.</span> になります。手段を表す <span class="en">by</span> のうしろには、<span class="en">a</span> も <span class="en">the</span> もつけません。様子をたずねるときは <span class="en">How is your mother?</span> のように使います。</p>
+
+<h3>疑問詞のうしろでも動詞は原形</h3>
+<p><span class="en">What does your sister want?</span> の <span class="en">want</span> に <span class="en">s</span> はつきません。<span class="en">Aya asks a question.</span> のような肯定文では <span class="en">s</span> がつきますが、<span class="en">does</span> のある文では原形に戻ります。<strong>s は1つの文に1度だけ</strong>——Unit 9 と同じです。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td class="be-cell">答えの文を示し、合う疑問詞を選ばせる</td></tr>
+<tr><td>並べ替え</td><td class="be-cell">疑問詞が主語の文を混ぜ、<span class="en">does</span> のつけすぎを誘う</td></tr>
+<tr><td>誤文訂正</td><td class="be-cell"><span class="en">do</span> の入れ忘れ、原形に戻し忘れ、<span class="en">who</span> と <span class="en">whose</span> の取りちがえ</td></tr>
+<tr><td>英作文</td><td class="be-cell">使う疑問詞と語数を指定して書かせる</td></tr>
+<tr><td>読解</td><td class="be-cell">対話文の問いと答えを対応させる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Where you live?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Where <span class="gen-w">do</span> you live?</span></div>
+<p class="contrast-why">一般動詞の文なので <span class="en">do</span> が必要です。疑問詞を足しても、もとの疑問文の形は変わりません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">What does your sister wants?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">What does your sister <span class="gen-w">want</span>?</span></div>
+<p class="contrast-why"><span class="en">does</span> がすでに <span class="en">s</span> を引き受けています。うしろの動詞は原形に戻します。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Who bag is this?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="gen-w">Whose</span> bag is this?</span></div>
+<p class="contrast-why">持ち主をたずねる語は <span class="en">whose</span> です。<span class="en">who</span> は人そのものをたずねます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">How is your brother go to the zoo?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">How <span class="gen-w">does</span> your brother go to the zoo?</span></div>
+<p class="contrast-why">動詞は <span class="en">go</span> で一般動詞です。be動詞と一般動詞は同居しません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Where do you live? Yes, I do.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Where do you live? In the town.</span></div>
+<p class="contrast-why">疑問詞のある文には内容を答えます。<span class="en">yes</span> と <span class="en">no</span> は使いません。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">Where do you live?</span>／<span class="en">What does your sister want?</span>／<span class="en">Whose bag is this?</span>／<span class="en">How does your brother go to the zoo?</span>／<span class="en">Who plays the piano?</span>　最後の1文だけ <span class="en">does</span> がありません。疑問詞が主語だからです。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。答えの文がある問題は、答えの種類から疑問詞を決めます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">(　　　) is that tall man? —— He is my uncle.</span>
+<p class="opts"><span>ア What</span><span>イ Who</span><span>ウ Whose</span><span>エ Where</span></p></li>
+<li><span class="en">(　　　) do you go to the zoo? —— By train.</span>
+<p class="opts"><span>ア Who</span><span>イ Which</span><span>ウ How</span><span>エ Whose</span></p></li>
+<li><span class="en">(　　　) notebook is this? —— It is mine.</span>
+<p class="opts"><span>ア Who</span><span>イ Whose</span><span>ウ What</span><span>エ Where</span></p></li>
+<li><span class="en">What subject (　　　) your brother like?</span>
+<p class="opts"><span>ア do</span><span>イ does</span><span>ウ is</span><span>エ are</span></p></li>
+<li><span class="en">(　　　) is in the box?</span>
+<p class="opts"><span>ア What</span><span>イ What does</span><span>ウ What do</span><span>エ Whose is</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>あなたはどこに住んでいますか。<br><span class="en">[ do / where / live / you ] ?</span><span class="write"></span></li>
+<li>この自転車はだれのものですか。<br><span class="en">[ is / whose / bike / this ] ?</span><span class="write"></span></li>
+<li data-extra="1">あなたのお姉さんはなぜ英語を勉強するのですか。<span class="hint">1語不要</span><br><span class="en">[ does / why / study / sister / your / English / studies ] ?</span><span class="write"></span></li>
+<li>箱の中に何がありますか。<br><span class="en">[ in / what / the / is / box ] ?</span><span class="write"></span></li>
+<li data-extra="1">あなたはどうやって学校へ行きますか。<span class="hint">1語不要</span><br><span class="en">[ go / how / you / do / to / school / goes ] ?</span><span class="write"></span></li>
+<li>だれがこの歌を歌いますか。<br><span class="en">[ this / sings / who / song ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">Where you live?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">What does your sister wants?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Who does play the piano?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Who bag is this?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">How is your brother go to the zoo?</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">あなたはどこで昼食を食べますか。</span><span class="write"></span></li>
+<li><span class="q-ja">これはだれのかさですか。</span><span class="write"></span></li>
+<li><span class="q-ja">かばんの中に何がありますか。</span><span class="write"></span></li>
+<li><span class="q-ja">だれがこの部屋を掃除しますか。</span><span class="write"></span></li>
+<li>why を使って「あなたはなぜあの歌が好きなのですか」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li>how を使って「あなたのお父さんはどうやって会社へ行きますか」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li>which を使って「どちらのバスが動物園へ行きますか」と書く。<span class="cond">6語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">アヤとタクの対話です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">アヤとタクの対話</p>
+<p>Aya: Taku, what do you have in your bag?<br>
+Taku: I have a present for my sister. Her birthday is today.<br>
+Aya: <span class="num">①</span><span class="ul">What color is it?</span><br>
+Taku: It is white. My sister likes white very much.<br>
+Aya: Where do you buy presents?<br>
+Taku: I usually go to a store in the town.<br>
+Aya: How do you go there?<br>
+Taku: I go by train. Sometimes I go on foot.<br>
+Aya: Who goes with you?<br>
+Taku: My brother goes with me. <span class="num">②</span><span class="ul">He always helps me, because he knows my sister very well.</span><br>
+Aya: Which present does she want, a book or a card?<br>
+Taku: She wants a book. She reads a lot of books.</p>
+<p class="reading-wc">およそ110語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア タクはかばんの中にプレゼントを持っている。<br>
+イ タクは歩いて店へ行くことはない。<br>
+ウ アヤの兄がタクといっしょに行く。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア タクの姉は白が好きではない。<br>
+イ タクの兄はいつもタクを手伝う。<br>
+ウ タクは店までバスで行く。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Taku goes to the store (　　　) train.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">The present is (　　　).</span><span class="write"></span></li>
+<li>下線部②を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>身の回りの物について、whose を使った疑問文を1文書く。<span class="hint">例：Whose racket is this?</span><span class="write"></span></li>
+<li>友達にたずねたいことを、why か how を使って1文書く。<span class="hint">例：How do you study English?</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>疑問詞を取り去って主語が残るか</strong>を確かめるところまで戻ると、<span class="en">do</span> <span class="en">does</span> を入れるかどうかが決まります。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　Who</span><p class="a-why">答えが <span class="en">He is my uncle.</span> と人なので <span class="en">who</span> です。<span class="en">whose</span> なら持ち主を答えます。</p></li>
+<li><span class="a-key">ウ　How</span><p class="a-why">答えが <span class="en">By train.</span> と方法なので <span class="en">how</span> です。手段の <span class="en">by</span> のうしろに冠詞はつきません。</p></li>
+<li><span class="a-key">イ　Whose</span><p class="a-why">答えが <span class="en">It is mine.</span> と持ち主なので <span class="en">whose</span> です。うしろに名詞をつけた形です。</p></li>
+<li><span class="a-key">イ　does</span><p class="a-why">主語 <span class="en">your brother</span> は <span class="en">he</span> に置きかえられます。一般動詞の文なので <span class="en">does</span> を使い、動詞は原形です。</p></li>
+<li><span class="a-key">ア　What</span><p class="a-why">疑問詞が主語なので、うしろはふつうの文の語順のままです。<span class="en">do</span> <span class="en">does</span> は入りません。</p></li>
+
+<li><span class="a-key">Where do you live?</span><p class="a-why">一般動詞の文なので <span class="en">do</span> を置きます。疑問詞を足しても、うしろの語順は変わりません。</p></li>
+<li><span class="a-key">Whose bike is this?</span><p class="a-why">持ち主をたずねるので <span class="en">whose</span> です。うしろは be動詞の疑問文の語順です。</p></li>
+<li><span class="a-key">Why does your sister study English?</span><p class="a-why">不要な語は <span class="en">studies</span> です。<span class="en">does</span> が <span class="en">s</span> を引き受けるので、動詞は原形になります。</p></li>
+<li><span class="a-key">What is in the box?</span><p class="a-why">疑問詞が主語です。<span class="en">What is it in the box?</span> とはしません。</p></li>
+<li><span class="a-key">How do you go to school?</span><p class="a-why">不要な語は <span class="en">goes</span> です。主語が <span class="en">you</span> なので <span class="en">do</span> を使い、動詞は原形です。</p></li>
+<li><span class="a-key">Who sings this song?</span><p class="a-why">疑問詞が主語なので <span class="en">does</span> は入りません。主語は1人として扱うので <span class="en">sings</span> になります。</p></li>
+
+<li><span class="a-key">Where do you live?</span><p class="a-why">理由の例：一般動詞の疑問文なので、主語の前に <span class="en">do</span> が必要だから。</p></li>
+<li><span class="a-key">What does your sister want?</span><p class="a-why">理由の例：<span class="en">does</span> がすでに <span class="en">s</span> を引き受けているので、動詞は原形になるから。</p></li>
+<li><span class="a-key">Who plays the piano?</span><p class="a-why">理由の例：疑問詞の <span class="en">who</span> が主語なので、<span class="en">does</span> を使わないから。</p></li>
+<li><span class="a-key">Whose bag is this?</span><p class="a-why">理由の例：持ち主をたずねる語は <span class="en">whose</span> で、<span class="en">who</span> は人そのものをたずねるから。</p></li>
+<li><span class="a-key">How does your brother go to the zoo?</span><p class="a-why">理由の例：<span class="en">go</span> は一般動詞なので、be動詞ではなく <span class="en">does</span> を使うから。</p></li>
+
+<li><span class="a-key">Where do you eat lunch?</span><p class="a-why">場所をたずねるので <span class="en">where</span> です。主語が <span class="en">you</span> なので <span class="en">do</span> を使います。</p></li>
+<li><span class="a-key">Whose umbrella is this?</span><p class="a-why">持ち主をたずねる形です。<span class="en">Whose is this umbrella?</span> と書いても正解です。</p></li>
+<li><span class="a-key">What is in the bag?</span><p class="a-why">疑問詞が主語なので、うしろはふつうの文の語順です。</p></li>
+<li><span class="a-key">Who cleans this room?</span><p class="a-why">疑問詞が主語です。1人として扱うので <span class="en">clean</span> に <span class="en">s</span> がつきます。</p></li>
+<li><span class="a-key">Why do you like that song?</span><p class="a-why">理由をたずねるので <span class="en">why</span> です。6語で収まります。</p></li>
+<li><span class="a-key">How does your father go to the office?</span><p class="a-why">方法をたずねるので <span class="en">how</span> です。主語が1人なので <span class="en">does</span> を使い、動詞は原形です。</p></li>
+<li><span class="a-key">Which bus goes to the zoo?</span><p class="a-why">疑問詞が主語なので <span class="en">does</span> は入りません。<span class="en">go</span> に <span class="en">s</span> をつけて <span class="en">goes</span> です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">I have a present for my sister.</span> とあります。イは <span class="en">Sometimes I go on foot.</span> と合わず、ウはタクの兄がいっしょに行くので合いません。</p></li>
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">He always helps me</span> とあります。アは <span class="en">My sister likes white very much.</span> と合わず、ウは <span class="en">I go by train.</span> と合いません。</p></li>
+<li><span class="a-key">by</span><p class="a-why">本文の <span class="en">I go by train.</span> に合わせます。手段を表す <span class="en">by</span> です。</p></li>
+<li><span class="a-key">white</span><p class="a-why">本文に <span class="en">It is white.</span> とあります。<span class="en">it</span> はプレゼントを指しています。</p></li>
+<li><span class="a-key">彼はいつも私を手伝ってくれます。なぜなら、彼は私の姉をとてもよく知っているからです。</span><p class="a-why"><span class="en">because</span> は理由を示します。<span class="en">very well</span> は「とてもよく」です。</p></li>
+
+<li><span class="a-key">解答例　Whose racket is this?</span><p class="a-why"><span class="en">whose</span> のうしろに名詞が来ていれば正解です。</p></li>
+<li><span class="a-key">解答例　How do you study English?</span><p class="a-why">疑問詞が先頭にあり、うしろが疑問文の語順になっていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">疑問詞は8つで、たずねたい内容を表します。文の先頭に置き、<strong>うしろはもとの疑問文の語順のまま</strong>です。be動詞なら主語の前に出し、一般動詞なら <span class="en">do</span> <span class="en">does</span> を置いて動詞を原形に戻します。ただし<strong>疑問詞が主語のときだけ</strong>、<span class="en">do</span> <span class="en">does</span> を使わず、ふつうの文の語順のままにします。答えるときは <span class="en">yes</span> <span class="en">no</span> を使わず、内容を答えます。</p>
+</div>
+</div>
+</body>
+</html>

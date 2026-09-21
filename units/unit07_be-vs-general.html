@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 7　be動詞と一般動詞の使い分け</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab07_be-vs-general.html">この単元の単語帳 →</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 7</p>
+  <h1 class="unit-title">be動詞と一般動詞の使い分け</h1>
+  <p class="unit-lead">Unit 1・2 で be動詞の文を、Unit 5・6 で一般動詞の文を扱いました。この単元では、その2つを並べて置き、<strong>どちらの文を書くのかを先に決める</strong>練習をします。入試では、1つの文に動詞を2つ置いてしまう誤り、日本語の「です」に引かれて be動詞を選んでしまう誤り、この2つで点が分かれます。</p>
+</header>
+
+<h2><span>1つの文に動詞は1つ</span></h2>
+
+<p>英語の文には、動詞が<strong>1つだけ</strong>入ります。be動詞を置いたらそこに一般動詞は入らず、一般動詞を置いたらそこに be動詞は入りません。<span class="en">I am like music.</span> という形が成り立たないのは、この規則のためです。まず、2つの動詞のはたらきを並べて確かめます。</p>
+
+<div class="term">
+  <p class="term-name">be動詞（am / is / are）</p>
+  <p class="term-def">主語と、その説明とを<strong>つなぐ</strong>語です。「主語＝説明」という関係を作ります。動作は表しません。うしろに来るのは名詞か形容詞、または場所を表す語句です。</p>
+  <p class="term-ex"><span class="en">We <span class="be-w">are</span> a strong team.</span>（私たちは強いチームです）<br>
+  <span class="en">The water <span class="be-w">is</span> cold.</span>（その水は冷たいです）<br>
+  <span class="en">My friends <span class="be-w">are</span> in the kitchen.</span>（私の友達は台所にいます）</p>
+</div>
+
+<div class="term is-general">
+  <p class="term-name">一般動詞（play / love / visit など）</p>
+  <p class="term-def">主語が<strong>する動作</strong>や、主語の<strong>心の働き</strong>を表す語です。be動詞以外の動詞はすべてここに入ります。うしろに目的語が続くことも、場所や時を表す語句が続くこともあります。</p>
+  <p class="term-ex"><span class="en">We <span class="gen-w">love</span> music very much.</span>（私たちは音楽が大好きです）<br>
+  <span class="en">We <span class="gen-w">visit</span> the festival every year.</span>（私たちは毎年その祭りを訪れます）<br>
+  <span class="en">They <span class="gen-w">work</span> in an office.</span>（彼らは事務所で働きます）</p>
+</div>
+
+<p><strong>なぜ1つなのか。</strong>英語では、文のかたちを決めているのが動詞だからです。否定にするのか、たずねるのか、いつのことなのか——この合図はすべて動詞のところに集まります。動詞が2つあると、どちらの合図を読めばよいのかが決まりません。だから1つの文には動詞を1つだけ置き、そこにすべての合図をのせます。</p>
+
+<h2><span>2つの文のかたち</span></h2>
+
+<div class="diagram">
+  <p class="diagram-cap">be動詞：主語と説明を「＝」でつなぐ</p>
+  <div class="flow">
+    <span class="node">We<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">are</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">a strong team<span class="node-label">説明</span></span>
+  </div>
+</div>
+
+<div class="diagram is-general">
+  <p class="diagram-cap">一般動詞：主語から動作が出ていく</p>
+  <div class="flow">
+    <span class="node">We<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">love</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">music<span class="node-label">目的語</span></span>
+  </div>
+</div>
+
+<p>左右の図で、真ん中の形が違うことを見てください。be動詞は両側を等号でつなぐ線、一般動詞は主語から出ていく矢印です。<span class="en">We are a strong team.</span> は「私たち＝強いチーム」であり、<span class="en">We love music.</span> は「私たちから音楽へ、好きだという心の働きが向かう」形です。この違いが、否定文と疑問文の作り方の違いにそのままつながります。</p>
+
+<h2><span>どちらの文かを決める手順</span></h2>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">日本語を見て、動作か心の働きがあるかを探す</span>
+    <span class="step-d">「〜する」「〜を好む」「〜がほしい」「〜を持っている」があれば一般動詞の文です。動作も心の働きも無く、「〜です」「〜にいます」「〜にあります」だけなら be動詞の文です。</span>
+  </li>
+  <li>
+    <span class="step-t">一般動詞の文なら、その動詞を主語のうしろに置く</span>
+    <span class="step-d">be動詞は置きません。<span class="en">We love music.</span> であって <span class="en">We are love music.</span> ではありません。</span>
+  </li>
+  <li>
+    <span class="step-t">be動詞の文なら、主語に合わせて am / is / are を選ぶ</span>
+    <span class="step-d">この単元の主語（<span class="en">I</span> / <span class="en">you</span> / <span class="en">we</span> / <span class="en">they</span> と複数の名詞）では、<span class="en">I</span> が <span class="en">am</span>、ほかはすべて <span class="en">are</span> です。</span>
+  </li>
+  <li>
+    <span class="step-t">打ち消すのか、たずねるのかを決める</span>
+    <span class="step-d">be動詞の文なら be動詞自身を動かします。一般動詞の文なら <span class="en">don't</span> と <span class="en">Do</span> を借ります。Unit 2 と Unit 6 で扱った形です。</span>
+  </li>
+  <li>
+    <span class="step-t">残りの語を、目的語・場所・時の順に続ける</span>
+    <span class="step-d">どちらの文でもこの順は変わりません。<span class="en">every year</span> や <span class="en">after school</span> は文の終わりに置きます。</span>
+  </li>
+</ol>
+
+<h2><span>肯定・否定・疑問・答えの対応</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th></th><th>be動詞の文</th><th>一般動詞の文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>肯定文</td>
+      <td class="be-cell"><span class="en">We are at home.</span></td>
+      <td class="be-cell"><span class="en">We visit the festival.</span></td>
+    </tr>
+    <tr>
+      <td>否定文</td>
+      <td class="be-cell"><span class="en">We are not at home.</span></td>
+      <td class="be-cell"><span class="en">We don't visit the festival.</span></td>
+    </tr>
+    <tr>
+      <td>疑問文</td>
+      <td class="be-cell"><span class="en">Are you at home?</span></td>
+      <td class="be-cell"><span class="en">Do you visit the festival?</span></td>
+    </tr>
+    <tr>
+      <td>答え</td>
+      <td class="be-cell"><span class="en">Yes, we are. / No, we are not.</span></td>
+      <td class="be-cell"><span class="en">Yes, we do. / No, we don't.</span></td>
+    </tr>
+    <tr>
+      <td>打ち消しの語の位置</td>
+      <td>be動詞のうしろ</td>
+      <td>主語のうしろ、動詞の前</td>
+    </tr>
+    <tr>
+      <td>たずねるときに前に出る語</td>
+      <td>be動詞そのもの</td>
+      <td><span class="en">Do</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>この表の左と右は、どちらか一方しか使いません。文を書く前にどちらの列を使うかを決めておけば、否定文も疑問文も答えの文も、その列の形をそのまま取り出すだけで作れます。<strong>迷ったら、まず動作か心の働きがあるかを探す</strong>——判定の入口はいつもここです。</p>
+
+<h2><span>日本語の「です」にまどわされない</span></h2>
+
+<p>日本語では「私は学生<strong>です</strong>」も「私は音楽が好き<strong>です</strong>」も、同じ「です」で終わります。英語では、この2つは別の仕組みの文です。<strong>日本語の文末ではなく、意味の中身で決めます。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>日本語</th><th>英語</th><th>どちらの文か</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>私は学生です。</td><td class="be-cell"><span class="en">I am a student.</span></td><td>be動詞</td></tr>
+    <tr><td>私は音楽が好きです。</td><td class="be-cell"><span class="en">I like music.</span></td><td>一般動詞</td></tr>
+    <tr><td>私は新しい自転車がほしいです。</td><td class="be-cell"><span class="en">I want a new bike.</span></td><td>一般動詞</td></tr>
+    <tr><td>私はかばんを持っています。</td><td class="be-cell"><span class="en">I have a bag.</span></td><td>一般動詞</td></tr>
+    <tr><td>私は台所にいます。</td><td class="be-cell"><span class="en">I am in the kitchen.</span></td><td>be動詞</td></tr>
+    <tr><td>私は田辺出身です。</td><td class="be-cell"><span class="en">I am from Tanabe.</span></td><td>be動詞</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>見分け方は3行で済みます。<span class="en">like</span> は「好む」という心の働き、<span class="en">want</span> は「ほしがる」という心の働き、<span class="en">have</span> は「持っている」という状態を表す動作の語です。どれも一般動詞なので、be動詞は入りません。いっぽう「〜です」「〜にいます」「〜出身です」には動作も心の働きも無いので、be動詞でつなぎます。</p>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>1つの文に動詞は2つ置けない</h3>
+
+<p><span class="en">I am like music.</span> <span class="en">We are visit the festival.</span> <span class="en">They are work in an office.</span> ——どれも be動詞と一般動詞を1つの文に並べた形で、正しくありません。<span class="en">I like music.</span> <span class="en">We visit the festival.</span> <span class="en">They work in an office.</span> とします。逆に、be動詞の文に一般動詞を足すこともできません。<strong>動詞を書いたら、その文にはもう動詞を足さない</strong>と決めておくと確かです。</p>
+
+<h3>「〜にいます・あります」は be動詞、「〜へ行く」は一般動詞</h3>
+
+<p>場所を言う文には2種類あります。<span class="en">We are in the park.</span> は「公園にいる」という状態なので be動詞です。<span class="en">We go to the park.</span> は「公園へ行く」という動作なので一般動詞です。日本語ではどちらも場所の語が出てきますが、<strong>そこにいるのか、そこへ向かうのか</strong>で選ぶ語が変わります。<span class="en">We are at home.</span> と <span class="en">We go home early.</span> も同じ対です。</p>
+
+<h3>be動詞の否定・疑問と、一般動詞の否定・疑問を取り違えない</h3>
+
+<p><span class="en">Do you a student?</span> とは書きません。<span class="en">a student</span> は名詞で、動作を表す語がどこにも無いので be動詞の文です。<span class="en">Are you a student?</span> とします。反対に <span class="en">Are you visit the festival?</span> も誤りで、<span class="en">Do you visit the festival?</span> です。<strong>先に列を決めてから、その列の疑問文の形を取る</strong>という順で考えます。</p>
+
+<h3>たずねた文で使った語で答える</h3>
+
+<p><span class="en">Are you from Tanabe?</span> には <span class="en">Yes, I am.</span>、<span class="en">Do you visit the festival?</span> には <span class="en">Yes, we do.</span> と答えます。<span class="en">Are you 〜?</span> に <span class="en">Yes, I do.</span> と答えたり、<span class="en">Do you 〜?</span> に <span class="en">Yes, I am.</span> と答えたりするのは誤りです。Unit 2 と Unit 6 で扱った形が、ここで1つに並びます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形式</th><th>問われ方</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>選択</td><td>空所に be動詞を入れるか <span class="en">do</span> を入れるかを4択で問います。<span class="en">am like</span> <span class="en">are visit</span> のような、動詞を2つ並べた形が誤答に混ざります。</td></tr>
+    <tr><td>並べ替え</td><td>語群に be動詞と <span class="en">do</span> の両方を入れ、どちらを使うかを選ばせます。使わない語が1語混ざる形が定番です。</td></tr>
+    <tr><td>誤文訂正</td><td>動詞が2つ並んだ文、答えの文で動詞を取り違えた文が出ます。</td></tr>
+    <tr><td>英作文</td><td>日本語の「です」に引かれず、意味の中身で動詞を選べるかを見ます。</td></tr>
+    <tr><td>読解</td><td>手紙文や対話文で、状態を述べる文と動作を述べる文を読み分けさせます。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I am like music.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I <span class="gen-w">like</span> music.</span></div>
+  <p class="contrast-why">like は心の働きを表す一般動詞です。be動詞とは並べられません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Do you a student?</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">Are</span> you a student?</span></div>
+  <p class="contrast-why">動作も心の働きも無いので be動詞の文です。do は借りません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">We are visit the festival.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">We <span class="gen-w">visit</span> the festival.</span></div>
+  <p class="contrast-why">visit が動作を表しているので、be動詞は入りません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Are you from Tanabe? — Yes, I do.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">Are you from Tanabe? — Yes, I <span class="be-w">am</span>.</span></div>
+  <p class="contrast-why">be動詞でたずねられた文には be動詞で答えます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I am not have any bread.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I <span class="gen-w">don't</span> have any bread.</span></div>
+  <p class="contrast-why">have は一般動詞なので don't で打ち消します。否定文なので any を使います。</p>
+</div>
+
+<p>ここまでの形は、次の文でひととおり確かめられます。<span class="en">We are a strong team.</span>／<span class="en">My friends and I are members of a brass band.</span>／<span class="en">The water is cold.</span>／<span class="en">My friends are in the kitchen.</span>／<span class="en">We love music very much.</span>／<span class="en">We visit the festival every year.</span>／<span class="en">They work in an office.</span>／<span class="en">I am from Tanabe.</span>／<span class="en">Our town is small and quiet.</span>／<span class="en">The people here are kind.</span>／<span class="en">The bridge is old.</span>／<span class="en">My brother is young.</span>／<span class="en">We buy bread at the shop.</span>／<span class="en">We wait for the bus.</span>／<span class="en">We meet our friends at the station.</span>／<span class="en">We sit on the chairs.</span>／<span class="en">We stand at the door.</span>／<span class="en">I don't run fast.</span>／<span class="en">We walk on the old bridge.</span>／<span class="en">The river is beautiful.</span>／<span class="en">I drink water after school.</span>／<span class="en">We don't eat breakfast at home.</span>／<span class="en">We see green mountains.</span>／<span class="en">We are in the park.</span>／<span class="en">We go to the park.</span>／<span class="en">We go home early.</span>／<span class="en">Are you at home?</span>／<span class="en">Do you visit the festival?</span>／<span class="en">I am in the kitchen.</span>／<span class="en">I want a new bike.</span>／<span class="en">I have a bag.</span>／<span class="en">I am a student.</span>／<span class="en">I like music.</span>／<span class="en">The hospital is large.</span>／<span class="en">We wait for our friends.</span>　どれも、動作か心の働きがあるかを先に見て、be動詞の列か一般動詞の列かを決めてから形を選んでいます。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。動作か心の働きがあるかを先に見て、be動詞の文か一般動詞の文かを決めてから選びます。</p>
+
+<ol class="q" data-part="A">
+  <li><span class="en">My friends and I (　　　) in the brass band.</span>
+  <p class="opts"><span>ア am</span><span>イ is</span><span>ウ are</span><span>エ do</span></p></li>
+  <li><span class="en">We (　　　) music very much.</span>
+  <p class="opts"><span>ア are love</span><span>イ love</span><span>ウ are</span><span>エ do love</span></p></li>
+  <li><span class="en">I (　　　) a new bike.</span>
+  <p class="opts"><span>ア am want</span><span>イ are want</span><span>ウ want</span><span>エ do want</span></p></li>
+  <li><span class="en">(　　　) you from Tanabe?</span>
+  <p class="opts"><span>ア Do</span><span>イ Are</span><span>ウ Is</span><span>エ Be</span></p></li>
+  <li><span class="en">"Do you visit the festival?" "Yes, we (　　　)."</span>
+  <p class="opts"><span>ア are</span><span>イ do</span><span>ウ am</span><span>エ don't</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べ替えましょう。文の先頭に来る語も小文字で示してあります。<strong>10と11には使わない語が1語ずつ混ざっています。</strong></p>
+
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+  <li>私たちは台所にいます。<br><span class="en">[ the / we / in / are / kitchen ] .</span><span class="write"></span></li>
+  <li>私たちはバスを待ちます。<br><span class="en">[ bus / we / for / the / wait ] .</span><span class="write"></span></li>
+  <li>あなたは田辺出身ですか。<br><span class="en">[ you / from / are / Tanabe ] ?</span><span class="write"></span></li>
+  <li>私たちは毎年その祭りを訪れます。<br><span class="en">[ festival / visit / the / we / year / every ] .</span><span class="write"></span></li>
+  <li data-extra="1">あなたたちはその公園にいますか。<span class="hint">1語不要</span><br><span class="en">[ the / you / in / park / are / do ] ?</span><span class="write"></span></li>
+  <li data-extra="1">私たちは水がほしくありません。<span class="hint">1語不要</span><br><span class="en">[ water / don't / we / want / are ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">次の文には誤りが1つずつあります。正しい文に直し、<strong>なぜ誤りかを日本語で1行</strong>書きましょう。</p>
+
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+  <li><span class="en">I am like music.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">Do you a student?</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">We are visit the festival.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">"Are you from Tanabe?" "Yes, I do."</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">I am not have any bread.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">17から20は日本語を英語にしましょう。21から23は条件に合わせて書きましょう。</p>
+
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+  <li><span class="q-ja">私たちは音楽が大好きです。</span><span class="write"></span></li>
+  <li><span class="q-ja">私の友達は台所にいます。</span><span class="write"></span></li>
+  <li><span class="q-ja">あなたはパンを買いますか。</span><span class="write"></span></li>
+  <li><span class="q-ja">私たちは家にいません。</span><span class="write"></span></li>
+  <li>be動詞を使って「私たちは強いチームです」と書く。<span class="cond">5語</span><span class="write"></span></li>
+  <li>wait を使って「私たちは友達を待ちます」と書く。<span class="cond">5語</span><span class="write"></span></li>
+  <li>don't を使って「私たちは家で朝食を食べません」と書く。<span class="cond">6語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">アヤがメグに書いた手紙です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+  <p class="reading-cap">アヤからの手紙</p>
+  <p>Dear Meg,<br>
+  Hello. I am Aya. I am a student in Tanabe.
+  <span class="num">①</span><span class="ul">My friends and I are members of a brass band.</span><br>
+  We practice in the music room after school. We don't go home early. The practice is hard, but we love music very much.<br>
+  Our town is not large. It is small and quiet. But we have a beautiful river and green mountains. We have an old bridge, too. The people here are kind.<br>
+  Do you live in a large city? Do you play music? I want a long letter from you.<br>
+  Your friend,<br>
+  Aya</p>
+  <p class="reading-wc">96語（あいさつと名前を含む）</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+  ア アヤたちは放課後に音楽室で練習する。<br>
+  イ アヤは音楽があまり好きではない。<br>
+  ウ アヤたちは早く家に帰る。<span class="write"></span></li>
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+  ア アヤの町は大きくて有名である。<br>
+  イ アヤの町には川と山と古い橋がある。<br>
+  ウ アヤの町の人はアヤに親切ではない。<span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">The town (　　　) not large.</span><span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">Aya and her friends (　　　) not go home early.</span><span class="write"></span></li>
+  <li>下線部①を日本語にする。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">正解は1つではありません。この単元で扱った主語だけを使って書いてください。</p>
+
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+  <li>自分のことを be動詞の文で1文書く。<span class="hint">例：I am a student.</span><span class="write"></span></li>
+  <li>自分がすることを一般動詞の文で1文書く。<span class="hint">例：I like music.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>動作か心の働きがあるか</strong>をもう一度見て、be動詞の列と一般動詞の列のどちらを使う文だったのかを確かめ直すと定着します。</p>
+
+<ol class="a">
+  <li><span class="a-key">ウ　are</span><p class="a-why">動作も心の働きも無く、<span class="en">in the brass band</span> という場所を表す語句が続いているので be動詞の文です。主語 <span class="en">My friends and I</span> は2人以上なので <span class="en">are</span> です。</p></li>
+  <li><span class="a-key">イ　love</span><p class="a-why"><span class="en">love</span> は心の働きを表す一般動詞です。be動詞とは並べられないので <span class="en">are love</span> は誤りです。</p></li>
+  <li><span class="a-key">ウ　want</span><p class="a-why">日本語では「ほしいです」と「です」で終わりますが、<span class="en">want</span> は心の働きを表す一般動詞です。be動詞は入りません。</p></li>
+  <li><span class="a-key">イ　Are</span><p class="a-why">「田辺出身です」には動作も心の働きも無いので be動詞の文です。主語が <span class="en">you</span> なので <span class="en">Are</span> です。</p></li>
+  <li><span class="a-key">イ　do</span><p class="a-why"><span class="en">Do</span> でたずねられているので <span class="en">do</span> で答えます。<span class="en">Yes,</span> のあとなので <span class="en">don't</span> ではありません。</p></li>
+
+  <li><span class="a-key">We are in the kitchen.</span><p class="a-why">「台所にいます」は状態なので be動詞の文です。場所を表す <span class="en">in the kitchen</span> を be動詞のうしろに続けます。</p></li>
+  <li><span class="a-key">We wait for the bus.</span><p class="a-why">「待ちます」は動作なので一般動詞の文です。<span class="en">wait</span> のうしろには <span class="en">for</span> を置いてから待つ相手を続けます。</p></li>
+  <li><span class="a-key">Are you from Tanabe?</span><p class="a-why">be動詞の疑問文なので <span class="en">Are</span> を主語の前に出します。<span class="en">from</span> のうしろに地名を続けます。</p></li>
+  <li><span class="a-key">We visit the festival every year.</span><p class="a-why">「訪れます」は動作なので一般動詞の文です。時を表す <span class="en">every year</span> は文の終わりに置きます。</p></li>
+  <li><span class="a-key">Are you in the park?</span><p class="a-why">不要な語は <span class="en">do</span> です。「公園にいますか」は状態をたずねる文なので be動詞の疑問文です。</p></li>
+  <li><span class="a-key">We don't want water.</span><p class="a-why">不要な語は <span class="en">are</span> です。<span class="en">want</span> は一般動詞なので <span class="en">don't</span> で打ち消します。</p></li>
+
+  <li><span class="a-key">I like music.</span><p class="a-why">理由の例：like は一般動詞なので、be動詞と並べては置けないから。</p></li>
+  <li><span class="a-key">Are you a student?</span><p class="a-why">理由の例：動作も心の働きも無く be動詞の文なので、do は借りないから。</p></li>
+  <li><span class="a-key">We visit the festival.</span><p class="a-why">理由の例：visit が動作を表す一般動詞なので、be動詞は入らないから。</p></li>
+  <li><span class="a-key">"Are you from Tanabe?" "Yes, I am."</span><p class="a-why">理由の例：be動詞でたずねられた文には be動詞で答えるから。</p></li>
+  <li><span class="a-key">I don't have any bread.</span><p class="a-why">理由の例：have は一般動詞なので、打ち消すには don't を使うから。<br>否定文なので <span class="en">some</span> ではなく <span class="en">any</span> のままです。</p></li>
+
+  <li><span class="a-key">We love music very much.</span><p class="a-why">「大好きです」は心の働きなので一般動詞です。<span class="en">very much</span> は文の終わりに置きます。</p></li>
+  <li><span class="a-key">My friends are in the kitchen.</span><p class="a-why">「います」なので be動詞の文です。主語が複数なので <span class="en">are</span> です。</p></li>
+  <li><span class="a-key">Do you buy bread?</span><p class="a-why">「買いますか」は動作をたずねる文なので <span class="en">Do</span> を主語の前に置きます。<span class="en">bread</span> には <span class="en">a</span> を付けません。</p></li>
+  <li><span class="a-key">We are not at home.</span><p class="a-why">「家にいません」は状態の打ち消しなので、<span class="en">not</span> を be動詞のうしろに置きます。<span class="en">We aren't at home.</span> も正しい文です。</p></li>
+  <li><span class="a-key">We are a strong team.</span><p class="a-why">「〜です」で動作も心の働きも無いので be動詞の文です。これで5語になります。</p></li>
+  <li><span class="a-key">We wait for our friends.</span><p class="a-why">一般動詞の文です。<span class="en">wait</span> のうしろに <span class="en">for</span> を置き、待つ相手を続けて5語です。</p></li>
+  <li><span class="a-key">We don't eat breakfast at home.</span><p class="a-why"><span class="en">eat</span> は一般動詞なので <span class="en">don't</span> で打ち消します。<span class="en">don't</span> を1語と数えて6語です。</p></li>
+
+  <li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">We practice in the music room after school.</span> とあります。アヤは <span class="en">we love music very much</span> と書いており、<span class="en">We don't go home early.</span> とも書いています。</p></li>
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">we have a beautiful river and green mountains</span> <span class="en">We have an old bridge, too.</span> とあります。町は <span class="en">not large</span> で、<span class="en">The people here are kind.</span> です。</p></li>
+  <li><span class="a-key">is</span><p class="a-why">本文は <span class="en">Our town is not large.</span> です。動作も心の働きも無いので be動詞が入ります。</p></li>
+  <li><span class="a-key">do</span><p class="a-why">本文は <span class="en">We don't go home early.</span> です。<span class="en">go</span> は一般動詞なので、打ち消しには <span class="en">do</span> を使います。</p></li>
+  <li><span class="a-key">私の友達と私は、ブラスバンドの部員です。</span><p class="a-why">「私と友達はブラスバンドに入っています」も正解です。<span class="en">are</span> は「〜です」という意味で、動作は表していません。</p></li>
+
+  <li><span class="a-key">解答例　I am a student.</span><p class="a-why">主語のうしろに <span class="en">am</span> を置き、そのあとに名詞か形容詞、または場所を表す語句が続いていれば正解です。一般動詞を一緒に置いていないかを確かめましょう。</p></li>
+  <li><span class="a-key">解答例　I like music.</span><p class="a-why">主語のうしろに一般動詞を置けていれば正解です。be動詞を一緒に置いていないかを確かめましょう。</p></li>
+</ol>
+
+<div class="wrap-up">
+  <p class="wrap-up-t">この単元のまとめ</p>
+  <p style="margin:0">1つの文に動詞は1つです。be動詞は主語と説明を<strong>つなぐ</strong>語で、一般動詞は主語の<strong>動作や心の働き</strong>を表す語です。日本語の文末が「です」でも、<span class="en">like</span> <span class="en">want</span> <span class="en">have</span> のように意味の中身が心の働きや状態なら一般動詞の文になります。どちらの文かを先に決めれば、否定文は <span class="en">not</span> を be動詞のうしろに置くか <span class="en">don't</span> を動詞の前に置くかが決まり、疑問文は be動詞を前に出すか <span class="en">Do</span> を置くかが決まり、答えの文もたずねた文で使った語で返せます。</p>
+</div>
+</div>
+</body>
+</html>

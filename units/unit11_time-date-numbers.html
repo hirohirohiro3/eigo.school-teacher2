@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 11　時刻・曜日・日付・数の表現</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab11_time-date-numbers.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 11</p>
+<h1 class="unit-title">時刻・曜日・日付・数の表現</h1>
+<p class="unit-lead">Unit 10 で <span class="en">when</span> と <span class="en">how</span> を使って「いつ」「どのように」をたずねました。この単元では、その答え方になる<strong>時刻・曜日・日付</strong>と、<strong>数・値段・年齢</strong>のたずね方を扱います。入試では、数の綴りと、時を表す語の前に置く <span class="en">at</span> <span class="en">on</span> <span class="en">in</span> の使い分けがよく問われます。</p>
+</header>
+
+<h2><span>時刻・曜日・日付は it で表す</span></h2>
+
+<p>時刻を言うときは <span class="en">It is seven o'clock.</span> のように、<span class="en">it</span> を主語にします。この <span class="en">it</span> は、Unit 3 の「それ」とは違って、何かを指しているわけではありません。</p>
+
+<p><strong>なぜ it を置くのか。</strong>英語の文には、必ず主語が要ります。「7時です」の「何が」にあたるものは日本語では言いませんが、英語では空けておけません。そこで、意味を持たない <span class="en">it</span> を主語の位置に置きます。曜日・日付も同じです。<strong>訳すときは「それは」と訳しません。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>たずねる内容</th><th>たずね方</th><th>答え方</th></tr>
+<tr><td>時刻</td><td class="be-cell"><span class="en">What time is it?</span></td><td class="be-cell"><span class="en">It is ten o'clock.</span></td></tr>
+<tr><td>曜日</td><td class="be-cell"><span class="en">What day is it today?</span></td><td class="be-cell"><span class="en">It is Wednesday.</span></td></tr>
+<tr><td>日付</td><td class="be-cell"><span class="en">What is the date today?</span></td><td class="be-cell"><span class="en">It is May 5.</span></td></tr>
+</table>
+</div>
+
+<p>たずねる側の <span class="en">What time</span> と <span class="en">What day</span> は、Unit 10 の <span class="en">What color</span> と同じ形です。<span class="en">what</span> のうしろに名詞をつけて、たずねる範囲をせまくしています。2語でひとまとまりなので、間に他の語は入りません。</p>
+
+<div class="diagram">
+<p class="diagram-cap">be動詞の文　主語は意味を持たない it</p>
+<div class="flow">
+<span class="node">It<span class="node-label">時を表す主語</span></span>
+<span class="link">
+<span class="link-word">is</span>
+<span class="rail"></span>
+</span>
+<span class="node">seven thirty<span class="node-label">時刻</span></span>
+</div>
+</div>
+
+<h2><span>数の言い方</span></h2>
+
+<p>1〜10 と 13〜15 はここまでに出ています。この単元では、それより大きい数の作り方を押さえます。<strong>作り方には規則があります。</strong>13〜19 は、<span class="en">thirteen</span> <span class="en">fourteen</span> <span class="en">fifteen</span> のように、どれも同じ4文字で終わります。20・30・40 のような十の位は、<span class="en">twenty</span> <span class="en">thirty</span> のように、どれも <span class="en">y</span> で終わります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>数</th><th>英語</th><th>作り方</th></tr>
+<tr><td>11</td><td class="be-cell"><span class="en">eleven</span></td><td>決まった形。規則からは作れない</td></tr>
+<tr><td>12</td><td class="be-cell"><span class="en">twelve</span></td><td>決まった形。規則からは作れない</td></tr>
+<tr><td>13〜19</td><td class="be-cell"><span class="en">thirteen</span>　<span class="en">fourteen</span>　<span class="en">fifteen</span></td><td>同じ4文字で終わる。16〜19 も同じ</td></tr>
+<tr><td>20</td><td class="be-cell"><span class="en">twenty</span></td><td><span class="en">y</span> で終わる</td></tr>
+<tr><td>30</td><td class="be-cell"><span class="en">thirty</span></td><td><span class="en">y</span> で終わる</td></tr>
+<tr><td>40</td><td class="be-cell"><span class="en">forty</span></td><td><strong><span class="en">four</span> から <span class="en">u</span> が落ちる</strong></td></tr>
+<tr><td>50</td><td class="be-cell"><span class="en">fifty</span></td><td><span class="en">five</span> の <span class="en">v</span> が <span class="en">f</span> に変わる</td></tr>
+<tr><td>100</td><td class="be-cell"><span class="en">one hundred</span></td><td>数の単位。前に数を置く</td></tr>
+</table>
+</div>
+
+<p><strong>なぜ11と12だけ形が違うのか。</strong>古い英語で「10を数えて1つ余る」「2つ余る」という意味の語が、そのまま残ったものです。だから規則からは作れず、覚えるしかありません。13 から先は規則どおりです。</p>
+
+<p>21 から 99 までは、十の位と一の位を<strong>ハイフンでつなぎます</strong>。<span class="en">twenty-five</span>（25）／<span class="en">thirty-five</span>（35）／<span class="en">forty-five</span>（45）。100 より大きい数は <span class="en">hundred</span> のうしろに続けます。<span class="en">eight hundred</span>（800）のように、<span class="en">hundred</span> には <span class="en">s</span> をつけません。値段の <span class="en">It is 800 yen.</span> は <span class="en">It is eight hundred yen.</span> と読みます。</p>
+
+<h2><span>時刻の言い方</span></h2>
+
+<p>時刻は「時」と「分」を<strong>数だけ並べて</strong>言います。7時30分は <span class="en">seven thirty</span>、8時15分は <span class="en">eight fifteen</span>、6時45分は <span class="en">six forty-five</span> です。</p>
+
+<p><span class="en">o'clock</span> は「ちょうど〜時」のときだけ使います。<span class="en">It is ten o'clock.</span> とは言いますが、分がつくときには使いません。<span class="en">o'clock</span> を省いて <span class="en">It is ten.</span> と言うこともできます。</p>
+
+<p>「〜時に…する」と言うときは、時刻の前に <span class="en">at</span> を置きます。<span class="en">I get up at six.</span>／<span class="en">The store closes at nine.</span>／<span class="en">What time do you go to bed? —— I go to bed at ten.</span>　たずねるときは <span class="en">What time</span> を先頭に置き、うしろは Unit 10 と同じく疑問文の語順です。</p>
+
+<div class="diagram is-general">
+<p class="diagram-cap">一般動詞の文　時刻の前に at</p>
+<div class="flow">
+<span class="node">I<span class="node-label">主語</span></span>
+<span class="link">
+<span class="link-word">get up</span>
+<span class="rail"></span>
+</span>
+<span class="node">at six<span class="node-label">時刻</span></span>
+</div>
+</div>
+
+<h2><span>曜日・月・日付</span></h2>
+
+<p>曜日と月の名前は、<strong>いつも大文字で書き始めます</strong>。文の途中でも同じです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>曜日</th><th>英語</th></tr>
+<tr><td>日曜日</td><td class="be-cell"><span class="en">Sunday</span></td></tr>
+<tr><td>月曜日</td><td class="be-cell"><span class="en">Monday</span></td></tr>
+<tr><td>火曜日</td><td class="be-cell"><span class="en">Tuesday</span></td></tr>
+<tr><td>水曜日</td><td class="be-cell"><span class="en">Wednesday</span></td></tr>
+<tr><td>木曜日</td><td class="be-cell"><span class="en">Thursday</span></td></tr>
+<tr><td>金曜日</td><td class="be-cell"><span class="en">Friday</span></td></tr>
+<tr><td>土曜日</td><td class="be-cell"><span class="en">Saturday</span></td></tr>
+</table>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>月</th><th>英語</th><th>月</th><th>英語</th></tr>
+<tr><td>1月</td><td class="be-cell"><span class="en">January</span></td><td>7月</td><td class="be-cell"><span class="en">July</span></td></tr>
+<tr><td>2月</td><td class="be-cell"><span class="en">February</span></td><td>8月</td><td class="be-cell"><span class="en">August</span></td></tr>
+<tr><td>3月</td><td class="be-cell"><span class="en">March</span></td><td>9月</td><td class="be-cell"><span class="en">September</span></td></tr>
+<tr><td>4月</td><td class="be-cell"><span class="en">April</span></td><td>10月</td><td class="be-cell"><span class="en">October</span></td></tr>
+<tr><td>5月</td><td class="be-cell"><span class="en">May</span></td><td>11月</td><td class="be-cell"><span class="en">November</span></td></tr>
+<tr><td>6月</td><td class="be-cell"><span class="en">June</span></td><td>12月</td><td class="be-cell"><span class="en">December</span></td></tr>
+</table>
+</div>
+
+<p>日付の「〜日」は、<strong>順番を表す数</strong>で読みます。<span class="en">May 5</span> と書いて、<span class="en">May fifth</span> と読みます。「5番目の日」という数え方をするからです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>日</th><th>順番を表す数</th><th>注意</th></tr>
+<tr><td>1日</td><td class="be-cell"><span class="en">first</span></td><td>決まった形</td></tr>
+<tr><td>2日</td><td class="be-cell"><span class="en">second</span></td><td>決まった形</td></tr>
+<tr><td>3日</td><td class="be-cell"><span class="en">third</span></td><td>決まった形</td></tr>
+<tr><td>4日</td><td class="be-cell"><span class="en">fourth</span></td><td>ここから先は、うしろに <span class="en">t</span> と <span class="en">h</span></td></tr>
+<tr><td>5日</td><td class="be-cell"><span class="en">fifth</span></td><td><strong><span class="en">five</span> の <span class="en">v</span> と <span class="en">e</span> が <span class="en">f</span> に変わる</strong></td></tr>
+<tr><td>20日</td><td class="be-cell"><span class="en">twentieth</span></td><td><strong><span class="en">twenty</span> の <span class="en">y</span> が <span class="en">i</span> と <span class="en">e</span> に変わる</strong></td></tr>
+<tr><td>21日</td><td class="be-cell"><span class="en">twenty-first</span></td><td>一の位だけ順番を表す数にする</td></tr>
+</table>
+</div>
+
+<p>読み方の例です。<span class="en">It is April first.</span>／<span class="en">It is June second.</span>／<span class="en">It is March third.</span>／<span class="en">It is July fourth.</span>／<span class="en">It is May fifth.</span>／<span class="en">My birthday is July twentieth.</span>　どれも数字で <span class="en">April 1</span> <span class="en">July 20</span> のように書くことができます。</p>
+
+<p>日付をたずねるときは <span class="en">What is the date today?</span> です。<span class="en">date</span> の前には <span class="en">the</span> がつきます。誕生日のように「いつ」をたずねるなら、Unit 10 の <span class="en">when</span> を使って <span class="en">When is your birthday?</span> とし、<span class="en">It is March 3.</span> や <span class="en">My birthday is July 20.</span> と答えます。</p>
+
+<h2><span>時を表す語の前の at / on / in</span></h2>
+
+<p>「〜時に」「〜曜日に」「〜月に」と言うときは、時を表す語の前に <span class="en">at</span> <span class="en">on</span> <span class="en">in</span> のどれかを置きます。<strong>どれを使うかは、時の長さで決まります。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>うしろに来るもの</th><th>例</th></tr>
+<tr><td>at</td><td class="be-cell">時刻（時の1点）</td><td class="be-cell"><span class="en">at six</span>　<span class="en">at seven thirty</span></td></tr>
+<tr><td>on</td><td class="be-cell">曜日・日付（特定の1日）</td><td class="be-cell"><span class="en">on Sunday</span>　<span class="en">on May 5</span></td></tr>
+<tr><td>in</td><td class="be-cell">月・季節・午前や午後（長さのある期間）</td><td class="be-cell"><span class="en">in October</span>　<span class="en">in summer</span>　<span class="en">in the morning</span></td></tr>
+</table>
+</div>
+
+<p><strong>なぜ3つに分かれるのか。</strong>「時刻」は時計の針が指す1点、「曜日・日付」はカレンダーの1日、「月・季節」は何日も続く期間です。短いほうから <span class="en">at</span>、<span class="en">on</span>、<span class="en">in</span> と覚えます。</p>
+
+<h2><span>数・値段・年齢をたずねる</span></h2>
+
+<p>数をたずねるときは <span class="en">how many</span>、値段や量をたずねるときは <span class="en">how much</span>、年齢をたずねるときは <span class="en">how old</span> を使います。どれも Unit 10 の <span class="en">how</span> のうしろに1語足した形で、<strong>2語でひとまとまり</strong>です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>たずねる内容</th><th>たずね方</th><th>答え方</th></tr>
+<tr><td>数</td><td class="be-cell"><span class="en">How many books do you have?</span></td><td class="be-cell"><span class="en">I have twenty books.</span></td></tr>
+<tr><td>値段</td><td class="be-cell"><span class="en">How much is this bag?</span></td><td class="be-cell"><span class="en">It is 800 yen.</span></td></tr>
+<tr><td>値段</td><td class="be-cell"><span class="en">How much is this pen?</span></td><td class="be-cell"><span class="en">It is fifty yen.</span></td></tr>
+<tr><td>年齢</td><td class="be-cell"><span class="en">How old is your sister?</span></td><td class="be-cell"><span class="en">She is eleven years old.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">how many</span> のうしろには、<strong>名詞の複数形</strong>を続けます。いくつあるかをたずねるのだから、答えが2つ以上になりうるためです。<span class="en">How many brothers do you have?</span>／<span class="en">How many rackets does your brother have?</span>　名詞のうしろは疑問文の語順で、主語が1人なら <span class="en">does</span> を使い、動詞は原形です。</p>
+
+<div class="transform">
+<p><span class="en">You have twenty books.</span></p>
+<p class="tf-arrow">↓　数を <span class="en">how many</span> にして、名詞といっしょに先頭へ</p>
+<p><span class="en">How many books do you have?</span></p>
+</div>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">たずねる内容から、先頭に置くまとまりを選ぶ</span>
+<span class="step-d">時刻なら <span class="en">what time</span>、曜日なら <span class="en">what day</span>、数なら <span class="en">how many</span>、値段なら <span class="en">how much</span>、年齢なら <span class="en">how old</span> です。</span>
+</li>
+<li>
+<span class="step-t">how many なら、うしろの名詞を複数形にする</span>
+<span class="step-d">名詞は <span class="en">how many</span> のすぐうしろに置きます。数えられない名詞なら <span class="en">how much</span> に替えます。</span>
+</li>
+<li>
+<span class="step-t">be動詞の文か一般動詞の文かを見分ける</span>
+<span class="step-d">Unit 7 の手順です。be動詞なら主語の前に出し、一般動詞なら <span class="en">do</span> <span class="en">does</span> を置いて動詞を原形に戻します。</span>
+</li>
+<li>
+<span class="step-t">時を表す語には at / on / in をつける</span>
+<span class="step-d">時刻は <span class="en">at</span>、曜日・日付は <span class="en">on</span>、月・季節は <span class="en">in</span> です。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>前置詞をつけない語</h3>
+<p><span class="en">today</span> <span class="en">tomorrow</span> や、<span class="en">every</span> <span class="en">next</span> のつく語句の前には、<span class="en">at</span> <span class="en">on</span> <span class="en">in</span> を置きません。<span class="en">I get up at six every morning.</span>／<span class="en">That is next Sunday.</span>／<span class="en">Tomorrow is Saturday.</span>　これらの語は、それだけで「いつ」を表すからです。</p>
+
+<h3>日曜日の朝は on</h3>
+<p>「朝に」は <span class="en">in the morning</span> ですが、曜日がつくと <span class="en">on Sunday morning</span> になります。<strong>特定の1日に決まれば on</strong> です。前に来る語で決めます。</p>
+
+<h3>数えられない名詞には how much</h3>
+<p><span class="en">water</span> <span class="en">milk</span> <span class="en">rice</span> <span class="en">bread</span> は、1つ2つと数えられない名詞です。<span class="en">a</span> をつけず、複数形にもしません。量をたずねるときは <span class="en">how many</span> ではなく <span class="en">how much</span> を使います。<span class="en">How much milk do you drink every day?</span>　Unit 10 の <span class="en">food</span> も、この仲間です。</p>
+
+<h3>how old の答えは years old を省ける</h3>
+<p><span class="en">How old is your sister?</span> には <span class="en">She is eleven years old.</span> と答えますが、<span class="en">She is eleven.</span> だけでもかまいません。<span class="en">years</span> を使うときは、1歳でないかぎり複数形です。<span class="en">How old is your father? —— He is forty.</span></p>
+
+<h3>時刻をたずねる it と、ものを指す it</h3>
+<p><span class="en">What time is it?</span> の <span class="en">it</span> は何も指していません。<span class="en">What is it?</span> の <span class="en">it</span> は、目の前の物を指しています。形は同じでも、時刻・曜日・日付を表すときの <span class="en">it</span> は「それ」と訳しません。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td class="be-cell"><span class="en">at</span> <span class="en">on</span> <span class="en">in</span> の選択、<span class="en">how many</span> と <span class="en">how much</span> の区別</td></tr>
+<tr><td>綴り</td><td class="be-cell"><span class="en">forty</span> <span class="en">fifth</span> <span class="en">twelve</span> <span class="en">Wednesday</span> など、綴りのまちがえやすい語を書かせる</td></tr>
+<tr><td>並べ替え</td><td class="be-cell"><span class="en">how many</span> と名詞を離して置かせないか、<span class="en">What time</span> のうしろの語順</td></tr>
+<tr><td>誤文訂正</td><td class="be-cell">前置詞の取りちがえ、複数形の <span class="en">s</span> のつけ忘れ</td></tr>
+<tr><td>読解</td><td class="be-cell">予定を述べた対話文から、時刻や曜日を読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I get up on seven every morning.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I get up <span class="gen-w">at</span> seven every morning.</span></div>
+<p class="contrast-why">時刻の前には <span class="en">at</span> を置きます。<span class="en">on</span> は曜日と日付です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">How many brother do you have?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">How many <span class="gen-w">brothers</span> do you have?</span></div>
+<p class="contrast-why"><span class="en">how many</span> のうしろの名詞は複数形にします。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My sister's birthday is on June.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My sister's birthday is <span class="gen-w">in</span> June.</span></div>
+<p class="contrast-why">月だけを言うときは <span class="en">in</span> です。日付まで言えば <span class="en">on June 10</span> になります。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">How many milk do you drink every day?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">How <span class="gen-w">much</span> milk do you drink every day?</span></div>
+<p class="contrast-why"><span class="en">milk</span> は数えられない名詞なので、量は <span class="en">how much</span> でたずねます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">It is five o'clock thirty.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">It is five <span class="gen-w">thirty</span>.</span></div>
+<p class="contrast-why"><span class="en">o'clock</span> はちょうどの時刻だけに使います。分がつくときは数を並べます。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">What time is it?</span>／<span class="en">What day is it today?</span>／<span class="en">What is the date today?</span>／<span class="en">How many books do you have?</span>／<span class="en">How much is this bag?</span>　最初の3文の <span class="en">it</span> は、どれも「それ」と訳しません。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。答えの文がある問題は、答えの内容からたずね方を決めます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">What time (　　　) your brother Ken get up? —— He gets up at six.</span>
+<p class="opts"><span>ア do</span><span>イ does</span><span>ウ is</span><span>エ are</span></p></li>
+<li><span class="en">My birthday is (　　　) July 20.</span>
+<p class="opts"><span>ア at</span><span>イ in</span><span>ウ on</span><span>エ to</span></p></li>
+<li><span class="en">(　　　) books does your friend Aya have? —— She has twelve.</span>
+<p class="opts"><span>ア How much</span><span>イ How many</span><span>ウ How old</span><span>エ What time</span></p></li>
+<li><span class="en">(　　　) is it today? —— It is Friday.</span>
+<p class="opts"><span>ア What time</span><span>イ What day</span><span>ウ How many</span><span>エ Who</span></p></li>
+<li><span class="en">(　　　) is this bag? —— It is 800 yen.</span>
+<p class="opts"><span>ア How many</span><span>イ How much</span><span>ウ How old</span><span>エ What time</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>今、何時ですか。<br><span class="en">[ time / is / what / it ] ?</span><span class="write"></span></li>
+<li>私は毎朝6時に起きます。<br><span class="en">[ get / at / I / up / six ] every morning.</span><span class="write"></span></li>
+<li data-extra="1">あなたは何冊の本を持っていますか。<span class="hint">1語不要</span><br><span class="en">[ books / many / you / how / do / have / much ] ?</span><span class="write"></span></li>
+<li>私たちの学校祭は10月にあります。<br><span class="en">[ festival / is / our / school / in / October ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたのお姉さんは何時に寝ますか。<span class="hint">1語不要</span><br><span class="en">[ time / does / sister / go / what / your / to / bed / goes ] ?</span><span class="write"></span></li>
+<li>今日は何月何日ですか。<br><span class="en">[ the / what / date / is / today ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">I get up on seven every morning.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">How many brother do you have?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My sister's birthday is on June.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">How many milk do you drink every day?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">It is five o'clock thirty.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。数は英語のつづりで書きます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">あなたは何時に学校へ行きますか。</span><span class="write"></span></li>
+<li><span class="q-ja">今日は何曜日ですか。</span><span class="write"></span></li>
+<li><span class="q-ja">私の誕生日は3月3日です。</span><span class="write"></span></li>
+<li><span class="q-ja">このかばんはいくらですか。</span><span class="write"></span></li>
+<li>how many を使って「あなたのお兄さんは何本のラケットを持っていますか」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li>in を使って「私の兄は夏にサッカーをします」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li>at を使って「その店は9時に閉まります」と書く。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">アヤとタクの対話です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">アヤとタクの対話</p>
+<p>Aya: Taku, when is your birthday?<br>
+Taku: It is July 20. That is next Sunday.<br>
+Aya: Do you have a party on that day?<br>
+Taku: Yes. My family has a party every year. <span class="num">①</span><span class="ul">It starts at six in the evening.</span><br>
+Aya: How many people come to the party?<br>
+Taku: About ten. My grandmother and my cousins come, too.<br>
+Aya: What do you eat at the party?<br>
+Taku: My mother makes a lot of sandwiches. My father buys a big cake.<br>
+Aya: What time does the party finish?<br>
+Taku: It usually finishes at nine. I go to bed at ten on that day.<br>
+Aya: How old is your sister?<br>
+Taku: She is eleven. She likes the party very much.</p>
+<p class="reading-wc">およそ120語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア タクの誕生日は7月20日の土曜日である。<br>
+イ タクの家族は毎年パーティーを開く。<br>
+ウ パーティーには20人ほどが来る。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア パーティーはふつう9時に終わる。<br>
+イ タクの母が大きなケーキを買う。<br>
+ウ タクはその日、9時に寝る。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Taku and his family have a party (　　　) year.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を英語のつづりで1語で書く。<br><span class="en">Taku has a sister. She is (　　　) years old.</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>自分が朝起きる時刻を、at を使って1文で書く。<span class="hint">例：I get up at six thirty.</span><span class="write"></span></li>
+<li>自分の誕生日を、on か in を使って1文で書く。<span class="hint">例：My birthday is in May.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>何をたずねているか</strong>から先頭のまとまりを選び直し、次に<strong>時を表す語の長さ</strong>で <span class="en">at</span> <span class="en">on</span> <span class="en">in</span> を決めるところまで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　does</span><p class="a-why">主語 <span class="en">your brother Ken</span> は <span class="en">he</span> に置きかえられます。一般動詞の文なので <span class="en">does</span> を使い、動詞は原形です。</p></li>
+<li><span class="a-key">ウ　on</span><p class="a-why">日付の前は <span class="en">on</span> です。<span class="en">July</span> だけなら <span class="en">in</span> ですが、日まで言っているので特定の1日になります。</p></li>
+<li><span class="a-key">イ　How many</span><p class="a-why">答えが <span class="en">She has twelve.</span> と数なので <span class="en">how many</span> です。うしろに複数形の <span class="en">books</span> が続いています。</p></li>
+<li><span class="a-key">イ　What day</span><p class="a-why">答えが <span class="en">It is Friday.</span> と曜日なので <span class="en">what day</span> です。</p></li>
+<li><span class="a-key">イ　How much</span><p class="a-why">答えが <span class="en">It is 800 yen.</span> と値段なので <span class="en">how much</span> です。</p></li>
+
+<li><span class="a-key">What time is it?</span><p class="a-why"><span class="en">What time</span> で1つのまとまりです。主語は意味を持たない <span class="en">it</span> です。</p></li>
+<li><span class="a-key">I get up at six every morning.</span><p class="a-why">時刻の前に <span class="en">at</span> を置きます。<span class="en">every morning</span> の前には前置詞をつけません。</p></li>
+<li><span class="a-key">How many books do you have?</span><p class="a-why">不要な語は <span class="en">much</span> です。<span class="en">books</span> は数えられる名詞なので <span class="en">how many</span> を使います。</p></li>
+<li><span class="a-key">Our school festival is in October.</span><p class="a-why">月の前は <span class="en">in</span> です。<span class="en">October</span> は大文字で書き始めます。</p></li>
+<li><span class="a-key">What time does your sister go to bed?</span><p class="a-why">不要な語は <span class="en">goes</span> です。<span class="en">does</span> が <span class="en">s</span> を引き受けるので、動詞は原形になります。</p></li>
+<li><span class="a-key">What is the date today?</span><p class="a-why">日付をたずねる形です。<span class="en">date</span> の前に <span class="en">the</span> がつきます。</p></li>
+
+<li><span class="a-key">I get up at seven every morning.</span><p class="a-why">理由の例：時刻の前に置く語は <span class="en">at</span> で、<span class="en">on</span> は曜日や日付に使うから。</p></li>
+<li><span class="a-key">How many brothers do you have?</span><p class="a-why">理由の例：<span class="en">how many</span> のうしろの名詞は複数形にするから。</p></li>
+<li><span class="a-key">My sister's birthday is in June.</span><p class="a-why">理由の例：月だけを言うときは <span class="en">in</span> を使うから。</p></li>
+<li><span class="a-key">How much milk do you drink every day?</span><p class="a-why">理由の例：<span class="en">milk</span> は数えられない名詞なので、<span class="en">how much</span> でたずねるから。</p></li>
+<li><span class="a-key">It is five thirty.</span><p class="a-why">理由の例：<span class="en">o'clock</span> はちょうどの時刻にだけ使い、分がつくときは使わないから。</p></li>
+
+<li><span class="a-key">What time do you go to school?</span><p class="a-why">時刻をたずねるので <span class="en">What time</span> を先頭に置きます。主語が <span class="en">you</span> なので <span class="en">do</span> です。</p></li>
+<li><span class="a-key">What day is it today?</span><p class="a-why">曜日をたずねる形です。主語は意味を持たない <span class="en">it</span> です。</p></li>
+<li><span class="a-key">My birthday is March 3.</span><p class="a-why"><span class="en">3</span> は <span class="en">third</span> と読みます。数字でなく <span class="en">March third</span> と書いても正解です。<span class="en">on March 3</span> としてもかまいません。</p></li>
+<li><span class="a-key">How much is this bag?</span><p class="a-why">値段をたずねるので <span class="en">how much</span> です。うしろは be動詞の疑問文の語順です。</p></li>
+<li><span class="a-key">How many rackets does your brother have?</span><p class="a-why"><span class="en">racket</span> を複数形にして <span class="en">how many</span> のすぐうしろに置きます。主語が1人なので <span class="en">does</span> を使い、動詞は原形です。</p></li>
+<li><span class="a-key">My brother plays soccer in summer.</span><p class="a-why">季節の前は <span class="en">in</span> です。主語が1人なので <span class="en">plays</span> になります。</p></li>
+<li><span class="a-key">The store closes at nine.</span><p class="a-why">時刻の前は <span class="en">at</span> です。主語が1つなので <span class="en">closes</span> になります。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">My family has a party every year.</span> とあります。アは <span class="en">That is next Sunday.</span> と合わず、ウは <span class="en">About ten.</span> と合いません。</p></li>
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">It usually finishes at nine.</span> とあります。イはケーキを買うのが父なので合わず、ウは <span class="en">I go to bed at ten</span> と合いません。</p></li>
+<li><span class="a-key">every</span><p class="a-why">本文の <span class="en">My family has a party every year.</span> に合わせます。<span class="en">every</span> の前に前置詞はつけません。</p></li>
+<li><span class="a-key">eleven</span><p class="a-why">本文に <span class="en">She is eleven.</span> とあります。<span class="en">she</span> はタクの妹を指しています。<span class="en">eleven</span> は規則からは作れない形です。</p></li>
+<li><span class="a-key">パーティーは夕方の6時に始まります。</span><p class="a-why"><span class="en">It</span> は前の文の <span class="en">a party</span> を指しています。時刻の <span class="en">it</span> ではないので、ここは「それ」にあたる語として訳します。<span class="en">in the evening</span> は「夕方に」です。</p></li>
+
+<li><span class="a-key">解答例　I get up at six thirty.</span><p class="a-why">時刻の前に <span class="en">at</span> があり、時刻が数を並べた形になっていれば正解です。</p></li>
+<li><span class="a-key">解答例　My birthday is in May.</span><p class="a-why">月だけなら <span class="en">in</span>、日付まで書くなら <span class="en">on</span> を使っていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">時刻・曜日・日付は、意味を持たない <span class="en">it</span> を主語にして表します。たずねるときは <span class="en">what time</span> <span class="en">what day</span> を先頭に置き、うしろは疑問文の語順のままです。時を表す語の前には、<strong>時刻なら at、曜日・日付なら on、月・季節なら in</strong> を置きます。数は <span class="en">how many</span> と複数形、値段と数えられない名詞の量は <span class="en">how much</span>、年齢は <span class="en">how old</span> でたずねます。</p>
+</div>
+</div>
+</body>
+</html>

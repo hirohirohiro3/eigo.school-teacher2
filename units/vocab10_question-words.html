@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 10　疑問詞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="unit10_question-words.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 10</p>
+<h1 class="unit-title">単語帳　疑問詞</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。疑問詞は8つで打ち止めなので、ここでまとめて確かめてください。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">疑問詞・名詞・動詞・前置詞・接続詞・熟語の順に並べてあります。関連語と対義語は、それぞれの語の下のメモに入れてあります。疑問詞の一覧は、このページの下の早見表にまとめてあります。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">what</span><span class="v-kana"><span class="ac">ワ</span>ット</span></p>
+<div class="v-sense"><span class="tag t-wh">疑問詞</span><p>何・何の</p></div>
+<p class="v-ex"><span class="en">What do you like?</span><span class="v-ja">　あなたは何が好きですか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>うしろに名詞をつけると、たずねる範囲がせまくなります。<span class="en">What color is it?</span> <span class="en">What food do you like?</span> のように2語でひとまとまりです。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">who</span><span class="v-kana"><span class="ac">フー</span></span></p>
+<div class="v-sense"><span class="tag t-wh">疑問詞</span><p>だれ</p></div>
+<p class="v-ex"><span class="en">Who is your favorite singer?</span><span class="v-ja">　あなたのいちばん好きな歌手はだれですか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>主語になるときは <span class="en">do</span> <span class="en">does</span> を使いません。<span class="en">Who plays the piano?</span> のように、動詞に <span class="en">s</span> をつけます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">whose</span><span class="v-kana"><span class="ac">フー</span>ズ</span></p>
+<div class="v-sense"><span class="tag t-wh">疑問詞</span><p>だれの・だれのもの</p></div>
+<p class="v-ex"><span class="en">Whose notebook is this?</span><span class="v-ja">　これはだれのノートですか。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">who</span>（だれ）／<span class="en">whose</span>（だれの）——答えには <span class="en">mine</span> <span class="en">yours</span> などの所有代名詞を使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">which</span><span class="v-kana"><span class="ac">ウィッ</span>チ</span></p>
+<div class="v-sense"><span class="tag t-wh">疑問詞</span><p>どちら・どの</p></div>
+<p class="v-ex"><span class="en">Which restaurant do you like?</span><span class="v-ja">　あなたはどのレストランが好きですか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>答えの候補がはっきりしているときに使い、<span class="en">or</span> で候補を並べます。候補が決まっていないときは <span class="en">what</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">where</span><span class="v-kana"><span class="ac">ウェ</span>ア</span></p>
+<div class="v-sense"><span class="tag t-wh">疑問詞</span><p>どこ</p></div>
+<p class="v-ex"><span class="en">Where do you live?</span><span class="v-ja">　あなたはどこに住んでいますか。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">where</span>（場所）／<span class="en">when</span>（時）——答えには <span class="en">in</span> <span class="en">at</span> などの前置詞がよく入ります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">when</span><span class="v-kana"><span class="ac">ウェ</span>ン</span></p>
+<div class="v-sense"><span class="tag t-wh">疑問詞</span><p>いつ</p></div>
+<p class="v-ex"><span class="en">When does the store close?</span><span class="v-ja">　その店はいつ閉まりますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>一般動詞の文では <span class="en">do</span> <span class="en">does</span> を置き、動詞は原形に戻します。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">why</span><span class="v-kana"><span class="ac">ワ</span>イ</span></p>
+<div class="v-sense"><span class="tag t-wh">疑問詞</span><p>なぜ</p></div>
+<p class="v-ex"><span class="en">Why do you like this song?</span><span class="v-ja">　あなたはなぜこの歌が好きなのですか。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">why</span> でたずねて <span class="en">because</span> で答えます。対で覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">how</span><span class="v-kana"><span class="ac">ハ</span>ウ</span></p>
+<div class="v-sense"><span class="tag t-wh">疑問詞</span><p>どのように・どんな</p></div>
+<p class="v-ex"><span class="en">How do you go to school?</span><span class="v-ja">　あなたはどうやって学校へ行きますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>方法と様子の両方に使います。方法をたずねたときの答えは <span class="en">By train.</span> や <span class="en">On foot.</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">color</span><span class="v-kana"><span class="ac">カ</span>ラ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>色</p></div>
+<p class="v-ex"><span class="en">What color is it?</span><span class="v-ja">　それは何色ですか。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">what</span> のうしろに置いて「何色」をたずねます。答えは <span class="en">white</span> <span class="en">red</span> <span class="en">green</span> などの形容詞です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">subject</span><span class="v-kana"><span class="ac">サ</span>ブジェクト</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>教科</p></div>
+<p class="v-ex"><span class="en">What subject does your brother like?</span><span class="v-ja">　あなたのお兄さんはどの教科が好きですか。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">math</span> <span class="en">science</span> <span class="en">history</span> <span class="en">music</span> <span class="en">art</span> ——どれも <span class="en">subject</span> にあたります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">place</span><span class="v-kana"><span class="ac">プレ</span>イス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>場所</p></div>
+<p class="v-ex"><span class="en">Where is your favorite place?</span><span class="v-ja">　あなたのいちばん好きな場所はどこですか。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">where</span> でたずねた答えにあたる語です。<span class="en">park</span> <span class="en">library</span> <span class="en">station</span> などがここに入ります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">country</span><span class="v-kana"><span class="ac">カ</span>ントリ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>国</p></div>
+<p class="v-ex"><span class="en">Which country do you like?</span><span class="v-ja">　あなたはどの国が好きですか。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>子音字 + <span class="en">y</span> なので、複数形は <span class="en">countries</span> です。<span class="en">city</span> <span class="en">story</span> と同じ変え方です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">zoo</span><span class="v-kana"><span class="ac">ズー</span></span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>動物園</p></div>
+<p class="v-ex"><span class="en">Which bus goes to the zoo?</span><span class="v-ja">　どちらのバスが動物園へ行きますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>場所を表す名詞なので <span class="en">go to the zoo</span> と <span class="en">the</span> をつけます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">museum</span><span class="v-kana">ミュー<span class="ac">ズィー</span>アム</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>博物館・美術館</p></div>
+<p class="v-ex"><span class="en">Where is the museum?</span><span class="v-ja">　博物館はどこにありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">zoo</span> と同じく <span class="en">the</span> をつけて使うことが多い語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">train</span><span class="v-kana"><span class="ac">トレ</span>イン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>電車</p></div>
+<p class="v-ex"><span class="en">I go by train.</span><span class="v-ja">　私は電車で行きます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>手段を表すときは <span class="en">by train</span> と冠詞をつけません。<span class="en">bus</span> も同じで <span class="en">by bus</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">food</span><span class="v-kana"><span class="ac">フー</span>ド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>食べ物</p></div>
+<p class="v-ex"><span class="en">What food do you like?</span><span class="v-ja">　あなたはどんな食べ物が好きですか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられない名詞として扱うので <span class="en">a food</span> とはしません。<span class="en">rice</span> <span class="en">bread</span> <span class="en">water</span> と同じ扱いです。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">present</span><span class="v-kana"><span class="ac">プレ</span>ズント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>贈り物</p></div>
+<p class="v-ex"><span class="en">I have a present for my sister.</span><span class="v-ja">　私は姉への贈り物を持っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>だれに贈るかは <span class="en">for</span> で示します。複数形は <span class="en">presents</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">singer</span><span class="v-kana"><span class="ac">スィ</span>ンガ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>歌手</p></div>
+<p class="v-ex"><span class="en">Who is your favorite singer?</span><span class="v-ja">　あなたのいちばん好きな歌手はだれですか。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">sing</span> → <span class="en">singer</span>、<span class="en">play</span> → <span class="en">player</span>、<span class="en">teach</span> → <span class="en">teacher</span> ——動詞に <span class="en">er</span> がついて人を表します。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">restaurant</span><span class="v-kana"><span class="ac">レ</span>ストラント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>レストラン</p></div>
+<p class="v-ex"><span class="en">Which restaurant do you like?</span><span class="v-ja">　あなたはどのレストランが好きですか。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span><span class="en">au</span> と、終わりの <span class="en">rant</span> の並びに気をつけます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">ask</span><span class="v-kana"><span class="ac">ア</span>スク</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>たずねる・質問する</p></div>
+<p class="v-ex"><span class="en">Aya asks a question.</span><span class="v-ja">　アヤは質問をします。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">ask</span>（たずねる）／<span class="en">answer</span>（答える）——主語が1人のときは <span class="en">asks</span> になります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">start</span><span class="v-kana"><span class="ac">スター</span>ト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>始まる・始める</p></div>
+<p class="v-ex"><span class="en">When does the class start?</span><span class="v-ja">　授業はいつ始まりますか。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">start</span>（始まる）／<span class="en">finish</span>（終わる）——対で覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">close</span><span class="v-kana"><span class="ac">クロ</span>ウズ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>閉まる・閉める</p></div>
+<p class="v-ex"><span class="en">When does the store close?</span><span class="v-ja">　その店はいつ閉まりますか。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">open</span>（開く）／<span class="en">close</span>（閉まる）——どちらも人にも物にも使えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">choose</span><span class="v-kana"><span class="ac">チュー</span>ズ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>選ぶ</p></div>
+<p class="v-ex"><span class="en">Which do you choose, a pen or a pencil?</span><span class="v-ja">　あなたはペンと鉛筆のどちらを選びますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">which</span> といっしょに使うことが多い語です。候補は <span class="en">or</span> で並べます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">dance</span><span class="v-kana"><span class="ac">ダ</span>ンス</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>踊る</p></div>
+<p class="v-ex"><span class="en">Who dances well?</span><span class="v-ja">　だれが上手に踊りますか。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>主語が1人のときは <span class="en">dances</span> です。<span class="en">e</span> で終わるので <span class="en">s</span> を足すだけです。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">by</span><span class="v-kana"><span class="ac">バ</span>イ</span></p>
+<div class="v-sense"><span class="tag t-prep">前置詞</span><p>〜で（手段）</p></div>
+<p class="v-ex"><span class="en">I go by train.</span><span class="v-ja">　私は電車で行きます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>うしろに <span class="en">a</span> も <span class="en">the</span> もつけません。<span class="en">how</span> でたずねられたときの答えに使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">because</span><span class="v-kana">ビ<span class="ac">コー</span>ズ</span></p>
+<div class="v-sense"><span class="tag t-conj">接続詞</span><p>なぜなら・〜だから</p></div>
+<p class="v-ex"><span class="en">Because it is beautiful.</span><span class="v-ja">　それが美しいからです。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">why</span> の答えに使います。1つの文の中で、理由を表す部分をつなぐこともできます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">on foot</span><span class="v-kana">オン <span class="ac">フッ</span>ト</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>徒歩で</p></div>
+<p class="v-ex"><span class="en">Sometimes I go on foot.</span><span class="v-ja">　私はときどき歩いて行きます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>手段を表しますが <span class="en">by</span> は使いません。<span class="en">by foot</span> とはしない点が入試で問われます。</p>
+</li>
+</ol>
+
+<h2><span>疑問詞の早見表</span></h2>
+
+<p class="v-intro">8つで打ち止めです。答えの種類から疑問詞を選べるように、逆向きにも確かめてください。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問詞</th><th>たずねる内容</th><th>答えの種類</th></tr>
+<tr><td class="be-cell"><span class="en">what</span></td><td>何・何の</td><td>物・事がら</td></tr>
+<tr><td class="be-cell"><span class="en">who</span></td><td>だれ</td><td>人</td></tr>
+<tr><td class="be-cell"><span class="en">whose</span></td><td>だれの・だれのもの</td><td>持ち主</td></tr>
+<tr><td class="be-cell"><span class="en">which</span></td><td>どちら・どの</td><td>候補のうちの1つ</td></tr>
+<tr><td class="be-cell"><span class="en">where</span></td><td>どこ</td><td>場所</td></tr>
+<tr><td class="be-cell"><span class="en">when</span></td><td>いつ</td><td>時</td></tr>
+<tr><td class="be-cell"><span class="en">why</span></td><td>なぜ</td><td>理由</td></tr>
+<tr><td class="be-cell"><span class="en">how</span></td><td>どのように・どんな</td><td>方法・様子</td></tr>
+</table>
+</div>
+
+<p class="v-intro">うしろに名詞をつけられるのは <span class="en">what</span> と <span class="en">which</span> の2つだけです。<span class="en">What color</span> <span class="en">What food</span> <span class="en">What subject</span> <span class="en">Which country</span> <span class="en">Which restaurant</span> <span class="en">Which bus</span> ——どれも2語でひとまとまりに読みます。</p>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

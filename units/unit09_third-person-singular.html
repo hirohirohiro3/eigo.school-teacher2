@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 9　三人称単数現在</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab09_third-person-singular.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 9</p>
+<h1 class="unit-title">三人称単数現在</h1>
+<p class="unit-lead">主語が自分でも相手でもなく、しかも1人（1つ）のとき、一般動詞のうしろに <span class="en">s</span> がつきます。形そのものは単純ですが、入試では「つけ忘れ」と「つけすぎ」の両方が問われます。この単元では、<strong>主語を見てから動詞の形を決める</strong>手順を固定します。</p>
+</header>
+
+<h2><span>主語が1人（1つ）のとき、動詞に s がつく</span></h2>
+
+<p>Unit 5 と Unit 6 で、一般動詞の文を作りました。<span class="en">I play tennis.</span> <span class="en">You play tennis.</span> <span class="en">They play tennis.</span> ——ここまでは、主語が変わっても動詞の形は変わりませんでした。ところが主語が <span class="en">he</span> <span class="en">she</span> <span class="en">it</span> のときだけ、<span class="en">He plays tennis.</span> と形が変わります。Unit 5 から Unit 8 までは、一般動詞の文の主語を <span class="en">I</span> <span class="en">you</span> <span class="en">we</span> <span class="en">they</span> と2人以上の名前に限ってきました。<strong>ここまで避けてきた形を、この単元で扱います。</strong></p>
+
+<p><strong>なぜ形が変わるのか。</strong>英語は、主語と動詞がひと組であることを目に見える形で示します。主語が自分（<span class="en">I</span>）でも相手（<span class="en">you</span>）でもなく、しかも1人か1つしかないとき、その組み合わせにだけ専用の形を用意しているのです。残った形が古い英語からそのまま残ったもので、規則ではなく事実として覚えます。だから<strong>主語を確かめてから動詞を書きます</strong>。順序を逆にすると必ず迷います。</p>
+
+<div class="transform">
+<p><span class="en">I study English every day.</span></p>
+<p class="tf-arrow">↓　主語を <span class="en">she</span> に変える</p>
+<p><span class="en">She studies English every day.</span></p>
+</div>
+
+<h2><span>s がつく主語・つかない主語</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語</th><th>動詞の形</th><th>例</th></tr>
+<tr><td>I</td><td class="be-cell">そのまま</td><td class="be-cell"><span class="en">I carry a bag.</span></td></tr>
+<tr><td>you</td><td class="be-cell">そのまま</td><td class="be-cell"><span class="en">You carry a bag.</span></td></tr>
+<tr><td>he / she / it<br>1人・1つの名前</td><td class="be-cell"><strong>s がつく</strong></td><td class="be-cell"><span class="en">He carries a bag.</span></td></tr>
+<tr><td>we / you / they<br>2人以上の名前</td><td class="be-cell">そのまま</td><td class="be-cell"><span class="en">They carry a bag.</span></td></tr>
+</table>
+</div>
+
+<p>表の3行目だけが別扱いです。<span class="en">he</span> <span class="en">she</span> <span class="en">it</span> に置きかえられる主語——<span class="en">Taku</span>、<span class="en">my sister</span>、<span class="en">the dog</span>、<span class="en">this store</span> ——は、すべてここに入ります。<strong>主語を代名詞に置きかえてみる</strong>のが、いちばん速い見分け方です。たとえば <span class="en">This store opens early.</span> の主語 <span class="en">this store</span> は <span class="en">it</span> なので、動詞に s がつきます。</p>
+
+<h2><span>s のつけ方</span></h2>
+
+<p>つけ方は4通りです。動詞の終わりの字だけを見て決めます。表の「語の終わり」の欄は、つづり字そのものを指しています。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語の終わり</th><th>つけ方</th><th>例</th></tr>
+<tr><td>ふつうの語</td><td class="be-cell">うしろに s を足す</td><td class="be-cell"><span class="en">play → plays</span>　<span class="en">run → runs</span>　<span class="en">know → knows</span></td></tr>
+<tr><td>s・x・c<span>h</span>・s<span>h</span>・o</td><td class="be-cell">うしろに e と s を足す</td><td class="be-cell"><span class="en">pass → passes</span>　<span class="en">fix → fixes</span>　<span class="en">catch → catches</span>　<span class="en">finish → finishes</span>　<span class="en">go → goes</span></td></tr>
+<tr><td>子音字 + y</td><td class="be-cell">y を i に変えて e と s を足す</td><td class="be-cell"><span class="en">study → studies</span>　<span class="en">carry → carries</span>　<span class="en">try → tries</span>　<span class="en">fly → flies</span>　<span class="en">hurry → hurries</span>　<span class="en">worry → worries</span></td></tr>
+<tr><td>母音字 + y</td><td class="be-cell">うしろに s を足す</td><td class="be-cell"><span class="en">play → plays</span>　<span class="en">enjoy → enjoys</span>　<span class="en">buy → buys</span>　<span class="en">stay → stays</span></td></tr>
+</table>
+</div>
+
+<p>3行目と4行目の違いは、<span class="en">y</span> の1つ前の字です。<span class="en">study</span> は <span class="en">d</span>、<span class="en">carry</span> は <span class="en">r</span> ——どちらも子音字なので <span class="en">y</span> を <span class="en">i</span> に変えます。<span class="en">play</span> は <span class="en">a</span>、<span class="en">enjoy</span> は <span class="en">o</span> ——母音字なのでそのままです。<strong>y の前の1字を見る</strong>、それだけで分かれます。</p>
+
+<p>文の中に入れると、次のようになります。<span class="en">He passes the ball to Aya.</span>／<span class="en">My father fixes the door.</span>／<span class="en">He tries a new song.</span>／<span class="en">She usually hurries to school.</span>／<span class="en">She never worries about it.</span>　どれも主語が1人なので、動詞の形が変わっています。</p>
+
+<p><span class="en">have</span> だけは形が変わります。<span class="en">I have a pet.</span> に対して <span class="en">He has a pet.</span> です。<span class="en">haves</span> という形はありません。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">主語を代名詞に置きかえる</span>
+<span class="step-d">その主語が <span class="en">he</span> <span class="en">she</span> <span class="en">it</span> のどれかになるかを見ます。<span class="en">my brother</span> は <span class="en">he</span>、<span class="en">Aya</span> は <span class="en">she</span>、<span class="en">the ball</span> は <span class="en">it</span> です。</span>
+</li>
+<li>
+<span class="step-t">置きかえられるなら s をつける</span>
+<span class="step-d"><span class="en">we</span> <span class="en">you</span> <span class="en">they</span> になるなら、動詞はそのままです。ここで決まらないうちに書き出すと迷います。</span>
+</li>
+<li>
+<span class="step-t">動詞の終わりの字を見て、つけ方を選ぶ</span>
+<span class="step-d">4通りのどれかです。<span class="en">y</span> で終わる語だけは、その1つ前の字まで見ます。</span>
+</li>
+<li>
+<span class="step-t">否定文・疑問文なら、動詞を原形に戻す</span>
+<span class="step-d"><span class="en">does</span> と <span class="en">doesn't</span> が s を引き受けるので、動詞はそのままの形に戻ります。1つの文で2度 s をつけることはありません。</span>
+</li>
+</ol>
+
+<div class="diagram is-general">
+<p class="diagram-cap">主語が1人なら、動詞に s</p>
+<div class="flow">
+<span class="node">Aya<span class="node-label">she に置きかえられる</span></span>
+<span class="link">
+<span class="link-word">studies</span>
+<span class="rail"></span>
+</span>
+<span class="node">English<span class="node-label">目的語</span></span>
+</div>
+</div>
+
+<div class="diagram is-general">
+<p class="diagram-cap">否定文では does が s を引き受ける</p>
+<div class="flow">
+<span class="node">Aya<span class="node-label">主語</span></span>
+<span class="link">
+<span class="link-word">doesn't study</span>
+<span class="rail"></span>
+</span>
+<span class="node">math<span class="node-label">目的語</span></span>
+</div>
+</div>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>否定文・疑問文では s が動詞から離れる</h3>
+<p>肯定文は <span class="en">She carries a notebook.</span> です。否定文は <span class="en">She doesn't carry a notebook.</span>、疑問文は <span class="en">Does she carry a notebook?</span> となります。<span class="en">doesn't carries</span> や <span class="en">Does she carries</span> とはしません。<strong>s は1つの文に1度だけ</strong>です。答えるときも <span class="en">Yes, she does.</span> <span class="en">No, she doesn't.</span> と <span class="en">does</span> を使います。</p>
+
+<h3>and で2人になれば s は消える</h3>
+<p><span class="en">Taku plays the trumpet.</span> は1人なので s がつきます。<span class="en">Taku and Aya play the trumpet.</span> は2人なので、そのままです。主語が長くても同じで、<strong>数えて何人（何つ）かだけ</strong>を見ます。</p>
+
+<h3>動詞の -s と名詞の -s は別のもの</h3>
+<p><span class="en">She likes dogs.</span> の <span class="en">likes</span> は主語が1人だからつく s、<span class="en">dogs</span> は2匹以上だからつく s です。同じ字でも役割が違います。<span class="en">Dogs run fast.</span> のように主語が複数なら、動詞に s はつきません。</p>
+
+<h3>have の形は has</h3>
+<p><span class="en">have</span> は <span class="en">has</span> になります。否定文・疑問文では原形に戻るので、<span class="en">She doesn't have a pet.</span> <span class="en">Does she have a pet?</span> です。<span class="en">doesn't has</span> とはしません。</p>
+
+<h3>be動詞の文には s がつかない</h3>
+<p><span class="en">s</span> がつくのは一般動詞だけです。<span class="en">His hobby is music.</span> は be動詞の文なので、主語が1つでも <span class="en">is</span> のままです。<span class="en">Aya is good at English.</span> も同じです。<strong>be動詞か一般動詞かを先に見分ける</strong>——Unit 7 の手順がそのまま効きます。</p>
+
+<h3>always / usually / often / sometimes / never の置き場所</h3>
+<p>これらは一般動詞の<b>前</b>に置きます。<span class="en">She always carries a notebook.</span> <span class="en">He never misses a day.</span> ——動詞に s がつく文でも、置き場所は変わりません。<span class="en">never</span> は「一度もしない」という意味なので、<span class="en">not</span> をいっしょに使いません。<span class="en">He always gets up early.</span> のように、まとまりで使う語の前に置くこともあります。<span class="en">He is always careful.</span> のような be動詞の文では、<span class="en">always</span> は be動詞のうしろに来ます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td class="be-cell">主語を長くしたうえで、動詞の形を選ばせる</td></tr>
+<tr><td>並べ替え</td><td class="be-cell"><span class="en">doesn't</span> と原形を組ませ、s のつけすぎを誘う</td></tr>
+<tr><td>誤文訂正</td><td class="be-cell">s のつけ忘れ、否定文での二重の s、綴りの誤り</td></tr>
+<tr><td>英作文</td><td class="be-cell">主語を三人称単数にした和文を英語に直させる</td></tr>
+<tr><td>読解</td><td class="be-cell">人物ごとの動作を読み分けさせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My sister study English every day.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My sister <span class="gen-w">studies</span> English every day.</span></div>
+<p class="contrast-why">主語は my sister で、she に置きかえられます。子音字 + y なので、y を i に変えて e と s を足します。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">He doesn't plays soccer.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">He doesn't <span class="gen-w">play</span> soccer.</span></div>
+<p class="contrast-why">doesn't がすでに s を引き受けています。うしろの動詞は原形に戻します。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Taku and Aya goes to the park.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Taku and Aya <span class="gen-w">go</span> to the park.</span></div>
+<p class="contrast-why">and で結ばれているので主語は2人です。they に置きかえられるため、動詞はそのままです。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">She haves a big dog.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">She <span class="gen-w">has</span> a big dog.</span></div>
+<p class="contrast-why">have だけは has という形に変わります。haves とは書きません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Does your mother works at a hospital?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Does your mother <span class="gen-w">work</span> at a hospital?</span></div>
+<p class="contrast-why">疑問文の does がすでに s を引き受けています。動詞は原形です。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">My sister studies English every day.</span>／<span class="en">He doesn't play soccer.</span>／<span class="en">Taku and Aya go to the park.</span>／<span class="en">She has a big dog.</span>／<span class="en">Does your mother work at a hospital?</span>　どれも、主語を見てから動詞の形を決めています。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。主語を代名詞に置きかえてから選びます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My friend Taku (　　　) in a small town.</span>
+<p class="opts"><span>ア live</span><span>イ lives</span><span>ウ is live</span><span>エ does lives</span></p></li>
+<li><span class="en">Aya and her mother (　　　) dinner together.</span>
+<p class="opts"><span>ア cooks</span><span>イ cook</span><span>ウ is cook</span><span>エ doesn't cooks</span></p></li>
+<li><span class="en">My brother (　　　) his bike every day.</span>
+<p class="opts"><span>ア wash</span><span>イ washs</span><span>ウ washes</span><span>エ is wash</span></p></li>
+<li><span class="en">The bird (　　　) over the river.</span>
+<p class="opts"><span>ア fly</span><span>イ flys</span><span>ウ flies</span><span>エ is fly</span></p></li>
+<li><span class="en">My friend and I (　　　) English every day.</span>
+<p class="opts"><span>ア studies</span><span>イ study</span><span>ウ studys</span><span>エ is study</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>彼はトランペットを練習します。<br><span class="en">[ practices / he / trumpet / the ] .</span><span class="write"></span></li>
+<li>私の姉は小さなノートを持ち歩きます。<br><span class="en">[ carries / notebook / my / a / sister / small ] .</span><span class="write"></span></li>
+<li data-extra="1">彼のお母さんは病院で働いています。<span class="hint">1語不要</span><br><span class="en">[ at / works / mother / hospital / his / a / work ] .</span><span class="write"></span></li>
+<li>タクは野球が好きではありません。<br><span class="en">[ like / doesn't / Taku / baseball ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたのお兄さんは英語を勉強しますか。<span class="hint">1語不要</span><br><span class="en">[ study / your / does / English / brother / studies ] ?</span><span class="write"></span></li>
+<li>その犬はとても速く走ります。<br><span class="en">[ very / dog / runs / the / fast ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">My father go to the office every day.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Does Aya likes rice?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">She haves a new bike.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Taku and his sister stays at home.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">He don't finish his homework.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私の姉は毎日英語を勉強します。</span><span class="write"></span></li>
+<li><span class="q-ja">その犬はボールを捕まえます。</span><span class="write"></span></li>
+<li><span class="q-ja">タクは野球をしません。</span><span class="write"></span></li>
+<li><span class="q-ja">彼女は音楽が好きではありません。</span><span class="write"></span></li>
+<li>has を使って「私の友達は大きな犬を飼っています」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li>never を使って「アヤは決してテレビを見ません」と書く。<span class="cond">4語</span><span class="write"></span></li>
+<li>doesn't を使って「タクは牛乳を飲みません」と書く。<span class="cond">4語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">タクとアヤについて書かれた文章です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">タクとアヤ</p>
+<p>My friend Taku lives in a small town. He is a member of the brass band, and he plays the trumpet. <span class="num">①</span><span class="ul">He practices very hard, and he never misses a day.</span> He always gets up early.<br>
+His mother works at a hospital. She is a nurse, and she takes care of a lot of people.<br>
+Taku has a sister. Her name is Aya. She usually studies in her room. <span class="num">②</span><span class="ul">She carries a small notebook, and she writes new English words in it.</span> Aya is good at English. She sometimes helps her mother in the kitchen. She cooks rice and soup.<br>
+Their dog is clever, and it catches a ball. Taku and Aya love their family very much.</p>
+<p class="reading-wc">およそ115語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア タクは吹奏楽部の一員である。<br>
+イ タクはトランペットを練習しない。<br>
+ウ タクは朝おそく起きる。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア アヤは自分の部屋で勉強することが多い。<br>
+イ アヤは母を手伝わない。<br>
+ウ アヤは英語が苦手である。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Aya (　　　) a small notebook.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">His mother (　　　) at a hospital.</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>家族か友達の1人について、動詞に s がつく文を1文書く。<span class="hint">例：My brother plays soccer.</span><span class="write"></span></li>
+<li>同じ人がしないことを、doesn't を使って1文書く。<span class="hint">例：He doesn't watch TV.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>主語を代名詞に置きかえる</strong>ところまで戻って、<span class="en">he</span> <span class="en">she</span> <span class="en">it</span> のどれかになるかどうかを確かめ直すと定着します。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　lives</span><p class="a-why">主語 <span class="en">my friend Taku</span> は <span class="en">he</span> に置きかえられます。ふつうの語なので <span class="en">s</span> を足します。</p></li>
+<li><span class="a-key">イ　cook</span><p class="a-why"><span class="en">and</span> で結ばれた2人なので <span class="en">they</span> にあたります。動詞はそのままです。</p></li>
+<li><span class="a-key">ウ　washes</span><p class="a-why"><span class="en">wash</span> は s<span>h</span> で終わるので、<span class="en">e</span> と <span class="en">s</span> を足します。</p></li>
+<li><span class="a-key">ウ　flies</span><p class="a-why"><span class="en">fly</span> は子音字 + <span class="en">y</span> なので、<span class="en">y</span> を <span class="en">i</span> に変えて <span class="en">e</span> と <span class="en">s</span> を足します。</p></li>
+<li><span class="a-key">イ　study</span><p class="a-why"><span class="en">my friend and I</span> は <span class="en">we</span> にあたります。自分が入っているので <span class="en">s</span> はつきません。</p></li>
+
+<li><span class="a-key">He practices the trumpet.</span><p class="a-why">主語が <span class="en">he</span> なので <span class="en">practices</span> です。楽器には <span class="en">the</span> をつけます。</p></li>
+<li><span class="a-key">My sister carries a small notebook.</span><p class="a-why">主語 <span class="en">my sister</span> は <span class="en">she</span> です。子音字 + <span class="en">y</span> なので <span class="en">carries</span> になります。</p></li>
+<li><span class="a-key">His mother works at a hospital.</span><p class="a-why">不要な語は <span class="en">work</span> です。主語が <span class="en">she</span> にあたるので <span class="en">works</span> を使います。</p></li>
+<li><span class="a-key">Taku doesn't like baseball.</span><p class="a-why">否定文なので <span class="en">doesn't</span> を使い、動詞は原形の <span class="en">like</span> に戻します。</p></li>
+<li><span class="a-key">Does your brother study English?</span><p class="a-why">不要な語は <span class="en">studies</span> です。疑問文の <span class="en">does</span> が <span class="en">s</span> を引き受けるので、動詞は原形です。</p></li>
+<li><span class="a-key">The dog runs very fast.</span><p class="a-why">主語 <span class="en">the dog</span> は <span class="en">it</span> です。ふつうの語なので <span class="en">runs</span> になります。</p></li>
+
+<li><span class="a-key">My father goes to the office every day.</span><p class="a-why">理由の例：主語 <span class="en">my father</span> は <span class="en">he</span> に置きかえられるので、動詞に <span class="en">s</span> が必要だから。</p></li>
+<li><span class="a-key">Does Aya like rice?</span><p class="a-why">理由の例：疑問文の <span class="en">does</span> がすでに <span class="en">s</span> を引き受けているので、動詞は原形になるから。</p></li>
+<li><span class="a-key">She has a new bike.</span><p class="a-why">理由の例：<span class="en">have</span> は <span class="en">haves</span> ではなく <span class="en">has</span> という形に変わるから。</p></li>
+<li><span class="a-key">Taku and his sister stay at home.</span><p class="a-why">理由の例：<span class="en">and</span> で結ばれた2人なので主語は <span class="en">they</span> にあたり、<span class="en">s</span> はつかないから。</p></li>
+<li><span class="a-key">He doesn't finish his homework.</span><p class="a-why">理由の例：主語が <span class="en">he</span> なので、<span class="en">don't</span> ではなく <span class="en">doesn't</span> を使うから。</p></li>
+
+<li><span class="a-key">My sister studies English every day.</span><p class="a-why">主語が <span class="en">she</span> にあたるので <span class="en">studies</span> です。<span class="en">every day</span> は文の終わりに置きます。</p></li>
+<li><span class="a-key">The dog catches a ball.</span><p class="a-why"><span class="en">catch</span> は c<span>h</span> で終わるので <span class="en">catches</span> になります。</p></li>
+<li><span class="a-key">Taku doesn't play baseball.</span><p class="a-why">否定文なので動詞は原形です。<span class="en">doesn't plays</span> とはしません。</p></li>
+<li><span class="a-key">She doesn't like music.</span><p class="a-why">主語が <span class="en">she</span> なので <span class="en">doesn't</span> を使い、動詞は <span class="en">like</span> のままです。</p></li>
+<li><span class="a-key">My friend has a big dog.</span><p class="a-why"><span class="en">have</span> の形は <span class="en">has</span> です。6語で収まります。</p></li>
+<li><span class="a-key">Aya never watches TV.</span><p class="a-why"><span class="en">never</span> は動詞の前に置きます。<span class="en">watch</span> は c<span>h</span> で終わるので <span class="en">watches</span> です。</p></li>
+<li><span class="a-key">Taku doesn't drink milk.</span><p class="a-why">否定文なので <span class="en">drink</span> は原形のままです。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">He is a member of the brass band</span> とあります。イは <span class="en">he plays the trumpet</span> と合いません。ウは <span class="en">He always gets up early.</span> と合いません。</p></li>
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">She usually studies in her room.</span> とあります。イは <span class="en">She sometimes helps her mother in the kitchen.</span> と合わず、ウは <span class="en">Aya is good at English.</span> と合いません。</p></li>
+<li><span class="a-key">carries</span><p class="a-why">主語が <span class="en">Aya</span> なので <span class="en">carry</span> に <span class="en">s</span> をつけた形です。子音字 + <span class="en">y</span> なので <span class="en">carries</span> になります。</p></li>
+<li><span class="a-key">works</span><p class="a-why">主語 <span class="en">his mother</span> は <span class="en">she</span> にあたるので <span class="en">works</span> です。</p></li>
+<li><span class="a-key">彼はとても熱心に練習し、一日も休みません。</span><p class="a-why"><span class="en">hard</span> は「熱心に」、<span class="en">never</span> は「一度も〜しない」です。<span class="en">misses a day</span> を「一日も休まない」と訳します。</p></li>
+
+<li><span class="a-key">解答例　My brother plays soccer.</span><p class="a-why">主語が1人で、動詞に <span class="en">s</span> がついていれば正解です。</p></li>
+<li><span class="a-key">解答例　He doesn't watch TV.</span><p class="a-why"><span class="en">doesn't</span> のうしろが原形になっていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">一般動詞の文では、主語が <span class="en">he</span> <span class="en">she</span> <span class="en">it</span> に置きかえられるときだけ、動詞に <span class="en">s</span> がつきます。<strong>形を選ぶ前に、主語を代名詞に置きかえる</strong>——手順はこれだけです。つけ方は4通りで、<span class="en">y</span> で終わる語だけはその1つ前の字まで見ます。<span class="en">have</span> は <span class="en">has</span> になります。否定文と疑問文では <span class="en">does</span> と <span class="en">doesn't</span> が <span class="en">s</span> を引き受けるので、動詞は原形に戻ります。<span class="en">s</span> は1つの文に1度だけ——ここが入試でいちばん狙われます。</p>
+</div>
+</div>
+</body>
+</html>

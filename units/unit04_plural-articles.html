@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 4　名詞の複数形と a / an / the</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab04_plural-articles.html">この単元の単語帳 →</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 4</p>
+  <h1 class="unit-title">名詞の複数形と a / an / the（1つか2つ以上か、どれか決まっているか）</h1>
+  <p class="unit-lead">Unit 1 から 3 までは、1つの物を指す文だけを扱いました。この単元では、2つ以上の物を言うときの名詞の形と、名詞の前に置く a / an / the を扱います。入試では、-s の付け方、a と an の使い分け、2回目に出てきた名詞の the、この3つで点が分かれます。</p>
+</header>
+
+<h2><span>単数形と複数形</span></h2>
+
+<p>英語では、物や人が<strong>1つなのか2つ以上なのか</strong>を、名詞の形そのもので示します。日本語にはない決まりなので、文を書くたびに数を確かめる必要があります。</p>
+
+<div class="term">
+  <p class="term-name">単数形（1つ）</p>
+  <p class="term-def">物や人が<strong>1つ</strong>のときの形です。名詞の前に <strong>a</strong> か <strong>an</strong>、または <strong>the</strong> / <strong>my</strong> / <strong>this</strong> などを置きます。be動詞は is です。</p>
+  <p class="term-ex"><span class="en">This is <span class="be-w">a</span> box.</span>（これは箱です）<br>
+  <span class="en">That <span class="be-w">uniform</span> is not new.</span>（あの制服は新しくありません）</p>
+</div>
+
+<div class="term">
+  <p class="term-name">複数形（2つ以上）</p>
+  <p class="term-def">物や人が<strong>2つ以上</strong>のときの形です。語の終わりに <strong>-s</strong> か <strong>-e<span>s</span></strong> を付けます。be動詞は are です。</p>
+  <p class="term-ex"><span class="en">These are my <span class="be-w">keys</span>.</span>（これらは私の鍵です）<br>
+  <span class="en">Those <span class="be-w">chairs</span> are red.</span>（あれらのいすは赤いです）</p>
+</div>
+
+<div class="term">
+  <p class="term-name">these ／ those（this / that の複数）</p>
+  <p class="term-def">this の複数が <strong>these（これら・これらの）</strong>、that の複数が <strong>those（あれら・あれらの）</strong>です。名詞の前に置くときは、<strong>その名詞も複数形</strong>にします。</p>
+  <p class="term-ex"><span class="en"><span class="be-w">These</span> are my new shoes.</span>（これらは私の新しい靴です）<br>
+  <span class="en"><span class="be-w">Those</span> knives are very sharp.</span>（あれらのナイフはとても鋭いです）</p>
+</div>
+
+<h2><span>文の形</span></h2>
+
+<div class="diagram">
+  <p class="diagram-cap">主語が1つ：<strong>a ／ an ＋ 単数形</strong>、be動詞は is</p>
+  <div class="flow">
+    <span class="node">This<span class="node-label">主語（1つ）</span></span>
+    <span class="link">
+      <span class="link-word">is</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">a box<span class="node-label">正体・状態・場所</span></span>
+  </div>
+</div>
+
+<div class="diagram">
+  <p class="diagram-cap">主語が2つ以上：<strong>複数形</strong>、be動詞は are</p>
+  <div class="flow">
+    <span class="node">These cups<span class="node-label">主語（2つ以上）</span></span>
+    <span class="link">
+      <span class="link-word">are</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">new<span class="node-label">正体・状態・場所</span></span>
+  </div>
+</div>
+
+<p>be動詞の決め方は Unit 1 と同じです。<strong>主語が1つなら is、2つ以上なら are。</strong>複数形の名詞が主語なら are になります。<span class="en">These cups are new.</span> のように、名詞の -s と be動詞の are は必ず組みます。片方だけ複数にした文は誤りです。</p>
+
+<h2><span>-s の付け方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>語の終わり</th><th>付け方</th><th>例</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ふつうの語</td>
+      <td class="be-cell">-s</td>
+      <td><span class="en">key → keys</span><br><span class="en">cup → cups</span><br><span class="en">bird → birds</span></td>
+    </tr>
+    <tr>
+      <td>s ／ x ／ c<span>h</span> ／ s<span>h</span></td>
+      <td class="be-cell">-e<span>s</span></td>
+      <td><span class="en">bus → buses</span><br><span class="en">box → boxes</span><br><span class="en">sandwich → sandwiches</span><br><span class="en">dish → dishes</span><br><span class="en">glass → glasses</span></td>
+    </tr>
+    <tr>
+      <td>子音字＋y</td>
+      <td class="be-cell">y を i にして -e<span>s</span></td>
+      <td><span class="en">city → cities</span><br><span class="en">story → stories</span></td>
+    </tr>
+    <tr>
+      <td>f ／ f<span>e</span></td>
+      <td class="be-cell">v<span>e</span>s にする</td>
+      <td><span class="en">knife → knives</span><br><span class="en">leaf → leaves</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>なぜ -e<span>s</span> を付けるのか。</strong>s や x、c<span>h</span>、s<span>h</span> で終わる語は、そのまま -s を付けると発音がつながりません。あいだに母音の音を入れて言いやすくしたのが -e<span>s</span> です。声に出すと「イズ」の音が足されているのが分かります。</p>
+
+<p><strong>y のときに気をつけること。</strong>y の前が子音字のときだけ i に変えます。<span class="en">city</span> は t のあとの y なので <span class="en">cities</span>、<span class="en">story</span> は r のあとの y なので <span class="en">stories</span> です。y の前が母音字なら、そのまま -s を付けます。</p>
+
+<h2><span>不規則に変わる語</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>単数形</th><th>複数形</th><th>例文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="be-cell">man</td>
+      <td class="be-cell">men</td>
+      <td><span class="en">Those men are teachers.</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">woman</td>
+      <td class="be-cell">women</td>
+      <td><span class="en">Those women are teachers.</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">child</td>
+      <td class="be-cell">children</td>
+      <td><span class="en">Those children are happy.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>この3語は -s を付けず、語の中身が変わります。数が少ないので、形のまま覚えてしまうのが早道です。<strong>複数形なので be動詞は are</strong> になります。</p>
+
+<h2><span>a と an の使い分け</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>冠詞</th><th>置く場所</th><th>例</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="be-cell">a</td>
+      <td><strong>子音の音</strong>で始まる語の前</td>
+      <td><span class="en">a box</span> ／ <span class="en">a cup</span> ／ <span class="en">a uniform</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">an</td>
+      <td><strong>母音の音</strong>で始まる語の前</td>
+      <td><span class="en">an egg</span> ／ <span class="en">an orange</span> ／ <span class="en">an apple</span> ／ <span class="en">an animal</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>a と an は<strong>「1つの」という意味</strong>で、単数形の前にだけ置きます。どちらを使うかは、<strong>つづりの文字ではなく、次に来る語の音</strong>で決めます。<span class="en">This is an egg.</span>／<span class="en">This is an orange.</span> のように、ア・イ・ウ・エ・オの音で始まれば an です。</p>
+
+<p>ここが入試でよく問われる点です。<span class="en">uniform</span> は u で始まりますが、読むと「ユーニフォーム」で、はじめの音は「ユ」という子音の音です。ですから <strong><span class="en">a uniform</span></strong> になります。逆に <span class="en">hour</span> のように、文字は子音でも音が母音で始まる語は an を使います。</p>
+
+<h2><span>the を使うとき</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>1文目（初めて出す）</th><th>2文目（どれか決まっている）</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">This is a box.</span></td>
+      <td><span class="en">The box is not heavy.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">This is a door.</span></td>
+      <td><span class="en">The door is red.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Those are chairs.</span></td>
+      <td><span class="en">The chairs are red.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>なぜ2文目で the に変えるのか。</strong>1文目の a は「たくさんあるうちの1つ」を表します。2文目では、どの物の話かがもう決まっています。<strong>相手にも分かっている物には the</strong> を置きます。Unit 3 の it と同じ考え方で、一度出た物は受け直す形に変わります。</p>
+
+<p>the は <strong>1つでも2つ以上でも形が変わりません</strong>。<span class="en">the box</span> とも <span class="en">the chairs</span> とも言えます。a / an が単数形の前にしか置けないのとは違う点です。</p>
+
+<h2><span>名詞の形を決める手順</span></h2>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">その物が1つか2つ以上かを見る</span>
+    <span class="step-d">2つ以上なら複数形にします。ここを決めないと、be動詞も冠詞も決まりません。</span>
+  </li>
+  <li>
+    <span class="step-t">2つ以上なら、-s の付け方を選ぶ</span>
+    <span class="step-d">ふつうは -s。s・x・c<span>h</span>・s<span>h</span> で終わる語は -e<span>s</span>。子音字＋y は y を i にします。f と f<span>e</span> は v<span>e</span>s。man・woman・child は形が変わります。</span>
+  </li>
+  <li>
+    <span class="step-t">1つなら、a か an か the かを選ぶ</span>
+    <span class="step-d">初めて出す物は a か an。次に来る語の音が母音なら an。相手にも分かっている物なら the です。</span>
+  </li>
+  <li>
+    <span class="step-t">be動詞の形を決める</span>
+    <span class="step-d">主語が1つなら is、2つ以上なら are。<span class="en">these</span> / <span class="en">those</span> が主語のときは are です。</span>
+  </li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>a と an は文字ではなく音で決める</h3>
+
+<p><span class="en">a uniform</span> と書くのは、u の音が「ユ」だからです。<strong>文字が母音字でも、音が子音なら a</strong> を使います。反対に <span class="en">an hour</span> は、h を読まずに「アウア」と始まるので an です。<span class="en">An hour is not very long.</span> のように使います。読み方を思い出してから選ぶと間違えません。<span class="en">an egg</span>／<span class="en">an orange</span>／<span class="en">an apple</span>／<span class="en">an animal</span> は、どれも母音の音で始まります。</p>
+
+<h3>these / those のあとの名詞も複数形にする</h3>
+
+<p><span class="en">These book are new.</span> とは書きません。these / those は2つ以上を指す語なので、<strong>名詞も複数形</strong>にして <span class="en">These books are new.</span> とします。be動詞も are です。this / that のときは名詞が単数形で be動詞は is、these / those のときは名詞が複数形で be動詞は are。この3つは必ずそろいます。</p>
+
+<h3>2つ以上の物を受けるときは it ではなく they</h3>
+
+<p>Unit 3 では、一度話に出た物を it で受けました。<strong>受ける物が2つ以上のときは they</strong> になります。<span class="en">These are my shoes. They are not new.</span> のように続けます。疑問文の答えも同じで、<span class="en">Are these your shoes?</span> には <span class="en">Yes, they are.</span> と答えます。<span class="en">Yes, these are.</span> とは答えません。</p>
+
+<h3>a を複数形に付けない</h3>
+
+<p>a は「1つの」という意味なので、<strong>複数形とは一緒に使えません</strong>。<span class="en">a books</span> という形はありません。「2つ以上」と言いたいなら、a を取って <span class="en">books</span> だけにするか、<span class="en">two books</span> のように数を置きます。数を置いたときも名詞は複数形のままです。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形式</th><th>問われ方</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>選択</td><td><strong>a か an か the か</strong>を4択で問います。<span class="en">uniform</span> のように、文字と音がずれる語が選ばれます。</td></tr>
+    <tr><td>並べ替え</td><td>these / those と複数形をそろえられるかを見ます。<span class="en">the</span> の位置も問われます。</td></tr>
+    <tr><td>誤文訂正</td><td><span class="en">These book</span>、<span class="en">an uniform</span>、<span class="en">childs</span>、2文目の a、複数を it で受ける文が定番です。</td></tr>
+    <tr><td>英作文</td><td>語数を指定して、a / an / the を入れさせます。冠詞も1語と数えます。</td></tr>
+    <tr><td>読解</td><td>下線部の they が<strong>何を指すか</strong>を、本文中の語で答えさせます。直前の複数形を探します。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">These book are new.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">These <span class="be-w">books</span> are new.</span></div>
+  <p class="contrast-why">these のあとの名詞は複数形にします。be動詞 are もそろえます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">This is an uniform.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">This is <span class="be-w">a</span> uniform.</span></div>
+  <p class="contrast-why">u のつづりでも、音は「ユ」という子音の音です。音で決めます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">These are my three childs.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">These are my three <span class="be-w">children</span>.</span></div>
+  <p class="contrast-why">child は -s を付けず children になります。man と woman も同じ仲間です。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">This is a box. A box is not heavy.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">This is a box. <span class="be-w">The</span> box is not heavy.</span></div>
+  <p class="contrast-why">2文目では、どの箱かが決まっています。決まっている物には the を置きます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">These are my shoes. It is not new.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">These are my shoes. <span class="be-w">They</span> are not new.</span></div>
+  <p class="contrast-why">2つ以上の物を受けるときは they です。be動詞も are になります。</p>
+</div>
+
+<p>ここまでの形は、次の文でひととおり確かめられます。<span class="en">These cups are new.</span>／<span class="en">These dishes are white.</span>／<span class="en">Those glasses are small.</span>／<span class="en">These stories are interesting.</span>／<span class="en">These birds are beautiful.</span>／<span class="en">Those buses are new.</span>／<span class="en">These apples are fresh.</span>／<span class="en">These sandwiches are delicious.</span>／<span class="en">Those animals are cute.</span>／<span class="en">The leaves of that tree are green.</span>／<span class="en">Those cities are famous.</span>／<span class="en">Are these boxes heavy?</span>／<span class="en">That table is new.</span>／<span class="en">These are my friends.</span>／<span class="en">These pictures are beautiful.</span>／<span class="en">These are my pens.</span>　どれも、1つか2つ以上かを先に決めてから、名詞の形と be動詞と冠詞をそろえています。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。指している物が1つか2つ以上か、初めて話に出たのか、次に来る語の音は母音かを確かめてから選びます。</p>
+
+<ol class="q" data-part="A">
+  <li><span class="en">These (　　　) my new shoes.</span>
+    <p class="opts"><span>ア is</span><span>イ are</span><span>ウ am</span><span>エ be</span></p></li>
+  <li><span class="en">That is (　　　) uniform.</span>
+    <p class="opts"><span>ア a</span><span>イ an</span><span>ウ these</span><span>エ two</span></p></li>
+  <li><span class="en">This is a box. (　　　) box is not heavy.</span>
+    <p class="opts"><span>ア A</span><span>イ An</span><span>ウ The</span><span>エ These</span></p></li>
+  <li><span class="en">Those (　　　) are very sharp.</span>
+    <p class="opts"><span>ア knife</span><span>イ knifes</span><span>ウ knives</span><span>エ a knife</span></p></li>
+  <li><span class="en">These (　　　) are delicious.</span>
+    <p class="opts"><span>ア sandwich</span><span>イ sandwichs</span><span>ウ sandwiches</span><span>エ a sandwich</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べ替えましょう。文の先頭に来る語も小文字で示してあります。<strong>10と11には使わない語が1語ずつ混ざっています。</strong></p>
+
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+  <li>これらは私の新しい靴です。<br><span class="en">[ my / are / shoes / these / new ] .</span><span class="write"></span></li>
+  <li>あの制服は新しくありません。<br><span class="en">[ uniform / is / that / new / not ] .</span><span class="write"></span></li>
+  <li>これらの箱は重いですか。<br><span class="en">[ heavy / boxes / are / these ] ?</span><span class="write"></span></li>
+  <li>あの木の葉は緑です。<br><span class="en">[ leaves / that / the / of / green / tree / are ] .</span><span class="write"></span></li>
+  <li data-extra="1">これらは私の友達です。<span class="hint">1語不要</span><br><span class="en">[ are / my / these / is / friends ] .</span><span class="write"></span></li>
+  <li data-extra="1">あれらの女性は先生です。<span class="hint">1語不要</span><br><span class="en">[ women / are / those / teacher / teachers ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">次の文には誤りが1つずつあります。正しい文に直し、<strong>なぜ誤りかを日本語で1行</strong>書きましょう。</p>
+
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+  <li><span class="en">These book are new.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">This is an uniform.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">These are my three childs.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">This is a box. A box is not heavy.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">These are my shoes. It is not new.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">17から20は日本語を英語にしましょう。21から23は条件に合わせて書きましょう。</p>
+
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+  <li><span class="q-ja">これらは私の新しいかばんです。</span><span class="write"></span></li>
+  <li><span class="q-ja">あれらの部屋は静かではありません。</span><span class="write"></span></li>
+  <li><span class="q-ja">これは卵です。</span><span class="write"></span></li>
+  <li><span class="q-ja">あれらの子どもたちは幸せです。</span><span class="write"></span></li>
+  <li>the を使って「そのドアは赤いです」と書く。<span class="cond">4語</span><span class="write"></span></li>
+  <li>「これらはあなたの靴ですか」とたずねる文と、Yes の答えの文を書く。<span class="cond">2文</span><span class="write"></span></li>
+  <li>those を使って「あれらの都市は有名です」と書く。<span class="cond">4語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ケンが美術室を案内しています。説明文を読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+  <p class="reading-cap">ケンの美術室</p>
+  <p>This is our art room. It is not big, but it is a nice room.
+  Those students are my friends. They are members of the art club.
+  That table is new, and those chairs are new, too. The chairs are red.
+  <span class="num">①</span><span class="ul">These are our pictures.</span> They are not famous, but they are beautiful.
+  This box is heavy. My knives are in the box. <span class="num">②</span><span class="ul">They</span> are very sharp.
+  These leaves are from the garden. They are green.</p>
+  <p class="reading-wc">76語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+    ア 美術室は大きい。<br>
+    イ いすは赤い。<br>
+    ウ 机は古い。<span class="write"></span></li>
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+    ア 絵は有名である。<br>
+    イ 葉は庭から持ってきたものである。<br>
+    ウ 箱は軽い。<span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">The pictures are (　　　) famous.</span><span class="write"></span></li>
+  <li>下線部①を日本語にする。<span class="write"></span></li>
+  <li>下線部②の They が指すものを、本文中の英語1語で答える。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">正解は1つではありません。複数形と冠詞の両方を使って書いてください。</p>
+
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+  <li>身の回りにある同じ物を2つ以上、these か those を使って紹介し、続けて they を使って説明する。<span class="hint">例：These are my pens. They are new.</span><span class="write"></span></li>
+  <li>1つの物を a か an を使って紹介し、次の文で the を使ってその物を説明する。<span class="hint">例：This is a box. The box is not heavy.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>1つか2つ以上か</strong>を先に決めてから、名詞の形・be動詞・冠詞の3つがそろっているかを確かめ直すと定着します。</p>
+
+<ol class="a">
+  <li><span class="a-key">イ　are</span><p class="a-why">主語 <span class="en">These</span> は2つ以上を指すので are です。<span class="en">shoes</span> が複数形になっていることも手がかりになります。</p></li>
+  <li><span class="a-key">ア　a</span><p class="a-why"><span class="en">uniform</span> は「ユーニフォーム」と読み、はじめの音は「ユ」という子音の音です。つづりの u につられて an を選ばないようにします。</p></li>
+  <li><span class="a-key">ウ　The</span><p class="a-why">1文目で箱を出しているので、2文目ではどの箱かが決まっています。決まっている物には the を置きます。</p></li>
+  <li><span class="a-key">ウ　knives</span><p class="a-why"><span class="en">knife</span> は f<span>e</span> で終わるので v<span>e</span>s にします。<span class="en">Those</span> と are からも複数形だと分かります。</p></li>
+  <li><span class="a-key">ウ　sandwiches</span><p class="a-why"><span class="en">sandwich</span> は c<span>h</span> で終わるので -e<span>s</span> を付けます。<span class="en">These</span> と are に形をそろえます。</p></li>
+
+  <li><span class="a-key">These are my new shoes.</span><p class="a-why">「これらは」の These が主語で、be動詞は are。<span class="en">my new shoes</span> の順に並べます。</p></li>
+  <li><span class="a-key">That uniform is not new.</span><p class="a-why">「あの制服」は <span class="en">that uniform</span> の2語で1つの主語です。not は is のすぐうしろに置きます。</p></li>
+  <li><span class="a-key">Are these boxes heavy?</span><p class="a-why">be動詞 are を主語 <span class="en">these boxes</span> の前に出します。<span class="en">box</span> は x で終わるので boxes です。</p></li>
+  <li><span class="a-key">The leaves of that tree are green.</span><p class="a-why">「あの木の葉」は <span class="en">the leaves of that tree</span> で1つの主語です。どの木の葉かが決まっているので the を置きます。主語は2つ以上なので are です。</p></li>
+  <li><span class="a-key">These are my friends.</span><p class="a-why">不要な語は is です。主語 These は2つ以上を指すので are を使います。</p></li>
+  <li><span class="a-key">Those women are teachers.</span><p class="a-why">不要な語は teacher です。主語が2つ以上なので、正体を表す語も複数形の teachers にします。</p></li>
+
+  <li><span class="a-key">These books are new.</span><p class="a-why">理由の例：these のあとの名詞は複数形にするから。<br>be動詞 are もそろっています。</p></li>
+  <li><span class="a-key">This is a uniform.</span><p class="a-why">理由の例：uniform のはじめの音は「ユ」という子音の音だから。</p></li>
+  <li><span class="a-key">These are my three children.</span><p class="a-why">理由の例：child の複数形は -s を付けず children になるから。</p></li>
+  <li><span class="a-key">This is a box. The box is not heavy.</span><p class="a-why">理由の例：2文目はどの箱かが決まっているので the を使うから。</p></li>
+  <li><span class="a-key">These are my shoes. They are not new.</span><p class="a-why">理由の例：2つ以上の物を受けるときは it ではなく they を使うから。</p></li>
+
+  <li><span class="a-key">These are my new bags.</span><p class="a-why">「これらは」なので These と are。<span class="en">bag</span> も複数形にします。</p></li>
+  <li><span class="a-key">Those rooms are not quiet.</span><p class="a-why">「あれらの部屋」は <span class="en">those rooms</span>。not は are のすぐうしろです。<span class="en">Those rooms aren't quiet.</span> でも正解です。</p></li>
+  <li><span class="a-key">This is an egg.</span><p class="a-why"><span class="en">egg</span> は母音の音で始まるので an を使います。</p></li>
+  <li><span class="a-key">Those children are happy.</span><p class="a-why"><span class="en">child</span> の複数形は children です。主語が2つ以上なので are になります。</p></li>
+  <li><span class="a-key">The door is red.</span><p class="a-why">the も1語と数えるので、これで4語です。</p></li>
+  <li><span class="a-key">解答例　Are these your shoes? Yes, they are.</span><p class="a-why">答えでは these を they に置きかえます。Unit 2 と同じく、Yes の答えは短縮形にできません。</p></li>
+  <li><span class="a-key">Those cities are famous.</span><p class="a-why"><span class="en">city</span> は子音字＋y なので cities です。these ではなく those を使います。</p></li>
+
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">The chairs are red.</span> とあります。美術室は <span class="en">not big</span>、机は <span class="en">new</span> と書かれています。</p></li>
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">These leaves are from the garden.</span> とあります。絵は <span class="en">not famous</span>、箱は <span class="en">heavy</span> です。</p></li>
+  <li><span class="a-key">not</span><p class="a-why">本文は <span class="en">They are not famous, but they are beautiful.</span> です。they が指すのは絵なので、not が入ります。</p></li>
+  <li><span class="a-key">これらは私たちの絵です。</span><p class="a-why">These は「これら」、our は「私たちの」です。「これらは私たちの写真です」も正解です。</p></li>
+  <li><span class="a-key">knives</span><p class="a-why">直前の文 <span class="en">My knives are in the box.</span> で出た複数の物を、they で受け直しています。1語で答えるので複数形のまま書きます。</p></li>
+
+  <li><span class="a-key">解答例　These are my keys. They are new.</span><p class="a-why">1文目を these / those と複数形、2文目を they で書けていれば正解です。be動詞が are になっているかも確かめましょう。</p></li>
+  <li><span class="a-key">解答例　This is an apple. The apple is fresh.</span><p class="a-why">1文目の a / an と、2文目の the が使い分けられていれば正解です。次に来る語の音で a か an かを選びます。</p></li>
+</ol>
+
+<div class="wrap-up">
+  <p class="wrap-up-t">この単元のまとめ</p>
+  <p style="margin:0">名詞は<strong>1つなら単数形、2つ以上なら複数形</strong>。-s の付け方は、ふつうは -s、s・x・c<span>h</span>・s<span>h</span> は -e<span>s</span>、子音字＋y は y を i にして -e<span>s</span>、f と f<span>e</span> は v<span>e</span>s。man・woman・child は形が変わります。単数形の前に置く <strong>a / an は音で決め</strong>、相手にも分かっている物には <strong>the</strong> を置きます。this / that の複数は these / those で、受け直すときは it ではなく they。be動詞は、主語が1つなら is、2つ以上なら are です。</p>
+</div>
+</div>
+</body>
+</html>

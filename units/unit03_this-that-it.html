@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 3　This / That / It と指示表現</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab03_this-that-it.html">この単元の単語帳 →</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 3</p>
+  <h1 class="unit-title">This / That / It と指示表現（近くの物・離れた物・話に出た物）</h1>
+  <p class="unit-lead">Unit 1・2 で作った be動詞の文に、物や人を指す語を加えます。this と that は話し手からの距離で選び、it はすでに話に出た物を受けます。入試では、疑問文の答えで this / that を it に置きかえられるか、人を it で受けていないかで点が分かれます。</p>
+</header>
+
+<h2><span>3つの語</span></h2>
+
+<p>この単元で使う3つの語を、先に押さえます。どれも名詞の代わりに物や人を指す語ですが、指し方が違います。</p>
+
+<div class="term">
+  <p class="term-name">this ／ that（指示語）</p>
+  <p class="term-def">目の前の物や人を<strong>指し示す</strong>語です。<strong>話し手の近くにあれば this（これ）、離れていれば that（あれ）</strong>を使います。人を紹介するときにも使えます。</p>
+  <p class="term-ex"><span class="en"><span class="be-w">This</span> is my pen.</span>（これは私のペンです）<br>
+  <span class="en"><span class="be-w">That</span> is a famous station.</span>（あれは有名な駅です）<br>
+  <span class="en"><span class="be-w">This</span> is my friend Emma.</span>（こちらは私の友達のエマです）</p>
+</div>
+
+<div class="term">
+  <p class="term-name">this ＋ 名詞 ／ that ＋ 名詞</p>
+  <p class="term-def">this / that を<strong>名詞のすぐ前</strong>に置くと、<strong>「この〜」「あの〜」</strong>の意味になります。this / that と名詞をまとめたものが1つの主語です。</p>
+  <p class="term-ex"><span class="en"><span class="be-w">This</span> camera is new.</span>（このカメラは新しいです）<br>
+  <span class="en"><span class="be-w">That</span> house is old.</span>（あの家は古いです）<br>
+  <span class="en"><span class="be-w">That</span> clock over there is big.</span>（あそこのあの時計は大きいです）</p>
+</div>
+
+<div class="term">
+  <p class="term-name">it（代名詞）</p>
+  <p class="term-def"><strong>すでに話に出た物</strong>を受ける語です。「それ」と訳しますが、<strong>距離は表しません</strong>。疑問文の答えでも、this / that の代わりに it を使います。</p>
+  <p class="term-ex"><span class="en">This is my bike. <span class="be-w">It</span> is old.</span>（これは私の自転車です。それは古いです）<br>
+  <span class="en">Is that your umbrella? — Yes, <span class="be-w">it</span> is.</span>（あれはあなたの傘ですか。— はい、そうです）<br>
+  <span class="en">That is my dictionary. <span class="be-w">It</span> is very useful.</span>（あれは私の辞書です。それはとても役に立ちます）</p>
+</div>
+
+<h2><span>文の形</span></h2>
+
+<div class="diagram">
+  <p class="diagram-cap">this / that が主語：<strong>「これは〜です」「あれは〜です」</strong></p>
+  <div class="flow">
+    <span class="node">This<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">is</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">my pen<span class="node-label">正体・状態・場所</span></span>
+  </div>
+</div>
+
+<div class="diagram">
+  <p class="diagram-cap">名詞の前に置く：<strong>「この〜は」「あの〜は」</strong></p>
+  <div class="flow">
+    <span class="node">That house<span class="node-label">主語（2語で1つ）</span></span>
+    <span class="link">
+      <span class="link-word">is</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">old<span class="node-label">正体・状態・場所</span></span>
+  </div>
+</div>
+
+<p>be動詞の形は Unit 1 と同じ決め方です。主語が I なら am、You なら are、それ以外は1つなら is、2つ以上なら are。<strong>this / that / it が1つの物や人を指すときは、主語は1つなので is</strong> になります。<span class="en">This camera</span> のように名詞が続いても、指しているのは1つです。</p>
+
+<h2><span>距離で選ぶ</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>語</th><th>指すもの</th><th>例文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="be-cell">this</td>
+      <td>話し手の<strong>近く</strong>の物・人<br>（これ・この）</td>
+      <td><span class="en">This eraser is small.</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">that</td>
+      <td>話し手から<strong>離れた</strong>物・人<br>（あれ・あの）</td>
+      <td><span class="en">That map is old.</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">it</td>
+      <td><strong>すでに話に出た</strong>物<br>（それ）</td>
+      <td><span class="en">It is beautiful.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>なぜ2つしかないのか。</strong>日本語は「これ・それ・あれ」の3つで分け、相手の近くの物を「それ」と呼びます。英語は<strong>話し手からの距離だけ</strong>で this と that の2つに分けます。相手が手に持っている物は、話し手から見て離れているので that で指すのがふつうです。</p>
+
+<p>ここで注意したいのは、<strong>「それ」と訳すからといって it を選ぶのではない</strong>という点です。it は物を指し示す語ではなく、<strong>一度話に出た物を受け直す語</strong>です。目の前の物を初めて話題にするときは、距離に合わせて this か that を使います。</p>
+
+<h2><span>it のはたらき</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>1文目（初めて話に出す）</th><th>2文目（受け直す）</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">This is my camera.</span></td>
+      <td><span class="en">It is old.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">That is a famous garden.</span></td>
+      <td><span class="en">It is beautiful.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">That is my computer.</span></td>
+      <td><span class="en">It is not expensive.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">This is my racket.</span></td>
+      <td><span class="en">It is not heavy.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>なぜ2文目で it に変えるのか。</strong>2文目では、どの物の話かがもう分かっています。距離を示し直す必要がないので、指し示す働きのない it を使います。2文目でも this / that を使うと、別の物を新しく指したように聞こえます。</p>
+
+<h2><span>疑問文への答え方</span></h2>
+
+<p>this / that の疑問文には、Unit 2 と同じく <strong><span class="en">Yes</span> か <span class="en">No</span> で答えます。</strong>答えの文では、<strong>問いの this / that を it に置きかえます。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>問い</th><th>Yes の答え</th><th>No の答え</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">Is this your pen?</span></td>
+      <td><span class="en">Yes, it is.</span></td>
+      <td><span class="en">No, it isn't.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Is that your bike?</span></td>
+      <td><span class="en">Yes, it is.</span></td>
+      <td><span class="en">No, it isn't.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Is this pencil short?</span></td>
+      <td><span class="en">Yes, it is.</span></td>
+      <td><span class="en">No, it isn't.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Is that your brother?</span></td>
+      <td><span class="en">Yes, he is.</span></td>
+      <td><span class="en">No, he isn't.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>最後の行のように、<strong>this / that が人を指しているときは、答えで it を使いません。</strong>男性なら he、女性なら she に置きかえます。問いの語をそのまま繰り返して <span class="en">Yes, this is.</span> と答えることもしません。</p>
+
+<h2><span>短縮形</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>もとの形</th><th>短縮形</th><th>例文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">that is</span></td>
+      <td class="be-cell">that's</td>
+      <td><span class="en">That's a good idea.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">it is</span></td>
+      <td class="be-cell">it's</td>
+      <td><span class="en">It's a famous station.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">this is</span></td>
+      <td class="be-cell">短縮形なし</td>
+      <td><span class="en">This is my new computer.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><span class="en">that is</span> と <span class="en">it is</span> は縮められますが、<strong><span class="en">this is</span> は縮めません。</strong>this の終わりの s のすぐあとに is が続くと発音しにくく、縮めた形が使われてこなかったためです。書くときも話すときも <span class="en">This is</span> の2語のままにします。また、Unit 2 と同じく <strong>Yes の答えでは短縮形を使いません</strong>。<span class="en">Yes, it is.</span> は縮めず、<span class="en">No, it isn't.</span> は縮めてかまいません。</p>
+
+<h2><span>this / that / it を選ぶ手順</span></h2>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">その物が、話に初めて出るかどうかを見る</span>
+    <span class="step-d">もう話に出ている物なら it。答えの文も同じで、問いに出た物は it で受けます。</span>
+  </li>
+  <li>
+    <span class="step-t">初めて出るなら、話し手からの距離で選ぶ</span>
+    <span class="step-d">近くなら this、離れていれば that。<span class="en">over there</span>（あそこに）が付いていれば that です。</span>
+  </li>
+  <li>
+    <span class="step-t">人を指すなら、2文目と答えでは he / she</span>
+    <span class="step-d">1文目の this / that は人にも使えますが、受け直すときに it は使いません。</span>
+  </li>
+  <li>
+    <span class="step-t">be動詞の形を決める</span>
+    <span class="step-d">主語が I なら am、You なら are、それ以外は1つなら is、2つ以上なら are。this / that / it が1つを指すなら is です。</span>
+  </li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>人を紹介する this と、受け直す she / he</h3>
+
+<p><span class="en">This is my friend Emma.</span> のように、<strong>人を紹介するときも this を使います</strong>。「こちらは〜です」と訳します。ただし、続けてその人を説明する2文目では <span class="en">It is kind.</span> とせず、<span class="en">She is kind.</span> とします。<strong>it は物を受ける語で、人には使いません。</strong><span class="en">This is my friend Emma. She is in the tennis club.</span> のように、紹介したあとは she / he で続けます。</p>
+
+<h3>this / that と my / your は並べない</h3>
+
+<p>「この私の自転車」を <span class="en">this my bike</span> とはしません。this / that も my / your も、名詞の前に1つだけ置く語だからです。<strong><span class="en">This bike is old.</span>（この自転車は古い）か <span class="en">My bike is old.</span>（私の自転車は古い）のどちらか</strong>にします。「これは私の自転車です」と言いたいときは、<span class="en">This is my bike.</span> と is をはさみます。</p>
+
+<h3>it は名詞の前に置けない</h3>
+
+<p>this / that は <span class="en">this camera</span> のように名詞の前に置けますが、<strong>it は名詞の前に置けません</strong>。it は1語で名詞の代わりをする語なので、<span class="en">it camera</span> という形はありません。「そのカメラ」は、話に出たカメラなら <span class="en">the camera</span>、距離を示すなら <span class="en">this camera</span> / <span class="en">that camera</span> です。</p>
+
+<h3>over there と this は一緒に使わない</h3>
+
+<p><span class="en">over there</span> は「あそこに」という意味で、話し手から離れた場所を表します。<strong>離れた物を指す語は that</strong> なので、<span class="en">That clock over there is big.</span> のように that と組みます。<span class="en">This clock over there</span> は、近くと遠くを同時に言っていることになり、使えません。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形式</th><th>問われ方</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>選択</td><td>疑問文の答えを4択にして、<strong>this / that を it に置きかえられるか</strong>を問います。人を指す問いでは he / she が正解になります。</td></tr>
+    <tr><td>並べ替え</td><td><span class="en">that</span> と <span class="en">over there</span> の位置、<span class="en">this</span> を名詞の前に置く形がよく出ます。</td></tr>
+    <tr><td>誤文訂正</td><td><span class="en">This's</span>、<span class="en">Yes, this is.</span>、人を it で受ける文、<span class="en">this my 〜</span> の4つが定番です。</td></tr>
+    <tr><td>英作文</td><td>短縮形 <span class="en">It's</span> / <span class="en">That's</span> を使わせて語数を指定します。どちらも1語と数えます。</td></tr>
+    <tr><td>読解</td><td><strong>下線部の it が何を指すか</strong>を、本文中の語で答えさせます。直前の文で話に出た物を探します。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">This's my new computer.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">This <span class="be-w">is</span> my new computer.</span></div>
+  <p class="contrast-why"><span class="en">this is</span> は短縮形にしません。縮められるのは <span class="en">that's</span> と <span class="en">it's</span> です。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Is this your pen? — Yes, this is.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">Is this your pen? — Yes, <span class="be-w">it</span> is.</span></div>
+  <p class="contrast-why">答えの文では、問いの this / that を it に置きかえます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">That is my friend Emma. It is kind.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">That is my friend Emma. <span class="be-w">She</span> is kind.</span></div>
+  <p class="contrast-why">人を受け直すときは it ではなく he / she です。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">This my bike is old.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">This</span> bike is old.</span></div>
+  <p class="contrast-why">this と my は並べません。「私の」を言いたいなら <span class="en">My bike is old.</span> とします。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Is that camera expensive? — Yes, it's.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">Is that camera expensive? — Yes, it <span class="be-w">is</span>.</span></div>
+  <p class="contrast-why">Yes の答えは短縮形にできません。Unit 2 の <span class="en">Yes, I am.</span> と同じ決まりです。</p>
+</div>
+
+<p>ここまでの形は、次の文でひととおり確かめられます。<span class="en">This pen is long.</span>／<span class="en">This pencil is not short.</span>／<span class="en">This camera is not cheap.</span>／<span class="en">This cat is cute.</span>／<span class="en">That flower is beautiful.</span>／<span class="en">Is that your guitar?</span>／<span class="en">Is this your piano?</span>／<span class="en">That park is famous.</span>／<span class="en">This is a nice room.</span>／<span class="en">This picture is interesting.</span>／<span class="en">Is this umbrella expensive?</span>　どれも、初めて指す物か、すでに話に出た物かを先に確かめてから語を選んでいます。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。指している物や人が近いか離れているか、初めて話に出たのか、物か人かを確かめてから選びます。</p>
+
+<ol class="q" data-part="A">
+  <li><span class="en">(　　　) is my friend Emma. She is in the tennis club.</span>
+    <p class="opts"><span>ア This</span><span>イ It</span><span>ウ Am</span><span>エ That's</span></p></li>
+  <li><span class="en">"Is this camera heavy?" "No, (　　　)."</span>
+    <p class="opts"><span>ア this isn't</span><span>イ it isn't</span><span>ウ it's</span><span>エ isn't it</span></p></li>
+  <li><span class="en">(　　　) umbrella over there is not my umbrella.</span>
+    <p class="opts"><span>ア This</span><span>イ That</span><span>ウ It</span><span>エ My</span></p></li>
+  <li><span class="en">"Is that your brother?" "Yes, (　　　) is."</span>
+    <p class="opts"><span>ア it</span><span>イ that</span><span>ウ he</span><span>エ this</span></p></li>
+  <li><span class="en">This picture and that picture (　　　) beautiful.</span>
+    <p class="opts"><span>ア am</span><span>イ is</span><span>ウ are</span><span>エ be</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べ替えましょう。文の先頭に来る語も小文字で示してあります。<strong>10と11には使わない語が1語ずつ混ざっています。</strong></p>
+
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+  <li>これは私の辞書です。<br><span class="en">[ my / is / dictionary / this ] .</span><span class="write"></span></li>
+  <li>あれはあなたの自転車ですか。<br><span class="en">[ your / that / is / bike ] ?</span><span class="write"></span></li>
+  <li>この傘は新しくありません。<br><span class="en">[ umbrella / new / is / this / not ] .</span><span class="write"></span></li>
+  <li>あそこのあの時計は古いです。<br><span class="en">[ over / that / is / old / clock / there ] .</span><span class="write"></span></li>
+  <li data-extra="1">それは有名な公園です。<span class="hint">1語不要</span><br><span class="en">[ a / it's / famous / is / park ] .</span><span class="write"></span></li>
+  <li data-extra="1">あの絵は美しいですか。<span class="hint">1語不要</span><br><span class="en">[ beautiful / that / is / picture / it ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">次の文には誤りが1つずつあります。正しい文に直し、<strong>なぜ誤りかを日本語で1行</strong>書きましょう。</p>
+
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+  <li><span class="en">This's my new computer.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">"Is this your pen?" "Yes, this is."</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">That is my friend Emma. It is kind.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">This my bike is old.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">This dictionary over there is very useful.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">17から20は日本語を英語にしましょう。21から23は条件に合わせて書きましょう。</p>
+
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+  <li><span class="q-ja">これは私の新しいコンピュータです。</span><span class="write"></span></li>
+  <li><span class="q-ja">あちらは私の友達のエマです。</span><span class="write"></span></li>
+  <li><span class="q-ja">あの家は古くありません。</span><span class="write"></span></li>
+  <li><span class="q-ja">この傘は高価ですか。</span><span class="write"></span></li>
+  <li>短縮形を使って「それは有名な駅です」と書く。<span class="cond">4語</span><span class="write"></span></li>
+  <li>「これはあなたのカメラですか」とたずねる文と、No の答えの文を書く。<span class="cond">2文</span><span class="write"></span></li>
+  <li>「あそこのあの時計は大きくありません」を、over there を使って書く。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">エマがケンの部屋で話しています。対話を読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+  <p class="reading-cap">エマとケンの対話</p>
+  <p>Emma: This is a nice room, Ken. Is that your guitar?<br>
+  Ken: Yes, it is. It is new.<br>
+  Emma: It is beautiful. And is this your piano?<br>
+  Ken: Yes, it is. It is old, but it is very good.<br>
+  Emma: <span class="num">①</span><span class="ul">This picture is interesting.</span> Is it a park?<br>
+  Ken: No, it isn't. It is a famous garden in Kyoto.<br>
+  Emma: Is that your dictionary on the desk?<br>
+  Ken: Yes, it is. <span class="num">②</span><span class="ul">It</span> is heavy, but it is very useful.</p>
+  <p class="reading-wc">79語（話し手の名前を含む）</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+    ア ケンのギターは古い。<br>
+    イ ケンのピアノは古い。<br>
+    ウ ケンの辞書は軽い。<span class="write"></span></li>
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+    ア 写真には公園が写っている。<br>
+    イ 写真には京都の有名な庭が写っている。<br>
+    ウ エマは写真をおもしろくないと言っている。<span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">The picture is (　　　) a park.</span><span class="write"></span></li>
+  <li>下線部①を日本語にする。<span class="write"></span></li>
+  <li>下線部②の It が指すものを、本文中の英語1語で答える。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">正解は1つではありません。this / that と it を使って書いてください。</p>
+
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+  <li>身の回りの物を1つ this か that で紹介し、続けて it を使ってその物を説明する。<span class="hint">例：This is my pen. It is new.</span><span class="write"></span></li>
+  <li>家族か友達の持ち物について、this か that を使ってたずねる疑問文と、その答えの文を書く。<span class="hint">答えは Yes か No で始める</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>その物が初めて話に出たのか、すでに出ているのか</strong>を確かめてから、this / that / it を選び直すと定着します。</p>
+
+<ol class="a">
+  <li><span class="a-key">ア　This</span><p class="a-why">人を紹介するときは this を使います。it は人には使いません。続く文が She で受けていることも手がかりです。</p></li>
+  <li><span class="a-key">イ　it isn't</span><p class="a-why">答えの文では this を it に置きかえます。No の答えなので短縮形 isn't が使えます。</p></li>
+  <li><span class="a-key">イ　That</span><p class="a-why"><span class="en">over there</span>（あそこに）があるので、離れた物を指す that です。it は名詞の前に置けません。</p></li>
+  <li><span class="a-key">ウ　he</span><p class="a-why">問いの that は人（兄）を指しています。人を受け直すときは it ではなく he です。</p></li>
+  <li><span class="a-key">ウ　are</span><p class="a-why">主語は <span class="en">This picture and that picture</span> で2つです。this / that が付いていても、and で結んだ主語は2つ以上なので are です。</p></li>
+
+  <li><span class="a-key">This is my dictionary.</span><p class="a-why">「これは」の this が主語です。be動詞 is のうしろに <span class="en">my dictionary</span> を置きます。</p></li>
+  <li><span class="a-key">Is that your bike?</span><p class="a-why">be動詞 is を主語 that の前に出し、文末に ? を付けます。</p></li>
+  <li><span class="a-key">This umbrella is not new.</span><p class="a-why">「この傘」は <span class="en">this umbrella</span> の2語で1つの主語です。not は is のすぐうしろです。</p></li>
+  <li><span class="a-key">That clock over there is old.</span><p class="a-why">「あそこのあの時計」は <span class="en">that clock over there</span> で1つの主語です。<span class="en">over there</span> は名詞のうしろに置きます。</p></li>
+  <li><span class="a-key">It's a famous park.</span><p class="a-why">不要な語は is です。<span class="en">It's</span> にすでに is が含まれています。</p></li>
+  <li><span class="a-key">Is that picture beautiful?</span><p class="a-why">不要な語は it です。「あの絵」は <span class="en">that picture</span> で、it は名詞の前に置けません。</p></li>
+
+  <li><span class="a-key">This is my new computer.</span><p class="a-why">理由の例：this is は短縮形にできないから。<br><span class="en">That's</span> と <span class="en">It's</span> は縮められます。</p></li>
+  <li><span class="a-key">"Is this your pen?" "Yes, it is."</span><p class="a-why">理由の例：答えの文では this を it に置きかえるから。</p></li>
+  <li><span class="a-key">That is my friend Emma. She is kind.</span><p class="a-why">理由の例：人を受け直すときは it ではなく she を使うから。</p></li>
+  <li><span class="a-key">This bike is old.</span><p class="a-why">理由の例：this と my は名詞の前に並べて使えないから。<br><span class="en">My bike is old.</span> でも正解です。</p></li>
+  <li><span class="a-key">That dictionary over there is very useful.</span><p class="a-why">理由の例：over there（あそこに）の物は離れているので that で指すから。</p></li>
+
+  <li><span class="a-key">This is my new computer.</span><p class="a-why">this is は縮めずに書きます。</p></li>
+  <li><span class="a-key">That is my friend Emma.</span><p class="a-why">人を紹介するときも that / this を使います。<span class="en">That's my friend Emma.</span> でも正解です。</p></li>
+  <li><span class="a-key">That house is not old.</span><p class="a-why">「あの家」は <span class="en">that house</span>。<span class="en">That house isn't old.</span> でも正解です。</p></li>
+  <li><span class="a-key">Is this umbrella expensive?</span><p class="a-why">主語 <span class="en">this umbrella</span> の前に Is を出します。</p></li>
+  <li><span class="a-key">It's a famous station.</span><p class="a-why"><span class="en">It's</span> は1語と数えるので、これで4語です。</p></li>
+  <li><span class="a-key">解答例　Is this your camera? No, it isn't.</span><p class="a-why">答えでは this を it に置きかえます。<span class="en">No, it is not.</span> でも正解です。</p></li>
+  <li><span class="a-key">That clock over there is not big.</span><p class="a-why">7語にするため、isn't ではなく is not と書きます。this ではなく that を使います。</p></li>
+
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">And is this your piano?</span> に続いて <span class="en">It is old, but it is very good.</span> とあります。ギターは新しく、辞書は重いと書かれています。</p></li>
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">It is a famous garden in Kyoto.</span> とあります。エマは <span class="en">This picture is interesting.</span> と言っています。</p></li>
+  <li><span class="a-key">not</span><p class="a-why">ケンは <span class="en">Is it a park?</span> に <span class="en">No, it isn't.</span> と答えています。写真は公園ではありません。</p></li>
+  <li><span class="a-key">この写真はおもしろいです。</span><p class="a-why">名詞の前の this は「この」と訳します。「この絵はおもしろい」も正解です。</p></li>
+  <li><span class="a-key">dictionary</span><p class="a-why">直前のエマの問い <span class="en">Is that your dictionary on the desk?</span> で話に出た物を、it で受け直しています。</p></li>
+
+  <li><span class="a-key">解答例　This is my bike. It is very old.</span><p class="a-why">1文目は this / that、2文目は it で書けていれば正解です。人を紹介した場合は、2文目を he / she にします。</p></li>
+  <li><span class="a-key">解答例　Is that your camera? — No, it isn't.</span><p class="a-why">問いの this / that を、答えでは it に置きかえます。Yes の答えを短縮形にしていないかも確認しましょう。</p></li>
+</ol>
+
+<div class="wrap-up">
+  <p class="wrap-up-t">この単元のまとめ</p>
+  <p style="margin:0">初めて指す物は、<strong>近くなら this、離れていれば that</strong>。名詞の前に置けば「この〜」「あの〜」になります。<strong>一度話に出た物は it で受け直し</strong>、疑問文の答えでも this / that を it に置きかえます。人を受けるときは it ではなく he / she です。短縮形は <span class="en">that's</span> と <span class="en">it's</span> の2つで、<span class="en">this is</span> は縮めません。be動詞は、this / that / it が1つを指すので is です。</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 5　一般動詞の肯定文</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図詣（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab05_general-affirmative.html">この単元の単語帳 →</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 5</p>
+  <h1 class="unit-title">一般動詞の肯定文（動作や心の働きを表す文）</h1>
+  <p class="unit-lead">Unit 1 から 4 までは、be動詞を使って「主語＝正体・状態」を表す文だけを扱いました。この単元では、動作や心の働きを表す一般動詞の文を扱います。入試では、be動詞と一般動詞を並べない、動詞のうしろの語順、目的語を落とさない、この3つで点が分かれます。</p>
+</header>
+
+<h2><span>一般動詞とは</span></h2>
+
+<p>英語の文には、動詞が<strong>必ず1つ</strong>入ります。これまで使ってきた am / is / are は be動詞と呼ばれる仲間で、主語とそのあとの語を結びつけるはたらきをしていました。これに対して、<strong>動作や心の働きを表す動詞</strong>を一般動詞といいます。</p>
+
+<div class="term is-general">
+  <p class="term-name">一般動詞</p>
+  <p class="term-def"><strong>動作や心の働き</strong>を表す動詞です。主語のすぐあとに置きます。be動詞のように「＝」でつなぐのではなく、主語から出ていく<strong>はたらきかけ</strong>を表します。</p>
+  <p class="term-ex"><span class="en">I <span class="gen-w">play</span> tennis every day.</span>（私は毎日テニスをします）<br>
+  <span class="en">We <span class="gen-w">study</span> English after school.</span>（私たちは放課後に英語を勉強します）<br>
+  <span class="en">They <span class="gen-w">live</span> in a big house.</span>（彼らは大きな家に住んでいます）<br>
+  <span class="en">We <span class="gen-w">like</span> music very much.</span>（私たちは音楽がとても好きです）</p>
+</div>
+
+<div class="term is-general">
+  <p class="term-name">目的語</p>
+  <p class="term-def">動詞のすぐあとに置く、「<strong>〜を</strong>」「<strong>〜が</strong>」にあたる語です。何にはたらきかけるのかを示します。目的語を必要とする動詞で目的語を落とすと、文になりません。</p>
+  <p class="term-ex"><span class="en">I read <span class="gen-w">books</span> in the library.</span>（私は図書館で本を読みます）<br>
+  <span class="en">I write <span class="gen-w">letters</span> every day.</span>（私は毎日手紙を書きます）<br>
+  <span class="en">We use <span class="gen-w">this computer</span> every day.</span>（私たちは毎日このコンピューターを使います）</p>
+</div>
+
+<p><strong>なぜ動詞のすぐあとなのか。</strong>英語は語順で意味を決める言語です。日本語は「本を／図書館で／読む」と順番を入れかえても通じますが、英語は<strong>置いた場所そのものがはたらきを表します</strong>。動詞の直後は目的語の席だと決まっているので、そこを空けたまま別の語を置くと意味が通りません。</p>
+
+<h2><span>文の形</span></h2>
+
+<div class="diagram">
+  <p class="diagram-cap">be動詞の文（Unit 1 〜 4）：主語と、そのあとの語を<strong>結びつける</strong></p>
+  <div class="flow">
+    <span class="node">We<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">are</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">students<span class="node-label">正体・状態・場所</span></span>
+  </div>
+</div>
+
+<div class="diagram is-general">
+  <p class="diagram-cap">一般動詞の文：主語から<strong>はたらきかける</strong></p>
+  <div class="flow">
+    <span class="node">We<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">study</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">English<span class="node-label">目的語</span></span>
+  </div>
+</div>
+
+<p>2つの図で、主語のあとに来る語の役目が違うことを確かめてください。be動詞の文では、うしろの語が主語の<strong>正体や状態</strong>を言い直しています。一般動詞の文では、うしろの語は主語と等しいものではなく、<strong>はたらきかける相手</strong>です。<span class="en">We are students.</span> は「私たち＝生徒」ですが、<span class="en">We study English.</span> は「私たち＝英語」ではありません。</p>
+
+<p>この違いがあるので、<strong>1つの文に be動詞と一般動詞の両方を置くことはできません。</strong><span class="en">I am play soccer.</span> という形が誤りなのはこのためです。結びつけるはたらきと、はたらきかけるはたらきを、同時に持たせることはできません。</p>
+
+<h2><span>この単元で使う主語</span></h2>
+
+<p>この単元では、主語を <span class="en">I</span> / <span class="en">you</span> / <span class="en">we</span> / <span class="en">they</span> と<strong>複数の名詞</strong>に限ります。これらの主語では、<strong>主語が変わっても動詞の形は変わりません</strong>。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>主語</th><th>動詞</th><th>例文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="be-cell">I</td>
+      <td class="be-cell">play</td>
+      <td><span class="en">I play tennis every day.</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">You</td>
+      <td class="be-cell">play</td>
+      <td><span class="en">You play tennis every day.</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">We</td>
+      <td class="be-cell">play</td>
+      <td><span class="en">We play tennis every day.</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">They</td>
+      <td class="be-cell">play</td>
+      <td><span class="en">They play tennis every day.</span></td>
+    </tr>
+    <tr>
+      <td class="be-cell">My friends</td>
+      <td class="be-cell">play</td>
+      <td><span class="en">My friends play tennis every day.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>be動詞は主語によって am / is / are と形が変わりました。一般動詞は、ここに挙げた主語では<strong>ひとつの形のまま</strong>です。まずこの形を固めてください。主語が1人の他人（兄・姉・友達1人など）のときだけ形が変わりますが、それは別の単元で扱います。</p>
+
+<h2><span>動詞のうしろに続くもの</span></h2>
+
+<p>一般動詞は、<strong>目的語を必要とするもの</strong>と<strong>必要としないもの</strong>に分かれます。辞書で調べるときの見分けにもなるので、使う動詞ごとに覚えていきます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>種類</th><th>動詞</th><th>例文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>目的語が要る</td>
+      <td class="be-cell">play<br>study<br>read<br>write<br>have<br>want<br>use<br>know<br>like<br>eat<br>drink<br>watch<br>speak<br>sing<br>cook<br>help<br>paint</td>
+      <td><span class="en">We study English after school.</span><br>
+      <span class="en">They have a new computer.</span><br>
+      <span class="en">I want a new camera.</span><br>
+      <span class="en">You know my sister well.</span><br>
+      <span class="en">We watch birds in the garden.</span><br>
+      <span class="en">We help our teachers every day.</span><br>
+      <span class="en">We paint pictures in the art room every day.</span></td>
+    </tr>
+    <tr>
+      <td>目的語が要らない</td>
+      <td class="be-cell">walk<br>run<br>swim<br>live</td>
+      <td><span class="en">We walk to school every day.</span><br>
+      <span class="en">They run in the park after school.</span><br>
+      <span class="en">They swim very well.</span><br>
+      <span class="en">They live in a big house.</span></td>
+    </tr>
+    <tr>
+      <td>前置詞とひとまとまり</td>
+      <td class="be-cell">listen to ~</td>
+      <td><span class="en">We listen to music in our room.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>listen だけは形に注意します。</strong>「〜を聞く」と言うときは、<span class="en">listen</span> のうしろに <span class="en">to</span> を置いて、<span class="en">listen to</span> でひとまとまりに使います。<span class="en">watch</span> や <span class="en">read</span> は <span class="en">to</span> を置きません。日本語の「〜を」につられて <span class="en">to</span> を落とす誤りが入試で頻出します。</p>
+
+<h2><span>動詞のうしろの語順</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>主語</td>
+      <td>動詞</td>
+      <td>目的語</td>
+      <td>場所 → 時</td>
+    </tr>
+    <tr>
+      <td class="be-cell">We</td>
+      <td class="be-cell">paint</td>
+      <td class="be-cell">pictures</td>
+      <td class="be-cell">in the art room every day</td>
+    </tr>
+    <tr>
+      <td class="be-cell">They</td>
+      <td class="be-cell">run</td>
+      <td class="be-cell">—</td>
+      <td class="be-cell">in the park after school</td>
+    </tr>
+    <tr>
+      <td class="be-cell">I</td>
+      <td class="be-cell">read</td>
+      <td class="be-cell">books</td>
+      <td class="be-cell">in the library</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>目的語は<strong>動詞のすぐあと</strong>に置きます。場所や時を表す語句は、そのあとに続けます。場所と時の両方を言うときは、<strong>場所を先、時をあと</strong>にします。<span class="en">They run in the park after school.</span> の順です。<span class="en">They run after school in the park.</span> とは、ふつう言いません。</p>
+
+<p><strong>なぜ場所が先なのか。</strong>英語は、動詞に近いところほど動作と結びつきが強い語を置きます。走る場所は走る動作そのものと結びついていますが、いつ走るかは文全体にかかる情報です。結びつきの強い順に並べた結果が、この語順です。</p>
+
+<h2><span>文を組み立てる手順</span></h2>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">主語を決める</span>
+    <span class="step-d">この単元では <span class="en">I</span> / <span class="en">you</span> / <span class="en">we</span> / <span class="en">they</span> と複数の名詞です。</span>
+  </li>
+  <li>
+    <span class="step-t">be動詞の文か、一般動詞の文かを決める</span>
+    <span class="step-d">「〜です」「〜にいます」なら be動詞。動作や心の働きなら一般動詞です。<strong>両方を並べることはできません。</strong></span>
+  </li>
+  <li>
+    <span class="step-t">動詞を主語のすぐあとに置く</span>
+    <span class="step-d">この単元の主語では、動詞の形は変わりません。</span>
+  </li>
+  <li>
+    <span class="step-t">目的語が要る動詞かどうかを見る</span>
+    <span class="step-d">要るなら動詞のすぐあとに置きます。<span class="en">listen</span> は <span class="en">to</span> とひとまとまりにします。</span>
+  </li>
+  <li>
+    <span class="step-t">場所、時の順で残りを続ける</span>
+    <span class="step-d"><span class="en">every day</span> や <span class="en">after school</span> は文の終わりに置きます。</span>
+  </li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>be動詞と一般動詞を並べない</h3>
+
+<p><span class="en">I am play soccer.</span> とは書きません。動詞は1つの文に1つです。「私は毎日テニスをします」と言いたいときは <span class="en">I play tennis every day.</span>、「私は生徒です」と言いたいときは <span class="en">I am a student.</span> です。日本語の「〜します」「〜です」のどちらにあたるかを先に決めれば、動詞は1つに決まります。この誤りは、英作文でも並べ替えでも最も多く出ます。</p>
+
+<h3>目的語を落とさない</h3>
+
+<p><span class="en">We like.</span> だけでは文になりません。<span class="en">like</span> は「何が好きか」を必ず示す動詞なので、<span class="en">We like music very much.</span> のように目的語を続けます。日本語では「好きです」だけで通じますが、英語では<strong>言わない語を補って書く</strong>必要があります。<span class="en">have</span> <span class="en">want</span> <span class="en">know</span> <span class="en">use</span> も同じ仲間です。</p>
+
+<h3>listen には to が要る</h3>
+
+<p><span class="en">We listen music.</span> とは書きません。<span class="en">We listen to music in our room.</span> のように <span class="en">to</span> を置きます。一方で <span class="en">watch</span> は <span class="en">to</span> を取りません。<span class="en">We watch birds in the garden.</span> です。「〜を」という日本語が同じでも、英語の形はそろいません。動詞ごとに形のまま覚えます。</p>
+
+<h3>時を表す語句を目的語の前に入れない</h3>
+
+<p><span class="en">We study every day English.</span> とは書きません。目的語は動詞のすぐあとなので、<span class="en">We study English every day.</span> とします。<span class="en">every day</span> <span class="en">after school</span> <span class="en">today</span> はどれも文の終わりに置きます。並べ替えでは、この位置だけで正誤が決まります。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形式</th><th>問われ方</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>選択</td><td>be動詞と一般動詞のどちらを置くかを4択で問います。<span class="en">are study</span> のような形が誤答に混ざります。</td></tr>
+    <tr><td>並べ替え</td><td>目的語と、場所・時を表す語句の順を問います。<span class="en">every day</span> の位置が要注意です。</td></tr>
+    <tr><td>誤文訂正</td><td><span class="en">am play</span>、<span class="en">listen music</span>、目的語の落ち、<span class="en">a</span> と複数形の組み合わせが定番です。</td></tr>
+    <tr><td>英作文</td><td>語数を指定して書かせます。<span class="en">every day</span> は2語と数えます。</td></tr>
+    <tr><td>読解</td><td>だれが何をするのかを、動詞と目的語の組で読み取らせます。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I am play soccer.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I <span class="gen-w">play</span> soccer.</span></div>
+  <p class="contrast-why">be動詞と一般動詞は並べません。動詞は1つの文に1つです。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">We study every day English.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">We study <span class="gen-w">English every day</span>.</span></div>
+  <p class="contrast-why">目的語は動詞のすぐあとです。時を表す語句は文の終わりに置きます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">We listen music every day.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">We listen <span class="gen-w">to</span> music every day.</span></div>
+  <p class="contrast-why">listen は to とひとまとまりで使います。watch には to を置きません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I have a books.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I have <span class="gen-w">books</span>.</span></div>
+  <p class="contrast-why">Unit 4 と同じです。a は複数形には付けられません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">They run every day in the park.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">They run <span class="gen-w">in the park every day</span>.</span></div>
+  <p class="contrast-why">場所を先、時をあとに置きます。</p>
+</div>
+
+<p>ここまでの形は、次の文でひととおり確かめられます。<span class="en">I play the piano every day.</span>／<span class="en">We cook lunch together.</span>／<span class="en">They study hard every day.</span>／<span class="en">Those students speak Japanese very well.</span>／<span class="en">My friends use new bikes.</span>／<span class="en">We sing songs after school.</span>／<span class="en">I drink milk every day.</span>／<span class="en">We eat lunch together.</span>／<span class="en">They walk to school every day.</span>／<span class="en">My friends read books in the library.</span>／<span class="en">Those students run in the park.</span>　どれも、主語のすぐあとに動詞を置き、目的語、場所、時の順で続けています。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。be動詞の文か一般動詞の文かを先に決め、動詞のうしろの語順を確かめてから選びます。</p>
+
+<ol class="q" data-part="A">
+  <li><span class="en">I (　　　) tennis every day.</span>
+  <p class="opts"><span>ア am</span><span>イ play</span><span>ウ are</span><span>エ be</span></p></li>
+  <li><span class="en">We (　　　) English after school.</span>
+  <p class="opts"><span>ア are study</span><span>イ study</span><span>ウ is study</span><span>エ a study</span></p></li>
+  <li><span class="en">Those students (　　　) in the park.</span>
+  <p class="opts"><span>ア is</span><span>イ are run</span><span>ウ run</span><span>エ a run</span></p></li>
+  <li><span class="en">They (　　　) every day.</span>
+  <p class="opts"><span>ア walk to school</span><span>イ to school walk</span><span>ウ school to walk</span><span>エ walk school to</span></p></li>
+  <li><span class="en">We (　　　) in our room.</span>
+  <p class="opts"><span>ア listen music</span><span>イ listen to music</span><span>ウ music listen to</span><span>エ to listen music</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べ替えましょう。文の先頭に来る語も小文字で示してあります。<strong>10と11には使わない語が1語ずつ混ざっています。</strong></p>
+
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+  <li>私は毎日テニスをします。<br><span class="en">[ tennis / play / every / I / day ] .</span><span class="write"></span></li>
+  <li>私たちは放課後に英語を勉強します。<br><span class="en">[ English / after / study / we / school ] .</span><span class="write"></span></li>
+  <li>彼らは大きな家に住んでいます。<br><span class="en">[ a / house / live / big / they / in ] .</span><span class="write"></span></li>
+  <li>私の友達は図書館で本を読みます。<br><span class="en">[ the / read / books / friends / library / my / in ] .</span><span class="write"></span></li>
+  <li data-extra="1">私たちは昼食をいっしょに食べます。<span class="hint">1語不要</span><br><span class="en">[ lunch / eat / together / we / are ] .</span><span class="write"></span></li>
+  <li data-extra="1">あの生徒たちは毎日熱心に勉強します。<span class="hint">1語不要</span><br><span class="en">[ hard / study / those / every / students / day / is ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">次の文には誤りが1つずつあります。正しい文に直し、<strong>なぜ誤りかを日本語で1行</strong>書きましょう。</p>
+
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+  <li><span class="en">I am play soccer.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">We study every day English.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">We listen music every day.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">I have a books.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">They run every day in the park.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">17から20は日本語を英語にしましょう。21から23は条件に合わせて書きましょう。</p>
+
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+  <li><span class="q-ja">私は毎日ピアノをひきます。</span><span class="write"></span></li>
+  <li><span class="q-ja">私たちは庭で鳥を見ます。</span><span class="write"></span></li>
+  <li><span class="q-ja">彼らはとても上手に泳ぎます。</span><span class="write"></span></li>
+  <li><span class="q-ja">私たちは毎日このコンピューターを使います。</span><span class="write"></span></li>
+  <li>every day を使って「私は毎日牛乳を飲みます」と書く。<span class="cond">5語</span><span class="write"></span></li>
+  <li>after school を使って「私たちは放課後に歌を歌います」と書く。<span class="cond">5語</span><span class="write"></span></li>
+  <li>together を使って「私たちはいっしょに昼食を作ります」と書く。<span class="cond">4語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ケンが自分のことを書いた文章です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+  <p class="reading-cap">ケンの一日</p>
+  <p>I am Ken. I am a member of the art club.
+  <span class="num">①</span><span class="ul">We paint pictures in the art room every day.</span>
+  Our pictures are not famous, but they are beautiful.
+  I like music, too. I play the guitar and I sing songs after school.
+  My friends study English and math. They read English books in the library.
+  They speak English very well.
+  We eat lunch together. I drink milk every day. I want a new camera.</p>
+  <p class="reading-wc">75語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+  ア ケンは美術部の部員である。<br>
+  イ ケンの絵は有名である。<br>
+  ウ ケンは毎日ピアノをひく。<span class="write"></span></li>
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+  ア ケンの友達は図書館で英語の本を読む。<br>
+  イ ケンの友達は英語が上手ではない。<br>
+  ウ ケンは新しいカメラを持っている。<span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">We eat lunch (　　　).</span><span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">They (　　　) English books in the library.</span><span class="write"></span></li>
+  <li>下線部①を日本語にする。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">正解は1つではありません。この単元で扱った主語だけを使って書いてください。</p>
+
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+  <li>自分が毎日することを、<span class="en">every day</span> を使って1文で書く。<span class="hint">例：I read books every day.</span><span class="write"></span></li>
+  <li>自分と友達がいっしょにすることを、<span class="en">we</span> を主語にして1文で書き、続けてその内容を説明する文をもう1文書く。<span class="hint">例：We play tennis after school. We like tennis very much.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>be動詞の文か一般動詞の文か</strong>を先に決めてから、主語・動詞・目的語・場所・時の順に並んでいるかを確かめ直すと定着します。</p>
+
+<ol class="a">
+  <li><span class="a-key">イ　play</span><p class="a-why">「テニスをします」は動作なので一般動詞です。be動詞の <span class="en">am</span> や <span class="en">are</span> は入りません。主語が <span class="en">I</span> でも動詞の形は変わりません。</p></li>
+  <li><span class="a-key">イ　study</span><p class="a-why">「勉強します」は動作です。<span class="en">are study</span> は be動詞と一般動詞を並べた形なので誤りです。</p></li>
+  <li><span class="a-key">ウ　run</span><p class="a-why">主語 <span class="en">Those students</span> に対して「走る」という動作を表します。<span class="en">are run</span> は動詞を2つ並べた形です。主語が複数でも動詞の形は変わりません。</p></li>
+  <li><span class="a-key">ア　walk to school</span><p class="a-why">動詞を先に置き、そのあとに場所を続けます。<span class="en">every day</span> は文の終わりにあるので、残りは <span class="en">walk to school</span> の順です。</p></li>
+  <li><span class="a-key">イ　listen to music</span><p class="a-why"><span class="en">listen</span> は <span class="en">to</span> とひとまとまりで使い、そのあとに「何を聞くか」を置きます。</p></li>
+
+  <li><span class="a-key">I play tennis every day.</span><p class="a-why">主語 <span class="en">I</span> のすぐあとに動詞 <span class="en">play</span>、次に目的語 <span class="en">tennis</span>、最後に時を表す <span class="en">every day</span> を置きます。</p></li>
+  <li><span class="a-key">We study English after school.</span><p class="a-why">目的語 <span class="en">English</span> は動詞のすぐあとです。<span class="en">after school</span> は文の終わりに置きます。</p></li>
+  <li><span class="a-key">They live in a big house.</span><p class="a-why"><span class="en">live</span> は目的語を取らない動詞なので、動詞のあとには場所が続きます。<span class="en">a big house</span> の語順にも注意します。</p></li>
+  <li><span class="a-key">My friends read books in the library.</span><p class="a-why">主語は <span class="en">my friends</span> の2語でひとまとまりです。目的語 <span class="en">books</span> のあとに場所 <span class="en">in the library</span> を続けます。</p></li>
+  <li><span class="a-key">We eat lunch together.</span><p class="a-why">不要な語は <span class="en">are</span> です。<span class="en">eat</span> が一般動詞なので be動詞は入りません。</p></li>
+  <li><span class="a-key">Those students study hard every day.</span><p class="a-why">不要な語は <span class="en">is</span> です。<span class="en">hard</span> は動詞に情報を足す語なので動詞のすぐあとに置き、時を表す <span class="en">every day</span> を最後にします。</p></li>
+
+  <li><span class="a-key">I play soccer.</span><p class="a-why">理由の例：be動詞と一般動詞は1つの文に並べられないから。</p></li>
+  <li><span class="a-key">We study English every day.</span><p class="a-why">理由の例：目的語は動詞のすぐあとに置き、時を表す語句は文の終わりに置くから。</p></li>
+  <li><span class="a-key">We listen to music every day.</span><p class="a-why">理由の例：listen は to とひとまとまりで使う動詞だから。</p></li>
+  <li><span class="a-key">I have books.</span><p class="a-why">理由の例：a は「1つの」という意味なので複数形には付けられないから。<br><span class="en">I have a book.</span> も正しい文です。</p></li>
+  <li><span class="a-key">They run in the park every day.</span><p class="a-why">理由の例：場所を表す語句を先、時を表す語句をあとに置くから。</p></li>
+
+  <li><span class="a-key">I play the piano every day.</span><p class="a-why">楽器をひくときは <span class="en">the</span> を置きます。<span class="en">every day</span> は文の終わりです。</p></li>
+  <li><span class="a-key">We watch birds in the garden.</span><p class="a-why"><span class="en">watch</span> には <span class="en">to</span> を置きません。目的語 <span class="en">birds</span> のあとに場所を続けます。</p></li>
+  <li><span class="a-key">They swim very well.</span><p class="a-why"><span class="en">swim</span> は目的語を取りません。「とても上手に」は <span class="en">very well</span> です。</p></li>
+  <li><span class="a-key">We use this computer every day.</span><p class="a-why">「この」は <span class="en">this</span> です。目的語 <span class="en">this computer</span> のあとに <span class="en">every day</span> を置きます。</p></li>
+  <li><span class="a-key">I drink milk every day.</span><p class="a-why"><span class="en">every day</span> は2語と数えるので、これで5語です。</p></li>
+  <li><span class="a-key">We sing songs after school.</span><p class="a-why"><span class="en">after school</span> も2語です。「歌を」は <span class="en">songs</span> と複数形にします。</p></li>
+  <li><span class="a-key">We cook lunch together.</span><p class="a-why"><span class="en">together</span> は動詞に情報を足す語で、文の終わりに置きます。これで4語です。</p></li>
+
+  <li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">I am a member of the art club.</span> とあります。絵は <span class="en">not famous</span>、ひくのはギターです。</p></li>
+  <li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">They read English books in the library.</span> とあります。友達は英語を上手に話し、カメラは <span class="en">want</span>（ほしい）と書かれています。</p></li>
+  <li><span class="a-key">together</span><p class="a-why">本文は <span class="en">We eat lunch together.</span> です。<span class="en">together</span> は文の終わりに置きます。</p></li>
+  <li><span class="a-key">read</span><p class="a-why">本文は <span class="en">They read English books in the library.</span> です。主語が <span class="en">They</span> なので動詞の形は変わりません。</p></li>
+  <li><span class="a-key">私たちは毎日、美術室で絵を描きます。</span><p class="a-why"><span class="en">paint</span> は絵の具で描くことを表します。「私たちは美術室で毎日絵を描きます」も正解です。</p></li>
+
+  <li><span class="a-key">解答例　I read books every day.</span><p class="a-why">主語のすぐあとに一般動詞を置き、目的語、時の順に続けられていれば正解です。be動詞を一緒に置いていないかを確かめましょう。</p></li>
+  <li><span class="a-key">解答例　We play tennis after school. We like tennis very much.</span><p class="a-why">2文とも <span class="en">we</span> を主語にし、動詞の形が変わっていなければ正解です。目的語の要る動詞で目的語を落としていないかも確かめましょう。</p></li>
+</ol>
+
+<div class="wrap-up">
+  <p class="wrap-up-t">この単元のまとめ</p>
+  <p style="margin:0">一般動詞は<strong>動作や心の働き</strong>を表し、主語のすぐあとに置きます。be動詞とは<strong>1つの文に並べられません</strong>。この単元で扱う主語（<span class="en">I</span> / <span class="en">you</span> / <span class="en">we</span> / <span class="en">they</span> と複数の名詞）では、<strong>動詞の形は変わりません</strong>。目的語が要る動詞では目的語を落とさず、<span class="en">listen</span> は <span class="en">to</span> とひとまとまりにします。動詞のうしろは<strong>目的語 → 場所 → 時</strong>の順で、<span class="en">every day</span> や <span class="en">after school</span> は文の終わりに置きます。</p>
+</div>
+</div>
+</body>
+</html>

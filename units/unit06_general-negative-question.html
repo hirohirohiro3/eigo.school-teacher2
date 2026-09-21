@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 6　一般動詞の否定文・疑問文</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab06_general-negative-question.html">この単元の単語帳 →</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 6</p>
+  <h1 class="unit-title">一般動詞の否定文・疑問文（do と don't）</h1>
+  <p class="unit-lead">Unit 5 では一般動詞の肯定文を扱いました。この単元では、その文を「〜しません」と打ち消す形と、「〜しますか」とたずねる形を扱います。入試では、be動詞の否定文・疑問文と混ぜないこと、don't のうしろの動詞の形、答えの文の作り方、この3つで点が分かれます。</p>
+</header>
+
+<h2><span>do というはたらきの語</span></h2>
+
+<p>Unit 2 で、be動詞の文は <span class="en">not</span> を be動詞の直後に置くだけで否定文になり、be動詞を主語の前に出すだけで疑問文になることを見ました。一般動詞の文では、これができません。<span class="en">I not play tennis.</span> とも <span class="en">Play you tennis?</span> とも書けないからです。</p>
+
+<div class="term is-general">
+  <p class="term-name">do</p>
+  <p class="term-def">一般動詞の文を<strong>打ち消すとき</strong>と<strong>たずねるとき</strong>に借りてくる語です。それ自体は意味を持たず、否定と疑問の<strong>枠組みだけを作ります</strong>。この単元の主語（<span class="en">I</span> / <span class="en">you</span> / <span class="en">we</span> / <span class="en">they</span> と複数の名詞）では、いつも <span class="en">do</span> の形です。</p>
+  <p class="term-ex"><span class="en">I <span class="gen-w">do</span> not play tennis.</span>（私はテニスをしません）<br>
+  <span class="en"><span class="gen-w">Do</span> you play tennis?</span>（あなたはテニスをしますか）</p>
+</div>
+
+<div class="term is-general">
+  <p class="term-name">don't</p>
+  <p class="term-def"><span class="en">do not</span> を縮めた形です。書き言葉でも話し言葉でも、ふつうはこちらを使います。英作文で語数を指定されたときは、<span class="en">don't</span> を<strong>1語</strong>、<span class="en">do not</span> を<strong>2語</strong>と数えます。</p>
+  <p class="term-ex"><span class="en">I <span class="gen-w">don't</span> watch TV every day.</span>（私は毎日テレビを見ます、とは言えません）<br>
+  <span class="en">We <span class="gen-w">don't</span> make breakfast.</span>（私たちは朝食を作りません）</p>
+</div>
+
+<p><strong>なぜ do が要るのか。</strong>英語は、否定や疑問を<strong>文のはじめの方で示す</strong>言語です。be動詞は主語のすぐあとにあるので、そこに <span class="en">not</span> を足せばすぐ打ち消しが伝わり、前に出せば疑問だとすぐ分かります。ところが一般動詞は、目的語や場所の語句を連れていて動かしにくく、しかも <span class="en">play</span> <span class="en">read</span> <span class="en">study</span> と語ごとに形が違います。そこで、<strong>どの一般動詞にも同じように付けられる語</strong>として <span class="en">do</span> を置き、否定と疑問の合図をそこに集めています。</p>
+
+<h2><span>肯定文から否定文へ</span></h2>
+
+<div class="transform">
+  <span class="tf-line"><span class="en">We study English after school.</span></span>
+  <span class="tf-arrow">↓　主語のうしろ、動詞の前に <span class="en">don't</span> を入れる</span>
+  <span class="tf-line"><span class="en">We <span class="gen-w">don't</span> study English after school.</span></span>
+</div>
+
+<div class="diagram is-general">
+  <p class="diagram-cap">否定文：<span class="en">don't</span> は主語と動詞のあいだに入る</p>
+  <div class="flow">
+    <span class="node">We<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">don't study</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">English<span class="node-label">目的語</span></span>
+  </div>
+</div>
+
+<p>入る場所は<strong>主語のうしろ、動詞の前</strong>の一か所だけです。目的語や、場所・時を表す語句の位置は動きません。<span class="en">We study English after school.</span> が <span class="en">We don't study English after school.</span> になるだけです。</p>
+
+<p><strong>動詞はそのままの形で置きます。</strong><span class="en">don't</span> が否定を引き受けているので、うしろの動詞は肯定文のときと同じ形です。<span class="en">We don't study English.</span> であって、<span class="en">We don't studies English.</span> でも <span class="en">We don't studying English.</span> でもありません。この単元の主語では、肯定文でも否定文でも動詞は1つの形のままです。</p>
+
+<h2><span>肯定文から疑問文へ</span></h2>
+
+<div class="transform">
+  <span class="tf-line"><span class="en">You play tennis every day.</span></span>
+  <span class="tf-arrow">↓　<span class="en">Do</span> を文の先頭に出し、文の終わりを ? にする</span>
+  <span class="tf-line"><span class="en"><span class="gen-w">Do</span> you play tennis every day?</span></span>
+</div>
+
+<p>疑問文では <span class="en">Do</span> を<strong>主語の前</strong>に置きます。主語と動詞の順番は肯定文のままで、動詞の形も変わりません。文の終わりには <span class="en">?</span> を付けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形</th><th>並び</th><th>例文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>肯定文</td>
+      <td class="be-cell">主語 → 動詞</td>
+      <td><span class="en">You read newspapers every day.</span></td>
+    </tr>
+    <tr>
+      <td>否定文</td>
+      <td class="be-cell">主語 → don't → 動詞</td>
+      <td><span class="en">You don't read newspapers every day.</span></td>
+    </tr>
+    <tr>
+      <td>疑問文</td>
+      <td class="be-cell">Do → 主語 → 動詞</td>
+      <td><span class="en">Do you read newspapers every day?</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>答え方</span></h2>
+
+<p><span class="en">Do</span> でたずねられたら、<strong>答えにも <span class="en">do</span> を使います</strong>。動詞をくり返す必要はありません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>たずねる文</th><th>はい</th><th>いいえ</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">Do you like history?</span></td>
+      <td class="be-cell"><span class="en">Yes, I do.</span></td>
+      <td class="be-cell"><span class="en">No, I don't.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Do you practice tennis every day?</span></td>
+      <td class="be-cell"><span class="en">Yes, we do.</span></td>
+      <td class="be-cell"><span class="en">No, we don't.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Do your friends come to our classroom?</span></td>
+      <td class="be-cell"><span class="en">Yes, they do.</span></td>
+      <td class="be-cell"><span class="en">No, they don't.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Do your teachers teach science?</span></td>
+      <td class="be-cell"><span class="en">Yes, they do.</span></td>
+      <td class="be-cell"><span class="en">No, they don't.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><span class="en">Do you 〜?</span> とたずねられたときの答えの主語は、ふつう <span class="en">I</span> です。自分と友達のことをまとめて聞かれていると分かるときは <span class="en">we</span> で答えます。<span class="en">Do your friends 〜?</span> のように主語が複数の名詞のときは、<span class="en">they</span> で受け直します。Unit 4 で見たとおり、2つ以上のものを受けるのは <span class="en">it</span> ではなく <span class="en">they</span> です。</p>
+
+<h2><span>be動詞の文との対応</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th></th><th>be動詞の文（Unit 2）</th><th>一般動詞の文（この単元）</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>肯定文</td>
+      <td class="be-cell"><span class="en">You are busy.</span></td>
+      <td class="be-cell"><span class="en">You clean the classroom.</span></td>
+    </tr>
+    <tr>
+      <td>否定文</td>
+      <td class="be-cell"><span class="en">You are not busy.</span></td>
+      <td class="be-cell"><span class="en">You don't clean the classroom.</span></td>
+    </tr>
+    <tr>
+      <td>疑問文</td>
+      <td class="be-cell"><span class="en">Are you busy?</span></td>
+      <td class="be-cell"><span class="en">Do you clean the classroom?</span></td>
+    </tr>
+    <tr>
+      <td>答え</td>
+      <td class="be-cell"><span class="en">Yes, I am. / No, I'm not.</span></td>
+      <td class="be-cell"><span class="en">Yes, I do. / No, I don't.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>左と右で、打ち消しとたずね方の<strong>仕組みが違う</strong>ことを確かめてください。be動詞の文は be動詞自身が動きます。一般動詞の文は <span class="en">do</span> を借りてきます。どちらの文かを先に決めれば、使う形は決まります。</p>
+
+<h2><span>否定文・疑問文の some と any</span></h2>
+
+<p><span class="en">some</span> は「いくつかの」という意味で、肯定文で使います。これを否定文と疑問文では <span class="en">any</span> に変えます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形</th><th>例文</th><th>意味</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>肯定文</td>
+      <td class="be-cell"><span class="en">I want some new books.</span></td>
+      <td>いくつかの</td>
+    </tr>
+    <tr>
+      <td>否定文</td>
+      <td class="be-cell"><span class="en">I don't have any pens.</span></td>
+      <td>1つも〜ない</td>
+    </tr>
+    <tr>
+      <td>疑問文</td>
+      <td class="be-cell"><span class="en">Do you have any questions?</span></td>
+      <td>いくつか〜ありますか</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>否定文の <span class="en">any</span> は「1つもない」という強い打ち消しになります。<span class="en">I don't eat any vegetables.</span> は「野菜を1つも食べない」という意味です。<span class="en">some</span> <span class="en">any</span> のうしろの名詞は、数えられるものなら<strong>複数形</strong>にします。Unit 4 で扱った形です。</p>
+
+<h2><span>文を組み立てる手順</span></h2>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">be動詞の文か、一般動詞の文かを決める</span>
+    <span class="step-d">「〜です」「〜にいます」なら be動詞。動作や心の働きなら一般動詞です。ここを間違えると、あとの形がすべてずれます。</span>
+  </li>
+  <li>
+    <span class="step-t">打ち消すのか、たずねるのかを決める</span>
+    <span class="step-d">打ち消すなら <span class="en">don't</span> を主語のうしろに。たずねるなら <span class="en">Do</span> を主語の前に置きます。</span>
+  </li>
+  <li>
+    <span class="step-t">動詞は肯定文と同じ形のまま置く</span>
+    <span class="step-d"><span class="en">don't</span> や <span class="en">Do</span> が否定と疑問を引き受けているので、動詞は形を変えません。</span>
+  </li>
+  <li>
+    <span class="step-t">目的語・場所・時の順で残りを続ける</span>
+    <span class="step-d">Unit 5 と同じ語順です。<span class="en">every day</span> や <span class="en">after school</span> は文の終わりに置きます。</span>
+  </li>
+  <li>
+    <span class="step-t">some があれば any に変える</span>
+    <span class="step-d">否定文と疑問文でだけ変えます。肯定文はそのままです。</span>
+  </li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>be動詞と do を混ぜない</h3>
+
+<p><span class="en">I am not play tennis.</span> とも <span class="en">Are you play tennis?</span> とも書きません。どちらも be動詞と一般動詞を1つの文に並べた形で、Unit 5 で見た誤りが否定文・疑問文で出てきたものです。一般動詞の文なら <span class="en">I don't play tennis.</span> <span class="en">Do you play tennis?</span> とします。逆に <span class="en">I don't busy.</span> も誤りで、こちらは <span class="en">I am not busy.</span> です。<strong>動詞が一般動詞かどうかを先に見ます。</strong></p>
+
+<h3>don't のうしろの動詞は形を変えない</h3>
+
+<p><span class="en">We don't cook dinner.</span> です。<span class="en">don't</span> のあとの動詞は、肯定文 <span class="en">We cook dinner.</span> と同じ形のまま置きます。<span class="en">Do</span> の疑問文も同じで、<span class="en">Do you cook dinner?</span> と、動詞は肯定文のままです。否定と疑問は <span class="en">do</span> が引き受けているので、同じはたらきを動詞にもう一度持たせる必要はありません。</p>
+
+<h3>Do でたずねたら do で答える</h3>
+
+<p><span class="en">Do you have a camera?</span> に <span class="en">No, I'm not.</span> と答えるのは誤りです。<span class="en">No, I don't.</span> とします。たずねる文で使った語がそのまま答えに戻ってくる、と覚えると確かです。be動詞でたずねられたら be動詞で、<span class="en">do</span> でたずねられたら <span class="en">do</span> で答えます。<span class="en">Yes, I play.</span> のように動詞をくり返すのも、ふつうは使いません。</p>
+
+<h3>否定文・疑問文では some を any にする</h3>
+
+<p><span class="en">We don't eat some vegetables.</span> とは書きません。<span class="en">We don't eat any vegetables.</span> とします。<span class="en">Do you need some pencils?</span> も、ふつうは <span class="en">Do you need any pencils?</span> です。肯定文でだけ <span class="en">some</span> を使う、と形で覚えます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形式</th><th>問われ方</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>選択</td><td>be動詞と <span class="en">do</span> のどちらを置くかを4択で問います。<span class="en">aren't study</span> のような形が誤答に混ざります。</td></tr>
+    <tr><td>並べ替え</td><td><span class="en">don't</span> の位置と、<span class="en">Do</span> を文頭に出す形を問います。<span class="en">any</span> が入ることもあります。</td></tr>
+    <tr><td>誤文訂正</td><td>be動詞との混同、答えの文の <span class="en">do</span>、<span class="en">some</span> と <span class="en">any</span> が定番です。</td></tr>
+    <tr><td>英作文</td><td>語数を指定して書かせます。<span class="en">don't</span> は1語、<span class="en">do not</span> は2語と数えます。</td></tr>
+    <tr><td>読解</td><td>対話文で、たずねる文と答えの文の組み合わせを読み取らせます。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I am not play soccer.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I <span class="gen-w">don't</span> play soccer.</span></div>
+  <p class="contrast-why">一般動詞の文なので do を借ります。be動詞とは並べられません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Are you like music?</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="gen-w">Do</span> you like music?</span></div>
+  <p class="contrast-why">like は一般動詞です。たずねるときは Do を主語の前に置きます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Do you have a camera? — No, I'm not.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">Do you have a camera? — No, I <span class="gen-w">don't</span>.</span></div>
+  <p class="contrast-why">Do でたずねられたら do で答えます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">We don't eat some vegetables.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">We don't eat <span class="gen-w">any</span> vegetables.</span></div>
+  <p class="contrast-why">否定文では some を any に変えます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I don't have a pencils.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I don't have <span class="gen-w">any</span> pencils.</span></div>
+  <p class="contrast-why">Unit 4 と同じです。a は複数形には付けられません。</p>
+</div>
+
+<p>ここまでの形は、次の文でひととおり確かめられます。<span class="en">I don't go to the library after school.</span>／<span class="en">Do your friends come to our classroom?</span>／<span class="en">We don't see birds in the park.</span>／<span class="en">I don't wash the dishes.</span>／<span class="en">We don't open the door.</span>／<span class="en">Do you practice tennis every day?</span>／<span class="en">Do your teachers teach science?</span>／<span class="en">We talk about books in the classroom.</span>／<span class="en">I don't need a new bag.</span>／<span class="en">We enjoy the game together.</span>／<span class="en">I don't have any homework today.</span>／<span class="en">We don't make breakfast.</span>／<span class="en">We don't cook dinner.</span>／<span class="en">Do you study science?</span>／<span class="en">Do you like history?</span>／<span class="en">We don't watch movies.</span>／<span class="en">Do your friends read newspapers every day?</span>／<span class="en">We don't go to the shop after school.</span>／<span class="en">I don't eat any vegetables.</span>／<span class="en">Do you have any questions?</span>／<span class="en">I don't know the answer.</span>／<span class="en">I don't watch TV every day.</span>／<span class="en">You don't clean the classroom.</span>／<span class="en">Do you like sports?</span>／<span class="en">I don't know this word.</span>／<span class="en">Do you have a racket?</span>／<span class="en">My favorite sport is tennis.</span>／<span class="en">I want some new books.</span>／<span class="en">I don't have any pens.</span>／<span class="en">This book is really interesting.</span>／<span class="en">I don't play the guitar.</span>／<span class="en">Do you want a new bike?</span>／<span class="en">We don't eat lunch in the classroom.</span>　どれも、be動詞の文か一般動詞の文かを先に決め、<span class="en">don't</span> か <span class="en">Do</span> を決まった場所に置いています。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。be動詞の文か一般動詞の文かを先に決めてから選びます。</p>
+
+<ol class="q" data-part="A">
+  <li><span class="en">I (　　　) tennis.</span>
+  <p class="opts"><span>ア play not</span><span>イ don't play</span><span>ウ am not play</span><span>エ not play</span></p></li>
+  <li><span class="en">We (　　　) English after school.</span>
+  <p class="opts"><span>ア don't study</span><span>イ aren't study</span><span>ウ study don't</span><span>エ not study</span></p></li>
+  <li><span class="en">(　　　) you like music?</span>
+  <p class="opts"><span>ア Are</span><span>イ Do</span><span>ウ Is</span><span>エ Be</span></p></li>
+  <li><span class="en">(　　　) your friends play soccer?</span>
+  <p class="opts"><span>ア Is</span><span>イ Are</span><span>ウ Do</span><span>エ Be</span></p></li>
+  <li><span class="en">"Do you have a racket?" "No, I (　　　)."</span>
+  <p class="opts"><span>ア am not</span><span>イ don't</span><span>ウ not</span><span>エ do</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べ替えましょう。文の先頭に来る語も小文字で示してあります。<strong>10と11には使わない語が1語ずつ混ざっています。</strong></p>
+
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+  <li>私は毎日テレビを見ません。<br><span class="en">[ TV / don't / watch / I / day / every ] .</span><span class="write"></span></li>
+  <li>私たちは朝食を作りません。<br><span class="en">[ breakfast / make / don't / we ] .</span><span class="write"></span></li>
+  <li>あなたは理科を勉強しますか。<br><span class="en">[ science / you / study / do ] ?</span><span class="write"></span></li>
+  <li>あなたの友達は毎日新聞を読みますか。<br><span class="en">[ newspapers / your / read / friends / do / every / day ] ?</span><span class="write"></span></li>
+  <li data-extra="1">私は野菜を1つも食べません。<span class="hint">1語不要</span><br><span class="en">[ any / eat / vegetables / don't / I / am ] .</span><span class="write"></span></li>
+  <li data-extra="1">あなたたちは教室で昼食を食べますか。<span class="hint">1語不要</span><br><span class="en">[ lunch / the / you / do / classroom / eat / in / are ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">次の文には誤りが1つずつあります。正しい文に直し、<strong>なぜ誤りかを日本語で1行</strong>書きましょう。</p>
+
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+  <li><span class="en">I am not play soccer.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">Are you like music?</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">"Do you have a camera?" "No, I'm not."</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">We don't eat some vegetables.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">I don't have a pencils.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">17から20は日本語を英語にしましょう。21から23は条件に合わせて書きましょう。</p>
+
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+  <li><span class="q-ja">私たちは映画を見ません。</span><span class="write"></span></li>
+  <li><span class="q-ja">あなたは歴史が好きですか。</span><span class="write"></span></li>
+  <li><span class="q-ja">私たちは教室を掃除しません。</span><span class="write"></span></li>
+  <li><span class="q-ja">あなたたちは毎日テニスを練習しますか。</span><span class="write"></span></li>
+  <li>any を使って「私はかばんの中に本を1冊も持っていません」と書く。<span class="cond">8語</span><span class="write"></span></li>
+  <li>Do を使って「あなたは新しい自転車がほしいですか」と書く。<span class="cond">6語</span><span class="write"></span></li>
+  <li>some を使って「私は新しい本を何冊かほしいです」と書く。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">エマとケンの対話です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+  <p class="reading-cap">エマとケンの話</p>
+  <p>Emma: Do you like sports, Ken?<br>
+  Ken: Yes, I do. I play tennis every day. Do you play tennis, Emma?<br>
+  Emma: No, I don't. I don't like sports very much.
+  <span class="num">①</span><span class="ul">I read books in the library after school.</span><br>
+  Ken: Do your friends read books, too?<br>
+  Emma: Yes, they do. We talk about books in the classroom. We don't watch TV.<br>
+  Ken: I don't read books every day. But I want some new books.</p>
+  <p class="reading-wc">73語（話し手の名前を含む）</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+  ア エマはスポーツがあまり好きではない。<br>
+  イ ケンはテニスをしない。<br>
+  ウ エマは毎日本を読む。<span class="write"></span></li>
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+  ア ケンは新しい本を何冊かほしいと思っている。<br>
+  イ エマの友達は本を読まない。<br>
+  ウ エマたちは教室でテレビを見る。<span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">We (　　　) watch TV.</span><span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">They (　　　) about books in the classroom.</span><span class="write"></span></li>
+  <li>下線部①を日本語にする。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">正解は1つではありません。この単元で扱った主語だけを使って書いてください。</p>
+
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+  <li>自分がしないことを、<span class="en">don't</span> を使って1文で書く。<span class="hint">例：I don't watch TV every day.</span><span class="write"></span></li>
+  <li>友達にたずねる文を <span class="en">Do</span> で1文書き、続けてそれに答える文を1文書く。<span class="hint">例：Do you play tennis? — Yes, I do.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>be動詞の文か一般動詞の文か</strong>を先に決め、そのうえで <span class="en">don't</span> と <span class="en">Do</span> の置き場所を確かめ直すと定着します。</p>
+
+<ol class="a">
+  <li><span class="a-key">イ　don't play</span><p class="a-why">「テニスをします」は動作なので一般動詞です。打ち消すには <span class="en">don't</span> を主語のうしろ、動詞の前に置きます。<span class="en">am not play</span> は be動詞と一般動詞を並べた形です。</p></li>
+  <li><span class="a-key">ア　don't study</span><p class="a-why"><span class="en">aren't study</span> も be動詞と一般動詞を並べた形です。<span class="en">don't</span> は動詞の前に置くので <span class="en">study don't</span> の順にはなりません。</p></li>
+  <li><span class="a-key">イ　Do</span><p class="a-why"><span class="en">like</span> は一般動詞です。たずねるときは <span class="en">Do</span> を主語の前に置きます。</p></li>
+  <li><span class="a-key">ウ　Do</span><p class="a-why">主語が <span class="en">your friends</span> と複数でも、一般動詞の疑問文は <span class="en">Do</span> です。主語の数で形は変わりません。</p></li>
+  <li><span class="a-key">イ　don't</span><p class="a-why"><span class="en">Do</span> でたずねられているので <span class="en">do</span> で答えます。<span class="en">am not</span> は be動詞の答え方です。<span class="en">No,</span> のあとなので <span class="en">do</span> ではなく <span class="en">don't</span> です。</p></li>
+
+  <li><span class="a-key">I don't watch TV every day.</span><p class="a-why">主語 <span class="en">I</span> のうしろに <span class="en">don't</span>、次に動詞 <span class="en">watch</span>、目的語 <span class="en">TV</span>、最後に時を表す <span class="en">every day</span> を置きます。</p></li>
+  <li><span class="a-key">We don't make breakfast.</span><p class="a-why"><span class="en">don't</span> のうしろの動詞は肯定文と同じ <span class="en">make</span> の形のままです。</p></li>
+  <li><span class="a-key">Do you study science?</span><p class="a-why">疑問文では <span class="en">Do</span> が文の先頭に出ます。主語と動詞の順番は肯定文のままです。</p></li>
+  <li><span class="a-key">Do your friends read newspapers every day?</span><p class="a-why">主語は <span class="en">your friends</span> の2語でひとまとまりです。<span class="en">every day</span> は文の終わりに置きます。</p></li>
+  <li><span class="a-key">I don't eat any vegetables.</span><p class="a-why">不要な語は <span class="en">am</span> です。一般動詞の否定文なので be動詞は入りません。否定文では <span class="en">some</span> ではなく <span class="en">any</span> を使います。</p></li>
+  <li><span class="a-key">Do you eat lunch in the classroom?</span><p class="a-why">不要な語は <span class="en">are</span> です。<span class="en">eat</span> が一般動詞なので <span class="en">Do</span> でたずねます。目的語 <span class="en">lunch</span> のあとに場所を続けます。</p></li>
+
+  <li><span class="a-key">I don't play soccer.</span><p class="a-why">理由の例：一般動詞の否定文なので、be動詞ではなく don't を使うから。</p></li>
+  <li><span class="a-key">Do you like music?</span><p class="a-why">理由の例：like は一般動詞なので、たずねるときは Do を主語の前に置くから。</p></li>
+  <li><span class="a-key">"Do you have a camera?" "No, I don't."</span><p class="a-why">理由の例：Do でたずねられた文には do で答えるから。</p></li>
+  <li><span class="a-key">We don't eat any vegetables.</span><p class="a-why">理由の例：否定文では some を any に変えるから。</p></li>
+  <li><span class="a-key">I don't have any pencils.</span><p class="a-why">理由の例：a は「1つの」という意味なので複数形には付けられないから。<br><span class="en">I don't have a pencil.</span> も正しい文です。</p></li>
+
+  <li><span class="a-key">We don't watch movies.</span><p class="a-why">「見ません」なので <span class="en">don't</span> を動詞の前に置きます。「映画」は数えられるので <span class="en">movies</span> と複数形にします。</p></li>
+  <li><span class="a-key">Do you like history?</span><p class="a-why">教科の名前には <span class="en">a</span> も <span class="en">the</span> も付けません。</p></li>
+  <li><span class="a-key">We don't clean the classroom.</span><p class="a-why">どの教室かが分かっているので <span class="en">the</span> を付けます。Unit 4 で扱った形です。</p></li>
+  <li><span class="a-key">Do you practice tennis every day?</span><p class="a-why">「あなたたちは」なので主語は <span class="en">you</span> です。<span class="en">every day</span> は文の終わりに置きます。</p></li>
+  <li><span class="a-key">I don't have any books in my bag.</span><p class="a-why">否定文なので <span class="en">any</span> を使い、うしろの名詞は複数形にします。<span class="en">don't</span> は1語と数えるので、これで8語です。</p></li>
+  <li><span class="a-key">Do you want a new bike?</span><p class="a-why">たずねる文なので <span class="en">Do</span> が文の先頭です。自転車は1台なので <span class="en">a</span> を付けて6語になります。</p></li>
+  <li><span class="a-key">I want some new books.</span><p class="a-why">肯定文なので <span class="en">some</span> のままです。うしろの名詞は複数形にします。これで5語です。</p></li>
+
+  <li><span class="a-key">ア</span><p class="a-why">エマは <span class="en">I don't like sports very much.</span> と言っています。ケンはテニスを毎日しており、エマが本を読むのは放課後です。</p></li>
+  <li><span class="a-key">ア</span><p class="a-why">ケンは最後に <span class="en">I want some new books.</span> と言っています。エマの友達については <span class="en">Yes, they do.</span> とあり、テレビは <span class="en">We don't watch TV.</span> です。</p></li>
+  <li><span class="a-key">don't</span><p class="a-why">本文は <span class="en">We don't watch TV.</span> です。<span class="en">don't</span> で1語と数えます。</p></li>
+  <li><span class="a-key">talk</span><p class="a-why">本文は <span class="en">We talk about books in the classroom.</span> です。主語が <span class="en">They</span> でも動詞の形は変わりません。</p></li>
+  <li><span class="a-key">私は放課後、図書館で本を読みます。</span><p class="a-why">「私は図書館で放課後に本を読みます」も正解です。<span class="en">in the library</span> が場所、<span class="en">after school</span> が時を表しています。</p></li>
+
+  <li><span class="a-key">解答例　I don't watch TV every day.</span><p class="a-why">主語のうしろに <span class="en">don't</span>、そのあとに動詞を置けていれば正解です。be動詞を一緒に置いていないかを確かめましょう。</p></li>
+  <li><span class="a-key">解答例　Do you play tennis? — Yes, I do.</span><p class="a-why">たずねる文は <span class="en">Do</span> で始め、文の終わりに <span class="en">?</span> を付けます。答えの文でも <span class="en">do</span> を使えていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+  <p class="wrap-up-t">この単元のまとめ</p>
+  <p style="margin:0">一般動詞の文を打ち消すときは <span class="en">don't</span> を<strong>主語のうしろ、動詞の前</strong>に置きます。たずねるときは <span class="en">Do</span> を<strong>主語の前</strong>に置き、文の終わりに <span class="en">?</span> を付けます。どちらの場合も<strong>動詞は肯定文と同じ形のまま</strong>です。<span class="en">Do</span> でたずねられたら <span class="en">Yes, I do.</span> / <span class="en">No, I don't.</span> と <span class="en">do</span> で答えます。be動詞の文とは仕組みが違うので、<strong>先にどちらの文かを決めて</strong>から形を選びます。否定文と疑問文では <span class="en">some</span> を <span class="en">any</span> に変えます。</p>
+</div>
+</div>
+</body>
+</html>

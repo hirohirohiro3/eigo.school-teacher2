@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 8　代名詞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab08_pronouns.html">この単元の単語帳 →</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 8</p>
+  <h1 class="unit-title">代名詞</h1>
+  <p class="unit-lead">名詞の代わりに使う語を代名詞といいます。<span class="en">I</span> <span class="en">my</span> <span class="en">me</span> <span class="en">mine</span> のように、<strong>同じ人を指していても、文のどこに置くかで形が変わります</strong>。入試では、動詞や前置詞のうしろで主格を書いてしまう誤り、所有格と所有代名詞を取り違える誤り、この2つで点が分かれます。</p>
+</header>
+
+<h2><span>代名詞は名詞の代わりに使う</span></h2>
+
+<p>同じ名詞を何度も繰り返すと、文が読みにくくなります。そこで、一度出した名詞を2度目からは代名詞で受けます。<span class="en">This is a picture of my family.</span> と書いたあとで、その家族についてもう一度言うときは <span class="en">my family</span> ではなく <span class="en">they</span> や <span class="en">them</span> を使います。</p>
+
+<div class="transform">
+  <span class="tf-line">My uncle and my aunt are kind. <span class="strike">My uncle and my aunt</span> are doctors.</span>
+  <span class="tf-arrow">↓　2度目は代名詞で受ける</span>
+  <span class="tf-line">My uncle and my aunt are kind. They are doctors.</span>
+</div>
+
+<p><strong>なぜ形が変わるのか。</strong>英語は語順で語の役割を決める言語です。主語は動詞の前、目的語は動詞のうしろ——置く場所そのものが役割を示します。ところが代名詞だけは、古い英語の形が残っていて、<strong>役割ごとに語の形まで変わります</strong>。だから代名詞を書くときは、置く場所を決めてから形を選びます。順序を逆にすると必ず迷います。</p>
+
+<h2><span>4つの形の一覧</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>意味</th><th>主格<br>「〜は」</th><th>所有格<br>「〜の」</th><th>目的格<br>「〜を・〜に」</th><th>所有代名詞<br>「〜のもの」</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>私</td><td class="be-cell"><span class="en">I</span></td><td class="be-cell"><span class="en">my</span></td><td class="be-cell"><span class="en">me</span></td><td class="be-cell"><span class="en">mine</span></td></tr>
+    <tr><td>あなた</td><td class="be-cell"><span class="en">you</span></td><td class="be-cell"><span class="en">your</span></td><td class="be-cell"><span class="en">you</span></td><td class="be-cell"><span class="en">yours</span></td></tr>
+    <tr><td>彼</td><td class="be-cell"><span class="en">he</span></td><td class="be-cell"><span class="en">his</span></td><td class="be-cell"><span class="en">him</span></td><td class="be-cell"><span class="en">his</span></td></tr>
+    <tr><td>彼女</td><td class="be-cell"><span class="en">she</span></td><td class="be-cell"><span class="en">her</span></td><td class="be-cell"><span class="en">her</span></td><td class="be-cell"><span class="en">hers</span></td></tr>
+    <tr><td>それ</td><td class="be-cell"><span class="en">it</span></td><td class="be-cell"><span class="en">its</span></td><td class="be-cell"><span class="en">it</span></td><td>—</td></tr>
+    <tr><td>私たち</td><td class="be-cell"><span class="en">we</span></td><td class="be-cell"><span class="en">our</span></td><td class="be-cell"><span class="en">us</span></td><td class="be-cell"><span class="en">ours</span></td></tr>
+    <tr><td>あなたたち</td><td class="be-cell"><span class="en">you</span></td><td class="be-cell"><span class="en">your</span></td><td class="be-cell"><span class="en">you</span></td><td class="be-cell"><span class="en">yours</span></td></tr>
+    <tr><td>彼ら・彼女ら・それら</td><td class="be-cell"><span class="en">they</span></td><td class="be-cell"><span class="en">their</span></td><td class="be-cell"><span class="en">them</span></td><td class="be-cell"><span class="en">theirs</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>覚えるのは8行です。横に読むと1人の人について4つの形が並び、縦に読むと同じはたらきの語が並びます。<strong>形が重なっている場所を先に押さえる</strong>と、覚える量が減ります。<span class="en">you</span> は主格と目的格が同じ形、<span class="en">his</span> は所有格と所有代名詞が同じ形、<span class="en">her</span> は所有格と目的格が同じ形です。<span class="en">it</span> に所有代名詞はありません。</p>
+
+<h2><span>4つのはたらき</span></h2>
+
+<div class="term">
+  <p class="term-name">主格　「〜は」　動詞の前に置く</p>
+  <p class="term-def">文の主語になる形です。この単元では、<span class="en">he</span> と <span class="en">she</span> は be動詞の文の主語として扱います。一般動詞の文では主語が1人のときに動詞の形が変わりますが、それは Unit 9 で扱います。</p>
+  <p class="term-ex"><span class="en">He is my uncle.</span>（彼は私のおじです）<br>
+  <span class="en">She is my aunt.</span>（彼女は私のおばです）<br>
+  <span class="en">They are my parents.</span>（彼らは私の両親です）<br>
+  <span class="en">We often help them on the farm.</span>（私たちはよく農場で彼らを手伝います）</p>
+</div>
+
+<div class="term">
+  <p class="term-name">所有格　「〜の」　名詞の前に置く</p>
+  <p class="term-def">うしろに必ず名詞が続きます。所有格だけを置いて文を終えることはできません。冠詞の <span class="en">a</span> <span class="en">the</span> と同時には使いません。</p>
+  <p class="term-ex"><span class="en">My grandmother is very friendly.</span>（私の祖母はとても親しみやすいです）<br>
+  <span class="en">His hospital is next to our house.</span>（彼の病院は私たちの家のとなりです）<br>
+  <span class="en">Their kitchen is warm.</span>（彼らの台所は暖かいです）<br>
+  <span class="en">Its name is Momo.</span>（その名前はモモです）</p>
+</div>
+
+<div class="term is-general">
+  <p class="term-name">目的格　「〜を・〜に」　動詞や前置詞のうしろに置く</p>
+  <p class="term-def">動作を受ける側になる形です。前置詞のうしろも同じ形を使います。<span class="en">and</span> で2つ並べたときも、両方とも目的格にします。</p>
+  <p class="term-ex"><span class="en">We know him very well.</span>（私たちは彼をよく知っています）<br>
+  <span class="en">They call us every day.</span>（彼らは毎日私たちに電話します）<br>
+  <span class="en">We look at it together.</span>（私たちはいっしょにそれを見ます）<br>
+  <span class="en">This is a picture of us.</span>（これは私たちの写真です）</p>
+</div>
+
+<div class="term">
+  <p class="term-name">所有代名詞　「〜のもの」　1語で名詞のはたらきをする</p>
+  <p class="term-def">「所有格＋名詞」をひとまとめにした語です。うしろに名詞を置きません。<span class="en">mine</span> は <span class="en">my bag</span> のような2語分の意味を1語で表します。</p>
+  <p class="term-ex"><span class="en">That bike is mine.</span>（あの自転車は私のものです）<br>
+  <span class="en">That new bag is hers.</span>（あの新しいかばんは彼女のものです）<br>
+  <span class="en">These books are theirs.</span>（これらの本は彼らのものです）<br>
+  <span class="en">The dog is ours.</span>（その犬は私たちのものです）</p>
+</div>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">その語を文のどこに置くのかを先に決める</span>
+    <span class="step-d">動詞の前か、名詞の前か、動詞や前置詞のうしろか、それとも1語で名詞のはたらきをするのか。ここが決まらないうちに形を選ぶと必ず迷います。</span>
+  </li>
+  <li>
+    <span class="step-t">動詞の前なら主格</span>
+    <span class="step-d"><span class="en">He is a doctor.</span> のように、そのまま文の主語になります。</span>
+  </li>
+  <li>
+    <span class="step-t">うしろに名詞が続くなら所有格</span>
+    <span class="step-d"><span class="en">my family</span> <span class="en">their pictures</span> のように、名詞とひとまとまりで主語にも目的語にもなります。</span>
+  </li>
+  <li>
+    <span class="step-t">動詞や前置詞のうしろなら目的格</span>
+    <span class="step-d"><span class="en">like her</span> <span class="en">of us</span> <span class="en">with them</span>。動詞のうしろか前置詞のうしろかは区別しません。どちらも目的格です。</span>
+  </li>
+  <li>
+    <span class="step-t">うしろに名詞が無く、それだけで「〜のもの」を表すなら所有代名詞</span>
+    <span class="step-d"><span class="en">This bag is mine.</span> のように、be動詞のうしろに1語で置けます。</span>
+  </li>
+</ol>
+
+<div class="diagram">
+  <p class="diagram-cap">置く場所が形を決める</p>
+  <div class="flow">
+    <span class="node">He<span class="node-label">主格</span></span>
+    <span class="link">
+      <span class="link-word">is</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">a doctor<span class="node-label">説明</span></span>
+  </div>
+</div>
+
+<div class="diagram is-general">
+  <p class="diagram-cap">動詞のうしろは目的格</p>
+  <div class="flow">
+    <span class="node">We<span class="node-label">主格</span></span>
+    <span class="link">
+      <span class="link-word">know</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">him<span class="node-label">目的格</span></span>
+  </div>
+</div>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>its と it's は別の語</h3>
+
+<p><span class="en">its</span> は「それの」という所有格、<span class="en">it's</span> は <span class="en">it is</span> の短縮形です。音は同じですが、はたらきがまったく違います。<strong>うしろに名詞が続いていれば所有格の <span class="en">its</span>、続いていなければ短縮形</strong>と考えます。<span class="en">Its name is Momo.</span> は「その名前はモモです」、<span class="en">It's a rabbit.</span> は「それはウサギです」です。所有格にはアポストロフィを付けません。</p>
+
+<h3>her と his は2つのはたらきを持つ</h3>
+
+<p><span class="en">her</span> は所有格（彼女の）と目的格（彼女を・彼女に）の両方に使います。<span class="en">We like her very much.</span> の <span class="en">her</span> は目的格、<span class="en">her birthday card</span> の <span class="en">her</span> は所有格です。見分け方はひとつで、<strong>うしろに名詞が続いているかどうか</strong>です。<span class="en">his</span> も同じように、所有格（彼の）と所有代名詞（彼のもの）の両方に使います。</p>
+
+<h3>前置詞のうしろは必ず目的格</h3>
+
+<p><span class="en">of</span> <span class="en">for</span> <span class="en">with</span> <span class="en">to</span> <span class="en">at</span> のうしろに代名詞を置くときは、いつでも目的格です。<span class="en">This is a picture of us.</span> であって <span class="en">of we</span> とはしません。<span class="en">and</span> で2つ並べたときも同じで、<span class="en">for you and me</span> となります。片方だけ主格にしてしまう誤りが多いので、<strong>前置詞を見たら、そのうしろは全部目的格</strong>と決めておきます。</p>
+
+<h3>所有格のうしろに名詞が無い形は作れない</h3>
+
+<p><span class="en">This bag is my.</span> とは書きません。所有格は名詞の前に置く語なので、1語では立てません。「私のものです」と言いたいときは所有代名詞の <span class="en">mine</span> を使い、<span class="en">This bag is mine.</span> とします。反対に、所有代名詞のうしろに名詞を置くこともできません。<span class="en">mine bag</span> ではなく <span class="en">my bag</span> です。</p>
+
+<h3>名詞にも「〜の」の形がある</h3>
+
+<p>人を表す名詞は、うしろに <span class="en">'s</span> を付けると所有格になります。<span class="en">That is my sister's bike.</span>（あれは私の姉の自転車です）、<span class="en">This is the teacher's desk.</span>（これは先生の机です）。<span class="en">'s</span> の付いた形は、そのまま「〜のもの」としても使えます。代名詞の所有格とはたらきは同じで、ちがうのは形の作り方だけです。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形式</th><th>問われ方</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>選択</td><td>空所に入る代名詞を4択で問います。同じ人を指す4つの形をそのまま並べるのが定番で、置く場所を見て選びます。</td></tr>
+    <tr><td>並べ替え</td><td>語群に主格と目的格の両方を入れ、どちらを使うかを選ばせます。使わない語が1語混ざる形もよく出ます。</td></tr>
+    <tr><td>誤文訂正</td><td>前置詞のうしろの主格、所有格の1語使い、<span class="en">it's</span> と <span class="en">its</span> の取りちがえが出ます。</td></tr>
+    <tr><td>英作文</td><td>「〜のもの」を所有代名詞1語で書けるかを見ます。2語で書くと語数条件から外れます。</td></tr>
+    <tr><td>読解</td><td>本文中の代名詞が何を指しているかを問います。直前に出た名詞をさかのぼって探します。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">We know he very well.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">We know <span class="gen-w">him</span> very well.</span></div>
+  <p class="contrast-why">動詞のうしろは目的格です。主格の he は動詞の前にしか置けません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">This bag is my.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">This bag is <span class="be-w">mine</span>.</span></div>
+  <p class="contrast-why">所有格はうしろに名詞が要ります。1語で「私のもの」と言うときは mine です。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">It's name is Momo.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">Its</span> name is Momo.</span></div>
+  <p class="contrast-why">うしろに名詞が続いているので所有格です。it's は it is の短縮形です。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">That is hers bike.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">That is <span class="be-w">her</span> bike.</span></div>
+  <p class="contrast-why">名詞の前に置くのは所有格です。所有代名詞のうしろに名詞は続きません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">This is a picture of we.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">This is a picture of <span class="gen-w">us</span>.</span></div>
+  <p class="contrast-why">前置詞のうしろは目的格です。of we という形はありません。</p>
+</div>
+
+<p>ここまでの形は、次の文でひととおり確かめられます。<span class="en">This is a picture of my family.</span>／<span class="en">They are my parents.</span>／<span class="en">My parents are farmers.</span>／<span class="en">My grandfather is a farmer.</span>／<span class="en">I often help them on the farm.</span>／<span class="en">My grandmother is very friendly.</span>／<span class="en">She is my aunt.</span>／<span class="en">He is my uncle.</span>／<span class="en">He is a doctor.</span>／<span class="en">She is my cousin.</span>／<span class="en">Our classmates show us their pictures.</span>／<span class="en">Their story is funny.</span>／<span class="en">Our pet is a little dog.</span>／<span class="en">They have a rabbit.</span>／<span class="en">It's a rabbit.</span>／<span class="en">We give him a birthday card.</span>／<span class="en">Her birthday card is on the desk.</span>／<span class="en">I often send them an email.</span>／<span class="en">We send her a long letter.</span>／<span class="en">They call us every day.</span>／<span class="en">We take a lot of pictures.</span>／<span class="en">We join them after school.</span>／<span class="en">Their kitchen is warm.</span>／<span class="en">We look at it together.</span>／<span class="en">His hospital is next to our house.</span>／<span class="en">That bike is mine.</span>／<span class="en">That new bag is hers.</span>／<span class="en">These books are theirs.</span>／<span class="en">The dog is ours.</span>／<span class="en">The man over there is my uncle.</span>／<span class="en">We love it very much.</span>／<span class="en">That is my sister's bike.</span>／<span class="en">This is the teacher's desk.</span>　どれも、置く場所を先に決めてから形を選んでいます。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。その語を文のどこに置くのかを先に見てから選びます。</p>
+
+<ol class="q" data-part="A">
+  <li><span class="en">My grandmother and my grandfather often help (　　　) on the farm.</span>
+  <p class="opts"><span>ア we</span><span>イ us</span><span>ウ our</span><span>エ ours</span></p></li>
+  <li><span class="en">That new bag over there is (　　　).</span>
+  <p class="opts"><span>ア your</span><span>イ you</span><span>ウ yours</span><span>エ my</span></p></li>
+  <li><span class="en">My uncle and my aunt are very kind. We like (　　　) very much.</span>
+  <p class="opts"><span>ア they</span><span>イ their</span><span>ウ them</span><span>エ theirs</span></p></li>
+  <li><span class="en">We have a little dog. (　　　) name is Momo.</span>
+  <p class="opts"><span>ア It</span><span>イ It's</span><span>ウ Its</span><span>エ Their</span></p></li>
+  <li><span class="en">These pictures are not ours. They are (　　　).</span>
+  <p class="opts"><span>ア their</span><span>イ them</span><span>ウ theirs</span><span>エ they</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べ替えましょう。文の先頭に来る語も小文字で示してあります。<strong>10と11には使わない語が1語ずつ混ざっています。</strong></p>
+
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+  <li>私たちはよく農場で彼らを手伝います。<br><span class="en">[ them / we / on / help / often / farm / the ] .</span><span class="write"></span></li>
+  <li>あれは私の姉の自転車です。<br><span class="en">[ that / my / bike / is / sister's ] .</span><span class="write"></span></li>
+  <li>あの新しいかばんは彼女のものです。<br><span class="en">[ bag / that / hers / is / new ] .</span><span class="write"></span></li>
+  <li>私たちは彼に誕生日カードをあげます。<br><span class="en">[ a / him / we / birthday / give / card ] .</span><span class="write"></span></li>
+  <li data-extra="1">彼らは私たちに彼らの写真を見せます。<span class="hint">1語不要</span><br><span class="en">[ show / they / us / pictures / their / them ] .</span><span class="write"></span></li>
+  <li data-extra="1">その犬は私たちのものです。<span class="hint">1語不要</span><br><span class="en">[ dog / the / ours / is / our ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">次の文には誤りが1つずつあります。正しい文に直し、<strong>なぜ誤りかを日本語で1行</strong>書きましょう。</p>
+
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+  <li><span class="en">We know he very well.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">This bag is my.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">It's name is Momo.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">That is hers bike.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">This is a picture of we.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">17から20は日本語を英語にしましょう。21から23は条件に合わせて書きましょう。</p>
+
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+  <li><span class="q-ja">彼は私のおじです。</span><span class="write"></span></li>
+  <li><span class="q-ja">私たちは彼女がとても好きです。</span><span class="write"></span></li>
+  <li><span class="q-ja">これらの本は彼らのものです。</span><span class="write"></span></li>
+  <li><span class="q-ja">私はよく彼らにメールを送ります。</span><span class="write"></span></li>
+  <li>mine を使って「あの自転車は私のものです」と書く。<span class="cond">4語</span><span class="write"></span></li>
+  <li>show を使って「彼らは私たちに彼らの写真を見せます」と書く。<span class="cond">5語</span><span class="write"></span></li>
+  <li>its を使って「その名前はモモです」と書く。<span class="cond">4語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ケンがメグに書いた手紙です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+  <p class="reading-cap">ケンからの手紙</p>
+  <p>Dear Meg,<br>
+  Hello. I am Ken. I have a picture of my family here.
+  <span class="num">①</span><span class="ul">My parents are farmers, and I often help them on the farm.</span><br>
+  We have a little dog. Its name is Momo. We look at it together after dinner. We love it very much.<br>
+  The student next to me is my cousin Emi. She is a classmate of my sister, and they are good friends. I often send them an email.<br>
+  The man over there is my uncle. He is a doctor. His hospital is next to our house. My aunt is a nurse. She is very friendly, and we like her very much.<br>
+  I want a picture of your family, too.<br>
+  Your friend,<br>
+  Ken</p>
+  <p class="reading-wc">およそ100語（あいさつと名前を含む）</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+  ア ケンの両親は農場で働いている。<br>
+  イ ケンの両親は医者である。<br>
+  ウ ケンは農場を手伝わない。<span class="write"></span></li>
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+  ア エミはケンのおばである。<br>
+  イ エミはケンの姉の同級生である。<br>
+  ウ エミはケンに手紙を送る。<span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">I often help (　　　) on the farm.</span><span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">The dog is little. We love (　　　) very much.</span><span class="write"></span></li>
+  <li>下線部①を日本語にする。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">正解は1つではありません。この単元で扱った形だけを使って書いてください。</p>
+
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+  <li>家族の1人を、be動詞の文で1文書く。<span class="hint">例：He is my uncle.</span><span class="write"></span></li>
+  <li>所有代名詞を1つ使って1文書く。<span class="hint">例：That bike is mine.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>その語を文のどこに置いているか</strong>をもう一度見て、4つの形の一覧のどの列を使う場所だったのかを確かめ直すと定着します。</p>
+
+<ol class="a">
+  <li><span class="a-key">イ　us</span><p class="a-why">動詞 <span class="en">help</span> のうしろなので目的格です。主語が長くても、見るのは空所の位置だけです。</p></li>
+  <li><span class="a-key">ウ　yours</span><p class="a-why">うしろに名詞が無く、1語で「あなたのもの」を表すので所有代名詞です。<span class="en">your</span> は名詞の前に置く語なので、ここには置けません。</p></li>
+  <li><span class="a-key">ウ　them</span><p class="a-why">動詞 <span class="en">like</span> のうしろなので目的格です。前の文の <span class="en">My uncle and my aunt</span> を受けているので複数の形になります。</p></li>
+  <li><span class="a-key">ウ　Its</span><p class="a-why">うしろに名詞 <span class="en">name</span> が続いているので所有格です。<span class="en">It's</span> は <span class="en">It is</span> の短縮形なので、ここには入りません。</p></li>
+  <li><span class="a-key">ウ　theirs</span><p class="a-why"><span class="en">ours</span> と並ぶ位置なので、同じく所有代名詞です。うしろに名詞が無いことが手がかりになります。</p></li>
+
+  <li><span class="a-key">We often help them on the farm.</span><p class="a-why">動詞のうしろなので目的格の <span class="en">them</span> です。<span class="en">often</span> は一般動詞の前に置きます。場所を表す <span class="en">on the farm</span> は文の終わりです。</p></li>
+  <li><span class="a-key">That is my sister's bike.</span><p class="a-why">人を表す名詞に <span class="en">'s</span> を付けると「〜の」になります。<span class="en">my</span> は <span class="en">sister</span> に付いているので、<span class="en">my sister's</span> でひとまとまりです。</p></li>
+  <li><span class="a-key">That new bag is hers.</span><p class="a-why">「彼女のもの」なので所有代名詞の <span class="en">hers</span> です。<span class="en">new</span> は名詞 <span class="en">bag</span> の前に置きます。</p></li>
+  <li><span class="a-key">We give him a birthday card.</span><p class="a-why">動詞のうしろなので目的格の <span class="en">him</span> です。「だれに」を先に、「何を」をそのあとに置きます。</p></li>
+  <li><span class="a-key">They show us their pictures.</span><p class="a-why">不要な語は <span class="en">them</span> です。「私たちに」は目的格の <span class="en">us</span>、「彼らの写真」は所有格の <span class="en">their</span> です。</p></li>
+  <li><span class="a-key">The dog is ours.</span><p class="a-why">不要な語は <span class="en">our</span> です。うしろに名詞が無いので、所有格ではなく所有代名詞の <span class="en">ours</span> を使います。</p></li>
+
+  <li><span class="a-key">We know him very well.</span><p class="a-why">理由の例：動詞のうしろは目的格なので、主格の he は置けないから。</p></li>
+  <li><span class="a-key">This bag is mine.</span><p class="a-why">理由の例：所有格はうしろに名詞が要るので、1語では置けないから。</p></li>
+  <li><span class="a-key">Its name is Momo.</span><p class="a-why">理由の例：うしろに名詞が続いているので、短縮形ではなく所有格を使うから。</p></li>
+  <li><span class="a-key">That is her bike.</span><p class="a-why">理由の例：名詞の前に置くのは所有格なので、所有代名詞は使えないから。<br><span class="en">That bike is hers.</span> と書き換えても正しい文になります。</p></li>
+  <li><span class="a-key">This is a picture of us.</span><p class="a-why">理由の例：前置詞のうしろは目的格になるから。</p></li>
+
+  <li><span class="a-key">He is my uncle.</span><p class="a-why">動詞の前なので主格の <span class="en">He</span> です。<span class="en">my</span> は名詞 <span class="en">uncle</span> の前に置きます。</p></li>
+  <li><span class="a-key">We like her very much.</span><p class="a-why">日本語では「彼女が」ですが、<span class="en">like</span> のうしろなので目的格の <span class="en">her</span> です。<span class="en">very much</span> は文の終わりに置きます。</p></li>
+  <li><span class="a-key">These books are theirs.</span><p class="a-why">「彼らのもの」なので所有代名詞です。<span class="en">These books are their books.</span> は意味は通りますが、1語で言える形を使います。</p></li>
+  <li><span class="a-key">I often send them an email.</span><p class="a-why">「彼らに」は目的格の <span class="en">them</span> です。<span class="en">often</span> は一般動詞の前に置きます。</p></li>
+  <li><span class="a-key">That bike is mine.</span><p class="a-why">所有代名詞を使うと4語で収まります。<span class="en">That bike is my bike.</span> では5語になり、条件から外れます。</p></li>
+  <li><span class="a-key">They show us their pictures.</span><p class="a-why">「私たちに」が目的格、「彼らの写真」が所有格です。順序は「だれに」「何を」です。</p></li>
+  <li><span class="a-key">Its name is Momo.</span><p class="a-why">所有格の <span class="en">Its</span> で始めると4語です。アポストロフィを付けないことを確かめましょう。</p></li>
+
+  <li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">My parents are farmers, and I often help them on the farm.</span> とあります。医者はおじです。</p></li>
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">She is a classmate of my sister</span> とあります。エミはケンのいとこで、手紙を送っているのはケンのほうです。</p></li>
+  <li><span class="a-key">them</span><p class="a-why">指しているのは <span class="en">my parents</span> です。動詞のうしろなので目的格になります。</p></li>
+  <li><span class="a-key">it</span><p class="a-why">指しているのは犬です。動詞のうしろなので目的格ですが、<span class="en">it</span> は主格と同じ形です。</p></li>
+  <li><span class="a-key">私の両親は農場で働いていて、私はよく農場で彼らを手伝います。</span><p class="a-why">「私の両親は農家です」と訳しても正解です。<span class="en">them</span> が <span class="en">my parents</span> を指していることを示せていれば十分です。</p></li>
+
+  <li><span class="a-key">解答例　He is my uncle.</span><p class="a-why">動詞の前に主格を置き、そのうしろに名詞か形容詞が続いていれば正解です。<span class="en">She is my aunt.</span> のように <span class="en">she</span> で書いてもかまいません。</p></li>
+  <li><span class="a-key">解答例　That bike is mine.</span><p class="a-why"><span class="en">mine</span> <span class="en">yours</span> <span class="en">hers</span> <span class="en">ours</span> <span class="en">theirs</span> のどれかを、うしろに名詞を付けずに置けていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+  <p class="wrap-up-t">この単元のまとめ</p>
+  <p style="margin:0">代名詞は、置く場所によって形が変わります。動詞の前なら主格、うしろに名詞が続くなら所有格、動詞や前置詞のうしろなら目的格、1語で「〜のもの」を表すなら所有代名詞です。<strong>形を選ぶ前に、置く場所を決める</strong>——手順はこれだけです。重なっている形（<span class="en">you</span> は主格と目的格、<span class="en">her</span> は所有格と目的格、<span class="en">his</span> は所有格と所有代名詞）を先に押さえると、覚える量が減ります。<span class="en">its</span> は所有格、<span class="en">it's</span> は <span class="en">it is</span> の短縮形で、別の語です。</p>
+</div>
+</div>
+</body>
+</html>

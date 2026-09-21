@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 7　be動詞と一般動詞の使い分け</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="unit07_be-vs-general.html">← この単元のワークブック</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 7</p>
+  <h1 class="unit-title">単語帳　be動詞と一般動詞の使い分け</h1>
+  <p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。意味は、この単元で実際に使われている用法だけを載せています。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">名詞・動詞・形容詞・熟語の順に並べてあります。関連語と対義語は、それぞれの語の下のメモに入れてあります。見出しとしては立てていないので、まずは見出しの語から覚えてください。</p>
+
+<ol class="vocab">
+
+<li>
+  <p class="v-head"><span class="v-word">town</span><span class="v-kana">タ<span class="ac">ウ</span>ン</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>町</p></div>
+  <p class="v-ex"><span class="en">Our town is small and quiet.</span><span class="v-ja">　私たちの町は小さくて静かです。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">city</span>（市・都市）より小さいまとまりを指します。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">river</span><span class="v-kana">リ<span class="ac">ヴ</span>ァ</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>川</p></div>
+  <p class="v-ex"><span class="en">The river is beautiful.</span><span class="v-ja">　その川は美しいです。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">river</span> ／ <span class="en">mountain</span> ／ <span class="en">bridge</span> は風景を書くときにそろって出てきます。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">mountain</span><span class="v-kana">マ<span class="ac">ウ</span>ンテン</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>山</p></div>
+  <p class="v-ex"><span class="en">We see green mountains.</span><span class="v-ja">　私たちは緑の山々を見ます。</span></p>
+  <p class="v-note"><span class="badge">綴り注意</span>複数形は <span class="en">mountains</span> です。山が連なっているときは複数形で書きます。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">bridge</span><span class="v-kana">ブ<span class="ac">リッ</span>ヂ</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>橋</p></div>
+  <p class="v-ex"><span class="en">The bridge is old.</span><span class="v-ja">　その橋は古いです。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>橋の上を歩くときは <span class="en">on</span> を使って <span class="en">walk on the bridge</span> と書きます。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">kitchen</span><span class="v-kana">キ<span class="ac">チ</span>ン</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>台所</p></div>
+  <p class="v-ex"><span class="en">My friends are in the kitchen.</span><span class="v-ja">　私の友達は台所にいます。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>部屋の中にいることを言うので <span class="en">in</span> を使います。<span class="en">room</span>（部屋）と同じ使い方です。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">home</span><span class="v-kana">ホ<span class="ac">ウ</span>ム</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>家・家庭</p></div>
+  <div class="v-sense"><span class="tag t-adv">副詞</span><p>家へ・家に</p></div>
+  <p class="v-ex"><span class="en">We go home early.</span><span class="v-ja">　私たちは早く家に帰ります。</span></p>
+  <p class="v-note"><span class="badge">別の品詞</span>副詞の <span class="en">home</span> は「家へ」という意味をそれ自体で持つので、<span class="en">go home</span> に <span class="en">to</span> は付けません。名詞として使うときは <span class="en">at home</span>（家で）の形で出てきます。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">hospital</span><span class="v-kana">ハ<span class="ac">ス</span>ピトゥル</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>病院</p></div>
+  <p class="v-ex"><span class="en">The hospital is large.</span><span class="v-ja">　その病院は大きいです。</span></p>
+  <p class="v-note"><span class="badge">セットで</span>建物を表す語です。<span class="en">library</span> ／ <span class="en">station</span> ／ <span class="en">shop</span> と同じ仲間です。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">office</span><span class="v-kana">オー<span class="ac">フィ</span>ス</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>事務所・会社</p></div>
+  <p class="v-ex"><span class="en">They work in an office.</span><span class="v-ja">　彼らは事務所で働きます。</span></p>
+  <p class="v-note"><span class="badge">綴り注意</span>母音の音で始まるので <span class="en">an</span> が付きます。<span class="en">a office</span> とは書きません。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">festival</span><span class="v-kana">フェ<span class="ac">ス</span>ティヴァル</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>祭り</p></div>
+  <p class="v-ex"><span class="en">We visit the festival every year.</span><span class="v-ja">　私たちは毎年その祭りを訪れます。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>どの祭りかが分かっているときは <span class="en">the</span> を付けます。Unit 4 で扱った形です。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">people</span><span class="v-kana">ピー<span class="ac">プ</span>ル</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>人々</p></div>
+  <p class="v-ex"><span class="en">The people here are kind.</span><span class="v-ja">　ここの人々は親切です。</span></p>
+  <p class="v-note"><span class="badge">綴り注意</span>これ自体が複数を表す語なので <span class="en">peoples</span> とはしません。be動詞は <span class="en">are</span> を使います。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">water</span><span class="v-kana">ウォー<span class="ac">タ</span></span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>水</p></div>
+  <p class="v-ex"><span class="en">The water is cold.</span><span class="v-ja">　その水は冷たいです。</span></p>
+  <p class="v-note"><span class="badge">使い方</span><span class="en">a water</span> とは言わず、<span class="en">-s</span> も付けません。<span class="en">milk</span>（Unit 5）と同じ扱いです。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">bread</span><span class="v-kana">ブ<span class="ac">レッ</span>ド</span></p>
+  <div class="v-sense"><span class="tag t-noun">名詞</span><p>パン</p></div>
+  <p class="v-ex"><span class="en">We buy bread at the shop.</span><span class="v-ja">　私たちはその店でパンを買います。</span></p>
+  <p class="v-note"><span class="badge">使い方</span><span class="en">a bread</span> とは言わず、<span class="en">-s</span> も付けません。<span class="en">water</span> と同じ扱いです。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">brass band</span><span class="v-kana">ブ<span class="ac">ラ</span>ス バンド</span></p>
+  <div class="v-sense"><span class="tag t-idiom">熟語</span><p>ブラスバンド・吹奏楽部</p></div>
+  <p class="v-ex"><span class="en">My friends and I are members of a brass band.</span><span class="v-ja">　私の友達と私はブラスバンドの部員です。</span></p>
+  <p class="v-note"><span class="badge">セットで</span>部活動を表す語です。<span class="en">art club</span> ／ <span class="en">soccer club</span> と同じ仲間です。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">visit</span><span class="v-kana">ヴィ<span class="ac">ズィ</span>ット</span></p>
+  <div class="v-sense"><span class="tag t-verb">動詞</span><p>〜を訪れる</p></div>
+  <p class="v-ex"><span class="en">We visit the festival every year.</span><span class="v-ja">　私たちは毎年その祭りを訪れます。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>うしろに行き先の名詞をそのまま続けます。<span class="en">visit to the festival</span> とは書きません。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">love</span><span class="v-kana">ラ<span class="ac">ヴ</span></span></p>
+  <div class="v-sense"><span class="tag t-verb">動詞</span><p>〜が大好きである</p></div>
+  <p class="v-ex"><span class="en">We love music very much.</span><span class="v-ja">　私たちは音楽が大好きです。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">like</span>（好きである）より強い言い方です。どちらも心の働きを表す一般動詞なので、be動詞とは並べられません。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">buy</span><span class="v-kana">バ<span class="ac">イ</span></span></p>
+  <div class="v-sense"><span class="tag t-verb">動詞</span><p>〜を買う</p></div>
+  <p class="v-ex"><span class="en">We buy bread at the shop.</span><span class="v-ja">　私たちはその店でパンを買います。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">shop</span>（店）といっしょに使います。買う場所は <span class="en">at</span> で示します。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">meet</span><span class="v-kana">ミー<span class="ac">ト</span></span></p>
+  <div class="v-sense"><span class="tag t-verb">動詞</span><p>〜に会う</p></div>
+  <p class="v-ex"><span class="en">We meet our friends at the station.</span><span class="v-ja">　私たちは駅で友達に会います。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>うしろに会う相手をそのまま続けます。<span class="en">meet to our friends</span> とは書きません。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">wait</span><span class="v-kana">ウェ<span class="ac">イ</span>ト</span></p>
+  <div class="v-sense"><span class="tag t-verb">動詞</span><p>待つ</p></div>
+  <p class="v-ex"><span class="en">We wait for the bus.</span><span class="v-ja">　私たちはバスを待ちます。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>待つ相手を言うときは <span class="en">for</span> が要ります。下の <span class="en">wait for 〜</span> を見てください。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">work</span><span class="v-kana">ワー<span class="ac">ク</span></span></p>
+  <div class="v-sense"><span class="tag t-verb">動詞</span><p>働く</p></div>
+  <p class="v-ex"><span class="en">They work in an office.</span><span class="v-ja">　彼らは事務所で働きます。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>働く場所は <span class="en">in</span> や <span class="en">at</span> で示します。うしろに目的語は取りません。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">sit</span><span class="v-kana">ス<span class="ac">ィッ</span>ト</span></p>
+  <div class="v-sense"><span class="tag t-verb">動詞</span><p>すわる</p></div>
+  <p class="v-ex"><span class="en">We sit on the chairs.</span><span class="v-ja">　私たちはいすにすわります。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">sit</span> ↔ <span class="en">stand</span>（立つ）。すわる場所は <span class="en">on</span> で示します。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">stand</span><span class="v-kana">ス<span class="ac">タ</span>ンド</span></p>
+  <div class="v-sense"><span class="tag t-verb">動詞</span><p>立つ</p></div>
+  <p class="v-ex"><span class="en">We stand at the door.</span><span class="v-ja">　私たちはドアのところに立ちます。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">stand</span> ↔ <span class="en">sit</span>（すわる）。場所を1点で示すときは <span class="en">at</span> を使います。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">large</span><span class="v-kana">ラー<span class="ac">ヂ</span></span></p>
+  <div class="v-sense"><span class="tag t-adj">形容詞</span><p>大きい・広い</p></div>
+  <p class="v-ex"><span class="en">The hospital is large.</span><span class="v-ja">　その病院は大きいです。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">large</span> ↔ <span class="en">small</span>（小さい）。<span class="en">big</span> とほぼ同じ意味で、建物や町の広さには <span class="en">large</span> がよく使われます。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">cold</span><span class="v-kana">コ<span class="ac">ウ</span>ルド</span></p>
+  <div class="v-sense"><span class="tag t-adj">形容詞</span><p>冷たい・寒い</p></div>
+  <p class="v-ex"><span class="en">The water is cold.</span><span class="v-ja">　その水は冷たいです。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">cold</span> ↔ <span class="en">warm</span>（あたたかい）／ <span class="en">hot</span>（熱い）。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">strong</span><span class="v-kana">スト<span class="ac">ロー</span>ング</span></p>
+  <div class="v-sense"><span class="tag t-adj">形容詞</span><p>強い</p></div>
+  <p class="v-ex"><span class="en">We are a strong team.</span><span class="v-ja">　私たちは強いチームです。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">strong</span> ↔ <span class="en">weak</span>（弱い）。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">young</span><span class="v-kana">ヤ<span class="ac">ン</span>グ</span></p>
+  <div class="v-sense"><span class="tag t-adj">形容詞</span><p>若い</p></div>
+  <p class="v-ex"><span class="en">My brother is young.</span><span class="v-ja">　私の兄は若いです。</span></p>
+  <p class="v-note"><span class="badge">セットで</span><span class="en">young</span> ↔ <span class="en">old</span>（年をとった・古い）。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">fast</span><span class="v-kana">ファ<span class="ac">ス</span>ト</span></p>
+  <div class="v-sense"><span class="tag t-adv">副詞</span><p>速く</p></div>
+  <p class="v-ex"><span class="en">I don't run fast.</span><span class="v-ja">　私は速く走りません。</span></p>
+  <p class="v-note"><span class="badge">別の品詞</span>形容詞では「速い」という意味になります（<span class="en">a fast bus</span>）。<span class="en">fastly</span> という形はありません。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">wait for 〜</span><span class="v-kana">ウェ<span class="ac">イ</span>ト フォ</span></p>
+  <div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜を待つ</p></div>
+  <p class="v-ex"><span class="en">We wait for our friends.</span><span class="v-ja">　私たちは友達を待ちます。</span></p>
+  <p class="v-note"><span class="badge">使い方</span><span class="en">for</span> を落とすと「待つ相手」が示せません。<span class="en">listen to 〜</span>（Unit 5）と同じで、2語でひとまとまりです。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">at home</span><span class="v-kana">アット ホ<span class="ac">ウ</span>ム</span></p>
+  <div class="v-sense"><span class="tag t-idiom">熟語</span><p>家で・家に</p></div>
+  <p class="v-ex"><span class="en">We don't eat breakfast at home.</span><span class="v-ja">　私たちは家で朝食を食べません。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>「家にいる」という状態は <span class="en">We are at home.</span> と be動詞で書きます。「家へ帰る」という動作は <span class="en">go home</span> です。</p>
+</li>
+
+<li>
+  <p class="v-head"><span class="v-word">be from 〜</span><span class="v-kana">ビ フ<span class="ac">ロ</span>ム</span></p>
+  <div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜の出身である</p></div>
+  <p class="v-ex"><span class="en">I am from Tanabe.</span><span class="v-ja">　私は田辺出身です。</span></p>
+  <p class="v-note"><span class="badge">使い方</span>動作も心の働きも無いので be動詞の文です。たずねるときは <span class="en">Are you from 〜?</span>、答えは <span class="en">Yes, I am.</span> です。</p>
+</li>
+
+</ol>
+
+<h2><span>品詞が変わる語</span></h2>
+
+<p class="v-intro">同じ綴りのまま品詞が変わる語です。ここまでの単元に出てきたものをまとめておきます。文の中での位置と、前後の語を見て見分けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>語</th><th>動詞として</th><th>もう一つの品詞</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="be-cell"><span class="en">play</span></td><td>（〜を）する・演奏する</td><td>名詞　劇・試合</td></tr>
+    <tr><td class="be-cell"><span class="en">watch</span></td><td>〜を見る</td><td>名詞　腕時計</td></tr>
+    <tr><td class="be-cell"><span class="en">clean</span></td><td>〜をそうじする</td><td>形容詞　きれいな</td></tr>
+    <tr><td class="be-cell"><span class="en">cook</span></td><td>〜を料理する</td><td>名詞　料理人</td></tr>
+    <tr><td class="be-cell"><span class="en">walk</span></td><td>歩く</td><td>名詞　散歩</td></tr>
+    <tr><td class="be-cell"><span class="en">drink</span></td><td>〜を飲む</td><td>名詞　飲み物</td></tr>
+    <tr><td class="be-cell"><span class="en">help</span></td><td>〜を手伝う</td><td>名詞　助け</td></tr>
+    <tr><td class="be-cell"><span class="en">work</span></td><td>働く</td><td>名詞　仕事</td></tr>
+    <tr><td class="be-cell"><span class="en">home</span></td><td>—</td><td>名詞　家／副詞　家へ</td></tr>
+    <tr><td class="be-cell"><span class="en">fast</span></td><td>—</td><td>形容詞　速い／副詞　速く</td></tr>
+    <tr><td class="be-cell"><span class="en">well</span></td><td>—</td><td>副詞　じょうずに／形容詞　元気な</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="v-intro">見分け方は位置です。主語のすぐうしろにあれば動詞、<span class="en">a</span> や <span class="en">the</span> のうしろにあれば名詞、名詞の前にあれば形容詞、動詞のうしろで様子を言っていれば副詞です。この単元で扱った「1つの文に動詞は1つ」という規則も、見分けの手がかりになります。すでに動詞がある文なら、残りの語は動詞ではありません。</p>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

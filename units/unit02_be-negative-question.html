@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 2　be動詞の否定文・疑問文</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab02_be-negative-question.html">この単元の単語帳 →</a></nav>
+<header class="unit-head">
+  <p class="unit-no">Unit 2</p>
+  <h1 class="unit-title">be動詞の否定文・疑問文（is not / are not と Is / Are）</h1>
+  <p class="unit-lead">Unit 1 で決めた be動詞の形はそのまま使います。この単元で足すのは、not を置く位置と、be動詞を主語の前に出す動かし方の2つだけです。手順は短いのですが、入試では答え方の形と短縮形の可否で点が分かれます。</p>
+</header>
+
+<h2><span>2つの用語</span></h2>
+
+<p>ここでも先に2つの語を押さえます。どちらも、Unit 1 で作った肯定文に手を加えた形を指す呼び名です。</p>
+
+<div class="term">
+  <p class="term-name">否定文（ひていぶん）</p>
+  <p class="term-def"><strong>「〜ではない」「〜にいない」</strong>と打ち消す文です。be動詞の文では、<strong>be動詞のすぐうしろに not を置く</strong>だけで作れます。語の順番はほかに変わりません。</p>
+  <p class="term-ex"><span class="en">I am <span class="be-w">not</span> a baseball player.</span>（私は野球の選手ではありません）<br>
+  <span class="en">My dog is <span class="be-w">not</span> small.</span>（私の犬は小さくありません）<br>
+  <span class="en">Emma and Ken are <span class="be-w">not</span> late.</span>（エマとケンは遅れていません）</p>
+</div>
+
+<div class="term">
+  <p class="term-name">疑問文（ぎもんぶん）</p>
+  <p class="term-def"><strong>「〜ですか」</strong>とたずねる文です。<strong>be動詞を主語の前に出し</strong>、文の終わりに <span class="en">?</span> を付けます。</p>
+  <p class="term-ex"><span class="en"><span class="be-w">Are</span> you free today?</span>（あなたは今日ひまですか）<br>
+  <span class="en"><span class="be-w">Is</span> your father strict?</span>（あなたのお父さんは厳しいですか）<br>
+  <span class="en"><span class="be-w">Are</span> Emma and Ken in the library?</span>（エマとケンは図書室にいますか）</p>
+</div>
+
+<h2><span>文の形</span></h2>
+
+<div class="diagram">
+  <p class="diagram-cap">否定文：be動詞のうしろに <strong>not</strong> を置く</p>
+  <div class="flow">
+    <span class="node">My dog<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">is not</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">small<span class="node-label">正体・状態・場所</span></span>
+  </div>
+</div>
+
+<div class="diagram">
+  <p class="diagram-cap">疑問文：be動詞を<strong>主語の前</strong>に出す</p>
+  <div class="flow">
+    <span class="node">Is<span class="node-label">be動詞</span></span>
+    <span class="link">
+      <span class="link-word">the gym</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">big ?<span class="node-label">うしろの語</span></span>
+  </div>
+</div>
+
+<p>どちらの形でも、<strong>使う be動詞は Unit 1 と同じ決め方</strong>です。主語が I なら am、You なら are、それ以外は1つなら is、2つ以上なら are。<strong>not を足しても、前に出しても、形は変わりません。</strong></p>
+
+<h2><span>3つの形を並べて見る</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>肯定文</th><th>否定文</th><th>疑問文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">My dog is small.</span></td>
+      <td><span class="en">My dog is not small.</span></td>
+      <td><span class="en">Is my dog small?</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">The desks are new.</span></td>
+      <td><span class="en">The desks are not new.</span></td>
+      <td><span class="en">Are the desks new?</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Emma is popular.</span></td>
+      <td><span class="en">Emma is not popular.</span></td>
+      <td><span class="en">Is Emma popular?</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">You are early.</span></td>
+      <td><span class="en">You are not early.</span></td>
+      <td><span class="en">Are you early?</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>3つとも主語は動いていません。動くのは <span class="en">not</span> が増えるか、be動詞が主語の前へ移るかだけです。</p>
+
+<h2><span>短縮形</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>もとの形</th><th>短縮形</th><th>例文</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">is not</span></td>
+      <td class="be-cell">isn't</td>
+      <td><span class="en">My bag isn't white.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">are not</span></td>
+      <td class="be-cell">aren't</td>
+      <td><span class="en">The books aren't difficult.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">am not</span></td>
+      <td class="be-cell">短縮形なし</td>
+      <td><span class="en">I'm not a captain.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><span class="en">is not</span> と <span class="en">are not</span> には短縮形がありますが、<strong><span class="en">am not</span> をひとまとめに縮めた形は英語にありません。</strong>主語のほうを縮めて <span class="en">I'm not</span> とします。アポストロフィは Unit 1 と同じく、消えた文字の位置に入ります。</p>
+
+<h2><span>疑問文への答え方</span></h2>
+
+<p>be動詞の疑問文には、<strong><span class="en">Yes</span> か <span class="en">No</span> で答えます。</strong>答えの文では、主語を代名詞に置きかえ、be動詞は主語に合わせた形にします。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>問い</th><th>Yes の答え</th><th>No の答え</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="en">Are you tired?</span></td>
+      <td><span class="en">Yes, I am.</span></td>
+      <td><span class="en">No, I'm not.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Is your brother a captain?</span></td>
+      <td><span class="en">Yes, he is.</span></td>
+      <td><span class="en">No, he isn't.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Is your mother a nurse?</span></td>
+      <td><span class="en">Yes, she is.</span></td>
+      <td><span class="en">No, she isn't.</span></td>
+    </tr>
+    <tr>
+      <td><span class="en">Are Emma and Ken in the library?</span></td>
+      <td><span class="en">Yes, they are.</span></td>
+      <td><span class="en">No, they aren't.</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>問いの主語が <span class="en">your brother</span> のように人を表す語でも、答えでは <span class="en">he</span> に置きかえます。<strong>問いの語をそのまま繰り返しません。</strong></p>
+
+<h2><span>否定文・疑問文を作る手順</span></h2>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">まず肯定文を組み立てる</span>
+    <span class="step-d">主語を決め、Unit 1 の手順で be動詞の形を決めます。</span>
+  </li>
+  <li>
+    <span class="step-t">否定文なら、be動詞のすぐうしろに not</span>
+    <span class="step-d">語順はほかに変えません。短縮形にしてもかまいません。</span>
+  </li>
+  <li>
+    <span class="step-t">疑問文なら、be動詞を主語の前に出して ? を付ける</span>
+    <span class="step-d">文の先頭に来る be動詞は大文字で始めます。</span>
+  </li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>Yes の答えでは短縮形を使わない</h3>
+
+<p><span class="en">Yes, I am.</span> を <span class="en">Yes, I'm.</span> と縮めることはできません。<strong>短縮形は、うしろに続く語があるときだけ使える形</strong>だからです。<span class="en">No, I'm not.</span> は <span class="en">not</span> が続くので縮められます。<strong>Yes の答えは縮めない、No の答えは縮めてよい</strong>と覚えてください。</p>
+
+<h3>疑問文でも主語の数を数える</h3>
+
+<p>be動詞が前に出ても、形の決め方は変わりません。<span class="en">Are Emma and Ken in the same class?</span> は主語が2人なので <span class="en">Are</span>、<span class="en">Is every student in your class ready?</span> は every のついた主語なので <span class="en">Is</span> です。<strong>文の先頭の be動詞を決めるために、うしろの主語を先に読む</strong>という順で考えます。</p>
+
+<h3>not の位置</h3>
+
+<p><span class="en">not</span> は<strong>be動詞のすぐうしろ</strong>で、そこ以外には置けません。<span class="en">My sister and I are not in the same class.</span> のように、主語が長くても位置は変わりません。日本語は文の最後で打ち消しますが、英語は動詞の直後で打ち消します。</p>
+
+<h3>たずねる相手と答える人でずれる語</h3>
+
+<p><span class="en">Are you a junior high school student?</span> とたずねられたら、答えの主語は <span class="en">I</span> になります。<strong>you で問われたら I で答える</strong>のが基本です。<span class="en">Is your name Emma?</span> のように <span class="en">your</span> が入る問いでも、答えは <span class="en">Yes, it is.</span> ではなく <span class="en">Yes, I am.</span> の形になる場合があるので、何について問われているかを確かめてください。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>形式</th><th>問われ方</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>選択</td><td>答えの文を4択にして、<strong>短縮形の可否</strong>を問う。<span class="en">Yes, I'm.</span> が誤答として必ず混ざります。</td></tr>
+    <tr><td>並べ替え</td><td>否定文と疑問文をまとめて出します。<span class="en">not</span> の位置と、先頭に出す be動詞の見きわめが要点です。</td></tr>
+    <tr><td>誤文訂正</td><td>be動詞の数の不一致、<span class="en">not</span> の位置、<span class="en">Yes, I'm.</span> の3つが定番です。</td></tr>
+    <tr><td>英作文</td><td>語数を指定して短縮形を使わせる。<span class="en">isn't</span> は1語と数えます。</td></tr>
+    <tr><td>読解</td><td>否定文の内容一致。<strong>「〜ではない」と書いてあるものを「〜である」と読み違えていないか</strong>が問われます。</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Are you free today? — Yes, I'm.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">Are you free today? — Yes, I <span class="be-w">am</span>.</span></div>
+  <p class="contrast-why">Yes の答えは短縮形にできません。No のときだけ <span class="en">No, I'm not.</span> と縮められます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I amn't thirteen years old.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I<span class="be-w">'m</span> not thirteen years old.</span></div>
+  <p class="contrast-why"><span class="en">am not</span> をひとまとめに縮めた形はありません。主語のほうを縮めます。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">My notebook not is new.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">My notebook is <span class="be-w">not</span> new.</span></div>
+  <p class="contrast-why"><span class="en">not</span> は be動詞のうしろです。前には置けません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">Are every student in your class quiet?</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">Is</span> every student in your class quiet?</span></div>
+  <p class="contrast-why">疑問文でも主語の数で決まります。every のついた主語は1つ扱いです。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">You are a member of the soccer team?</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">Are</span> you a member of the soccer team?</span></div>
+  <p class="contrast-why">語順を変えずに <span class="en">?</span> だけ付けても疑問文にはなりません。be動詞を主語の前に出します。</p>
+</div>
+
+<p>ここまでの形は、次の文でひととおり確かめられます。<span class="en">Is your cat white?</span>／<span class="en">Are you in the tennis club?</span>／<span class="en">Is Emma fourteen years old?</span>／<span class="en">Are the books interesting?</span>／<span class="en">Is the English book easy?</span>／<span class="en">The window is not big.</span>／<span class="en">I am not busy today.</span>／<span class="en">The library is not quiet today.</span>／<span class="en">Is your father a teacher?</span>　どれも主語を先に読んでから be動詞の形を決めています。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。主語がどこまでか、全部で何人・何個かを数えてから選びます。</p>
+
+<ol class="q" data-part="A">
+  <li><span class="en">(　　　) you a junior high school student?</span>
+    <p class="opts"><span>ア Am</span><span>イ Is</span><span>ウ Are</span><span>エ Be</span></p></li>
+  <li><span class="en">My sister and I (　　　) not in the same class.</span>
+    <p class="opts"><span>ア am</span><span>イ is</span><span>ウ are</span><span>エ be</span></p></li>
+  <li><span class="en">(　　　) every student in your class ready?</span>
+    <p class="opts"><span>ア Am</span><span>イ Is</span><span>ウ Are</span><span>エ Be</span></p></li>
+  <li><span class="en">"Are you tired?" "No, (　　　)."</span>
+    <p class="opts"><span>ア I not am</span><span>イ I'm not</span><span>ウ I isn't</span><span>エ I aren't</span></p></li>
+  <li><span class="en">"Is your brother a captain?" "Yes, (　　　)."</span>
+    <p class="opts"><span>ア he's</span><span>イ he is</span><span>ウ he isn't</span><span>エ is he</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べ替えましょう。文の先頭に来る語も小文字で示してあります。<strong>10と11には使わない語が1語ずつ混ざっています。</strong></p>
+
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+  <li>私は野球の選手ではありません。<br><span class="en">[ not / I / a / baseball / am / player ] .</span><span class="write"></span></li>
+  <li>あなたは疲れていますか。<br><span class="en">[ you / tired / are ] ?</span><span class="write"></span></li>
+  <li>ケンと私は同じクラスではありません。<br><span class="en">[ same / Ken / the / and / are / class / not / I / in ] .</span><span class="write"></span></li>
+  <li>あなたのお父さんは先生ですか。<br><span class="en">[ your / a / is / teacher / father ] ?</span><span class="write"></span></li>
+  <li data-extra="1">その図書室は新しくありません。<span class="hint">1語不要</span><br><span class="en">[ library / is / the / new / are / not ] .</span><span class="write"></span></li>
+  <li data-extra="1">エマとケンは図書室にいますか。<span class="hint">1語不要</span><br><span class="en">[ Ken / in / are / Emma / the / library / and / is ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">次の文には誤りが1つずつあります。正しい文に直し、<strong>なぜ誤りかを日本語で1行</strong>書きましょう。</p>
+
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+  <li><span class="en">My sister and I am not in the same club.</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">Are every student in your class busy?</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">"Are you free today?" "Yes, I'm."</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">You are a member of the tennis club?</span><span class="write"></span><span class="why-line">理由</span></li>
+  <li><span class="en">My bag not is white.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">17から20は日本語を英語にしましょう。21から23は条件に合わせて書きましょう。</p>
+
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+  <li><span class="q-ja">私は13歳ではありません。</span><span class="write"></span></li>
+  <li><span class="q-ja">私の兄は野球部の部員ではありません。</span><span class="write"></span></li>
+  <li><span class="q-ja">あなたのお母さんは看護師ですか。</span><span class="write"></span></li>
+  <li><span class="q-ja">その体育館は大きいですか。</span><span class="write"></span></li>
+  <li>短縮形を使って「私の犬は小さくありません」と書く。<span class="cond">4語</span><span class="write"></span></li>
+  <li>「あなたは図書室にいますか」とたずねる文と、No の答えの文を書く。<span class="cond">2文</span><span class="write"></span></li>
+  <li>自分が部員ではない部活動を1つ、not を使って書く。<span class="cond">6語以上</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">次の紹介文を読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+  <p class="reading-cap">エマの紹介文</p>
+  <p>Hello. I am Emma. I am fourteen years old. I am in the tennis club. <span class="num">①</span><span class="ul">My brother Ken is not a club member.</span> He is very busy today. Our school is not new, but the library is very big. The library is quiet, and the books are interesting. I am not free today.</p>
+  <p class="reading-wc">53語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+    ア エマは13歳である。<br>
+    イ エマはテニス部に入っている。<br>
+    ウ エマの兄はテニス部に入っている。<span class="write"></span></li>
+  <li>本文の内容に合うものを1つ選ぶ。<br>
+    ア エマの学校は新しい。<br>
+    イ 図書室は静かである。<br>
+    ウ エマは今日ひまである。<span class="write"></span></li>
+  <li>本文の内容に合うように、空欄に1語書く。<br><span class="en">Emma (　　　) not free today.</span><span class="write"></span></li>
+  <li>下線部①を日本語にする。<span class="write"></span></li>
+  <li>次の問いに、本文の内容に合わせて3語で答える。<br><span class="en">Is Emma in the tennis club?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">正解は1つではありません。否定文と疑問文を使って書いてください。</p>
+
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+  <li>今日の自分について、否定文を1文書く。<span class="hint">例：I am not busy today.</span><span class="write"></span></li>
+  <li>友達か家族についてたずねる疑問文と、その答えの文を書く。<span class="hint">答えは Yes か No で始める</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>肯定文に戻してから not を足し直す・be動詞を前に出し直す</strong>という順でやり直すと定着します。</p>
+
+<ol class="a">
+  <li><span class="a-key">ウ　Are</span><p class="a-why">主語は you なので are です。疑問文でも形の決め方は変わりません。</p></li>
+  <li><span class="a-key">ウ　are</span><p class="a-why">主語は <span class="en">My sister and I</span> で2人です。not が付いても be動詞の形は変わりません。</p></li>
+  <li><span class="a-key">イ　Is</span><p class="a-why">every のついた主語は1つ扱いです。文の先頭の be動詞を決めるために、うしろの主語を先に読みます。</p></li>
+  <li><span class="a-key">イ　I'm not</span><p class="a-why"><span class="en">am not</span> をひとまとめに縮めた形はないので、主語のほうを縮めて <span class="en">I'm not</span> とします。</p></li>
+  <li><span class="a-key">イ　he is</span><p class="a-why">Yes の答えは短縮形にできません。主語は代名詞 he に置きかえます。</p></li>
+
+  <li><span class="a-key">I am not a baseball player.</span><p class="a-why">be動詞 am のすぐうしろに not を置きます。<span class="en">I'm not a baseball player.</span> でも正解です。</p></li>
+  <li><span class="a-key">Are you tired?</span><p class="a-why">be動詞 are を主語 you の前に出し、文末に ? を付けます。</p></li>
+  <li><span class="a-key">Ken and I are not in the same class.</span><p class="a-why">主語は2人なので are。主語が長くても not の位置は be動詞のうしろです。</p></li>
+  <li><span class="a-key">Is your father a teacher?</span><p class="a-why">主語 <span class="en">your father</span> は1人なので is。それを先頭に出します。</p></li>
+  <li><span class="a-key">The library is not new.</span><p class="a-why">不要な語は are です。主語は1つなので is を使います。</p></li>
+  <li><span class="a-key">Are Emma and Ken in the library?</span><p class="a-why">不要な語は is です。主語は2人なので Are を先頭に出します。</p></li>
+
+  <li><span class="a-key">My sister and I are not in the same club.</span><p class="a-why">理由の例：主語が「姉と私」で2人だから。<br>直前の I につられて am にしないこと。</p></li>
+  <li><span class="a-key">Is every student in your class busy?</span><p class="a-why">理由の例：every のついた主語は1つ扱いだから。</p></li>
+  <li><span class="a-key">"Are you free today?" "Yes, I am."</span><p class="a-why">理由の例：Yes の答えでは短縮形を使えないから。<br>No のときは <span class="en">No, I'm not.</span> と縮められます。</p></li>
+  <li><span class="a-key">Are you a member of the tennis club?</span><p class="a-why">理由の例：疑問文は be動詞を主語の前に出すから。<br>? を付けるだけでは疑問文になりません。</p></li>
+  <li><span class="a-key">My bag is not white.</span><p class="a-why">理由の例：not は be動詞のうしろに置くから。<br><span class="en">My bag isn't white.</span> でも正解です。</p></li>
+
+  <li><span class="a-key">I am not thirteen years old.</span><p class="a-why"><span class="en">I'm not thirteen years old.</span> でも正解です。</p></li>
+  <li><span class="a-key">My brother is not a member of the baseball club.</span><p class="a-why">主語は1人なので is。<span class="en">My brother isn't a member of the baseball club.</span> でも正解です。</p></li>
+  <li><span class="a-key">Is your mother a nurse?</span><p class="a-why">主語 <span class="en">your mother</span> は1人なので Is を先頭に出します。</p></li>
+  <li><span class="a-key">Is the gym big?</span><p class="a-why">主語 <span class="en">the gym</span> は1つなので Is です。</p></li>
+  <li><span class="a-key">My dog isn't small.</span><p class="a-why"><span class="en">isn't</span> は1語と数えるので、これで4語です。</p></li>
+  <li><span class="a-key">解答例　Are you in the library? No, I'm not.</span><p class="a-why">問いの主語が you なので、答えの主語は I になります。<span class="en">No, I am not.</span> でも正解です。</p></li>
+  <li><span class="a-key">解答例　I am not a member of the soccer team.</span><p class="a-why">6語以上あり、not が be動詞のうしろに置けていれば正解です。</p></li>
+
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">I am in the tennis club.</span> とあります。エマは14歳で、兄は部員ではありません。</p></li>
+  <li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">The library is quiet, and the books are interesting.</span> とあります。学校は新しくなく、エマは今日ひまではありません。</p></li>
+  <li><span class="a-key">is</span><p class="a-why">本文の <span class="en">I am not free today.</span> の主語が Emma に変わります。1人なので is です。</p></li>
+  <li><span class="a-key">私の兄のケンは部員ではありません。</span><p class="a-why">「クラブの部員ではない」という否定文です。「ケンは部に入っていません」なども正解です。</p></li>
+  <li><span class="a-key">Yes, she is.</span><p class="a-why">本文に <span class="en">I am in the tennis club.</span> とあります。主語は代名詞 she に置きかえ、Yes の答えなので短縮形にはしません。</p></li>
+
+  <li><span class="a-key">解答例　I am not tired today. / I'm not free today.</span><p class="a-why">be動詞のうしろに not が置けていれば正解です。</p></li>
+  <li><span class="a-key">解答例　Is your father strict? — Yes, he is.</span><p class="a-why">問いの主語を代名詞に置きかえて答えます。Yes の答えを短縮形にしていないかを確認しましょう。</p></li>
+</ol>
+
+<div class="wrap-up">
+  <p class="wrap-up-t">この単元のまとめ</p>
+  <p style="margin:0">否定文は <strong>be動詞のすぐうしろに not</strong>、疑問文は <strong>be動詞を主語の前に出して ?</strong>。どちらも be動詞の形は Unit 1 の決め方のままで、主語を数えて選びます。短縮形は <span class="en">isn't</span> と <span class="en">aren't</span> の2つだけで、<span class="en">am not</span> は <span class="en">I'm not</span> の形にします。入試で差がつくのは、<strong>Yes の答えを短縮形にしない</strong>という1点です。</p>
+</div>
+</div>
+</body>
+</html>
