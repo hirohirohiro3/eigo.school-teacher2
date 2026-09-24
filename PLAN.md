@@ -162,5 +162,7 @@ GitHub の **Fine-grained personal access token**（対象リポジトリを1つ
 
 ## 5. まだ決めていないこと
 
-- **基本語リスト**（`basic-words.html`）をいつ作るか。語彙を増やしたぶん基本語の線引きが要るので、Unit 1 の作り直し直後が適切
-- **総索引**（`word-index.html`）は全単元が終わってから。`master-vocab.json` から機械生成できる
+（なし。下記はいずれも作成済み）
+
+- ~~**基本語リスト**（`basic-words.html`）~~ 2026-09-23 作成。`check.py` の `BASIC` 77語をそのまま載せ、機能ごとに12群へ分けた。載せる範囲は「`check.py` が新出語に数えない語＝単語帳の見出し語に立てない語」と定義した
+- ~~**総索引**（`word-index.html`）~~ 2026-09-23 作成。`master-vocab.json` の479語から機械生成

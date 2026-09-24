@@ -55,8 +55,8 @@ HTML では `<ol class="q" data-part="A">` のようにパートを指定する�
 ```
 index.html                              ハブ（目次）
 PLAN.md                                 全16単元の制作ループ
-basic-words.html                        基本語リスト（未作成）
-word-index.html                         総索引（未作成）
+basic-words.html                        基本語リスト（単語帳に立てない77語）
+word-index.html                         総索引（見出し語479語）
 units/
   unit01_be-affirmative.html            ワークブック
   vocab01_be-affirmative.html           単語帳

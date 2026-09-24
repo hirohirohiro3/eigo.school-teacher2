@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語テスト（UI試作）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --paper:#ffffff; --ink:#2b2b2b; --sub:#6b6b6b; --line:#dcd7cc;
+  --accent:#2f5d7c; --accent-soft:#e6eef4;
+  --ok:#2e7d4f; --ok-soft:#e5f3ea; --ng:#b3413a; --ng-soft:#f8e6e4;
+  --off:#b9b4aa;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:480px;margin:0 auto;padding:16px 16px 40px}
+.mock-note{font-size:12px;color:var(--sub);background:#fff8e1;border:1px dashed #e0c872;border-radius:8px;padding:8px 10px;margin-bottom:14px}
+h1{font-size:20px;margin:4px 0 16px}
+h2{font-size:14px;color:var(--sub);font-weight:600;margin:18px 0 8px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px}
+/* segmented */
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1 1 0;min-width:0;font:inherit;font-size:15px;padding:10px 6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.seg button:disabled{color:var(--off);background:#f1efe9;cursor:not-allowed}
+.seg small{display:block;font-size:11px;opacity:.8}
+/* chips */
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.chips.parts{grid-template-columns:1fr}
+.chips button{font:inherit;font-size:14px;padding:8px 4px;border:1px solid var(--line);background:var(--paper);border-radius:8px;cursor:pointer;color:var(--ink)}
+.chips.parts button{text-align:left;padding:10px 12px}
+.chips button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+.chips button:disabled{color:var(--off);background:#f1efe9;cursor:not-allowed}
+.chips .unit-ttl{display:block;font-size:11px;color:var(--sub)}
+.count{margin-top:10px;font-size:14px;color:var(--sub)}
+.count b{color:var(--ink);font-size:16px}
+.primary{display:block;width:100%;font:inherit;font-size:17px;font-weight:600;padding:14px;margin-top:20px;border:0;border-radius:12px;background:var(--accent);color:#fff;cursor:pointer}
+.primary:disabled{background:var(--off)}
+.ghost{display:block;width:100%;font:inherit;font-size:15px;padding:12px;margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);cursor:pointer}
+/* quiz */
+.topbar{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--sub)}
+.topbar a{color:var(--sub)}
+.bar{height:6px;background:var(--line);border-radius:3px;margin:8px 0 18px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
+.qcard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 18px;text-align:center}
+.qdir{font-size:12px;color:var(--sub);margin-bottom:6px}
+.prompt{font-size:30px;font-weight:600;margin:6px 0 18px;word-break:break-word}
+.prompt.ja{font-size:24px}
+.tag{display:inline-block;font-size:11px;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+input.ans{width:100%;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:22px;padding:12px;border:2px solid var(--line);border-radius:10px;text-align:center;background:#fff;color:var(--ink)}
+input.ans:focus{outline:none;border-color:var(--accent)}
+.fb{margin-top:14px;border-radius:10px;padding:12px;text-align:left;font-size:15px}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.ng{background:var(--ng-soft);color:var(--ng)}
+.fb .big{font-size:18px;font-weight:600}
+.fb .yours{text-decoration:line-through;opacity:.8}
+.fb .also{font-size:12px;color:var(--sub);margin-top:4px}
+.reveal{font-size:22px;margin:4px 0 4px}
+.two{display:flex;gap:8px;margin-top:14px}
+.two button{flex:1;font:inherit;font-size:16px;padding:12px;border-radius:10px;cursor:pointer;border:1px solid var(--line);background:var(--paper)}
+.two .yes{border-color:var(--ok);color:var(--ok)}
+.two .no{border-color:var(--ng);color:var(--ng)}
+.hint-key{font-size:11px;color:var(--sub);margin-top:10px}
+/* result */
+.score{text-align:center;font-size:44px;font-weight:600;margin:4px 0}
+.score small{font-size:18px;color:var(--sub)}
+.range-lbl{text-align:center;color:var(--sub);font-size:13px}
+.miss{list-style:none;padding:0;margin:0}
+.miss li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.miss li:last-child{border-bottom:0}
+.miss .en{font-weight:600}
+.miss .you{font-size:12px;color:var(--ng)}
+.allok{text-align:center;color:var(--ok);padding:8px 0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="mock-note">UIすり合わせ用の試作です。語は Unit 15・16 から抜いた見本（43語）で、ほかの単元は押せません。見た目は仮で、本番はサイトの既存CSSに合わせます。</div>
+
+<!-- ========== 1. 設定 ========== -->
+<section id="setup">
+  <h1>単語テスト</h1>
+
+  <div class="card">
+    <h2 style="margin-top:0">学年</h2>
+    <div class="seg" id="grade">
+      <button aria-pressed="true">中1</button>
+      <button disabled>中2<small>準備中</small></button>
+      <button disabled>中3<small>準備中</small></button>
+    </div>
+
+    <h2>範囲</h2>
+    <div class="seg" id="scope">
+      <button data-v="unit" aria-pressed="true">単元</button>
+      <button data-v="part" aria-pressed="false">部</button>
+      <button data-v="all" aria-pressed="false">中1全体</button>
+    </div>
+    <div class="chips" id="unitChips"></div>
+    <div class="chips parts" id="partChips" hidden></div>
+    <div class="count" id="countLine"></div>
+
+    <h2>向き</h2>
+    <div class="seg" id="dir">
+      <button data-v="ej" aria-pressed="true">英語 → 日本語</button>
+      <button data-v="je" aria-pressed="false">日本語 → 英語</button>
+    </div>
+
+    <h2>問題数</h2>
+    <div class="seg" id="num">
+      <button data-v="10" aria-pressed="true">10問</button>
+      <button data-v="20" aria-pressed="false">20問</button>
+      <button data-v="all" aria-pressed="false">全部</button>
+    </div>
+
+    <button class="primary" id="startBtn">はじめる</button>
+  </div>
+</section>
+
+<!-- ========== 2. 出題 ========== -->
+<section id="quiz" hidden>
+  <div class="topbar"><span id="qRange"></span><span><span id="qPos"></span>　<a href="#" id="quitBtn">やめる</a></span></div>
+  <div class="bar"><i id="qBar"></i></div>
+
+  <div class="qcard">
+    <div class="qdir" id="qDir"></div>
+    <div class="prompt" id="qPrompt"></div>
+    <span class="tag" id="qTag"></span>
+
+    <!-- 和→英：入力して自動採点 -->
+    <div id="jeBox" hidden>
+      <div style="margin-top:18px">
+        <input class="ans" id="ansInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="英語で入力" enterkeyhint="done">
+      </div>
+      <button class="primary" id="checkBtn">答え合わせ</button>
+      <div class="fb" id="jeFb" hidden></div>
+    </div>
+
+    <!-- 英→和：答えを開いて自己採点 -->
+    <div id="ejBox" hidden>
+      <button class="primary" id="revealBtn">答えを見る</button>
+      <div id="ejAns" hidden>
+        <div class="reveal" id="ejMeaning"></div>
+        <div class="two">
+          <button class="yes" id="gotBtn">○ わかった</button>
+          <button class="no" id="missBtn">× わからない</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="primary" id="nextBtn" hidden>次へ</button>
+    <div class="hint-key" id="keyHint"></div>
+  </div>
+</section>
+
+<!-- ========== 3. 結果 ========== -->
+<section id="result" hidden>
+  <div class="card">
+    <div class="range-lbl" id="rRange"></div>
+    <div class="score" id="rScore"></div>
+    <h2>まちがえた語</h2>
+    <ul class="miss" id="rMiss"></ul>
+    <button class="primary" id="retryMissBtn">まちがえた語だけもう一度</button>
+    <button class="ghost" id="retryAllBtn">同じ範囲でもう一度</button>
+    <button class="ghost" id="backBtn">範囲を選び直す</button>
+  </div>
+</section>
+
+</div>
+
+<!--
+  本番では、全単元の語をこの位置に HTML の一覧として書く（check.py が読んで単語帳と照合できるように）。
+  例：<ol id="words"><li data-g="1" data-u="16" data-en="arrive" data-ja="到着する"></li>…</ol>
+  JS はそこから範囲で絞って並べ替えるだけ。試作では下の配列で代用。
+-->
+<script>
+const UNITS = ["be動詞の肯定文","be動詞の否定文・疑問文","This / That / It","複数形と a / an / the","一般動詞の肯定文","一般動詞の否定文・疑問文","be動詞と一般動詞","代名詞","三人称単数現在","疑問詞","時刻・曜日・日付・数","命令文・Let's","助動詞 can","現在進行形","be動詞の過去形","一般動詞の過去形"];
+const PARTS = [[1,4],[5,7],[8,11],[12,16]];
+const W = [
+ // Unit 15（見本）
+ [15,"week","週"],[15,"month","月（暦の）"],[15,"weather","天気"],[15,"trip","旅行"],[15,"vacation","休暇"],
+ [15,"concert","コンサート"],[15,"test","テスト"],[15,"temple","寺"],[15,"sick","病気の"],[15,"sad","悲しい"],
+ [15,"angry","怒った"],[15,"nervous","緊張した"],[15,"full","いっぱいの"],[15,"empty","空の"],[15,"dirty","汚れた"],
+ [15,"cloudy","くもりの"],[15,"windy","風の強い"],[15,"yesterday","昨日"],[15,"ago","〜前に"],
+ [15,"at that time","そのとき"],[15,"all day","一日中"],[15,"be absent from 〜","〜を欠席する"],[15,"be late for 〜","〜に遅れる"],
+ // Unit 16（見本）
+ [16,"diary","日記"],[16,"ticket","チケット"],[16,"aquarium","水族館"],[16,"dolphin","イルカ"],[16,"souvenir","おみやげ"],
+ [16,"arrive","到着する"],[16,"learn","学ぶ"],[16,"borrow","借りる"],[16,"invite","招待する"],[16,"happen","起こる"],
+ [16,"before","〜の前に"],[16,"came","来た"],[16,"took","取った"],[16,"bought","買った"],[16,"ran","走った"],[16,"met","会った"],
+ [16,"have a good time","楽しい時を過ごす"],[16,"for the first time","初めて"],[16,"on the way home","帰り道で"],[16,"get to 〜","〜に着く"]
+].map(([u,en,ja])=>({g:1,u,en,ja}));
+const HAS = new Set(W.map(w=>w.u));
+
+const $ = id=>document.getElementById(id);
+const S = {scope:"unit", unit:16, part:4, dir:"ej", num:"10"};
+let queue=[], i=0, log=[], lastPool=[], answered=false;
+
+/* ---------- 設定画面 ---------- */
+function seg(id,key){
+  $(id).querySelectorAll("button[data-v]").forEach(b=>{
+    b.onclick=()=>{ S[key]=b.dataset.v; paint(); };
+  });
+}
+function buildChips(){
+  $("unitChips").innerHTML = UNITS.map((t,k)=>{
+    const u=k+1, on=HAS.has(u);
+    return `<button data-u="${u}" ${on?"":"disabled"} title="${t}">${u}</button>`;
+  }).join("");
+  $("unitChips").querySelectorAll("button").forEach(b=>b.onclick=()=>{S.unit=+b.dataset.u;paint();});
+  $("partChips").innerHTML = PARTS.map(([a,b],k)=>{
+    const on=[...Array(b-a+1)].some((_,j)=>HAS.has(a+j));
+    return `<button data-p="${k+1}" ${on?"":"disabled"}>第${k+1}部　<span class="unit-ttl" style="display:inline">Unit ${a}〜${b}</span></button>`;
+  }).join("");
+  $("partChips").querySelectorAll("button").forEach(b=>b.onclick=()=>{S.part=+b.dataset.p;paint();});
+}
+function pool(){
+  if(S.scope==="unit") return W.filter(w=>w.u===S.unit);
+  if(S.scope==="part"){const [a,b]=PARTS[S.part-1]; return W.filter(w=>w.u>=a&&w.u<=b);}
+  return W.slice();
+}
+function rangeLabel(){
+  if(S.scope==="unit") return `中1 Unit ${S.unit}　${UNITS[S.unit-1]}`;
+  if(S.scope==="part"){const [a,b]=PARTS[S.part-1]; return `中1 第${S.part}部（Unit ${a}〜${b}）`;}
+  return "中1 全体";
+}
+function paint(){
+  for(const [id,key] of [["scope","scope"],["dir","dir"],["num","num"]])
+    $(id).querySelectorAll("button[data-v]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.v===S[key])));
+  $("unitChips").hidden = S.scope!=="unit";
+  $("partChips").hidden = S.scope!=="part";
+  $("unitChips").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", String(+b.dataset.u===S.unit)));
+  $("partChips").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", String(+b.dataset.p===S.part)));
+  const n=pool().length;
+  const ask = S.num==="all"? n : Math.min(n,+S.num);
+  $("countLine").innerHTML = `${rangeLabel()}<br>この範囲 <b>${n}語</b> から <b>${ask}問</b>`;
+  $("startBtn").disabled = n===0;
+}
+
+/* ---------- 出題 ---------- */
+const shuffle=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;};
+const norm=s=>s.toLowerCase().replace(/[〜~]/g,"").replace(/[.,!?。、]/g,"").replace(/\s+/g," ").trim();
+
+function start(words){
+  lastPool = words;
+  const n = S.num==="all"? words.length : Math.min(words.length,+S.num);
+  queue = shuffle(words).slice(0,n); i=0; log=[];
+  show("quiz"); $("qRange").textContent=rangeLabel(); ask();
+}
+function ask(){
+  const w=queue[i]; answered=false;
+  $("qPos").textContent=`${i+1} / ${queue.length}`;
+  $("qBar").style.width = `${i/queue.length*100}%`;
+  $("qTag").textContent=`Unit ${w.u}`;
+  $("nextBtn").hidden=true;
+  if(S.dir==="ej"){
+    $("qDir").textContent="英語 → 日本語";
+    $("qPrompt").textContent=w.en; $("qPrompt").className="prompt";
+    $("ejBox").hidden=false; $("jeBox").hidden=true;
+    $("revealBtn").hidden=false; $("ejAns").hidden=true;
+    $("keyHint").textContent="";
+  }else{
+    $("qDir").textContent="日本語 → 英語";
+    $("qPrompt").textContent=w.ja; $("qPrompt").className="prompt ja";
+    $("ejBox").hidden=true; $("jeBox").hidden=false;
+    $("ansInput").value=""; $("ansInput").disabled=false; $("checkBtn").hidden=false; $("jeFb").hidden=true;
+    $("keyHint").textContent="Enter キーでも答え合わせ・次へ進めます";
+    setTimeout(()=>$("ansInput").focus(),0);
+  }
+}
+function check(){
+  if(answered) return;
+  const w=queue[i], v=$("ansInput").value;
+  if(!v.trim()) { $("ansInput").focus(); return; }
+  // 同じ和訳をもつ語は、どれを書いても正解
+  const accept = W.filter(x=>x.ja===w.ja).map(x=>x.en);
+  const ok = accept.some(a=>norm(a)===norm(v));
+  answered=true; log.push({w,ok,you:v});
+  $("ansInput").disabled=true; $("checkBtn").hidden=true;
+  const fb=$("jeFb"); fb.hidden=false; fb.className="fb "+(ok?"ok":"ng");
+  const others = accept.filter(a=>a!==w.en);
+  fb.innerHTML = ok
+    ? `<div class="big">○ 正解</div>${w.en}${others.length?`<div class="also">ほかに ${others.join(" / ")} でも正解</div>`:""}`
+    : `<div class="big">× 正しくは　${w.en}</div>あなたの答え：<span class="yours">${esc(v)}</span>${others.length?`<div class="also">${others.join(" / ")} でも正解</div>`:""}`;
+  $("nextBtn").hidden=false; $("nextBtn").focus();
+}
+function selfGrade(ok){ log.push({w:queue[i],ok}); next(); }
+function next(){ i++; if(i<queue.length) ask(); else finish(); }
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- 結果 ---------- */
+function finish(){
+  $("qBar").style.width="100%";
+  const ok=log.filter(l=>l.ok).length, miss=log.filter(l=>!l.ok);
+  $("rRange").textContent = `${rangeLabel()}　${S.dir==="ej"?"英→和":"和→英"}`;
+  $("rScore").innerHTML = `${ok}<small> / ${log.length}</small>`;
+  $("rMiss").innerHTML = miss.length
+    ? miss.map(l=>`<li><span><span class="en">${l.w.en}</span>${l.you!==undefined?`<br><span class="you">あなた：${esc(l.you)}</span>`:""}</span><span>${l.w.ja}</span></li>`).join("")
+    : `<li class="allok" style="display:block">全問正解です</li>`;
+  $("retryMissBtn").hidden = miss.length===0;
+  $("retryMissBtn").textContent = `まちがえた${miss.length}語だけもう一度`;
+  show("result");
+}
+
+/* ---------- 画面切り替え ---------- */
+function show(id){ ["setup","quiz","result"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0); }
+
+/* ---------- イベント ---------- */
+seg("scope","scope"); seg("dir","dir"); seg("num","num"); buildChips();
+$("startBtn").onclick=()=>start(pool());
+$("checkBtn").onclick=check;
+$("ansInput").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); check(); }});
+$("nextBtn").onclick=next;
+document.addEventListener("keydown",e=>{ if(e.key==="Enter" && !$("nextBtn").hidden && document.activeElement!==$("ansInput")){ e.preventDefault(); next(); }});
+$("revealBtn").onclick=()=>{ $("revealBtn").hidden=true; $("ejAns").hidden=false; $("ejMeaning").textContent=queue[i].ja; };
+$("gotBtn").onclick=()=>selfGrade(true);
+$("missBtn").onclick=()=>selfGrade(false);
+$("quitBtn").onclick=e=>{ e.preventDefault(); if(log.length) finish(); else show("setup"); };
+$("retryMissBtn").onclick=()=>start(log.filter(l=>!l.ok).map(l=>l.w));
+$("retryAllBtn").onclick=()=>start(lastPool);
+$("backBtn").onclick=()=>show("setup");
+
+/* 単語帳・目次から ?unit=16 / ?part=4 で範囲を選んだ状態で開ける */
+const q=new URLSearchParams(location.search);
+if(q.get("unit")){S.scope="unit";S.unit=+q.get("unit");}
+if(q.get("part")){S.scope="part";S.part=+q.get("part");}
+paint();
+</script>
+</body>
+</html>

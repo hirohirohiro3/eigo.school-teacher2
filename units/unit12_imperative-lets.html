@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 12　命令文・Let's</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab12_imperative-lets.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 12</p>
+<h1 class="unit-title">命令文・Let's</h1>
+<p class="unit-lead">ここまでの文には、どれも主語がありました。この単元では、<strong>主語を置かずに動詞から始める文</strong>を扱います。相手に「〜しなさい」「〜してください」と言う命令文と、「〜しましょう」と誘う <span class="en">Let's</span> の文です。入試では、動詞を原形にすることと、<span class="en">Don't</span> <span class="en">Let's</span> のうしろの形がよく問われます。</p>
+</header>
+
+<h2><span>命令文は動詞の原形で始める</span></h2>
+
+<p>「窓を開けなさい」は <span class="en">Open the window.</span> です。<strong>主語を置かず、動詞の原形から始めます。</strong>原形とは、<span class="en">s</span> も何もつけない、辞書に載っている形のことです。</p>
+
+<p><strong>なぜ主語を言わないのか。</strong>命令文は、目の前にいる相手に向けて言う文です。言われる人は、いつも「あなた」つまり <span class="en">you</span> に決まっています。わかりきっているので、主語を省きます。そして主語がないので、Unit 9 の <span class="en">s</span> をつける理由もなくなります。だから動詞は原形のままです。</p>
+
+<div class="diagram is-general">
+<p class="diagram-cap">一般動詞の命令文　主語の位置は空けたまま</p>
+<div class="flow">
+<span class="node">（　）<span class="node-label">主語を置かない</span></span>
+<span class="link">
+<span class="link-word">Open</span>
+<span class="rail"></span>
+</span>
+<span class="node">the window<span class="node-label">動作の相手</span></span>
+</div>
+</div>
+
+<p>例文です。<span class="en">Open the window.</span>／<span class="en">Wait a minute, please.</span>／<span class="en">Stand up, Ken.</span>／<span class="en">Bring your hat and some water.</span>　どれも先頭が動詞の原形です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>ふつうの文</th><th>命令文</th></tr>
+<tr><td class="be-cell"><span class="en">You open the window.</span></td><td class="be-cell"><span class="en">Open the window.</span></td></tr>
+<tr><td class="be-cell"><span class="en">You speak slowly.</span></td><td class="be-cell"><span class="en">Speak slowly.</span></td></tr>
+<tr><td class="be-cell"><span class="en">You wash your hands.</span></td><td class="be-cell"><span class="en">Wash your hands.</span></td></tr>
+</table>
+</div>
+
+<h2><span>be動詞の命令文は Be で始める</span></h2>
+
+<p>「静かにしなさい」は <span class="en">Be quiet.</span> です。<span class="en">am</span> <span class="en">is</span> <span class="en">are</span> の原形は <span class="en">be</span> なので、be動詞の命令文は <strong><span class="en">Be</span> で始めます</strong>。<span class="en">quiet</span> <span class="en">careful</span> <span class="en">late</span> のような、ようすを表す語が続くときは、この形になります。</p>
+
+<div class="diagram">
+<p class="diagram-cap">be動詞の命令文　are ではなく原形の be</p>
+<div class="flow">
+<span class="node">（　）<span class="node-label">主語を置かない</span></span>
+<span class="link">
+<span class="link-word">Be</span>
+<span class="rail"></span>
+</span>
+<span class="node">quiet<span class="node-label">ようす</span></span>
+</div>
+</div>
+
+<p>例文です。<span class="en">Be quiet, everyone.</span>／<span class="en">Be careful, Aya.</span>／<span class="en">Be kind to your sister.</span>　<span class="en">You are quiet.</span> は「あなたは静かです」という説明の文で、命令文ではありません。</p>
+
+<h2><span>否定の命令文は Don't で始める</span></h2>
+
+<p>「〜してはいけません」「〜しないでください」は、<strong>命令文の前に <span class="en">Don't</span> を置きます</strong>。うしろの動詞は原形のままです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>命令文</th><th>否定の命令文</th></tr>
+<tr><td class="be-cell"><span class="en">Run in the classroom.</span></td><td class="be-cell"><span class="en">Don't run in the classroom.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Touch the picture.</span></td><td class="be-cell"><span class="en">Don't touch the picture.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Forget your lunch.</span></td><td class="be-cell"><span class="en">Don't forget your lunch.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Be noisy in the library.</span></td><td class="be-cell"><span class="en">Don't be noisy in the library.</span></td></tr>
+</table>
+</div>
+
+<p><strong>be動詞の命令文でも <span class="en">Don't</span> を使います。</strong>Unit 2 では、be動詞の否定文は <span class="en">is not</span> のように be動詞のうしろに <span class="en">not</span> を置きました。命令文ではそうせず、一般動詞と同じく <span class="en">Don't</span> を先頭に置いて <span class="en">Don't be late.</span> とします。<span class="en">Not</span> だけで始めることもしません。</p>
+
+<p>ほかの例文です。<span class="en">Don't forget your lunch.</span>／<span class="en">Don't use your phone in class.</span>／<span class="en">Don't swim in this river.</span></p>
+
+<h2><span>please をつけて、ていねいにする</span></h2>
+
+<p>命令文に <span class="en">please</span> をつけると、「〜してください」とていねいな言い方になります。置く場所は<strong>文の先頭か、文の終わり</strong>です。終わりに置くときは、前にコンマを打ちます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>先頭に置く</th><th>終わりに置く</th></tr>
+<tr><td class="be-cell"><span class="en">Please open the window.</span></td><td class="be-cell"><span class="en">Open the window, please.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Please turn off the light.</span></td><td class="be-cell"><span class="en">Turn off the light, please.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Please sit down.</span></td><td class="be-cell"><span class="en">Say it again, please.</span></td></tr>
+</table>
+</div>
+
+<p>否定の命令文なら <span class="en">Please don't be late.</span> のように、<span class="en">please</span> を <span class="en">Don't</span> の前に置きます。ほかに <span class="en">Please stop here.</span>／<span class="en">Please speak slowly.</span>／<span class="en">Please say it again.</span>／<span class="en">Please turn off your phone.</span> なども、よく使う言い方です。</p>
+
+<h2><span>Let's で「〜しましょう」と誘う</span></h2>
+
+<p>相手を誘うときは、<strong><span class="en">Let's</span> のうしろに動詞の原形</strong>を置きます。<span class="en">Let's</span> は <span class="en">Let us</span> を縮めた形で、話す人も相手も「いっしょに」する動作に使います。</p>
+
+<div class="diagram is-general">
+<p class="diagram-cap">Let's の文　うしろは動詞の原形</p>
+<div class="flow">
+<span class="node">Let's<span class="node-label">誘う</span></span>
+<span class="link">
+<span class="link-word">play</span>
+<span class="rail"></span>
+</span>
+<span class="node">tennis<span class="node-label">いっしょにすること</span></span>
+</div>
+</div>
+
+<p>例文です。<span class="en">Let's play tennis this weekend.</span>／<span class="en">Let's have a picnic in the park.</span>／<span class="en">Let's play soccer after school.</span>　「〜するのはやめましょう」は、<span class="en">Let's</span> のうしろに <span class="en">not</span> を置いて <span class="en">Let's not</span> とします。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>答え方</th><th>英語</th></tr>
+<tr><td>賛成する</td><td class="be-cell"><span class="en">Yes, let's.</span>　<span class="en">Sure.</span>　<span class="en">All right.</span></td></tr>
+<tr><td>断る</td><td class="be-cell"><span class="en">No, let's not.</span>　<span class="en">Sorry, I am busy today.</span></td></tr>
+</table>
+</div>
+
+<p>対話の例です。<span class="en">Let's have lunch together. —— Sure.</span>／<span class="en">Let's walk to the station. —— Sorry, I am busy today.</span>／<span class="en">Let's go to the park by bike. —— No, let's not. It is very hot today. Then let's go by bus.</span></p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">命令か、誘いか、ふつうの文かを決める</span>
+<span class="step-d">相手に「〜しなさい」なら命令文、「〜しましょう」なら <span class="en">Let's</span> です。主語について説明する文なら、ここまでの単元と同じ形にします。</span>
+</li>
+<li>
+<span class="step-t">be動詞の文か一般動詞の文かを見分ける</span>
+<span class="step-d">Unit 7 の手順です。ようすや状態を言うなら be動詞、動作を言うなら一般動詞です。命令文では be動詞は <span class="en">Be</span> になります。</span>
+</li>
+<li>
+<span class="step-t">動詞を原形にして先頭に置く</span>
+<span class="step-d">主語は置きません。<span class="en">s</span> もつけません。<span class="en">Let's</span> の文なら、<span class="en">Let's</span> のすぐうしろに原形を置きます。</span>
+</li>
+<li>
+<span class="step-t">否定なら Don't、ていねいにするなら please</span>
+<span class="step-d"><span class="en">Don't</span> は先頭に置きます。<span class="en">please</span> は先頭か、コンマをつけて文の終わりです。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>名前の呼びかけは主語ではない</h3>
+<p><span class="en">Ken, wash your hands.</span> の <span class="en">Ken</span> は、話しかける相手を呼んでいるだけで、主語ではありません。だから動詞は原形の <span class="en">wash</span> です。コンマのない <span class="en">Ken washes his hands.</span> は、<span class="en">Ken</span> が主語の説明の文で、Unit 9 のとおり <span class="en">s</span> がつきます。<strong>名前のうしろにコンマがあるかどうか</strong>で見分けます。呼びかけは <span class="en">Stand up, Ken.</span> のように文の終わりに置くこともできます。</p>
+
+<h3>相手が何人いても形は同じ</h3>
+<p><span class="en">you</span> は1人にも2人以上にも使う語なので、命令文の形は相手の人数で変わりません。<span class="en">Be quiet, everyone.</span> は、教室の全員に向けた命令文です。</p>
+
+<h3>Let's のうしろも原形</h3>
+<p><span class="en">Let's</span> の文にも主語の説明はないので、動詞は原形です。<span class="en">Let's plays</span> とはしません。<span class="en">Let's</span> のうしろに be動詞が来るときも <span class="en">Let's be</span> です。</p>
+
+<h3>take off と turn off</h3>
+<p><span class="en">off</span> は「離れて」の意味で、動詞と組んで使います。<span class="en">Take off your shoes here.</span>（くつをぬぐ）／<span class="en">Take off your hat in the classroom.</span>（帽子をとる）／<span class="en">Turn off the light, please.</span>（明かりを消す）。どれも2語で1つの動作を表すので、間をあけて覚えないようにします。</p>
+
+<h3>掲示の文も命令文</h3>
+<p>公園や博物館の掲示には、命令文がよく使われます。<span class="en">Look at the sign by the lake.</span> と言われて掲示を見ると、<span class="en">Don't swim here.</span> と書いてある、という形です。このとき <span class="en">The sign says, "Don't swim here."</span> のように、<span class="en">say</span> を使って「〜と書いてある」と言えます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td class="be-cell"><span class="en">Be</span> と <span class="en">Are</span> の区別、<span class="en">Don't</span> と <span class="en">Not</span> の区別、<span class="en">Let's</span> のうしろの動詞の形</td></tr>
+<tr><td>書きかえ</td><td class="be-cell"><span class="en">You open the window.</span> のようなふつうの文を、命令文や否定の命令文に書きかえる</td></tr>
+<tr><td>並べ替え</td><td class="be-cell"><span class="en">please</span> と <span class="en">Don't</span> の位置、不要な <span class="en">not</span> <span class="en">is</span> を見抜かせる</td></tr>
+<tr><td>対話</td><td class="be-cell"><span class="en">Let's 〜.</span> への答えを選ばせる（<span class="en">Yes, let's.</span> <span class="en">No, let's not.</span>）</td></tr>
+<tr><td>読解</td><td class="be-cell">誘いと約束の対話から、会う時刻・場所・持ち物を読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Opens the window, please.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="gen-w">Open</span> the window, please.</span></div>
+<p class="contrast-why">命令文には主語がないので、<span class="en">s</span> をつける理由がありません。動詞は原形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Are quiet, Ken.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">Be</span> quiet, Ken.</span></div>
+<p class="contrast-why">be動詞の命令文は原形の <span class="en">Be</span> で始めます。<span class="en">Ken</span> は呼びかけで、主語ではありません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Don't noisy in the library.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Don't <span class="be-w">be</span> noisy in the library.</span></div>
+<p class="contrast-why"><span class="en">noisy</span> はようすを表す語で、動詞ではありません。<span class="en">Don't</span> のうしろには <span class="en">be</span> が要ります。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Not touch the picture.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="gen-w">Don't</span> touch the picture.</span></div>
+<p class="contrast-why">否定の命令文は <span class="en">Don't</span> で始めます。<span class="en">Not</span> だけでは始めません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Let's plays soccer after school.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Let's <span class="gen-w">play</span> soccer after school.</span></div>
+<p class="contrast-why"><span class="en">Let's</span> のうしろは動詞の原形です。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">Open the window.</span>／<span class="en">Be quiet.</span>／<span class="en">Don't be late.</span>／<span class="en">Please sit down.</span>／<span class="en">Let's play tennis this weekend.</span>　どの文も、主語を置かずに動詞または <span class="en">Let's</span> で始まっています。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。命令文かどうかは、主語があるかどうかで見分けます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">(　　　) quiet in the library, Ken.</span>
+<p class="opts"><span>ア Be</span><span>イ Are</span><span>ウ Is</span><span>エ Do</span></p></li>
+<li><span class="en">My sister Aya (　　　) the window every morning.</span>
+<p class="opts"><span>ア open</span><span>イ opens</span><span>ウ be</span><span>エ let's</span></p></li>
+<li><span class="en">(　　　) run in the classroom.</span>
+<p class="opts"><span>ア Not</span><span>イ Isn't</span><span>ウ Doesn't</span><span>エ Don't</span></p></li>
+<li><span class="en">Let's (　　　) soccer after school. —— Yes, let's.</span>
+<p class="opts"><span>ア plays</span><span>イ play</span><span>ウ are</span><span>エ does</span></p></li>
+<li><span class="en">Ken, (　　　) your hands. —— All right.</span>
+<p class="opts"><span>ア washes</span><span>イ is</span><span>ウ wash</span><span>エ does</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>窓を開けてください。<br><span class="en">[ the / open / please / window ] .</span><span class="write"></span></li>
+<li>図書館では静かにしなさい。<br><span class="en">[ quiet / in / be / the / library ] .</span><span class="write"></span></li>
+<li data-extra="1">教室で走ってはいけません。<span class="hint">1語不要</span><br><span class="en">[ run / the / don't / in / classroom / not ] .</span><span class="write"></span></li>
+<li>放課後にテニスをしましょう。<br><span class="en">[ play / let's / tennis / school / after ] .</span><span class="write"></span></li>
+<li data-extra="1">ケン、遅れないでね。<span class="hint">1語不要</span><br><span class="en">[ be / don't / late / is ] , Ken.</span><span class="write"></span></li>
+<li>私にあなたの辞書を見せてください。<br><span class="en">[ show / your / please / me / dictionary ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">Opens the window, please.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Don't noisy in the library.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Let's plays soccer after school.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Are quiet, Ken.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Not touch the picture.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">明かりを消してください。</span><span class="write"></span></li>
+<li><span class="q-ja">この川で泳いではいけません。</span><span class="write"></span></li>
+<li><span class="q-ja">公園でピクニックをしましょう。</span><span class="write"></span></li>
+<li><span class="q-ja">ゆっくり話してください。</span><span class="write"></span></li>
+<li>be を使って「気をつけてね、アヤ」と書く。<span class="cond">3語</span><span class="write"></span></li>
+<li>let's を使って「今週末、湖へ行きましょう」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li>sorry を使って、誘いを「ごめんなさい、今日は忙しいです」と断る。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">アヤとタクの対話です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">アヤとタクの対話</p>
+<p>Aya: Taku, it is very hot today.<br>
+Taku: Yes, it is. Let's go to the lake this weekend.<br>
+Aya: That's a good idea. What day do we go?<br>
+Taku: Let's go on Sunday. My brother Ken comes with us, too.<br>
+Aya: Nice. What time do we meet?<br>
+Taku: Let's meet at the station at nine. Please don't be late.<br>
+Aya: All right. What do I bring?<br>
+Taku: Bring your hat and some water. <span class="num">①</span><span class="ul">Don't forget your lunch.</span><br>
+Aya: Do you swim in the lake?<br>
+Taku: No, we don't. The water is very cold. Look at the sign by the lake. It says, "Don't swim here."<br>
+Aya: I see.<br>
+Taku: Let's walk by the lake and take a lot of pictures.</p>
+<p class="reading-wc">およそ120語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア アヤとタクは土曜日に湖へ行く。<br>
+イ アヤとタクは9時に駅で会う。<br>
+ウ タクの兄は湖へ行かない。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 湖では泳いでもよい。<br>
+イ タクはアヤに、帽子と水を持ってくるように言っている。<br>
+ウ 湖の水は温かい。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Aya and Taku meet at the (　　　) at nine.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">The sign by the lake says, "Don't (　　　) here."</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>自分の学校の決まりを、Don't を使って1文で書く。<span class="hint">例：Don't use your phone in class.</span><span class="write"></span></li>
+<li>友だちを何かに誘う文を、Let's を使って1文で書く。<span class="hint">例：Let's have lunch together.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>主語があるかどうか</strong>を確かめ、主語がなければ<strong>動詞を原形にする</strong>ところまで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　Be</span><p class="a-why">主語がなく、<span class="en">Ken</span> は呼びかけです。<span class="en">quiet</span> はようすを表す語なので、be動詞の原形 <span class="en">Be</span> で始めます。</p></li>
+<li><span class="a-key">イ　opens</span><p class="a-why">この文には主語 <span class="en">My sister Aya</span> があり、命令文ではありません。<span class="en">she</span> に置きかえられる主語なので、Unit 9 のとおり <span class="en">s</span> をつけます。</p></li>
+<li><span class="a-key">エ　Don't</span><p class="a-why">否定の命令文は <span class="en">Don't</span> で始めます。<span class="en">Not</span> だけでは始めず、<span class="en">Isn't</span> <span class="en">Doesn't</span> は主語のある文で使う形です。</p></li>
+<li><span class="a-key">イ　play</span><p class="a-why"><span class="en">Let's</span> のうしろは動詞の原形です。答えの <span class="en">Yes, let's.</span> は賛成の言い方です。</p></li>
+<li><span class="a-key">ウ　wash</span><p class="a-why"><span class="en">Ken</span> のうしろにコンマがあるので、呼びかけです。主語のない命令文なので、動詞は原形です。</p></li>
+
+<li><span class="a-key">Please open the window.</span><p class="a-why"><span class="en">please</span> を先頭に置き、そのうしろに命令文を続けます。<span class="en">Open the window, please.</span> としても意味は同じですが、語群にコンマがないので先頭に置きます。</p></li>
+<li><span class="a-key">Be quiet in the library.</span><p class="a-why"><span class="en">quiet</span> はようすを表す語なので、be動詞の命令文です。原形 <span class="en">Be</span> で始めます。</p></li>
+<li><span class="a-key">Don't run in the classroom.</span><p class="a-why">不要な語は <span class="en">not</span> です。否定の命令文は <span class="en">Don't</span> で始め、<span class="en">not</span> を別に置きません。</p></li>
+<li><span class="a-key">Let's play tennis after school.</span><p class="a-why"><span class="en">Let's</span> のすぐうしろに動詞の原形 <span class="en">play</span> を置きます。<span class="en">after school</span> は2語で「放課後に」です。</p></li>
+<li><span class="a-key">Don't be late, Ken.</span><p class="a-why">不要な語は <span class="en">is</span> です。be動詞の否定の命令文は <span class="en">Don't be</span> で、<span class="en">is</span> は使いません。</p></li>
+<li><span class="a-key">Please show me your dictionary.</span><p class="a-why"><span class="en">show</span> のうしろに「人」、そのうしろに「もの」を置きます。Unit 8 で扱った語順です。</p></li>
+
+<li><span class="a-key">Open the window, please.</span><p class="a-why">理由の例：命令文には主語がないので、動詞は <span class="en">s</span> をつけない原形にするから。</p></li>
+<li><span class="a-key">Don't be noisy in the library.</span><p class="a-why">理由の例：<span class="en">noisy</span> は動詞ではないので、<span class="en">Don't</span> のうしろに be動詞の原形 <span class="en">be</span> が必要だから。</p></li>
+<li><span class="a-key">Let's play soccer after school.</span><p class="a-why">理由の例：<span class="en">Let's</span> のうしろの動詞は原形にするから。</p></li>
+<li><span class="a-key">Be quiet, Ken.</span><p class="a-why">理由の例：be動詞の命令文は、<span class="en">are</span> ではなく原形の <span class="en">Be</span> で始めるから。</p></li>
+<li><span class="a-key">Don't touch the picture.</span><p class="a-why">理由の例：否定の命令文は <span class="en">Not</span> ではなく <span class="en">Don't</span> で始めるから。</p></li>
+
+<li><span class="a-key">Please turn off the light.</span><p class="a-why"><span class="en">Turn off the light, please.</span> でも正解です。<span class="en">turn off</span> は2語で「消す」です。</p></li>
+<li><span class="a-key">Don't swim in this river.</span><p class="a-why">否定の命令文なので <span class="en">Don't</span> で始め、動詞は原形 <span class="en">swim</span> です。</p></li>
+<li><span class="a-key">Let's have a picnic in the park.</span><p class="a-why">「ピクニックをする」は <span class="en">have a picnic</span> です。<span class="en">Let's</span> のうしろは原形の <span class="en">have</span> です。</p></li>
+<li><span class="a-key">Please speak slowly.</span><p class="a-why"><span class="en">Speak slowly, please.</span> でも正解です。<span class="en">slowly</span> は動詞のうしろに置きます。</p></li>
+<li><span class="a-key">Be careful, Aya.</span><p class="a-why"><span class="en">careful</span> はようすを表す語なので <span class="en">Be</span> で始めます。<span class="en">Aya</span> は呼びかけで、前にコンマを打ちます。</p></li>
+<li><span class="a-key">Let's go to the lake this weekend.</span><p class="a-why"><span class="en">this weekend</span> の前には前置詞をつけません。Unit 11 の <span class="en">every</span> <span class="en">next</span> と同じです。</p></li>
+<li><span class="a-key">Sorry, I am busy today.</span><p class="a-why">誘いを断るときの言い方です。断る理由をうしろに続けます。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">Let's meet at the station at nine.</span> とあります。アは <span class="en">Let's go on Sunday.</span> と合わず、ウは <span class="en">My brother Ken comes with us, too.</span> と合いません。</p></li>
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">Bring your hat and some water.</span> とあります。アは掲示の <span class="en">Don't swim here.</span> と合わず、ウは <span class="en">The water is very cold.</span> と合いません。</p></li>
+<li><span class="a-key">station</span><p class="a-why">本文の <span class="en">Let's meet at the station at nine.</span> に合わせます。</p></li>
+<li><span class="a-key">swim</span><p class="a-why">本文の <span class="en">It says, "Don't swim here."</span> に合わせます。<span class="en">Don't</span> のうしろなので原形です。</p></li>
+<li><span class="a-key">お昼ごはんを忘れないでね。</span><p class="a-why"><span class="en">Don't</span> で始まる否定の命令文なので、「〜しないで」「〜してはいけない」と訳します。「昼食を忘れてはいけません」でも正解です。</p></li>
+
+<li><span class="a-key">解答例　Don't use your phone in class.</span><p class="a-why"><span class="en">Don't</span> で始まり、うしろの動詞が原形になっていれば正解です。</p></li>
+<li><span class="a-key">解答例　Let's have lunch together.</span><p class="a-why"><span class="en">Let's</span> のうしろに動詞の原形が来ていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">命令文は、主語を置かずに<strong>動詞の原形</strong>で始めます。be動詞なら <span class="en">Be</span> です。否定は先頭に <span class="en">Don't</span> を置き、be動詞でも <span class="en">Don't be</span> とします。<span class="en">please</span> は先頭か、コンマをつけて文の終わりです。誘うときは <span class="en">Let's</span> のうしろに原形を置き、<span class="en">Yes, let's.</span> <span class="en">No, let's not.</span> で答えます。名前のうしろにコンマがあれば呼びかけで、主語ではありません。</p>
+</div>
+</div>
+</body>
+</html>

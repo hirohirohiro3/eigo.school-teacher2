@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>基本語リスト｜中学英語 リスタート教材</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --gen:#9C540F;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+}
+.sheet{max-width:34rem;margin:0 auto;padding:1.6rem 1.25rem 3rem;}
+.en{font-family:Georgia,"Times New Roman",serif;}
+
+/* 見出し */
+.site-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:1.6rem;
+}
+.site-kicker{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.85rem;font-weight:600;
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .55rem;
+}
+.site-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.5rem;line-height:1.45;font-weight:600;margin:0 0 .45rem;
+}
+.site-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.8;}
+
+/* 共通リンク（基本語リストなど） */
+.tools{margin:0 0 2rem;padding:0;list-style:none;}
+.tools li{margin:0 0 .55rem;}
+.tools a,.tools span.off{
+  display:flex;align-items:baseline;gap:.15rem .7rem;flex-wrap:wrap;
+  padding:.65rem .9rem;
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);color:var(--ink);text-decoration:none;
+  font-size:.95rem;line-height:1.5;
+}
+.tools span.off{
+  border-color:var(--rule);color:var(--ink-3);background:transparent;
+  border-style:dashed;
+}
+.tools .label{font-family:"Klee One",sans-serif;font-weight:600;white-space:nowrap;}
+.tools .desc{font-size:.82rem;color:var(--ink-2);}
+.tools span.off .desc{color:var(--ink-3);}
+
+/* 部の見出し */
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;margin:2.2rem 0 .9rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+.part-note{font-size:.84rem;color:var(--ink-2);margin:-.5rem 0 1rem;line-height:1.7;}
+
+/* 単元カード */
+.units{list-style:none;margin:0;padding:0;}
+.units > li{
+  border:2px solid var(--rule);border-radius:var(--hand);
+  padding:.75rem .9rem .8rem;margin:0 0 .7rem;
+  background:var(--paper);
+}
+.units > li.ready{border-color:var(--ink);}
+.u-head{display:flex;align-items:baseline;gap:.6rem;margin:0 0 .5rem;flex-wrap:wrap;}
+.u-no{
+  font-family:"Klee One",Georgia,serif;font-size:.76rem;font-weight:600;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;white-space:nowrap;
+}
+.ready .u-no{background:var(--hi-be);border-color:var(--be);color:var(--be);}
+.u-title{
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:1.02rem;
+  line-height:1.5;
+}
+.units > li:not(.ready) .u-title{color:var(--ink-3);}
+
+.u-links{display:flex;gap:.5rem;flex-wrap:wrap;}
+.u-links a{
+  flex:1 1 8rem;
+  display:block;text-align:center;text-decoration:none;
+  padding:.4rem .5rem;font-size:.88rem;line-height:1.5;
+  font-family:"Klee One",sans-serif;font-weight:600;
+  border:2px solid currentColor;
+}
+.u-links a.work{color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+.u-links a.vocab{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+.u-links .soon{
+  flex:1 1 8rem;text-align:center;
+  padding:.4rem .5rem;font-size:.85rem;
+  font-family:"Klee One",sans-serif;
+  color:var(--ink-3);border:2px dashed var(--rule);border-radius:var(--hand);
+}
+
+.foot{
+  margin-top:2.5rem;padding-top:1rem;
+  border-top:1px dashed var(--rule);
+  font-size:.82rem;color:var(--ink-3);line-height:1.8;
+}
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .units > li,.tools li{break-inside:avoid;}
+  .site-kicker{transform:none;}
+}
+
+/* 基本語リスト */
+.lead-box{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);padding:.85rem 1rem;margin:0 0 1.8rem;
+  font-size:.88rem;line-height:1.85;
+}
+.lead-box p{margin:0 0 .5rem;}
+.lead-box p:last-child{margin:0;}
+.g-note{font-size:.82rem;color:var(--ink-2);margin:-.5rem 0 .7rem;line-height:1.75;}
+.wl{
+  list-style:none;margin:0 0 1.6rem;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(9rem,1fr));
+  gap:0 .9rem;
+}
+.wl li{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:0 .45rem;
+  padding:.3rem .1rem;border-bottom:1px dashed var(--rule);
+  line-height:1.65;
+}
+.wl .w{
+  font-family:Georgia,"Times New Roman",serif;font-weight:700;
+  font-size:.98rem;color:var(--be);
+}
+.wl .j{font-size:.8rem;color:var(--ink-2);}
+.wl li.wide{grid-column:1 / -1;}
+.count{
+  font-family:"Klee One",Georgia,serif;font-size:.76rem;font-weight:600;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;white-space:nowrap;margin-left:.5rem;
+}
+@media print{
+  .wl{grid-template-columns:repeat(3,1fr);}
+  .wl li,.lead-box{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header class="site-head">
+  <p class="site-kicker">中学英語 リスタート</p>
+  <h1 class="site-title">基本語リスト</h1>
+  <p class="site-lead">この教材が、単語帳の見出し語に立てずに使う77語です。代名詞・be動詞・冠詞・前置詞・疑問詞・1〜10の数字がここに入ります。どの単元でも断りなく出てくるので、先に目を通しておくと単語帳の負担が減ります。</p>
+</header>
+
+<ul class="tools">
+  <li><a href="index.html"><span class="label">単元の一覧</span><span class="desc">ワークブックと単語帳　全16単元</span></a></li>
+  <li><a href="word-index.html"><span class="label">総索引</span><span class="desc">全16単元の見出し語479語をアルファベット順に</span></a></li>
+</ul>
+
+<div class="lead-box">
+  <p>単語帳にのっている語は、その単元で新しく出てきた語です。それに対してこのページの語は、どの単元でも使うため、どこにも新出語として出てきません。</p>
+  <p>覚え方は単語帳と同じでかまいませんが、意味をひとつ覚えるより、文のどこに置くかをつかむほうが役に立ちます。</p>
+</div>
+
+<h2><span>代名詞　主語になる形</span><span class="count">7語</span></h2>
+<p class="g-note">文の主語に置く形です。</p>
+<ul class="wl">
+  <li><span class="w en">I</span><span class="j">私は</span></li>
+  <li><span class="w en">you</span><span class="j">あなたは／あなたたちは</span></li>
+  <li><span class="w en">he</span><span class="j">彼は</span></li>
+  <li><span class="w en">she</span><span class="j">彼女は</span></li>
+  <li><span class="w en">it</span><span class="j">それは</span></li>
+  <li><span class="w en">we</span><span class="j">私たちは</span></li>
+  <li><span class="w en">they</span><span class="j">彼らは／それらは</span></li>
+</ul>
+<h2><span>代名詞　目的語になる形</span><span class="count">4語</span></h2>
+<p class="g-note">動詞や前置詞のあとに置く形です。you と it は主語のときと同じ形なので、この4語だけを覚えます。</p>
+<ul class="wl">
+  <li><span class="w en">me</span><span class="j">私を・私に</span></li>
+  <li><span class="w en">him</span><span class="j">彼を・彼に</span></li>
+  <li><span class="w en">us</span><span class="j">私たちを・私たちに</span></li>
+  <li><span class="w en">them</span><span class="j">彼らを・彼らに</span></li>
+</ul>
+<h2><span>代名詞　「〜の」を表す形</span><span class="count">7語</span></h2>
+<p class="g-note">うしろに名詞を置いて使います。</p>
+<ul class="wl">
+  <li><span class="w en">my</span><span class="j">私の</span></li>
+  <li><span class="w en">your</span><span class="j">あなたの</span></li>
+  <li><span class="w en">his</span><span class="j">彼の</span></li>
+  <li><span class="w en">her</span><span class="j">彼女の</span></li>
+  <li><span class="w en">its</span><span class="j">それの</span></li>
+  <li><span class="w en">our</span><span class="j">私たちの</span></li>
+  <li><span class="w en">their</span><span class="j">彼らの</span></li>
+</ul>
+<h2><span>代名詞　「〜のもの」を表す形</span><span class="count">5語</span></h2>
+<p class="g-note">1語で「〜のもの」を表し、うしろに名詞を置きません。his は「彼の」と同じ形です。</p>
+<ul class="wl">
+  <li><span class="w en">mine</span><span class="j">私のもの</span></li>
+  <li><span class="w en">yours</span><span class="j">あなたのもの</span></li>
+  <li><span class="w en">hers</span><span class="j">彼女のもの</span></li>
+  <li><span class="w en">ours</span><span class="j">私たちのもの</span></li>
+  <li><span class="w en">theirs</span><span class="j">彼らのもの</span></li>
+</ul>
+<h2><span>be動詞</span><span class="count">6語</span></h2>
+<p class="g-note">主語と、現在か過去かで形が決まります。</p>
+<ul class="wl">
+  <li><span class="w en">be</span><span class="j">be動詞の原形</span></li>
+  <li><span class="w en">am</span><span class="j">〜です（I のとき）</span></li>
+  <li><span class="w en">is</span><span class="j">〜です（3人称単数のとき）</span></li>
+  <li class="wide"><span class="w en">are</span><span class="j">〜です（you・複数のとき）</span></li>
+  <li class="wide"><span class="w en">was</span><span class="j">〜でした（am・is の過去形）</span></li>
+  <li class="wide"><span class="w en">were</span><span class="j">〜でした（are の過去形）</span></li>
+</ul>
+<h2><span>do・does・did</span><span class="count">5語</span></h2>
+<p class="g-note">一般動詞の疑問文と否定文をつくります。「する」という意味の動詞としても使います。</p>
+<ul class="wl">
+  <li class="wide"><span class="w en">do</span><span class="j">する／疑問文・否定文をつくる</span></li>
+  <li><span class="w en">does</span><span class="j">do の3人称単数現在形</span></li>
+  <li><span class="w en">did</span><span class="j">do の過去形</span></li>
+  <li><span class="w en">don't</span><span class="j">do not の短縮形</span></li>
+  <li><span class="w en">doesn't</span><span class="j">does not の短縮形</span></li>
+</ul>
+<h2><span>冠詞</span><span class="count">3語</span></h2>
+<p class="g-note">名詞の前に置きます。</p>
+<ul class="wl">
+  <li><span class="w en">a</span><span class="j">1つの</span></li>
+  <li class="wide"><span class="w en">an</span><span class="j">1つの（母音の音で始まる語の前）</span></li>
+  <li><span class="w en">the</span><span class="j">その</span></li>
+</ul>
+<h2><span>文と文、語と語をつなぐ語</span><span class="count">4語</span></h2>
+<ul class="wl">
+  <li><span class="w en">and</span><span class="j">そして・〜と</span></li>
+  <li><span class="w en">but</span><span class="j">しかし</span></li>
+  <li><span class="w en">or</span><span class="j">または</span></li>
+  <li><span class="w en">so</span><span class="j">だから</span></li>
+</ul>
+<h2><span>そのほかのよく使う語</span><span class="count">8語</span></h2>
+<ul class="wl">
+  <li><span class="w en">not</span><span class="j">〜でない</span></li>
+  <li><span class="w en">very</span><span class="j">とても</span></li>
+  <li><span class="w en">too</span><span class="j">〜も・〜すぎる</span></li>
+  <li><span class="w en">also</span><span class="j">〜もまた</span></li>
+  <li><span class="w en">now</span><span class="j">今</span></li>
+  <li><span class="w en">here</span><span class="j">ここに</span></li>
+  <li><span class="w en">there</span><span class="j">そこに</span></li>
+  <li><span class="w en">well</span><span class="j">じょうずに・よく</span></li>
+</ul>
+<h2><span>前置詞</span><span class="count">10語</span></h2>
+<p class="g-note">うしろに名詞や代名詞を置きます。</p>
+<ul class="wl">
+  <li><span class="w en">in</span><span class="j">〜の中に</span></li>
+  <li><span class="w en">on</span><span class="j">〜の上に</span></li>
+  <li><span class="w en">at</span><span class="j">〜に（時刻・地点）</span></li>
+  <li><span class="w en">to</span><span class="j">〜へ</span></li>
+  <li><span class="w en">for</span><span class="j">〜のために</span></li>
+  <li><span class="w en">with</span><span class="j">〜といっしょに</span></li>
+  <li><span class="w en">from</span><span class="j">〜から</span></li>
+  <li><span class="w en">of</span><span class="j">〜の</span></li>
+  <li><span class="w en">under</span><span class="j">〜の下に</span></li>
+  <li><span class="w en">about</span><span class="j">〜について</span></li>
+</ul>
+<h2><span>疑問詞</span><span class="count">8語</span></h2>
+<p class="g-note">この8語は Unit 10 で単語帳の見出し語としても扱います。</p>
+<ul class="wl">
+  <li><span class="w en">what</span><span class="j">何</span></li>
+  <li><span class="w en">who</span><span class="j">だれ</span></li>
+  <li><span class="w en">whose</span><span class="j">だれの</span></li>
+  <li><span class="w en">which</span><span class="j">どちら</span></li>
+  <li><span class="w en">where</span><span class="j">どこ</span></li>
+  <li><span class="w en">when</span><span class="j">いつ</span></li>
+  <li><span class="w en">why</span><span class="j">なぜ</span></li>
+  <li><span class="w en">how</span><span class="j">どのように</span></li>
+</ul>
+<h2><span>数字　1〜10</span><span class="count">10語</span></h2>
+<p class="g-note">11 以上の数と、first・second などの順番を表す語は Unit 11 で扱います。</p>
+<ul class="wl">
+  <li><span class="w en">one</span><span class="j">1</span></li>
+  <li><span class="w en">two</span><span class="j">2</span></li>
+  <li><span class="w en">three</span><span class="j">3</span></li>
+  <li><span class="w en">four</span><span class="j">4</span></li>
+  <li><span class="w en">five</span><span class="j">5</span></li>
+  <li><span class="w en">six</span><span class="j">6</span></li>
+  <li><span class="w en">seven</span><span class="j">7</span></li>
+  <li><span class="w en">eight</span><span class="j">8</span></li>
+  <li><span class="w en">nine</span><span class="j">9</span></li>
+  <li><span class="w en">ten</span><span class="j">10</span></li>
+</ul>
+
+<p class="foot">全77語。単語帳の見出し語479語とは別に数えています。<br>
+印刷するときは、ブラウザの印刷メニューからA4縦を選んでください。</p>
+
+</div>
+</body>
+</html>

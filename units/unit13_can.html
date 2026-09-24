@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 13　助動詞 can</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab13_can.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 13</p>
+<h1 class="unit-title">助動詞 can</h1>
+<p class="unit-lead">「〜できる」と言うときは、動詞の前に <span class="en">can</span> を置きます。<span class="en">can</span> は<strong>助動詞</strong>という品詞で、動詞の前に置いて意味を足す語です。この単元で覚えることは1つだけです。<strong><span class="en">can</span> のうしろの動詞は、いつも原形にします。</strong>入試では、<span class="en">can</span> のうしろの動詞の形と、<span class="en">Can you 〜?</span> への答え方がよく問われます。</p>
+</header>
+
+<h2><span>can のうしろは動詞の原形</span></h2>
+
+<p>「ケンは速く泳ぐことができます」は <span class="en">Ken can swim fast.</span> です。主語のうしろに <span class="en">can</span> を置き、そのうしろに<strong>動詞の原形</strong>を続けます。原形とは、<span class="en">s</span> も何もつけない、辞書に載っている形のことです。</p>
+
+<div class="diagram">
+<p class="diagram-cap">can の文　can のうしろは原形</p>
+<div class="flow">
+<span class="node">Ken<span class="node-label">主語</span></span>
+<span class="link">
+<span class="link-word">can</span>
+<span class="rail"></span>
+</span>
+<span class="node">swim fast<span class="node-label">動詞の原形から</span></span>
+</div>
+</div>
+
+<p><strong>なぜ原形にするのか。</strong>Unit 9 では、主語が <span class="en">he</span> や <span class="en">she</span> に置きかえられるとき、動詞に <span class="en">s</span> をつけました。この <span class="en">s</span> は「主語がどの人か」を動詞に示すしるしです。<span class="en">can</span> の文では、主語のすぐうしろに来る <span class="en">can</span> がこの位置を受け持ちます。だから、そのうしろの動詞には何もつけず、原形のままにします。Unit 6 と Unit 9 で、<span class="en">do</span> <span class="en">does</span> のうしろの動詞を原形にしたのと同じしくみです。</p>
+
+<p>そして <span class="en">can</span> 自身も、主語によって形を変えません。<span class="en">I can</span> も <span class="en">Ken can</span> も同じ <span class="en">can</span> です。<span class="en">cans</span> という形はありません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>ふつうの文</th><th>can の文</th></tr>
+<tr><td class="be-cell"><span class="en">Ken swims fast.</span></td><td class="be-cell"><span class="en">Ken can swim fast.</span></td></tr>
+<tr><td class="be-cell"><span class="en">My sister draws pictures well.</span></td><td class="be-cell"><span class="en">My sister can draw pictures well.</span></td></tr>
+<tr><td class="be-cell"><span class="en">I play the guitar.</span></td><td class="be-cell"><span class="en">I can play the guitar.</span></td></tr>
+</table>
+</div>
+
+<p>例文です。<span class="en">Taku can jump very high.</span>／<span class="en">My father can climb that mountain.</span>／<span class="en">Birds can fly high in the sky.</span>／<span class="en">My brother can understand English well.</span>／<span class="en">Aya can make a good speech.</span>　どの文も、<span class="en">can</span> のうしろが動詞の原形です。<span class="en">well</span>（上手に）や <span class="en">fast</span>（速く）は、文の終わりに置きます。</p>
+
+<h2><span>否定文は can't / cannot</span></h2>
+
+<p>「〜できない」は、<span class="en">can</span> のうしろに <span class="en">not</span> を置きます。ふつうは短縮形の <span class="en">can't</span> を使います。短縮しないときは <span class="en">cannot</span> と<strong>1語で書きます</strong>。うしろの動詞は、やはり原形です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>肯定文</th><th>否定文</th></tr>
+<tr><td class="be-cell"><span class="en">I can ride a horse.</span></td><td class="be-cell"><span class="en">I can't ride a horse.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Ken can play the guitar.</span></td><td class="be-cell"><span class="en">Ken can't play the guitar.</span></td></tr>
+<tr><td class="be-cell"><span class="en">We can see stars here.</span></td><td class="be-cell"><span class="en">We cannot see stars here.</span></td></tr>
+</table>
+</div>
+
+<p><strong>なぜ <span class="en">don't</span> を使わないのか。</strong>一般動詞の否定文で <span class="en">don't</span> <span class="en">doesn't</span> を使ったのは、否定の <span class="en">not</span> を置く場所を作るためでした。<span class="en">can</span> の文には、もう <span class="en">can</span> という助動詞があります。だから <span class="en">not</span> は <span class="en">can</span> のうしろに置けばよく、<span class="en">don't</span> を足す必要がありません。</p>
+
+<p>ほかの例文です。<span class="en">I can't understand this problem.</span>／<span class="en">I can't find my key.</span>／<span class="en">I can't hear your voice.</span></p>
+
+<h2><span>疑問文は Can を先頭に出す</span></h2>
+
+<p>「〜できますか」は、<strong><span class="en">can</span> を主語の前に出します</strong>。答えるときも <span class="en">can</span> を使い、<span class="en">Yes, 〜 can.</span> か <span class="en">No, 〜 can't.</span> と言います。答えの主語は代名詞にします。</p>
+
+<div class="diagram">
+<p class="diagram-cap">can の疑問文　can が主語の前へ出る</p>
+<div class="flow">
+<span class="link">
+<span class="link-word">Can</span>
+<span class="rail"></span>
+</span>
+<span class="node">you<span class="node-label">主語</span></span>
+<span class="node">ride a horse?<span class="node-label">動詞は原形のまま</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問文</th><th>答え</th></tr>
+<tr><td class="be-cell"><span class="en">Can you ride a horse?</span></td><td class="be-cell"><span class="en">Yes, I can.</span>／<span class="en">No, I can't.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Can your sister ride a bike?</span></td><td class="be-cell"><span class="en">Yes, she can.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Can your father drive a car?</span></td><td class="be-cell"><span class="en">No, he can't.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">Can you</span> の問いに <span class="en">Yes, I do.</span> と答えるのは誤りです。<strong>問いに使われた語で答えます。</strong><span class="en">Do you 〜?</span> には <span class="en">do</span>、<span class="en">Can you 〜?</span> には <span class="en">can</span> です。ほかの例文です。<span class="en">Can you read this kanji?</span>／<span class="en">Can you hear me? —— Yes, I can.</span></p>
+
+<h2><span>疑問詞と can</span></h2>
+
+<p>Unit 10 の疑問詞は、<span class="en">can</span> の疑問文の前に置きます。<span class="en">What can you make? —— I can make sandwiches.</span> のように、答えは <span class="en">Yes</span> <span class="en">No</span> ではなく、たずねられた内容で答えます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問詞</th><th>例文</th></tr>
+<tr><td>What</td><td class="be-cell"><span class="en">What can your mother make?</span></td></tr>
+<tr><td>Where</td><td class="be-cell"><span class="en">Where can we see a lot of stars?</span></td></tr>
+<tr><td>Who（主語）</td><td class="be-cell"><span class="en">Who can carry this heavy box? —— Taku can.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">Who can 〜?</span> は、疑問詞 <span class="en">who</span> が主語です。Unit 10 と同じく、疑問詞を取り去っても <span class="en">can carry this heavy box</span> と主語の位置が空くだけなので、<span class="en">can</span> を前に出す必要はありません。答えは <span class="en">Taku can.</span> のように「人＋<span class="en">can</span>」です。</p>
+
+<h2><span>Can I 〜? と Can you 〜?</span></h2>
+
+<p><span class="en">can</span> の疑問文は「できますか」とたずねるだけでなく、次の2つの使い方をよくします。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>例と答え</th></tr>
+<tr><td>Can I 〜?</td><td>〜してもいいですか（許可）</td><td class="be-cell"><span class="en">Can I use your pen? —— Of course.</span></td></tr>
+<tr><td>Can you 〜?</td><td>〜してくれますか（依頼）</td><td class="be-cell"><span class="en">Can you throw the ball to me? —— Sure.</span></td></tr>
+</table>
+</div>
+
+<p>ほかの例文です。<span class="en">Can I open the window? —— Sure.</span>／<span class="en">Can you come here quickly? —— All right.</span>／<span class="en">Can you look for my key with me? —— Sorry, I can't.</span>／<span class="en">Can you speak in a loud voice? —— Sure.</span>　許可や依頼への答えは、<span class="en">Sure.</span> <span class="en">Of course.</span> <span class="en">All right.</span>（いいですよ）や <span class="en">Sorry, I can't.</span>（ごめんなさい、できません）がよく使われます。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">「できる」の意味があるかを確かめる</span>
+<span class="step-d">「〜できる」「〜してもいい」「〜してくれますか」なら <span class="en">can</span> を使います。</span>
+</li>
+<li>
+<span class="step-t">be動詞の文か一般動詞の文かを見分ける</span>
+<span class="step-d">Unit 7 の手順です。ようすや状態を言うなら be動詞、動作を言うなら一般動詞です。<span class="en">can</span> の文の多くは、動作を言う一般動詞の文です。</span>
+</li>
+<li>
+<span class="step-t">can を置き、うしろの動詞を原形にする</span>
+<span class="step-d">主語が何でも <span class="en">can</span> の形は同じです。動詞に <span class="en">s</span> はつけません。</span>
+</li>
+<li>
+<span class="step-t">否定なら can't、疑問なら Can を先頭へ</span>
+<span class="step-d"><span class="en">don't</span> <span class="en">does</span> は使いません。答えも <span class="en">can</span> <span class="en">can't</span> で返します。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>can と do / does は重ねない</h3>
+<p><span class="en">Does your father can drive a car?</span> は誤りです。<span class="en">does</span> も <span class="en">can</span> も助動詞で、1つの文に2つは並べません。<span class="en">can</span> があれば <span class="en">Can your father drive a car?</span> とします。否定の <span class="en">He doesn't can swim.</span> も同じ理由で誤りで、<span class="en">He can't swim.</span> です。</p>
+
+<h3>can と be動詞も並べない</h3>
+<p><span class="en">Taku is can swim.</span> のように、<span class="en">is</span> と <span class="en">can</span> を並べることもしません。Unit 7 で、be動詞と一般動詞は1つの文に同居しないと学びました。<span class="en">can</span> の文では、主語のうしろに <span class="en">can</span>、そのうしろに原形の動詞を置くだけです。</p>
+
+<h3>主語の前にある語を見る</h3>
+<p><span class="en">Only Taku can answer this question.</span> の <span class="en">only</span> は「〜だけ」で、主語 <span class="en">Taku</span> を説明する語です。主語がどこまでかを見きわめてから、そのうしろの <span class="en">can</span> と原形を確かめます。</p>
+
+<h3>「上手に〜できる」の語順</h3>
+<p>「アヤは英語を上手に話せます」は <span class="en">Aya can speak English well.</span> です。<span class="en">well</span> は動詞と目的語のあとに置き、<span class="en">can</span> と動詞の間には入れません。<span class="en">Please read the question carefully.</span> の <span class="en">carefully</span>（注意して）も同じ位置です。</p>
+
+<h3>far from 〜 と at night</h3>
+<p><span class="en">The farm is far from the town.</span> は「農場は町から遠い」、<span class="en">At night, it is very dark here.</span> は「夜はここはとても暗い」です。<span class="en">far from</span> と <span class="en">at night</span> は、それぞれ2語で1つの意味を表します。<span class="en">it</span> は Unit 11 の時刻と同じく、ようすを言うための主語で、「それ」とは訳しません。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td class="be-cell"><span class="en">can</span> のうしろの動詞の形、<span class="en">can't</span> と <span class="en">doesn't</span> の区別、<span class="en">Can 〜?</span> への答え</td></tr>
+<tr><td>書きかえ</td><td class="be-cell"><span class="en">Ken swims fast.</span> を <span class="en">can</span> の文にし、動詞の <span class="en">s</span> を取る</td></tr>
+<tr><td>並べ替え</td><td class="be-cell"><span class="en">Can I 〜?</span> の語順、不要な <span class="en">do</span> <span class="en">jumps</span> を見抜かせる</td></tr>
+<tr><td>対話</td><td class="be-cell"><span class="en">Can I 〜?</span> <span class="en">Can you 〜?</span> への答え（<span class="en">Sure.</span> <span class="en">Of course.</span> <span class="en">Sorry, I can't.</span>）</td></tr>
+<tr><td>読解</td><td class="be-cell">手紙や日記から、だれが何をできるか・できないかを読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My brother can swims very fast.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My brother can <span class="gen-w">swim</span> very fast.</span></div>
+<p class="contrast-why"><span class="en">can</span> のうしろの動詞は原形です。主語が1人でも <span class="en">s</span> はつけません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Aya cans play the piano.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Aya <span class="be-w">can</span> play the piano.</span></div>
+<p class="contrast-why"><span class="en">can</span> は主語によって形を変えません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Does your father can drive a car?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">Can</span> your father drive a car?</span></div>
+<p class="contrast-why">助動詞は1つの文に1つです。<span class="en">can</span> を先頭に出します。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Can you speak English? —— Yes, I do.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Can you speak English? —— Yes, I <span class="be-w">can</span>.</span></div>
+<p class="contrast-why">問いに <span class="en">can</span> が使われているので、答えも <span class="en">can</span> で返します。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">Ken can swim fast.</span>／<span class="en">I can't ride a horse.</span>／<span class="en">Can you ride a horse? —— Yes, I can.</span>／<span class="en">What can your mother make?</span>／<span class="en">Can I use your pen? —— Of course.</span>　どの文も、<span class="en">can</span> のうしろが動詞の原形です。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。<span class="en">can</span> があるかどうか、主語が何かを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My brother Ken (　　　) play the guitar very well.</span>
+<p class="opts"><span>ア can</span><span>イ cans</span><span>ウ is</span><span>エ does</span></p></li>
+<li><span class="en">My sister Aya can (　　　) Japanese and English.</span>
+<p class="opts"><span>ア speaks</span><span>イ speak</span><span>ウ is</span><span>エ does</span></p></li>
+<li><span class="en">(　　　) your sister ride a bike? —— Yes, she can.</span>
+<p class="opts"><span>ア Does</span><span>イ Is</span><span>ウ Can</span><span>エ Do</span></p></li>
+<li><span class="en">My grandfather (　　　) drive a car, but he can ride a horse.</span>
+<p class="opts"><span>ア isn't</span><span>イ doesn't</span><span>ウ can't</span><span>エ don't</span></p></li>
+<li><span class="en">Can I use your dictionary? —— (　　　)</span>
+<p class="opts"><span>ア Yes, I can.</span><span>イ Sure.</span><span>ウ No, I can.</span><span>エ Yes, let's.</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私の姉は上手に絵をかくことができます。<br><span class="en">[ can / my / draw / sister / pictures / well ] .</span><span class="write"></span></li>
+<li>あなたはこの漢字が読めますか。<br><span class="en">[ read / you / can / kanji / this ] ?</span><span class="write"></span></li>
+<li data-extra="1">タクはとても高く跳ぶことができます。<span class="hint">1語不要</span><br><span class="en">[ jump / can / Taku / high / very / jumps ] .</span><span class="write"></span></li>
+<li>この町では、夜に星を見ることができません。<br><span class="en">[ can't / we / see / stars / in / this / town / at / night ] .</span><span class="write"></span></li>
+<li data-extra="1">窓を開けてもいいですか。<span class="hint">1語不要</span><br><span class="en">[ open / I / can / the / window / do ] ?</span><span class="write"></span></li>
+<li>だれがこの重い箱を運べますか。<br><span class="en">[ this / who / heavy / carry / box / can ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">My brother can swims very fast.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Aya cans play the piano.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Does your father can drive a car?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Can you speak English? —— Yes, I do.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Taku is can swim in the sea.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私の祖父は車を運転することができます。</span><span class="write"></span></li>
+<li><span class="q-ja">ケンはギターをひくことができません。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたは馬に乗れますか。——はい、乗れます。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたのお母さんは何を作ることができますか。</span><span class="write"></span></li>
+<li>can を使って「あなたの辞書を使ってもいいですか」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>can't を使って「私は速く走れません」と書く。<span class="cond">4語</span><span class="write"></span></li>
+<li>well を使って「アヤは英語を上手に話すことができます」と書く。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">アヤが友だちのエマに送ったメールです。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">アヤからエマへのメール</p>
+<p>Hello, Emma.<br>
+I am at my grandfather's farm now. The farm is far from the town. My grandfather is a farmer. He can drive a big car, and he can ride a horse, too. I can't ride a horse. It is very difficult for me.<br>
+My brother Ken can swim very fast. He swims in the sea every morning.<br>
+At night, it is very dark here, so we can see a lot of stars in the sky. <span class="num">①</span><span class="ul">They are very beautiful.</span><br>
+Can you come to the farm next summer? We can ride bikes by the sea together. Please send me an email.<br>
+Aya</p>
+<p class="reading-wc">およそ100語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア アヤは馬に乗ることができる。<br>
+イ ケンは毎朝、海で泳ぐ。<br>
+ウ 農場は町の近くにある。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア アヤの祖父は大きな車を運転できる。<br>
+イ 農場では、夜は明るくて星が見えない。<br>
+ウ アヤはエマに、手紙を送ってほしいと書いている。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Aya can't (　　　) a horse, but her grandfather can.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Aya and Ken can see a lot of (　　　) in the sky at night.</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>自分ができることを、can を使って1文で書く。<span class="hint">例：I can swim fast.</span><span class="write"></span></li>
+<li>自分ができないことを、can't を使って1文で書く。<span class="hint">例：I can't ride a horse.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong><span class="en">can</span> があるかどうか</strong>を確かめ、あれば<strong>うしろの動詞を原形にする</strong>ところまで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　can</span><p class="a-why">うしろに原形の <span class="en">play</span> があるので、助動詞 <span class="en">can</span> が入ります。<span class="en">can</span> は主語が1人でも <span class="en">cans</span> にはしません。</p></li>
+<li><span class="a-key">イ　speak</span><p class="a-why"><span class="en">can</span> のうしろは動詞の原形です。主語 <span class="en">My sister Aya</span> につられて <span class="en">speaks</span> としないようにします。</p></li>
+<li><span class="a-key">ウ　Can</span><p class="a-why">答えが <span class="en">Yes, she can.</span> なので、問いも <span class="en">can</span> の疑問文です。<span class="en">Can</span> を主語の前に出します。</p></li>
+<li><span class="a-key">ウ　can't</span><p class="a-why">うしろの動詞が原形の <span class="en">drive</span> で、後半も <span class="en">can</span> の文です。主語が1人でも <span class="en">doesn't</span> ではなく <span class="en">can't</span> を使います。</p></li>
+<li><span class="a-key">イ　Sure.</span><p class="a-why"><span class="en">Can I 〜?</span> は「〜してもいいですか」と許可を求める言い方です。「いいですよ」と答えるので <span class="en">Sure.</span> です。アは相手ではなく自分のことを答えています。</p></li>
+
+<li><span class="a-key">My sister can draw pictures well.</span><p class="a-why"><span class="en">can</span> のうしろに原形 <span class="en">draw</span> を置き、<span class="en">well</span> は文の終わりです。</p></li>
+<li><span class="a-key">Can you read this kanji?</span><p class="a-why">疑問文なので <span class="en">Can</span> を主語 <span class="en">you</span> の前に出します。動詞 <span class="en">read</span> は原形のままです。</p></li>
+<li><span class="a-key">Taku can jump very high.</span><p class="a-why">不要な語は <span class="en">jumps</span> です。<span class="en">can</span> のうしろは原形の <span class="en">jump</span> です。</p></li>
+<li><span class="a-key">We can't see stars in this town at night.</span><p class="a-why">否定文なので <span class="en">can't</span> のうしろに原形 <span class="en">see</span> を置きます。<span class="en">at night</span> は2語で「夜に」です。</p></li>
+<li><span class="a-key">Can I open the window?</span><p class="a-why">不要な語は <span class="en">do</span> です。「〜してもいいですか」は <span class="en">Can I 〜?</span> で、<span class="en">do</span> は重ねません。</p></li>
+<li><span class="a-key">Who can carry this heavy box?</span><p class="a-why">疑問詞 <span class="en">who</span> が主語なので、そのすぐうしろに <span class="en">can</span> と原形 <span class="en">carry</span> を続けます。</p></li>
+
+<li><span class="a-key">My brother can swim very fast.</span><p class="a-why">理由の例：<span class="en">can</span> のうしろの動詞は、主語が1人でも原形にするから。</p></li>
+<li><span class="a-key">Aya can play the piano.</span><p class="a-why">理由の例：<span class="en">can</span> は主語によって形を変えず、<span class="en">s</span> をつけないから。</p></li>
+<li><span class="a-key">Can your father drive a car?</span><p class="a-why">理由の例：<span class="en">does</span> と <span class="en">can</span> は1つの文に並べず、<span class="en">can</span> の疑問文は <span class="en">Can</span> を先頭に出すから。</p></li>
+<li><span class="a-key">Can you speak English? —— Yes, I can.</span><p class="a-why">理由の例：<span class="en">Can you 〜?</span> の問いには <span class="en">can</span> を使って答えるから。</p></li>
+<li><span class="a-key">Taku can swim in the sea.</span><p class="a-why">理由の例：<span class="en">can</span> の文に be動詞の <span class="en">is</span> は要らず、主語のうしろは <span class="en">can</span> と原形だけだから。</p></li>
+
+<li><span class="a-key">My grandfather can drive a car.</span><p class="a-why">「運転する」は <span class="en">drive</span> です。<span class="en">can</span> のうしろなので原形です。</p></li>
+<li><span class="a-key">Ken can't play the guitar.</span><p class="a-why"><span class="en">Ken cannot play the guitar.</span> でも正解です。<span class="en">cannot</span> は1語で書きます。</p></li>
+<li><span class="a-key">Can you ride a horse? —— Yes, I can.</span><p class="a-why">「馬に乗る」は <span class="en">ride a horse</span> です。答えも <span class="en">can</span> を使います。</p></li>
+<li><span class="a-key">What can your mother make?</span><p class="a-why">疑問詞 <span class="en">What</span> を先頭に置き、そのうしろは <span class="en">can</span> の疑問文の語順です。</p></li>
+<li><span class="a-key">Can I use your dictionary?</span><p class="a-why">許可を求めるので <span class="en">Can I 〜?</span> です。</p></li>
+<li><span class="a-key">I can't run fast.</span><p class="a-why"><span class="en">can't</span> は1語に数えます。<span class="en">fast</span> は文の終わりです。</p></li>
+<li><span class="a-key">Aya can speak English well.</span><p class="a-why"><span class="en">well</span> は <span class="en">speak English</span> のあとに置きます。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">He swims in the sea every morning.</span> とあります。アは <span class="en">I can't ride a horse.</span> と合わず、ウは <span class="en">The farm is far from the town.</span> と合いません。</p></li>
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">He can drive a big car</span> とあります。イは <span class="en">it is very dark here, so we can see a lot of stars</span> と合わず、ウはメールを送ってほしいと書いているので合いません。</p></li>
+<li><span class="a-key">ride</span><p class="a-why">本文の <span class="en">I can't ride a horse.</span> と <span class="en">he can ride a horse, too</span> に合わせます。<span class="en">can't</span> のうしろなので原形です。</p></li>
+<li><span class="a-key">stars</span><p class="a-why">本文の <span class="en">we can see a lot of stars in the sky</span> に合わせます。<span class="en">a lot of</span> のうしろなので複数形です。</p></li>
+<li><span class="a-key">星はとても美しいです。</span><p class="a-why"><span class="en">They</span> は前の文の <span class="en">stars</span> を指します。「それらはとても美しいです」でも正解です。</p></li>
+
+<li><span class="a-key">解答例　I can swim fast.</span><p class="a-why"><span class="en">can</span> のうしろに動詞の原形が来ていれば正解です。</p></li>
+<li><span class="a-key">解答例　I can't ride a horse.</span><p class="a-why"><span class="en">can't</span> または <span class="en">cannot</span> のうしろに動詞の原形が来ていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0"><span class="en">can</span> は動詞の前に置いて「〜できる」の意味を足す助動詞です。<strong><span class="en">can</span> のうしろの動詞はいつも原形</strong>で、<span class="en">can</span> 自身も形を変えません。否定は <span class="en">can't</span>（<span class="en">cannot</span>）、疑問は <span class="en">Can</span> を主語の前に出し、答えも <span class="en">can</span> で返します。<span class="en">Can I 〜?</span> は許可、<span class="en">Can you 〜?</span> は依頼にも使います。<span class="en">do</span> <span class="en">does</span> や be動詞とは並べません。</p>
+</div>
+</div>
+</body>
+</html>

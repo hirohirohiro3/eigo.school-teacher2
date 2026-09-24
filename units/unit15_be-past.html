@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 15　be動詞の過去形</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab15_be-past.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 15</p>
+<h1 class="unit-title">be動詞の過去形</h1>
+<p class="unit-lead">「〜でした」「〜にいました」と過去のことを言うときは、be動詞を<strong>過去形の <span class="en">was</span> か <span class="en">were</span></strong> にします。<strong><span class="en">am</span> と <span class="en">is</span> は <span class="en">was</span> に、<span class="en">are</span> は <span class="en">were</span> に変わります。</strong>文の形そのものは、Unit 1・2 で学んだ be動詞の文と同じです。入試では、主語に合わせた <span class="en">was</span> と <span class="en">were</span> の使い分け、<span class="en">yesterday</span> <span class="en">last 〜</span> <span class="en">〜 ago</span> のような過去を示す語、<span class="en">Were you 〜?</span> への答え方がよく問われます。</p>
+</header>
+
+<h2><span>am・is は was、are は were</span></h2>
+
+<p>「ケンは昨日、病気でした」は <span class="en">Ken was sick yesterday.</span> です。いまのことなら <span class="en">Ken is sick today.</span> ですが、過去のことなので <span class="en">is</span> を <span class="en">was</span> にします。</p>
+
+<div class="diagram">
+<p class="diagram-cap">be動詞の過去形　主語とうしろの語を「＝」でつなぐのは同じ</p>
+<div class="flow">
+<span class="node">Ken<span class="node-label">主語</span></span>
+<span class="link">
+<span class="link-word">was</span>
+<span class="rail"></span>
+</span>
+<span class="node">sick yesterday<span class="node-label">ようす・過去を示す語</span></span>
+</div>
+</div>
+
+<p><strong>なぜ be動詞の形を変えるのか。</strong>日本語では「病気です」を「病気でした」と、文の終わりで過去を示します。英語では、<strong>いつのことかを文の動詞の形で示します。</strong>be動詞の文では be動詞が文の動詞なので、be動詞を過去の形にします。うしろの <span class="en">sick</span> は変わりません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語</th><th>現在</th><th>過去</th><th>例文</th></tr>
+<tr><td>I</td><td class="be-cell">am</td><td class="be-cell">was</td><td class="be-cell"><span class="en">I was busy yesterday.</span></td></tr>
+<tr><td>he / she / it / 1人・1つ</td><td class="be-cell">is</td><td class="be-cell">was</td><td class="be-cell"><span class="en">It was windy yesterday.</span></td></tr>
+<tr><td>you / 2人以上・2つ以上</td><td class="be-cell">are</td><td class="be-cell">were</td><td class="be-cell"><span class="en">We were in Kyoto last week.</span></td></tr>
+</table>
+</div>
+
+<p><strong>現在は3つあった形が、過去では2つになります。</strong><span class="en">am</span> と <span class="en">is</span> はどちらも <span class="en">was</span> になり、<span class="en">are</span> だけが <span class="en">were</span> になります。<span class="en">you</span> は1人に話しかけるときでも <span class="en">are</span> を使ったので、過去も <span class="en">were</span> です。</p>
+
+<p>例文です。<span class="en">Ken was sick in bed yesterday.</span>／<span class="en">My parents weren't in Kyoto last week.</span>／<span class="en">It was very hot last month.</span>／<span class="en">Your room was dirty yesterday, but it is clean now.</span>　最後の文は、前半が過去で <span class="en">was</span>、後半がいまのことで <span class="en">is</span> です。いつのことかで be動詞を選びます。</p>
+
+<h2><span>過去を示す語</span></h2>
+
+<p>過去の文には、いつのことかを示す語がよくつきます。<strong>この語が見えたら、be動詞を過去形にします。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>意味</th><th>例</th></tr>
+<tr><td><span class="en">yesterday</span></td><td>昨日</td><td class="be-cell"><span class="en">How was the weather yesterday?</span></td></tr>
+<tr><td><span class="en">last 〜</span></td><td>この前の〜・昨〜</td><td class="be-cell"><span class="en">last night</span>（昨夜）<br><span class="en">last week</span>（先週）<br><span class="en">last month</span>（先月）<br><span class="en">last year</span>（去年）</td></tr>
+<tr><td><span class="en">〜 ago</span></td><td>（いまから）〜前に</td><td class="be-cell"><span class="en">two days ago</span>（2日前に）<br><span class="en">three years ago</span>（3年前に）</td></tr>
+<tr><td><span class="en">then</span> / <span class="en">at that time</span></td><td>そのとき</td><td class="be-cell"><span class="en">I was in the kitchen at that time.</span></td></tr>
+</table>
+</div>
+
+<h3>last と ago の置き方</h3>
+<p><span class="en">last</span> は「この前の」という意味で、<span class="en">week</span> <span class="en">month</span> <span class="en">Sunday</span> の前に置きます。<strong><span class="en">last</span> の前に <span class="en">on</span> や <span class="en">in</span> はつけません。</strong><span class="en">on Sunday</span> とは言いますが、<span class="en">last Sunday</span> には <span class="en">on</span> をつけません。<span class="en">last</span> そのものが「いつの」を示しているからです。</p>
+<p><span class="en">ago</span> は、<strong>時間の長さのうしろ</strong>に置きます。<span class="en">three years ago</span> は「いまから3年さかのぼったとき」です。日本語の「3年前」と同じ順番です。<span class="en">I was an elementary school student three years ago.</span>（私は3年前、小学生でした）のように使います。</p>
+
+<p>いまのことと並べると、ちがいがはっきりします。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>現在</th><th>過去</th></tr>
+<tr><td class="be-cell"><span class="en">I am busy today.</span></td><td class="be-cell"><span class="en">I was busy yesterday.</span></td></tr>
+<tr><td class="be-cell"><span class="en">The bus is full now.</span></td><td class="be-cell"><span class="en">The bus was empty this morning.</span></td></tr>
+<tr><td class="be-cell"><span class="en">My sisters are in Nara now.</span></td><td class="be-cell"><span class="en">My sisters were in Nara last month.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">It was windy yesterday.</span> の <span class="en">it</span> は、Unit 11 の時刻、Unit 14 の天気と同じく、天気を言うための主語で、「それ」とは訳しません。</p>
+
+<h2><span>否定文と疑問文は be動詞の文と同じ</span></h2>
+
+<p>作り方は Unit 2 と同じです。<strong>否定文は <span class="en">was</span> <span class="en">were</span> のうしろに <span class="en">not</span> を置き、疑問文は <span class="en">was</span> <span class="en">were</span> を主語の前に出します。</strong>短縮形は <span class="en">wasn't</span>（<span class="en">was not</span>）と <span class="en">weren't</span>（<span class="en">were not</span>）です。<span class="en">don't</span> <span class="en">doesn't</span> は使いません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>肯定文</th><th>否定文</th></tr>
+<tr><td class="be-cell"><span class="en">I was nervous.</span></td><td class="be-cell"><span class="en">I was not nervous.</span></td></tr>
+<tr><td class="be-cell"><span class="en">The test was difficult.</span></td><td class="be-cell"><span class="en">The test wasn't difficult.</span></td></tr>
+<tr><td class="be-cell"><span class="en">They were at home.</span></td><td class="be-cell"><span class="en">They weren't at home last night.</span></td></tr>
+</table>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">過去の疑問文　was / were が主語の前へ出る</p>
+<div class="flow">
+<span class="link">
+<span class="link-word">Were</span>
+<span class="rail"></span>
+</span>
+<span class="node">you<span class="node-label">主語</span></span>
+<span class="node">tired?<span class="node-label">ようす</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問文</th><th>答え</th></tr>
+<tr><td class="be-cell"><span class="en">Was Ken sick yesterday?</span></td><td class="be-cell"><span class="en">Yes, he was.</span>／<span class="en">No, he wasn't.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Were you tired last night?</span></td><td class="be-cell"><span class="en">Yes, I was.</span>／<span class="en">No, I wasn't.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Was your teacher angry?</span></td><td class="be-cell"><span class="en">No, she wasn't.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Were your parents at home?</span></td><td class="be-cell"><span class="en">Yes, they were.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">Were you 〜?</span> には <span class="en">I was</span> で答えます。</strong>問いの主語は <span class="en">you</span> でも、答える人は自分のことを <span class="en">I</span> で言うので、be動詞も <span class="en">I</span> に合わせて <span class="en">was</span> になります。Unit 2 で <span class="en">Are you 〜?</span> に <span class="en">Yes, I am.</span> と答えたのと同じしくみです。<span class="en">Yes, I were.</span> は誤りです。ただし「あなたたちは」と2人以上にたずねたときは、<span class="en">Yes, we were.</span> と答えます。</p>
+
+<h2><span>疑問詞と was / were</span></h2>
+
+<p>Unit 10 の疑問詞は、過去の疑問文の前に置きます。答えは <span class="en">Yes</span> <span class="en">No</span> ではなく、たずねられたことを過去形で答えます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問詞</th><th>例文</th></tr>
+<tr><td>Where</td><td class="be-cell"><span class="en">Where were you yesterday? —— I was at the library.</span></td></tr>
+<tr><td>How</td><td class="be-cell"><span class="en">How was your school trip? —— It was fun.</span></td></tr>
+<tr><td>How</td><td class="be-cell"><span class="en">How was your summer vacation? —— It was great.</span></td></tr>
+<tr><td>Why</td><td class="be-cell"><span class="en">Why were you sad yesterday? —— Because my dog was sick.</span></td></tr>
+<tr><td>Who（主語）</td><td class="be-cell"><span class="en">Who was absent from school yesterday? —— Ken was.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">How was 〜?</span> は「〜はどうでしたか」と感想やようすをたずねる言い方で、会話でよく使います。答えの <span class="en">It</span> は、たずねられた <span class="en">your school trip</span> を指します。</p>
+
+<p><span class="en">Who was absent from school yesterday?</span> は、疑問詞 <span class="en">who</span> が主語です。Unit 10 と同じく、疑問詞を取り去っても主語の位置が空くだけなので、語順は変わりません。<span class="en">who</span> は1人として扱うので <span class="en">was</span> です。答えは <span class="en">Ken was.</span> のように「人＋be動詞」です。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">いまのことか、過去のことかを確かめる</span>
+<span class="step-d"><span class="en">yesterday</span> <span class="en">last 〜</span> <span class="en">〜 ago</span> <span class="en">at that time</span> があれば過去、<span class="en">now</span> <span class="en">today</span> があればいまのことです。</span>
+</li>
+<li>
+<span class="step-t">be動詞の文か一般動詞の文かを見分ける</span>
+<span class="step-d">Unit 7 の手順です。ようすや状態を言うなら be動詞、動作を言うなら一般動詞です。<span class="en">was</span> <span class="en">were</span> を使うのは be動詞の文だけです。</span>
+</li>
+<li>
+<span class="step-t">主語に合わせて was か were を置く</span>
+<span class="step-d"><span class="en">I</span> と1人・1つなら <span class="en">was</span>、<span class="en">you</span> と2人以上・2つ以上なら <span class="en">were</span> です。</span>
+</li>
+<li>
+<span class="step-t">否定なら was / were＋not、疑問なら was / were を先頭へ</span>
+<span class="step-d"><span class="en">don't</span> <span class="en">does</span> は使いません。答えも <span class="en">was</span> <span class="en">were</span> で返し、<span class="en">Were you 〜?</span> には <span class="en">I was</span> で答えます。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>and でつないだ主語は were</h3>
+<p><span class="en">My sister and I were at the concert last night.</span> の主語は <span class="en">My sister and I</span> の2人なので <span class="en">were</span> です。<span class="en">I</span> のすぐうしろにあっても <span class="en">was</span> にはしません。反対に <span class="en">Everyone was happy.</span> の <span class="en">everyone</span> は、何人いても1人として扱うので <span class="en">was</span> です。</p>
+
+<h3>was のうしろに一般動詞を置かない</h3>
+<p>Unit 7 で学んだとおり、be動詞と一般動詞は1つの文に同居しません。過去のことでも同じで、<span class="en">I was play tennis.</span> のような文は作りません。「テニスをした」のような一般動詞の過去のことは、Unit 16 で学ぶ一般動詞の過去形で言います。<strong>この単元で <span class="en">was</span> <span class="en">were</span> のうしろに置くのは、ようすを言う語、場所を言う語、名詞です。</strong></p>
+
+<h3>「休む」「遅れる」も be動詞で言える</h3>
+<p>「学校を休む」は <span class="en">be absent from school</span>、「学校に遅れる」は <span class="en">be late for school</span> です。<span class="en">absent</span>（欠席している）と <span class="en">late</span>（遅れている）はようすを言う語なので、be動詞と組みます。<span class="en">Ken was absent from school yesterday.</span>／<span class="en">I was late for school this morning.</span>　日本語では「休みました」「遅れました」と動作のように言いますが、英語ではようすとして言う点に気をつけます。</p>
+
+<h3>いまと過去が1つの文に並ぶとき</h3>
+<p><span class="en">It is very hot now, but it was cold this morning.</span> のように、<span class="en">but</span> の前と後ろで時がちがうことがあります。be動詞は、それぞれの部分の時に合わせて選びます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td class="be-cell">主語に合う <span class="en">was</span> か <span class="en">were</span>、過去を示す語を手がかりにした現在形との区別</td></tr>
+<tr><td>対話</td><td class="be-cell"><span class="en">Were you 〜? —— Yes, I was.</span> の答え方、<span class="en">How was 〜?</span> への返事</td></tr>
+<tr><td>並べ替え</td><td class="be-cell"><span class="en">How was the weather yesterday?</span> の語順、不要な <span class="en">is</span> <span class="en">was</span> を見抜かせる</td></tr>
+<tr><td>誤文訂正</td><td class="be-cell"><span class="en">and</span> でつないだ主語の <span class="en">were</span>、<span class="en">on last Sunday</span> のような余分な前置詞</td></tr>
+<tr><td>読解</td><td class="be-cell">週末や旅行の話から、だれがいつどこにいたか、どうだったかを読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My sister and I was at the concert last night.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My sister and I <span class="be-w">were</span> at the concert last night.</span></div>
+<p class="contrast-why">主語は <span class="en">and</span> でつないだ2人なので、<span class="en">were</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Ken is sick in bed yesterday.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Ken <span class="be-w">was</span> sick in bed yesterday.</span></div>
+<p class="contrast-why"><span class="en">yesterday</span> があるので過去のことです。<span class="en">is</span> を <span class="en">was</span> にします。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Were you busy? —— Yes, I were.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Were you busy? —— Yes, I <span class="be-w">was</span>.</span></div>
+<p class="contrast-why">答えの主語は <span class="en">I</span> なので、be動詞も <span class="en">I</span> に合わせて <span class="en">was</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">We were at the zoo on last Sunday.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">We were at the zoo last Sunday.</span></div>
+<p class="contrast-why"><span class="en">last</span> がいつのことかを示すので、前に <span class="en">on</span> はつけません。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">Ken was sick yesterday.</span>／<span class="en">We were in Kyoto last week.</span>／<span class="en">The test wasn't difficult.</span>／<span class="en">Were you tired last night? —— Yes, I was.</span>／<span class="en">Where were you yesterday? —— I was at the library.</span>　どの文も、主語のうしろ（疑問文では前）に <span class="en">was</span> か <span class="en">were</span> があり、うしろの語の形は現在の文と変わりません。</p>
+
+<p>ほかの例文です。<span class="en">Taku was nervous at the concert.</span>／<span class="en">The game was exciting.</span>／<span class="en">Our classroom was empty at that time.</span>／<span class="en">The trains were full on Sunday.</span>／<span class="en">It was cloudy in the morning.</span>／<span class="en">Emma was in Okinawa last month.</span>／<span class="en">My shoes were dirty, so I am washing them now.</span>　最後の文は、前半が過去の be動詞の文、後半が Unit 14 の現在進行形です。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。いまのことか過去のことか、主語が何かを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My brother and I (　　　) at the library yesterday.</span>
+<p class="opts"><span>ア was</span><span>イ were</span><span>ウ are</span><span>エ is</span></p></li>
+<li><span class="en">Ken (　　　) sick in bed last Friday, but he is at school today.</span>
+<p class="opts"><span>ア is</span><span>イ was</span><span>ウ were</span><span>エ does</span></p></li>
+<li><span class="en">(　　　) you busy last night? —— Yes, I was.</span>
+<p class="opts"><span>ア Was</span><span>イ Were</span><span>ウ Do</span><span>エ Are</span></p></li>
+<li><span class="en">Where (　　　) your parents two days ago? —— They were in Kyoto.</span>
+<p class="opts"><span>ア was</span><span>イ is</span><span>ウ are</span><span>エ were</span></p></li>
+<li><span class="en">It (　　　) very hot now, but it was cold this morning.</span>
+<p class="opts"><span>ア was</span><span>イ is</span><span>ウ were</span><span>エ are</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私たちは先週、京都にいました。<br><span class="en">[ were / we / in / Kyoto / last / week ] .</span><span class="write"></span></li>
+<li>昨日の天気はどうでしたか。<br><span class="en">[ was / how / the / weather / yesterday ] ?</span><span class="write"></span></li>
+<li data-extra="1">ケンは昨日、学校を休みました。<span class="hint">1語不要</span><br><span class="en">[ Ken / was / absent / from / school / yesterday / is ] .</span><span class="write"></span></li>
+<li>先週の数学の試験は難しくありませんでした。<br><span class="en">[ the / math / test / last / week / wasn't / difficult ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたたちは昨夜、家にいましたか。<span class="hint">1語不要</span><br><span class="en">[ you / were / at / home / last / night / was ] ?</span><span class="write"></span></li>
+<li>私は3年前、小学生でした。<br><span class="en">[ was / I / an / elementary / school / student / three / years / ago ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">My sister and I was at the concert last night.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Ken is sick in bed yesterday.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Was you at home yesterday?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Were you busy? —— Yes, I were.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">We were at the zoo on last Sunday.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私は昨日、とても忙しかったです。</span><span class="write"></span></li>
+<li><span class="q-ja">私の両親は先週、京都にいませんでした。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたは昨夜、疲れていましたか。——はい、疲れていました。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたは昨日どこにいましたか。</span><span class="write"></span></li>
+<li>ago を使って「その店は10年前は小さかったです」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li>at that time を使って「そのとき、私は台所にいました」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li>be late for を使って「私は今朝、学校に遅れました」と書く。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">月曜日の朝、アヤとエマが教室で週末のことを話しています。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">アヤとエマの会話</p>
+<p>Aya: Hello, Emma. How was your weekend?<br>
+Emma: It was great. I was in Kyoto with my family on Saturday and Sunday.<br>
+Aya: That's nice. How was the weather there?<br>
+Emma: It was cloudy and a little cold, but <span class="num">①</span><span class="ul">the old temples were really beautiful.</span> The trains were full, so we were very tired at night.<br>
+Aya: I was at home on Saturday. My brother Ken was sick, and my mother was busy, so I was with him all day.<br>
+Emma: Is he at school today?<br>
+Aya: Yes, he is. On Sunday, Ken and I were at a concert in the park. It was exciting.<br>
+Emma: Who was the singer?<br>
+Aya: Yumi Sato. She is very popular.</p>
+<p class="reading-wc">およそ120語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア エマは土曜日だけ京都にいた。<br>
+イ 京都の天気はくもりで、少し寒かった。<br>
+ウ アヤの母は、土曜日はひまだった。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ケンは今日、学校に来ている。<br>
+イ アヤとケンは土曜日にコンサートに行っていた。<br>
+ウ 電車はすいていた。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Aya was with Ken all day on Saturday because he was (　　　).</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Emma and her family (　　　) very tired at night.</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>昨日のあなたのようすや、いた場所を、was か were を使って1文で書く。<span class="hint">例：I was at the library yesterday.</span><span class="write"></span></li>
+<li>数年前のあなたのことを、ago を使って1文で書く。<span class="hint">例：I was a member of the soccer club three years ago.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>いまのことか過去のことか</strong>を確かめ、過去なら<strong>主語に合った was / were</strong> になっているかまで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　were</span><p class="a-why"><span class="en">yesterday</span> があるので過去です。主語 <span class="en">My brother and I</span> は2人なので <span class="en">were</span> です。</p></li>
+<li><span class="a-key">イ　was</span><p class="a-why"><span class="en">last Friday</span> があるので過去です。主語 <span class="en">Ken</span> は1人なので <span class="en">was</span> です。後半の <span class="en">he is at school today</span> はいまのことです。</p></li>
+<li><span class="a-key">イ　Were</span><p class="a-why">主語が <span class="en">you</span> なので <span class="en">Were</span> です。答えは自分のことなので <span class="en">I was</span> になっています。<span class="en">Do</span> は一般動詞の疑問文に使う語です。</p></li>
+<li><span class="a-key">エ　were</span><p class="a-why"><span class="en">two days ago</span> があるので過去です。主語 <span class="en">your parents</span> は2人なので <span class="en">were</span> です。</p></li>
+<li><span class="a-key">イ　is</span><p class="a-why"><span class="en">now</span> があるので、いまのことです。<span class="en">but</span> のあとは <span class="en">this morning</span> のことなので <span class="en">was</span> になっています。</p></li>
+
+<li><span class="a-key">We were in Kyoto last week.</span><p class="a-why">主語 <span class="en">We</span> のうしろに <span class="en">were</span>、そのうしろに場所と時を置きます。<span class="en">last week</span> の前に <span class="en">in</span> はつけません。</p></li>
+<li><span class="a-key">How was the weather yesterday?</span><p class="a-why">疑問詞 <span class="en">How</span> を先頭に置き、そのうしろは be動詞の疑問文の語順です。主語は <span class="en">the weather</span> です。</p></li>
+<li><span class="a-key">Ken was absent from school yesterday.</span><p class="a-why">不要な語は <span class="en">is</span> です。<span class="en">yesterday</span> があるので <span class="en">was</span> を使います。</p></li>
+<li><span class="a-key">The math test last week wasn't difficult.</span><p class="a-why">主語は <span class="en">The math test last week</span> です。否定文は <span class="en">wasn't</span> を主語のうしろに置きます。</p></li>
+<li><span class="a-key">Were you at home last night?</span><p class="a-why">不要な語は <span class="en">was</span> です。主語が <span class="en">you</span> なので <span class="en">Were</span> を先頭に出します。</p></li>
+<li><span class="a-key">I was an elementary school student three years ago.</span><p class="a-why"><span class="en">elementary</span> が母音で始まるので <span class="en">an</span> です。<span class="en">three years ago</span> は文の終わりに置きます。</p></li>
+
+<li><span class="a-key">My sister and I were at the concert last night.</span><p class="a-why">理由の例：主語が <span class="en">and</span> でつないだ2人なので、<span class="en">were</span> にするから。</p></li>
+<li><span class="a-key">Ken was sick in bed yesterday.</span><p class="a-why">理由の例：<span class="en">yesterday</span> があり過去のことなので、<span class="en">is</span> を過去形の <span class="en">was</span> にするから。</p></li>
+<li><span class="a-key">Were you at home yesterday?</span><p class="a-why">理由の例：主語が <span class="en">you</span> のときは、1人でも <span class="en">were</span> を使うから。</p></li>
+<li><span class="a-key">Were you busy? —— Yes, I was.</span><p class="a-why">理由の例：答えの主語は <span class="en">I</span> なので、be動詞は <span class="en">was</span> にするから。</p></li>
+<li><span class="a-key">We were at the zoo last Sunday.</span><p class="a-why">理由の例：<span class="en">last</span> がついた語の前には <span class="en">on</span> をつけないから。</p></li>
+
+<li><span class="a-key">I was very busy yesterday.</span><p class="a-why">主語が <span class="en">I</span> なので <span class="en">was</span> です。</p></li>
+<li><span class="a-key">My parents weren't in Kyoto last week.</span><p class="a-why"><span class="en">My parents were not in Kyoto last week.</span> でも正解です。<span class="en">parents</span> は2人なので <span class="en">were</span> です。</p></li>
+<li><span class="a-key">Were you tired last night? —— Yes, I was.</span><p class="a-why"><span class="en">Were</span> を先頭に出し、答えは <span class="en">I was</span> で返します。</p></li>
+<li><span class="a-key">Where were you yesterday?</span><p class="a-why">疑問詞 <span class="en">Where</span> のうしろは、be動詞の疑問文の語順です。</p></li>
+<li><span class="a-key">The store was small ten years ago.</span><p class="a-why"><span class="en">ten years ago</span> は「いまから10年前に」です。<span class="en">The shop was small ten years ago.</span> でも正解です。</p></li>
+<li><span class="a-key">I was in the kitchen at that time.</span><p class="a-why"><span class="en">at that time</span> は3語で「そのとき」です。<span class="en">At that time, I was in the kitchen.</span> でも正解です。</p></li>
+<li><span class="a-key">I was late for school this morning.</span><p class="a-why"><span class="en">be late for 〜</span> で「〜に遅れる」です。「遅れた」でも、動作ではなくようすとして be動詞で言います。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">エマが <span class="en">It was cloudy and a little cold</span> と言っています。アは <span class="en">on Saturday and Sunday</span> と合わず、ウは <span class="en">my mother was busy</span> と合いません。</p></li>
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">Is he at school today?</span> に <span class="en">Yes, he is.</span> と答えています。イはコンサートが <span class="en">On Sunday</span> なので合わず、ウは <span class="en">The trains were full</span> と合いません。</p></li>
+<li><span class="a-key">sick</span><p class="a-why">本文の <span class="en">My brother Ken was sick</span> に合わせます。</p></li>
+<li><span class="a-key">were</span><p class="a-why">主語 <span class="en">Emma and her family</span> は2人以上で、過去のことなので <span class="en">were</span> です。本文では <span class="en">we were very tired at night</span> となっています。</p></li>
+<li><span class="a-key">その古いお寺は、本当に美しかったです。</span><p class="a-why"><span class="en">temples</span> は複数なので「お寺はどれも」と訳してもかまいません。<span class="en">were</span> なので「美しかった」と過去で訳します。</p></li>
+
+<li><span class="a-key">解答例　I was at the library yesterday.</span><p class="a-why">主語に合った <span class="en">was</span> か <span class="en">were</span> を使い、昨日のことを言っていれば正解です。</p></li>
+<li><span class="a-key">解答例　I was a member of the soccer club three years ago.</span><p class="a-why">時間の長さのうしろに <span class="en">ago</span> を置いていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">過去のことを言うときは、be動詞を過去形にします。<strong><span class="en">am</span> と <span class="en">is</span> は <span class="en">was</span>、<span class="en">are</span> は <span class="en">were</span></strong> です。<span class="en">you</span> と2人以上の主語は <span class="en">were</span>、<span class="en">I</span> と1人・1つの主語は <span class="en">was</span> です。<span class="en">yesterday</span> <span class="en">last 〜</span> <span class="en">〜 ago</span> が過去を示す目印で、<span class="en">last</span> の前に <span class="en">on</span> はつけません。否定文・疑問文は be動詞の文と同じ作り方で、<span class="en">Were you 〜?</span> には <span class="en">I was</span> で答えます。</p>
+</div>
+</div>
+</body>
+</html>

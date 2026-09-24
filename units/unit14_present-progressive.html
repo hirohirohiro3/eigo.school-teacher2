@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 14　現在進行形</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab14_present-progressive.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 14</p>
+<h1 class="unit-title">現在進行形</h1>
+<p class="unit-lead">「いま〜しているところです」と言うときは、<strong>be動詞＋動詞の <span class="en">-i<span>n</span>g</span>形</strong>を使います。これを<strong>現在進行形</strong>といいます。先に1つ決まりを押さえます。<strong><span class="en">-i<span>n</span>g</span>形になった動詞は、それだけでは文の動詞として働きません。だから、文の動詞の役目を be動詞が受け持ちます。</strong>入試では、be動詞を落とさないこと、<span class="en">-i<span>n</span>g</span>形の綴り、ふだんの動作を言う現在形との区別がよく問われます。</p>
+</header>
+
+<h2><span>be動詞＋<span class="en">-i<span>n</span>g</span>形で「いま〜している」</span></h2>
+
+<p>「ケンはいま泳いでいます」は <span class="en">Ken is swimming now.</span> です。主語のうしろに be動詞を置き、そのうしろに動詞の <span class="en">-i<span>n</span>g</span>形を続けます。</p>
+
+<div class="diagram">
+<p class="diagram-cap">現在進行形　be動詞のうしろに <span class="en">-i<span>n</span>g</span>形</p>
+<div class="flow">
+<span class="node">Ken<span class="node-label">主語</span></span>
+<span class="link">
+<span class="link-word">is</span>
+<span class="rail"></span>
+</span>
+<span class="node">swimming now<span class="node-label">動詞の <span class="en">-i<span>n</span>g</span>形から</span></span>
+</div>
+</div>
+
+<p><strong>なぜ be動詞が要るのか。</strong><span class="en">swimming</span> のように <span class="en">-i<span>n</span>g</span>形になった動詞は、「泳いでいる最中」という<strong>ようす</strong>を表す形で、それだけでは文の動詞として働きません。英語の文には動詞が1つ要るので、その役目を be動詞が受け持ちます。be動詞は Unit 1 で学んだとおり、主語とうしろの語を「＝」でつなぎます。<span class="en">Ken is swimming.</span> は「ケン＝泳いでいる最中」という形です。</p>
+
+<p>Unit 7 では、be動詞と一般動詞は1つの文に同居しないと学びました。現在進行形でも、この決まりは変わりません。文の動詞は be動詞の1つだけで、<span class="en">-i<span>n</span>g</span>形は一般動詞としては働いていないからです。<span class="en">Ken is swims.</span> のように、be動詞と一般動詞をそのまま並べることはしません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語</th><th>be動詞</th><th>例文</th></tr>
+<tr><td>I</td><td class="be-cell">am</td><td class="be-cell"><span class="en">I am cooking dinner now.</span></td></tr>
+<tr><td>he / she / 1人・1つ</td><td class="be-cell">is</td><td class="be-cell"><span class="en">My mother is making dinner in the kitchen.</span></td></tr>
+<tr><td>you / 2人以上・2つ以上</td><td class="be-cell">are</td><td class="be-cell"><span class="en">The children are playing on the beach.</span></td></tr>
+</table>
+</div>
+
+<p>be動詞は、Unit 1 と同じく主語で決まります。例文です。<span class="en">Aya is reading a book in her room.</span>／<span class="en">My aunt is holding a baby.</span>／<span class="en">Ken is wearing a white hat.</span>／<span class="en">Look! A bird is flying high in the sky.</span>　どの文も、主語のうしろに be動詞、そのうしろに <span class="en">-i<span>n</span>g</span>形が来ています。</p>
+
+<h2><span>現在形と現在進行形のちがい</span></h2>
+
+<p>Unit 5 と Unit 9 の現在形は、<strong>ふだんくり返していること</strong>を言う形でした。現在進行形は、<strong>いまちょうど動作の途中であること</strong>を言う形です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>現在形（ふだん）</th><th>現在進行形（いま）</th></tr>
+<tr><td class="be-cell"><span class="en">Ken swims every day.</span></td><td class="be-cell"><span class="en">Ken is swimming now.</span></td></tr>
+<tr><td class="be-cell"><span class="en">My father usually cooks dinner on Sundays.</span></td><td class="be-cell"><span class="en">My father is cooking dinner now.</span></td></tr>
+<tr><td class="be-cell"><span class="en">It rains a lot in June.</span></td><td class="be-cell"><span class="en">It is raining outside now.</span></td></tr>
+</table>
+</div>
+
+<p>見分ける手がかりは、文の中の語です。<span class="en">every day</span> <span class="en">usually</span> <span class="en">on Sundays</span> があれば現在形、<span class="en">now</span> <span class="en">right now</span> があれば現在進行形です。Unit 12 の命令文 <span class="en">Look!</span>（見て）<span class="en">Listen!</span>（聞いて）のあとも、目の前で起きていることを言うので現在進行形になります。<span class="en">Listen! Aya is singing.</span> のようにです。</p>
+
+<p><span class="en">It is raining outside now.</span> の <span class="en">it</span> は、Unit 11 の時刻、Unit 13 の明るさと同じく、天気を言うための主語で、「それ」とは訳しません。<span class="en">It is snowing.</span>（雪が降っています）も同じ形です。</p>
+
+<h2><span><span class="en">-i<span>n</span>g</span>形の作り方</span></h2>
+
+<p>ほとんどの動詞は、そのまま <span class="en">i<span>n</span>g</span> をつけます。ただし、次の2つのきまりがあります。<strong>Unit 4・9 の -s と同じく、綴りを落としやすいところです。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>動詞の終わり</th><th>作り方</th><th>例</th></tr>
+<tr><td>ふつう</td><td>そのまま <span class="en">i<span>n</span>g</span> をつける</td><td class="be-cell"><span class="en">play → playing</span><br><span class="en">read → reading</span><br><span class="en">study → studying</span><br><span class="en">cry → crying</span></td></tr>
+<tr><td>読まない e で終わる</td><td>e を取って <span class="en">i<span>n</span>g</span> をつける</td><td class="be-cell"><span class="en">make → making</span><br><span class="en">write → writing</span><br><span class="en">come → coming</span><br><span class="en">dance → dancing</span><br><span class="en">bake → baking</span></td></tr>
+<tr><td>短い母音＋子音1字</td><td>最後の子音字を重ねて <span class="en">i<span>n</span>g</span> をつける</td><td class="be-cell"><span class="en">run → running</span><br><span class="en">swim → swimming</span><br><span class="en">sit → sitting</span><br><span class="en">cut → cutting</span><br><span class="en">put → putting</span><br><span class="en">stop → stopping</span></td></tr>
+</table>
+</div>
+
+<p><strong>なぜ e を取るのか。</strong><span class="en">make</span> の最後の e は発音しない文字で、前の a を「エイ」と読ませるためについています。<span class="en">i<span>n</span>g</span> をつけると、うしろの i が同じ役目をするので、e は要らなくなります。</p>
+
+<p><strong>なぜ子音字を重ねるのか。</strong><span class="en">run</span> に <span class="en">i<span>n</span>g</span> をそのままつけると、u のうしろに子音字が1つ、母音字が1つと並び、<span class="en">make</span> と同じ並びになって、u を長く読むように見えてしまいます。<span class="en">n</span> を重ねて <span class="en">running</span> とすると、もとの短い「ア」の音のまま読めます。</p>
+
+<h3>重ねない語・変えない語</h3>
+<p><span class="en">visit → visiting</span>、<span class="en">listen → listening</span>、<span class="en">open → opening</span> は、子音字で終わっていても重ねません。どれも<strong>前の部分を強く読む語</strong>で、最後の部分は弱く読むからです。反対に <span class="en">begin → beginning</span> は、うしろの部分を強く読むので重ねます。<span class="en">eat → eating</span>、<span class="en">wait → waiting</span>、<span class="en">rain → raining</span> のように、子音字の前の母音字が2つのときも重ねません。</p>
+<p><span class="en">study</span> は Unit 9 では y を i に変えて <span class="en">studies</span> としましたが、<span class="en">i<span>n</span>g</span> のときは <strong>y をそのまま残して</strong> <span class="en">studying</span> とします。<span class="en">cry → crying</span> も同じです。</p>
+
+<h2><span>否定文と疑問文は be動詞の文と同じ</span></h2>
+
+<p>現在進行形の文の動詞は be動詞なので、否定文と疑問文の作り方は Unit 2 の be動詞の文と同じです。<strong>否定文は be動詞のうしろに <span class="en">not</span> を置き、疑問文は be動詞を主語の前に出します。</strong><span class="en">don't</span> <span class="en">doesn't</span> は使いません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>肯定文</th><th>否定文</th></tr>
+<tr><td class="be-cell"><span class="en">I am sleeping.</span></td><td class="be-cell"><span class="en">I am not sleeping.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Ken is watching TV.</span></td><td class="be-cell"><span class="en">Ken isn't watching TV now.</span></td></tr>
+<tr><td class="be-cell"><span class="en">They are playing soccer.</span></td><td class="be-cell"><span class="en">They aren't playing soccer now.</span></td></tr>
+</table>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">現在進行形の疑問文　be動詞が主語の前へ出る</p>
+<div class="flow">
+<span class="link">
+<span class="link-word">Is</span>
+<span class="rail"></span>
+</span>
+<span class="node">Ken<span class="node-label">主語</span></span>
+<span class="node">sleeping?<span class="node-label"><span class="en">-i<span>n</span>g</span>形のまま</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問文</th><th>答え</th></tr>
+<tr><td class="be-cell"><span class="en">Is Ken sleeping?</span></td><td class="be-cell"><span class="en">Yes, he is.</span>／<span class="en">No, he isn't.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Are you studying English now?</span></td><td class="be-cell"><span class="en">Yes, I am.</span></td></tr>
+<tr><td class="be-cell"><span class="en">Is it raining there?</span></td><td class="be-cell"><span class="en">No, it isn't.</span></td></tr>
+</table>
+</div>
+
+<p>答えも be動詞を使います。<span class="en">Is Ken sleeping?</span> に <span class="en">Yes, he does.</span> と答えるのは誤りです。Unit 13 と同じく、<strong>問いに使われた語で答えます。</strong></p>
+
+<h2><span>疑問詞と現在進行形</span></h2>
+
+<p>Unit 10 の疑問詞は、現在進行形の疑問文の前に置きます。いちばんよく使うのは <span class="en">What are you doing?</span>（あなたは何をしているのですか）です。<span class="en">doing</span> は、一般動詞の <span class="en">do</span>（する）の <span class="en">-i<span>n</span>g</span>形です。答えは <span class="en">Yes</span> <span class="en">No</span> ではなく、していることを現在進行形で言います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問詞</th><th>例文</th></tr>
+<tr><td>What</td><td class="be-cell"><span class="en">What are you doing? —— I am writing a letter.</span></td></tr>
+<tr><td>Where</td><td class="be-cell"><span class="en">Where is Taku swimming? —— He is swimming in the river.</span></td></tr>
+<tr><td>Why</td><td class="be-cell"><span class="en">Why is the baby crying?</span></td></tr>
+<tr><td>Who（主語）</td><td class="be-cell"><span class="en">Who is playing the piano? —— Aya is.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">Who is playing the piano?</span> は、疑問詞 <span class="en">who</span> が主語です。Unit 10 と同じく、疑問詞を取り去っても <span class="en">is playing the piano</span> と主語の位置が空くだけなので、語順は変わりません。<span class="en">who</span> は1人として扱うので be動詞は <span class="en">is</span> です。答えは <span class="en">Aya is.</span> のように「人＋be動詞」です。</p>
+
+<h2><span>現在進行形にしない動詞</span></h2>
+
+<p><span class="en">like</span>（好きだ）<span class="en">love</span>（大好きだ）<span class="en">know</span>（知っている）<span class="en">want</span>（ほしい）と、「持っている」の意味の <span class="en">have</span> は、ふつう現在進行形にしません。<span class="en">I am knowing your brother.</span> ではなく <span class="en">I know your brother.</span> です。</p>
+
+<p><strong>なぜ進行形にしないのか。</strong>現在進行形は「動作の途中」を言う形です。泳ぐ・書くのような動作には始まりと終わりがあり、その間に「途中」があります。「知っている」「好きだ」「持っている」は、ずっと続いている<strong>状態</strong>そのもので、途中という考えがありません。だから、いまのことでも現在形で言います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>状態を言う動詞（現在形）</th><th>動作を言う動詞（現在進行形にできる）</th></tr>
+<tr><td class="be-cell"><span class="en">I like this song.</span></td><td class="be-cell"><span class="en">I am listening to this song.</span></td></tr>
+<tr><td class="be-cell"><span class="en">My father has a new car.</span></td><td class="be-cell"><span class="en">My father is washing his car.</span></td></tr>
+<tr><td class="be-cell"><span class="en">I know your brother.</span></td><td class="be-cell"><span class="en">I am waiting for your brother.</span></td></tr>
+</table>
+</div>
+
+<p>ただし <span class="en">have</span> が「食べる」の意味のときは動作なので、<span class="en">We are having lunch now.</span>（私たちはいま昼食を食べています）と言えます。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">「いま〜している最中」かを確かめる</span>
+<span class="step-d"><span class="en">now</span> <span class="en">Look!</span> <span class="en">Listen!</span> があれば現在進行形、<span class="en">every day</span> <span class="en">usually</span> があれば現在形です。</span>
+</li>
+<li>
+<span class="step-t">be動詞の文か一般動詞の文かを見分ける</span>
+<span class="step-d">Unit 7 の手順です。ようすや状態を言うなら be動詞、動作を言うなら一般動詞です。現在進行形にできるのは、動作を言う一般動詞だけです。<span class="en">like</span> <span class="en">know</span> <span class="en">want</span> は現在形のままにします。</span>
+</li>
+<li>
+<span class="step-t">主語に合わせて be動詞を置く</span>
+<span class="step-d"><span class="en">I</span> なら <span class="en">am</span>、1人・1つなら <span class="en">is</span>、<span class="en">you</span> と2人以上・2つ以上なら <span class="en">are</span> です。</span>
+</li>
+<li>
+<span class="step-t">動詞を <span class="en">-i<span>n</span>g</span>形にする</span>
+<span class="step-d">e を取る語、子音字を重ねる語に気をつけます。</span>
+</li>
+<li>
+<span class="step-t">否定なら be動詞＋not、疑問なら be動詞を先頭へ</span>
+<span class="step-d"><span class="en">don't</span> <span class="en">does</span> は使いません。答えも be動詞で返します。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>be動詞を落とさない</h3>
+<p><span class="en">Ken running in the park now.</span> は誤りです。<span class="en">-i<span>n</span>g</span>形だけでは文の動詞にならないので、<span class="en">Ken is running in the park now.</span> と be動詞を入れます。日本語の「走っている」には「です」にあたる語がないので、落としやすいところです。</p>
+
+<h3>be動詞のうしろを原形にしない</h3>
+<p><span class="en">I am cook dinner now.</span> も誤りです。be動詞のうしろに一般動詞の原形を置くと、Unit 7 で学んだ「同居」になってしまいます。<span class="en">I am cooking dinner now.</span> と <span class="en">-i<span>n</span>g</span>形にします。</p>
+
+<h3>and でつないだ主語は2人</h3>
+<p><span class="en">My sister and I are cooking dinner.</span> の主語は <span class="en">My sister and I</span> の2人なので、be動詞は <span class="en">are</span> です。<span class="en">I</span> のすぐ前にあっても <span class="en">am</span> にはしません。反対に <span class="en">Everyone is laughing.</span> の <span class="en">everyone</span> は、何人いても1人として扱うので <span class="en">is</span> です。</p>
+
+<h3>right now と on the phone</h3>
+<p><span class="en">Ken is sleeping right now.</span> の <span class="en">right now</span> は「ちょうどいま」で、<span class="en">now</span> を強めた言い方です。<span class="en">Ken is talking on the phone.</span> の <span class="en">on the phone</span> は「電話で」で、どちらも2語以上で1つの意味を表します。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td class="be-cell">主語に合う be動詞、<span class="en">-i<span>n</span>g</span>形か原形か、現在形か現在進行形か</td></tr>
+<tr><td>綴り</td><td class="be-cell"><span class="en">swimming</span> <span class="en">making</span> <span class="en">studying</span> のような <span class="en">-i<span>n</span>g</span>形を書かせる</td></tr>
+<tr><td>並べ替え</td><td class="be-cell"><span class="en">What are you doing?</span> の語順、不要な <span class="en">does</span> <span class="en">doesn't</span> を見抜かせる</td></tr>
+<tr><td>誤文訂正</td><td class="be-cell">be動詞の落ち、<span class="en">like</span> <span class="en">know</span> <span class="en">have</span> の進行形</td></tr>
+<tr><td>読解</td><td class="be-cell">電話や手紙の場面から、だれがいま何をしているかを読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Ken running in the park now.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Ken <span class="be-w">is</span> running in the park now.</span></div>
+<p class="contrast-why"><span class="en">-i<span>n</span>g</span>形だけでは文の動詞になりません。be動詞を入れます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My sister is swiming in the sea.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My sister is <span class="gen-w">swimming</span> in the sea.</span></div>
+<p class="contrast-why"><span class="en">swim</span> は短い母音＋子音1字で終わるので、m を重ねます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Does Ken sleeping now?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">Is</span> Ken sleeping now?</span></div>
+<p class="contrast-why">文の動詞は be動詞なので、疑問文は be動詞を先頭に出します。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I am knowing your brother.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I <span class="gen-w">know</span> your brother.</span></div>
+<p class="contrast-why">「知っている」は状態なので、いまのことでも現在形で言います。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">Ken is swimming now.</span>／<span class="en">Ken isn't watching TV now.</span>／<span class="en">Is Ken sleeping? —— Yes, he is.</span>／<span class="en">What are you doing? —— I am writing a letter.</span>／<span class="en">Who is playing the piano? —— Aya is.</span>　どの文も、主語のうしろ（疑問文では前）に be動詞があり、動詞は <span class="en">-i<span>n</span>g</span>形です。</p>
+
+<p>ほかの例文です。<span class="en">The baby is sleeping on the sofa.</span>／<span class="en">Aya is smiling.</span>／<span class="en">My father is cutting the bread.</span>／<span class="en">Ken is putting his books in his bag.</span>／<span class="en">The game is beginning now.</span>／<span class="en">Emma is taking pictures of the flowers.</span>／<span class="en">My brother is taking a bath now.</span>／<span class="en">Look! A boat is coming.</span>／<span class="en">My mother is buying vegetables at the supermarket.</span>／<span class="en">The sun is shining.</span>／<span class="en">The dog is wet.</span>　最後の文は be動詞＋形容詞の文で、<span class="en">wet</span>（ぬれている）はようすを言う語です。<span class="en">-i<span>n</span>g</span>形がなくても be動詞の文になります。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。「いま」のことか「ふだん」のことか、主語が何かを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">Look! My aunt's baby is (　　　) on the sofa.</span>
+<p class="opts"><span>ア sleep</span><span>イ sleeps</span><span>ウ sleeping</span><span>エ sleepy</span></p></li>
+<li><span class="en">My brother Taku (　　　) the piano every day.</span>
+<p class="opts"><span>ア is playing</span><span>イ plays</span><span>ウ play</span><span>エ playing</span></p></li>
+<li><span class="en">(　　　) your sister and her friend studying in the library now? —— Yes, they are.</span>
+<p class="opts"><span>ア Do</span><span>イ Is</span><span>ウ Are</span><span>エ Can</span></p></li>
+<li><span class="en">I (　　　) your brother very well. He is on my soccer team.</span>
+<p class="opts"><span>ア am knowing</span><span>イ know</span><span>ウ knows</span><span>エ am know</span></p></li>
+<li><span class="en">Who is swimming in the river now? —— (　　　)</span>
+<p class="opts"><span>ア Ken is.</span><span>イ Ken does.</span><span>ウ Yes, he is.</span><span>エ Ken swims.</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私の母はいま、台所で夕食を作っています。<br><span class="en">[ is / my / making / mother / dinner / in / the / kitchen / now ] .</span><span class="write"></span></li>
+<li>あなたは何をしているのですか。<br><span class="en">[ you / what / doing / are ] ?</span><span class="write"></span></li>
+<li data-extra="1">ケンはいま、テレビを見ていません。<span class="hint">1語不要</span><br><span class="en">[ isn't / Ken / watching / TV / now / doesn't ] .</span><span class="write"></span></li>
+<li>子どもたちは公園で走っています。<br><span class="en">[ running / the / children / are / in / park / the ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたのお兄さんは自分の部屋で勉強していますか。<span class="hint">1語不要</span><br><span class="en">[ your / is / studying / brother / in / his / room / does ] ?</span><span class="write"></span></li>
+<li>だれがピアノをひいているのですか。<br><span class="en">[ playing / who / the / is / piano ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">Ken running in the park now.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I am cook dinner now.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My sister is swiming in the sea.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Aya and her brother is playing tennis.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My father is having a new car.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私の姉はいま、自分の部屋で手紙を書いています。</span><span class="write"></span></li>
+<li><span class="q-ja">彼らはいま、サッカーをしていません。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたのお父さんは車を洗っているのですか。——いいえ、洗っていません。</span><span class="write"></span></li>
+<li><span class="q-ja">タクはどこで泳いでいるのですか。</span><span class="write"></span></li>
+<li>now を使って「外は雨が降っています」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>doing を使って「あなたのお母さんは何をしていますか」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>on the phone を使って「ケンは電話で話しています」と書く。<span class="cond">6語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">日曜日の朝、アヤが友だちのエマに電話をかけました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">アヤとエマの電話</p>
+<p>Aya: Hello, Emma. This is Aya. What are you doing now?<br>
+Emma: Hello, Aya. I am baking cookies with my mother in the kitchen.<br>
+Aya: That's nice. It is raining here, so I am staying at home today.<br>
+Emma: Is it raining there? It is sunny here. My father is washing his car outside, and my brother is sitting on the bench in the garden. <span class="num">①</span><span class="ul">He is reading a book about stars.</span><br>
+Aya: My brother Ken isn't reading. He is sleeping on the sofa right now.<br>
+Emma: Can you come to my house tomorrow? We can eat the cookies together.<br>
+Aya: Sure. See you tomorrow.</p>
+<p class="reading-wc">およそ100語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア エマの父親は家の中で車を洗っている。<br>
+イ アヤのいるところでは、いま雨が降っている。<br>
+ウ エマの兄はソファで眠っている。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア アヤの兄のケンは本を読んでいる。<br>
+イ エマの兄は庭のベンチにすわっている。<br>
+ウ エマはアヤに、きょう家に来てほしいと言っている。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Emma and her mother are (　　　) cookies in the kitchen.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Ken is (　　　) on the sofa right now.</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>あなたがいましていることを、現在進行形を使って1文で書く。<span class="hint">例：I am studying English now.</span><span class="write"></span></li>
+<li>家族や友だちがいましていることを想像して、現在進行形を使って1文で書く。<span class="hint">例：My mother is cooking dinner now.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>いまの動作かどうか</strong>を確かめ、そうなら<strong>be動詞＋<span class="en">-i<span>n</span>g</span>形</strong>になっているかまで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　sleeping</span><p class="a-why">前に be動詞の <span class="en">is</span> があり、<span class="en">Look!</span> で目の前のことを言っているので、<span class="en">-i<span>n</span>g</span>形の <span class="en">sleeping</span> です。エの <span class="en">sleepy</span>（眠い）は形容詞で、「ソファで」とつながりません。</p></li>
+<li><span class="a-key">イ　plays</span><p class="a-why"><span class="en">every day</span> があるので、ふだんのことを言う現在形です。主語 <span class="en">My brother Taku</span> は1人なので <span class="en">s</span> をつけます。</p></li>
+<li><span class="a-key">ウ　Are</span><p class="a-why">うしろに <span class="en">studying</span> があるので be動詞の疑問文です。主語 <span class="en">your sister and her friend</span> は2人なので <span class="en">Are</span> です。</p></li>
+<li><span class="a-key">イ　know</span><p class="a-why"><span class="en">know</span>（知っている）は状態を言う動詞なので、現在進行形にしません。主語が <span class="en">I</span> なので <span class="en">s</span> はつけません。</p></li>
+<li><span class="a-key">ア　Ken is.</span><p class="a-why">疑問詞 <span class="en">who</span> が主語の現在進行形の疑問文です。「人＋be動詞」で答えます。<span class="en">Yes</span> <span class="en">No</span> では答えません。</p></li>
+
+<li><span class="a-key">My mother is making dinner in the kitchen now.</span><p class="a-why">be動詞 <span class="en">is</span> のうしろに <span class="en">-i<span>n</span>g</span>形 <span class="en">making</span> を置きます。<span class="en">make</span> は e を取って <span class="en">i<span>n</span>g</span> をつけます。</p></li>
+<li><span class="a-key">What are you doing?</span><p class="a-why">疑問詞 <span class="en">What</span> を先頭に置き、そのうしろは be動詞の疑問文の語順です。<span class="en">doing</span> は <span class="en">do</span> の <span class="en">-i<span>n</span>g</span>形です。</p></li>
+<li><span class="a-key">Ken isn't watching TV now.</span><p class="a-why">不要な語は <span class="en">doesn't</span> です。現在進行形の否定文は be動詞のうしろに <span class="en">not</span> を置きます。</p></li>
+<li><span class="a-key">The children are running in the park.</span><p class="a-why"><span class="en">children</span> は2人以上なので <span class="en">are</span> です。<span class="en">run</span> は n を重ねて <span class="en">running</span> とします。</p></li>
+<li><span class="a-key">Is your brother studying in his room?</span><p class="a-why">不要な語は <span class="en">does</span> です。be動詞 <span class="en">Is</span> を主語の前に出します。</p></li>
+<li><span class="a-key">Who is playing the piano?</span><p class="a-why">疑問詞 <span class="en">who</span> が主語なので、そのすぐうしろに <span class="en">is playing</span> を続けます。</p></li>
+
+<li><span class="a-key">Ken is running in the park now.</span><p class="a-why">理由の例：<span class="en">-i<span>n</span>g</span>形だけでは文の動詞にならず、be動詞が要るから。</p></li>
+<li><span class="a-key">I am cooking dinner now.</span><p class="a-why">理由の例：be動詞のうしろに一般動詞の原形は置けず、<span class="en">-i<span>n</span>g</span>形にするから。</p></li>
+<li><span class="a-key">My sister is swimming in the sea.</span><p class="a-why">理由の例：<span class="en">swim</span> は短い母音＋子音1字で終わるので、m を重ねて <span class="en">i<span>n</span>g</span> をつけるから。</p></li>
+<li><span class="a-key">Aya and her brother are playing tennis.</span><p class="a-why">理由の例：主語が <span class="en">and</span> でつないだ2人なので、be動詞は <span class="en">are</span> にするから。</p></li>
+<li><span class="a-key">My father has a new car.</span><p class="a-why">理由の例：「持っている」の意味の <span class="en">have</span> は状態を言う動詞で、現在進行形にしないから。</p></li>
+
+<li><span class="a-key">My sister is writing a letter in her room now.</span><p class="a-why"><span class="en">write</span> は e を取って <span class="en">writing</span> とします。</p></li>
+<li><span class="a-key">They aren't playing soccer now.</span><p class="a-why"><span class="en">They are not playing soccer now.</span> でも正解です。</p></li>
+<li><span class="a-key">Is your father washing the car? —— No, he isn't.</span><p class="a-why">be動詞 <span class="en">Is</span> を先頭に出し、答えも be動詞を使います。<span class="en">his car</span> でも正解です。</p></li>
+<li><span class="a-key">Where is Taku swimming?</span><p class="a-why">疑問詞 <span class="en">Where</span> のうしろは be動詞の疑問文の語順です。<span class="en">swim</span> は m を重ねます。</p></li>
+<li><span class="a-key">It is raining outside now.</span><p class="a-why">天気を言う <span class="en">it</span> を主語にします。<span class="en">It's raining outside now.</span> は4語になるので、ここでは使いません。</p></li>
+<li><span class="a-key">What is your mother doing?</span><p class="a-why"><span class="en">doing</span> は <span class="en">do</span>（する）の <span class="en">-i<span>n</span>g</span>形です。主語が1人なので <span class="en">is</span> です。</p></li>
+<li><span class="a-key">Ken is talking on the phone.</span><p class="a-why"><span class="en">on the phone</span> は3語で「電話で」です。<span class="en">talk</span> はそのまま <span class="en">i<span>n</span>g</span> をつけます。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">アヤが <span class="en">It is raining here</span> と言っています。アは <span class="en">My father is washing his car outside</span> と合わず、ウはソファで眠っているのはアヤの兄のケンなので合いません。</p></li>
+<li><span class="a-key">イ</span><p class="a-why">エマが <span class="en">my brother is sitting on the bench in the garden</span> と言っています。アは <span class="en">My brother Ken isn't reading.</span> と合わず、ウは <span class="en">Can you come to my house tomorrow?</span> と合いません。</p></li>
+<li><span class="a-key">baking</span><p class="a-why">本文の <span class="en">I am baking cookies with my mother in the kitchen.</span> に合わせます。<span class="en">bake</span> は e を取ります。</p></li>
+<li><span class="a-key">sleeping</span><p class="a-why">本文の <span class="en">He is sleeping on the sofa right now.</span> に合わせます。</p></li>
+<li><span class="a-key">彼は星についての本を読んでいます。</span><p class="a-why"><span class="en">He</span> はエマの兄を指します。「読んでいるところです」でも正解です。</p></li>
+
+<li><span class="a-key">解答例　I am studying English now.</span><p class="a-why">主語に合った be動詞のうしろに、動作を言う動詞の <span class="en">-i<span>n</span>g</span>形が来ていれば正解です。</p></li>
+<li><span class="a-key">解答例　My mother is cooking dinner now.</span><p class="a-why">1人なら <span class="en">is</span>、2人以上なら <span class="en">are</span> を使っていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">「いま〜している」は <strong>be動詞＋<span class="en">-i<span>n</span>g</span>形</strong>で言います。<span class="en">-i<span>n</span>g</span>形だけでは文の動詞にならないので、be動詞を落とさないことがいちばん大事です。be動詞は主語で決まり、否定文・疑問文は be動詞の文と同じ作り方です。<span class="en">-i<span>n</span>g</span>形の綴りは、e を取る語と子音字を重ねる語に気をつけます。ふだんのことは現在形、<span class="en">like</span> <span class="en">know</span> <span class="en">want</span> のような状態を言う動詞も現在形のままです。</p>
+</div>
+</div>
+</body>
+</html>

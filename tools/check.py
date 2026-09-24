@@ -15,6 +15,11 @@ Playwright が入っていれば、スマホ幅の横スクロールとA4印刷�
   - 並べ替えの語群が単語単位に割れているかを見る
   - 和訳を出さないと決めたパート（A・C・E）に q-ja が無いかを見る
   - 読解本文の語数と新出語数は「参考」として出すだけで NG にしない
+
+2026-09-22 追記（Unit 16 一般動詞の過去形に対応）
+  - 短縮形の表に didn't を足した
+  - 過去形 -ied（studied → study）と子音字を重ねた -ed（stopped → stop）を原形に寄せる
+  - 語の網羅チェックで、「-ed」「-ght」のような語尾の表記（ハイフンで始まる綴り）を語として数えない
 """
 
 import argparse
@@ -79,6 +84,7 @@ CONTRACTIONS = {
     "don't": ["do", "not"], "doesn't": ["do", "not"], "isn't": ["be", "not"],
     "aren't": ["be", "not"], "can't": ["can", "not"], "cannot": ["can", "not"],
     "wasn't": ["be", "not"], "weren't": ["be", "not"], "let's": ["let", "us"],
+    "didn't": ["do", "not"],
 }
 
 # 基本語リストに載せる語。単元の単語帳には出さない
@@ -122,6 +128,10 @@ def lemma(w: str):
         out.add(w[:-3])
         out.add(w[:-3] + "e")
         out.add(w[:-4])
+    if w.endswith("ied") and len(w) > 4:       # studied → study（y→ied）
+        out.add(w[:-3] + "y")
+    if w.endswith("ed") and len(w) > 5 and w[-3] == w[-4]:
+        out.add(w[:-3])                        # stopped → stop（子音字を重ねる）
     if w.endswith("ed") and len(w) > 4:
         out.add(w[:-2])
         out.add(w[:-1])
@@ -348,6 +358,8 @@ def check_vocab(vpath: Path, wpath: Path, n: int, report: list):
     wclean = re.sub(r'<div class="contrast-row bad">.*?</div>', " ", wsrc, flags=re.S)
     wclean = re.sub(r'<span class="strike">.*?</span>', " ", wclean, flags=re.S)
     wbody = strip_tags(wclean.split("<body>", 1)[-1])
+    # 「-ed」「-ght」のような語尾の表記は語ではないので数えない
+    wbody = re.sub(r"(?<![A-Za-z])-[a-z]+", " ", wbody)
     proper = set(re.findall(r"\b[A-Z][a-z]+\b", wbody))  # 人名・地名は除外
     missing = set()
     for w in words_of(wbody):

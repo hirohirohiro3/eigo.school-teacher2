@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 16　一般動詞の過去形</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="../index.html">← 目次</a><a class="pair" href="vocab16_general-past.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 16</p>
+<h1 class="unit-title">一般動詞の過去形</h1>
+<p class="unit-lead">「〜しました」と過去の動作を言うときは、一般動詞を<strong>過去形</strong>にします。多くの動詞は終わりに <span class="en">-ed</span> をつけますが、<strong>形そのものが変わる不規則動詞</strong>もあります。否定文と疑問文では <span class="en">did</span> を使い、うしろの動詞は原形に戻します。入試では、不規則動詞の過去形、<span class="en">did</span> のうしろの原形、<span class="en">Did you 〜?</span> への答え方、be動詞の過去形との使い分けがよく問われます。</p>
+</header>
+
+<h2><span>動詞を過去形にする</span></h2>
+
+<p>「私は昨日テニスをしました」は <span class="en">I played tennis yesterday.</span> です。いまのことなら <span class="en">I play tennis every day.</span> ですが、過去のことなので <span class="en">play</span> を <span class="en">played</span> にします。</p>
+
+<div class="diagram is-general">
+<p class="diagram-cap">一般動詞の過去形　主語から目的語へ動作が向かうのは同じ</p>
+<div class="flow">
+<span class="node">I<span class="node-label">主語</span></span>
+<span class="link">
+<span class="link-word">played</span>
+<span class="rail"></span>
+</span>
+<span class="node">tennis<span class="node-label">目的語</span></span>
+</div>
+</div>
+
+<p><strong>なぜ動詞の形を変えるのか。</strong>Unit 15 と同じく、英語は<strong>いつのことかを文の動詞の形で示します。</strong>be動詞の文では be動詞が文の動詞なので be動詞を過去形にしました。一般動詞の文では一般動詞が文の動詞なので、一般動詞を過去形にします。目的語の <span class="en">tennis</span> や、場所・時を表す語句の位置は変わりません。</p>
+
+<p><strong>過去形は、主語が何でも同じ形です。</strong>Unit 9 で学んだ <span class="en">-s</span> は、いまのことを言う文だけにつく形です。過去の文では、主語が <span class="en">Ken</span> でも <span class="en">they</span> でも同じ過去形を使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語</th><th>現在</th><th>過去</th></tr>
+<tr><td>I</td><td><span class="en">I play tennis.</span></td><td><span class="en">I played tennis.</span></td></tr>
+<tr><td>Ken（1人）</td><td><span class="en">Ken plays tennis.</span></td><td><span class="en">Ken played tennis.</span></td></tr>
+<tr><td>my parents（2人）</td><td><span class="en">My parents play tennis.</span></td><td><span class="en">My parents played tennis.</span></td></tr>
+</table>
+</div>
+
+<p>例文です。<span class="en">We visited Kyoto last year.</span>／<span class="en">My sister studied English last night.</span>／<span class="en">My brother carried the heavy box.</span>／<span class="en">We stayed at home all day.</span>　どの文も、主語のうしろの動詞が過去形になっているだけで、語順はいまの文と同じです。</p>
+
+<h2><span>-ed のつけ方</span></h2>
+
+<p>終わりに <span class="en">-ed</span> をつけて過去形を作る動詞を<strong>規則動詞</strong>といいます。つけ方は、動詞の終わりの文字で決まります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>動詞の終わり</th><th>つけ方</th><th>例</th></tr>
+<tr><td>ふつうの語</td><td><span class="en">-ed</span></td><td><span class="en">play → played</span><br><span class="en">watch → watched</span><br><span class="en">visit → visited</span></td></tr>
+<tr><td><span class="en">e</span> で終わる</td><td><span class="en">-d</span> だけ</td><td><span class="en">live → lived</span><br><span class="en">like → liked</span><br><span class="en">arrive → arrived</span></td></tr>
+<tr><td>子音字＋<span class="en">y</span></td><td><span class="en">y</span> を <span class="en">i</span> にかえて <span class="en">-ed</span></td><td><span class="en">study → studied</span><br><span class="en">try → tried</span><br><span class="en">carry → carried</span></td></tr>
+<tr><td>母音字＋<span class="en">y</span></td><td>そのまま <span class="en">-ed</span></td><td><span class="en">enjoy → enjoyed</span><br><span class="en">stay → stayed</span></td></tr>
+<tr><td>短く読む母音＋子音字1つ</td><td>子音字を重ねて <span class="en">-ed</span></td><td><span class="en">stop → stopped</span></td></tr>
+</table>
+</div>
+
+<p><strong>なぜ <span class="en">y</span> を <span class="en">i</span> にかえるのか。</strong>Unit 9 の <span class="en">studies</span> と同じ理由です。子音字のうしろの <span class="en">y</span> は、語の終わりでなくなると <span class="en">i</span> で書きます。<span class="en">play</span> のように母音字のうしろの <span class="en">y</span> はかえません。子音字を重ねるのは Unit 14 の <span class="en">running</span> と同じで、短く読む母音の音を変えないためです。<span class="en strike">stoped</span> と書くと「ストウプト」と読まれてしまいます。</p>
+
+<h3>-ed の読み方は3通り</h3>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>読み方</th><th>動詞の終わりの音</th><th>例</th></tr>
+<tr><td>［ド］</td><td>声を出す音</td><td><span class="en">played</span> <span class="en">lived</span> <span class="en">studied</span></td></tr>
+<tr><td>［ト］</td><td>息だけの音（ク・プ・ス・シュ・チ）</td><td><span class="en">watched</span> <span class="en">helped</span> <span class="en">liked</span> <span class="en">stopped</span></td></tr>
+<tr><td>［イド］</td><td>ト・ドの音</td><td><span class="en">visited</span> <span class="en">wanted</span> <span class="en">started</span></td></tr>
+</table>
+</div>
+
+<p>動詞がもともと［ト］［ド］の音で終わるときは、そのまま［ト］［ド］を足すと聞き分けられないので、［イド］と1音ふやして読みます。入試では、下線部の発音が同じものを選ぶ問題で問われます。</p>
+
+<h2><span>不規則動詞は一覧で覚える</span></h2>
+
+<p><span class="en">-ed</span> をつけずに形が変わる動詞を<strong>不規則動詞</strong>といいます。<span class="en">go</span> <span class="en">have</span> <span class="en">see</span> のように、毎日よく使う動詞に多くあります。規則から形を作ることはできないので、<strong>原形と過去形を組にして1語ずつ覚えます。</strong>この単元の問題に出る不規則動詞は、すべて次の表にあります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>原形</th><th>過去形</th><th>例文</th></tr>
+<tr><td><span class="en">go</span></td><td><span class="en gen-w">went</span></td><td><span class="en">We went to the aquarium last Sunday.</span></td></tr>
+<tr><td><span class="en">come</span></td><td><span class="en gen-w">came</span></td><td><span class="en">My aunt came to our house yesterday.</span></td></tr>
+<tr><td><span class="en">have</span></td><td><span class="en gen-w">had</span></td><td><span class="en">We had a good time.</span></td></tr>
+<tr><td><span class="en">do</span></td><td><span class="en gen-w">did</span></td><td><span class="en">I did my homework before dinner.</span></td></tr>
+<tr><td><span class="en">see</span></td><td><span class="en gen-w">saw</span></td><td><span class="en">We saw a dolphin show.</span></td></tr>
+<tr><td><span class="en">eat</span></td><td><span class="en gen-w">ate</span></td><td><span class="en">I ate breakfast at seven.</span></td></tr>
+<tr><td><span class="en">make</span></td><td><span class="en gen-w">made</span></td><td><span class="en">My mother made a cake for me.</span></td></tr>
+<tr><td><span class="en">get</span></td><td><span class="en gen-w">got</span></td><td><span class="en">I got up at six this morning.</span></td></tr>
+<tr><td><span class="en">take</span></td><td><span class="en gen-w">took</span></td><td><span class="en">We took a bus from the station.</span></td></tr>
+<tr><td><span class="en">write</span></td><td><span class="en gen-w">wrote</span></td><td><span class="en">I wrote a letter to my grandmother.</span></td></tr>
+<tr><td><span class="en">buy</span></td><td><span class="en gen-w">bought</span></td><td><span class="en">I bought a ticket at the station.</span></td></tr>
+<tr><td><span class="en">bring</span></td><td><span class="en gen-w">brought</span></td><td><span class="en">Mika brought her umbrella.</span></td></tr>
+<tr><td><span class="en">catch</span></td><td><span class="en gen-w">caught</span></td><td><span class="en">Ken caught the ball.</span></td></tr>
+<tr><td><span class="en">teach</span></td><td><span class="en gen-w">taught</span></td><td><span class="en">Mr. Sato taught us English last year.</span></td></tr>
+<tr><td><span class="en">meet</span></td><td><span class="en gen-w">met</span></td><td><span class="en">I met Emma at the station.</span></td></tr>
+<tr><td><span class="en">run</span></td><td><span class="en gen-w">ran</span></td><td><span class="en">Taku ran to school this morning.</span></td></tr>
+<tr><td><span class="en">give</span></td><td><span class="en gen-w">gave</span></td><td><span class="en">My father gave me a watch.</span></td></tr>
+<tr><td><span class="en">find</span></td><td><span class="en gen-w">found</span></td><td><span class="en">I found a nice pen for my father.</span></td></tr>
+<tr><td><span class="en">hear</span></td><td><span class="en gen-w">heard</span></td><td><span class="en">I heard a voice in the kitchen.</span></td></tr>
+<tr><td><span class="en">sleep</span></td><td><span class="en gen-w">slept</span></td><td><span class="en">I slept for nine hours last night.</span></td></tr>
+<tr><td><span class="en">sing</span></td><td><span class="en gen-w">sang</span></td><td><span class="en">We sang a song together.</span></td></tr>
+<tr><td><span class="en">read</span></td><td><span class="en gen-w">read</span></td><td><span class="en">I read a book last night.</span></td></tr>
+</table>
+</div>
+
+<p>形の似ているものをまとめると覚えやすくなります。<span class="en">bought</span> <span class="en">brought</span> <span class="en">caught</span> <span class="en">taught</span> はどれも［オート］と読み、<span class="en">-ght</span> で終わります。<span class="en">sang</span> <span class="en">ran</span> は、原形の <span class="en">i</span> <span class="en">u</span> が <span class="en">a</span> にかわります。<span class="en">read</span> は過去形でも綴りが同じで、読み方だけが［レッド］にかわります。</p>
+
+<h2><span>否定文と疑問文は did を使う</span></h2>
+
+<p>Unit 6 で学んだ <span class="en">do</span> <span class="en">does</span> の過去形が <span class="en">did</span> です。<strong>否定文は動詞の前に <span class="en">did not</span>（<span class="en">didn't</span>）を置き、疑問文は <span class="en">Did</span> を主語の前に出します。どちらも、うしろの動詞は原形です。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>肯定文</th><th>否定文</th></tr>
+<tr><td><span class="en">I played tennis.</span></td><td><span class="en">I didn't play tennis.</span></td></tr>
+<tr><td><span class="en">Ken went to the park.</span></td><td><span class="en">Ken didn't go to the park.</span></td></tr>
+<tr><td><span class="en">We had lunch.</span></td><td><span class="en">We did not have lunch.</span></td></tr>
+</table>
+</div>
+
+<p><strong>なぜ動詞を原形に戻すのか。</strong>過去のことだという印は、もう <span class="en">did</span> が引き受けています。うしろの動詞まで過去形にすると、過去を2回示すことになります。Unit 9 で <span class="en">does</span> のうしろの動詞を原形にしたのと同じしくみです。主語が <span class="en">Ken</span> でも <span class="en">they</span> でも、使うのは <span class="en">did</span> 1つだけです。</p>
+
+<div class="diagram is-general">
+<p class="diagram-cap">過去の疑問文　Did が主語の前へ出て、動詞は原形</p>
+<div class="flow">
+<span class="link">
+<span class="link-word">Did</span>
+<span class="rail"></span>
+</span>
+<span class="node">you<span class="node-label">主語</span></span>
+<span class="node">watch TV?<span class="node-label">原形の動詞</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問文</th><th>答え</th></tr>
+<tr><td><span class="en">Did you watch TV last night?</span></td><td><span class="en">Yes, I did.</span>／<span class="en">No, I didn't.</span></td></tr>
+<tr><td><span class="en">Did Ken come to school yesterday?</span></td><td><span class="en">No, he didn't.</span></td></tr>
+<tr><td><span class="en">Did your parents go to Kyoto?</span></td><td><span class="en">Yes, they did.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">Did you 〜?</span> には <span class="en">did</span> で答えます。</strong>Unit 6 で <span class="en">Do you 〜?</span> に <span class="en">Yes, I do.</span> と答えたのと同じしくみで、<span class="en">do</span> を過去形の <span class="en">did</span> にするだけです。<span class="en">Yes, I do.</span> ではいまのことの答えになってしまいます。</p>
+
+<h2><span>疑問詞と did</span></h2>
+
+<p>Unit 10 の疑問詞は、<span class="en">did</span> の疑問文の前に置きます。答えは <span class="en">Yes</span> <span class="en">No</span> ではなく、たずねられたことを過去形の文で答えます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問詞</th><th>例文</th></tr>
+<tr><td>What</td><td><span class="en">What did you do yesterday? —— I played tennis.</span></td></tr>
+<tr><td>Where</td><td><span class="en">Where did you go last Sunday? —— We went to the aquarium.</span></td></tr>
+<tr><td>When</td><td><span class="en">When did you buy the ticket? —— I bought it last week.</span></td></tr>
+<tr><td>How</td><td><span class="en">How did you come here? —— I came by bus.</span></td></tr>
+<tr><td>Who（主語）</td><td><span class="en">Who made this cake? —— My mother did.</span></td></tr>
+<tr><td>What（主語）</td><td><span class="en">What happened last night? —— I heard a voice in the kitchen.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">What did you do yesterday?</span> には <span class="en">do</span> が2つあります。はじめの <span class="en">did</span> は疑問文を作る語、うしろの <span class="en">do</span> は「する」という意味の一般動詞の原形です。</p>
+
+<p><span class="en">Who made this cake?</span> は、疑問詞 <span class="en">who</span> が主語です。Unit 10・15 と同じく、疑問詞を取り去っても主語の位置が空くだけなので、語順は変わりません。<strong><span class="en">did</span> は使わず、動詞をそのまま過去形にします。</strong>答えは <span class="en">My mother did.</span> のように「人＋<span class="en">did</span>」です。<span class="en">What happened?</span>（何が起きたのですか）も、<span class="en">what</span> が主語の形です。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">いまのことか、過去のことかを確かめる</span>
+<span class="step-d"><span class="en">yesterday</span> <span class="en">last 〜</span> <span class="en">〜 ago</span> <span class="en">at that time</span> があれば過去、<span class="en">now</span> <span class="en">every day</span> があればいまのことです。</span>
+</li>
+<li>
+<span class="step-t">be動詞の文か一般動詞の文かを見分ける</span>
+<span class="step-d">Unit 7 の手順です。ようすや状態を言うなら be動詞、動作を言うなら一般動詞です。be動詞なら Unit 15 の <span class="en">was</span> <span class="en">were</span> を使います。</span>
+</li>
+<li>
+<span class="step-t">肯定文なら動詞を過去形にする</span>
+<span class="step-d">規則動詞は <span class="en">-ed</span> のつけ方の表、不規則動詞は一覧表で形を決めます。主語で形は変わりません。</span>
+</li>
+<li>
+<span class="step-t">否定なら didn't＋原形、疑問なら Did を先頭へ</span>
+<span class="step-d">うしろの動詞は原形に戻します。答えも <span class="en">did</span> <span class="en">didn't</span> で返します。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>was と did を取りちがえない</h3>
+<p>Unit 15 で、「テニスをした」のような一般動詞の過去のことは Unit 16 で学ぶ、と書きました。<span class="en">I was play tennis.</span> のような文は作らず、<span class="en">I played tennis yesterday.</span> と一般動詞を過去形にします。疑問文も同じで、ようすをたずねるなら <span class="en">Were you busy?</span>、動作をたずねるなら <span class="en">Did you play tennis?</span> です。<span class="en">Were you watch TV?</span> や <span class="en">Did you busy?</span> は誤りです。</p>
+
+<h3>過去の文に -s はつかない</h3>
+<p><span class="en">Ken plays tennis every day.</span> を過去の文にすると <span class="en">Ken played tennis yesterday.</span> です。<span class="en">-s</span> は消えます。否定文と疑問文でも、<span class="en">does</span> ではなく <span class="en">did</span> です。</p>
+
+<h3>didn't のうしろに過去形を置かない</h3>
+<p><span class="en">I didn't went to school.</span> は、<span class="en">didn't</span> と <span class="en">went</span> の両方で過去を示しているので誤りです。<span class="en">I didn't go to school.</span> とします。<span class="en">Did you played tennis?</span> も同じ理由で <span class="en">Did you play tennis?</span> とします。</p>
+
+<h3>read は綴りで過去と分からない</h3>
+<p><span class="en">read</span> は原形と過去形の綴りが同じです。<span class="en">He read the book yesterday.</span> は、いまのことなら <span class="en">He reads 〜</span> と <span class="en">-s</span> がつくはずなので、<span class="en">-s</span> がないことと <span class="en">yesterday</span> から過去だと分かります。</p>
+
+<h3>「着く」は get to と arrive at</h3>
+<p><span class="en">We got to the aquarium at ten.</span> と <span class="en">We arrived at the aquarium at ten.</span> は同じ意味です。<span class="en">get to 〜</span> の <span class="en">to</span>、<span class="en">arrive at 〜</span> の <span class="en">at</span> を取りちがえないようにします。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>不規則動詞の過去形、<span class="en">did</span> <span class="en">didn't</span> のうしろの原形、<span class="en">was</span> と <span class="en">did</span> の区別</td></tr>
+<tr><td>語形変化</td><td>（　）内の動詞を正しい形にかえる。<span class="en">studied</span> <span class="en">stopped</span> の綴り、<span class="en">bought</span> <span class="en">caught</span> など</td></tr>
+<tr><td>発音</td><td><span class="en">-ed</span> の読み方が［ド］［ト］［イド］のどれかを選ばせる</td></tr>
+<tr><td>対話</td><td><span class="en">Did you 〜? —— Yes, I did.</span> の答え方、<span class="en">What did you do?</span> への返事</td></tr>
+<tr><td>読解</td><td>日記や手紙から、だれがいつ何をしたかを順に読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I didn't went to the park yesterday.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I didn't <span class="gen-w">go</span> to the park yesterday.</span></div>
+<p class="contrast-why"><span class="en">didn't</span> が過去を示しているので、うしろの動詞は原形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My sister studyed English last night.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My sister <span class="gen-w">studied</span> English last night.</span></div>
+<p class="contrast-why">子音字＋<span class="en">y</span> で終わる動詞は、<span class="en">y</span> を <span class="en">i</span> にかえて <span class="en">-ed</span> をつけます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I was play tennis yesterday.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I <span class="gen-w">played</span> tennis yesterday.</span></div>
+<p class="contrast-why">動作を言う文なので一般動詞を過去形にします。be動詞と一般動詞は1つの文に同居しません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Did you watch TV? —— Yes, I watched.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Did you watch TV? —— Yes, I <span class="gen-w">did</span>.</span></div>
+<p class="contrast-why"><span class="en">Did</span> でたずねられたら、<span class="en">did</span> で答えます。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">I played tennis yesterday.</span>／<span class="en">We went to the aquarium last Sunday.</span>／<span class="en">Ken didn't go to the park.</span>／<span class="en">Did you watch TV last night? —— Yes, I did.</span>／<span class="en">What did you do yesterday? —— I played tennis.</span>　肯定文では動詞が過去形、否定文と疑問文では <span class="en">did</span> が過去を示し、動詞は原形です。</p>
+
+<p>ほかの例文です。<span class="en">I borrowed a book from the library.</span>／<span class="en">Emma invited me to her birthday party.</span>／<span class="en">We learned about the history of the city.</span>／<span class="en">I wrote about the trip in my diary.</span>／<span class="en">After lunch, we bought some souvenirs for our families.</span>／<span class="en">I was very tired, but I finished my homework.</span>　最後の文は、前半が Unit 15 の be動詞の過去形、後半が一般動詞の過去形です。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。いまのことか過去のことか、be動詞の文か一般動詞の文かを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My brother and I (　　　) to the aquarium last Sunday.</span>
+<p class="opts"><span>ア go</span><span>イ goes</span><span>ウ went</span><span>エ were</span></p></li>
+<li><span class="en">Ken (　　　) his homework before dinner yesterday.</span>
+<p class="opts"><span>ア does</span><span>イ did</span><span>ウ was</span><span>エ do</span></p></li>
+<li><span class="en">(　　　) you see the dolphin show? —— Yes, I did.</span>
+<p class="opts"><span>ア Did</span><span>イ Were</span><span>ウ Do</span><span>エ Are</span></p></li>
+<li><span class="en">Emma didn't (　　　) her umbrella this morning.</span>
+<p class="opts"><span>ア brought</span><span>イ bring</span><span>ウ brings</span><span>エ bringing</span></p></li>
+<li><span class="en">I (　　　) very tired last night, so I went to bed early.</span>
+<p class="opts"><span>ア did</span><span>イ was</span><span>ウ were</span><span>エ am</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私たちは先週の日曜日、水族館へ行きました。<br><span class="en">[ went / we / to / the / aquarium / last / Sunday ] .</span><span class="write"></span></li>
+<li>あなたは昨日何をしましたか。<br><span class="en">[ did / what / you / do / yesterday ] ?</span><span class="write"></span></li>
+<li data-extra="1">ケンは昨夜テレビを見ませんでした。<span class="hint">1語不要</span><br><span class="en">[ Ken / didn't / watch / TV / last / night / watched ] .</span><span class="write"></span></li>
+<li>私は駅で切符を買いました。<br><span class="en">[ bought / I / a / ticket / at / the / station ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたはその店でペンを見つけましたか。<span class="hint">1語不要</span><br><span class="en">[ did / you / find / a / pen / at / the / store / found ] ?</span><span class="write"></span></li>
+<li>私の父は私に腕時計をくれました。<br><span class="en">[ father / my / gave / me / a / watch ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">I didn't went to the park yesterday.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Did Ken played soccer last Sunday?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My mother make a cake for me yesterday.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Were you visit Kyoto last year?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Did you watch TV last night? —— Yes, I do.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私は昨夜、英語を勉強しました。</span><span class="write"></span></li>
+<li><span class="q-ja">私たちは昨日、公園でテニスをしませんでした。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたは今朝、朝食を食べましたか。——いいえ、食べませんでした。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたは先週の日曜日、どこへ行きましたか。</span><span class="write"></span></li>
+<li>wrote を使って「私は祖母に手紙を書きました」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li>for the first time を使って「私は初めてイルカを見ました」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li>How を使って「あなたはどうやってここに来ましたか」と書く。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ユウタが日曜日の夜に書いた日記です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">ユウタの日記</p>
+<p>Sunday, July 20<br>
+Today I went to the aquarium with my cousin Mika. We took a bus from the station and got to the aquarium at ten. First, we saw a dolphin show. <span class="num">①</span><span class="ul">The dolphins jumped very high, and everyone laughed.</span> Then we had lunch at a restaurant by the sea. After lunch, we bought some souvenirs for our families. I found a nice pen for my father. On the way home, it rained, but Mika brought her umbrella, so we didn't get wet. I was very tired, but we had a good time.</p>
+<p class="reading-wc">およそ100語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ユウタはミカと駅で別れた。<br>
+イ 二人はバスで水族館へ行った。<br>
+ウ 二人は昼食の前にイルカのショーを見なかった。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 昼食のあと、家族へのおみやげを買った。<br>
+イ ユウタは母のためにペンを見つけた。<br>
+ウ 帰り道は雨が降らなかった。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Yuta and Mika (　　　) to the aquarium at ten.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">They didn't get wet because Mika (　　　) her umbrella.</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>昨日あなたがしたことを、一般動詞の過去形を使って1文で書く。<span class="hint">例：I played tennis with my friends yesterday.</span><span class="write"></span></li>
+<li>先週末にしなかったことを、didn't を使って1文で書く。<span class="hint">例：I didn't watch TV last weekend.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>be動詞の文か一般動詞の文か</strong>を確かめ、一般動詞なら<strong>肯定文は過去形、否定文と疑問文は did＋原形</strong>になっているかまで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　went</span><p class="a-why"><span class="en">last Sunday</span> があるので過去です。「行く」という動作なので一般動詞 <span class="en">go</span> の過去形 <span class="en">went</span> です。主語が2人でも形は変わりません。</p></li>
+<li><span class="a-key">イ　did</span><p class="a-why"><span class="en">yesterday</span> があるので過去です。ここでは <span class="en">did</span> は「する」という一般動詞 <span class="en">do</span> の過去形です。<span class="en">does</span> はいまのことの形です。</p></li>
+<li><span class="a-key">ア　Did</span><p class="a-why">答えが <span class="en">Yes, I did.</span> なので、過去の一般動詞の疑問文です。うしろの <span class="en">see</span> が原形であることも手がかりです。</p></li>
+<li><span class="a-key">イ　bring</span><p class="a-why"><span class="en">didn't</span> のうしろの動詞は原形です。<span class="en">brought</span> は過去形なので、ここには入りません。</p></li>
+<li><span class="a-key">イ　was</span><p class="a-why"><span class="en">tired</span> はようすを言う語なので、be動詞の文です。主語 <span class="en">I</span> で過去なので <span class="en">was</span> です。後半の <span class="en">went</span> は一般動詞の過去形です。</p></li>
+
+<li><span class="a-key">We went to the aquarium last Sunday.</span><p class="a-why">主語 <span class="en">We</span> のうしろに過去形の <span class="en">went</span>、そのうしろに行き先と時を置きます。<span class="en">last Sunday</span> の前に <span class="en">on</span> はつけません。</p></li>
+<li><span class="a-key">What did you do yesterday?</span><p class="a-why">疑問詞 <span class="en">What</span> を先頭に置き、そのうしろは <span class="en">did you</span> ＋原形の <span class="en">do</span> です。</p></li>
+<li><span class="a-key">Ken didn't watch TV last night.</span><p class="a-why">不要な語は <span class="en">watched</span> です。<span class="en">didn't</span> のうしろは原形の <span class="en">watch</span> です。</p></li>
+<li><span class="a-key">I bought a ticket at the station.</span><p class="a-why"><span class="en">buy</span> の過去形は <span class="en">bought</span> です。場所の <span class="en">at the station</span> は文の終わりに置きます。</p></li>
+<li><span class="a-key">Did you find a pen at the store?</span><p class="a-why">不要な語は <span class="en">found</span> です。<span class="en">Did</span> を先頭に出したら、動詞は原形の <span class="en">find</span> です。</p></li>
+<li><span class="a-key">My father gave me a watch.</span><p class="a-why"><span class="en">give</span> の過去形は <span class="en">gave</span> です。「私に」の <span class="en">me</span> を先に、「腕時計を」の <span class="en">a watch</span> をうしろに置きます。</p></li>
+
+<li><span class="a-key">I didn't go to the park yesterday.</span><p class="a-why">理由の例：<span class="en">didn't</span> のうしろの動詞は原形にするから。</p></li>
+<li><span class="a-key">Did Ken play soccer last Sunday?</span><p class="a-why">理由の例：<span class="en">Did</span> で始まる疑問文では、動詞は原形にするから。</p></li>
+<li><span class="a-key">My mother made a cake for me yesterday.</span><p class="a-why">理由の例：<span class="en">yesterday</span> があり過去のことなので、<span class="en">make</span> を過去形の <span class="en">made</span> にするから。</p></li>
+<li><span class="a-key">Did you visit Kyoto last year?</span><p class="a-why">理由の例：「訪れる」は動作を言う一般動詞なので、疑問文は <span class="en">Were</span> ではなく <span class="en">Did</span> で始めるから。</p></li>
+<li><span class="a-key">Did you watch TV last night? —— Yes, I did.</span><p class="a-why">理由の例：過去のことを <span class="en">Did</span> でたずねているので、答えも <span class="en">did</span> で返すから。</p></li>
+
+<li><span class="a-key">I studied English last night.</span><p class="a-why"><span class="en">study</span> は子音字＋<span class="en">y</span> で終わるので、<span class="en">y</span> を <span class="en">i</span> にかえて <span class="en">studied</span> です。</p></li>
+<li><span class="a-key">We didn't play tennis in the park yesterday.</span><p class="a-why"><span class="en">We did not play tennis in the park yesterday.</span> でも正解です。<span class="en">didn't</span> のうしろは原形の <span class="en">play</span> です。</p></li>
+<li><span class="a-key">Did you eat breakfast this morning? —— No, I didn't.</span><p class="a-why"><span class="en">Did</span> を先頭に出し、動詞は原形の <span class="en">eat</span> です。答えは <span class="en">I didn't</span> で返します。<span class="en">Did you have breakfast this morning?</span> でも正解です。</p></li>
+<li><span class="a-key">Where did you go last Sunday?</span><p class="a-why">疑問詞 <span class="en">Where</span> のうしろは、<span class="en">did</span> の疑問文の語順です。<span class="en">went</span> にはしません。</p></li>
+<li><span class="a-key">I wrote a letter to my grandmother.</span><p class="a-why"><span class="en">write</span> の過去形は <span class="en">wrote</span> です。「〜に」は <span class="en">to my grandmother</span> で文の終わりに置きます。</p></li>
+<li><span class="a-key">I saw a dolphin for the first time.</span><p class="a-why"><span class="en">see</span> の過去形は <span class="en">saw</span> です。<span class="en">for the first time</span> は4語で「初めて」です。</p></li>
+<li><span class="a-key">How did you come here?</span><p class="a-why">疑問詞 <span class="en">How</span> のうしろは <span class="en">did you</span> ＋原形の <span class="en">come</span> です。<span class="en">here</span> の前に <span class="en">to</span> はつけません。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">We took a bus from the station</span> とあります。アは駅で別れたとは書かれておらず、ウは <span class="en">First, we saw a dolphin show.</span> のあとに昼食なので合いません。</p></li>
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">After lunch, we bought some souvenirs for our families.</span> と合います。イはペンが <span class="en">for my father</span> なので合わず、ウは <span class="en">it rained</span> と合いません。</p></li>
+<li><span class="a-key">got</span><p class="a-why">本文の <span class="en">got to the aquarium at ten</span> に合わせます。<span class="en">get to 〜</span> で「〜に着く」です。</p></li>
+<li><span class="a-key">brought</span><p class="a-why">本文の <span class="en">Mika brought her umbrella</span> に合わせます。<span class="en">bring</span> の過去形です。</p></li>
+<li><span class="a-key">イルカはとても高く跳び、みんなが笑いました。</span><p class="a-why"><span class="en">jumped</span> と <span class="en">laughed</span> はどちらも過去形なので、「跳んだ」「笑った」と過去で訳します。<span class="en">everyone</span> は「そこにいたみんな」です。</p></li>
+
+<li><span class="a-key">解答例　I played tennis with my friends yesterday.</span><p class="a-why">一般動詞を正しい過去形にして、昨日のことを言っていれば正解です。不規則動詞は一覧表で確かめます。</p></li>
+<li><span class="a-key">解答例　I didn't watch TV last weekend.</span><p class="a-why"><span class="en">didn't</span> のうしろの動詞を原形にしていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">過去の動作を言うときは、一般動詞を過去形にします。<strong>規則動詞は <span class="en">-ed</span> をつけ、不規則動詞は一覧表の形を使います。</strong>過去形は主語で形が変わりません。否定文は <span class="en">didn't</span>＋原形、疑問文は <span class="en">Did</span>＋主語＋原形で、<span class="en">Did you 〜?</span> には <span class="en">did</span> で答えます。ようすを言う文は Unit 15 の <span class="en">was</span> <span class="en">were</span>、動作を言う文は一般動詞の過去形、と先に見分けます。</p>
+</div>
+</div>
+</body>
+</html>
