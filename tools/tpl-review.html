@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --ok:#2E7D4F;
+  --ng:#B3413A;
+  --ok-soft:#E5F3EA;
+  --ng-soft:#F8E6E4;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.8;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.2rem 1.25rem 5.5rem;}
+
+/* ---------- ヘッダー ---------- */
+
+.topnav{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1rem;}
+.topnav a{
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;text-decoration:none;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+
+.site-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.site-kicker{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.85rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .45rem;
+}
+.site-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.5rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.site-lead{margin:0;font-size:.9rem;color:var(--ink-2);}
+.site-meta{margin:.5rem 0 0;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 大問 ---------- */
+
+.big{margin:0 0 2.2rem;}
+.big-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  border-bottom:2px solid var(--ink);padding-bottom:.35rem;margin:0 0 .9rem;
+}
+.big-no{
+  font-family:"Klee One",Georgia,serif;font-size:.95rem;font-weight:600;
+  background:var(--ink);color:var(--paper);border-radius:var(--hand-2);
+  padding:.05rem .65rem;white-space:nowrap;
+}
+.big-title{font-family:"Klee One",sans-serif;font-size:1.1rem;font-weight:600;margin:0;flex:1;min-width:0;}
+.big-pt{font-size:.8rem;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.big-lead{margin:0 0 1rem;font-size:.88rem;color:var(--ink-2);}
+
+/* ---------- 読解の本文・資料 ---------- */
+
+.reading{
+  background:var(--panel);border:1.5px solid var(--rule);
+  border-radius:var(--hand);padding:.9rem 1rem;margin:0 0 1.1rem;
+  font-family:Georgia,"Times New Roman",serif;font-size:1rem;line-height:1.95;
+}
+.reading p{margin:0 0 .6rem;}
+.reading p:last-child{margin-bottom:0;}
+.reading .sp{color:var(--be);font-weight:600;font-family:"Klee One",sans-serif;}
+.reading u{text-underline-offset:.22em;}
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.data{border-collapse:collapse;width:100%;font-size:.88rem;background:var(--paper);}
+table.data th,table.data td{border:1px solid var(--rule);padding:.35rem .5rem;text-align:left;}
+table.data th{background:var(--panel);font-weight:600;white-space:nowrap;}
+
+/* ---------- 設問 ---------- */
+
+ol.q{list-style:none;margin:0;padding:0;counter-reset:qn;}
+ol.q > li{
+  counter-increment:qn;
+  border:1.5px solid var(--rule);border-radius:var(--hand-2);
+  padding:.7rem .85rem;margin:0 0 .8rem;background:var(--paper);
+}
+ol.q > li::before{
+  content:"問" counter(qn);
+  display:inline-block;font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  color:var(--ink-2);background:var(--panel);border:1px solid var(--rule);
+  border-radius:4px;padding:0 .4rem;margin-right:.45rem;vertical-align:.08em;
+}
+ol.q > li > .qt{display:inline;margin:0;font-size:.95rem;}
+ol.q > li > .qt + *{margin-top:.6rem;}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin:.35rem 0 0;}
+.q-cond{display:block;font-size:.82rem;color:var(--gen);margin:.3rem 0 0;}
+.q-pt{float:right;font-size:.74rem;color:var(--ink-3);font-variant-numeric:tabular-nums;}
+
+ol.choices{list-style:none;margin:.6rem 0 0;padding:0;counter-reset:cn;}
+ol.choices > li{counter-increment:cn;margin:0 0 .3rem;}
+ol.choices label{display:flex;gap:.45rem;align-items:flex-start;cursor:pointer;font-size:.93rem;}
+ol.choices label::before{
+  content:counter(cn);flex:none;
+  font-family:"Klee One",serif;font-size:.78rem;font-weight:600;
+  width:1.35em;height:1.35em;line-height:1.35em;text-align:center;
+  border:1.5px solid var(--rule);border-radius:50%;margin-top:.25em;
+}
+ol.choices input{margin:.45em .1rem 0 0;flex:none;}
+ol.choices .en{font-family:Georgia,"Times New Roman",serif;}
+
+.words{display:flex;flex-wrap:wrap;gap:.35rem;margin:.6rem 0 .1rem;}
+.words span{
+  font-family:Georgia,"Times New Roman",serif;font-size:.95rem;
+  border:1.5px solid var(--rule);border-radius:6px;background:var(--panel);
+  padding:.05rem .5rem;
+}
+
+.seq{list-style:none;margin:.6rem 0 0;padding:0;}
+.seq > li{display:flex;gap:.5rem;align-items:flex-start;margin:0 0 .35rem;font-size:.93rem;}
+.seq .mk{
+  flex:none;font-family:"Klee One",serif;font-size:.78rem;font-weight:600;
+  border:1.5px solid var(--rule);border-radius:4px;padding:0 .4rem;margin-top:.2em;
+}
+.seq .en{font-family:Georgia,"Times New Roman",serif;}
+.seq select{font:inherit;font-size:.9rem;padding:.1rem .2rem;}
+
+.in{
+  display:block;width:100%;font:inherit;font-size:1rem;
+  font-family:Georgia,"Times New Roman",serif;
+  border:1.5px solid var(--rule);border-radius:6px;background:var(--paper);
+  padding:.4rem .55rem;margin:.55rem 0 0;
+}
+.in.ja{font-family:inherit;font-size:.95rem;}
+textarea.in{line-height:1.7;resize:vertical;min-height:4.2rem;}
+.in:focus{outline:2px solid var(--be);outline-offset:1px;}
+.count{font-size:.76rem;color:var(--ink-3);margin:.25rem 0 0;text-align:right;}
+
+/* 採点後に問題側へ付ける印 */
+ol.q > li.done{border-color:var(--rule);}
+ol.q > li.got{background:var(--ok-soft);}
+ol.q > li.lost{background:var(--ng-soft);}
+
+/* ---------- 提出バー ---------- */
+
+.subbar{
+  position:sticky;bottom:0;left:0;right:0;z-index:5;
+  background:var(--paper);border-top:2px solid var(--ink);
+  margin:1.5rem -1.25rem 0;padding:.6rem 1.25rem calc(.6rem + env(safe-area-inset-bottom));
+}
+.subbar .st{font-size:.8rem;color:var(--ink-2);margin:0 0 .4rem;}
+.btn{
+  display:block;width:100%;font:inherit;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:1.05rem;
+  padding:.75rem;border-radius:var(--hand);cursor:pointer;border:2px solid var(--ink);
+}
+.btn.main{background:var(--ink);color:var(--paper);}
+.btn.sub{background:var(--paper);color:var(--ink);margin-top:.5rem;font-size:.95rem;padding:.6rem;}
+
+/* ---------- 結果 ---------- */
+
+#result[hidden]{display:none;}
+.res-head{border-bottom:3px solid var(--ink);border-radius:0 0 12px 3px;padding-bottom:.8rem;margin-bottom:1.2rem;}
+.score{display:flex;align-items:baseline;justify-content:center;gap:.3rem;font-family:"Klee One",sans-serif;font-weight:600;margin:.6rem 0 .2rem;}
+.score b{font-size:3.2rem;line-height:1;}
+.score span{font-size:1.2rem;color:var(--ink-2);}
+#result h2{font-family:"Klee One",sans-serif;font-size:1.02rem;font-weight:600;margin:1.8rem 0 .7rem;}
+#result h2 span{background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);padding:0 .15rem;}
+.box{border:2px solid var(--ink);border-radius:var(--hand);padding:.8rem .9rem;background:var(--paper);}
+.row{display:grid;grid-template-columns:5.8rem 1fr 3.4rem;align-items:center;gap:.5rem;font-size:.88rem;margin:.35rem 0;}
+.row .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar{height:.6rem;background:var(--panel);border:1px solid var(--rule);border-radius:4px;overflow:hidden;}
+.bar i{display:block;height:100%;background:var(--be);}
+.row .pt{text-align:right;font-variant-numeric:tabular-nums;}
+.units{list-style:none;margin:0;padding:0;}
+.units li{display:flex;align-items:center;gap:.6rem;padding:.55rem 0;border-bottom:1px dashed var(--rule);font-size:.9rem;}
+.units li:last-child{border-bottom:0;}
+.u-no{font-family:"Klee One",serif;font-size:.74rem;font-weight:600;color:var(--be);background:var(--hi-be);border:1px solid var(--be);border-radius:var(--hand-2);padding:0 .4rem;white-space:nowrap;}
+.units .t{flex:1;min-width:0;}
+.units .p{font-variant-numeric:tabular-nums;font-weight:600;}
+.weak .p{color:var(--ng);}
+.units a{font-size:.78rem;color:var(--be);white-space:nowrap;}
+.flag{font-size:.7rem;color:#fff;background:var(--ng);border-radius:4px;padding:0 .3rem;margin-left:.3rem;}
+.wq{border:2px solid var(--rule);border-radius:var(--hand-2);padding:.75rem .85rem;margin:0 0 .7rem;background:var(--paper);}
+.wq .qh{display:flex;justify-content:space-between;gap:.5rem;font-size:.8rem;color:var(--ink-2);}
+.wq .qh b{color:var(--ink);font-variant-numeric:tabular-nums;}
+.wq .q{font-size:.9rem;margin:.3rem 0 .5rem;}
+.lab{font-size:.72rem;color:var(--ink-3);margin-top:.35rem;}
+.ans{font-family:Georgia,"Times New Roman",serif;font-size:1rem;background:var(--panel);border-radius:6px;padding:.4rem .6rem;line-height:1.6;word-break:break-word;}
+.ans.ja{font-family:inherit;font-size:.92rem;}
+.model{font-family:Georgia,serif;font-size:.95rem;color:var(--ok);padding:.1rem .6rem;word-break:break-word;}
+.model.ja{font-family:inherit;font-size:.9rem;}
+.checks{list-style:none;margin:.5rem 0 0;padding:0;font-size:.82rem;}
+.checks li{padding:.1rem 0;}
+.checks .o{color:var(--ok);}
+.checks .x{color:var(--ng);}
+mark{background:var(--ng-soft);color:var(--ng);border-radius:3px;padding:0 .15rem;}
+.note{font-size:.76rem;color:var(--ink-3);margin:.4rem 0 0;}
+.share{padding:.4rem 0 .2rem;margin-top:1rem;}
+
+.modal{position:fixed;inset:0;background:rgba(32,36,47,.72);display:flex;flex-direction:column;align-items:center;padding:1rem;z-index:10;overflow:auto;}
+.modal[hidden]{display:none;}
+.modal img{width:100%;max-width:380px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.35);background:#fff;}
+.modal .acts{width:100%;max-width:380px;margin-top:.8rem;}
+.modal .hint{color:#fff;font-size:.8rem;text-align:center;margin:.4rem 0 0;}
+
+/* ---------- 印刷（画面で解くのが本命。印刷はおまけ） ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.7;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .topnav,.subbar,.modal,.share{display:none;}
+  .big,.reading,ol.q > li,.wq{break-inside:avoid;}
+  .big-head{break-after:avoid;}
+  .site-kicker{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<nav class="topnav">
+  <a href="../index.html">目次</a>
+  <a href="../word-test.html?{{WTQ}}">単語テスト</a>
+</nav>
+
+<header class="site-head">
+  <p class="site-kicker">総合テスト</p>
+  <h1 class="site-title">{{NAME}}</h1>
+  <p class="site-lead">100点満点。制限時間はありません。答えは端末の中に自動で残るので、途中で閉じても続きから解けます。</p>
+  <p class="site-meta">{{RANGE}}　・　採点はすべて機械で行います。英作文と記述は語数・条件・よくある誤りをもとにした<b>機械の目安</b>です。</p>
+</header>
+
+<div id="paper">
+{{BODY}}
+</div>
+
+<div class="subbar" id="subbar">
+  <p class="st" id="st"></p>
+  <button type="button" class="btn main" id="submit">採点する</button>
+  <button type="button" class="btn sub" id="clear">答えを消してはじめから</button>
+</div>
+
+<div id="result" hidden>
+  <header class="res-head">
+    <p class="site-kicker">採点結果</p>
+    <h2 class="site-title" style="margin:0 0 .3rem">{{NAME}}</h2>
+    <p class="site-meta">{{RANGE}}　・　<span id="when"></span></p>
+    <div class="score"><b id="total"></b><span>/ 100点</span></div>
+    <div class="share"><button type="button" class="btn main" data-send>先生に送る（画像）</button></div>
+  </header>
+
+  <h2><span>大問ごとの得点</span></h2>
+  <div class="box" id="bigQ"></div>
+
+  <h2><span>Unit ごとの正答率</span></h2>
+  <div class="box"><ul class="units" id="unitList"></ul>
+  <p class="note">正答率が低い順に、見直すワークブックへのリンクを出しています。</p></div>
+
+  <h2><span>書いた答え（英作文・記述）</span></h2>
+  <div id="written"></div>
+  <p class="note">英作文と記述の点数は、語数・条件・よくある誤りをもとにした機械の目安です。</p>
+
+  <div class="share">
+    <button type="button" class="btn main" data-send>先生に送る（画像）</button>
+    <button type="button" class="btn sub" id="back">問題に戻る（見直す）</button>
+    <button type="button" class="btn sub" id="again">答えを消してもう一度</button>
+  </div>
+</div>
+
+</div>
+
+<div class="modal" id="modal" hidden>
+  <img id="preview" alt="送る画像のプレビュー">
+  <div class="acts">
+    <button type="button" class="btn main" id="shareBtn">LINE などで送る</button>
+    <button type="button" class="btn sub" id="saveBtn">画像を保存</button>
+    <button type="button" class="btn sub" id="closeBtn">閉じる</button>
+    <p class="hint" id="shareHint"></p>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   総合テストの採点・結果・共有・途中保存
+   UPDATE-PLAN.md「2. 総合テスト」に対応。問題はすべて HTML 側にある。
+   JS は「採点・表示の切り替え・結果表示・画像づくり・途中保存」だけを行う。
+
+   HTML の書き方
+   -------------
+   <section class="big" data-big="1" data-name="文法" data-pt="25"> … </section>
+   その中の <ol class="q"> の各 <li> が1問。
+
+   共通の属性
+     data-unit  "3" または "3 7"（複数の Unit にまたがる読解問題）
+     data-pt    配点（整数）
+     data-type  下のいずれか
+
+   機械で正誤が決まるもの（部分点なし）
+     choice  4択など。<ol class="choices"> の中に <label><input type="radio"> 。data-a="2"（1始まり）
+     multi   2つ選ぶ。checkbox 。data-a="2,4"（順不同・全部合って正解）
+     order   並べかえ。<p class="words"><span>語</span>…</p> と入力欄。data-a="正解の文"（| で別解）
+     seq     文を流れに並べる。<ol class="seq"> の各行に select 。data-a="3,1,4,2"
+     fill    1語〜数語の補充。data-a="is|'s"
+     fix     誤文訂正の「直した箇所」。data-a="am"
+
+   ルールで目安の点を付けるもの
+     en   英語で書く（条件英作文・英問英答・3語以上で書く）
+          data-min  語数の下限（条件英作文）
+          data-use  必ず使う語（カンマ区切り）
+          data-kw   要点（カンマ区切り。| で別表記）。あるときは要点の数で基礎点を出す
+          data-a    模範解答（| で別解）。正規化して一致すれば満点
+          data-avoid よくある誤りの形（カンマ区切り）。含まれると減点
+     ja   日本語で書く（下線部の内容・なぜ誤りか）
+          data-kw   要点（カンマ区切り。| で別表記）。必須
+
+   en・ja の <li> には模範解答 <p class="model"> と採点の目安 <p class="rubric"> を必ず置く。
+   どちらも画面では隠し、結果と送る画像にだけ出す。
+   ===================================================================== */
+
+const TEST = {{TEST}};
+const UNITS = [
+ ["be動詞の肯定文","be-affirmative"],
+ ["be動詞の否定文・疑問文","be-negative-question"],
+ ["This / That / It と指示表現","this-that-it"],
+ ["名詞の複数形と a / an / the","plural-articles"],
+ ["一般動詞の肯定文","general-affirmative"],
+ ["一般動詞の否定文・疑問文","general-negative-question"],
+ ["be動詞と一般動詞の使い分け","be-vs-general"],
+ ["代名詞","pronouns"],
+ ["三人称単数現在","third-person-singular"],
+ ["疑問詞","question-words"],
+ ["時刻・曜日・日付・数の表現","time-date-numbers"],
+ ["命令文・Let's","imperative-lets"],
+ ["助動詞 can","can"],
+ ["現在進行形","present-progressive"],
+ ["be動詞の過去形","be-past"],
+ ["一般動詞の過去形","general-past"]
+];
+const WEAK = 70;                       /* この％未満に「見直し」を出す */
+const KEY = "review:" + TEST.id;       /* 途中保存の置き場所（この端末の中だけ） */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const Q = [...document.querySelectorAll("#paper ol.q > li")];
+const BIG = [...document.querySelectorAll("#paper .big")];
+
+/* ---------- 正規化 ---------- */
+const norm = s => String(s).toLowerCase()
+  .replace(/[‘’ʼ]/g, "'")
+  .replace(/[.,!?;:]/g, " ")
+  .replace(/\s+/g, " ").trim();
+const enWords = s => String(s).trim().split(/\s+/).filter(Boolean);
+const listOf = (el, name) => (el.dataset[name] || "").split(",").map(x => x.trim()).filter(Boolean);
+
+/* ---------- 解答の読み書き（途中保存） ---------- */
+function readOne(li){
+  const t = li.dataset.type;
+  if(t === "choice"){
+    const c = li.querySelector("input[type=radio]:checked");
+    return c ? c.value : "";
+  }
+  if(t === "multi"){
+    return [...li.querySelectorAll("input[type=checkbox]:checked")].map(c => c.value).sort().join(",");
+  }
+  if(t === "seq"){
+    const a = [...li.querySelectorAll("select")].map(s => s.value);
+    return a.some(x => x !== "") ? a.join(",") : "";
+  }
+  const f = li.querySelector(".in");
+  return f ? f.value : "";
+}
+function writeOne(li, v){
+  const t = li.dataset.type;
+  if(t === "choice"){
+    li.querySelectorAll("input[type=radio]").forEach(c => { c.checked = (c.value === v); });
+  } else if(t === "multi"){
+    const set = new Set(String(v).split(","));
+    li.querySelectorAll("input[type=checkbox]").forEach(c => { c.checked = set.has(c.value); });
+  } else if(t === "seq"){
+    const a = String(v).split(",");
+    li.querySelectorAll("select").forEach((s, i) => { s.value = a[i] || ""; });
+  } else {
+    const f = li.querySelector(".in");
+    if(f) f.value = v;
+  }
+}
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(Q.map(readOne))); }catch(e){}
+}
+function load(){
+  let a = null;
+  try{ a = JSON.parse(localStorage.getItem(KEY) || "null"); }catch(e){}
+  if(Array.isArray(a) && a.length === Q.length) Q.forEach((li, i) => writeOne(li, a[i]));
+}
+function wipe(){ try{ localStorage.removeItem(KEY); }catch(e){} }
+
+/* ---------- 進み具合 ---------- */
+function progress(){
+  const done = Q.filter(li => readOne(li).trim() !== "").length;
+  $("st").textContent = "全" + Q.length + "問中 " + done + "問に答えました"
+    + (done < Q.length ? "（空欄のまま採点すると0点で数えます）" : "");
+}
+
+/* ---------- 採点 ---------- */
+function gradeAuto(li, v){
+  const t = li.dataset.type, a = li.dataset.a || "";
+  if(v.trim() === "") return false;
+  if(t === "choice") return v === a.trim();
+  if(t === "multi")  return v === a.split(",").map(x => x.trim()).sort().join(",");
+  if(t === "seq")    return v.replace(/\s/g, "") === a.replace(/\s/g, "");
+  return a.split("|").some(x => norm(x) === norm(v));   /* order / fill / fix */
+}
+
+function gradeWritten(li, v){
+  const pt = +li.dataset.pt;
+  const checks = [];
+  if(v.trim() === ""){
+    checks.push(["x", "答えが書かれていません"]);
+    return {got: 0, checks: checks, hi: ""};
+  }
+  const ja = li.dataset.type === "ja";
+  const kw = listOf(li, "kw");
+  const model = li.dataset.a || "";
+  let got, hi = "";
+
+  if(!ja && model && model.split("|").some(x => norm(x) === norm(v))){
+    checks.push(["o", "模範解答と同じ答えです"]);
+    return {got: pt, checks: checks, hi: ""};
+  }
+
+  if(kw.length){
+    const hit = kw.filter(k => k.split("|").some(x => v.includes(x.trim())
+      || (!ja && norm(v).includes(norm(x)))));
+    got = Math.round(pt * hit.length / kw.length);
+    for(const k of kw){
+      const on = hit.indexOf(k) >= 0;
+      checks.push([on ? "o" : "x", "要点「" + k.split("|")[0] + "」" + (on ? "が入っている" : "にあたる内容がない")]);
+    }
+  } else {
+    got = pt;
+  }
+
+  if(!ja){
+    const w = enWords(v);
+    const min = +li.dataset.min || 0;
+    if(min){
+      const ok = w.length >= min;
+      checks.push([ok ? "o" : "x", "語数 " + w.length + "語（条件 " + min + "語以上）"]);
+      if(!ok) got -= Math.ceil(pt / 2);
+    }
+    for(const u of listOf(li, "use")){
+      const ok = norm(v).split(" ").indexOf(norm(u)) >= 0;
+      checks.push([ok ? "o" : "x", "指定の語「" + u + "」" + (ok ? "を使っている" : "を使っていない")]);
+      if(!ok) got -= 1;
+    }
+    const capOk = /^[A-Z]/.test(v.trim());
+    const dotOk = /[.?!]$/.test(v.trim());
+    checks.push([capOk && dotOk ? "o" : "x",
+      capOk && dotOk ? "文頭の大文字・文末のピリオド"
+      : (!capOk && !dotOk ? "文頭が大文字でなく、文末のピリオドもない"
+        : (!capOk ? "文頭が大文字でない" : "文末のピリオド（? !）がない"))]);
+    if(!capOk) got -= 1;
+    if(!dotOk) got -= 1;
+    for(const bad of listOf(li, "avoid")){
+      const re = new RegExp("\\b" + bad.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i");
+      const m = v.match(re);
+      if(m){
+        checks.push(["x", "「" + bad + "」よくある誤りの形が入っている"]);
+        got -= 2;
+        if(!hi) hi = m[0];
+      }
+    }
+  }
+  got = Math.max(0, Math.min(pt, got));
+  return {got: got, checks: checks, hi: hi};
+}
+
+function grade(){
+  const per = [], byUnit = {};
+  for(const li of Q){
+    const v = readOne(li), pt = +li.dataset.pt, t = li.dataset.type;
+    let got, checks = null, hi = "";
+    if(t === "en" || t === "ja"){
+      const r = gradeWritten(li, v);
+      got = r.got; checks = r.checks; hi = r.hi;
+    } else {
+      got = gradeAuto(li, v) ? pt : 0;
+    }
+    per.push({li: li, v: v, pt: pt, got: got, type: t, checks: checks, hi: hi});
+    for(const u of (li.dataset.unit || "").split(/\s+/).filter(Boolean)){
+      const k = +u;
+      byUnit[k] = byUnit[k] || [0, 0];
+      byUnit[k][0] += got; byUnit[k][1] += pt;
+    }
+    li.classList.remove("got", "lost");
+    li.classList.add("done", got === pt ? "got" : "lost");
+  }
+  const big = BIG.map(s => {
+    const ls = [...s.querySelectorAll("ol.q > li")];
+    const g = ls.reduce((x, li) => x + per[Q.indexOf(li)].got, 0);
+    return [s.dataset.big + " " + s.dataset.name, g, +s.dataset.pt];
+  });
+  const units = Object.keys(byUnit).map(k => {
+    const u = +k, [g, m] = byUnit[k];
+    return [u, UNITS[u - 1] ? UNITS[u - 1][0] : "Unit " + u, Math.round(g / m * 100)];
+  });
+  const written = per.filter(p => p.type === "en" || p.type === "ja").map(p => {
+    const s = p.li.closest(".big");
+    const qt = p.li.querySelector(".qt");
+    const mo = p.li.querySelector(".model");
+    return {
+      no: s.dataset.big + "-問" + ([...s.querySelectorAll("ol.q > li")].indexOf(p.li) + 1),
+      kind: p.li.dataset.kind || (p.type === "ja" ? "日本語で書く" : "英語で書く"),
+      pt: [p.got, p.pt],
+      q: qt ? qt.textContent.replace(/\s+/g, " ").trim() : "",
+      ans: p.v, hi: p.hi,
+      model: mo ? mo.textContent.replace(/^模範解答[:：]?\s*/, "").trim() : "",
+      checks: p.checks || [],
+      ja: p.type === "ja"
+    };
+  });
+  return {big: big, units: units, written: written,
+          total: big.reduce((x, b) => x + b[1], 0), when: new Date()};
+}
+
+/* ---------- 結果を描く ---------- */
+let R = null;
+const fmt = d => d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate()
+  + " " + d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0");
+
+function showResult(){
+  $("when").textContent = fmt(R.when);
+  $("total").textContent = R.total;
+  $("bigQ").innerHTML = R.big.map(b =>
+    '<div class="row"><span class="lbl">' + esc(b[0]) + '</span><span class="bar"><i style="width:'
+    + (b[1] / b[2] * 100) + '%"></i></span><span class="pt">' + b[1] + " / " + b[2] + "</span></div>").join("");
+  $("unitList").innerHTML = R.units.slice().sort((a, b) => a[2] - b[2]).map(u => {
+    const slug = UNITS[u[0] - 1] ? UNITS[u[0] - 1][1] : "";
+    const href = slug ? "unit" + String(u[0]).padStart(2, "0") + "_" + slug + ".html" : "#";
+    return '<li class="' + (u[2] < WEAK ? "weak" : "") + '"><span class="u-no">Unit ' + u[0]
+      + '</span><span class="t">' + esc(u[1]) + (u[2] < WEAK ? '<span class="flag">見直し</span>' : "")
+      + '</span><span class="p">' + u[2] + '%</span><a href="' + href + '">ワークブック →</a></li>';
+  }).join("");
+  $("written").innerHTML = R.written.map(w => {
+    const a = w.hi ? esc(w.ans).replace(esc(w.hi), "<mark>" + esc(w.hi) + "</mark>") : esc(w.ans);
+    return '<div class="wq"><div class="qh"><span>大問' + esc(w.no) + "　" + esc(w.kind)
+      + '</span><b>' + w.pt[0] + " / " + w.pt[1] + '</b></div><div class="q">' + esc(w.q) + '</div>'
+      + '<div class="lab">書いた答え</div><div class="ans ' + (w.ja ? "ja" : "") + '">' + a + '</div>'
+      + '<div class="lab">模範解答</div><div class="model ' + (w.ja ? "ja" : "") + '">' + esc(w.model) + '</div>'
+      + '<ul class="checks">' + w.checks.map(c =>
+          '<li class="' + c[0] + '">' + (c[0] === "o" ? "○" : "×") + " " + esc(c[1]) + "</li>").join("")
+      + "</ul></div>";
+  }).join("");
+  $("paper").hidden = true;
+  $("subbar").hidden = true;
+  $("result").hidden = false;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- 先生に送る（外部ライブラリなし、canvas に直接描く） ---------- */
+const W = 1080, PAD = 64;
+function wrap(ctx, text, maxW){
+  const out = []; let line = "";
+  const tokens = String(text).match(/[A-Za-z0-9'’.,!?;:()\-]+\s*|\s+|./g) || [];
+  for(const t of tokens){
+    const test = line + t;
+    if(ctx.measureText(test).width > maxW && line){ out.push(line.trimEnd()); line = t.trimStart(); }
+    else line = test;
+  }
+  if(line) out.push(line.trimEnd());
+  return out;
+}
+async function makeImage(){
+  try{
+    await document.fonts.load('600 40px "Klee One"');
+    await document.fonts.load('400 30px "Klee One"');
+  }catch(e){}
+  const c = document.createElement("canvas"), ctx = c.getContext("2d");
+  const FJ = '"Klee One","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+  const FE = 'Georgia,"Times New Roman",serif';
+  const draw = real => {
+    let y = PAD;
+    const T = (txt, size, opt) => {
+      opt = opt || {};
+      ctx.font = (opt.w || 400) + " " + size + "px " + (opt.f || FJ);
+      const lines = wrap(ctx, txt, W - PAD * 2 - (opt.indent || 0));
+      for(const ln of lines){
+        y += size * 1.5;
+        if(real){ ctx.fillStyle = opt.c || "#20242F"; ctx.fillText(ln, PAD + (opt.indent || 0), y - size * .35); }
+      }
+    };
+    const gap = h => y += h;
+    const rule = () => {
+      gap(18);
+      if(real){
+        ctx.strokeStyle = "#D5D3CA"; ctx.lineWidth = 2; ctx.setLineDash([8, 8]);
+        ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke(); ctx.setLineDash([]);
+      }
+      gap(18);
+    };
+    if(real){
+      ctx.fillStyle = "#FFFEFB"; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.fillStyle = "#20242F"; ctx.fillRect(0, 0, W, 14);
+    }
+    gap(10);
+    T(TEST.name, 44, {w: 600});
+    T(TEST.range + "　" + fmt(R.when), 28, {c: "#5A6273"});
+    gap(8);
+    T(R.total + " / 100点", 72, {w: 600});
+    rule();
+    T("大問ごとの得点", 32, {w: 600});
+    for(const b of R.big){
+      gap(50);
+      if(real){
+        ctx.font = "400 30px " + FJ; ctx.fillStyle = "#20242F"; ctx.fillText(b[0], PAD, y - 8);
+        const bx = PAD + 230, bw = W - PAD * 2 - 230 - 150;
+        ctx.fillStyle = "#F5F5F0"; ctx.fillRect(bx, y - 30, bw, 22);
+        ctx.fillStyle = "#2A5C93"; ctx.fillRect(bx, y - 30, bw * b[1] / b[2], 22);
+        ctx.fillStyle = "#20242F"; ctx.textAlign = "right";
+        ctx.fillText(b[1] + " / " + b[2], W - PAD, y - 8); ctx.textAlign = "left";
+      }
+    }
+    rule();
+    T("Unit ごとの正答率", 32, {w: 600});
+    for(const u of R.units.slice().sort((a, b) => a[2] - b[2])){
+      T("Unit " + u[0] + "　" + u[1] + "　" + u[2] + "%" + (u[2] < WEAK ? "　← 見直し" : ""),
+        30, {c: u[2] < WEAK ? "#B3413A" : "#20242F"});
+    }
+    rule();
+    T("書いた答え（英作文・記述）", 32, {w: 600});
+    for(const w of R.written){
+      gap(14);
+      T("大問" + w.no + "　" + w.kind + "　" + w.pt[0] + " / " + w.pt[1] + "（機械の目安）", 28, {w: 600, c: "#5A6273"});
+      T(w.q, 28);
+      T("書いた答え", 24, {c: "#858B99"});
+      T(w.ans || "（無答）", w.ja ? 30 : 34, {f: w.ja ? FJ : FE, indent: 16});
+      T("模範解答", 24, {c: "#858B99"});
+      T(w.model, w.ja ? 28 : 32, {f: w.ja ? FJ : FE, c: "#2E7D4F", indent: 16});
+      for(const c2 of w.checks) T((c2[0] === "o" ? "○" : "×") + " " + c2[1], 26, {c: c2[0] === "o" ? "#2E7D4F" : "#B3413A"});
+    }
+    gap(PAD);
+    return y;
+  };
+  c.width = W; c.height = 4000;
+  const h = draw(false);
+  c.height = Math.ceil(h);
+  draw(true);
+  return await new Promise(r => c.toBlob(r, "image/png"));
+}
+
+let blob = null, url = null;
+async function openShare(){
+  blob = await makeImage();
+  if(url) URL.revokeObjectURL(url);
+  url = URL.createObjectURL(blob);
+  $("preview").src = url;
+  $("modal").hidden = false;
+  let can = false;
+  try{
+    const file = new File([blob], "result.png", {type: "image/png"});
+    can = !!(navigator.canShare && navigator.canShare({files: [file]}));
+  }catch(e){}
+  $("shareBtn").hidden = !can;
+  $("shareHint").textContent = can ? ""
+    : "この端末では共有画面が使えません。「画像を保存」してから LINE で送ってください。";
+}
+
+/* ---------- つなぐ ---------- */
+$("submit").onclick = () => { save(); R = grade(); showResult(); };
+$("clear").onclick = () => {
+  if(!confirm("書いた答えをすべて消します。よろしいですか。")) return;
+  wipe(); location.reload();
+};
+$("again").onclick = () => {
+  if(!confirm("書いた答えをすべて消します。よろしいですか。")) return;
+  wipe(); location.reload();
+};
+$("back").onclick = () => {
+  $("result").hidden = true; $("paper").hidden = false; $("subbar").hidden = false; window.scrollTo(0, 0);
+};
+$("shareBtn").onclick = async () => {
+  try{
+    const file = new File([blob], "result.png", {type: "image/png"});
+    await navigator.share({files: [file], title: TEST.name});
+  }catch(e){}
+};
+$("saveBtn").onclick = () => {
+  const a = document.createElement("a");
+  a.href = url; a.download = TEST.id + "_" + (R.when.getMonth() + 1) + "-" + R.when.getDate() + ".png";
+  a.click();
+};
+$("closeBtn").onclick = () => $("modal").hidden = true;
+document.querySelectorAll("[data-send]").forEach(b => b.onclick = openShare);
+
+document.querySelectorAll(".model,.rubric").forEach(p => p.hidden = true);
+$("paper").addEventListener("input", () => { save(); progress(); });
+$("paper").addEventListener("change", () => { save(); progress(); });
+load();
+progress();
+</script>
+</body>
+</html>

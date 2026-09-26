@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語テスト｜中学英語 リスタート教材</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --gen:#9C540F;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --ok:#2E6B4A;
+  --ok-soft:#E2F0E8;
+  --ng:#A33F38;
+  --ng-soft:#F6E4E2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  overflow-wrap:anywhere;
+}
+.sheet{max-width:34rem;margin:0 auto;padding:1.6rem 1.25rem 3rem;}
+.en{font-family:Georgia,"Times New Roman",serif;}
+[hidden]{display:none!important;}
+
+/* ---------- 見出し ---------- */
+.site-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:1.4rem;
+}
+.site-kicker{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.85rem;font-weight:600;
+  background:var(--hi-gen);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .55rem;
+}
+.site-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.5rem;line-height:1.45;font-weight:600;margin:0 0 .45rem;
+}
+.site-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.8;}
+.backlink{margin:0 0 1.2rem;font-size:.85rem;}
+.backlink a{color:var(--ink-2);}
+
+h2.sec{
+  font-family:"Klee One",sans-serif;font-size:.9rem;font-weight:600;
+  color:var(--ink-2);margin:1.4rem 0 .5rem;
+}
+h2.sec:first-of-type{margin-top:0;}
+
+.card{
+  background:var(--panel);
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1rem 1.3rem;
+}
+
+/* ---------- 選択ボタン ---------- */
+.seg{display:flex;gap:.4rem;flex-wrap:wrap;}
+.seg button{
+  flex:1 1 0;min-width:0;font:inherit;font-size:.92rem;line-height:1.5;
+  padding:.5rem .3rem;cursor:pointer;
+  border:1.5px solid var(--rule);border-radius:var(--hand-2);
+  background:var(--paper);color:var(--ink);
+}
+.seg button[aria-pressed="true"]{
+  background:var(--ink);border-color:var(--ink);color:var(--paper);font-weight:600;
+}
+.seg button:disabled{color:var(--ink-3);background:transparent;border-style:dashed;cursor:not-allowed;}
+.seg small{display:block;font-size:.68rem;opacity:.85;}
+
+.chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.4rem;margin-top:.6rem;}
+.chips.parts{grid-template-columns:1fr;}
+.chips button{
+  font:inherit;font-size:.9rem;padding:.45rem .2rem;cursor:pointer;
+  border:1.5px solid var(--rule);border-radius:var(--hand-2);
+  background:var(--paper);color:var(--ink);
+}
+.chips.parts button{text-align:left;padding:.5rem .8rem;}
+.chips button[aria-pressed="true"]{border-color:var(--ink);background:var(--hi-be);font-weight:600;}
+.chips .p-range{font-size:.78rem;color:var(--ink-2);}
+.chips button[aria-pressed="true"] .p-range{color:var(--ink);}
+
+.count{margin-top:.7rem;font-size:.88rem;color:var(--ink-2);line-height:1.7;}
+.count b{color:var(--ink);font-size:1rem;}
+
+.primary{
+  display:block;width:100%;font:inherit;font-size:1.02rem;font-weight:600;
+  padding:.8rem;margin-top:1.2rem;cursor:pointer;
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--ink);color:var(--paper);
+}
+.primary:disabled{background:var(--ink-3);border-color:var(--ink-3);cursor:not-allowed;}
+.ghost{
+  display:block;width:100%;font:inherit;font-size:.95rem;
+  padding:.65rem;margin-top:.55rem;cursor:pointer;
+  border:1.5px solid var(--rule);border-radius:var(--hand-2);
+  background:var(--paper);color:var(--ink);
+}
+
+/* ---------- 出題 ---------- */
+.topbar{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;font-size:.82rem;color:var(--ink-2);}
+.topbar a{color:var(--ink-2);}
+.bar{height:5px;background:var(--rule);border-radius:3px;margin:.5rem 0 1.2rem;overflow:hidden;}
+.bar i{display:block;height:100%;background:var(--ink);width:0;transition:width .2s;}
+
+.qcard{
+  background:var(--panel);
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.4rem 1rem 1.5rem;text-align:center;
+}
+.qdir{font-size:.78rem;color:var(--ink-2);margin-bottom:.3rem;}
+.prompt{font-size:1.9rem;font-weight:600;margin:.3rem 0 .8rem;line-height:1.4;}
+.prompt.w-en-q{font-family:Georgia,"Times New Roman",serif;}
+.prompt.ja{font-size:1.4rem;}
+.utag{
+  display:inline-block;font-family:"Klee One",sans-serif;font-size:.72rem;
+  color:var(--ink-2);border:1.5px solid var(--rule);border-radius:var(--hand-2);
+  padding:.02rem .6rem;
+}
+input.ans{
+  width:100%;font-family:Georgia,"Times New Roman",serif;font-size:1.25rem;
+  padding:.6rem .5rem;margin-top:1rem;text-align:center;
+  border:2px solid var(--rule);border-radius:var(--hand-2);
+  background:var(--paper);color:var(--ink);
+}
+input.ans:focus{outline:none;border-color:var(--ink);}
+.fb{margin-top:.9rem;border-radius:var(--hand-2);padding:.7rem .8rem;text-align:left;font-size:.95rem;line-height:1.7;}
+.fb.ok{background:var(--ok-soft);color:var(--ok);}
+.fb.ng{background:var(--ng-soft);color:var(--ng);}
+.fb .big{font-size:1.05rem;font-weight:600;}
+.fb .yours{text-decoration:line-through;opacity:.85;}
+.fb .also{display:block;font-size:.8rem;color:var(--ink-2);margin-top:.25rem;}
+.reveal{font-size:1.35rem;margin:.3rem 0;line-height:1.6;}
+.two{display:flex;gap:.5rem;margin-top:.9rem;}
+.two button{
+  flex:1;font:inherit;font-size:1rem;padding:.65rem .3rem;cursor:pointer;
+  border:1.5px solid var(--rule);border-radius:var(--hand-2);background:var(--paper);
+}
+.two .yes{border-color:var(--ok);color:var(--ok);}
+.two .no{border-color:var(--ng);color:var(--ng);}
+.keyhint{font-size:.72rem;color:var(--ink-3);margin-top:.7rem;}
+
+/* ---------- 結果 ---------- */
+.range-lbl{text-align:center;color:var(--ink-2);font-size:.85rem;}
+.score{text-align:center;font-family:"Klee One",sans-serif;font-size:2.6rem;font-weight:600;margin:.2rem 0 .6rem;line-height:1.2;}
+.score small{font-size:1.05rem;color:var(--ink-2);}
+.miss{list-style:none;padding:0;margin:0;}
+.miss li{
+  display:flex;justify-content:space-between;gap:.7rem;
+  padding:.55rem 0;border-bottom:1px solid var(--rule);font-size:.95rem;line-height:1.6;
+}
+.miss li:last-child{border-bottom:0;}
+.miss .en{font-family:Georgia,"Times New Roman",serif;font-weight:700;}
+.miss .you{display:block;font-size:.78rem;color:var(--ng);}
+.miss .ja{text-align:right;color:var(--ink-2);}
+.allok{display:block;text-align:center;color:var(--ok);padding:.5rem 0;}
+
+/* ---------- 語の一覧（JS なしでも読める） ---------- */
+.wordlist{margin-top:2.2rem;border-top:1px solid var(--rule);padding-top:1rem;}
+.wordlist>summary{
+  cursor:pointer;font-family:"Klee One",sans-serif;font-size:.88rem;
+  font-weight:600;color:var(--ink-2);
+}
+ol#words{list-style:none;margin:.8rem 0 0;padding:0;}
+/* 語と和訳は data 属性から CSS で出す。JS が無くても読める */
+ol#words>li{
+  display:flex;justify-content:space-between;gap:.7rem;
+  padding:.35rem 0;border-bottom:1px solid var(--rule);font-size:.88rem;line-height:1.6;
+}
+ol#words>li::before{
+  content:attr(data-en);
+  font-family:Georgia,"Times New Roman",serif;font-weight:700;
+}
+ol#words>li::after{content:attr(data-ja);text-align:right;color:var(--ink-2);}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header class="site-head">
+  <p class="site-kicker">中学英語 リスタート</p>
+  <h1 class="site-title">単語テスト</h1>
+  <p class="site-lead">単元・部・学年ぜんたいから範囲を選んで、その場で解いて採点します。英語→日本語は自分で○×を付け、日本語→英語は入力して自動で採点します。</p>
+</header>
+
+<p class="backlink"><a href="index.html">← 目次にもどる</a></p>
+
+<!-- ========== 1. 設定 ========== -->
+<section id="setup">
+  <div class="card">
+    <h2 class="sec">学年</h2>
+    <div class="seg" id="grade">
+      <button data-v="1" aria-pressed="true">中1</button>
+      <button disabled>中2<small>準備中</small></button>
+      <button disabled>中3<small>準備中</small></button>
+    </div>
+
+    <h2 class="sec">範囲</h2>
+    <div class="seg" id="scope">
+      <button data-v="unit" aria-pressed="true">単元</button>
+      <button data-v="part" aria-pressed="false">部</button>
+      <button data-v="all" aria-pressed="false">中1全体</button>
+    </div>
+    <div class="chips" id="unitChips"></div>
+    <div class="chips parts" id="partChips" hidden></div>
+    <p class="count" id="countLine"></p>
+
+    <h2 class="sec">向き</h2>
+    <div class="seg" id="dir">
+      <button data-v="ej" aria-pressed="true">英語 → 日本語</button>
+      <button data-v="je" aria-pressed="false">日本語 → 英語</button>
+    </div>
+
+    <h2 class="sec">問題数</h2>
+    <div class="seg" id="num">
+      <button data-v="10" aria-pressed="true">10問</button>
+      <button data-v="20" aria-pressed="false">20問</button>
+      <button data-v="all" aria-pressed="false">全部</button>
+    </div>
+
+    <button class="primary" id="startBtn">はじめる</button>
+  </div>
+</section>
+
+<!-- ========== 2. 出題 ========== -->
+<section id="quiz" hidden>
+  <p class="topbar"><span id="qRange"></span><span><span id="qPos"></span>　<a href="#" id="quitBtn">やめる</a></span></p>
+  <div class="bar"><i id="qBar"></i></div>
+
+  <div class="qcard">
+    <p class="qdir" id="qDir"></p>
+    <p class="prompt" id="qPrompt"></p>
+    <span class="utag" id="qTag"></span>
+
+    <div id="jeBox" hidden>
+      <input class="ans" id="ansInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="英語で入力" enterkeyhint="done">
+      <button class="primary" id="checkBtn">答え合わせ</button>
+      <div class="fb" id="jeFb" hidden></div>
+    </div>
+
+    <div id="ejBox" hidden>
+      <button class="primary" id="revealBtn">答えを見る</button>
+      <div id="ejAns" hidden>
+        <p class="reveal" id="ejMeaning"></p>
+        <div class="two">
+          <button class="yes" id="gotBtn">○ わかった</button>
+          <button class="no" id="missBtn">× わからない</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="primary" id="nextBtn" hidden>次へ</button>
+    <p class="keyhint" id="keyHint"></p>
+  </div>
+</section>
+
+<!-- ========== 3. 結果 ========== -->
+<section id="result" hidden>
+  <div class="card">
+    <p class="range-lbl" id="rRange"></p>
+    <p class="score" id="rScore"></p>
+    <h2 class="sec">まちがえた語</h2>
+    <ul class="miss" id="rMiss"></ul>
+    <button class="primary" id="retryMissBtn">まちがえた語だけもう一度</button>
+    <button class="ghost" id="retryAllBtn">同じ範囲でもう一度</button>
+    <button class="ghost" id="backBtn">範囲を選び直す</button>
+  </div>
+</section>
+
+<!-- ========== 語の一覧 ==========
+     各単元の単語帳の見出し語・和訳から機械で作った一覧です。
+     JS はここを読んで範囲で絞り、並べ替えるだけです。 -->
+<details class="wordlist">
+<summary>この教材の語 /*TOTAL*/語をすべて見る</summary>
+<ol id="words">
+<!--WORDS-->
+</ol>
+</details>
+
+</div>
+
+<script>
+const UNITS=[/*UNITS*/];
+const PARTS=[/*PARTS*/];
+const PART_NAMES=[/*PARTNAMES*/];
+
+const $=id=>document.getElementById(id);
+const W=[...document.querySelectorAll("#words > li")].map(li=>({
+  g:+li.dataset.g, u:+li.dataset.u, en:li.dataset.en, ja:li.dataset.ja
+}));
+const HAS=new Set(W.map(w=>w.u));
+
+const S={scope:"unit",unit:1,part:1,dir:"ej",num:"10"};
+let queue=[],i=0,log=[],lastPool=[],answered=false;
+
+/* ---------- 設定画面 ---------- */
+function seg(id,key){
+  $(id).querySelectorAll("button[data-v]").forEach(b=>{
+    if(b.disabled) return;
+    b.onclick=()=>{S[key]=b.dataset.v;paint();};
+  });
+}
+function buildChips(){
+  $("unitChips").innerHTML=UNITS.map((t,k)=>{
+    const u=k+1,on=HAS.has(u);
+    return `<button data-u="${u}" ${on?"":"disabled"} title="${esc(t)}">${u}</button>`;
+  }).join("");
+  $("unitChips").querySelectorAll("button").forEach(b=>{
+    if(!b.disabled) b.onclick=()=>{S.unit=+b.dataset.u;paint();};
+  });
+  $("partChips").innerHTML=PARTS.map(([a,b],k)=>{
+    const n=W.filter(w=>w.u>=a&&w.u<=b).length;
+    return `<button data-p="${k+1}" ${n?"":"disabled"}>${esc(PART_NAMES[k])}<span class="p-range">　Unit ${a}〜${b}　${n}語</span></button>`;
+  }).join("");
+  $("partChips").querySelectorAll("button").forEach(b=>{
+    if(!b.disabled) b.onclick=()=>{S.part=+b.dataset.p;paint();};
+  });
+}
+function pool(){
+  if(S.scope==="unit") return W.filter(w=>w.u===S.unit);
+  if(S.scope==="part"){const[a,b]=PARTS[S.part-1];return W.filter(w=>w.u>=a&&w.u<=b);}
+  return W.slice();
+}
+function rangeLabel(){
+  if(S.scope==="unit") return `中1 Unit ${S.unit}　${UNITS[S.unit-1]}`;
+  if(S.scope==="part"){const[a,b]=PARTS[S.part-1];return `中1 ${PART_NAMES[S.part-1]}（Unit ${a}〜${b}）`;}
+  return "中1 全体";
+}
+function paint(){
+  for(const k of ["scope","dir","num"])
+    $(k).querySelectorAll("button[data-v]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===S[k])));
+  $("unitChips").hidden=S.scope!=="unit";
+  $("partChips").hidden=S.scope!=="part";
+  $("unitChips").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.u===S.unit)));
+  $("partChips").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.p===S.part)));
+  const n=pool().length;
+  const ask=S.num==="all"?n:Math.min(n,+S.num);
+  $("countLine").innerHTML=`${esc(rangeLabel())}<br>この範囲 <b>${n}語</b> から <b>${ask}問</b>`;
+  $("startBtn").disabled=n===0;
+}
+
+/* ---------- 出題 ---------- */
+const shuffle=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;};
+const norm=s=>s.toLowerCase().replace(/[〜~]/g,"").replace(/[.,!?。、]/g,"").replace(/\s+/g," ").trim();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function start(words){
+  lastPool=words;
+  const n=S.num==="all"?words.length:Math.min(words.length,+S.num);
+  queue=shuffle(words).slice(0,n);i=0;log=[];
+  show("quiz");$("qRange").textContent=rangeLabel();ask();
+}
+function ask(){
+  const w=queue[i];answered=false;
+  $("qPos").textContent=`${i+1} / ${queue.length}`;
+  $("qBar").style.width=`${i/queue.length*100}%`;
+  $("qTag").textContent=`Unit ${w.u}`;
+  $("nextBtn").hidden=true;
+  if(S.dir==="ej"){
+    $("qDir").textContent="英語 → 日本語";
+    $("qPrompt").textContent=w.en;$("qPrompt").className="prompt w-en-q";
+    $("ejBox").hidden=false;$("jeBox").hidden=true;
+    $("revealBtn").hidden=false;$("ejAns").hidden=true;
+    $("keyHint").textContent="";
+  }else{
+    $("qDir").textContent="日本語 → 英語";
+    $("qPrompt").textContent=w.ja;$("qPrompt").className="prompt ja";
+    $("ejBox").hidden=true;$("jeBox").hidden=false;
+    $("ansInput").value="";$("ansInput").disabled=false;
+    $("checkBtn").hidden=false;$("jeFb").hidden=true;
+    $("keyHint").textContent="Enter キーでも答え合わせ・次へ進めます";
+    setTimeout(()=>$("ansInput").focus(),0);
+  }
+}
+function check(){
+  if(answered) return;
+  const w=queue[i],v=$("ansInput").value;
+  if(!v.trim()){$("ansInput").focus();return;}
+  const accept=W.filter(x=>x.ja===w.ja).map(x=>x.en);
+  const ok=accept.some(a=>norm(a)===norm(v));
+  answered=true;log.push({w,ok,you:v});
+  $("ansInput").disabled=true;$("checkBtn").hidden=true;
+  const fb=$("jeFb");fb.hidden=false;fb.className="fb "+(ok?"ok":"ng");
+  const others=accept.filter(a=>a!==w.en);
+  fb.innerHTML=ok
+    ?`<span class="big">○ 正解</span>　<span class="en">${esc(w.en)}</span>`+(others.length?`<span class="also">ほかに ${others.map(esc).join(" / ")} でも正解</span>`:"")
+    :`<span class="big">× 正しくは ${esc(w.en)}</span><br>あなたの答え：<span class="yours">${esc(v)}</span>`+(others.length?`<span class="also">${others.map(esc).join(" / ")} でも正解</span>`:"");
+  $("nextBtn").hidden=false;$("nextBtn").focus();
+}
+function selfGrade(ok){log.push({w:queue[i],ok});next();}
+function next(){i++;if(i<queue.length)ask();else finish();}
+
+/* ---------- 結果 ---------- */
+function finish(){
+  $("qBar").style.width="100%";
+  const ok=log.filter(l=>l.ok).length,miss=log.filter(l=>!l.ok);
+  $("rRange").textContent=`${rangeLabel()}　${S.dir==="ej"?"英→和":"和→英"}`;
+  $("rScore").innerHTML=`${ok}<small> / ${log.length}</small>`;
+  $("rMiss").innerHTML=miss.length
+    ?miss.map(l=>`<li><span><span class="en">${esc(l.w.en)}</span>${l.you!==undefined?`<span class="you">あなた：${esc(l.you)}</span>`:""}</span><span class="ja">${esc(l.w.ja)}</span></li>`).join("")
+    :`<li><span class="allok">全問正解です</span></li>`;
+  $("retryMissBtn").hidden=miss.length===0;
+  $("retryMissBtn").textContent=`まちがえた${miss.length}語だけもう一度`;
+  show("result");
+}
+
+function show(id){["setup","quiz","result"].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0);}
+
+/* ---------- イベント ---------- */
+seg("scope","scope");seg("dir","dir");seg("num","num");buildChips();
+$("startBtn").onclick=()=>start(pool());
+$("checkBtn").onclick=check;
+$("ansInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();check();}});
+$("nextBtn").onclick=next;
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&!$("nextBtn").hidden&&document.activeElement!==$("ansInput")){e.preventDefault();next();}
+});
+$("revealBtn").onclick=()=>{$("revealBtn").hidden=true;$("ejAns").hidden=false;$("ejMeaning").textContent=queue[i].ja;};
+$("gotBtn").onclick=()=>selfGrade(true);
+$("missBtn").onclick=()=>selfGrade(false);
+$("quitBtn").onclick=e=>{e.preventDefault();if(log.length)finish();else show("setup");};
+$("retryMissBtn").onclick=()=>start(log.filter(l=>!l.ok).map(l=>l.w));
+$("retryAllBtn").onclick=()=>start(lastPool);
+$("backBtn").onclick=()=>show("setup");
+
+/* 目次・単語帳から ?unit=5 / ?part=2 / ?grade=1 で開ける */
+const q=new URLSearchParams(location.search);
+const qu=+q.get("unit"),qp=+q.get("part");
+if(qu>=1&&qu<=UNITS.length){S.scope="unit";S.unit=qu;}
+else if(qp>=1&&qp<=PARTS.length){S.scope="part";S.part=qp;}
+else if(q.get("grade")==="1"){S.scope="all";}
+paint();
+</script>
+</body>
+</html>
