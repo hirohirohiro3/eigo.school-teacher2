@@ -97,6 +97,24 @@ h2.sec:first-of-type{margin-top:0;}
 .chips .p-range{font-size:.78rem;color:var(--ink-2);}
 .chips button[aria-pressed="true"] .p-range{color:var(--ink);}
 
+/* ---------- 目次から直接来たときの選択 ---------- */
+.modal{
+  position:fixed;inset:0;z-index:20;overflow:auto;
+  background:rgba(32,36,47,.72);
+  display:flex;align-items:center;justify-content:center;padding:1rem;
+}
+.modal .card{width:100%;max-width:22rem;background:var(--paper);}
+.m-title{font-family:"Klee One",sans-serif;font-size:1.05rem;font-weight:600;margin:0 0 .25rem;}
+.m-sub{margin:0 0 1.1rem;font-size:.86rem;color:var(--ink-2);line-height:1.7;}
+.m-sub b{color:var(--ink);}
+.go{
+  display:block;width:100%;font:inherit;font-size:1rem;font-weight:600;
+  padding:.75rem;margin-top:.5rem;cursor:pointer;
+  border:2px solid var(--ink);border-radius:var(--hand-2);
+  background:var(--paper);color:var(--ink);
+}
+.go.first{background:var(--ink);color:var(--paper);border-radius:var(--hand);}
+
 .count{margin-top:.7rem;font-size:.88rem;color:var(--ink-2);line-height:1.7;}
 .count b{color:var(--ink);font-size:1rem;}
 
@@ -774,6 +792,28 @@ ol#words>li::after{content:attr(data-ja);text-align:right;color:var(--ink-2);}
 
 </div>
 
+<div class="modal" id="launch" hidden>
+  <div class="card" role="dialog" aria-modal="true" aria-labelledby="lTitle">
+    <p class="m-title" id="lTitle"></p>
+    <p class="m-sub" id="lSub"></p>
+
+    <div id="lNumBox" hidden>
+      <h2 class="sec">問題数</h2>
+      <div class="seg" id="lNum">
+        <button data-v="10">10問</button>
+        <button data-v="20">20問</button>
+        <button data-v="all">全部</button>
+      </div>
+    </div>
+
+    <h2 class="sec">向き（押すとはじまります）</h2>
+    <button class="go first" data-go="ej">英語 → 日本語</button>
+    <button class="go" data-go="je">日本語 → 英語</button>
+
+    <button class="ghost" id="lSetup">範囲から選び直す</button>
+  </div>
+</div>
+
 <script>
 const UNITS=["be動詞の肯定文","be動詞の否定文・疑問文","This / That / It と指示表現","名詞の複数形と a / an / the","一般動詞の肯定文","一般動詞の否定文・疑問文","be動詞と一般動詞の使い分け","代名詞（主格・所有格・目的格・所有代名詞）","三人称単数現在（-s / does / doesn't）","疑問詞（what / who / where など8語）","時刻・曜日・日付・数の表現","命令文・Let's","助動詞 can","現在進行形","be動詞の過去形（was / were）","一般動詞の過去形"];
 const PARTS=[[1,4],[5,7],[8,11],[12,16]];
@@ -918,13 +958,43 @@ $("retryMissBtn").onclick=()=>start(log.filter(l=>!l.ok).map(l=>l.w));
 $("retryAllBtn").onclick=()=>start(lastPool);
 $("backBtn").onclick=()=>show("setup");
 
+/* ---------- 目次から直接来たときの選択 ---------- */
+/* 範囲はURLで決まっているので、設定画面を通さずここで向き（と問題数）だけ選んではじめる */
+function lPaint(withNum){
+  const n=pool().length;
+  const ask=S.num==="all"?n:Math.min(n,+S.num);
+  $("lTitle").textContent=rangeLabel();
+  $("lSub").innerHTML=withNum
+    ? `この範囲 <b>${n}語</b> から <b>${ask}問</b>`
+    : `この単元の <b>${n}語</b> を全部`;
+  $("lNum").querySelectorAll("button[data-v]")
+    .forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===S.num)));
+}
+function openLaunch(withNum){
+  $("lNumBox").hidden=!withNum;
+  lPaint(withNum);
+  $("launch").hidden=false;
+}
+$("lNum").querySelectorAll("button[data-v]").forEach(b=>b.onclick=()=>{
+  S.num=b.dataset.v;paint();lPaint(true);
+});
+document.querySelectorAll("#launch [data-go]").forEach(b=>b.onclick=()=>{
+  S.dir=b.dataset.go;paint();
+  $("launch").hidden=true;
+  start(pool());
+});
+$("lSetup").onclick=()=>{$("launch").hidden=true;};
+
 /* 目次・単語帳から ?unit=5 / ?part=2 / ?grade=1 で開ける */
 const q=new URLSearchParams(location.search);
 const qu=+q.get("unit"),qp=+q.get("part");
-if(qu>=1&&qu<=UNITS.length){S.scope="unit";S.unit=qu;}
-else if(qp>=1&&qp<=PARTS.length){S.scope="part";S.part=qp;}
-else if(q.get("grade")==="1"){S.scope="all";}
-paint();
+if(qu>=1&&qu<=UNITS.length&&HAS.has(qu)){S.scope="unit";S.unit=qu;S.num="all";paint();openLaunch(false);}
+else if(qp>=1&&qp<=PARTS.length){S.scope="part";S.part=qp;paint();openLaunch(true);}
+else if(q.get("grade")==="1"){S.scope="all";paint();openLaunch(true);}
+else{
+  if(qu>=1&&qu<=UNITS.length){S.scope="unit";S.unit=qu;}
+  paint();
+}
 </script>
 </body>
 </html>
