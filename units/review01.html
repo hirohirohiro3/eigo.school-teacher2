@@ -221,6 +221,26 @@ ol.q > li.lost{background:var(--ng-soft);}
 .checks .x{color:var(--ng);}
 mark{background:var(--ng-soft);color:var(--ng);border-radius:3px;padding:0 .15rem;}
 .note{font-size:.76rem;color:var(--ink-3);margin:.4rem 0 0;}
+
+/* 1問ごとの答え合わせ（結果画面と、問題に戻ったとき） */
+.qa-big{font-family:"Klee One",sans-serif;font-size:.88rem;font-weight:600;margin:.9rem 0 .2rem;}
+.qa-big:first-child{margin-top:0;}
+.qa{list-style:none;margin:0;padding:0;}
+.qa li{display:grid;grid-template-columns:2.6rem 1.5rem 1fr;gap:.1rem .35rem;align-items:baseline;padding:.4rem 0;border-bottom:1px dashed var(--rule);font-size:.86rem;}
+.qa li:last-child{border-bottom:0;}
+.qa .no{color:var(--ink-2);white-space:nowrap;}
+.qa .mk{font-weight:600;text-align:center;}
+.qa .d{min-width:0;word-break:break-word;}
+.qa .d span{display:block;}
+.mk.o,.fb .o{color:var(--ok);}
+.mk.x,.fb .x{color:var(--ng);}
+.mk.p,.fb .p{color:var(--gen);}
+.qa .y{color:var(--ink);}
+.qa .r{color:var(--ok);}
+.qa li.x .y{color:var(--ng);}
+.fb{margin:.6rem 0 0;padding:.45rem .6rem;border-radius:6px;background:var(--paper);border:1px solid var(--rule);font-size:.86rem;line-height:1.6;word-break:break-word;}
+.fb b{margin-right:.3rem;}
+.fb .r{color:var(--ok);}
 .share{padding:.4rem 0 .2rem;margin-top:1rem;}
 
 .modal{position:fixed;inset:0;background:rgba(32,36,47,.72);display:flex;flex-direction:column;align-items:center;padding:1rem;z-index:10;overflow:auto;}
@@ -580,6 +600,10 @@ mark{background:var(--ng-soft);color:var(--ng);border-radius:3px;padding:0 .15re
   <div class="box"><ul class="units" id="unitList"></ul>
   <p class="note">正答率が低い順に、見直すワークブックへのリンクを出しています。</p></div>
 
+  <h2><span>1問ごとの答え合わせ</span></h2>
+  <div class="box" id="qaList"></div>
+  <p class="note">○ 正解　× まちがい　△ 英作文・記述の一部の点（機械の目安）。「問題に戻る（見直す）」でも、各問の下に同じ答え合わせが出ます。</p>
+
   <h2><span>書いた答え（英作文・記述）</span></h2>
   <div id="written"></div>
   <p class="note">英作文と記述の点数は、語数・条件・よくある誤りをもとにした機械の目安です。</p>
@@ -799,6 +823,40 @@ function gradeWritten(li, v){
   return {got: got, checks: checks, hi: hi};
 }
 
+/* ---------- 答えを読める形にする（答え合わせ用） ---------- */
+const optText = (li, n) => {
+  const o = li.querySelectorAll("ol.choices > li")[+n - 1];
+  return o ? o.textContent.replace(/\s+/g, " ").trim() : "";
+};
+function seqText(li, v){
+  const mks = [...li.querySelectorAll(".seq .mk")].map(m => m.textContent.trim());
+  const a = String(v).split(",");
+  if(!a.some(x => x)) return "";
+  const pos = [];
+  a.forEach((n, i) => { if(n) pos[+n - 1] = (pos[+n - 1] ? pos[+n - 1] + "・" : "") + mks[i]; });
+  return mks.map((_, k) => pos[k] || "？").join(" → ");
+}
+function showAns(li, v){
+  const t = li.dataset.type;
+  if(v === "") return "";
+  if(t === "choice") return v + "　" + optText(li, v);
+  if(t === "multi") return v.split(",").map(n => n + "　" + optText(li, n)).join(" ／ ");
+  if(t === "seq") return seqText(li, v);
+  return v.trim();
+}
+function rightAns(li){
+  const t = li.dataset.type, a = li.dataset.a || "";
+  if(t === "choice") return a + "　" + optText(li, a);
+  if(t === "multi") return a.split(",").map(n => n.trim() + "　" + optText(li, n.trim())).join(" ／ ");
+  if(t === "seq") return seqText(li, a);
+  if(t === "en" || t === "ja"){
+    const mo = li.querySelector(".model");
+    return mo ? mo.textContent.replace(/^模範解答[:：]?\s*/, "").trim() : a.split("|")[0];
+  }
+  return a.split("|")[0];
+}
+const markOf = (got, pt) => got === pt ? ["o", "○"] : (got === 0 ? ["x", "×"] : ["p", "△"]);
+
 function grade(){
   const per = [], byUnit = {};
   for(const li of Q){
@@ -843,7 +901,15 @@ function grade(){
       ja: p.type === "ja"
     };
   });
-  return {big: big, units: units, written: written,
+  const qa = BIG.map(s => ({
+    name: "大問" + s.dataset.big + "　" + s.dataset.name,
+    items: [...s.querySelectorAll("ol.q > li")].map((li, i) => {
+      const p = per[Q.indexOf(li)];
+      return {no: s.dataset.big + "-問" + (i + 1), got: p.got, pt: p.pt, type: p.type,
+              yours: showAns(li, p.v), right: rightAns(li), li: li};
+    })
+  }));
+  return {big: big, units: units, written: written, qa: qa,
           total: big.reduce((x, b) => x + b[1], 0), when: new Date()};
 }
 
@@ -875,6 +941,24 @@ function showResult(){
           '<li class="' + c[0] + '">' + (c[0] === "o" ? "○" : "×") + " " + esc(c[1]) + "</li>").join("")
       + "</ul></div>";
   }).join("");
+  $("qaList").innerHTML = R.qa.map(b => '<p class="qa-big">' + esc(b.name) + '</p><ul class="qa">'
+    + b.items.map(q => {
+        const m = markOf(q.got, q.pt);
+        return '<li class="' + m[0] + '"><span class="no">問' + esc(q.no.split("-問")[1]) + '</span><span class="mk '
+          + m[0] + '">' + m[1] + '</span><span class="d">'
+          + '<span class="y">あなた：' + (q.yours ? esc(q.yours) : "（無答）") + '</span>'
+          + (q.got === q.pt ? "" : '<span class="r">正解：' + esc(q.right) + '</span>')
+          + '</span></li>';
+      }).join("") + "</ul>").join("");
+  /* 問題に戻ったとき用に、各問の下へ答え合わせを置く */
+  for(const b of R.qa) for(const q of b.items){
+    let fb = q.li.querySelector(":scope > .fb");
+    if(!fb){ fb = document.createElement("p"); fb.className = "fb"; q.li.appendChild(fb); }
+    const m = markOf(q.got, q.pt);
+    fb.innerHTML = '<b class="' + m[0] + '">' + m[1] + " " + q.got + " / " + q.pt + "点</b>"
+      + (q.got === q.pt ? "正解" : "あなた：" + (q.yours ? esc(q.yours) : "（無答）")
+         + '<br><span class="r">正解：' + esc(q.right) + "</span>");
+  }
   $("paper").hidden = true;
   $("subbar").hidden = true;
   $("result").hidden = false;
@@ -949,6 +1033,21 @@ async function makeImage(){
     for(const u of R.units.slice().sort((a, b) => a[2] - b[2])){
       T("Unit " + u[0] + "　" + u[1] + "　" + u[2] + "%" + (u[2] < WEAK ? "　← 見直し" : ""),
         30, {c: u[2] < WEAK ? "#B3413A" : "#20242F"});
+    }
+    rule();
+    T("まちがえた問題", 32, {w: 600});
+    const miss = [];
+    for(const b of R.qa) for(const q of b.items) if(q.got < q.pt) miss.push(q);
+    if(!miss.length) T("なし（全問正解）", 28, {c: "#2E7D4F"});
+    for(const q of miss){
+      const m = markOf(q.got, q.pt);
+      const w2 = q.type === "en" || q.type === "ja";
+      T("大問" + q.no + "　" + m[1] + "　" + q.got + " / " + q.pt + "点", 28, {w: 600, c: "#B3413A"});
+      if(w2) T("→ 下の「書いた答え」の欄", 26, {c: "#5A6273", indent: 16});
+      else {
+        T("答え：" + (q.yours || "（無答）"), 28, {f: FJ, indent: 16});
+        T("正解：" + q.right, 26, {c: "#2E7D4F", indent: 16});
+      }
     }
     rule();
     T("書いた答え（英作文・記述）", 32, {w: 600});
