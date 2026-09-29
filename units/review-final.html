@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>総合テスト 中1の総まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --ok:#2E7D4F;
+  --ng:#B3413A;
+  --ok-soft:#E5F3EA;
+  --ng-soft:#F8E6E4;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.8;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.2rem 1.25rem 5.5rem;}
+
+/* ---------- ヘッダー ---------- */
+
+.topnav{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1rem;}
+.topnav a{
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;text-decoration:none;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+
+.site-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.site-kicker{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.85rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .45rem;
+}
+.site-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.5rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.site-lead{margin:0;font-size:.9rem;color:var(--ink-2);}
+.site-meta{margin:.5rem 0 0;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 大問 ---------- */
+
+.big{margin:0 0 2.2rem;}
+.big-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  border-bottom:2px solid var(--ink);padding-bottom:.35rem;margin:0 0 .9rem;
+}
+.big-no{
+  font-family:"Klee One",Georgia,serif;font-size:.95rem;font-weight:600;
+  background:var(--ink);color:var(--paper);border-radius:var(--hand-2);
+  padding:.05rem .65rem;white-space:nowrap;
+}
+.big-title{font-family:"Klee One",sans-serif;font-size:1.1rem;font-weight:600;margin:0;flex:1;min-width:0;}
+.big-pt{font-size:.8rem;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.big-lead{margin:0 0 1rem;font-size:.88rem;color:var(--ink-2);}
+
+/* ---------- 読解の本文・資料 ---------- */
+
+.reading{
+  background:var(--panel);border:1.5px solid var(--rule);
+  border-radius:var(--hand);padding:.9rem 1rem;margin:0 0 1.1rem;
+  font-family:Georgia,"Times New Roman",serif;font-size:1rem;line-height:1.95;
+}
+.reading p{margin:0 0 .6rem;}
+.reading p:last-child{margin-bottom:0;}
+.reading .sp{color:var(--be);font-weight:600;font-family:"Klee One",sans-serif;}
+.reading u{text-underline-offset:.22em;}
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.data{border-collapse:collapse;width:100%;font-size:.88rem;background:var(--paper);}
+table.data th,table.data td{border:1px solid var(--rule);padding:.35rem .5rem;text-align:left;}
+table.data th{background:var(--panel);font-weight:600;white-space:nowrap;}
+
+/* ---------- 設問 ---------- */
+
+ol.q{list-style:none;margin:0;padding:0;counter-reset:qn;}
+ol.q > li{
+  counter-increment:qn;
+  border:1.5px solid var(--rule);border-radius:var(--hand-2);
+  padding:.7rem .85rem;margin:0 0 .8rem;background:var(--paper);
+}
+ol.q > li::before{
+  content:"問" counter(qn);
+  display:inline-block;font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  color:var(--ink-2);background:var(--panel);border:1px solid var(--rule);
+  border-radius:4px;padding:0 .4rem;margin-right:.45rem;vertical-align:.08em;
+}
+ol.q > li > .qt{display:inline;margin:0;font-size:.95rem;}
+ol.q > li > .qt + *{margin-top:.6rem;}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin:.35rem 0 0;}
+.q-cond{display:block;font-size:.82rem;color:var(--gen);margin:.3rem 0 0;}
+.q-pt{float:right;font-size:.74rem;color:var(--ink-3);font-variant-numeric:tabular-nums;}
+
+ol.choices{list-style:none;margin:.6rem 0 0;padding:0;counter-reset:cn;}
+ol.choices > li{counter-increment:cn;margin:0 0 .3rem;}
+ol.choices label{display:flex;gap:.45rem;align-items:flex-start;cursor:pointer;font-size:.93rem;}
+ol.choices label::before{
+  content:counter(cn);flex:none;
+  font-family:"Klee One",serif;font-size:.78rem;font-weight:600;
+  width:1.35em;height:1.35em;line-height:1.35em;text-align:center;
+  border:1.5px solid var(--rule);border-radius:50%;margin-top:.25em;
+}
+ol.choices input{margin:.45em .1rem 0 0;flex:none;}
+ol.choices .en{font-family:Georgia,"Times New Roman",serif;}
+
+.words{display:flex;flex-wrap:wrap;gap:.35rem;margin:.6rem 0 .1rem;}
+.words span{
+  font-family:Georgia,"Times New Roman",serif;font-size:.95rem;
+  border:1.5px solid var(--rule);border-radius:6px;background:var(--panel);
+  padding:.05rem .5rem;
+}
+
+.seq{list-style:none;margin:.6rem 0 0;padding:0;}
+.seq > li{display:flex;gap:.5rem;align-items:flex-start;margin:0 0 .35rem;font-size:.93rem;}
+.seq .mk{
+  flex:none;font-family:"Klee One",serif;font-size:.78rem;font-weight:600;
+  border:1.5px solid var(--rule);border-radius:4px;padding:0 .4rem;margin-top:.2em;
+}
+.seq .en{font-family:Georgia,"Times New Roman",serif;}
+.seq select{font:inherit;font-size:.9rem;padding:.1rem .2rem;}
+
+.in{
+  display:block;width:100%;font:inherit;font-size:1rem;
+  font-family:Georgia,"Times New Roman",serif;
+  border:1.5px solid var(--rule);border-radius:6px;background:var(--paper);
+  padding:.4rem .55rem;margin:.55rem 0 0;
+}
+.in.ja{font-family:inherit;font-size:.95rem;}
+textarea.in{line-height:1.7;resize:vertical;min-height:4.2rem;}
+.in:focus{outline:2px solid var(--be);outline-offset:1px;}
+.count{font-size:.76rem;color:var(--ink-3);margin:.25rem 0 0;text-align:right;}
+
+/* 採点後に問題側へ付ける印 */
+ol.q > li.done{border-color:var(--rule);}
+ol.q > li.got{background:var(--ok-soft);}
+ol.q > li.lost{background:var(--ng-soft);}
+
+/* ---------- 提出バー ---------- */
+
+.subbar{
+  position:sticky;bottom:0;left:0;right:0;z-index:5;
+  background:var(--paper);border-top:2px solid var(--ink);
+  margin:1.5rem -1.25rem 0;padding:.6rem 1.25rem calc(.6rem + env(safe-area-inset-bottom));
+}
+.subbar .st{font-size:.8rem;color:var(--ink-2);margin:0 0 .4rem;}
+.btn{
+  display:block;width:100%;font:inherit;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:1.05rem;
+  padding:.75rem;border-radius:var(--hand);cursor:pointer;border:2px solid var(--ink);
+}
+.btn.main{background:var(--ink);color:var(--paper);}
+.btn.sub{background:var(--paper);color:var(--ink);margin-top:.5rem;font-size:.95rem;padding:.6rem;}
+
+/* ---------- 結果 ---------- */
+
+#result[hidden]{display:none;}
+.res-head{border-bottom:3px solid var(--ink);border-radius:0 0 12px 3px;padding-bottom:.8rem;margin-bottom:1.2rem;}
+.score{display:flex;align-items:baseline;justify-content:center;gap:.3rem;font-family:"Klee One",sans-serif;font-weight:600;margin:.6rem 0 .2rem;}
+.score b{font-size:3.2rem;line-height:1;}
+.score span{font-size:1.2rem;color:var(--ink-2);}
+#result h2{font-family:"Klee One",sans-serif;font-size:1.02rem;font-weight:600;margin:1.8rem 0 .7rem;}
+#result h2 span{background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);padding:0 .15rem;}
+.box{border:2px solid var(--ink);border-radius:var(--hand);padding:.8rem .9rem;background:var(--paper);}
+.row{display:grid;grid-template-columns:5.8rem 1fr 3.4rem;align-items:center;gap:.5rem;font-size:.88rem;margin:.35rem 0;}
+.row .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar{height:.6rem;background:var(--panel);border:1px solid var(--rule);border-radius:4px;overflow:hidden;}
+.bar i{display:block;height:100%;background:var(--be);}
+.row .pt{text-align:right;font-variant-numeric:tabular-nums;}
+.units{list-style:none;margin:0;padding:0;}
+.units li{display:flex;align-items:center;gap:.6rem;padding:.55rem 0;border-bottom:1px dashed var(--rule);font-size:.9rem;}
+.units li:last-child{border-bottom:0;}
+.u-no{font-family:"Klee One",serif;font-size:.74rem;font-weight:600;color:var(--be);background:var(--hi-be);border:1px solid var(--be);border-radius:var(--hand-2);padding:0 .4rem;white-space:nowrap;}
+.units .t{flex:1;min-width:0;}
+.units .p{font-variant-numeric:tabular-nums;font-weight:600;}
+.weak .p{color:var(--ng);}
+.units a{font-size:.78rem;color:var(--be);white-space:nowrap;}
+.flag{font-size:.7rem;color:#fff;background:var(--ng);border-radius:4px;padding:0 .3rem;margin-left:.3rem;}
+.wq{border:2px solid var(--rule);border-radius:var(--hand-2);padding:.75rem .85rem;margin:0 0 .7rem;background:var(--paper);}
+.wq .qh{display:flex;justify-content:space-between;gap:.5rem;font-size:.8rem;color:var(--ink-2);}
+.wq .qh b{color:var(--ink);font-variant-numeric:tabular-nums;}
+.wq .q{font-size:.9rem;margin:.3rem 0 .5rem;}
+.lab{font-size:.72rem;color:var(--ink-3);margin-top:.35rem;}
+.ans{font-family:Georgia,"Times New Roman",serif;font-size:1rem;background:var(--panel);border-radius:6px;padding:.4rem .6rem;line-height:1.6;word-break:break-word;}
+.ans.ja{font-family:inherit;font-size:.92rem;}
+.model{font-family:Georgia,serif;font-size:.95rem;color:var(--ok);padding:.1rem .6rem;word-break:break-word;}
+.model.ja{font-family:inherit;font-size:.9rem;}
+.checks{list-style:none;margin:.5rem 0 0;padding:0;font-size:.82rem;}
+.checks li{padding:.1rem 0;}
+.checks .o{color:var(--ok);}
+.checks .x{color:var(--ng);}
+mark{background:var(--ng-soft);color:var(--ng);border-radius:3px;padding:0 .15rem;}
+.note{font-size:.76rem;color:var(--ink-3);margin:.4rem 0 0;}
+
+/* 1問ごとの答え合わせ（結果画面と、問題に戻ったとき） */
+.qa-big{font-family:"Klee One",sans-serif;font-size:.88rem;font-weight:600;margin:.9rem 0 .2rem;}
+.qa-big:first-child{margin-top:0;}
+.qa{list-style:none;margin:0;padding:0;}
+.qa li{display:grid;grid-template-columns:2.6rem 1.5rem 1fr;gap:.1rem .35rem;align-items:baseline;padding:.4rem 0;border-bottom:1px dashed var(--rule);font-size:.86rem;}
+.qa li:last-child{border-bottom:0;}
+.qa .no{color:var(--ink-2);white-space:nowrap;}
+.qa .mk{font-weight:600;text-align:center;}
+.qa .d{min-width:0;word-break:break-word;}
+.qa .d span{display:block;}
+.mk.o,.fb .o{color:var(--ok);}
+.mk.x,.fb .x{color:var(--ng);}
+.mk.p,.fb .p{color:var(--gen);}
+.qa .y{color:var(--ink);}
+.qa .r{color:var(--ok);}
+.qa li.x .y{color:var(--ng);}
+.fb{margin:.6rem 0 0;padding:.45rem .6rem;border-radius:6px;background:var(--paper);border:1px solid var(--rule);font-size:.86rem;line-height:1.6;word-break:break-word;}
+.fb b{margin-right:.3rem;}
+.fb .r{color:var(--ok);}
+.share{padding:.4rem 0 .2rem;margin-top:1rem;}
+
+.modal{position:fixed;inset:0;background:rgba(32,36,47,.72);display:flex;flex-direction:column;align-items:center;padding:1rem;z-index:10;overflow:auto;}
+.modal[hidden]{display:none;}
+.modal img{width:100%;max-width:380px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.35);background:#fff;}
+.modal .acts{width:100%;max-width:380px;margin-top:.8rem;}
+.modal .hint{color:#fff;font-size:.8rem;text-align:center;margin:.4rem 0 0;}
+
+/* ---------- 印刷（画面で解くのが本命。印刷はおまけ） ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.7;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .topnav,.subbar,.modal,.share{display:none;}
+  .big,.reading,ol.q > li,.wq{break-inside:avoid;}
+  .big-head{break-after:avoid;}
+  .site-kicker{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<nav class="topnav">
+  <a href="../index.html">目次</a>
+  <a href="../word-test.html?grade=1">単語テスト</a>
+</nav>
+
+<header class="site-head">
+  <p class="site-kicker">総合テスト</p>
+  <h1 class="site-title">中1の総まとめ</h1>
+  <p class="site-lead">100点満点。制限時間はありません。答えは端末の中に自動で残るので、途中で閉じても続きから解けます。</p>
+  <p class="site-meta">Unit 1〜16　・　採点はすべて機械で行います。英作文と記述は語数・条件・よくある誤りをもとにした<b>機械の目安</b>です。</p>
+</header>
+
+<div id="paper">
+<section class="big" data-big="1" data-name="文法" data-pt="25">
+<div class="big-head"><span class="big-no">大問1</span><h2 class="big-title">文法</h2><span class="big-pt">25点</span></div>
+<p class="big-lead">中1の16単元から1問ずつ出しています。問1〜問5は（　）に入る最も適切なものを1つ選びなさい。主語が何か、いつのことかを先に確かめます。</p>
+<ol class="q">
+<li data-type="choice" data-unit="1" data-pt="2" data-a="3">
+<span class="q-pt">2点</span><p class="qt">Ken and his brother (　　) good tennis players.</p>
+<ol class="choices">
+<li><label><input type="radio" name="b1q1" value="1"><span class="en">is</span></label></li>
+<li><label><input type="radio" name="b1q1" value="2"><span class="en">am</span></label></li>
+<li><label><input type="radio" name="b1q1" value="3"><span class="en">are</span></label></li>
+<li><label><input type="radio" name="b1q1" value="4"><span class="en">be</span></label></li>
+</ol>
+</li>
+<li data-type="choice" data-unit="4" data-pt="2" data-a="2">
+<span class="q-pt">2点</span><p class="qt">Those (　　) in the park are my aunts.</p>
+<ol class="choices">
+<li><label><input type="radio" name="b1q2" value="1"><span class="en">woman</span></label></li>
+<li><label><input type="radio" name="b1q2" value="2"><span class="en">women</span></label></li>
+<li><label><input type="radio" name="b1q2" value="3"><span class="en">womans</span></label></li>
+<li><label><input type="radio" name="b1q2" value="4"><span class="en">a woman</span></label></li>
+</ol>
+</li>
+<li data-type="choice" data-unit="5" data-pt="2" data-a="1">
+<span class="q-pt">2点</span><p class="qt">My brother and I (　　) soccer after school every day.</p>
+<ol class="choices">
+<li><label><input type="radio" name="b1q3" value="1"><span class="en">play</span></label></li>
+<li><label><input type="radio" name="b1q3" value="2"><span class="en">plays</span></label></li>
+<li><label><input type="radio" name="b1q3" value="3"><span class="en">are play</span></label></li>
+<li><label><input type="radio" name="b1q3" value="4"><span class="en">is playing</span></label></li>
+</ol>
+</li>
+<li data-type="choice" data-unit="8" data-pt="2" data-a="3">
+<span class="q-pt">2点</span><p class="qt">This is Mr. Sato. Do you know (　　)?</p>
+<ol class="choices">
+<li><label><input type="radio" name="b1q4" value="1"><span class="en">he</span></label></li>
+<li><label><input type="radio" name="b1q4" value="2"><span class="en">his</span></label></li>
+<li><label><input type="radio" name="b1q4" value="3"><span class="en">him</span></label></li>
+<li><label><input type="radio" name="b1q4" value="4"><span class="en">he's</span></label></li>
+</ol>
+</li>
+<li data-type="choice" data-unit="15" data-pt="2" data-a="2">
+<span class="q-pt">2点</span><p class="qt">(　　) you and your sister at home yesterday?</p>
+<ol class="choices">
+<li><label><input type="radio" name="b1q5" value="1"><span class="en">Was</span></label></li>
+<li><label><input type="radio" name="b1q5" value="2"><span class="en">Were</span></label></li>
+<li><label><input type="radio" name="b1q5" value="3"><span class="en">Did</span></label></li>
+<li><label><input type="radio" name="b1q5" value="4"><span class="en">Are</span></label></li>
+</ol>
+</li>
+<li data-type="fill" data-unit="16" data-pt="3" data-a="bought">
+<span class="q-pt">3点</span><p class="qt">（　）内の語を適切な形にして（　　）に書きなさい。<br>I (　　) a new bag at the station last Sunday.　（buy）</p>
+<input class="in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え">
+</li>
+<li data-type="order" data-unit="2" data-pt="3" data-a="Are you and Ken in the same class?">
+<span class="q-pt">3点</span><p class="qt">日本語に合うように語をすべて並べかえ、文全体を書きなさい。<span class="q-ja">あなたとケンは同じクラスですか。</span></p>
+<p class="words"><span>same</span><span>Ken</span><span>are</span><span>class</span><span>you</span><span>the</span><span>in</span><span>and</span></p>
+<input class="in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え">
+</li>
+<li data-type="order" data-unit="11" data-pt="3" data-a="What time do you go to bed?">
+<span class="q-pt">3点</span><p class="qt">日本語に合うように語をすべて並べかえ、文全体を書きなさい。<span class="q-ja">あなたは何時に寝ますか。</span></p>
+<p class="words"><span>go</span><span>bed</span><span>time</span><span>you</span><span>to</span><span>what</span><span>do</span></p>
+<input class="in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え">
+</li>
+<li data-type="fix" data-unit="7" data-pt="3" data-a="like">
+<span class="q-pt">3点</span><p class="qt">下線部に誤りがあります。下線部を正しく直して書きなさい。<br>I <u>am like</u> music very much.</p>
+<input class="in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え">
+</li>
+<li data-type="fix" data-unit="13" data-pt="3" data-a="speak">
+<span class="q-pt">3点</span><p class="qt">下線部に誤りがあります。下線部を正しく直して書きなさい。<br>Emma can <u>speaks</u> Japanese very well.</p>
+<input class="in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え">
+</li>
+</ol>
+</section>
+
+<section class="big" data-big="2" data-name="資料つきの読解" data-pt="18">
+<div class="big-head"><span class="big-no">大問2</span><h2 class="big-title">資料つきの読解</h2><span class="big-pt">18点</span></div>
+<p class="big-lead">ミカが、オーストラリアの友だちのルーシーに、町のお祭りのことをメールで書きました。資料とメールを読んで、あとの問いに答えなさい。</p>
+<div class="table-wrap">
+<table class="data">
+<caption style="text-align:left;font-size:.85rem;padding:0 0 .3rem">Minami Summer Festival　August 1</caption>
+<tr><th>Time</th><th>What</th><th>Place</th></tr>
+<tr><td>10:00</td><td>brass band concert</td><td>Minami Park</td></tr>
+<tr><td>1:00</td><td>Japanese cooking class</td><td>Green Restaurant</td></tr>
+<tr><td>3:00</td><td>dance with everyone</td><td>Minami Park</td></tr>
+<tr><td>7:00</td><td>movie night</td><td>Minami Park</td></tr>
+</table>
+</div>
+<div class="table-wrap">
+<table class="data">
+<caption style="text-align:left;font-size:.85rem;padding:0 0 .3rem">お祭りのお知らせ</caption>
+<tr><th>1</th><td>Please bring water. It is very hot.</td></tr>
+<tr><th>2</th><td>Don't (　X　) the flowers in the park.</td></tr>
+<tr><th>3</th><td>Please come by bus or train.</td></tr>
+</table>
+</div>
+<div class="reading">
+<p>Hello, Lucy.</p>
+<p>How are you? Last Saturday I went to the Minami Summer Festival with my classmate, Aya. It was sunny and very hot.</p>
+<p>We arrived at Minami Park at ten. My brother is a member of the brass band, and he played the trumpet in the concert. His band was really good.</p>
+<p>At one, we joined a Japanese cooking class at Green Restaurant. A woman there taught us about Japanese food. We made rice balls and soup, and we ate them for lunch. They were delicious.</p>
+<p>Look at this picture. <u>① It</u> is my favorite picture from the festival. In the picture, Aya and I are dancing with many people in the park.</p>
+<p>Do you have a festival in your town? Please write to me about it.</p>
+<p>Mika</p>
+</div>
+<ol class="q">
+<li data-type="choice" data-unit="16" data-pt="3" data-a="1">
+<span class="q-pt">3点</span><p class="qt">メールの内容に合うように、次の問いの答えとして正しいものを1つ選びなさい。<br>What did Mika's brother do at the festival?</p>
+<ol class="choices">
+<li><label><input type="radio" name="b2q1" value="1"><span class="en">He played the trumpet.</span></label></li>
+<li><label><input type="radio" name="b2q1" value="2"><span class="en">He sang a song.</span></label></li>
+<li><label><input type="radio" name="b2q1" value="3"><span class="en">He made rice balls.</span></label></li>
+<li><label><input type="radio" name="b2q1" value="4"><span class="en">He watched a movie.</span></label></li>
+</ol>
+</li>
+<li data-type="fill" data-unit="11" data-pt="3" data-a="one|1">
+<span class="q-pt">3点</span><p class="qt">資料とメールを見て、（　）に入る語を1語の英語で書きなさい。<br>Mika and Aya joined the cooking class at (　　) o'clock.</p>
+<input class="in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え">
+</li>
+<li data-type="choice" data-unit="3" data-pt="3" data-a="2">
+<span class="q-pt">3点</span><p class="qt">下線部① It が指すものとして正しいものを1つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="radio" name="b2q3" value="1"><span class="en">the festival</span></label></li>
+<li><label><input type="radio" name="b2q3" value="2"><span class="en">this picture</span></label></li>
+<li><label><input type="radio" name="b2q3" value="3"><span class="en">Minami Park</span></label></li>
+<li><label><input type="radio" name="b2q3" value="4"><span class="en">the brass band</span></label></li>
+</ol>
+</li>
+<li data-type="fill" data-unit="12" data-pt="3" data-a="touch">
+<span class="q-pt">3点</span><p class="qt">「お祭りのお知らせ」の ( X ) に入る語を1語の英語で書きなさい。「花にさわってはいけません」という意味にします。</p>
+<input class="in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え">
+</li>
+<li data-type="en" data-unit="14" data-pt="3" data-min="3" data-kw="they are dancing|they're dancing|are dancing" data-a="They are dancing.|They are dancing with many people.|They are dancing in the park." data-avoid="they are dance,they dancing,they is dancing,they were dancing,they are danceing">
+<span class="q-pt">3点</span><p class="qt">メールの内容に合うように、次の対話の（　）に入る答えを3語以上の英語で書きなさい。<br>Lucy's mother: What are Mika and Aya doing in the picture?　Lucy: (　　　　)</p>
+<textarea class="in" rows="2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え"></textarea>
+<p class="model">模範解答：They are dancing.（They are dancing with many people. も可）</p>
+<p class="rubric">採点の目安：Mika and Aya を they で受けていること、写真の中で「今しているところ」なので are dancing と進行形で答えていることを要点とし、語数3語以上・文頭の大文字・文末のピリオドを見る。dance の -ing は e をとって dancing。</p>
+</li>
+<li data-type="multi" data-unit="5 16" data-pt="3" data-a="2,3">
+<span class="q-pt">3点</span><p class="qt">資料とメールの内容に合うものを2つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="checkbox" name="b2q6" value="1"><span class="en">Mika went to the festival with her brother.</span></label></li>
+<li><label><input type="checkbox" name="b2q6" value="2"><span class="en">People danced in Minami Park at three.</span></label></li>
+<li><label><input type="checkbox" name="b2q6" value="3"><span class="en">Mika and Aya ate rice balls for lunch.</span></label></li>
+<li><label><input type="checkbox" name="b2q6" value="4"><span class="en">Lucy and Mika live in the same town.</span></label></li>
+</ol>
+</li>
+</ol>
+</section>
+
+<section class="big" data-big="3" data-name="対話文の読解" data-pt="21">
+<div class="big-head"><span class="big-no">大問3</span><h2 class="big-title">対話文の読解</h2><span class="big-pt">21点</span></div>
+<p class="big-lead">リクと、留学生のトムが話しています。対話を読んで、あとの問いに答えなさい。</p>
+<div class="reading">
+<p><span class="sp">Riku:</span> Hello, Tom. What are you reading?</p>
+<p><span class="sp">Tom:</span> It is a book about Japanese temples. I like old temples very much. ( A )</p>
+<p><span class="sp">Riku:</span> Yes, I do. My grandfather lives near a famous temple in Kyoto.</p>
+<p><span class="sp">Tom:</span> Really? Do you often visit him?</p>
+<p><span class="sp">Riku:</span> Yes. I visit him every summer. He knows a lot about the temple.</p>
+<p><span class="sp">Tom:</span> That's nice. What does he do?</p>
+<p><span class="sp">Riku:</span> He is a farmer. He has a big farm, and he works there every morning. He has some horses, too.</p>
+<p><span class="sp">Tom:</span> ( B )</p>
+<p><span class="sp">Riku:</span> He has five horses. They are very friendly.</p>
+<p><span class="sp">Tom:</span> Can you ride a horse?</p>
+<p><span class="sp">Riku:</span> Yes, I can. My grandfather taught me last summer. <u>① I often ride them with him.</u></p>
+<p><span class="sp">Tom:</span> That's exciting! I can't ride a horse.</p>
+<p><span class="sp">Riku:</span> Then please come with me in August. My grandfather can teach you.</p>
+<p><span class="sp">Tom:</span> Sure. I am really happy.</p>
+</div>
+<ol class="q">
+<li data-type="choice" data-unit="6" data-pt="3" data-a="1">
+<span class="q-pt">3点</span><p class="qt">対話の流れに合うように、( A ) に入るものを1つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="radio" name="b3q1" value="1"><span class="en">Do you like temples, too?</span></label></li>
+<li><label><input type="radio" name="b3q1" value="2"><span class="en">Are you like temples, too?</span></label></li>
+<li><label><input type="radio" name="b3q1" value="3"><span class="en">Does you like temples, too?</span></label></li>
+<li><label><input type="radio" name="b3q1" value="4"><span class="en">Do you likes temples, too?</span></label></li>
+</ol>
+</li>
+<li data-type="en" data-unit="9" data-pt="4" data-min="3" data-kw="he works|works,farm" data-a="He works on his farm.|He works on the farm.|He works on his big farm." data-avoid="he work on,he is work,he working,she works,he is works">
+<span class="q-pt">4点</span><p class="qt">対話の内容に合うように、次の問いに英語で答えなさい。<br>What does Riku's grandfather do every morning?</p>
+<textarea class="in" rows="2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え"></textarea>
+<p class="model">模範解答：He works on his farm.</p>
+<p class="rubric">採点の目安：Riku's grandfather を he で受けて works と三人称単数の s をつけていること、farm（農場）で働くことを要点とし、文頭の大文字・文末のピリオドを見る。does でたずねられたら、答えの動詞に s をつける。</p>
+</li>
+<li data-type="ja" data-unit="8" data-pt="4" data-kw="祖父|おじいさん|おじいちゃん,馬,乗">
+<span class="q-pt">4点</span><p class="qt">下線部① I often ride them with him. の意味を、them と him が指すものを明らかにして日本語で書きなさい。</p>
+<textarea class="in ja" rows="2" aria-label="答え"></textarea>
+<p class="model">模範解答：私（リク）はよく、祖父といっしょに（祖父の）馬に乗る。</p>
+<p class="rubric">採点の目安：them が「（祖父の5頭の）馬」、him が「（リクの）祖父」を指していること、「よく乗る」の意味が書けていることを要点とする。them と him の2つとも明らかにする。</p>
+</li>
+<li data-type="choice" data-unit="10" data-pt="3" data-a="1">
+<span class="q-pt">3点</span><p class="qt">対話の流れに合うように、( B ) に入るものを1つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="radio" name="b3q4" value="1"><span class="en">How many horses does he have?</span></label></li>
+<li><label><input type="radio" name="b3q4" value="2"><span class="en">How many horses do he have?</span></label></li>
+<li><label><input type="radio" name="b3q4" value="3"><span class="en">How much horses does he have?</span></label></li>
+<li><label><input type="radio" name="b3q4" value="4"><span class="en">What horses does he has?</span></label></li>
+</ol>
+</li>
+<li data-type="en" data-unit="13" data-pt="4" data-min="3" data-kw="no,he can't|he cannot|he can not" data-a="No, he can't.|No, he cannot.|No, he can not." data-avoid="no, he doesn't,no, he isn't,no, he don't,yes, he can,no, he cann't">
+<span class="q-pt">4点</span><p class="qt">対話の内容に合うように、次の問いに英語で答えなさい。<br>Can Tom ride a horse?</p>
+<textarea class="in" rows="2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え"></textarea>
+<p class="model">模範解答：No, he can't.（No, he cannot. も可）</p>
+<p class="rubric">採点の目安：Tom を he で受けていること、can でたずねられているので can't（cannot）で答えていることを要点とし、文頭の大文字・文末のピリオドを見る。doesn't や isn't で答えない。</p>
+</li>
+<li data-type="choice" data-unit="14" data-pt="3" data-a="3">
+<span class="q-pt">3点</span><p class="qt">対話の内容に合うものを1つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="radio" name="b3q6" value="1"><span class="en">Tom's grandfather is a farmer.</span></label></li>
+<li><label><input type="radio" name="b3q6" value="2"><span class="en">Riku visits his grandfather every winter.</span></label></li>
+<li><label><input type="radio" name="b3q6" value="3"><span class="en">Tom is reading a book about Japanese temples.</span></label></li>
+<li><label><input type="radio" name="b3q6" value="4"><span class="en">Riku's grandfather has ten horses.</span></label></li>
+</ol>
+</li>
+</ol>
+</section>
+
+<section class="big" data-big="4" data-name="条件英作文" data-pt="10">
+<div class="big-head"><span class="big-no">大問4</span><h2 class="big-title">条件英作文</h2><span class="big-pt">10点</span></div>
+<p class="big-lead">あなたの学校に来た ALT の Mr. Smith に、町の Minami Park と Minami Museum のどちらかをすすめます。下の表を見て、あとの問いに答えなさい。</p>
+<div class="table-wrap">
+<table class="data">
+<tr><th></th><th>Minami Park</th><th>Minami Museum</th></tr>
+<tr><th>開いている時間</th><td>all day</td><td>9:00–5:00<br>closed on Monday</td></tr>
+<tr><th>料金</th><td>free</td><td>500 yen</td></tr>
+<tr><th>できること</th><td>play tennis<br>have a picnic by the lake<br>see many flowers</td><td>see old pictures<br>learn about the history of Minami City<br>buy souvenirs</td></tr>
+</table>
+</div>
+<ol class="q">
+<li data-type="en" data-unit="12 13" data-pt="10" data-min="25" data-use="because" data-kw="どちらを選んでいるか|Minami Park|Minami Museum|park|museum,表にある内容|all day|free|yen|tennis|picnic|lake|flowers|pictures|history|souvenir|souvenirs|monday" data-a="Please visit Minami Park. It is free, and you can go there all day. You can have a picnic by the lake. I like the park because we can see many beautiful flowers in spring." data-avoid="please visits,please to visit,you can goes,you can plays,you can sees,you can to,can learns,I am like,it free,you can went">
+<span class="q-pt">10点</span><p class="qt">どちらか1つを選び、「Please visit Minami Park.」または「Please visit Minami Museum.」の文で書き始めて、そこでできることと、すすめる理由を含めて25語以上の英語で書きなさい。</p>
+<span class="q-cond">条件：25語以上／because を使う／表の内容を2つ以上入れる</span>
+<textarea class="in" rows="5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え"></textarea>
+<p class="model">模範解答：Please visit Minami Park. It is free, and you can go there all day. You can have a picnic by the lake. I like the park because we can see many beautiful flowers in spring.（Minami Museum の例：Please visit Minami Museum. You can see many old pictures there. You can learn about the history of Minami City, too. I like the museum because it is very interesting. It is not free, but it is only five hundred yen.）</p>
+<p class="rubric">採点の目安：Minami Park か Minami Museum のどちらかを選んでいること、表にある内容（時間・料金・できること）を2つ以上書いていることを要点とする。語数25語以上、because の使用、文頭の大文字・文末のピリオド、please visits のような命令文の形の誤り、can goes のような can のあとの原形の落とし、I am like のような be動詞と一般動詞の混同を見る。</p>
+</li>
+</ol>
+</section>
+
+<section class="big" data-big="5" data-name="長文の読解" data-pt="26">
+<div class="big-head"><span class="big-no">大問5</span><h2 class="big-title">長文の読解</h2><span class="big-pt">26点</span></div>
+<p class="big-lead">ソラが英語の授業で、祖母についてスピーチをしました。英文を読んで、あとの問いに答えなさい。</p>
+<div class="reading">
+<p>Hello, everyone. I am Sora. Today I talk about my grandmother.</p>
+<p>My grandmother ( 1 ) in a small town near the sea. She gets up at five every morning and walks by the sea with her dog. She always says, "The sea is very beautiful in the morning."</p>
+<p>Last summer, I stayed at her house for a week. One morning, I got up early and walked with her. The sky ( 2 ) red, and the sea was very quiet. <u>① She showed me her favorite place.</u> It was a small bench under a big tree. We had breakfast there together.</p>
+<p>My grandmother often takes pictures of the sea. Before I came home, she ( 3 ) me one of her pictures. In the picture, the sun is shining over the sea. Now it is on my desk. When I look at it, I am very happy.</p>
+<p>Do you have a favorite place, too?</p>
+</div>
+<ol class="q">
+<li data-type="choice" data-unit="9" data-pt="2" data-a="3">
+<span class="q-pt">2点</span><p class="qt">( 1 ) に入る最も適切なものを1つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="radio" name="b5q1" value="1"><span class="en">live</span></label></li>
+<li><label><input type="radio" name="b5q1" value="2"><span class="en">living</span></label></li>
+<li><label><input type="radio" name="b5q1" value="3"><span class="en">lives</span></label></li>
+<li><label><input type="radio" name="b5q1" value="4"><span class="en">is live</span></label></li>
+</ol>
+</li>
+<li data-type="choice" data-unit="15" data-pt="2" data-a="1">
+<span class="q-pt">2点</span><p class="qt">( 2 ) に入る最も適切な語を1つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="radio" name="b5q2" value="1"><span class="en">was</span></label></li>
+<li><label><input type="radio" name="b5q2" value="2"><span class="en">were</span></label></li>
+<li><label><input type="radio" name="b5q2" value="3"><span class="en">is</span></label></li>
+<li><label><input type="radio" name="b5q2" value="4"><span class="en">did</span></label></li>
+</ol>
+</li>
+<li data-type="choice" data-unit="16" data-pt="2" data-a="4">
+<span class="q-pt">2点</span><p class="qt">( 3 ) に入る最も適切な語を1つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="radio" name="b5q3" value="1"><span class="en">give</span></label></li>
+<li><label><input type="radio" name="b5q3" value="2"><span class="en">gives</span></label></li>
+<li><label><input type="radio" name="b5q3" value="3"><span class="en">giving</span></label></li>
+<li><label><input type="radio" name="b5q3" value="4"><span class="en">gave</span></label></li>
+</ol>
+</li>
+<li data-type="en" data-unit="9" data-pt="3" data-min="3" data-kw="she walks|walks,sea|dog" data-a="She walks by the sea with her dog.|She walks by the sea.|She walks with her dog." data-avoid="she walk by,she walk with,she is walk,she walking,he walks,she walked">
+<span class="q-pt">3点</span><p class="qt">スピーチの内容に合うように、次の問いに英語で答えなさい。<br>What does Sora's grandmother do every morning?</p>
+<textarea class="in" rows="2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え"></textarea>
+<p class="model">模範解答：She walks by the sea with her dog.</p>
+<p class="rubric">採点の目安：Sora's grandmother を she で受けて walks と三人称単数の s をつけていること、海辺を歩くこと（犬といっしょに）を要点とし、文頭の大文字・文末のピリオドを見る。毎朝の習慣なので過去形にしない。</p>
+</li>
+<li data-type="en" data-unit="16" data-pt="3" data-min="3" data-kw="he stayed|stayed,grandmother" data-a="He stayed at his grandmother's house.|He stayed at her house.|At his grandmother's house." data-avoid="he stay at,he stays,she stayed,he is stay,he was stay">
+<span class="q-pt">3点</span><p class="qt">スピーチの内容に合うように、次の問いに英語で答えなさい。<br>Where did Sora stay last summer?</p>
+<textarea class="in" rows="2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="答え"></textarea>
+<p class="model">模範解答：He stayed at his grandmother's house.</p>
+<p class="rubric">採点の目安：Sora を he で受けて stayed と過去形で書けていること、場所が祖母の家であることを要点とし、文頭の大文字・文末のピリオドを見る。did でたずねられても、答えの文では動詞を過去形にする。</p>
+</li>
+<li data-type="ja" data-unit="8 16" data-pt="4" data-kw="祖母|おばあさん|おばあちゃん,ソラ|私|僕|ぼく,お気に入り|好きな|大好きな,場所,見せ">
+<span class="q-pt">4点</span><p class="qt">下線部① She showed me her favorite place. の意味を、She と me が指すものを明らかにして日本語で書きなさい。</p>
+<textarea class="in ja" rows="2" aria-label="答え"></textarea>
+<p class="model">模範解答：（ソラの）祖母は、ソラ（私）に、祖母のお気に入りの場所を見せてくれた。</p>
+<p class="rubric">採点の目安：She が「（ソラの）祖母」、me が「ソラ（私）」を指していること、「お気に入りの場所を見せた」の意味が書けていることを要点とする。過去のことなので過去で書く。</p>
+</li>
+<li data-type="seq" data-unit="16" data-pt="4" data-a="3,2,4,1">
+<span class="q-pt">4点</span><p class="qt">次のア〜エの文を、スピーチで話された順に並べます。それぞれの文が何番目になるかを選びなさい。</p>
+<ol class="seq">
+<li><span class="mk">ア</span><span class="en">Sora and his grandmother had breakfast under a big tree.</span><select aria-label="アの順番"><option value="">―</option><option>1</option><option>2</option><option>3</option><option>4</option></select></li>
+<li><span class="mk">イ</span><span class="en">Sora got up early and walked with his grandmother.</span><select aria-label="イの順番"><option value="">―</option><option>1</option><option>2</option><option>3</option><option>4</option></select></li>
+<li><span class="mk">ウ</span><span class="en">Sora's grandmother gave him one of her pictures.</span><select aria-label="ウの順番"><option value="">―</option><option>1</option><option>2</option><option>3</option><option>4</option></select></li>
+<li><span class="mk">エ</span><span class="en">Sora went to his grandmother's house last summer.</span><select aria-label="エの順番"><option value="">―</option><option>1</option><option>2</option><option>3</option><option>4</option></select></li>
+</ol>
+</li>
+<li data-type="multi" data-unit="14 15" data-pt="6" data-a="2,4">
+<span class="q-pt">6点</span><p class="qt">スピーチの内容に合うものを2つ選びなさい。</p>
+<ol class="choices">
+<li><label><input type="checkbox" name="b5q8" value="1"><span class="en">Sora's grandmother lives in a big city.</span></label></li>
+<li><label><input type="checkbox" name="b5q8" value="2"><span class="en">The sea was very quiet in the morning.</span></label></li>
+<li><label><input type="checkbox" name="b5q8" value="3"><span class="en">Sora took the picture on his desk.</span></label></li>
+<li><label><input type="checkbox" name="b5q8" value="4"><span class="en">In the picture, the sun is shining over the sea.</span></label></li>
+</ol>
+</li>
+</ol>
+</section>
+</div>
+
+<div class="subbar" id="subbar">
+  <p class="st" id="st"></p>
+  <button type="button" class="btn main" id="submit">採点する</button>
+  <button type="button" class="btn sub" id="clear">答えを消してはじめから</button>
+</div>
+
+<div id="result" hidden>
+  <header class="res-head">
+    <p class="site-kicker">採点結果</p>
+    <h2 class="site-title" style="margin:0 0 .3rem">中1の総まとめ</h2>
+    <p class="site-meta">Unit 1〜16　・　<span id="when"></span></p>
+    <div class="score"><b id="total"></b><span>/ 100点</span></div>
+    <div class="share"><button type="button" class="btn main" data-send>先生に送る（画像）</button></div>
+  </header>
+
+  <h2><span>大問ごとの得点</span></h2>
+  <div class="box" id="bigQ"></div>
+
+  <h2><span>Unit ごとの正答率</span></h2>
+  <div class="box"><ul class="units" id="unitList"></ul>
+  <p class="note">正答率が低い順に、見直すワークブックへのリンクを出しています。</p></div>
+
+  <h2><span>1問ごとの答え合わせ</span></h2>
+  <div class="box" id="qaList"></div>
+  <p class="note">○ 正解　× まちがい　△ 英作文・記述の一部の点（機械の目安）。「問題に戻る（見直す）」でも、各問の下に同じ答え合わせが出ます。</p>
+
+  <h2><span>書いた答え（英作文・記述）</span></h2>
+  <div id="written"></div>
+  <p class="note">英作文と記述の点数は、語数・条件・よくある誤りをもとにした機械の目安です。</p>
+
+  <div class="share">
+    <button type="button" class="btn main" data-send>先生に送る（画像）</button>
+    <button type="button" class="btn sub" id="back">問題に戻る（見直す）</button>
+    <button type="button" class="btn sub" id="again">答えを消してもう一度</button>
+  </div>
+</div>
+
+</div>
+
+<div class="modal" id="modal" hidden>
+  <img id="preview" alt="送る画像のプレビュー">
+  <div class="acts">
+    <button type="button" class="btn main" id="shareBtn">LINE などで送る</button>
+    <button type="button" class="btn sub" id="saveBtn">画像を保存</button>
+    <button type="button" class="btn sub" id="closeBtn">閉じる</button>
+    <p class="hint" id="shareHint"></p>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   総合テストの採点・結果・共有・途中保存
+   UPDATE-PLAN.md「2. 総合テスト」に対応。問題はすべて HTML 側にある。
+   JS は「採点・表示の切り替え・結果表示・画像づくり・途中保存」だけを行う。
+
+   HTML の書き方
+   -------------
+   <section class="big" data-big="1" data-name="文法" data-pt="25"> … </section>
+   その中の <ol class="q"> の各 <li> が1問。
+
+   共通の属性
+     data-unit  "3" または "3 7"（複数の Unit にまたがる読解問題）
+     data-pt    配点（整数）
+     data-type  下のいずれか
+
+   機械で正誤が決まるもの（部分点なし）
+     choice  4択など。<ol class="choices"> の中に <label><input type="radio"> 。data-a="2"（1始まり）
+     multi   2つ選ぶ。checkbox 。data-a="2,4"（順不同・全部合って正解）
+     order   並べかえ。<p class="words"><span>語</span>…</p> と入力欄。data-a="正解の文"（| で別解）
+     seq     文を流れに並べる。<ol class="seq"> の各行に select 。data-a="3,1,4,2"
+     fill    1語〜数語の補充。data-a="is|'s"
+     fix     誤文訂正の「直した箇所」。data-a="am"
+
+   ルールで目安の点を付けるもの
+     en   英語で書く（条件英作文・英問英答・3語以上で書く）
+          data-min  語数の下限（条件英作文）
+          data-use  必ず使う語（カンマ区切り）
+          data-kw   要点（カンマ区切り。| で別表記）。あるときは要点の数で基礎点を出す
+          data-a    模範解答（| で別解）。正規化して一致すれば満点
+          data-avoid よくある誤りの形（カンマ区切り）。含まれると減点
+     ja   日本語で書く（下線部の内容・なぜ誤りか）
+          data-kw   要点（カンマ区切り。| で別表記）。必須
+
+   en・ja の <li> には模範解答 <p class="model"> と採点の目安 <p class="rubric"> を必ず置く。
+   どちらも画面では隠し、結果と送る画像にだけ出す。
+   ===================================================================== */
+
+const TEST = {"id": "review-final", "name": "中1の総まとめ", "range": "Unit 1〜16"};
+const UNITS = [
+ ["be動詞の肯定文","be-affirmative"],
+ ["be動詞の否定文・疑問文","be-negative-question"],
+ ["This / That / It と指示表現","this-that-it"],
+ ["名詞の複数形と a / an / the","plural-articles"],
+ ["一般動詞の肯定文","general-affirmative"],
+ ["一般動詞の否定文・疑問文","general-negative-question"],
+ ["be動詞と一般動詞の使い分け","be-vs-general"],
+ ["代名詞","pronouns"],
+ ["三人称単数現在","third-person-singular"],
+ ["疑問詞","question-words"],
+ ["時刻・曜日・日付・数の表現","time-date-numbers"],
+ ["命令文・Let's","imperative-lets"],
+ ["助動詞 can","can"],
+ ["現在進行形","present-progressive"],
+ ["be動詞の過去形","be-past"],
+ ["一般動詞の過去形","general-past"]
+];
+const WEAK = 70;                       /* この％未満に「見直し」を出す */
+const KEY = "review:" + TEST.id;       /* 途中保存の置き場所（この端末の中だけ） */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const Q = [...document.querySelectorAll("#paper ol.q > li")];
+const BIG = [...document.querySelectorAll("#paper .big")];
+
+/* ---------- 正規化 ---------- */
+const norm = s => String(s).toLowerCase()
+  .replace(/[‘’ʼ]/g, "'")
+  .replace(/[.,!?;:]/g, " ")
+  .replace(/\s+/g, " ").trim();
+const enWords = s => String(s).trim().split(/\s+/).filter(Boolean);
+const listOf = (el, name) => (el.dataset[name] || "").split(",").map(x => x.trim()).filter(Boolean);
+
+/* ---------- 解答の読み書き（途中保存） ---------- */
+function readOne(li){
+  const t = li.dataset.type;
+  if(t === "choice"){
+    const c = li.querySelector("input[type=radio]:checked");
+    return c ? c.value : "";
+  }
+  if(t === "multi"){
+    return [...li.querySelectorAll("input[type=checkbox]:checked")].map(c => c.value).sort().join(",");
+  }
+  if(t === "seq"){
+    const a = [...li.querySelectorAll("select")].map(s => s.value);
+    return a.some(x => x !== "") ? a.join(",") : "";
+  }
+  const f = li.querySelector(".in");
+  return f ? f.value : "";
+}
+function writeOne(li, v){
+  const t = li.dataset.type;
+  if(t === "choice"){
+    li.querySelectorAll("input[type=radio]").forEach(c => { c.checked = (c.value === v); });
+  } else if(t === "multi"){
+    const set = new Set(String(v).split(","));
+    li.querySelectorAll("input[type=checkbox]").forEach(c => { c.checked = set.has(c.value); });
+  } else if(t === "seq"){
+    const a = String(v).split(",");
+    li.querySelectorAll("select").forEach((s, i) => { s.value = a[i] || ""; });
+  } else {
+    const f = li.querySelector(".in");
+    if(f) f.value = v;
+  }
+}
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(Q.map(readOne))); }catch(e){}
+}
+function load(){
+  let a = null;
+  try{ a = JSON.parse(localStorage.getItem(KEY) || "null"); }catch(e){}
+  if(Array.isArray(a) && a.length === Q.length) Q.forEach((li, i) => writeOne(li, a[i]));
+}
+function wipe(){ try{ localStorage.removeItem(KEY); }catch(e){} }
+
+/* ---------- 進み具合 ---------- */
+function progress(){
+  const done = Q.filter(li => readOne(li).trim() !== "").length;
+  $("st").textContent = "全" + Q.length + "問中 " + done + "問に答えました"
+    + (done < Q.length ? "（空欄のまま採点すると0点で数えます）" : "");
+}
+
+/* ---------- 採点 ---------- */
+function gradeAuto(li, v){
+  const t = li.dataset.type, a = li.dataset.a || "";
+  if(v.trim() === "") return false;
+  if(t === "choice") return v === a.trim();
+  if(t === "multi")  return v === a.split(",").map(x => x.trim()).sort().join(",");
+  if(t === "seq")    return v.replace(/\s/g, "") === a.replace(/\s/g, "");
+  return a.split("|").some(x => norm(x) === norm(v));   /* order / fill / fix */
+}
+
+function gradeWritten(li, v){
+  const pt = +li.dataset.pt;
+  const checks = [];
+  if(v.trim() === ""){
+    checks.push(["x", "答えが書かれていません"]);
+    return {got: 0, checks: checks, hi: ""};
+  }
+  const ja = li.dataset.type === "ja";
+  const kw = listOf(li, "kw");
+  const model = li.dataset.a || "";
+  let got, hi = "";
+
+  if(!ja && model && model.split("|").some(x => norm(x) === norm(v))){
+    checks.push(["o", "模範解答と同じ答えです"]);
+    return {got: pt, checks: checks, hi: ""};
+  }
+
+  if(kw.length){
+    const hit = kw.filter(k => k.split("|").some(x => v.includes(x.trim())
+      || (!ja && norm(v).includes(norm(x)))));
+    got = Math.round(pt * hit.length / kw.length);
+    for(const k of kw){
+      const on = hit.indexOf(k) >= 0;
+      checks.push([on ? "o" : "x", "要点「" + k.split("|")[0] + "」" + (on ? "が入っている" : "にあたる内容がない")]);
+    }
+  } else {
+    got = pt;
+  }
+
+  if(!ja){
+    const w = enWords(v);
+    const min = +li.dataset.min || 0;
+    if(min){
+      const ok = w.length >= min;
+      checks.push([ok ? "o" : "x", "語数 " + w.length + "語（条件 " + min + "語以上）"]);
+      if(!ok) got -= Math.ceil(pt / 2);
+    }
+    for(const u of listOf(li, "use")){
+      const ok = norm(v).split(" ").indexOf(norm(u)) >= 0;
+      checks.push([ok ? "o" : "x", "指定の語「" + u + "」" + (ok ? "を使っている" : "を使っていない")]);
+      if(!ok) got -= 1;
+    }
+    const capOk = /^[A-Z]/.test(v.trim());
+    const dotOk = /[.?!]$/.test(v.trim());
+    checks.push([capOk && dotOk ? "o" : "x",
+      capOk && dotOk ? "文頭の大文字・文末のピリオド"
+      : (!capOk && !dotOk ? "文頭が大文字でなく、文末のピリオドもない"
+        : (!capOk ? "文頭が大文字でない" : "文末のピリオド（? !）がない"))]);
+    if(!capOk) got -= 1;
+    if(!dotOk) got -= 1;
+    for(const bad of listOf(li, "avoid")){
+      const re = new RegExp("\\b" + bad.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i");
+      const m = v.match(re);
+      if(m){
+        checks.push(["x", "「" + bad + "」よくある誤りの形が入っている"]);
+        got -= 2;
+        if(!hi) hi = m[0];
+      }
+    }
+  }
+  got = Math.max(0, Math.min(pt, got));
+  return {got: got, checks: checks, hi: hi};
+}
+
+/* ---------- 答えを読める形にする（答え合わせ用） ---------- */
+const optText = (li, n) => {
+  const o = li.querySelectorAll("ol.choices > li")[+n - 1];
+  return o ? o.textContent.replace(/\s+/g, " ").trim() : "";
+};
+function seqText(li, v){
+  const mks = [...li.querySelectorAll(".seq .mk")].map(m => m.textContent.trim());
+  const a = String(v).split(",");
+  if(!a.some(x => x)) return "";
+  const pos = [];
+  a.forEach((n, i) => { if(n) pos[+n - 1] = (pos[+n - 1] ? pos[+n - 1] + "・" : "") + mks[i]; });
+  return mks.map((_, k) => pos[k] || "？").join(" → ");
+}
+function showAns(li, v){
+  const t = li.dataset.type;
+  if(v === "") return "";
+  if(t === "choice") return v + "　" + optText(li, v);
+  if(t === "multi") return v.split(",").map(n => n + "　" + optText(li, n)).join(" ／ ");
+  if(t === "seq") return seqText(li, v);
+  return v.trim();
+}
+function rightAns(li){
+  const t = li.dataset.type, a = li.dataset.a || "";
+  if(t === "choice") return a + "　" + optText(li, a);
+  if(t === "multi") return a.split(",").map(n => n.trim() + "　" + optText(li, n.trim())).join(" ／ ");
+  if(t === "seq") return seqText(li, a);
+  if(t === "en" || t === "ja"){
+    const mo = li.querySelector(".model");
+    return mo ? mo.textContent.replace(/^模範解答[:：]?\s*/, "").trim() : a.split("|")[0];
+  }
+  return a.split("|")[0];
+}
+const markOf = (got, pt) => got === pt ? ["o", "○"] : (got === 0 ? ["x", "×"] : ["p", "△"]);
+
+function grade(){
+  const per = [], byUnit = {};
+  for(const li of Q){
+    const v = readOne(li), pt = +li.dataset.pt, t = li.dataset.type;
+    let got, checks = null, hi = "";
+    if(t === "en" || t === "ja"){
+      const r = gradeWritten(li, v);
+      got = r.got; checks = r.checks; hi = r.hi;
+    } else {
+      got = gradeAuto(li, v) ? pt : 0;
+    }
+    per.push({li: li, v: v, pt: pt, got: got, type: t, checks: checks, hi: hi});
+    for(const u of (li.dataset.unit || "").split(/\s+/).filter(Boolean)){
+      const k = +u;
+      byUnit[k] = byUnit[k] || [0, 0];
+      byUnit[k][0] += got; byUnit[k][1] += pt;
+    }
+    li.classList.remove("got", "lost");
+    li.classList.add("done", got === pt ? "got" : "lost");
+  }
+  const big = BIG.map(s => {
+    const ls = [...s.querySelectorAll("ol.q > li")];
+    const g = ls.reduce((x, li) => x + per[Q.indexOf(li)].got, 0);
+    return [s.dataset.big + " " + s.dataset.name, g, +s.dataset.pt];
+  });
+  const units = Object.keys(byUnit).map(k => {
+    const u = +k, [g, m] = byUnit[k];
+    return [u, UNITS[u - 1] ? UNITS[u - 1][0] : "Unit " + u, Math.round(g / m * 100)];
+  });
+  const written = per.filter(p => p.type === "en" || p.type === "ja").map(p => {
+    const s = p.li.closest(".big");
+    const qt = p.li.querySelector(".qt");
+    const mo = p.li.querySelector(".model");
+    return {
+      no: s.dataset.big + "-問" + ([...s.querySelectorAll("ol.q > li")].indexOf(p.li) + 1),
+      kind: p.li.dataset.kind || (p.type === "ja" ? "日本語で書く" : "英語で書く"),
+      pt: [p.got, p.pt],
+      q: qt ? qt.textContent.replace(/\s+/g, " ").trim() : "",
+      ans: p.v, hi: p.hi,
+      model: mo ? mo.textContent.replace(/^模範解答[:：]?\s*/, "").trim() : "",
+      checks: p.checks || [],
+      ja: p.type === "ja"
+    };
+  });
+  const qa = BIG.map(s => ({
+    name: "大問" + s.dataset.big + "　" + s.dataset.name,
+    items: [...s.querySelectorAll("ol.q > li")].map((li, i) => {
+      const p = per[Q.indexOf(li)];
+      return {no: s.dataset.big + "-問" + (i + 1), got: p.got, pt: p.pt, type: p.type,
+              yours: showAns(li, p.v), right: rightAns(li), li: li};
+    })
+  }));
+  return {big: big, units: units, written: written, qa: qa,
+          total: big.reduce((x, b) => x + b[1], 0), when: new Date()};
+}
+
+/* ---------- 結果を描く ---------- */
+let R = null;
+const fmt = d => d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate()
+  + " " + d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0");
+
+function showResult(){
+  $("when").textContent = fmt(R.when);
+  $("total").textContent = R.total;
+  $("bigQ").innerHTML = R.big.map(b =>
+    '<div class="row"><span class="lbl">' + esc(b[0]) + '</span><span class="bar"><i style="width:'
+    + (b[1] / b[2] * 100) + '%"></i></span><span class="pt">' + b[1] + " / " + b[2] + "</span></div>").join("");
+  $("unitList").innerHTML = R.units.slice().sort((a, b) => a[2] - b[2]).map(u => {
+    const slug = UNITS[u[0] - 1] ? UNITS[u[0] - 1][1] : "";
+    const href = slug ? "unit" + String(u[0]).padStart(2, "0") + "_" + slug + ".html" : "#";
+    return '<li class="' + (u[2] < WEAK ? "weak" : "") + '"><span class="u-no">Unit ' + u[0]
+      + '</span><span class="t">' + esc(u[1]) + (u[2] < WEAK ? '<span class="flag">見直し</span>' : "")
+      + '</span><span class="p">' + u[2] + '%</span><a href="' + href + '">ワークブック →</a></li>';
+  }).join("");
+  $("written").innerHTML = R.written.map(w => {
+    const a = w.hi ? esc(w.ans).replace(esc(w.hi), "<mark>" + esc(w.hi) + "</mark>") : esc(w.ans);
+    return '<div class="wq"><div class="qh"><span>大問' + esc(w.no) + "　" + esc(w.kind)
+      + '</span><b>' + w.pt[0] + " / " + w.pt[1] + '</b></div><div class="q">' + esc(w.q) + '</div>'
+      + '<div class="lab">書いた答え</div><div class="ans ' + (w.ja ? "ja" : "") + '">' + a + '</div>'
+      + '<div class="lab">模範解答</div><div class="model ' + (w.ja ? "ja" : "") + '">' + esc(w.model) + '</div>'
+      + '<ul class="checks">' + w.checks.map(c =>
+          '<li class="' + c[0] + '">' + (c[0] === "o" ? "○" : "×") + " " + esc(c[1]) + "</li>").join("")
+      + "</ul></div>";
+  }).join("");
+  $("qaList").innerHTML = R.qa.map(b => '<p class="qa-big">' + esc(b.name) + '</p><ul class="qa">'
+    + b.items.map(q => {
+        const m = markOf(q.got, q.pt);
+        return '<li class="' + m[0] + '"><span class="no">問' + esc(q.no.split("-問")[1]) + '</span><span class="mk '
+          + m[0] + '">' + m[1] + '</span><span class="d">'
+          + '<span class="y">あなた：' + (q.yours ? esc(q.yours) : "（無答）") + '</span>'
+          + (q.got === q.pt ? "" : '<span class="r">正解：' + esc(q.right) + '</span>')
+          + '</span></li>';
+      }).join("") + "</ul>").join("");
+  /* 問題に戻ったとき用に、各問の下へ答え合わせを置く */
+  for(const b of R.qa) for(const q of b.items){
+    let fb = q.li.querySelector(":scope > .fb");
+    if(!fb){ fb = document.createElement("p"); fb.className = "fb"; q.li.appendChild(fb); }
+    const m = markOf(q.got, q.pt);
+    fb.innerHTML = '<b class="' + m[0] + '">' + m[1] + " " + q.got + " / " + q.pt + "点</b>"
+      + (q.got === q.pt ? "正解" : "あなた：" + (q.yours ? esc(q.yours) : "（無答）")
+         + '<br><span class="r">正解：' + esc(q.right) + "</span>");
+  }
+  $("paper").hidden = true;
+  $("subbar").hidden = true;
+  $("result").hidden = false;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- 先生に送る（外部ライブラリなし、canvas に直接描く） ---------- */
+const W = 1080, PAD = 64;
+function wrap(ctx, text, maxW){
+  const out = []; let line = "";
+  const tokens = String(text).match(/[A-Za-z0-9'’.,!?;:()\-]+\s*|\s+|./g) || [];
+  for(const t of tokens){
+    const test = line + t;
+    if(ctx.measureText(test).width > maxW && line){ out.push(line.trimEnd()); line = t.trimStart(); }
+    else line = test;
+  }
+  if(line) out.push(line.trimEnd());
+  return out;
+}
+async function makeImage(){
+  try{
+    await document.fonts.load('600 40px "Klee One"');
+    await document.fonts.load('400 30px "Klee One"');
+  }catch(e){}
+  const c = document.createElement("canvas"), ctx = c.getContext("2d");
+  const FJ = '"Klee One","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+  const FE = 'Georgia,"Times New Roman",serif';
+  const draw = real => {
+    let y = PAD;
+    const T = (txt, size, opt) => {
+      opt = opt || {};
+      ctx.font = (opt.w || 400) + " " + size + "px " + (opt.f || FJ);
+      const lines = wrap(ctx, txt, W - PAD * 2 - (opt.indent || 0));
+      for(const ln of lines){
+        y += size * 1.5;
+        if(real){ ctx.fillStyle = opt.c || "#20242F"; ctx.fillText(ln, PAD + (opt.indent || 0), y - size * .35); }
+      }
+    };
+    const gap = h => y += h;
+    const rule = () => {
+      gap(18);
+      if(real){
+        ctx.strokeStyle = "#D5D3CA"; ctx.lineWidth = 2; ctx.setLineDash([8, 8]);
+        ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke(); ctx.setLineDash([]);
+      }
+      gap(18);
+    };
+    if(real){
+      ctx.fillStyle = "#FFFEFB"; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.fillStyle = "#20242F"; ctx.fillRect(0, 0, W, 14);
+    }
+    gap(10);
+    T(TEST.name, 44, {w: 600});
+    T(TEST.range + "　" + fmt(R.when), 28, {c: "#5A6273"});
+    gap(8);
+    T(R.total + " / 100点", 72, {w: 600});
+    rule();
+    T("大問ごとの得点", 32, {w: 600});
+    for(const b of R.big){
+      gap(50);
+      if(real){
+        ctx.font = "400 30px " + FJ; ctx.fillStyle = "#20242F"; ctx.fillText(b[0], PAD, y - 8);
+        const bx = PAD + 230, bw = W - PAD * 2 - 230 - 150;
+        ctx.fillStyle = "#F5F5F0"; ctx.fillRect(bx, y - 30, bw, 22);
+        ctx.fillStyle = "#2A5C93"; ctx.fillRect(bx, y - 30, bw * b[1] / b[2], 22);
+        ctx.fillStyle = "#20242F"; ctx.textAlign = "right";
+        ctx.fillText(b[1] + " / " + b[2], W - PAD, y - 8); ctx.textAlign = "left";
+      }
+    }
+    rule();
+    T("Unit ごとの正答率", 32, {w: 600});
+    for(const u of R.units.slice().sort((a, b) => a[2] - b[2])){
+      T("Unit " + u[0] + "　" + u[1] + "　" + u[2] + "%" + (u[2] < WEAK ? "　← 見直し" : ""),
+        30, {c: u[2] < WEAK ? "#B3413A" : "#20242F"});
+    }
+    rule();
+    T("まちがえた問題", 32, {w: 600});
+    const miss = [];
+    for(const b of R.qa) for(const q of b.items) if(q.got < q.pt) miss.push(q);
+    if(!miss.length) T("なし（全問正解）", 28, {c: "#2E7D4F"});
+    for(const q of miss){
+      const m = markOf(q.got, q.pt);
+      const w2 = q.type === "en" || q.type === "ja";
+      T("大問" + q.no + "　" + m[1] + "　" + q.got + " / " + q.pt + "点", 28, {w: 600, c: "#B3413A"});
+      if(w2) T("→ 下の「書いた答え」の欄", 26, {c: "#5A6273", indent: 16});
+      else {
+        T("答え：" + (q.yours || "（無答）"), 28, {f: FJ, indent: 16});
+        T("正解：" + q.right, 26, {c: "#2E7D4F", indent: 16});
+      }
+    }
+    rule();
+    T("書いた答え（英作文・記述）", 32, {w: 600});
+    for(const w of R.written){
+      gap(14);
+      T("大問" + w.no + "　" + w.kind + "　" + w.pt[0] + " / " + w.pt[1] + "（機械の目安）", 28, {w: 600, c: "#5A6273"});
+      T(w.q, 28);
+      T("書いた答え", 24, {c: "#858B99"});
+      T(w.ans || "（無答）", w.ja ? 30 : 34, {f: w.ja ? FJ : FE, indent: 16});
+      T("模範解答", 24, {c: "#858B99"});
+      T(w.model, w.ja ? 28 : 32, {f: w.ja ? FJ : FE, c: "#2E7D4F", indent: 16});
+      for(const c2 of w.checks) T((c2[0] === "o" ? "○" : "×") + " " + c2[1], 26, {c: c2[0] === "o" ? "#2E7D4F" : "#B3413A"});
+    }
+    gap(PAD);
+    return y;
+  };
+  c.width = W; c.height = 4000;
+  const h = draw(false);
+  c.height = Math.ceil(h);
+  draw(true);
+  return await new Promise(r => c.toBlob(r, "image/png"));
+}
+
+let blob = null, url = null;
+async function openShare(){
+  blob = await makeImage();
+  if(url) URL.revokeObjectURL(url);
+  url = URL.createObjectURL(blob);
+  $("preview").src = url;
+  $("modal").hidden = false;
+  let can = false;
+  try{
+    const file = new File([blob], "result.png", {type: "image/png"});
+    can = !!(navigator.canShare && navigator.canShare({files: [file]}));
+  }catch(e){}
+  $("shareBtn").hidden = !can;
+  $("shareHint").textContent = can ? ""
+    : "この端末では共有画面が使えません。「画像を保存」してから LINE で送ってください。";
+}
+
+/* ---------- つなぐ ---------- */
+$("submit").onclick = () => { save(); R = grade(); showResult(); };
+$("clear").onclick = () => {
+  if(!confirm("書いた答えをすべて消します。よろしいですか。")) return;
+  wipe(); location.reload();
+};
+$("again").onclick = () => {
+  if(!confirm("書いた答えをすべて消します。よろしいですか。")) return;
+  wipe(); location.reload();
+};
+$("back").onclick = () => {
+  $("result").hidden = true; $("paper").hidden = false; $("subbar").hidden = false; window.scrollTo(0, 0);
+};
+$("shareBtn").onclick = async () => {
+  try{
+    const file = new File([blob], "result.png", {type: "image/png"});
+    await navigator.share({files: [file], title: TEST.name});
+  }catch(e){}
+};
+$("saveBtn").onclick = () => {
+  const a = document.createElement("a");
+  a.href = url; a.download = TEST.id + "_" + (R.when.getMonth() + 1) + "-" + R.when.getDate() + ".png";
+  a.click();
+};
+$("closeBtn").onclick = () => $("modal").hidden = true;
+document.querySelectorAll("[data-send]").forEach(b => b.onclick = openShare);
+
+document.querySelectorAll(".model,.rubric").forEach(p => p.hidden = true);
+$("paper").addEventListener("input", () => { save(); progress(); });
+$("paper").addEventListener("change", () => { save(); progress(); });
+load();
+progress();
+</script>
+</body>
+</html>
