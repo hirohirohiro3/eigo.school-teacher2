@@ -57,10 +57,15 @@ index.html                              ハブ（目次）
 PLAN.md                                 全16単元の制作ループ
 basic-words.html                        基本語リスト（単語帳に立てない77語）
 word-index.html                         総索引（見出し語479語）
-units/
+units/                                  中1（生徒に渡した URL を切らないため動かさない）
   unit01_be-affirmative.html            ワークブック
   vocab01_be-affirmative.html           単語帳
   ...
+g2/                                     中2（目次は g2/index.html）
+  unit01_past-progressive.html          ワークブック
+  vocab01_past-progressive.html         単語帳
+  ...
+g3/                                     中3（順25で目次を置く）
 tools/
   build.py                              テンプレート＋本文 → 単元HTML
   check.py                              自動検証スクリプト
@@ -78,6 +83,16 @@ python tools/build.py workbook 3 this-that-it "This / That / It と指示表現"
 python tools/build.py vocab    3 this-that-it "This / That / It と指示表現" body.html
 python tools/check.py 3
 ```
+
+中2・中3は `--grade` を足します（出力先と検査の対象が `g2/`・`g3/` になり、新出語は `master-vocab.json` の `"g2-N"` のキーに積まれます）。
+
+```bash
+python tools/build.py --grade 2 workbook 1 past-progressive "過去進行形" body.html
+python tools/build.py --grade 2 vocab    1 past-progressive "過去進行形" body.html
+python tools/check.py 1 --grade 2
+```
+
+中2・中3の単元本文の `nav.topnav` は `<a href="index.html">← 目次</a>`（同じフォルダの目次）です。中1は `../index.html` です。
 
 `body.html` には `<div class="sheet">` の中身だけを書きます。単語帳の品詞ガイドと画面下の常駐バーはテンプレート側が入れるので、本文に書く必要はありません。
 

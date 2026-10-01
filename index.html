@@ -51,6 +51,21 @@ body{
 }
 .site-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.8;}
 
+/* 学年の切り替え（2026-09-29 UPDATE-PLAN-g2g3.md 2節）。JS は使わないただのリンク */
+.grades{display:flex;gap:.4rem;flex-wrap:wrap;margin:1.05rem 0 0;padding:0;}
+.grades a,.grades span{
+  font-family:"Klee One",sans-serif;font-size:.86rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;
+  padding:.22rem .8rem;
+  border:2px solid var(--ink);border-radius:var(--hand-2);
+  background:var(--panel);color:var(--ink);text-decoration:none;
+}
+.grades span.here{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+.grades span.off{
+  background:transparent;border-color:var(--rule);border-style:dashed;
+  color:var(--ink-3);font-weight:400;
+}
+
 /* 共通リンク（基本語リストなど） */
 .tools{margin:0 0 2rem;padding:0;list-style:none;}
 .tools li{margin:0 0 .55rem;}
@@ -118,6 +133,7 @@ h2 span{
   font-family:"Klee One",sans-serif;
   color:var(--ink-3);border:2px dashed var(--rule);border-radius:var(--hand);
 }
+.u-links.three .soon{flex:1 1 0;min-width:0;padding:.4rem .2rem;font-size:.8rem;}
 
 /* 単語テスト・総合テスト（2026-09-24 UPDATE-PLAN.md「3.」） */
 .u-links.three a{flex:1 1 0;min-width:0;padding:.4rem .2rem;font-size:.84rem;}
@@ -156,6 +172,11 @@ h2 span{
   <p class="site-kicker">中学英語 リスタート</p>
   <h1 class="site-title">ワークブックと単語帳</h1>
   <p class="site-lead">中1の内容を、順序を組み直して1から積み上げ直すための教材です。各単元はワークブック（解説＋30問＋解答）と単語帳の2本立てになっています。スマートフォンでも、A4で印刷しても読めます。</p>
+  <nav class="grades" aria-label="学年">
+    <span class="here">中1</span>
+    <a href="g2/index.html">中2</a>
+    <span class="off">中3　準備中</span>
+  </nav>
 </header>
 
 <ul class="tools">

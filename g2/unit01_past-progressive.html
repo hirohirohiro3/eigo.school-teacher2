@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 1　過去進行形</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab01_past-progressive.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 1</p>
+<h1 class="unit-title">過去進行形</h1>
+<p class="unit-lead">「（そのとき）〜しているところでした」と、過去のある時点で動作の途中だったことを言うときは、<strong>was / were ＋ -ing形</strong>を使います。中1 Unit 14 の現在進行形と、Unit 15 の be動詞の過去形を組み合わせた形です。入試では、主語に合わせた <span class="en">was</span> と <span class="en">were</span> の選択、過去形との使い分け、<span class="en">What were you doing?</span> への答え方がよく問われます。</p>
+</header>
+
+<h2><span>「〜しているところでした」は was / were ＋ -ing形</span></h2>
+
+<p>中1 Unit 14 で、いま動作の途中であることを <span class="en">I am reading a book now.</span> と言いました。これを「昨日の夜8時に読んでいるところでした」と過去にするには、<span class="en">am</span> を Unit 15 の過去形 <span class="en">was</span> にします。</p>
+
+<div class="transform">
+<span class="tf-line">I <span class="be-w">am</span> <span class="gen-w">reading</span> a book now.</span>
+<span class="tf-arrow">↓ be動詞を過去形にする（中1 Unit 15）</span>
+<span class="tf-line">I <span class="be-w">was</span> <span class="gen-w">reading</span> a book at eight last night.</span>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">過去進行形　主語と -ing形を be動詞の過去形がつなぐ</p>
+<div class="flow">
+<span class="node">I<span class="node-label">主語</span></span>
+<span class="link">
+<span class="link-word">was</span>
+<span class="rail"></span>
+</span>
+<span class="node">reading<span class="node-label">-ing形</span></span>
+</div>
+</div>
+
+<p><strong>なぜ be動詞が要るのか。</strong>中1 Unit 14 と同じ理由です。<strong>-ing形になった動詞は動詞そのものとしては働かないので be動詞と組む</strong>のでした。過去進行形では、その be動詞が過去形になるだけです。「いつのことか」は be動詞が引き受けるので、-ing形の部分は現在進行形と同じ形のまま変わりません。</p>
+
+<p><strong>be動詞は主語に合わせて <span class="en">was</span> か <span class="en">were</span> を選びます。</strong>選び方は中1 Unit 15 とまったく同じです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語</th><th>be動詞</th><th>例文</th></tr>
+<tr><td>I</td><td class="be-cell">was</td><td><span class="en">I was doing my homework in my bedroom.</span></td></tr>
+<tr><td>he / she / it・1人や1つのもの</td><td class="be-cell">was</td><td><span class="en">My mother was preparing dinner in the kitchen.</span></td></tr>
+<tr><td>you</td><td class="be-cell">were</td><td><span class="en">You were talking on the phone.</span></td></tr>
+<tr><td>we / they・2人以上や2つ以上のもの</td><td class="be-cell">were</td><td><span class="en">Some people were walking in the street.</span></td></tr>
+</table>
+</div>
+
+<p>例文です。<span class="en">The phone was ringing in the living room.</span>／<span class="en">Someone was knocking on the door.</span>／<span class="en">My little brother was sitting on the floor.</span>／<span class="en">We were relaxing on the sofa.</span>　どの文も「主語＋<span class="en">was</span> / <span class="en">were</span>＋-ing形」の順です。</p>
+
+<h2><span>-ing形の作り方は中1と同じ</span></h2>
+
+<p>-ing形の作り方は、中1 Unit 14 の表をそのまま使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>動詞の終わり</th><th>つけ方</th><th>例</th></tr>
+<tr><td>ふつうの語</td><td><span class="en">-ing</span></td><td><span class="en">read → reading</span><br><span class="en">knock → knocking</span></td></tr>
+<tr><td><span class="en">e</span> で終わる</td><td><span class="en">e</span> をとって <span class="en">-ing</span></td><td><span class="en">make → making</span><br><span class="en">prepare → preparing</span></td></tr>
+<tr><td>短く読む母音＋子音字1つ</td><td>子音字を重ねて <span class="en">-ing</span></td><td><span class="en">sit → sitting</span><br><span class="en">run → running</span><br><span class="en">chat → chatting</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">study</span> や <span class="en">cry</span> のように <span class="en">y</span> で終わる語は、<span class="en">-ed</span> のときと違って <span class="en">y</span> を <span class="en">i</span> にかえず、そのまま <span class="en">studying</span> <span class="en">crying</span> とします。</p>
+
+<h2><span>過去形と過去進行形のちがい</span></h2>
+
+<p>中1 Unit 16 の過去形も、過去のことを言う形です。2つの違いは、<strong>動作をひとまとまりで言うか、動作の途中を言うか</strong>です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th><th>意味</th></tr>
+<tr><td>過去形</td><td><span class="en">I watched TV last night.</span></td><td>昨夜テレビを見た（見るという動作をひとまとまりで言う）</td></tr>
+<tr><td>過去進行形</td><td><span class="en">I was watching TV at eight last night.</span></td><td>昨夜8時には、テレビを見ている途中だった</td></tr>
+</table>
+</div>
+
+<p><strong>過去進行形は「ある時点」とよく組みます。</strong><span class="en">at eight last night</span>（昨夜8時に）、<span class="en">at that time</span>（そのとき）、<span class="en">then</span>（そのとき）のように、どの時点の話かを示す語句がついていることが多いです。その時点で、動作はまだ終わっていません。</p>
+
+<p>次の2文を比べます。<span class="en">Ken called me at eight, but I was taking a bath.</span>　<span class="en">I called him back at nine.</span>　電話がかかってきた8時の時点で、私は入浴の途中でした。そのあと9時にかけ直した、という動作は、ひとまとまりのできごとなので過去形です。</p>
+
+<h2><span>否定文と疑問文は be動詞の文と同じ</span></h2>
+
+<p>過去進行形は be動詞の文です。<strong>否定文は <span class="en">was</span> / <span class="en">were</span> のうしろに <span class="en">not</span> を置き、疑問文は <span class="en">Was</span> / <span class="en">Were</span> を主語の前に出します。</strong>中1 Unit 15 と同じ作り方で、<span class="en">did</span> は使いません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>肯定文</th><th>否定文</th></tr>
+<tr><td><span class="en">I was sleeping.</span></td><td><span class="en">I wasn't sleeping.</span>（<span class="en">was not</span>）</td></tr>
+<tr><td><span class="en">They were playing soccer.</span></td><td><span class="en">They weren't playing soccer.</span>（<span class="en">were not</span>）</td></tr>
+</table>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">過去進行形の疑問文　Was / Were が主語の前へ出る</p>
+<div class="flow">
+<span class="link">
+<span class="link-word">Were</span>
+<span class="rail"></span>
+</span>
+<span class="node">you<span class="node-label">主語</span></span>
+<span class="node">sleeping?<span class="node-label">-ing形</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問文</th><th>答え</th></tr>
+<tr><td><span class="en">Were you sleeping at ten?</span></td><td><span class="en">Yes, I was.</span>／<span class="en">No, I wasn't.</span></td></tr>
+<tr><td><span class="en">Was your father cooking dinner at seven?</span></td><td><span class="en">Yes, he was.</span></td></tr>
+<tr><td><span class="en">Were Ken and Taku running in the park?</span></td><td><span class="en">No, they weren't.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">Were you</span>＋-ing形の疑問文には <span class="en">was</span> / <span class="en">were</span> で答えます。</strong>たずねる文が be動詞で始まっているので、答えも be動詞です。<span class="en">Yes, I did.</span> とは答えません。</p>
+
+<h2><span>疑問詞と過去進行形</span></h2>
+
+<p>中1 Unit 10 の疑問詞は、疑問文の前に置きます。「そのとき何をしていたか」をたずねる <span class="en">What were you doing?</span> は、入試の対話文で最もよく出る形です。答えるときは、<span class="en">doing</span> のところに実際の動作の -ing形を入れます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問詞</th><th>例文</th></tr>
+<tr><td>What</td><td><span class="en">What were you doing at nine last night? —— I was taking a bath.</span></td></tr>
+<tr><td>Where</td><td><span class="en">Where was Emma reading? —— She was reading in the library.</span></td></tr>
+<tr><td>Who（主語）</td><td><span class="en">Who was playing the piano? —— Emma was.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">What were you doing?</span> の <span class="en">doing</span> は「する」という意味の <span class="en">do</span> の -ing形です。答えの文では、この <span class="en">doing</span> が <span class="en">taking</span> <span class="en">studying</span> のような具体的な動作にかわります。<span class="en">Who was playing the piano?</span> は疑問詞 <span class="en">who</span> が主語なので、語順はふつうの文と同じです。答えは <span class="en">Emma was.</span> のように「人＋<span class="en">was</span> / <span class="en">were</span>」です。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">いまのことか、過去のことかを確かめる</span>
+<span class="step-d"><span class="en">now</span> があればいま、<span class="en">last night</span> <span class="en">yesterday</span> <span class="en">at that time</span> <span class="en">then</span> があれば過去です。</span>
+</li>
+<li>
+<span class="step-t">動作をひとまとまりで言うか、途中を言うかを決める</span>
+<span class="step-d">「〜した」なら過去形（中1 Unit 16）、「〜しているところだった」なら過去進行形です。</span>
+</li>
+<li>
+<span class="step-t">主語に合わせて was か were を選ぶ</span>
+<span class="step-d"><span class="en">I</span> と1人・1つのものは <span class="en">was</span>、<span class="en">you</span> と2人以上・2つ以上は <span class="en">were</span> です。</span>
+</li>
+<li>
+<span class="step-t">動詞を -ing形にしてうしろに置く</span>
+<span class="step-d">否定なら <span class="en">wasn't</span> / <span class="en">weren't</span>、疑問なら <span class="en">Was</span> / <span class="en">Were</span> を先頭へ出します。<span class="en">did</span> は使いません。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>進行形にしない動詞</h3>
+<p>中1 Unit 14 で見たとおり、<span class="en">have</span>（持っている）<span class="en">know</span>（知っている）<span class="en">like</span>（好きだ）<span class="en">want</span>（ほしい）のように<strong>状態を表す動詞は、ふつう進行形にしません。</strong>「途中」という区切りがない状態だからです。過去のことなら過去形で言います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>誤り</th><th>正しい文</th></tr>
+<tr><td><span class="en strike">We were having a dog at that time.</span></td><td><span class="en">We had a dog at that time.</span></td></tr>
+<tr><td><span class="en strike">I was liking the song.</span></td><td><span class="en">I liked the song.</span></td></tr>
+<tr><td><span class="en strike">I was wanting a new bike.</span></td><td><span class="en">I wanted a new bike.</span></td></tr>
+</table>
+</div>
+
+<p>ただし <span class="en">have</span> が「食べる」という動作の意味なら進行形にできます。<span class="en">We were having lunch at twelve.</span> は正しい文です。</p>
+
+<h3>was のうしろの -ing で終わる形容詞</h3>
+<p><span class="en">The movie was interesting.</span> の <span class="en">interesting</span> は「おもしろい」という形容詞で、動作ではありません。過去進行形ではなく、中1 Unit 15 の「be動詞＋ようす」の文です。<span class="en">exciting</span> も同じです。</p>
+
+<h3>was と did を混ぜない</h3>
+<p><span class="en">Did you studying?</span> や <span class="en">I didn't sleeping.</span> は誤りです。-ing形と組むのは be動詞なので、<span class="en">Were you studying?</span>／<span class="en">I wasn't sleeping.</span> とします。反対に、<span class="en">I was play the piano.</span> のように be動詞のうしろに原形を置くのも誤りです。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>主語に合わせた <span class="en">was</span> と <span class="en">were</span>、過去形と過去進行形の区別、進行形にしない動詞</td></tr>
+<tr><td>語形変化</td><td>（　）内の動詞を -ing形にかえる。<span class="en">sitting</span> <span class="en">making</span> の綴り</td></tr>
+<tr><td>対話</td><td><span class="en">What were you doing?</span> への答え方、<span class="en">Were you sleeping?</span> のような疑問文への <span class="en">Yes, I was.</span></td></tr>
+<tr><td>読解</td><td>日記や物語から、ある時点でだれが何をしていたかを読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I was play the piano at that time.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I was <span class="gen-w">playing</span> the piano at that time.</span></div>
+<p class="contrast-why">be動詞のうしろに置く動詞は -ing形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My parents was watching TV.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My parents <span class="be-w">were</span> watching TV.</span></div>
+<p class="contrast-why">主語が2人なので <span class="en">were</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Were you sleeping? —— Yes, I did.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Were you sleeping? —— Yes, I <span class="be-w">was</span>.</span></div>
+<p class="contrast-why"><span class="en">Were</span> でたずねられたら、be動詞で答えます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I was knowing the answer.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I <span class="gen-w">know</span> the answer.</span></div>
+<p class="contrast-why"><span class="en">know</span> は状態を表す動詞なので、進行形にしません。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">I was reading a book at eight last night.</span>／<span class="en">My parents were watching TV.</span>／<span class="en">I wasn't sleeping.</span>／<span class="en">Were you sleeping at ten? —— No, I wasn't.</span>／<span class="en">What were you doing at nine last night? —— I was taking a bath.</span>　どれも be動詞の過去形が「過去のこと」を示し、-ing形が「動作の途中」を示しています。</p>
+
+<p>ほかの例文です。<span class="en">It was a rainy day.</span>／<span class="en">Suddenly, the lights went out.</span>／<span class="en">The children were shouting loudly in the park.</span>／<span class="en">It was still raining at ten.</span>／<span class="en">I was looking out of the window.</span>／<span class="en">I heard a strange noise outside.</span>／<span class="en">We were very surprised.</span>／<span class="en">The cat ran into my bedroom.</span>／<span class="en">The baby was crying loudly.</span>／<span class="en">Emma was reading quietly in the library.</span>／<span class="en">Mika was feeding her dog.</span>／<span class="en">Some students were chatting in the classroom.</span>／<span class="en">My father was watching the news on TV.</span>／<span class="en">Were you looking for something?</span>／<span class="en">During the storm, we were in the living room.</span>／<span class="en">Do you remember the big storm last year?</span>　最後の文は、いまのことをたずねる一般動詞の疑問文です。</p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。いまのことか過去のことか、動作の途中を言っているかを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My brother and I (　　　) playing tennis in the park at that time.</span>
+<p class="opts"><span>ア was</span><span>イ were</span><span>ウ are</span><span>エ did</span></p></li>
+<li><span class="en">Emma was (　　　) a letter to her grandmother then.</span>
+<p class="opts"><span>ア write</span><span>イ writes</span><span>ウ writing</span><span>エ wrote</span></p></li>
+<li><span class="en">(　　　) your father cooking dinner at seven? —— Yes, he was.</span>
+<p class="opts"><span>ア Did</span><span>イ Was</span><span>ウ Were</span><span>エ Is</span></p></li>
+<li><span class="en">I (　　　) the news on TV at nine last night.</span>
+<p class="opts"><span>ア watch</span><span>イ watching</span><span>ウ was watching</span><span>エ am watching</span></p></li>
+<li><span class="en">We (　　　) a dog at that time, but now we have a cat.</span>
+<p class="opts"><span>ア were having</span><span>イ had</span><span>ウ was having</span><span>エ are having</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私はそのとき、自分の部屋で宿題をしていました。<br><span class="en">[ was / I / doing / my / homework / in / my / bedroom / then ] .</span><span class="write"></span></li>
+<li>あなたは昨夜9時に何をしていましたか。<br><span class="en">[ were / what / you / doing / at / nine / last / night ] ?</span><span class="write"></span></li>
+<li data-extra="1">父は台所で夕食を作っていました。<span class="hint">1語不要</span><br><span class="en">[ father / my / was / cooking / dinner / in / the / kitchen / cooked ] .</span><span class="write"></span></li>
+<li>子どもたちは公園で大きな声で叫んでいました。<br><span class="en">[ children / the / were / shouting / loudly / in / the / park ] .</span><span class="write"></span></li>
+<li data-extra="1">ケンは図書館で勉強していませんでした。<span class="hint">1語不要</span><br><span class="en">[ Ken / wasn't / studying / in / the / library / didn't ] .</span><span class="write"></span></li>
+<li>10時にはまだ雨が降っていましたか。<br><span class="en">[ it / was / still / raining / at / ten ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">I was play the piano at that time.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My parents was watching TV in the living room.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Were you studied at eight last night?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">We were having a dog at that time.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Was your sister sleeping? —— Yes, she did.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私はそのとき、テレビでニュースを見ていました。</span><span class="write"></span></li>
+<li><span class="q-ja">私たちは昨日の朝、公園で走っていませんでした。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたは8時にお風呂に入っていましたか。——はい、入っていました。</span><span class="write"></span></li>
+<li><span class="q-ja">だれがピアノをひいていたのですか。——エマです。</span><span class="write"></span></li>
+<li>suddenly を使って「突然、明かりが消えました」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>during を使って「嵐の間、私たちは居間にいました」と書く。<span class="cond">9語</span><span class="write"></span></li>
+<li>What を使って「あなたはそのとき何をしていましたか」と書く。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ハルカが土曜日に書いた日記です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">ハルカの日記</p>
+<p>Saturday, September 13<br>
+Last night we had a big storm. At seven, I was doing my homework in my bedroom. <span class="num">①</span><span class="ul">My brother was reading a magazine in the living room, and my father was cooking dinner in the kitchen.</span> The wind was very strong, and it was raining hard. Suddenly, the lights went out. The house was very dark. My mother found some candles, and we stayed in the living room together. Then someone knocked on the door. It was Mr. Tanaka, our neighbor. He was carrying a small radio. My father turned on the radio, and we listened to the news. At ten, the lights came back. It was still raining, but everyone was safe.</p>
+<p class="reading-wc">およそ120語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 7時に、兄は台所で料理をしていた。<br>
+イ 7時に、父は台所で夕食を作っていた。<br>
+ウ 明かりが消えたあと、母はろうそくを買いに出かけた。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ドアをノックしたのは、近所の田中さんだった。<br>
+イ 田中さんはテレビを持ってきた。<br>
+ウ 10時には雨はやんでいた。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">At seven, Haruka was (　　　) her homework in her bedroom.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">At ten, it was still (　　　).</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>昨日の夜8時にあなたがしていたことを、過去進行形を使って1文で書く。<span class="hint">例：I was studying English at eight last night.</span><span class="write"></span></li>
+<li>昨日の夕方に家族のだれかがしていたことを、その人を主語にして過去進行形で1文で書く。<span class="hint">例：My mother was reading a book yesterday evening.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>動作をひとまとまりで言うか、途中を言うか</strong>を確かめ、過去進行形なら<strong>主語に合った was / were と -ing形</strong>になっているかまで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　were</span><p class="a-why">主語 <span class="en">My brother and I</span> は2人なので <span class="en">were</span> です。<span class="en">at that time</span> があるので過去で、<span class="en">are</span> はいまのことの形です。-ing形と組むのは be動詞なので、<span class="en">did</span> は入りません。</p></li>
+<li><span class="a-key">ウ　writing</span><p class="a-why"><span class="en">was</span> のうしろに置く動詞は -ing形です。<span class="en">write</span> は <span class="en">e</span> をとって <span class="en">writing</span> です。</p></li>
+<li><span class="a-key">イ　Was</span><p class="a-why">答えが <span class="en">Yes, he was.</span> なので、主語1人の過去進行形の疑問文です。<span class="en">Did</span> は <span class="en">cooking</span> と組みません。</p></li>
+<li><span class="a-key">ウ　was watching</span><p class="a-why"><span class="en">at nine last night</span> は過去の1つの時点で、そのときに見ている途中だったことを言うので過去進行形です。<span class="en">am watching</span> はいまのことです。</p></li>
+<li><span class="a-key">イ　had</span><p class="a-why">「飼っている」の <span class="en">have</span> は状態を表すので、進行形にしません。過去のことなので過去形の <span class="en">had</span> です。</p></li>
+
+<li><span class="a-key">I was doing my homework in my bedroom then.</span><p class="a-why">「主語＋<span class="en">was</span>＋-ing形」の順です。<span class="en">then</span>（そのとき）は文の終わりに置きます。</p></li>
+<li><span class="a-key">What were you doing at nine last night?</span><p class="a-why">疑問詞 <span class="en">What</span> を先頭に置き、そのうしろは <span class="en">were you</span>＋-ing形の疑問文の語順です。</p></li>
+<li><span class="a-key">My father was cooking dinner in the kitchen.</span><p class="a-why">不要な語は <span class="en">cooked</span> です。「作っていました」と途中のことを言うので、<span class="en">was cooking</span> を使います。</p></li>
+<li><span class="a-key">The children were shouting loudly in the park.</span><p class="a-why"><span class="en">children</span> は複数なので <span class="en">were</span> です。<span class="en">loudly</span>（大きな声で）は動詞のうしろに置きます。</p></li>
+<li><span class="a-key">Ken wasn't studying in the library.</span><p class="a-why">不要な語は <span class="en">didn't</span> です。-ing形と組む否定は <span class="en">wasn't</span> です。</p></li>
+<li><span class="a-key">Was it still raining at ten?</span><p class="a-why">天気の文の主語は <span class="en">it</span> で、疑問文なので <span class="en">Was</span> を先頭に出します。<span class="en">still</span>（まだ）は -ing形の前に置きます。</p></li>
+
+<li><span class="a-key">I was playing the piano at that time.</span><p class="a-why">理由の例：be動詞のうしろに置く動詞は -ing形にするから。</p></li>
+<li><span class="a-key">My parents were watching TV in the living room.</span><p class="a-why">理由の例：主語が2人なので、be動詞は <span class="en">were</span> にするから。</p></li>
+<li><span class="a-key">Were you studying at eight last night?</span><p class="a-why">理由の例：<span class="en">Were</span> で始まる進行形の疑問文なので、動詞は -ing形にするから。</p></li>
+<li><span class="a-key">We had a dog at that time.</span><p class="a-why">理由の例：「飼っている」の <span class="en">have</span> は状態を表す動詞なので、進行形にしないから。</p></li>
+<li><span class="a-key">Was your sister sleeping? —— Yes, she was.</span><p class="a-why">理由の例：<span class="en">Was</span> でたずねているので、答えも be動詞で返すから。</p></li>
+
+<li><span class="a-key">I was watching the news on TV at that time.</span><p class="a-why"><span class="en">at that time</span> のかわりに <span class="en">then</span> でも正解です。「見ていました」と途中のことなので <span class="en">was watching</span> です。</p></li>
+<li><span class="a-key">We weren't running in the park yesterday morning.</span><p class="a-why"><span class="en">We were not running 〜</span> でも正解です。<span class="en">run</span> は子音字を重ねて <span class="en">running</span> です。</p></li>
+<li><span class="a-key">Were you taking a bath at eight? —— Yes, I was.</span><p class="a-why">「お風呂に入る」は <span class="en">take a bath</span> です。<span class="en">Were</span> を先頭に出し、答えは <span class="en">I was</span> で返します。</p></li>
+<li><span class="a-key">Who was playing the piano? —— Emma was.</span><p class="a-why"><span class="en">who</span> が主語なので語順はふつうの文と同じです。主語は1人として扱い <span class="en">was</span> です。</p></li>
+<li><span class="a-key">Suddenly, the lights went out.</span><p class="a-why">「明かりが消える」は <span class="en">go out</span> で、過去形は <span class="en">went out</span> です。消えたという動作をひとまとまりで言うので過去形です。</p></li>
+<li><span class="a-key">During the storm, we were in the living room.</span><p class="a-why"><span class="en">during</span> のうしろには「〜の間」の名詞を置きます。<span class="en">living room</span> は2語で数えます。</p></li>
+<li><span class="a-key">What were you doing at that time?</span><p class="a-why">疑問詞 <span class="en">What</span> のうしろは <span class="en">were you doing</span> です。<span class="en">at that time</span> は3語です。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">my father was cooking dinner in the kitchen</span> とあります。兄は居間で雑誌を読んでいたのでアは合わず、ろうそくは母が見つけたのでウも合いません。</p></li>
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">It was Mr. Tanaka, our neighbor.</span> と合います。田中さんが持っていたのはラジオなのでイは合わず、<span class="en">It was still raining</span> なのでウも合いません。</p></li>
+<li><span class="a-key">doing</span><p class="a-why">本文の <span class="en">I was doing my homework in my bedroom</span> に合わせます。<span class="en">do my homework</span> で「宿題をする」です。</p></li>
+<li><span class="a-key">raining</span><p class="a-why">本文の <span class="en">It was still raining</span> に合わせます。<span class="en">was</span> のうしろなので -ing形です。</p></li>
+<li><span class="a-key">兄は居間で雑誌を読んでいて、父は台所で夕食を作っていました。</span><p class="a-why"><span class="en">was reading</span> と <span class="en">was cooking</span> はどちらも過去進行形なので、「読んでいた」「作っていた」と途中のことを表すように訳します。</p></li>
+
+<li><span class="a-key">解答例　I was studying English at eight last night.</span><p class="a-why">主語に合った <span class="en">was</span> / <span class="en">were</span> と -ing形を使って、昨夜8時のことを言っていれば正解です。</p></li>
+<li><span class="a-key">解答例　My mother was reading a book yesterday evening.</span><p class="a-why">主語が1人なら <span class="en">was</span>、2人以上なら <span class="en">were</span> を使っていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">過去のある時点で動作の途中だったことは、<strong>was / were ＋ -ing形</strong>で言います。-ing形になった動詞は動詞そのものとしては働かないので be動詞と組み、その be動詞を主語に合わせて過去形にします。否定文は <span class="en">wasn't</span> / <span class="en">weren't</span>、疑問文は <span class="en">Was</span> / <span class="en">Were</span> を先頭に出し、答えも be動詞で返します。動作をひとまとまりで言うなら過去形、途中を言うなら過去進行形です。<span class="en">have</span>（持っている）<span class="en">know</span> <span class="en">like</span> <span class="en">want</span> のような状態の動詞は進行形にしません。</p>
+</div>
+</div>
+</body>
+</html>

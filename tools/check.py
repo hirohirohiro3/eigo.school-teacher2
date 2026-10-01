@@ -9,6 +9,8 @@
     python tools/check.py --index          # index.html のボタン・まとめの枠を照合
     python tools/check.py --review 1       # units/review01.html（第1部の総合テスト）
     python tools/check.py --review final   # units/review-final.html（中1の総まとめ）
+    python tools/check.py 1 --grade 2      # 中2 Unit 1（g2/ を見る）
+    python tools/check.py --index --grade 2  # g2/index.html を照合
 
 Playwright が入っていれば、スマホ幅の横スクロールとA4印刷ページ数も見ます。
     pip install playwright && playwright install chromium
@@ -31,6 +33,26 @@ Playwright が入っていれば、スマホ幅の横スクロールとA4印刷�
 2026-09-26 追記（UPDATE-PLAN.md 工程3）
   - --review N を追加。総合テストの配点・data-unit・模範解答・読解の語数・
     範囲より後の文法の不使用を見る
+
+2026-09-29 追記（UPDATE-PLAN-g2g3.md 順1：道具の学年対応）
+  - --grade N（1〜3）を追加。1 は units/、2 は g2/、3 は g3/ を見る
+  - master-vocab.json のキーを学年で分けた。中1は従来の "1"〜"16" のまま、
+    中2は "g2-1"〜、中3は "g3-1"〜。中1のキーは読み書きとも触らない
+  - 読解本文の語数・新出語数のめやす・部の区切りを学年別に持たせた
+  - LATER_GRAMMAR を学年別にした（中2分を追加。中3分は順25で足す）
+  - --index を学年対応にし、ヘッダーの学年切り替えの検査を足した
+  - --review と --word-test は中1のまま（中2分は順19・順18で足す）
+
+2026-09-30 追記（UPDATE-PLAN-g2g3.md 順2：中2 Unit 1）
+  - master-vocab.json を既存と同じ詰めた1行の書式で書く（indent=1 をやめた）
+  - --index：中2・中3の単語テストのボタンは、word-test.html にその学年の語
+    （data-g="2" など）が入るまで「準備中」を正とする（wt_ready）。順18で語を
+    足すと、自動でリンクを要求する検査に切り替わる
+
+2026-10-01 追記（UPDATE-PLAN-g2g3.md 順3：中2 Unit 2）
+  - CONTRACTIONS に will の短縮形（won't・I'll〜they'll）を足した。語の網羅チェックで
+    won't → will + not、I'll → I + will と分けて数える
+  - IRREGULAR に won → win、lost → lose、became → become を足した
 """
 
 import argparse
@@ -41,8 +63,44 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-UNITS = ROOT / "units"
+UNITS = ROOT / "units"          # 中1。UPDATE-PLAN-g2g3.md の「中1は units/ から動かさない」
 MASTER = ROOT / "tools" / "master-vocab.json"
+
+# ------------------------------------------------------------------ 学年
+# UPDATE-PLAN-g2g3.md「1. 決定したこと」：中2は g2/、中3は g3/。
+GRADE_DIR = {1: "units", 2: "g2", 3: "g3"}
+GRADE_UNITS = {1: 16, 2: 16, 3: 15}
+GRADES = (1, 2, 3)
+
+
+def grade_dir(grade: int) -> Path:
+    """その学年のワークブック・単語帳・総合テストの置き場所。"""
+    return ROOT / GRADE_DIR[grade]
+
+
+def grade_index(grade: int) -> Path:
+    """その学年の目次。中1だけルートの index.html。"""
+    return ROOT / "index.html" if grade == 1 else grade_dir(grade) / "index.html"
+
+
+def grade_ready(grade: int) -> bool:
+    """目次があり、単元が1本以上ある学年か（ヘッダーでリンクを張ってよい学年）。"""
+    return grade_index(grade).exists() and bool(list(grade_dir(grade).glob("unit??_*.html")))
+
+
+def vocab_key(grade: int, n: int) -> str:
+    """master-vocab.json のキー。中1は従来の "1"〜"16"、中2以降は "g2-1" 形式。
+
+    UPDATE-PLAN-g2g3.md 5.1：中1の479語を上書きしないためにキーを分ける。
+    中1のキーの綴りは変えない（word-index.html の作り直しを避ける）。
+    """
+    return str(n) if grade == 1 else "g%d-%d" % (grade, n)
+
+
+def key_order(k: str):
+    """master-vocab.json のキーを (学年, 単元) に直す。既出語の判定に使う。"""
+    m = re.fullmatch(r"g(\d+)-(\d+)", k)
+    return (int(m.group(1)), int(m.group(2))) if m else (1, int(k))
 
 # ---------------------------------------------------------------- 制作基準
 
@@ -68,15 +126,21 @@ COMPOUND_OK = {
 }
 
 # 読解本文の語数のめやす（単元帯ごと）。参考表示のみ
-def reading_band(n: int):
+# 中2・中3は PLAN-g2g3.md「2. 難度と分量」の表
+def reading_band(n: int, grade: int = 1):
+    if grade == 2:
+        return (100, 140) if n <= 8 else (120, 160)
+    if grade == 3:
+        return (130, 180) if n <= 8 else (150, 200)
     if n <= 2:
         return (40, 60)
     if n <= 6:
         return (60, 80)
     return (80, 120)
 
-# 1単元の新出語数のめやす。参考表示のみ
-VOCAB_BAND = (25, 40)
+# 1単元の新出語数のめやす。参考表示のみ（PLAN-g2g3.md 2節：中2・中3は30〜40語）
+VOCAB_BANDS = {1: (25, 40), 2: (30, 40), 3: (30, 40)}
+VOCAB_BAND = VOCAB_BANDS[1]
 
 # 見出し語に寄せられない不規則な形は、ここに書き足していく
 IRREGULAR = {
@@ -86,6 +150,8 @@ IRREGULAR = {
     "feet": "foot", "teeth": "tooth", "people": "people",
     "went": "go", "had": "have", "did": "do", "said": "say",
     "got": "get", "saw": "see", "ate": "eat", "made": "make",
+    "won": "win", "lost": "lose", "became": "become",   # 2026-10-01（順3：中2 Unit 2）
+    "built": "build", "sold": "sell", "spent": "spend",   # 2026-10-01（順4：中2 Unit 3）
 }
 
 CONTRACTIONS = {
@@ -96,6 +162,10 @@ CONTRACTIONS = {
     "aren't": ["be", "not"], "can't": ["can", "not"], "cannot": ["can", "not"],
     "wasn't": ["be", "not"], "weren't": ["be", "not"], "let's": ["let", "us"],
     "didn't": ["do", "not"],
+    # 2026-10-01（順3：中2 Unit 2）will の短縮形
+    "won't": ["will", "not"], "i'll": ["i", "will"], "you'll": ["you", "will"],
+    "he'll": ["he", "will"], "she'll": ["she", "will"], "it'll": ["it", "will"],
+    "we'll": ["we", "will"], "they'll": ["they", "will"],
 }
 
 # 基本語リストに載せる語。単元の単語帳には出さない
@@ -199,8 +269,8 @@ def load_master():
     return {"units": {}}
 
 
-def find_file(prefix: str, n: int):
-    hits = sorted(UNITS.glob(f"{prefix}{n:02d}_*.html"))
+def find_file(prefix: str, n: int, grade: int = 1):
+    hits = sorted(grade_dir(grade).glob(f"{prefix}{n:02d}_*.html"))
     return hits[0] if hits else None
 
 
@@ -218,7 +288,7 @@ def collect_questions(body: str):
     return out
 
 
-def check_workbook(path: Path, n: int, report: list):
+def check_workbook(path: Path, n: int, report: list, grade: int = 1):
     src = path.read_text(encoding="utf-8")
     body = src.split("<body>", 1)[-1]
 
@@ -310,7 +380,7 @@ def check_workbook(path: Path, n: int, report: list):
     reads = re.findall(r'<div class="reading">(.*?)</div>', body, re.S)
     if reads:
         wc = len(words_of(strip_tags(reads[0])))
-        blo, bhi = reading_band(n)
+        blo, bhi = reading_band(n, grade)
         report.append((True, f"［参考］読解本文 {wc}語（めやす {blo}〜{bhi}語）"))
     else:
         report.append((True, "［参考］読解本文が見つかりません"))
@@ -335,13 +405,13 @@ def check_workbook(path: Path, n: int, report: list):
 
 # ------------------------------------------------------------------- 単語帳
 
-def check_vocab(vpath: Path, wpath: Path, n: int, report: list):
+def check_vocab(vpath: Path, wpath: Path, n: int, report: list, grade: int = 1):
     vsrc = vpath.read_text(encoding="utf-8")
     wsrc = wpath.read_text(encoding="utf-8")
 
     heads = [strip_tags(h).strip().lower()
              for h in re.findall(r'<span class="v-word">(.*?)</span>', vsrc, re.S)]
-    vlo, vhi = VOCAB_BAND
+    vlo, vhi = VOCAB_BANDS[grade]
     report.append((len(heads) > 0, f"見出し語 {len(heads)}語"))
     if heads and not (vlo <= len(heads) <= vhi):
         report.append((True, f"［参考］新出語がめやす（{vlo}〜{vhi}語）から外れています"))
@@ -349,11 +419,12 @@ def check_vocab(vpath: Path, wpath: Path, n: int, report: list):
     dup = sorted({h for h in heads if heads.count(h) > 1})
     report.append((not dup, "見出し語の重複なし" + ("" if not dup else f"　{', '.join(dup)}")))
 
-    # 既出語（Unit 1..N-1）
+    # 既出語（この単元より前のすべての学年・単元）
+    # UPDATE-PLAN-g2g3.md 5.1：学年をまたいで累積するので、キーを (学年, 単元) に直して比べる
     master = load_master()
     known = set(BASIC)
     for k, v in master.get("units", {}).items():
-        if int(k) < n:
+        if key_order(k) < (grade, n):
             known.update(w.lower() for w in v)
 
     covered = set()
@@ -428,31 +499,36 @@ def check_render(paths, report):
 
 # ---------------------------------------------------------------------- main
 
-def run(n: int, do_wb: bool, do_vocab: bool, do_render: bool):
-    print(f"\n=== Unit {n} " + "=" * 44)
+def run(n: int, do_wb: bool, do_vocab: bool, do_render: bool, grade: int = 1):
+    print(f"\n=== 中{grade} Unit {n} " + "=" * 40)
     report = []
     rendered = []
 
-    wpath = find_file("unit", n)
-    vpath = find_file("vocab", n)
+    if not (1 <= n <= GRADE_UNITS[grade]):
+        report.append((False, f"中{grade} は Unit 1〜{GRADE_UNITS[grade]} です（指定 {n}）"))
+
+    wpath = find_file("unit", n, grade)
+    vpath = find_file("vocab", n, grade)
 
     if do_wb and wpath:
-        print(f"[ワークブック] {wpath.name}")
-        check_workbook(wpath, n, report)
+        print(f"[ワークブック] {GRADE_DIR[grade]}/{wpath.name}")
+        check_workbook(wpath, n, report, grade)
         rendered.append(wpath)
     elif do_wb:
-        report.append((False, f"unit{n:02d}_*.html が見つかりません"))
+        report.append((False, f"{GRADE_DIR[grade]}/unit{n:02d}_*.html が見つかりません"))
 
     if do_vocab and vpath and wpath:
-        print(f"[単語帳]      {vpath.name}")
-        heads = check_vocab(vpath, wpath, n, report)
+        print(f"[単語帳]      {GRADE_DIR[grade]}/{vpath.name}")
+        heads = check_vocab(vpath, wpath, n, report, grade)
         rendered.append(vpath)
         master = load_master()
-        master.setdefault("units", {})[str(n)] = heads
+        master.setdefault("units", {})[vocab_key(grade, n)] = heads
         MASTER.parent.mkdir(exist_ok=True)
-        MASTER.write_text(json.dumps(master, ensure_ascii=False, indent=1), encoding="utf-8")
+        # 既存のファイルと同じ詰めた書式（1行）で書く。中1の479語の行が差分に出ないように
+        MASTER.write_text(json.dumps(master, ensure_ascii=False, separators=(",", ":")) + "\n",
+                          encoding="utf-8")
     elif do_vocab and not vpath:
-        report.append((True, f"vocab{n:02d}_*.html は未作成"))
+        report.append((True, f"{GRADE_DIR[grade]}/vocab{n:02d}_*.html は未作成"))
 
     if do_render:
         check_render(rendered, report)
@@ -467,7 +543,13 @@ def run(n: int, do_wb: bool, do_vocab: bool, do_render: bool):
 
 # -------------------------------------------------------------- 単語テスト
 
-PARTS_SPEC = [(1, 4), (5, 7), (8, 11), (12, 16)]
+# 部の区切り。中1は既存のまま、中2・中3は PLAN-g2g3.md「1. 単元数と部の構成」
+GRADE_PARTS = {
+    1: [(1, 4), (5, 7), (8, 11), (12, 16)],
+    2: [(1, 4), (5, 8), (9, 12), (13, 16)],
+    3: [(1, 4), (5, 8), (9, 12), (13, 15)],
+}
+PARTS_SPEC = GRADE_PARTS[1]
 WORD_TEST = ROOT / "word-test.html"
 
 
@@ -599,80 +681,188 @@ def run_word_test():
 
 # ---------------------------------------------------------------- index.html
 # 2026-09-25 追記（UPDATE-PLAN.md「3.」工程2）
+# 2026-09-29 学年対応（UPDATE-PLAN-g2g3.md 順1）
 INDEX = ROOT / "index.html"
 
+# 学年名と、その学年の目次から見た相対パスの前置き
+GRADE_NAME = {1: "中1", 2: "中2", 3: "中3"}
 
-def check_index(report: list):
+
+def _up(grade: int) -> str:
+    """その学年の目次からルートへ戻る相対パス。中1の目次はルートにある。"""
+    return "" if grade == 1 else "../"
+
+
+def _unit_href(grade: int, name: str) -> str:
+    """その学年の目次から単元ファイルへの相対パス。"""
+    return f"units/{name}" if grade == 1 else name
+
+
+def _wt_query(grade: int, kind: str, v) -> str:
+    """単語テストの引数。中1は従来どおり（?unit=5）、中2以降は学年を含む（?unit=2-5）。
+
+    PLAN-g2g3.md 5.5：生徒に渡した中1の URL を切らないため、中1だけ後方互換にする。
+    """
+    if kind == "grade":
+        return f"grade={grade}"
+    return f"{kind}={v}" if grade == 1 else f"{kind}={grade}-{v}"
+
+
+def check_grade_nav(src: str, grade: int, report: list):
+    """ヘッダーの学年切り替え（UPDATE-PLAN-g2g3.md 2節）。JS を使わないただのリンク。"""
+    m = re.search(r'<nav class="grades"[^>]*>(.*?)</nav>', src, re.S)
+    if not m:
+        report.append((False, 'ヘッダーに <nav class="grades"> が無い（学年切り替え）'))
+        return
+    body = m.group(1)
+    items = re.findall(r'<(a|span)\b([^>]*)>(.*?)</\1>', body, re.S)
+    labels = [strip_tags(t).strip() for _, _, t in items]
+    ok_order = len(items) == 3 and all(labels[i].startswith(GRADE_NAME[i + 1]) for i in range(3))
+    report.append((ok_order, f"学年切り替えが中1・中2・中3の3つ　実際 {labels}"))
+    if not ok_order:
+        return
+
+    bad = []
+    for g in GRADES:
+        tag, attrs, text = items[g - 1]
+        cls = re.search(r'class="([^"]*)"', attrs)
+        cls = cls.group(1) if cls else ""
+        if g == grade:
+            if tag != "span" or "here" not in cls:
+                bad.append(f"{GRADE_NAME[g]}（今いる学年）は <span class=\"here\"> であること")
+        elif grade_ready(g):
+            want = f'{_up(grade)}index.html' if g == 1 else f'{_up(grade)}{GRADE_DIR[g]}/index.html'
+            href = re.search(r'href="([^"]*)"', attrs)
+            if tag != "a" or not href or href.group(1) != want:
+                bad.append(f"{GRADE_NAME[g]} は href=\"{want}\" のリンクであること")
+        else:
+            if tag != "span" or "off" not in cls or "準備中" not in text:
+                bad.append(f"{GRADE_NAME[g]} は単元が無いので <span class=\"off\">…準備中 であること")
+    report.append((not bad, "学年切り替えのリンクと準備中の表示"
+                   + ("" if not bad else "\n  " + "\n  ".join(bad))))
+    report.append(("<nav class=\"grades\"" in src
+                   and src.index('<nav class="grades"') < src.index("</header>"),
+                   "学年切り替えがヘッダーの中にある"))
+
+
+def wt_ready(grade: int) -> bool:
+    """単語テストがその学年の語を出題できるか。中1は常に可。
+
+    中2・中3は word-test.html に data-g="2" などの語が入ってから（順18・順41）。
+    それまでは単語帳があっても、単語テストのボタンは「準備中」にする
+    （語の入っていない単語テストへリンクを張らないため。2026-09-30 追記）。
+    """
+    if grade == 1:
+        return True
+    return WORD_TEST.exists() and f'data-g="{grade}"' in WORD_TEST.read_text(encoding="utf-8")
+
+
+def check_index(report: list, grade: int = 1):
+    INDEX = grade_index(grade)
+    label = "index.html" if grade == 1 else f"{GRADE_DIR[grade]}/index.html"
     if not INDEX.exists():
-        report.append((False, "index.html が無い"))
+        report.append((False, f"{label} が無い"))
         return
     src = INDEX.read_text(encoding="utf-8")
+    parts = GRADE_PARTS[grade]
+    nunits = GRADE_UNITS[grade]
+    gdir = grade_dir(grade)
+    wt = f"{_up(grade)}word-test.html"
+
+    check_grade_nav(src, grade, report)
 
     # JS なし・外部読み込みは Google Fonts だけ
-    report.append(("<script" not in src.lower(), "index.html に script が無い（JS なし）"))
+    report.append(("<script" not in src.lower(), f"{label} に script が無い（JS なし）"))
     ext = [u for u in re.findall(r'(?:src|href)="(https?://[^"]+)"', src)
            if "fonts.googleapis.com" not in u and "fonts.gstatic.com" not in u]
     report.append((not ext, f"外部読み込みは Google Fonts だけ　ほか {len(ext)}件"))
 
     # 共通リンクの先頭が単語テスト
-    tm = re.search(r'<ul class="tools">\s*<li><a href="([^"]+)"', src)
-    report.append((bool(tm) and tm.group(1) == "word-test.html",
-                   "共通リンクの先頭が単語テスト（word-test.html）"))
+    tm = re.search(r'<ul class="tools">\s*<li>(.*?)</li>', src, re.S)
+    first = tm.group(1) if tm else ""
+    has_words = any(gdir.glob("vocab??_*.html")) and wt_ready(grade)
+    if has_words:
+        ok_tools = f'<a href="{wt}"' in first
+        tools_msg = f"共通リンクの先頭が単語テスト（{wt}）"
+    else:
+        # その学年の単語帳がまだ無いので、単語テストは準備中でよい
+        ok_tools = '<span class="off"' in first and "準備中" in first and "単語テスト" in first
+        tools_msg = "共通リンクの先頭が単語テスト（この学年の語がまだ無いので準備中）"
+    report.append((ok_tools, tools_msg))
 
     # 単元カード：ワークブック／単語帳／単語テストの3つ
     cards = re.findall(r'<span class="u-no">Unit (\d+)</span>.*?<p class="u-links three">(.*?)</p>', src, re.S)
-    report.append(([int(n) for n, _ in cards] == list(range(1, 17)),
-                   f"3つボタンの単元カード {len(cards)}件（Unit 1〜16 の順）"))
+    report.append(([int(n) for n, _ in cards] == list(range(1, nunits + 1)),
+                   f"3つボタンの単元カード {len(cards)}件（Unit 1〜{nunits} の順）"))
     bad = []
     for n, body in cards:
         n = int(n)
+        vs = sorted(gdir.glob(f"vocab{n:02d}_*.html"))
         links = re.findall(r'<a class="(\w+)" href="([^"]+)">(.*?)</a>', body)
-        kinds = [k for k, _, _ in links]
-        if kinds != ["work", "vocab", "test"]:
-            bad.append(f"Unit {n} ボタンの並び {kinds}")
+        soon = re.findall(r'<span class="soon">(.*?)</span>', body, re.S)
+        if not vs:
+            # 未作成の単元は3つとも準備中（リンクを張らない）
+            if links or len(soon) != 3 or not all("準備中" in t for t in soon):
+                bad.append(f"Unit {n} は未作成なので3つとも準備中（リンクなし）であること")
             continue
-        vs = sorted(UNITS.glob(f"vocab{n:02d}_*.html"))
+        kinds = [k for k, _, _ in links]
+        want_kinds = ["work", "vocab", "test"] if wt_ready(grade) else ["work", "vocab"]
+        if kinds != want_kinds:
+            bad.append(f"Unit {n} ボタンの並び {kinds}（{want_kinds} であること）")
+            continue
+        if not wt_ready(grade):
+            # 単語テストにこの学年の語がまだ無いので、3つ目は準備中
+            if len(soon) != 1 or "単語テスト" not in soon[0] or "準備中" not in soon[0]:
+                bad.append(f"Unit {n} 単語テストは準備中（span.soon）であること")
+            links = links + [("test", "", "")]
         vhref, whref, thref = links[1][1], links[0][1], links[2][1]
-        if not vs or vhref != f"units/{vs[0].name}":
+        if vhref != _unit_href(grade, vs[0].name):
             bad.append(f"Unit {n} 単語帳のリンク {vhref}")
         else:
             slug = vs[0].name[len("vocabNN_"):]
-            if whref != f"units/unit{n:02d}_{slug}":
+            if whref != _unit_href(grade, f"unit{n:02d}_{slug}"):
                 bad.append(f"Unit {n} ワークブックのリンク {whref}")
             cnt = len(vocab_pairs(vs[0]))
             wm = re.search(r"(\d+)語", links[1][2])
             if not wm or int(wm.group(1)) != cnt:
                 bad.append(f"Unit {n} 単語帳の語数表示 {links[1][2]}（単語帳 {cnt}語）")
-        if thref != f"word-test.html?unit={n}":
+        if wt_ready(grade) and thref != f"{wt}?{_wt_query(grade, 'unit', n)}":
             bad.append(f"Unit {n} 単語テストのリンク {thref}")
     report.append((not bad, f"単元カードのリンク先・語数 NG {len(bad)}件"
                    + ("\n  " + "\n  ".join(bad) if bad else "")))
 
     # 各部のまとめの枠
     counts = []
-    for a, b in PARTS_SPEC:
+    for a, b in parts:
         c = 0
         for n in range(a, b + 1):
-            vs = sorted(UNITS.glob(f"vocab{n:02d}_*.html"))
+            vs = sorted(gdir.glob(f"vocab{n:02d}_*.html"))
             c += len(vocab_pairs(vs[0])) if vs else 0
         counts.append(c)
-    for i, (a, b) in enumerate(PARTS_SPEC, 1):
+    for i, (a, b) in enumerate(parts, 1):
         m = re.search(rf'<div class="review" id="review{i}">(.*?)</div>', src, re.S)
         if not m:
             report.append((False, f"第{i}部のまとめの枠が無い"))
             continue
         body = m.group(1)
         ok_head = f"第{i}部のまとめ" in body and f"Unit {a}〜{b}" in body
-        ok_test = f'href="word-test.html?part={i}">単語テスト　{counts[i-1]}語</a>' in body
-        rv = UNITS / f"review{i:02d}.html"
+        wq = _wt_query(grade, "part", i)
+        if counts[i - 1] and wt_ready(grade):
+            ok_test = f'href="{wt}?{wq}">単語テスト　{counts[i-1]}語</a>' in body
+            test_msg = f"単語テスト {counts[i-1]}語"
+        else:
+            # その部に単語帳が無いか、単語テストにこの学年の語がまだ無ければ準備中
+            ok_test = "準備中" in body and wq not in body
+            test_msg = "単語テストは準備中"
+        rv = gdir / f"review{i:02d}.html"
         if rv.exists():
-            ok_rev = f'href="units/review{i:02d}.html"' in body
+            ok_rev = f'href="{_unit_href(grade, "review%02d.html" % i)}"' in body
             rev_msg = "総合テストへのリンク"
         else:
             ok_rev = "準備中" in body and f"review{i:02d}.html" not in body
             rev_msg = "総合テストは準備中"
         report.append((ok_head and ok_test and ok_rev,
-                       f"第{i}部のまとめ　Unit {a}〜{b}・単語テスト {counts[i-1]}語・{rev_msg}"))
+                       f"第{i}部のまとめ　Unit {a}〜{b}・{test_msg}・{rev_msg}"))
     # 部の枠は各部の単元リストの直後にある
     order = re.findall(r'<ul class="units">|<div class="review" id="review\d">', src)
     report.append((order == ['<ul class="units">', '<div class="review" id="review1">',
@@ -681,27 +871,36 @@ def check_index(report: list):
                              '<ul class="units">', '<div class="review" id="review4">'],
                    "まとめの枠が各部の最後にある"))
 
-    # 中1のまとめ
+    # 学年のまとめ
+    gname = GRADE_NAME[grade]
     m = re.search(r'<div class="review final" id="review-final">(.*?)</div>', src, re.S)
     total = sum(counts)
     if not m:
-        report.append((False, "中1のまとめの枠が無い"))
+        report.append((False, f"{gname}のまとめの枠が無い"))
     else:
         body = m.group(1)
-        rv = UNITS / "review-final.html"
-        ok_rev = ('href="units/review-final.html"' in body) if rv.exists() else ("準備中" in body)
-        ok_test = f'href="word-test.html?grade=1">単語テスト　{total}語</a>' in body
+        rv = gdir / "review-final.html"
+        ok_rev = (f'href="{_unit_href(grade, "review-final.html")}"' in body
+                  if rv.exists() else "準備中" in body)
+        if total and wt_ready(grade):
+            ok_test = f'href="{wt}?{_wt_query(grade, "grade", grade)}">単語テスト　{total}語</a>' in body
+            test_msg = f"単語テスト {total}語"
+        else:
+            ok_test = "準備中" in body
+            test_msg = "単語テストは準備中"
+        ok_head = f"{gname}のまとめ" in body
         last = src.rfind('<div class="review') == src.find('<div class="review final"')
-        report.append((ok_rev and ok_test and last,
-                       f"中1のまとめ（最下段）　単語テスト {total}語・総まとめ{'へのリンク' if rv.exists() else 'は準備中'}"))
+        report.append((ok_head and ok_rev and ok_test and last,
+                       f"{gname}のまとめ（最下段）　{test_msg}・"
+                       + ("総まとめへのリンク" if rv.exists() else "総まとめは準備中")))
     report.append(("--ink" in src and re.search(r"\.review\.final\{[^}]*background:var\(--ink\)", src) is not None,
-                   "中1のまとめは濃い地（--ink）"))
+                   f"{gname}のまとめは濃い地（--ink）"))
 
 
-def run_index():
-    print("== index.html")
+def run_index(grade: int = 1):
+    print("== " + ("index.html" if grade == 1 else f"{GRADE_DIR[grade]}/index.html"))
     report = []
-    check_index(report)
+    check_index(report, grade)
     ng = 0
     for ok, msg in report:
         print(("  OK   " if ok else "  NG   ") + msg)
@@ -729,6 +928,10 @@ WRITTEN_TYPES = {"en", "ja"}
 
 # 部ごとの調整（UPDATE-PLAN.md「2. 中1の範囲で作るための調整」）
 # key: 部番号か "final" → (Unit の範囲, 読解本文の語数レンジ, 条件英作文の語数下限)
+#
+# これは中1の分だけです（キーは学年ではなく部の番号）。中2・中3の総合テストは
+# UPDATE-PLAN-g2g3.md の順19（中2）・順25以降（中3）で、学年別の表を足してから作ります。
+# それまで --review は --grade 2 / 3 を受け付けません（main() でエラーにしてあります）。
 REVIEW_SPEC = {
     1: ((1, 4), (50, 110), 10),
     2: ((5, 7), (70, 140), 15),
@@ -766,6 +969,63 @@ LATER_GRAMMAR = [
       "men", "pen", "green", "hundred", "bread", "salad"}),
     (99, "未来の表し方", r"(\bwill\b|\bgoing to\b)"),
 ]
+
+# 現在完了の目安で拾ってしまう、-ed / -en で終わる普通の語。中1の表のものに中2で増える語を足した
+PP_STOP_G2 = {
+    "red", "bed", "need", "speed", "seed", "ten", "often", "kitchen",
+    "children", "open", "garden", "seven", "listen", "when", "then",
+    "men", "pen", "green", "hundred", "bread", "salad",
+    "golden", "chicken", "wooden", "dozen", "oven", "even", "eleven",
+    "happen", "sudden", "hen", "queen", "between", "kitten", "sweden",
+}
+
+# 中2の LATER_GRAMMAR（PLAN-g2g3.md 5.2 の提案どおりに first を振り直したもの）。
+# 中1で扱う形はすべて範囲内なので first を振らない。
+# 綴りだけでは中1の用法と見分けられない形（接続詞の that・when、SVOC、
+# 分詞の後置修飾、It is 〜 to、感嘆文）は、誤検出のほうが害が大きいので入れていない。
+# 検査に入れていない形は、PLAN-g2g3.md 3節の「必ずやること」を見て人が確かめる。
+LATER_GRAMMAR_G2 = [
+    (1,  "過去進行形", r"\b(was|were)\s+\w+ing\b", {"interesting", "exciting", "boring", "surprising", "amazing", "tiring",
+      "relaxing", "charming", "willing", "morning", "evening", "spring",
+      "everything", "something", "anything", "nothing", "during", "nursing"}),
+    (2,  "未来を表す will", r"(\bwill\b|\bwon't\b|'ll\b)"),
+    (3,  "未来を表す be going to", r"\bgoing to\b"),
+    (4,  "接続詞 because / if", r"\b(because|if)\b"),
+    (5,  "There is / There are", r"\bthere\s+(is|are|was|were|isn't|aren't)\b"),
+    (6,  "助動詞 must / have to", r"(\bmust\b|\bmustn't\b|\bha(?:ve|s|d)\s+to\b)"),
+    # may は月名の May と綴りが同じ。「May 3」の形だけ外してある（「in May」は拾ってしまう）
+    (7,  "助動詞 may / should / Shall", r"\b(may(?!\s+\d)|should|shouldn't|shall)\b"),
+    (8,  "目的語が2つの文（SVOO）",
+     r"\b(give|gives|gave|show|shows|showed|teach|teaches|taught|send|sends|sent|tell|tells|told|buy|buys|bought|make|makes|made|cook|cooks|cooked)\s+(me|him|her|us|them|you)\s+(a|an|the|my|your|his|her|our|their|some|two|three)\b"),
+    (9,  "不定詞", r"\bto\s+(go|be|play|see|do|eat|study|visit|make|get|help|write|buy|take|come|meet|watch|use|learn|start|live|talk|speak|drink|run|swim|sing|walk|work|know|find|give|show|call|ask|open|listen)\b"),
+    (11, "疑問詞 + to 不定詞", r"\b(how|what|where|which|when)\s+to\s+\w+\b"),
+    (12, "動名詞", r"\b(enjoy|enjoys|enjoyed|like|likes|start|starts|begin|begins|finish|finishes|finished|stop|stops|stopped|practice|practices|practiced|good at|before|after)\s+\w+ing\b", {"interesting", "exciting", "boring", "surprising", "amazing", "tiring",
+      "relaxing", "charming", "willing", "morning", "evening", "spring",
+      "everything", "something", "anything", "nothing", "during", "nursing"}),
+    (13, "比較級・最上級", r"(\bthan\b|\bbetter\b|\bbest\b|\bworse\b|\bworst\b|\bmore\s+\w+|\bmost\s+\w+)"),
+    # the 〜est。-est で終わる普通の名詞（forest・interest など）は拾わない
+    (13, "最上級 the 〜est", r"\bthe\s+\w+est\b",
+     {"forest", "interest", "honest", "request", "harvest", "contest", "protest",
+      "earnest", "modest", "rest", "west", "guest", "nest", "test", "vest"}),
+    # as soon as / as long as / as well as は接続詞の決まった言い方なので外す
+    (14, "as 〜 as", r"\bas\s+(?!soon\b|long\b|well\b)\w+\s+as\b"),
+    (15, "受動態", r"\b(am|is|are|was|were)\s+\w+(ed|en)\s+by\b"),
+    # ここから下は中3で扱う形（中2では使わない）
+    (99, "現在完了", r"\b(have|has|had)\s+(been|\w+ed|\w+en)\b", PP_STOP_G2),
+    (99, "too 〜 to / so 〜 that", r"(\btoo\s+\w+\s+to\b|\bso\s+\w+\s+that\b)"),
+    (99, "人 + to 不定詞（want / tell / ask）",
+     r"\b(want|wants|wanted|tell|tells|told|ask|asks|asked)\s+(me|him|her|us|them|you)\s+to\b"),
+    (99, "間接疑問", r"\b(know|knows|knew|tell|tells|told|wonder|wonders|ask|asks|asked|remember|remembers)\s+(what|who|where|when|why|how)\s+(i|you|he|she|it|we|they|the|my|your|his|her|this|that)\b"),
+    (99, "関係代名詞", r"\b(a|an|the|this|that|my|your|his|her|our|their)\s+\w+\s+(who|which)\b"),
+    (99, "仮定法", r"(\bif\s+i\s+were\b|\bif\s+he\s+were\b|\bif\s+she\s+were\b|\bi\s+wish\b)"),
+    (99, "付加疑問", r",\s*(isn't|aren't|don't|doesn't|didn't|wasn't|weren't|can't|won't)\s+(it|he|she|they|you|we|i)\s*\?"),
+]
+
+# 学年別。中3分は順25（中3の道具の準備）で足す
+GRADE_LATER_GRAMMAR = {
+    1: LATER_GRAMMAR,
+    2: LATER_GRAMMAR_G2,
+}
 
 
 def review_path(which):
@@ -930,7 +1190,7 @@ def check_review(which, report: list):
     models = " ".join(strip_tags(m) for m in re.findall(r'<p class="model">(.*?)</p>', body, re.S))
     hay = text + " " + answers + " " + models
     bad = []
-    for rule in LATER_GRAMMAR:
+    for rule in GRADE_LATER_GRAMMAR[1]:   # 中1の表。中2・中3分は順19・順25 で足す
         first, name, pat = rule[0], rule[1], rule[2]
         stop = rule[3] if len(rule) > 3 else set()
         if first <= ub:
@@ -973,9 +1233,15 @@ def main():
                     help="index.html のボタン・まとめの枠を照合する")
     ap.add_argument("--review", metavar="N",
                     help="総合テストを検査する。N は 1〜4（部ごと）か final（中1の総まとめ）")
+    ap.add_argument("--grade", type=int, default=1, choices=GRADES,
+                    help="学年。1 は units/、2 は g2/、3 は g3/ を見る（既定 1）")
     a = ap.parse_args()
+    grade = a.grade
 
     if a.review is not None:
+        if grade != 1:
+            ap.error("中%d の総合テストの仕様（REVIEW_SPEC）はまだありません"
+                     "（UPDATE-PLAN-g2g3.md の順19・順25 で足します）" % grade)
         which = "final" if a.review.lower() == "final" else int(a.review)
         if which not in REVIEW_SPEC:
             ap.error("--review は 1〜4 か final")
@@ -984,7 +1250,10 @@ def main():
         sys.exit(1 if total else 0)
 
     if a.word_test or a.index:
-        total = (run_word_test() if a.word_test else 0) + (run_index() if a.index else 0)
+        if a.word_test and grade != 1:
+            ap.error("--word-test は学年をまたいで1本なので --grade は取りません"
+                     "（中2・中3の語は順18・順41 で足します）")
+        total = (run_word_test() if a.word_test else 0) + (run_index(grade) if a.index else 0)
         print(f"\n合計 NG {total}件")
         sys.exit(1 if total else 0)
 
@@ -992,13 +1261,13 @@ def main():
     do_vo = a.vocab or not a.workbook
 
     if a.all:
-        nums = sorted({int(p.name[4:6]) for p in UNITS.glob("unit??_*.html")})
+        nums = sorted({int(p.name[4:6]) for p in grade_dir(grade).glob("unit??_*.html")})
     elif a.unit:
         nums = [a.unit]
     else:
         ap.error("単元番号か --all を指定してください")
 
-    total = sum(run(n, do_wb, do_vo, not a.no_render) for n in nums)
+    total = sum(run(n, do_wb, do_vo, not a.no_render, grade) for n in nums)
     print(f"\n合計 NG {total}件")
     sys.exit(1 if total else 0)
 

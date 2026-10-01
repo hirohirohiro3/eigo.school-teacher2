@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 2　未来を表す will</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab02_will.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 2</p>
+<h1 class="unit-title">未来を表す will</h1>
+<p class="unit-lead">これから先のことを言うときは、<strong>will ＋ 動詞の原形</strong>を使います。<span class="en">will</span> には「〜します」と自分の考えを述べる<strong>意志</strong>の使い方と、「〜でしょう」と先のことを言い当てる<strong>予測</strong>の使い方の2つがあります。入試では、うしろが原形であること、短縮形の <span class="en">I'll</span> と <span class="en">won't</span>、疑問文への答え方がよく問われます。</p>
+</header>
+
+<h2><span>「〜します・〜でしょう」は will ＋ 動詞の原形</span></h2>
+
+<p>中1 Unit 16 の過去形と Unit 1 の過去進行形は、どちらも過ぎたことを言う形でした。これから先のことは、動詞の前に <span class="en">will</span> を置いて表します。</p>
+
+<div class="transform">
+<span class="tf-line">I <span class="gen-w">study</span> English every day.</span>
+<span class="tf-arrow">↓ これから先のことにする</span>
+<span class="tf-line">I <span class="be-w">will</span> <span class="gen-w">study</span> English tonight.</span>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">未来を表す文　will のうしろは動詞の原形</p>
+<div class="flow">
+<span class="node">I<span class="node-label">主語</span></span>
+<span class="link">
+<span class="link-word">will</span>
+<span class="rail"></span>
+</span>
+<span class="node">study<span class="node-label">原形</span></span>
+</div>
+</div>
+
+<p><strong>なぜ原形なのか。</strong>中1 Unit 13 の <span class="en">can</span> と同じ理屈です。<span class="en">will</span> は動詞に意味を足す語（助動詞）で、動詞そのものではありません。<strong>意味を足される側の動詞は、何も加えない形＝原形のまま置きます。</strong>だから主語が3人称単数でも <span class="en">-s</span> はつかず、過去の <span class="en">-ed</span> もつきません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語</th><th>形</th><th>例文</th></tr>
+<tr><td>I</td><td class="be-cell">will ＋ 原形</td><td><span class="en">I will help my mother tonight.</span></td></tr>
+<tr><td>he / she / it・1人や1つのもの</td><td class="be-cell">will ＋ 原形</td><td><span class="en">My sister will become a doctor someday.</span></td></tr>
+<tr><td>you</td><td class="be-cell">will ＋ 原形</td><td><span class="en">You will find the answer soon.</span></td></tr>
+<tr><td>we / they・2人以上や2つ以上のもの</td><td class="be-cell">will ＋ 原形</td><td><span class="en">We will make a plan tomorrow.</span></td></tr>
+</table>
+</div>
+
+<p><strong>主語が変わっても <span class="en">will</span> の形は変わりません。</strong>be動詞のように <span class="en">am</span> <span class="en">is</span> <span class="en">are</span> と選び分ける必要がないので、この点では中1 Unit 15 の文より作りやすい形です。</p>
+
+<p>be動詞を使う文を未来にするときは、<strong>be動詞の原形 <span class="en">be</span></strong> を置きます。<span class="en">is</span> や <span class="en">are</span> ではありません。<span class="en">It will be fine tomorrow.</span>／<span class="en">I will be busy next week.</span>／<span class="en">Next Monday will be a holiday.</span>　天気やようすを言う文でよく使う形です。</p>
+
+<h2><span>will の2つの使い方　意志と予測</span></h2>
+
+<p><span class="en">will</span> の意味は1つではありません。<strong>主語が自分の考えで「〜します」と言う意志</strong>と、<strong>これから先のことを「〜でしょう」と言う予測</strong>の2つに分かれます。どちらも形は同じ <span class="en">will</span> ＋ 原形で、文の中身で見分けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>使い方</th><th>意味</th><th>例文</th></tr>
+<tr><td>意志</td><td>〜します・〜するつもりです<br><span class="sub">主語が人で、自分で決めたこと</span></td><td><span class="en">I will wake up at six tomorrow.</span><br><span class="en">I will talk about my dream tonight.</span></td></tr>
+<tr><td>予測</td><td>〜でしょう・〜だろう<br><span class="sub">先のことを言い当てる</span></td><td><span class="en">A big typhoon will come next week.</span><br><span class="en">The weather will change soon.</span></td></tr>
+</table>
+</div>
+
+<p><strong>見分け方は主語です。</strong>主語が <span class="en">I</span> や <span class="en">we</span> で、自分でできることを言っているなら意志です。主語が天気・ものごと・自分以外の人で、自分には決められないことを言っているなら予測になります。</p>
+
+<p>予測の文では、確かさの度合いを副詞で添えられます。<span class="en">It will probably rain tonight.</span> は「たぶん降る」、<span class="en">Maybe the rain will stop in the afternoon.</span> は「ひょっとすると止む」です。<span class="en">probably</span> のほうが <span class="en">maybe</span> より確かさが高い言い方です。</p>
+
+<p>例文をもう少し並べます。<span class="en">The sky will be clear tonight.</span>／<span class="en">It will be cool in the afternoon.</span>／<span class="en">We will know the result tomorrow.</span>／<span class="en">Emma will win the first prize.</span>　どれも先のことなので <span class="en">will</span> を使っています。</p>
+
+<h2><span>短縮形　I'll と won't</span></h2>
+
+<p>話しことばでは、<strong>主語と <span class="en">will</span> をつないだ短縮形</strong>をよく使います。会話文の穴埋めで問われるので、形を覚えます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>もとの形</th><th>短縮形</th><th>もとの形</th><th>短縮形</th></tr>
+<tr><td><span class="en">I will</span></td><td><span class="en">I'll</span></td><td><span class="en">we will</span></td><td><span class="en">we'll</span></td></tr>
+<tr><td><span class="en">you will</span></td><td><span class="en">you'll</span></td><td><span class="en">they will</span></td><td><span class="en">they'll</span></td></tr>
+<tr><td><span class="en">he will</span></td><td><span class="en">he'll</span></td><td><span class="en">it will</span></td><td><span class="en">it'll</span></td></tr>
+<tr><td><span class="en">she will</span></td><td><span class="en">she'll</span></td><td><span class="en">will not</span></td><td><span class="en">won't</span></td></tr>
+</table>
+</div>
+
+<p><strong>否定の短縮形は <span class="en">won't</span> です。</strong><span class="en">will not</span> がもとの形ですが、綴りは <span class="strike"><span class="en">willn't</span></span> ではありません。<span class="en">want</span>（ほしい）と読みも綴りも近いので、区別して覚えます。<span class="en">I won't forget your name.</span>／<span class="en">Our team won't lose the next match.</span>／<span class="en">It won't be hot tomorrow.</span></p>
+
+<h2><span>否定文と疑問文</span></h2>
+
+<p><strong>否定文は <span class="en">will</span> のうしろに <span class="en">not</span> を置き、疑問文は <span class="en">Will</span> を主語の前に出します。</strong>中1 Unit 13 の <span class="en">can</span> とまったく同じ作り方で、<span class="en">do</span> や <span class="en">did</span> は使いません。うしろの動詞は原形のままです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>肯定文</th><th>否定文</th></tr>
+<tr><td><span class="en">It will rain tomorrow.</span></td><td><span class="en">It won't rain tomorrow.</span>（<span class="en">will not</span>）</td></tr>
+<tr><td><span class="en">They will come to the party.</span></td><td><span class="en">They won't come to the party.</span></td></tr>
+</table>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">未来の疑問文　Will が主語の前へ出る</p>
+<div class="flow">
+<span class="link">
+<span class="link-word">Will</span>
+<span class="rail"></span>
+</span>
+<span class="node">you<span class="node-label">主語</span></span>
+<span class="node">come?<span class="node-label">原形</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問文</th><th>答え</th></tr>
+<tr><td><span class="en">Will you read the book next week?</span></td><td><span class="en">Yes, I will.</span>／<span class="en">No, I won't.</span></td></tr>
+<tr><td><span class="en">Will Ken come tomorrow?</span></td><td><span class="en">Yes, he will.</span></td></tr>
+<tr><td><span class="en">Will they take part in the match?</span></td><td><span class="en">No, they won't.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">Will</span> でたずねられたら、<span class="en">will</span> で答えます。</strong><span class="en">Yes, I do.</span> や <span class="en">Yes, I am.</span> とは答えません。たずねる文の先頭に出ている語が、そのまま答えの手がかりになります。</p>
+
+<h2><span>疑問詞と will</span></h2>
+
+<p>中1 Unit 10 の疑問詞は、疑問文の前に置きます。<span class="en">What will you do tomorrow?</span> は、これから先の予定をたずねる言い方で、対話文に最もよく出ます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>疑問詞</th><th>例文</th></tr>
+<tr><td>What</td><td><span class="en">What will you do tonight? —— I will study math.</span></td></tr>
+<tr><td>When</td><td><span class="en">When will your father leave home? —— At seven.</span></td></tr>
+<tr><td>Where</td><td><span class="en">Where will we eat lunch? —— In the park near the museum.</span></td></tr>
+<tr><td>Who（主語）</td><td><span class="en">Who will help Emma? —— I will.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">Who will help Emma?</span> は疑問詞 <span class="en">who</span> が主語なので、語順はふつうの文と同じです。答えは <span class="en">I will.</span> のように「人＋<span class="en">will</span>」です。</p>
+
+<h2><span>未来を表す語句</span></h2>
+
+<p><span class="en">will</span> の文には、いつのことかを示す語句がよくついています。読解では、この語句が「先のことだ」という合図になります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語句</th><th>意味</th><th>例文</th></tr>
+<tr><td><span class="en">tomorrow</span></td><td>明日</td><td><span class="en">I will visit my aunt tomorrow.</span></td></tr>
+<tr><td><span class="en">tonight</span></td><td>今夜</td><td><span class="en">I will help my mother tonight.</span></td></tr>
+<tr><td><span class="en">next week</span></td><td>来週</td><td><span class="en">We will move to Tokyo next year.</span></td></tr>
+<tr><td><span class="en">soon</span></td><td>すぐに・まもなく</td><td><span class="en">The rain will stop soon.</span></td></tr>
+<tr><td><span class="en">someday</span></td><td>いつか</td><td><span class="en">Someday people will believe this story.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">next</span> は <span class="en">next week</span>（来週）<span class="en">next month</span>（来月）<span class="en">next year</span>（来年）<span class="en">next Sunday</span>（次の日曜日）のように使います。遠い先のことは <span class="en">in the future</span>（将来）で表します。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">いつのことかを確かめる</span>
+<span class="step-d"><span class="en">tomorrow</span> <span class="en">tonight</span> <span class="en">next week</span> <span class="en">soon</span> <span class="en">someday</span> があれば、これから先のことです。</span>
+</li>
+<li>
+<span class="step-t">主語のうしろに will を置く</span>
+<span class="step-d">主語が何であっても <span class="en">will</span> の形は変わりません。短縮するなら <span class="en">I'll</span> <span class="en">he'll</span> のようにつなぎます。</span>
+</li>
+<li>
+<span class="step-t">動詞を原形にして will のうしろに置く</span>
+<span class="step-d"><span class="en">-s</span> も <span class="en">-ed</span> もつけません。be動詞の文なら <span class="en">be</span> を置きます。</span>
+</li>
+<li>
+<span class="step-t">否定なら not、疑問なら Will を先頭へ</span>
+<span class="step-d">否定は <span class="en">won't</span>、疑問は <span class="en">Will</span> を主語の前に出します。答えも <span class="en">will</span> で返します。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>will のうしろの動詞は1つだけ</h3>
+<p><span class="en">will</span> のうしろに動詞を2つ重ねることはできません。<span class="en">Next Saturday it will snow.</span> は正しい文ですが、<span class="en">will be snow</span> のように <span class="en">be</span> を足すと動詞が2つになります。be動詞を置くのは、うしろに名詞や形容詞が来るとき（<span class="en">It will be cold.</span>）だけです。</p>
+
+<h3>未来を表す語句があっても、過去のことは過去形</h3>
+<p>文に <span class="en">tomorrow</span> があれば必ず <span class="en">will</span>、とは限りません。<span class="en">Ken won the game, so he looks very glad.</span> のように、すでに起きたことは中1 Unit 16 の過去形で言います。「いつのことか」を文全体で読み取ります。</p>
+
+<h3>will と過去進行形は混ぜない</h3>
+<p>Unit 1 の過去進行形は過ぎたことの途中を言う形なので、<span class="en">will</span> とは組みません。<span class="en">Last night I was watching the weather forecast on TV.</span> は過去のこと、<span class="en">I will watch it again tonight.</span> はこれから先のことです。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">will</span> のうしろの原形、<span class="en">will be</span> の形、過去形との区別</td></tr>
+<tr><td>語形変化</td><td>（　）内の動詞を <span class="en">will</span> に合う形にかえる</td></tr>
+<tr><td>対話</td><td><span class="en">What will you do 〜?</span> への答え方、<span class="en">Will you 〜?</span> への <span class="en">Yes, I will.</span>／<span class="en">No, I won't.</span></td></tr>
+<tr><td>英作文</td><td><span class="en">won't</span> や <span class="en">I'll</span> を使う語数指定の条件英作文</td></tr>
+<tr><td>読解</td><td>予定や天気予報を読み、これから何が起きるかを読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My brother will plays soccer tomorrow.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My brother will <span class="gen-w">play</span> soccer tomorrow.</span></div>
+<p class="contrast-why"><span class="en">will</span> のうしろは原形なので、<span class="en">-s</span> はつけません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I will am busy next week.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I will <span class="gen-w">be</span> busy next week.</span></div>
+<p class="contrast-why">be動詞も原形にします。<span class="en">am</span> <span class="en">is</span> <span class="en">are</span> は置けません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">It willn't rain tomorrow.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">It <span class="be-w">won't</span> rain tomorrow.</span></div>
+<p class="contrast-why"><span class="en">will not</span> の短縮形は <span class="en">won't</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Will Ken come tomorrow? —— Yes, he does.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Will Ken come tomorrow? —— Yes, he <span class="be-w">will</span>.</span></div>
+<p class="contrast-why"><span class="en">Will</span> でたずねられたら、<span class="en">will</span> で答えます。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">I will study English tonight.</span>／<span class="en">You will find the answer soon.</span>／<span class="en">It won't be hot tomorrow.</span>／<span class="en">Will you read the book next week? —— Yes, I will.</span>／<span class="en">What will you do tomorrow?</span>　どの文も <span class="en">will</span> のうしろが原形です。</p>
+
+<p>ほかの例文です。<span class="en">Next Monday our class will visit a science museum in Osaka.</span>／<span class="en">We will leave school at eight in the morning.</span>／<span class="en">I am very excited.</span>／<span class="en">The forecast was not good.</span>／<span class="en">So I will take my umbrella and my coat.</span>／<span class="en">I hope so.</span>／<span class="en">I will wait for him near the station.</span>／<span class="en">Emma won't visit Kyoto next week.</span>／<span class="en">My brother will become a pilot someday.</span>／<span class="en">I will be very tired, but I won't forget this day.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。いつのことを言っているかを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My sister (　　　) to Tokyo next month.</span>
+<p class="opts"><span>ア goes</span><span>イ will goes</span><span>ウ will move</span><span>エ will moving</span></p></li>
+<li><span class="en">It (　　　) cold tomorrow morning.</span>
+<p class="opts"><span>ア will be</span><span>イ will is</span><span>ウ is will</span><span>エ was</span></p></li>
+<li><span class="en">(　　　) you take part in the match next Sunday?</span>
+<p class="opts"><span>ア Do</span><span>イ Are</span><span>ウ Will</span><span>エ Did</span></p></li>
+<li><span class="en">I (　　　) my homework tonight. I was watching TV all evening yesterday.</span>
+<p class="opts"><span>ア did</span><span>イ will do</span><span>ウ will did</span><span>エ do</span></p></li>
+<li><span class="en">Ken (　　　) the game, so he looks very glad.</span>
+<p class="opts"><span>ア will win</span><span>イ won</span><span>ウ will wins</span><span>エ will winning</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私は明日、新しい自転車を買います。<br><span class="en">[ will / I / buy / a / new / bike / tomorrow ] .</span><span class="write"></span></li>
+<li>あなたは今夜、何をしますか。<br><span class="en">[ will / what / you / do / tonight ] ?</span><span class="write"></span></li>
+<li data-extra="1">エマは来週、京都を訪れません。<span class="hint">1語不要</span><br><span class="en">[ Emma / won't / visit / Kyoto / next / week / doesn't ] .</span><span class="write"></span></li>
+<li>明日は暑くならないでしょう。<br><span class="en">[ it / won't / be / hot / tomorrow ] .</span><span class="write"></span></li>
+<li data-extra="1">私の兄はいつかパイロットになるでしょう。<span class="hint">1語不要</span><br><span class="en">[ brother / my / will / become / a / pilot / someday / becomes ] .</span><span class="write"></span></li>
+<li>私は駅の近くで彼を待ちます。<br><span class="en">[ I / will / wait / for / him / near / the / station ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">My brother will plays soccer tomorrow.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I will am busy next week.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Will she comes to the party tonight?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Will Ken come tomorrow? —— Yes, he does.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Next Saturday it will be snow.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私は今夜、母を手伝います。</span><span class="write"></span></li>
+<li><span class="q-ja">明日は晴れないでしょう。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたは来週、その本を読みますか。——はい、読みます。</span><span class="write"></span></li>
+<li><span class="q-ja">私の姉はいつか医者になるでしょう。</span><span class="write"></span></li>
+<li>soon を使って「雨はすぐにやむでしょう」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>won't を使って「私はあなたの名前を忘れません」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>What を使って「あなたは明日何をしますか」と書く。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ケンタが教室で話したスピーチです。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">ケンタのスピーチ</p>
+<p>Hello, everyone. I'm Kenta. Next Monday our class will visit a science museum in Osaka. We will leave school at eight in the morning, and the bus will arrive at the museum at ten. We will see a big show about stars there. I am very excited. Last night I was watching the weather forecast on TV. The forecast was not good. <span class="num">①</span><span class="ul">It will rain on Monday morning, and it will be cold.</span> So I will take my umbrella and my coat. Maybe the rain will stop in the afternoon. Then we will eat lunch in the park near the museum. I hope so. We will come back to school at four. I will be very tired, but I won't forget this day. Thank you.</p>
+<p class="reading-wc">およそ125語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ケンタのクラスは月曜日に科学館へ行く。<br>
+イ ケンタのクラスは月曜日に学校で映画を見る。<br>
+ウ バスは朝8時に科学館に着く。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 天気予報では、月曜日の朝は晴れである。<br>
+イ ケンタはかさとコートを持っていくつもりである。<br>
+ウ ケンタは昼食を科学館の中で食べるつもりである。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Kenta and his classmates will (　　　) school at eight in the morning.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Kenta will come back to school at (　　　).</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>あなたが明日することを、will を使って1文で書く。<span class="hint">例：I will study math tomorrow.</span><span class="write"></span></li>
+<li>将来なりたいものを、will と in the future を使って1文で書く。<span class="hint">例：I will become a teacher in the future.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>いつのことを言っているか</strong>を確かめ、未来の文なら<strong>will のうしろが原形になっているか</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　will move</span><p class="a-why"><span class="en">next month</span> があるのでこれから先のことです。<span class="en">will</span> のうしろは原形なので、<span class="en">will goes</span> <span class="en">will moving</span> は誤りです。</p></li>
+<li><span class="a-key">ア　will be</span><p class="a-why">be動詞の文を未来にするときは原形の <span class="en">be</span> を置きます。<span class="en">tomorrow morning</span> があるので、過去形の <span class="en">was</span> は入りません。</p></li>
+<li><span class="a-key">ウ　Will</span><p class="a-why"><span class="en">next Sunday</span> があるので未来の疑問文です。未来の疑問文は <span class="en">Will</span> を主語の前に出します。</p></li>
+<li><span class="a-key">イ　will do</span><p class="a-why">1文目は <span class="en">tonight</span> なのでこれから先のこと、2文目は <span class="en">yesterday</span> なので過去のことです。前後の文で時が変わることに注意します。</p></li>
+<li><span class="a-key">イ　won</span><p class="a-why">「勝ったので、いまうれしそうだ」という流れで、勝ったのは過去のことです。<span class="en">win</span> の過去形は <span class="en">won</span> です。未来を表す語句が無いときは、文の中身で時を判断します。</p></li>
+
+<li><span class="a-key">I will buy a new bike tomorrow.</span><p class="a-why">「主語＋<span class="en">will</span>＋原形」の順です。<span class="en">tomorrow</span> は文の終わりに置きます。</p></li>
+<li><span class="a-key">What will you do tonight?</span><p class="a-why">疑問詞 <span class="en">What</span> を先頭に置き、そのうしろは <span class="en">will you</span>＋原形の語順です。</p></li>
+<li><span class="a-key">Emma won't visit Kyoto next week.</span><p class="a-why">不要な語は <span class="en">doesn't</span> です。未来の否定文は <span class="en">won't</span> を使い、うしろは原形です。</p></li>
+<li><span class="a-key">It won't be hot tomorrow.</span><p class="a-why">天気の文の主語は <span class="en">it</span> です。<span class="en">hot</span> は形容詞なので、<span class="en">won't</span> のうしろに <span class="en">be</span> を置きます。</p></li>
+<li><span class="a-key">My brother will become a pilot someday.</span><p class="a-why">不要な語は <span class="en">becomes</span> です。<span class="en">will</span> のうしろは原形なので <span class="en">become</span> です。</p></li>
+<li><span class="a-key">I will wait for him near the station.</span><p class="a-why"><span class="en">wait for 〜</span> で「〜を待つ」です。<span class="en">near</span> は「〜の近くで」という意味で、うしろに場所の名詞を置きます。</p></li>
+
+<li><span class="a-key">My brother will play soccer tomorrow.</span><p class="a-why">理由の例：<span class="en">will</span> のうしろの動詞は原形にするから。</p></li>
+<li><span class="a-key">I will be busy next week.</span><p class="a-why">理由の例：be動詞も原形にするので、<span class="en">am</span> ではなく <span class="en">be</span> を置くから。</p></li>
+<li><span class="a-key">Will she come to the party tonight?</span><p class="a-why">理由の例：疑問文でも <span class="en">will</span> のうしろは原形にするから。</p></li>
+<li><span class="a-key">Will Ken come tomorrow? —— Yes, he will.</span><p class="a-why">理由の例：<span class="en">Will</span> でたずねているので、答えも <span class="en">will</span> で返すから。</p></li>
+<li><span class="a-key">Next Saturday it will snow.</span><p class="a-why">理由の例：<span class="en">will</span> のうしろに置く動詞は1つなので、<span class="en">be</span> と <span class="en">snow</span> を重ねないから。</p></li>
+
+<li><span class="a-key">I will help my mother tonight.</span><p class="a-why"><span class="en">I'll help my mother tonight.</span> でも正解です。自分で決めたことなので意志の <span class="en">will</span> です。</p></li>
+<li><span class="a-key">It won't be sunny tomorrow.</span><p class="a-why"><span class="en">It will not be sunny tomorrow.</span> でも正解です。<span class="en">sunny</span> は形容詞なので <span class="en">be</span> が要ります。</p></li>
+<li><span class="a-key">Will you read the book next week? —— Yes, I will.</span><p class="a-why"><span class="en">Will</span> を先頭に出し、答えも <span class="en">will</span> で返します。<span class="en">Yes, I do.</span> とは答えません。</p></li>
+<li><span class="a-key">My sister will become a doctor someday.</span><p class="a-why"><span class="en">someday</span>（いつか）は文の終わりに置きます。<span class="en">will</span> のうしろは <span class="en">become</span> です。</p></li>
+<li><span class="a-key">The rain will stop soon.</span><p class="a-why"><span class="en">soon</span> は「すぐに・まもなく」で、文の終わりに置きます。5語です。</p></li>
+<li><span class="a-key">I won't forget your name.</span><p class="a-why"><span class="en">won't</span> は1語として数えます。<span class="en">I will not forget your name.</span> は6語になるので、語数の指定に合いません。</p></li>
+<li><span class="a-key">What will you do tomorrow?</span><p class="a-why">疑問詞 <span class="en">What</span> のうしろは <span class="en">will you do</span> です。5語です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">Next Monday our class will visit a science museum in Osaka.</span> と合います。バスが着くのは10時なのでウは合いません。</p></li>
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">So I will take my umbrella and my coat.</span> と合います。月曜日の朝は雨の予報なのでアは合わず、昼食は公園で食べるのでウも合いません。</p></li>
+<li><span class="a-key">leave</span><p class="a-why">本文の <span class="en">We will leave school at eight in the morning</span> に合わせます。<span class="en">will</span> のうしろなので原形です。</p></li>
+<li><span class="a-key">four</span><p class="a-why">本文の <span class="en">We will come back to school at four.</span> に合わせます。</p></li>
+<li><span class="a-key">月曜日の朝は雨が降り、寒くなるでしょう。</span><p class="a-why"><span class="en">will rain</span> と <span class="en">will be cold</span> はどちらも天気の予測なので、「〜でしょう」と訳します。</p></li>
+
+<li><span class="a-key">解答例　I will study math tomorrow.</span><p class="a-why"><span class="en">will</span> のうしろが原形になっていて、明日のことを言っていれば正解です。</p></li>
+<li><span class="a-key">解答例　I will become a teacher in the future.</span><p class="a-why"><span class="en">in the future</span>（将来）を入れ、<span class="en">will</span> のうしろを原形にしていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">これから先のことは、<strong>will ＋ 動詞の原形</strong>で言います。<span class="en">will</span> は動詞に意味を足す語なので、うしろの動詞には <span class="en">-s</span> も <span class="en">-ed</span> もつけず、be動詞なら原形の <span class="en">be</span> を置きます。意味は、自分で決めたことを言う<strong>意志</strong>と、先のことを言い当てる<strong>予測</strong>の2つです。短縮形は <span class="en">I'll</span> <span class="en">he'll</span> などと、<span class="en">will not</span> の <span class="en">won't</span>。否定文は <span class="en">won't</span>、疑問文は <span class="en">Will</span> を先頭に出し、答えも <span class="en">will</span> で返します。</p>
+</div>
+</div>
+</body>
+</html>

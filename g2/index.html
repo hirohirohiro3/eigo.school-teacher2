@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中学英語 リスタート教材　中2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --gen:#9C540F;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+}
+.sheet{max-width:34rem;margin:0 auto;padding:1.6rem 1.25rem 3rem;}
+.en{font-family:Georgia,"Times New Roman",serif;}
+
+/* 見出し */
+.site-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:1.6rem;
+}
+.site-kicker{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.85rem;font-weight:600;
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .55rem;
+}
+.site-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.5rem;line-height:1.45;font-weight:600;margin:0 0 .45rem;
+}
+.site-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.8;}
+
+/* 学年の切り替え（2026-09-29 UPDATE-PLAN-g2g3.md 2節）。JS は使わないただのリンク */
+.grades{display:flex;gap:.4rem;flex-wrap:wrap;margin:1.05rem 0 0;padding:0;}
+.grades a,.grades span{
+  font-family:"Klee One",sans-serif;font-size:.86rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;
+  padding:.22rem .8rem;
+  border:2px solid var(--ink);border-radius:var(--hand-2);
+  background:var(--panel);color:var(--ink);text-decoration:none;
+}
+.grades span.here{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+.grades span.off{
+  background:transparent;border-color:var(--rule);border-style:dashed;
+  color:var(--ink-3);font-weight:400;
+}
+
+/* 共通リンク（基本語リストなど） */
+.tools{margin:0 0 2rem;padding:0;list-style:none;}
+.tools li{margin:0 0 .55rem;}
+.tools a,.tools span.off{
+  display:flex;align-items:baseline;gap:.15rem .7rem;flex-wrap:wrap;
+  padding:.65rem .9rem;
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);color:var(--ink);text-decoration:none;
+  font-size:.95rem;line-height:1.5;
+}
+.tools span.off{
+  border-color:var(--rule);color:var(--ink-3);background:transparent;
+  border-style:dashed;
+}
+.tools .label{font-family:"Klee One",sans-serif;font-weight:600;white-space:nowrap;}
+.tools .desc{font-size:.82rem;color:var(--ink-2);}
+.tools span.off .desc{color:var(--ink-3);}
+
+/* 部の見出し */
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;margin:2.2rem 0 .9rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+.part-note{font-size:.84rem;color:var(--ink-2);margin:-.5rem 0 1rem;line-height:1.7;}
+
+/* 単元カード */
+.units{list-style:none;margin:0;padding:0;}
+.units > li{
+  border:2px solid var(--rule);border-radius:var(--hand);
+  padding:.75rem .9rem .8rem;margin:0 0 .7rem;
+  background:var(--paper);
+}
+.units > li.ready{border-color:var(--ink);}
+.u-head{display:flex;align-items:baseline;gap:.6rem;margin:0 0 .5rem;flex-wrap:wrap;}
+.u-no{
+  font-family:"Klee One",Georgia,serif;font-size:.76rem;font-weight:600;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;white-space:nowrap;
+}
+.ready .u-no{background:var(--hi-be);border-color:var(--be);color:var(--be);}
+.u-title{
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:1.02rem;
+  line-height:1.5;
+}
+.units > li:not(.ready) .u-title{color:var(--ink-3);}
+
+.u-links{display:flex;gap:.5rem;flex-wrap:wrap;}
+.u-links a{
+  flex:1 1 8rem;
+  display:block;text-align:center;text-decoration:none;
+  padding:.4rem .5rem;font-size:.88rem;line-height:1.5;
+  font-family:"Klee One",sans-serif;font-weight:600;
+  border:2px solid currentColor;
+}
+.u-links a.work{color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+.u-links a.vocab{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+.u-links .soon{
+  flex:1 1 8rem;text-align:center;
+  padding:.4rem .5rem;font-size:.85rem;
+  font-family:"Klee One",sans-serif;
+  color:var(--ink-3);border:2px dashed var(--rule);border-radius:var(--hand);
+}
+.u-links.three .soon{flex:1 1 0;min-width:0;padding:.4rem .2rem;font-size:.8rem;}
+
+/* 単語テスト・総合テスト（2026-09-24 UPDATE-PLAN.md「3.」） */
+.u-links.three a{flex:1 1 0;min-width:0;padding:.4rem .2rem;font-size:.84rem;}
+.u-links a.test{color:var(--ink);background:var(--paper);border-radius:var(--hand);}
+.review{
+  border:2px solid var(--ink);border-radius:var(--hand-2);
+  background:var(--panel);padding:.75rem .9rem .85rem;margin:.2rem 0 .7rem;
+}
+.review .r-head{font-family:"Klee One",sans-serif;font-weight:600;font-size:.98rem;margin:0 0 .5rem;}
+.review .r-head small{font-weight:400;font-size:.78rem;color:var(--ink-2);margin-left:.4rem;}
+.review .u-links{margin:0;}
+.review.final{border-width:3px;margin-top:2.2rem;background:var(--ink);color:var(--paper);}
+.review.final .r-head small{color:#C9CCD4;}
+.review.final .u-links a.test{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+.review.final .u-links .soon{color:#AEB3BF;border-color:#5A6273;}
+
+.foot{
+  margin-top:2.5rem;padding-top:1rem;
+  border-top:1px dashed var(--rule);
+  font-size:.82rem;color:var(--ink-3);line-height:1.8;
+}
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .units > li,.tools li,.review{break-inside:avoid;}
+  .site-kicker{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header class="site-head">
+  <p class="site-kicker">中学英語 リスタート</p>
+  <h1 class="site-title">ワークブックと単語帳　中2</h1>
+  <p class="site-lead">中2の内容を16単元に分けて積み上げる教材です。各単元はワークブック（解説＋設問＋解答）と単語帳の2本立てで、中1と同じ作りになっています。これから1単元ずつ足していきます。</p>
+  <nav class="grades" aria-label="学年">
+    <a href="../index.html">中1</a>
+    <span class="here">中2</span>
+    <span class="off">中3　準備中</span>
+  </nav>
+</header>
+
+<ul class="tools">
+  <li><span class="off"><span class="label">単語テスト</span><span class="desc">中2の語は準備中　中2の16単元がそろったあとに足します</span></span></li>
+  <li><a href="../word-test.html"><span class="label">単語テスト（中1）</span><span class="desc">中1の範囲の単語テスト　単元・部・中1全体から出題</span></a></li>
+  <li><a href="../basic-words.html"><span class="label">基本語リスト</span><span class="desc">単語帳に立てずに使う77語　代名詞・be動詞・冠詞など</span></a></li>
+  <li><a href="../word-index.html"><span class="label">総索引</span><span class="desc">中1の全16単元の見出し語479語をアルファベット順に</span></a></li>
+</ul>
+
+<h2><span>第1部　過去進行形・未来・接続詞</span></h2>
+<p class="part-note">中1の過去形・進行形から、未来と、文をつなぐ形まで。</p>
+
+<ul class="units">
+  <li class="ready">
+    <p class="u-head"><span class="u-no">Unit 1</span><span class="u-title">過去進行形</span></p>
+    <p class="u-links three">
+      <a class="work" href="unit01_past-progressive.html">ワークブック</a>
+      <a class="vocab" href="vocab01_past-progressive.html">単語帳　36語</a>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li class="ready">
+    <p class="u-head"><span class="u-no">Unit 2</span><span class="u-title">未来を表す will</span></p>
+    <p class="u-links three">
+      <a class="work" href="unit02_will.html">ワークブック</a>
+      <a class="vocab" href="vocab02_will.html">単語帳　36語</a>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li class="ready">
+    <p class="u-head"><span class="u-no">Unit 3</span><span class="u-title">未来を表す be going to</span></p>
+    <p class="u-links three">
+      <a class="work" href="unit03_be-going-to.html">ワークブック</a>
+      <a class="vocab" href="vocab03_be-going-to.html">単語帳　36語</a>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 4</span><span class="u-title">接続詞 when / if / because / that</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+</ul>
+
+<div class="review" id="review1">
+  <p class="r-head">第1部のまとめ<small>Unit 1〜4</small></p>
+  <p class="u-links">
+    <span class="soon">総合テスト　準備中</span>
+    <span class="soon">単語テスト　準備中</span>
+  </p>
+</div>
+
+<h2><span>第2部　There is・助動詞・文型</span></h2>
+<p class="part-note">主語と動詞のうしろに何が並ぶかを固めます（存在・助動詞・目的語が2つ・補語）。</p>
+
+<ul class="units">
+  <li>
+    <p class="u-head"><span class="u-no">Unit 5</span><span class="u-title">There is / There are</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 6</span><span class="u-title">助動詞 must / have to</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 7</span><span class="u-title">助動詞 may / should と Will you / Shall I / Shall we</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 8</span><span class="u-title">目的語が2つの文（SVOO）と 補語のある文（SVOC）</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+</ul>
+
+<div class="review" id="review2">
+  <p class="r-head">第2部のまとめ<small>Unit 5〜8</small></p>
+  <p class="u-links">
+    <span class="soon">総合テスト　準備中</span>
+    <span class="soon">単語テスト　準備中</span>
+  </p>
+</div>
+
+<h2><span>第3部　不定詞・動名詞</span></h2>
+<p class="part-note">動詞を名詞・形容詞・副詞の位置に置く形を扱います。</p>
+
+<ul class="units">
+  <li>
+    <p class="u-head"><span class="u-no">Unit 9</span><span class="u-title">不定詞（名詞的用法）</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 10</span><span class="u-title">不定詞（副詞的用法）</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 11</span><span class="u-title">不定詞（形容詞的用法）と 疑問詞 + to 不定詞</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 12</span><span class="u-title">動名詞</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+</ul>
+
+<div class="review" id="review3">
+  <p class="r-head">第3部のまとめ<small>Unit 9〜12</small></p>
+  <p class="u-links">
+    <span class="soon">総合テスト　準備中</span>
+    <span class="soon">単語テスト　準備中</span>
+  </p>
+</div>
+
+<h2><span>第4部　比較・受動態</span></h2>
+<p class="part-note">比較と受動態。中2の履修範囲をここで閉じます。</p>
+
+<ul class="units">
+  <li>
+    <p class="u-head"><span class="u-no">Unit 13</span><span class="u-title">比較級・最上級（-er / -est）</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 14</span><span class="u-title">more / most と as 〜 as</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 15</span><span class="u-title">受動態（肯定・否定・疑問）</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+  <li>
+    <p class="u-head"><span class="u-no">Unit 16</span><span class="u-title">受動態の発展（by 以外の前置詞・過去形との識別）</span></p>
+    <p class="u-links three">
+      <span class="soon">ワークブック　準備中</span>
+      <span class="soon">単語帳　準備中</span>
+      <span class="soon">単語テスト　準備中</span>
+    </p>
+  </li>
+</ul>
+
+<div class="review" id="review4">
+  <p class="r-head">第4部のまとめ<small>Unit 13〜16</small></p>
+  <p class="u-links">
+    <span class="soon">総合テスト　準備中</span>
+    <span class="soon">単語テスト　準備中</span>
+  </p>
+</div>
+
+<div class="review final" id="review-final">
+  <p class="r-head">中2のまとめ<small>全16単元</small></p>
+  <p class="u-links">
+    <span class="soon">総まとめテスト　準備中</span>
+    <span class="soon">単語テスト　準備中</span>
+  </p>
+</div>
+
+<p class="foot">全16単元。ワークブックの末尾に解答と解説が入っています。<br>
+印刷するときは、ブラウザの印刷メニューからA4縦を選んでください。</p>
+
+</div>
+</body>
+</html>
