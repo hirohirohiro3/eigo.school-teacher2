@@ -226,7 +226,7 @@ ol#words>li::after{content:attr(data-ja);text-align:right;color:var(--ink-2);}
     <h2 class="sec">学年</h2>
     <div class="seg" id="grade">
       <button data-v="1" aria-pressed="true">中1</button>
-      <button disabled>中2<small>準備中</small></button>
+      <button data-v="2" aria-pressed="false">中2</button>
       <button disabled>中3<small>準備中</small></button>
     </div>
 
@@ -234,11 +234,12 @@ ol#words>li::after{content:attr(data-ja);text-align:right;color:var(--ink-2);}
     <div class="seg" id="scope">
       <button data-v="unit" aria-pressed="true">単元</button>
       <button data-v="part" aria-pressed="false">部</button>
-      <button data-v="all" aria-pressed="false">中1全体</button>
+      <button data-v="all" aria-pressed="false" id="allBtn">中1全体</button>
     </div>
     <div class="chips" id="unitChips"></div>
     <div class="chips parts" id="partChips" hidden></div>
     <p class="count" id="countLine"></p>
+    <p class="count" id="formNote" hidden></p>
 
     <h2 class="sec">向き</h2>
     <div class="seg" id="dir">
@@ -306,7 +307,7 @@ ol#words>li::after{content:attr(data-ja);text-align:right;color:var(--ink-2);}
      各単元の単語帳の見出し語・和訳から機械で作った一覧です。
      JS はここを読んで範囲で絞り、並べ替えるだけです。 -->
 <details class="wordlist">
-<summary>この教材の語 479語をすべて見る</summary>
+<summary>この教材の語 1046語をすべて見る</summary>
 <ol id="words">
 <li data-g="1" data-u="1" data-en="hello" data-ja="こんにちは、やあ"></li>
 <li data-g="1" data-u="1" data-en="student" data-ja="生徒、学生"></li>
@@ -787,6 +788,573 @@ ol#words>li::after{content:attr(data-ja);text-align:right;color:var(--ink-2);}
 <li data-g="1" data-u="16" data-en="for the first time" data-ja="初めて"></li>
 <li data-g="1" data-u="16" data-en="on the way home" data-ja="帰り道で・家に帰る途中で"></li>
 <li data-g="1" data-u="16" data-en="get to 〜" data-ja="〜に着く"></li>
+<li data-g="2" data-u="1" data-en="ring" data-ja="鳴る"></li>
+<li data-g="2" data-u="1" data-en="knock" data-ja="ノックする・たたく"></li>
+<li data-g="2" data-u="1" data-en="shout" data-ja="叫ぶ・大声で言う"></li>
+<li data-g="2" data-u="1" data-en="prepare" data-ja="準備する・用意する"></li>
+<li data-g="2" data-u="1" data-en="relax" data-ja="くつろぐ・のんびりする"></li>
+<li data-g="2" data-u="1" data-en="remember" data-ja="覚えている・思い出す"></li>
+<li data-g="2" data-u="1" data-en="feed" data-ja="えさをやる"></li>
+<li data-g="2" data-u="1" data-en="chat" data-ja="おしゃべりする"></li>
+<li data-g="2" data-u="1" data-en="storm" data-ja="嵐"></li>
+<li data-g="2" data-u="1" data-en="wind" data-ja="風"></li>
+<li data-g="2" data-u="1" data-en="noise" data-ja="物音・騒音"></li>
+<li data-g="2" data-u="1" data-en="candle" data-ja="ろうそく"></li>
+<li data-g="2" data-u="1" data-en="neighbor" data-ja="近所の人・隣人"></li>
+<li data-g="2" data-u="1" data-en="living room" data-ja="居間"></li>
+<li data-g="2" data-u="1" data-en="bedroom" data-ja="寝室・自分の部屋"></li>
+<li data-g="2" data-u="1" data-en="street" data-ja="通り・道"></li>
+<li data-g="2" data-u="1" data-en="floor" data-ja="床"></li>
+<li data-g="2" data-u="1" data-en="magazine" data-ja="雑誌"></li>
+<li data-g="2" data-u="1" data-en="radio" data-ja="ラジオ"></li>
+<li data-g="2" data-u="1" data-en="news" data-ja="ニュース・知らせ"></li>
+<li data-g="2" data-u="1" data-en="rainy" data-ja="雨の・雨降りの"></li>
+<li data-g="2" data-u="1" data-en="strange" data-ja="変な・奇妙な"></li>
+<li data-g="2" data-u="1" data-en="safe" data-ja="安全な・無事な"></li>
+<li data-g="2" data-u="1" data-en="surprised" data-ja="驚いた"></li>
+<li data-g="2" data-u="1" data-en="suddenly" data-ja="突然・急に"></li>
+<li data-g="2" data-u="1" data-en="still" data-ja="まだ・今でも"></li>
+<li data-g="2" data-u="1" data-en="quietly" data-ja="静かに"></li>
+<li data-g="2" data-u="1" data-en="loudly" data-ja="大きな声で・大きな音で"></li>
+<li data-g="2" data-u="1" data-en="during" data-ja="〜の間（ずっと）"></li>
+<li data-g="2" data-u="1" data-en="into" data-ja="〜の中へ"></li>
+<li data-g="2" data-u="1" data-en="someone" data-ja="だれか"></li>
+<li data-g="2" data-u="1" data-en="something" data-ja="何か"></li>
+<li data-g="2" data-u="1" data-en="go out" data-ja="（明かりが）消える・外出する"></li>
+<li data-g="2" data-u="1" data-en="turn on 〜" data-ja="（電気・ラジオなど）をつける"></li>
+<li data-g="2" data-u="1" data-en="look out of 〜" data-ja="〜から外を見る"></li>
+<li data-g="2" data-u="1" data-en="call 〜 back" data-ja="〜に電話をかけ直す"></li>
+<li data-g="2" data-u="2" data-en="will" data-ja="〜します・〜でしょう"></li>
+<li data-g="2" data-u="2" data-en="leave" data-ja="出発する・去る"></li>
+<li data-g="2" data-u="2" data-en="win" data-ja="勝つ・（賞などを）得る"></li>
+<li data-g="2" data-u="2" data-en="lose" data-ja="負ける・なくす"></li>
+<li data-g="2" data-u="2" data-en="hope" data-ja="望む・願う"></li>
+<li data-g="2" data-u="2" data-en="become" data-ja="〜になる"></li>
+<li data-g="2" data-u="2" data-en="move" data-ja="引っ越す・動く"></li>
+<li data-g="2" data-u="2" data-en="believe" data-ja="信じる"></li>
+<li data-g="2" data-u="2" data-en="change" data-ja="変わる・変える"></li>
+<li data-g="2" data-u="2" data-en="future" data-ja="将来・未来"></li>
+<li data-g="2" data-u="2" data-en="forecast" data-ja="予報"></li>
+<li data-g="2" data-u="2" data-en="afternoon" data-ja="午後"></li>
+<li data-g="2" data-u="2" data-en="coat" data-ja="コート・上着"></li>
+<li data-g="2" data-u="2" data-en="plan" data-ja="計画"></li>
+<li data-g="2" data-u="2" data-en="dream" data-ja="夢"></li>
+<li data-g="2" data-u="2" data-en="holiday" data-ja="休日・祝日"></li>
+<li data-g="2" data-u="2" data-en="match" data-ja="試合"></li>
+<li data-g="2" data-u="2" data-en="prize" data-ja="賞"></li>
+<li data-g="2" data-u="2" data-en="pilot" data-ja="パイロット"></li>
+<li data-g="2" data-u="2" data-en="typhoon" data-ja="台風"></li>
+<li data-g="2" data-u="2" data-en="result" data-ja="結果"></li>
+<li data-g="2" data-u="2" data-en="excited" data-ja="わくわくして"></li>
+<li data-g="2" data-u="2" data-en="glad" data-ja="うれしい"></li>
+<li data-g="2" data-u="2" data-en="fine" data-ja="晴れた・元気な"></li>
+<li data-g="2" data-u="2" data-en="cool" data-ja="涼しい"></li>
+<li data-g="2" data-u="2" data-en="clear" data-ja="晴れわたった・はっきりした"></li>
+<li data-g="2" data-u="2" data-en="soon" data-ja="すぐに・まもなく"></li>
+<li data-g="2" data-u="2" data-en="tonight" data-ja="今夜（は）"></li>
+<li data-g="2" data-u="2" data-en="someday" data-ja="いつか"></li>
+<li data-g="2" data-u="2" data-en="maybe" data-ja="ひょっとすると・たぶん"></li>
+<li data-g="2" data-u="2" data-en="probably" data-ja="たぶん・おそらく"></li>
+<li data-g="2" data-u="2" data-en="near" data-ja="〜の近くに・〜の近くで"></li>
+<li data-g="2" data-u="2" data-en="next week" data-ja="来週（に）"></li>
+<li data-g="2" data-u="2" data-en="wake up" data-ja="目を覚ます"></li>
+<li data-g="2" data-u="2" data-en="take part in 〜" data-ja="〜に参加する"></li>
+<li data-g="2" data-u="2" data-en="in the future" data-ja="将来（は）"></li>
+<li data-g="2" data-u="3" data-en="be going to 〜" data-ja="〜するつもりだ・〜する予定だ"></li>
+<li data-g="2" data-u="3" data-en="travel" data-ja="旅行する"></li>
+<li data-g="2" data-u="3" data-en="return" data-ja="帰る・戻る"></li>
+<li data-g="2" data-u="3" data-en="sell" data-ja="売る"></li>
+<li data-g="2" data-u="3" data-en="build" data-ja="建てる"></li>
+<li data-g="2" data-u="3" data-en="pack" data-ja="荷物を詰める"></li>
+<li data-g="2" data-u="3" data-en="celebrate" data-ja="祝う"></li>
+<li data-g="2" data-u="3" data-en="spend" data-ja="（時を）過ごす・（お金を）使う"></li>
+<li data-g="2" data-u="3" data-en="perform" data-ja="演奏する・演じる"></li>
+<li data-g="2" data-u="3" data-en="sound" data-ja="〜に聞こえる・〜そうだ"></li>
+<li data-g="2" data-u="3" data-en="airport" data-ja="空港"></li>
+<li data-g="2" data-u="3" data-en="plane" data-ja="飛行機"></li>
+<li data-g="2" data-u="3" data-en="hotel" data-ja="ホテル"></li>
+<li data-g="2" data-u="3" data-en="island" data-ja="島"></li>
+<li data-g="2" data-u="3" data-en="castle" data-ja="城"></li>
+<li data-g="2" data-u="3" data-en="fireworks" data-ja="花火"></li>
+<li data-g="2" data-u="3" data-en="grandparents" data-ja="祖父母"></li>
+<li data-g="2" data-u="3" data-en="gift" data-ja="贈り物"></li>
+<li data-g="2" data-u="3" data-en="contest" data-ja="コンテスト・競技会"></li>
+<li data-g="2" data-u="3" data-en="stage" data-ja="舞台・ステージ"></li>
+<li data-g="2" data-u="3" data-en="photo" data-ja="写真"></li>
+<li data-g="2" data-u="3" data-en="suitcase" data-ja="スーツケース"></li>
+<li data-g="2" data-u="3" data-en="cloud" data-ja="雲"></li>
+<li data-g="2" data-u="3" data-en="special" data-ja="特別な"></li>
+<li data-g="2" data-u="3" data-en="traditional" data-ja="伝統的な"></li>
+<li data-g="2" data-u="3" data-en="wonderful" data-ja="すばらしい"></li>
+<li data-g="2" data-u="3" data-en="crowded" data-ja="混んでいる"></li>
+<li data-g="2" data-u="3" data-en="lucky" data-ja="運がいい"></li>
+<li data-g="2" data-u="3" data-en="abroad" data-ja="外国で・外国へ"></li>
+<li data-g="2" data-u="3" data-en="later" data-ja="あとで"></li>
+<li data-g="2" data-u="3" data-en="finally" data-ja="最後に・ついに"></li>
+<li data-g="2" data-u="3" data-en="until" data-ja="〜まで（ずっと）"></li>
+<li data-g="2" data-u="3" data-en="around" data-ja="〜のまわりを"></li>
+<li data-g="2" data-u="3" data-en="stay with 〜" data-ja="〜の家に泊まる"></li>
+<li data-g="2" data-u="3" data-en="go shopping" data-ja="買い物に行く"></li>
+<li data-g="2" data-u="3" data-en="at the end of 〜" data-ja="〜の終わりに"></li>
+<li data-g="2" data-u="4" data-en="if" data-ja="もし〜なら"></li>
+<li data-g="2" data-u="4" data-en="think" data-ja="思う・考える"></li>
+<li data-g="2" data-u="4" data-en="agree" data-ja="賛成する・意見が合う"></li>
+<li data-g="2" data-u="4" data-en="explain" data-ja="説明する"></li>
+<li data-g="2" data-u="4" data-en="collect" data-ja="集める"></li>
+<li data-g="2" data-u="4" data-en="plant" data-ja="植える"></li>
+<li data-g="2" data-u="4" data-en="grow" data-ja="育つ・育てる"></li>
+<li data-g="2" data-u="4" data-en="protect" data-ja="守る"></li>
+<li data-g="2" data-u="4" data-en="notice" data-ja="気づく"></li>
+<li data-g="2" data-u="4" data-en="promise" data-ja="約束する"></li>
+<li data-g="2" data-u="4" data-en="blow" data-ja="吹く"></li>
+<li data-g="2" data-u="4" data-en="volunteer" data-ja="ボランティア"></li>
+<li data-g="2" data-u="4" data-en="garbage" data-ja="ごみ"></li>
+<li data-g="2" data-u="4" data-en="bottle" data-ja="びん・ボトル"></li>
+<li data-g="2" data-u="4" data-en="plastic" data-ja="プラスチック"></li>
+<li data-g="2" data-u="4" data-en="environment" data-ja="環境"></li>
+<li data-g="2" data-u="4" data-en="nature" data-ja="自然"></li>
+<li data-g="2" data-u="4" data-en="field" data-ja="畑・野原"></li>
+<li data-g="2" data-u="4" data-en="seed" data-ja="種"></li>
+<li data-g="2" data-u="4" data-en="reason" data-ja="理由"></li>
+<li data-g="2" data-u="4" data-en="event" data-ja="行事・出来事"></li>
+<li data-g="2" data-u="4" data-en="rule" data-ja="規則・ルール"></li>
+<li data-g="2" data-u="4" data-en="forest" data-ja="森"></li>
+<li data-g="2" data-u="4" data-en="air" data-ja="空気"></li>
+<li data-g="2" data-u="4" data-en="spring" data-ja="春"></li>
+<li data-g="2" data-u="4" data-en="important" data-ja="大切な・重要な"></li>
+<li data-g="2" data-u="4" data-en="necessary" data-ja="必要な"></li>
+<li data-g="2" data-u="4" data-en="afraid" data-ja="怖がって・心配して"></li>
+<li data-g="2" data-u="4" data-en="true" data-ja="本当の・真実の"></li>
+<li data-g="2" data-u="4" data-en="local" data-ja="地元の"></li>
+<li data-g="2" data-u="4" data-en="dry" data-ja="乾いた"></li>
+<li data-g="2" data-u="4" data-en="almost" data-ja="ほとんど"></li>
+<li data-g="2" data-u="4" data-en="without" data-ja="〜なしで"></li>
+<li data-g="2" data-u="4" data-en="clean up 〜" data-ja="〜をきれいに片づける"></li>
+<li data-g="2" data-u="4" data-en="throw away 〜" data-ja="〜を捨てる"></li>
+<li data-g="2" data-u="4" data-en="for example" data-ja="たとえば"></li>
+<li data-g="2" data-u="4" data-en="at first" data-ja="はじめは"></li>
+<li data-g="2" data-u="5" data-en="in front of 〜" data-ja="〜の前に"></li>
+<li data-g="2" data-u="5" data-en="behind" data-ja="〜のうしろに"></li>
+<li data-g="2" data-u="5" data-en="between" data-ja="（2つのものの）間に"></li>
+<li data-g="2" data-u="5" data-en="along" data-ja="〜に沿って"></li>
+<li data-g="2" data-u="5" data-en="across" data-ja="〜を渡った向こうに・〜を横切って"></li>
+<li data-g="2" data-u="5" data-en="building" data-ja="建物・ビル"></li>
+<li data-g="2" data-u="5" data-en="bank" data-ja="銀行"></li>
+<li data-g="2" data-u="5" data-en="corner" data-ja="角（かど）・すみ"></li>
+<li data-g="2" data-u="5" data-en="post office" data-ja="郵便局"></li>
+<li data-g="2" data-u="5" data-en="convenience store" data-ja="コンビニエンスストア"></li>
+<li data-g="2" data-u="5" data-en="bookstore" data-ja="本屋・書店"></li>
+<li data-g="2" data-u="5" data-en="cafeteria" data-ja="（セルフサービスの）食堂"></li>
+<li data-g="2" data-u="5" data-en="pool" data-ja="プール"></li>
+<li data-g="2" data-u="5" data-en="playground" data-ja="遊び場・運動場"></li>
+<li data-g="2" data-u="5" data-en="pond" data-ja="池"></li>
+<li data-g="2" data-u="5" data-en="hill" data-ja="丘"></li>
+<li data-g="2" data-u="5" data-en="shrine" data-ja="神社"></li>
+<li data-g="2" data-u="5" data-en="village" data-ja="村"></li>
+<li data-g="2" data-u="5" data-en="wall" data-ja="壁"></li>
+<li data-g="2" data-u="5" data-en="roof" data-ja="屋根"></li>
+<li data-g="2" data-u="5" data-en="shelf" data-ja="棚"></li>
+<li data-g="2" data-u="5" data-en="refrigerator" data-ja="冷蔵庫"></li>
+<li data-g="2" data-u="5" data-en="juice" data-ja="ジュース"></li>
+<li data-g="2" data-u="5" data-en="money" data-ja="お金"></li>
+<li data-g="2" data-u="5" data-en="paper" data-ja="紙"></li>
+<li data-g="2" data-u="5" data-en="person" data-ja="人"></li>
+<li data-g="2" data-u="5" data-en="winter" data-ja="冬"></li>
+<li data-g="2" data-u="5" data-en="tell" data-ja="話す・伝える"></li>
+<li data-g="2" data-u="5" data-en="count" data-ja="数える"></li>
+<li data-g="2" data-u="5" data-en="dear" data-ja="親愛なる（手紙の書き出し）"></li>
+<li data-g="2" data-u="5" data-en="convenient" data-ja="便利な"></li>
+<li data-g="2" data-u="5" data-en="comfortable" data-ja="心地よい・快適な"></li>
+<li data-g="2" data-u="5" data-en="peaceful" data-ja="おだやかな・平和な"></li>
+<li data-g="2" data-u="5" data-en="narrow" data-ja="（幅が）せまい"></li>
+<li data-g="2" data-u="5" data-en="wide" data-ja="（幅が）広い"></li>
+<li data-g="2" data-u="5" data-en="a few 〜" data-ja="少しの〜・いくつかの〜"></li>
+<li data-g="2" data-u="6" data-en="must" data-ja="〜しなければならない"></li>
+<li data-g="2" data-u="6" data-en="have to 〜" data-ja="〜しなければならない"></li>
+<li data-g="2" data-u="6" data-en="don&#x27;t have to 〜" data-ja="〜しなくてよい"></li>
+<li data-g="2" data-u="6" data-en="hand in 〜" data-ja="〜を提出する"></li>
+<li data-g="2" data-u="6" data-en="on time" data-ja="時間どおりに"></li>
+<li data-g="2" data-u="6" data-en="put on 〜" data-ja="〜を身につける"></li>
+<li data-g="2" data-u="6" data-en="once a week" data-ja="週に1回"></li>
+<li data-g="2" data-u="6" data-en="follow" data-ja="〜に従う・〜のあとをついて行く"></li>
+<li data-g="2" data-u="6" data-en="keep" data-ja="〜を守る・〜を保つ"></li>
+<li data-g="2" data-u="6" data-en="pay" data-ja="（お金を）払う"></li>
+<li data-g="2" data-u="6" data-en="cross" data-ja="〜を渡る・〜を横切る"></li>
+<li data-g="2" data-u="6" data-en="enter" data-ja="〜に入る"></li>
+<li data-g="2" data-u="6" data-en="lock" data-ja="〜にかぎをかける"></li>
+<li data-g="2" data-u="6" data-en="raise" data-ja="〜を上げる"></li>
+<li data-g="2" data-u="6" data-en="check" data-ja="〜を確かめる"></li>
+<li data-g="2" data-u="6" data-en="rest" data-ja="休む"></li>
+<li data-g="2" data-u="6" data-en="save" data-ja="〜を節約する・〜を救う"></li>
+<li data-g="2" data-u="6" data-en="safety" data-ja="安全"></li>
+<li data-g="2" data-u="6" data-en="health" data-ja="健康"></li>
+<li data-g="2" data-u="6" data-en="medicine" data-ja="薬"></li>
+<li data-g="2" data-u="6" data-en="accident" data-ja="事故"></li>
+<li data-g="2" data-u="6" data-en="passport" data-ja="パスポート"></li>
+<li data-g="2" data-u="6" data-en="textbook" data-ja="教科書"></li>
+<li data-g="2" data-u="6" data-en="entrance" data-ja="入口・玄関"></li>
+<li data-g="2" data-u="6" data-en="gate" data-ja="門・改札口"></li>
+<li data-g="2" data-u="6" data-en="elevator" data-ja="エレベーター"></li>
+<li data-g="2" data-u="6" data-en="report" data-ja="報告書・レポート"></li>
+<li data-g="2" data-u="6" data-en="group" data-ja="集団・班"></li>
+<li data-g="2" data-u="6" data-en="stairs" data-ja="階段"></li>
+<li data-g="2" data-u="6" data-en="visitor" data-ja="訪問者・来客"></li>
+<li data-g="2" data-u="6" data-en="dangerous" data-ja="危険な"></li>
+<li data-g="2" data-u="6" data-en="healthy" data-ja="健康な・健康によい"></li>
+<li data-g="2" data-u="6" data-en="polite" data-ja="礼儀正しい"></li>
+<li data-g="2" data-u="6" data-en="public" data-ja="公共の・公の"></li>
+<li data-g="2" data-u="6" data-en="wrong" data-ja="まちがった"></li>
+<li data-g="2" data-u="6" data-en="twice" data-ja="2回・2度"></li>
+<li data-g="2" data-u="7" data-en="may" data-ja="〜してもよい・〜かもしれない"></li>
+<li data-g="2" data-u="7" data-en="should" data-ja="〜したほうがよい・〜すべきだ"></li>
+<li data-g="2" data-u="7" data-en="Will you 〜?" data-ja="〜してくれませんか"></li>
+<li data-g="2" data-u="7" data-en="Shall I 〜?" data-ja="（私が）〜しましょうか"></li>
+<li data-g="2" data-u="7" data-en="Shall we 〜?" data-ja="（いっしょに）〜しましょうか"></li>
+<li data-g="2" data-u="7" data-en="No, thank you." data-ja="いいえ、けっこうです"></li>
+<li data-g="2" data-u="7" data-en="Excuse me." data-ja="すみません"></li>
+<li data-g="2" data-u="7" data-en="pick up 〜" data-ja="〜を迎えに行く・〜を拾い上げる"></li>
+<li data-g="2" data-u="7" data-en="lie down" data-ja="横になる"></li>
+<li data-g="2" data-u="7" data-en="decide" data-ja="〜を決める"></li>
+<li data-g="2" data-u="7" data-en="repeat" data-ja="〜をくり返す"></li>
+<li data-g="2" data-u="7" data-en="order" data-ja="〜を注文する"></li>
+<li data-g="2" data-u="7" data-en="copy" data-ja="〜を写す"></li>
+<li data-g="2" data-u="7" data-en="fever" data-ja="熱"></li>
+<li data-g="2" data-u="7" data-en="headache" data-ja="頭痛"></li>
+<li data-g="2" data-u="7" data-en="throat" data-ja="のど"></li>
+<li data-g="2" data-u="7" data-en="advice" data-ja="助言・忠告"></li>
+<li data-g="2" data-u="7" data-en="seat" data-ja="席・座席"></li>
+<li data-g="2" data-u="7" data-en="menu" data-ja="メニュー・献立表"></li>
+<li data-g="2" data-u="7" data-en="message" data-ja="伝言・メッセージ"></li>
+<li data-g="2" data-u="7" data-en="appointment" data-ja="（会う）約束・予約"></li>
+<li data-g="2" data-u="7" data-en="dentist" data-ja="歯医者"></li>
+<li data-g="2" data-u="7" data-en="exam" data-ja="試験"></li>
+<li data-g="2" data-u="7" data-en="towel" data-ja="タオル"></li>
+<li data-g="2" data-u="7" data-en="salt" data-ja="塩"></li>
+<li data-g="2" data-u="7" data-en="tea" data-ja="お茶・紅茶"></li>
+<li data-g="2" data-u="7" data-en="jacket" data-ja="上着・ジャケット"></li>
+<li data-g="2" data-u="7" data-en="temperature" data-ja="体温・温度"></li>
+<li data-g="2" data-u="7" data-en="clinic" data-ja="診療所・医院"></li>
+<li data-g="2" data-u="7" data-en="address" data-ja="住所"></li>
+<li data-g="2" data-u="7" data-en="note" data-ja="メモ・（授業の）ノート"></li>
+<li data-g="2" data-u="7" data-en="sore" data-ja="（体の一部が）痛い・ひりひりする"></li>
+<li data-g="2" data-u="7" data-en="serious" data-ja="深刻な・重い・まじめな"></li>
+<li data-g="2" data-u="7" data-en="rude" data-ja="失礼な"></li>
+<li data-g="2" data-u="7" data-en="perhaps" data-ja="もしかすると・たぶん"></li>
+<li data-g="2" data-u="7" data-en="inside" data-ja="中で・屋内で"></li>
+<li data-g="2" data-u="8" data-en="lend" data-ja="貸す"></li>
+<li data-g="2" data-u="8" data-en="offer" data-ja="差し出す・申し出る"></li>
+<li data-g="2" data-u="8" data-en="share" data-ja="分け合う・共有する"></li>
+<li data-g="2" data-u="8" data-en="print" data-ja="印刷する"></li>
+<li data-g="2" data-u="8" data-en="wrap" data-ja="包む"></li>
+<li data-g="2" data-u="8" data-en="each other" data-ja="おたがいに"></li>
+<li data-g="2" data-u="8" data-en="show 〜 around" data-ja="〜を案内する"></li>
+<li data-g="2" data-u="8" data-en="tell a lie" data-ja="うそをつく"></li>
+<li data-g="2" data-u="8" data-en="make a speech" data-ja="スピーチをする"></li>
+<li data-g="2" data-u="8" data-en="one of 〜" data-ja="〜のうちの1人・1つ"></li>
+<li data-g="2" data-u="8" data-en="at last" data-ja="ついに・やっと"></li>
+<li data-g="2" data-u="8" data-en="album" data-ja="アルバム"></li>
+<li data-g="2" data-u="8" data-en="audience" data-ja="聴衆・観客"></li>
+<li data-g="2" data-u="8" data-en="calendar" data-ja="カレンダー"></li>
+<li data-g="2" data-u="8" data-en="chance" data-ja="機会"></li>
+<li data-g="2" data-u="8" data-en="clerk" data-ja="店員・事務員"></li>
+<li data-g="2" data-u="8" data-en="curry" data-ja="カレー"></li>
+<li data-g="2" data-u="8" data-en="envelope" data-ja="封筒"></li>
+<li data-g="2" data-u="8" data-en="favor" data-ja="親切な行い・お願い"></li>
+<li data-g="2" data-u="8" data-en="glove" data-ja="手ぶくろ・グローブ"></li>
+<li data-g="2" data-u="8" data-en="grade" data-ja="学年"></li>
+<li data-g="2" data-u="8" data-en="memory" data-ja="思い出・記憶"></li>
+<li data-g="2" data-u="8" data-en="necklace" data-ja="ネックレス"></li>
+<li data-g="2" data-u="8" data-en="nickname" data-ja="あだ名"></li>
+<li data-g="2" data-u="8" data-en="page" data-ja="ページ"></li>
+<li data-g="2" data-u="8" data-en="postcard" data-ja="はがき"></li>
+<li data-g="2" data-u="8" data-en="ribbon" data-ja="リボン"></li>
+<li data-g="2" data-u="8" data-en="stamp" data-ja="切手"></li>
+<li data-g="2" data-u="8" data-en="sweater" data-ja="セーター"></li>
+<li data-g="2" data-u="8" data-en="title" data-ja="題名・タイトル"></li>
+<li data-g="2" data-u="8" data-en="truth" data-ja="本当のこと・真実"></li>
+<li data-g="2" data-u="8" data-en="wallet" data-ja="財布"></li>
+<li data-g="2" data-u="8" data-en="perfect" data-ja="完ぺきな・ぴったりの"></li>
+<li data-g="2" data-u="8" data-en="proud" data-ja="誇らしい・自慢に思う"></li>
+<li data-g="2" data-u="8" data-en="soft" data-ja="やわらかい"></li>
+<li data-g="2" data-u="8" data-en="thirsty" data-ja="のどがかわいた"></li>
+<li data-g="2" data-u="9" data-en="continue" data-ja="続ける"></li>
+<li data-g="2" data-u="9" data-en="design" data-ja="デザインする・設計する"></li>
+<li data-g="2" data-u="9" data-en="improve" data-ja="よくする・上達させる"></li>
+<li data-g="2" data-u="9" data-en="solve" data-ja="解決する・解く"></li>
+<li data-g="2" data-u="9" data-en="introduce" data-ja="紹介する"></li>
+<li data-g="2" data-u="9" data-en="would like to 〜" data-ja="〜したいと思う"></li>
+<li data-g="2" data-u="9" data-en="come true" data-ja="実現する・かなう"></li>
+<li data-g="2" data-u="9" data-en="grow up" data-ja="大人になる・育つ"></li>
+<li data-g="2" data-u="9" data-en="all over the world" data-ja="世界中で・世界中の"></li>
+<li data-g="2" data-u="9" data-en="these days" data-ja="最近・このごろ"></li>
+<li data-g="2" data-u="9" data-en="job" data-ja="仕事"></li>
+<li data-g="2" data-u="9" data-en="world" data-ja="世界"></li>
+<li data-g="2" data-u="9" data-en="goal" data-ja="目標"></li>
+<li data-g="2" data-u="9" data-en="engineer" data-ja="技術者・エンジニア"></li>
+<li data-g="2" data-u="9" data-en="scientist" data-ja="科学者"></li>
+<li data-g="2" data-u="9" data-en="chef" data-ja="料理人・シェフ"></li>
+<li data-g="2" data-u="9" data-en="writer" data-ja="作家・書く人"></li>
+<li data-g="2" data-u="9" data-en="artist" data-ja="芸術家・画家"></li>
+<li data-g="2" data-u="9" data-en="musician" data-ja="音楽家・ミュージシャン"></li>
+<li data-g="2" data-u="9" data-en="designer" data-ja="デザイナー"></li>
+<li data-g="2" data-u="9" data-en="firefighter" data-ja="消防士"></li>
+<li data-g="2" data-u="9" data-en="police officer" data-ja="警察官"></li>
+<li data-g="2" data-u="9" data-en="language" data-ja="言語・ことば"></li>
+<li data-g="2" data-u="9" data-en="culture" data-ja="文化"></li>
+<li data-g="2" data-u="9" data-en="robot" data-ja="ロボット"></li>
+<li data-g="2" data-u="9" data-en="space" data-ja="宇宙・空間"></li>
+<li data-g="2" data-u="9" data-en="skill" data-ja="技術・技能"></li>
+<li data-g="2" data-u="9" data-en="clothes" data-ja="服・衣服"></li>
+<li data-g="2" data-u="9" data-en="lesson" data-ja="レッスン・けいこ・授業"></li>
+<li data-g="2" data-u="9" data-en="novel" data-ja="小説"></li>
+<li data-g="2" data-u="9" data-en="foreign" data-ja="外国の"></li>
+<li data-g="2" data-u="9" data-en="own" data-ja="自分自身の"></li>
+<li data-g="2" data-u="9" data-en="simple" data-ja="かんたんな・単純な"></li>
+<li data-g="2" data-u="9" data-en="real" data-ja="本物の・現実の"></li>
+<li data-g="2" data-u="9" data-en="especially" data-ja="特に"></li>
+<li data-g="2" data-u="9" data-en="actually" data-ja="実は・本当は"></li>
+<li data-g="2" data-u="10" data-en="welcome" data-ja="迎える・歓迎する"></li>
+<li data-g="2" data-u="10" data-en="communicate" data-ja="意思を伝え合う"></li>
+<li data-g="2" data-u="10" data-en="realize" data-ja="気づく・わかる"></li>
+<li data-g="2" data-u="10" data-en="support" data-ja="支える・応援する"></li>
+<li data-g="2" data-u="10" data-en="reach" data-ja="着く・達する"></li>
+<li data-g="2" data-u="10" data-en="respect" data-ja="尊敬する"></li>
+<li data-g="2" data-u="10" data-en="thank" data-ja="感謝する・礼を言う"></li>
+<li data-g="2" data-u="10" data-en="say hello to 〜" data-ja="〜にあいさつする"></li>
+<li data-g="2" data-u="10" data-en="such as 〜" data-ja="たとえば〜のような"></li>
+<li data-g="2" data-u="10" data-en="go back to 〜" data-ja="〜へ戻る"></li>
+<li data-g="2" data-u="10" data-en="take a walk" data-ja="散歩をする"></li>
+<li data-g="2" data-u="10" data-en="at the same time" data-ja="同時に"></li>
+<li data-g="2" data-u="10" data-en="host family" data-ja="ホストファミリー（留学生を家に受け入れる家族）"></li>
+<li data-g="2" data-u="10" data-en="exchange student" data-ja="交換留学生"></li>
+<li data-g="2" data-u="10" data-en="hometown" data-ja="故郷・生まれた町"></li>
+<li data-g="2" data-u="10" data-en="experience" data-ja="経験"></li>
+<li data-g="2" data-u="10" data-en="custom" data-ja="習慣・風習"></li>
+<li data-g="2" data-u="10" data-en="chopsticks" data-ja="はし"></li>
+<li data-g="2" data-u="10" data-en="gesture" data-ja="身ぶり・ジェスチャー"></li>
+<li data-g="2" data-u="10" data-en="opinion" data-ja="意見"></li>
+<li data-g="2" data-u="10" data-en="information" data-ja="情報"></li>
+<li data-g="2" data-u="10" data-en="exercise" data-ja="運動"></li>
+<li data-g="2" data-u="10" data-en="energy" data-ja="エネルギー・力"></li>
+<li data-g="2" data-u="10" data-en="earth" data-ja="地球"></li>
+<li data-g="2" data-u="10" data-en="college" data-ja="大学"></li>
+<li data-g="2" data-u="10" data-en="conversation" data-ja="会話"></li>
+<li data-g="2" data-u="10" data-en="sentence" data-ja="文"></li>
+<li data-g="2" data-u="10" data-en="mistake" data-ja="まちがい"></li>
+<li data-g="2" data-u="10" data-en="purpose" data-ja="目的"></li>
+<li data-g="2" data-u="10" data-en="flight" data-ja="（飛行機の）便・飛行"></li>
+<li data-g="2" data-u="10" data-en="different" data-ja="ちがう・異なる"></li>
+<li data-g="2" data-u="10" data-en="similar" data-ja="似ている"></li>
+<li data-g="2" data-u="10" data-en="several" data-ja="いくつかの・数人の"></li>
+<li data-g="2" data-u="10" data-en="both" data-ja="両方の・2人ともの"></li>
+<li data-g="2" data-u="10" data-en="shy" data-ja="はずかしがりの・人見知りする"></li>
+<li data-g="2" data-u="10" data-en="clearly" data-ja="はっきりと"></li>
+<li data-g="2" data-u="11" data-en="anything" data-ja="（疑問文で）何か・（否定文で）何も"></li>
+<li data-g="2" data-u="11" data-en="everything" data-ja="すべてのもの・すべてのこと"></li>
+<li data-g="2" data-u="11" data-en="myself" data-ja="私自身"></li>
+<li data-g="2" data-u="11" data-en="thing" data-ja="もの・こと"></li>
+<li data-g="2" data-u="11" data-en="recipe" data-ja="作り方・レシピ"></li>
+<li data-g="2" data-u="11" data-en="meat" data-ja="肉"></li>
+<li data-g="2" data-u="11" data-en="potato" data-ja="じゃがいも"></li>
+<li data-g="2" data-u="11" data-en="onion" data-ja="たまねぎ"></li>
+<li data-g="2" data-u="11" data-en="carrot" data-ja="にんじん"></li>
+<li data-g="2" data-u="11" data-en="sugar" data-ja="砂糖"></li>
+<li data-g="2" data-u="11" data-en="bowl" data-ja="おわん・ボウル"></li>
+<li data-g="2" data-u="11" data-en="plate" data-ja="皿"></li>
+<li data-g="2" data-u="11" data-en="machine" data-ja="機械"></li>
+<li data-g="2" data-u="11" data-en="button" data-ja="ボタン"></li>
+<li data-g="2" data-u="11" data-en="screen" data-ja="画面"></li>
+<li data-g="2" data-u="11" data-en="line" data-ja="（電車の）路線・線"></li>
+<li data-g="2" data-u="11" data-en="exit" data-ja="出口"></li>
+<li data-g="2" data-u="11" data-en="tourist" data-ja="観光客"></li>
+<li data-g="2" data-u="11" data-en="schedule" data-ja="予定・予定表"></li>
+<li data-g="2" data-u="11" data-en="price" data-ja="値段"></li>
+<li data-g="2" data-u="11" data-en="left" data-ja="左"></li>
+<li data-g="2" data-u="11" data-en="mix" data-ja="まぜる"></li>
+<li data-g="2" data-u="11" data-en="boil" data-ja="ゆでる・わかす"></li>
+<li data-g="2" data-u="11" data-en="press" data-ja="押す"></li>
+<li data-g="2" data-u="11" data-en="discuss" data-ja="話し合う"></li>
+<li data-g="2" data-u="11" data-en="guess" data-ja="推測する・言い当てる"></li>
+<li data-g="2" data-u="11" data-en="describe" data-ja="（ようすを）説明する・描写する"></li>
+<li data-g="2" data-u="11" data-en="Would you like 〜?" data-ja="〜はいかがですか"></li>
+<li data-g="2" data-u="11" data-en="a piece of 〜" data-ja="1切れの〜・1枚の〜"></li>
+<li data-g="2" data-u="11" data-en="a glass of 〜" data-ja="コップ1杯の〜"></li>
+<li data-g="2" data-u="11" data-en="go straight" data-ja="まっすぐ行く"></li>
+<li data-g="2" data-u="11" data-en="change trains" data-ja="電車を乗りかえる"></li>
+<li data-g="2" data-u="11" data-en="sweet" data-ja="あまい"></li>
+<li data-g="2" data-u="11" data-en="spicy" data-ja="からい・香辛料のきいた"></li>
+<li data-g="2" data-u="11" data-en="correct" data-ja="正しい"></li>
+<li data-g="2" data-u="11" data-en="easily" data-ja="かんたんに"></li>
+<li data-g="2" data-u="12" data-en="coast" data-ja="海岸"></li>
+<li data-g="2" data-u="12" data-en="sand" data-ja="砂"></li>
+<li data-g="2" data-u="12" data-en="wave" data-ja="波"></li>
+<li data-g="2" data-u="12" data-en="shell" data-ja="貝がら"></li>
+<li data-g="2" data-u="12" data-en="trash" data-ja="ごみ"></li>
+<li data-g="2" data-u="12" data-en="activity" data-ja="活動"></li>
+<li data-g="2" data-u="12" data-en="habit" data-ja="習慣"></li>
+<li data-g="2" data-u="12" data-en="effort" data-ja="努力"></li>
+<li data-g="2" data-u="12" data-en="collection" data-ja="集めたもの・収集"></li>
+<li data-g="2" data-u="12" data-en="coin" data-ja="硬貨"></li>
+<li data-g="2" data-u="12" data-en="instrument" data-ja="楽器・器具"></li>
+<li data-g="2" data-u="12" data-en="topic" data-ja="話題"></li>
+<li data-g="2" data-u="12" data-en="article" data-ja="記事"></li>
+<li data-g="2" data-u="12" data-en="poster" data-ja="ポスター"></li>
+<li data-g="2" data-u="12" data-en="avoid" data-ja="避ける"></li>
+<li data-g="2" data-u="12" data-en="imagine" data-ja="想像する"></li>
+<li data-g="2" data-u="12" data-en="mind" data-ja="気にする・いやだと思う"></li>
+<li data-g="2" data-u="12" data-en="recycle" data-ja="再生利用する"></li>
+<li data-g="2" data-u="12" data-en="reduce" data-ja="減らす"></li>
+<li data-g="2" data-u="12" data-en="record" data-ja="記録する"></li>
+<li data-g="2" data-u="12" data-en="succeed" data-ja="成功する"></li>
+<li data-g="2" data-u="12" data-en="fail" data-ja="失敗する"></li>
+<li data-g="2" data-u="12" data-en="waste" data-ja="むだにする"></li>
+<li data-g="2" data-u="12" data-en="be good at 〜ing" data-ja="〜するのが得意だ"></li>
+<li data-g="2" data-u="12" data-en="be interested in 〜ing" data-ja="〜することに興味がある"></li>
+<li data-g="2" data-u="12" data-en="be afraid of 〜ing" data-ja="〜するのをおそれる・〜するのがこわい"></li>
+<li data-g="2" data-u="12" data-en="give up 〜ing" data-ja="〜するのをやめる・あきらめる"></li>
+<li data-g="2" data-u="12" data-en="How about 〜ing?" data-ja="〜してはどうですか"></li>
+<li data-g="2" data-u="12" data-en="look forward to 〜ing" data-ja="〜するのを楽しみにする"></li>
+<li data-g="2" data-u="12" data-en="instead of 〜ing" data-ja="〜する代わりに"></li>
+<li data-g="2" data-u="12" data-en="without 〜ing" data-ja="〜しないで"></li>
+<li data-g="2" data-u="12" data-en="take part in 〜" data-ja="〜に参加する"></li>
+<li data-g="2" data-u="12" data-en="Thank you for 〜ing." data-ja="〜してくれてありがとう。"></li>
+<li data-g="2" data-u="12" data-en="active" data-ja="活動的な"></li>
+<li data-g="2" data-u="12" data-en="creative" data-ja="創造力のある"></li>
+<li data-g="2" data-u="12" data-en="patient" data-ja="我慢強い"></li>
+<li data-g="2" data-u="13" data-en="than" data-ja="〜より"></li>
+<li data-g="2" data-u="13" data-en="more" data-ja="（数・量が）より多くの"></li>
+<li data-g="2" data-u="13" data-en="most" data-ja="（数・量が）いちばん多くの"></li>
+<li data-g="2" data-u="13" data-en="better" data-ja="よりよい"></li>
+<li data-g="2" data-u="13" data-en="best" data-ja="いちばん上手に・いちばんよく"></li>
+<li data-g="2" data-u="13" data-en="season" data-ja="季節"></li>
+<li data-g="2" data-u="13" data-en="autumn" data-ja="秋"></li>
+<li data-g="2" data-u="13" data-en="survey" data-ja="調査"></li>
+<li data-g="2" data-u="13" data-en="vote" data-ja="票"></li>
+<li data-g="2" data-u="13" data-en="number" data-ja="数・番号"></li>
+<li data-g="2" data-u="13" data-en="boy" data-ja="男の子・少年"></li>
+<li data-g="2" data-u="13" data-en="girl" data-ja="女の子・少女"></li>
+<li data-g="2" data-u="13" data-en="banana" data-ja="バナナ"></li>
+<li data-g="2" data-u="13" data-en="tower" data-ja="塔・タワー"></li>
+<li data-g="2" data-u="13" data-en="moon" data-ja="月"></li>
+<li data-g="2" data-u="13" data-en="planet" data-ja="惑星"></li>
+<li data-g="2" data-u="13" data-en="size" data-ja="大きさ・サイズ"></li>
+<li data-g="2" data-u="13" data-en="race" data-ja="競走・レース"></li>
+<li data-g="2" data-u="13" data-en="road" data-ja="道路"></li>
+<li data-g="2" data-u="13" data-en="bright" data-ja="明るい・かがやいている"></li>
+<li data-g="2" data-u="13" data-en="deep" data-ja="深い"></li>
+<li data-g="2" data-u="13" data-en="low" data-ja="低い"></li>
+<li data-g="2" data-u="13" data-en="weak" data-ja="弱い"></li>
+<li data-g="2" data-u="13" data-en="slow" data-ja="おそい・ゆっくりした"></li>
+<li data-g="2" data-u="13" data-en="smart" data-ja="頭のよい・かしこい"></li>
+<li data-g="2" data-u="13" data-en="gentle" data-ja="やさしい・おだやかな"></li>
+<li data-g="2" data-u="13" data-en="black" data-ja="黒い"></li>
+<li data-g="2" data-u="13" data-en="much ＋ 比較級" data-ja="ずっと〜だ"></li>
+<li data-g="2" data-u="13" data-en="one of the ＋ 最上級 ＋ 複数形" data-ja="いちばん…なものの1つ"></li>
+<li data-g="2" data-u="13" data-en="like 〜 better than …" data-ja="…より〜のほうが好きだ"></li>
+<li data-g="2" data-u="13" data-en="like 〜 the best" data-ja="〜がいちばん好きだ"></li>
+<li data-g="2" data-u="14" data-en="modern" data-ja="現代的な、新しい"></li>
+<li data-g="2" data-u="14" data-en="common" data-ja="よくある、ふつうの"></li>
+<li data-g="2" data-u="14" data-en="valuable" data-ja="価値のある、貴重な"></li>
+<li data-g="2" data-u="14" data-en="helpful" data-ja="役に立つ、助けになる"></li>
+<li data-g="2" data-u="14" data-en="possible" data-ja="できる、ありえる"></li>
+<li data-g="2" data-u="14" data-en="rare" data-ja="めずらしい、まれな"></li>
+<li data-g="2" data-u="14" data-en="thick" data-ja="厚い、太い"></li>
+<li data-g="2" data-u="14" data-en="thin" data-ja="うすい、細い"></li>
+<li data-g="2" data-u="14" data-en="countryside" data-ja="田舎、郊外"></li>
+<li data-g="2" data-u="14" data-en="view" data-ja="ながめ、景色"></li>
+<li data-g="2" data-u="14" data-en="population" data-ja="人口"></li>
+<li data-g="2" data-u="14" data-en="area" data-ja="地域、面積"></li>
+<li data-g="2" data-u="14" data-en="traffic" data-ja="交通、車の流れ"></li>
+<li data-g="2" data-u="14" data-en="market" data-ja="市場、店"></li>
+<li data-g="2" data-u="14" data-en="factory" data-ja="工場"></li>
+<li data-g="2" data-u="14" data-en="height" data-ja="高さ、身長"></li>
+<li data-g="2" data-u="14" data-en="weight" data-ja="重さ"></li>
+<li data-g="2" data-u="14" data-en="length" data-ja="長さ"></li>
+<li data-g="2" data-u="14" data-en="distance" data-ja="きょり"></li>
+<li data-g="2" data-u="14" data-en="speed" data-ja="速さ"></li>
+<li data-g="2" data-u="14" data-en="graph" data-ja="グラフ"></li>
+<li data-g="2" data-u="14" data-en="average" data-ja="平均"></li>
+<li data-g="2" data-u="14" data-en="percent" data-ja="パーセント"></li>
+<li data-g="2" data-u="14" data-en="total" data-ja="合計"></li>
+<li data-g="2" data-u="14" data-en="compare" data-ja="くらべる"></li>
+<li data-g="2" data-u="14" data-en="cost" data-ja="（お金が）かかる"></li>
+<li data-g="2" data-u="14" data-en="increase" data-ja="ふえる、ふやす"></li>
+<li data-g="2" data-u="14" data-en="measure" data-ja="はかる、測定する"></li>
+<li data-g="2" data-u="14" data-en="weigh" data-ja="重さが〜ある"></li>
+<li data-g="2" data-u="14" data-en="rise" data-ja="のぼる、上がる"></li>
+<li data-g="2" data-u="14" data-en="as 〜 as …" data-ja="…と同じくらい〜だ"></li>
+<li data-g="2" data-u="14" data-en="not as 〜 as …" data-ja="…ほど〜ではない"></li>
+<li data-g="2" data-u="14" data-en="more ＋ 長い形容詞 ＋ than" data-ja="…より〜だ"></li>
+<li data-g="2" data-u="14" data-en="the most ＋ 長い形容詞" data-ja="いちばん〜だ"></li>
+<li data-g="2" data-u="14" data-en="as 〜 as possible" data-ja="できるだけ〜"></li>
+<li data-g="2" data-u="14" data-en="twice as 〜 as …" data-ja="…の2倍〜だ"></li>
+<li data-g="2" data-u="15" data-en="break" data-ja="こわす、割る"></li>
+<li data-g="2" data-u="15" data-en="deliver" data-ja="配達する、届ける"></li>
+<li data-g="2" data-u="15" data-en="destroy" data-ja="こわす、破壊する"></li>
+<li data-g="2" data-u="15" data-en="discover" data-ja="発見する"></li>
+<li data-g="2" data-u="15" data-en="invent" data-ja="発明する"></li>
+<li data-g="2" data-u="15" data-en="produce" data-ja="生産する、作り出す"></li>
+<li data-g="2" data-u="15" data-en="repair" data-ja="修理する、直す"></li>
+<li data-g="2" data-u="15" data-en="century" data-ja="世紀、100年"></li>
+<li data-g="2" data-u="15" data-en="ceremony" data-ja="式、儀式"></li>
+<li data-g="2" data-u="15" data-en="graduation" data-ja="卒業"></li>
+<li data-g="2" data-u="15" data-en="company" data-ja="会社"></li>
+<li data-g="2" data-u="15" data-en="product" data-ja="製品、産物"></li>
+<li data-g="2" data-u="15" data-en="fire" data-ja="火事、火"></li>
+<li data-g="2" data-u="15" data-en="guide" data-ja="案内人、ガイド"></li>
+<li data-g="2" data-u="15" data-en="hall" data-ja="会館、ホール"></li>
+<li data-g="2" data-u="15" data-en="invention" data-ja="発明、発明品"></li>
+<li data-g="2" data-u="15" data-en="leader" data-ja="リーダー、指導者"></li>
+<li data-g="2" data-u="15" data-en="mail" data-ja="郵便、郵便物"></li>
+<li data-g="2" data-u="15" data-en="package" data-ja="小包、包み"></li>
+<li data-g="2" data-u="15" data-en="stadium" data-ja="競技場、スタジアム"></li>
+<li data-g="2" data-u="15" data-en="statue" data-ja="像"></li>
+<li data-g="2" data-u="15" data-en="stone" data-ja="石"></li>
+<li data-g="2" data-u="15" data-en="telephone" data-ja="電話"></li>
+<li data-g="2" data-u="15" data-en="fruit" data-ja="くだもの"></li>
+<li data-g="2" data-u="15" data-en="ancient" data-ja="古代の、大昔の"></li>
+<li data-g="2" data-u="15" data-en="wooden" data-ja="木でできた、木製の"></li>
+<li data-g="2" data-u="15" data-en="be ＋ 過去分詞" data-ja="〜される、〜された"></li>
+<li data-g="2" data-u="15" data-en="be ＋ 過去分詞 ＋ by 〜" data-ja="〜によって…される"></li>
+<li data-g="2" data-u="15" data-en="be ＋ not ＋ 過去分詞" data-ja="〜されない"></li>
+<li data-g="2" data-u="15" data-en="will be ＋ 過去分詞" data-ja="〜されるだろう"></li>
+<li data-g="2" data-u="15" data-en="can be ＋ 過去分詞" data-ja="〜されることができる"></li>
+<li data-g="2" data-u="15" data-en="all over 〜" data-ja="〜じゅうで"></li>
+<li data-g="2" data-u="16" data-en="cover" data-ja="おおう、かぶせる"></li>
+<li data-g="2" data-u="16" data-en="fill" data-ja="満たす、いっぱいにする"></li>
+<li data-g="2" data-u="16" data-en="surround" data-ja="囲む"></li>
+<li data-g="2" data-u="16" data-en="serve" data-ja="（食事を）出す"></li>
+<li data-g="2" data-u="16" data-en="material" data-ja="材料"></li>
+<li data-g="2" data-u="16" data-en="metal" data-ja="金属"></li>
+<li data-g="2" data-u="16" data-en="wood" data-ja="木、木材"></li>
+<li data-g="2" data-u="16" data-en="cotton" data-ja="綿"></li>
+<li data-g="2" data-u="16" data-en="wool" data-ja="羊毛、毛糸"></li>
+<li data-g="2" data-u="16" data-en="silk" data-ja="絹"></li>
+<li data-g="2" data-u="16" data-en="cloth" data-ja="布"></li>
+<li data-g="2" data-u="16" data-en="cheese" data-ja="チーズ"></li>
+<li data-g="2" data-u="16" data-en="ice" data-ja="氷"></li>
+<li data-g="2" data-u="16" data-en="oil" data-ja="油"></li>
+<li data-g="2" data-u="16" data-en="tool" data-ja="道具"></li>
+<li data-g="2" data-u="16" data-en="step" data-ja="手順、段階"></li>
+<li data-g="2" data-u="16" data-en="thousand" data-ja="千"></li>
+<li data-g="2" data-u="16" data-en="bamboo" data-ja="竹"></li>
+<li data-g="2" data-u="16" data-en="noon" data-ja="正午"></li>
+<li data-g="2" data-u="16" data-en="flag" data-ja="旗"></li>
+<li data-g="2" data-u="16" data-en="interested" data-ja="興味をもっている"></li>
+<li data-g="2" data-u="16" data-en="pleased" data-ja="満足している、うれしく思う"></li>
+<li data-g="2" data-u="16" data-en="born" data-ja="生まれた"></li>
+<li data-g="2" data-u="16" data-en="be interested in 〜" data-ja="〜に興味がある"></li>
+<li data-g="2" data-u="16" data-en="be surprised at 〜" data-ja="〜に驚く"></li>
+<li data-g="2" data-u="16" data-en="be pleased with 〜" data-ja="〜に満足している"></li>
+<li data-g="2" data-u="16" data-en="be covered with 〜" data-ja="〜でおおわれている"></li>
+<li data-g="2" data-u="16" data-en="be filled with 〜" data-ja="〜でいっぱいである"></li>
+<li data-g="2" data-u="16" data-en="be surrounded by 〜" data-ja="〜に囲まれている"></li>
+<li data-g="2" data-u="16" data-en="be known to 〜" data-ja="〜に知られている"></li>
+<li data-g="2" data-u="16" data-en="be known for 〜" data-ja="〜で知られている"></li>
+<li data-g="2" data-u="16" data-en="be born in 〜" data-ja="〜で生まれる"></li>
+<li data-g="2" data-u="16" data-en="be made of 〜" data-ja="〜で作られている（材料が見える）"></li>
+<li data-g="2" data-u="16" data-en="be made from 〜" data-ja="〜から作られている（材料が変わる）"></li>
+<li data-g="2" data-u="16" data-en="be made in 〜" data-ja="〜で作られている（場所）"></li>
 </ol>
 </details>
 
@@ -818,14 +1386,23 @@ ol#words>li::after{content:attr(data-ja);text-align:right;color:var(--ink-2);}
 const UNITS=["be動詞の肯定文","be動詞の否定文・疑問文","This / That / It と指示表現","名詞の複数形と a / an / the","一般動詞の肯定文","一般動詞の否定文・疑問文","be動詞と一般動詞の使い分け","代名詞（主格・所有格・目的格・所有代名詞）","三人称単数現在（-s / does / doesn't）","疑問詞（what / who / where など8語）","時刻・曜日・日付・数の表現","命令文・Let's","助動詞 can","現在進行形","be動詞の過去形（was / were）","一般動詞の過去形"];
 const PARTS=[[1,4],[5,7],[8,11],[12,16]];
 const PART_NAMES=["第1部 be動詞と名詞","第2部 一般動詞","第3部 語のはたらき","第4部 表現を広げる"];
+const UNITS_G2=["過去進行形","未来を表す will","未来を表す be going to","接続詞 when / if / because / that","There is / There are","助動詞 must / have to","助動詞 may / should と Will you / Shall I / Shall we","目的語が2つの文（SVOO）と 補語のある文（SVOC）","不定詞（名詞的用法）","不定詞（副詞的用法）","不定詞（形容詞的用法）と 疑問詞 + to 不定詞","動名詞","比較級・最上級（-er / -est）","more / most と as 〜 as","受動態（肯定・否定・疑問）","受動態の発展（by 以外の前置詞・過去形との識別）"];
+const PARTS_G2=[[1,4],[5,8],[9,12],[13,16]];
+const PART_NAMES_G2=["第1部 過去進行形・未来・接続詞","第2部 There is・助動詞・文型","第3部 不定詞・動名詞","第4部 比較・受動態"];
+/* 学年ごとの単元名・部。中1の URL（?unit=5 など）はそのまま、中2は ?unit=2-5 ／ ?part=2-1 ／ ?grade=2 */
+const GR={1:{name:"中1",units:UNITS,parts:PARTS,names:PART_NAMES},2:{name:"中2",units:UNITS_G2,parts:PARTS_G2,names:PART_NAMES_G2}};
 
 const $=id=>document.getElementById(id);
 const W=[...document.querySelectorAll("#words > li")].map(li=>({
   g:+li.dataset.g, u:+li.dataset.u, en:li.dataset.en, ja:li.dataset.ja
 }));
-const HAS=new Set(W.map(w=>w.u));
+const has=(g,u)=>W.some(w=>w.g===g&&w.u===u);
+/* 「be ＋ 過去分詞」のように日本語の記号や語（ひらがな以降の文字。〜 と … は含まない）を含む見出しは、文型の形なので
+   日本語→英語では出さない（入力しようがないため）。英語→日本語では出す */
+const isForm=w=>[...w.en].some(c=>c.charCodeAt(0)>=12352);
 
-const S={scope:"unit",unit:1,part:1,dir:"ej",num:"10"};
+const S={grade:1,scope:"unit",unit:1,part:1,dir:"ej",num:"10"};
+const G=()=>GR[S.grade];
 let queue=[],i=0,log=[],lastPool=[],answered=false;
 
 /* ---------- 設定画面 ---------- */
@@ -836,34 +1413,41 @@ function seg(id,key){
   });
 }
 function buildChips(){
-  $("unitChips").innerHTML=UNITS.map((t,k)=>{
-    const u=k+1,on=HAS.has(u);
+  $("unitChips").innerHTML=G().units.map((t,k)=>{
+    const u=k+1,on=has(S.grade,u);
     return `<button data-u="${u}" ${on?"":"disabled"} title="${esc(t)}">${u}</button>`;
   }).join("");
   $("unitChips").querySelectorAll("button").forEach(b=>{
     if(!b.disabled) b.onclick=()=>{S.unit=+b.dataset.u;paint();};
   });
-  $("partChips").innerHTML=PARTS.map(([a,b],k)=>{
-    const n=W.filter(w=>w.u>=a&&w.u<=b).length;
-    return `<button data-p="${k+1}" ${n?"":"disabled"}>${esc(PART_NAMES[k])}<span class="p-range">　Unit ${a}〜${b}　${n}語</span></button>`;
+  $("partChips").innerHTML=G().parts.map(([a,b],k)=>{
+    const n=W.filter(w=>w.g===S.grade&&w.u>=a&&w.u<=b).length;
+    return `<button data-p="${k+1}" ${n?"":"disabled"}>${esc(G().names[k])}<span class="p-range">　Unit ${a}〜${b}　${n}語</span></button>`;
   }).join("");
   $("partChips").querySelectorAll("button").forEach(b=>{
     if(!b.disabled) b.onclick=()=>{S.part=+b.dataset.p;paint();};
   });
 }
+function scopePool(){
+  const g=W.filter(w=>w.g===S.grade);
+  if(S.scope==="unit") return g.filter(w=>w.u===S.unit);
+  if(S.scope==="part"){const[a,b]=G().parts[S.part-1];return g.filter(w=>w.u>=a&&w.u<=b);}
+  return g;
+}
 function pool(){
-  if(S.scope==="unit") return W.filter(w=>w.u===S.unit);
-  if(S.scope==="part"){const[a,b]=PARTS[S.part-1];return W.filter(w=>w.u>=a&&w.u<=b);}
-  return W.slice();
+  const p=scopePool();
+  return S.dir==="je"?p.filter(w=>!isForm(w)):p;
 }
 function rangeLabel(){
-  if(S.scope==="unit") return `中1 Unit ${S.unit}　${UNITS[S.unit-1]}`;
-  if(S.scope==="part"){const[a,b]=PARTS[S.part-1];return `中1 ${PART_NAMES[S.part-1]}（Unit ${a}〜${b}）`;}
-  return "中1 全体";
+  const gn=G().name;
+  if(S.scope==="unit") return `${gn} Unit ${S.unit}　${G().units[S.unit-1]}`;
+  if(S.scope==="part"){const[a,b]=G().parts[S.part-1];return `${gn} ${G().names[S.part-1]}（Unit ${a}〜${b}）`;}
+  return `${gn} 全体`;
 }
 function paint(){
-  for(const k of ["scope","dir","num"])
-    $(k).querySelectorAll("button[data-v]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===S[k])));
+  for(const k of ["grade","scope","dir","num"])
+    $(k).querySelectorAll("button[data-v]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===String(S[k]))));
+  $("allBtn").textContent=`${G().name}全体`;
   $("unitChips").hidden=S.scope!=="unit";
   $("partChips").hidden=S.scope!=="part";
   $("unitChips").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.u===S.unit)));
@@ -872,11 +1456,14 @@ function paint(){
   const ask=S.num==="all"?n:Math.min(n,+S.num);
   $("countLine").innerHTML=`${esc(rangeLabel())}<br>この範囲 <b>${n}語</b> から <b>${ask}問</b>`;
   $("startBtn").disabled=n===0;
+  const nf=S.dir==="je"?scopePool().length-n:0;
+  $("formNote").hidden=nf===0;
+  $("formNote").textContent=nf?`「be ＋ 過去分詞」のような文型の形の見出し ${nf}語は、日本語→英語では出しません。`:"";
 }
 
 /* ---------- 出題 ---------- */
 const shuffle=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;};
-const norm=s=>s.toLowerCase().replace(/[〜~]/g,"").replace(/[.,!?。、]/g,"").replace(/\s+/g," ").trim();
+const norm=s=>s.toLowerCase().replace(/[〜~]\s*(ing\b)?/g," ").replace(/[.,!?。、…]/g,"").replace(/\s+/g," ").trim();
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 function start(words){
@@ -889,7 +1476,7 @@ function ask(){
   const w=queue[i];answered=false;
   $("qPos").textContent=`${i+1} / ${queue.length}`;
   $("qBar").style.width=`${i/queue.length*100}%`;
-  $("qTag").textContent=`Unit ${w.u}`;
+  $("qTag").textContent=w.g===1?`Unit ${w.u}`:`${GR[w.g].name} Unit ${w.u}`;
   $("nextBtn").hidden=true;
   if(S.dir==="ej"){
     $("qDir").textContent="英語 → 日本語";
@@ -942,6 +1529,10 @@ function finish(){
 function show(id){["setup","quiz","result"].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0);}
 
 /* ---------- イベント ---------- */
+$("grade").querySelectorAll("button[data-v]").forEach(b=>{
+  if(b.disabled) return;
+  b.onclick=()=>{const g=+b.dataset.v;if(g!==S.grade){S.grade=g;S.unit=1;S.part=1;buildChips();}paint();};
+});
 seg("scope","scope");seg("dir","dir");seg("num","num");buildChips();
 $("startBtn").onclick=()=>start(pool());
 $("checkBtn").onclick=check;
@@ -985,14 +1576,18 @@ document.querySelectorAll("#launch [data-go]").forEach(b=>b.onclick=()=>{
 });
 $("lSetup").onclick=()=>{$("launch").hidden=true;};
 
-/* 目次・単語帳から ?unit=5 / ?part=2 / ?grade=1 で開ける */
+/* 目次・単語帳から開ける。中1は ?unit=5 / ?part=2 / ?grade=1（生徒に渡した URL を切らない）、
+   中2は ?unit=2-5 / ?part=2-1 / ?grade=2。?g=2 は設定画面を中2を選んだ状態で開く */
 const q=new URLSearchParams(location.search);
-const qu=+q.get("unit"),qp=+q.get("part");
-if(qu>=1&&qu<=UNITS.length&&HAS.has(qu)){S.scope="unit";S.unit=qu;S.num="all";paint();openLaunch(false);}
-else if(qp>=1&&qp<=PARTS.length){S.scope="part";S.part=qp;paint();openLaunch(true);}
-else if(q.get("grade")==="1"){S.scope="all";paint();openLaunch(true);}
+const gp=v=>{const m=/^(?:(\d)-)?(\d+)$/.exec(v||"");if(!m)return null;const g=m[1]?+m[1]:1;return GR[g]?{g,n:+m[2]}:null;};
+const qu=gp(q.get("unit")),qp=gp(q.get("part")),qg=+q.get("grade")||+q.get("g");
+const setG=g=>{if(GR[g]&&g!==S.grade){S.grade=g;buildChips();}};
+if(qu&&qu.n>=1&&qu.n<=GR[qu.g].units.length&&has(qu.g,qu.n)){setG(qu.g);S.scope="unit";S.unit=qu.n;S.num="all";paint();openLaunch(false);}
+else if(qp&&qp.n>=1&&qp.n<=GR[qp.g].parts.length){setG(qp.g);S.scope="part";S.part=qp.n;paint();openLaunch(true);}
+else if(q.get("grade")&&GR[qg]&&W.some(w=>w.g===qg)){setG(qg);S.scope="all";paint();openLaunch(true);}
 else{
-  if(qu>=1&&qu<=UNITS.length){S.scope="unit";S.unit=qu;}
+  if(GR[qg]&&W.some(w=>w.g===qg)) setG(qg);
+  if(qu&&qu.n>=1&&qu.n<=GR[qu.g].units.length){setG(qu.g);S.scope="unit";S.unit=qu.n;}
   paint();
 }
 </script>
