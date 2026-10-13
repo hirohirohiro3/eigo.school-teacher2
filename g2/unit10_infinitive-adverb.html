@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 10　不定詞（副詞的用法）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab10_infinitive-adverb.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 10</p>
+<h1 class="unit-title">不定詞（副詞的用法）</h1>
+<p class="unit-lead">Unit 9 では <span class="en">to</span> ＋ 動詞の原形が「〜すること」という名詞のまとまりになることを学びました。同じ <span class="en">to</span> ＋ 原形は、<strong>動詞に情報を足すはたらき</strong>もします。<span class="en">I went to the park to play tennis.</span> は「テニスをするために公園へ行った」です。この単元では「<strong>〜するために</strong>」（目的）と「<strong>〜して</strong>」（原因）の2つを扱います。形は Unit 9 とまったく同じで、<strong>置く場所と意味</strong>が変わるだけです。</p>
+</header>
+
+<h2><span>to ＋ 原形 ＝「〜するために」（目的）</span></h2>
+
+<p>中1 Unit 16 で学んだ過去の文 <span class="en">I went to the park.</span> は「公園へ行った」です。この文に「何をするために行ったのか」を足したいときがあります。そこで文のうしろに <span class="en">to</span> ＋ 原形を置きます。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">I went to the park.</span></span>
+<span class="tf-arrow">↓　「何をするために」を足す</span>
+<span class="tf-line"><span class="en">I went to the park to play tennis.</span></span>
+</div>
+
+<p>足した <span class="en">to play tennis</span> は「テニスをするために」です。<strong>文の骨組み（だれが・どうした）は変わりません。</strong><span class="en">I went to the park.</span> だけでも文として成り立ち、<span class="en">to play tennis</span> はそこに目的を足しているだけです。ここが Unit 9 との大きな違いです。Unit 9 の <span class="en">I want to play tennis.</span> は、<span class="en">to play tennis</span> を取ると <span class="en">I want.</span> になって文が成り立ちませんでした。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>意味</th><th>to 〜 を取ると</th></tr>
+<tr><td><span class="en">I want to play tennis.</span></td><td>テニスをすることを望む（Unit 9）</td><td><span class="en">I want.</span>　成り立たない</td></tr>
+<tr><td><span class="en">I went to the park to play tennis.</span></td><td>テニスをするために公園へ行った</td><td><span class="en">I went to the park.</span>　成り立つ</td></tr>
+</table>
+</div>
+
+<p><strong>なぜ場所が文のうしろなのか。</strong>目的は「どうした」に情報を足すものなので、動詞のまとまりが言い終わったあとに置きます。日本語は「テニスをするために公園へ行った」と目的を先に言いますが、英語は「公園へ行った → テニスをするために」の順です。<strong>語順が日本語と逆になる</strong>ことを覚えてください。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>例文</th><th>意味</th></tr>
+<tr><td><span class="en">My mother went to the supermarket to buy some eggs.</span></td><td>母は卵を買うためにスーパーへ行った。</td></tr>
+<tr><td><span class="en">I got up early to catch the first train.</span></td><td>私は始発電車に乗るために早く起きた。</td></tr>
+<tr><td><span class="en">He used gestures to help me.</span></td><td>彼は私を助けるためにジェスチャーを使った。</td></tr>
+<tr><td><span class="en">My brother studies hard to enter college.</span></td><td>兄は大学に入るために一生懸命勉強している。</td></tr>
+<tr><td><span class="en">We turn off the lights to save energy.</span></td><td>私たちはエネルギーを節約するために電気を消す。</td></tr>
+</table>
+</div>
+
+<h3>Why 〜? の答えに使う</h3>
+
+<p><span class="en">Why 〜?</span>（なぜ）とたずねられたとき、答え方は2つあります。<strong>目的を答えるなら <span class="en">To</span> ＋ 原形</strong>で始め、理由を答えるなら中2 Unit 4 の <span class="en">Because</span> を使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>たずね方</th><th>答え方</th><th>意味</th></tr>
+<tr><td rowspan="2"><span class="en">Why did you get up so early?</span></td><td><span class="en">To catch the first train.</span></td><td>始発電車に乗るためです。</td></tr>
+<tr><td><span class="en">Because I wanted to catch the first train.</span></td><td>始発電車に乗りたかったからです。</td></tr>
+<tr><td><span class="en">Why do you study English?</span></td><td><span class="en">To practice English.</span> ／ <span class="en">To talk with people in other countries.</span></td><td>英語を練習するためです。</td></tr>
+</table>
+</div>
+
+<p><span class="en">To</span> で答えるときは主語も動詞も言いません。<span class="en">For catch the first train.</span> は誤りです。<strong><span class="en">for</span> のうしろには名詞が来る</strong>ので、動詞を置くことはできません。「〜するために」と動詞を続けるときは <span class="en">to</span> ＋ 原形です。</p>
+
+<h2><span>to ＋ 原形 ＝「〜して」（原因）</span></h2>
+
+<p>気持ちを表す形容詞のうしろに <span class="en">to</span> ＋ 原形を置くと、<strong>その気持ちになった原因</strong>を表します。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">I was happy.</span></span>
+<span class="tf-arrow">↓　「何があってうれしかったのか」を足す</span>
+<span class="tf-line"><span class="en">I was happy to hear his words.</span></span>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>例文</th></tr>
+<tr><td><span class="en">be happy to 〜</span></td><td>〜してうれしい</td><td><span class="en">I was happy to hear his words.</span></td></tr>
+<tr><td><span class="en">be glad to 〜</span></td><td>〜してうれしい</td><td><span class="en">I am very glad to meet your family.</span></td></tr>
+<tr><td><span class="en">be sad to 〜</span></td><td>〜して悲しい</td><td><span class="en">He was very sad to hear the news.</span></td></tr>
+<tr><td><span class="en">be surprised to 〜</span></td><td>〜して驚く</td><td><span class="en">My little sister was very surprised to see the big dog.</span></td></tr>
+<tr><td><span class="en">be excited to 〜</span></td><td>〜してわくわくする</td><td><span class="en">We were excited to visit the old castle.</span></td></tr>
+</table>
+</div>
+
+<p>組み合わせる形容詞は <span class="en">happy</span> ／ <span class="en">glad</span> ／ <span class="en">sad</span> ／ <span class="en">surprised</span> ／ <span class="en">excited</span> のように<strong>気持ちを表す語</strong>です。<span class="en">I was busy to go out.</span> のような使い方はしません。<span class="en">busy</span> は気持ちを表す語ではないからです。</p>
+
+<p><strong>なぜ同じ形で2つの意味になるのか。</strong>どちらも「動詞や形容詞に情報を足す」はたらきで、足す中身が<strong>目的</strong>か<strong>原因</strong>かの違いです。見分けるときは、前に来ている語が<strong>動作を表す動詞か、気持ちを表す形容詞か</strong>を見ます。動詞の文なら目的、気持ちを表す形容詞のうしろなら原因です。</p>
+
+<h2><span>前置詞の to と不定詞の to</span></h2>
+
+<p><span class="en">I went to the park to play tennis.</span> には <span class="en">to</span> が2つあります。この2つは<strong>別のもの</strong>です。</p>
+
+<div class="diagram is-general">
+<p class="diagram-cap">同じ文の2つの to　うしろの語を見て分ける</p>
+<div class="flow">
+<span class="node">to the park<span class="node-label">前置詞　うしろは名詞</span></span>
+<span class="link">
+<span class="link-word">≠</span>
+<span class="rail"></span>
+</span>
+<span class="node">to play<span class="node-label">不定詞　うしろは原形</span></span>
+</div>
+</div>
+
+<p>1つ目の <span class="en">to the park</span> の <span class="en">to</span> は「〜へ」を表す<strong>前置詞</strong>で、うしろは名詞です。2つ目の <span class="en">to play</span> の <span class="en">to</span> は<strong>不定詞</strong>の <span class="en">to</span> で、うしろは動詞の原形です。<strong>見分け方は1つだけです。<span class="en">to</span> のすぐうしろの語が名詞なら前置詞、動詞の原形なら不定詞です。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>to のうしろ</th><th>はたらき</th><th>例</th></tr>
+<tr><td><span class="en">to the park</span></td><td>名詞</td><td>前置詞（〜へ）</td><td><span class="en">I go to the park every Sunday.</span></td></tr>
+<tr><td><span class="en">to school</span></td><td>名詞</td><td>前置詞（〜へ）</td><td><span class="en">I walk to school with my sister.</span></td></tr>
+<tr><td><span class="en">to play</span></td><td>動詞の原形</td><td>不定詞（〜するために）</td><td><span class="en">I went to the park to play tennis.</span></td></tr>
+<tr><td><span class="en">to buy</span></td><td>動詞の原形</td><td>不定詞（〜するために）</td><td><span class="en">My mother went to the supermarket to buy some eggs.</span></td></tr>
+</table>
+</div>
+
+<p>この見分け方は Unit 9 の境界事例と同じです。Unit 9 では <span class="en">I want to go to the park.</span> の2つの <span class="en">to</span> を分けました。今回は目的の <span class="en">to</span> でも同じ見方が使えます。</p>
+
+<h2><span>3つのはたらきを並べる</span></h2>
+
+<p>ここまでに出た <span class="en">to</span> ＋ 原形を、はたらきごとに並べます。<strong>形はすべて同じ</strong>で、文のどこに置かれているかで意味が決まります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>はたらき</th><th>意味</th><th>置く場所</th><th>例文</th></tr>
+<tr><td>名詞的用法（Unit 9）</td><td>〜すること</td><td>動詞の目的語・補語・主語</td><td><span class="en">I want to play tennis.</span></td></tr>
+<tr><td>副詞的用法（目的）</td><td>〜するために</td><td>文のうしろ</td><td><span class="en">I went to the park to play tennis.</span></td></tr>
+<tr><td>副詞的用法（原因）</td><td>〜して</td><td>気持ちを表す形容詞のうしろ</td><td><span class="en">I was happy to play tennis.</span></td></tr>
+</table>
+</div>
+
+<p>用法の名前を覚える必要はありません。<strong>日本語に直すときに「〜すること」「〜するために」「〜して」のどれが合うかを選べれば十分です。</strong>入試でも用法の名前は問われず、和訳や並べかえの形で問われます。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">文の骨組みを先に作る</span>
+<span class="step-d">だれが・どうした（・何を）を先に書きます。<span class="en">I went to the park</span> ／ <span class="en">I was happy</span> までが骨組みです。</span>
+</li>
+<li>
+<span class="step-t">足したい中身が目的か原因かを決める</span>
+<span class="step-d">「何をするために」なら目的、「何があってその気持ちになったか」なら原因です。</span>
+</li>
+<li>
+<span class="step-t">骨組みのうしろに to ＋ 原形を置く</span>
+<span class="step-d"><span class="en">to</span> のうしろは主語や時に関係なく原形です。<span class="en">to played</span> ／ <span class="en">to plays</span> にはしません。</span>
+</li>
+<li>
+<span class="step-t">最後に to のうしろをもう一度見る</span>
+<span class="step-d">動詞の原形が来ているかを確かめます。名詞が来ていれば、それは前置詞の <span class="en">to</span> です。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>「〜すること」と「〜するために」の見分け</h3>
+<p><span class="en">I want to see my uncle.</span> は「おじに会いたい」で、<span class="en">to see my uncle</span> は <span class="en">want</span> の目的語です（名詞的用法）。<span class="en">I went to the airport to see my uncle.</span> は「おじに会うために空港へ行った」で、<span class="en">to see my uncle</span> は目的を足しています。<strong><span class="en">to</span> ＋ 原形を取ってみて、文が成り立つかどうか</strong>で分けられます。</p>
+
+<h3>for ＋ 動詞は使えない</h3>
+<p>日本語の「〜のために」につられて <span class="en">for</span> を使う間違いが多く出ます。<span class="en">for</span> は前置詞なので、うしろには名詞しか置けません。<span class="en">for your health</span>（健康のために）は正しく、<span class="en">for catch the train</span> は誤りです。動詞を続けるときは <span class="en">to</span> ＋ 原形にします。</p>
+
+<h3>enter のうしろに to は置かない</h3>
+<p><span class="en">enter</span>（入る）は、うしろに場所を表す名詞をそのまま置きます。<span class="en">He studies hard to enter college.</span> が正しく、<span class="en">to enter to college</span> は誤りです。<span class="en">go</span> ／ <span class="en">come</span> ／ <span class="en">walk</span> は <span class="en">to</span> ＋ 場所の形をとりますが、<span class="en">enter</span> ／ <span class="en">visit</span> ／ <span class="en">reach</span> は <span class="en">to</span> をとりません。</p>
+
+<h3>気持ちを表さない形容詞には使わない</h3>
+<p>原因の用法は気持ちを表す形容詞と組みます。<span class="en">I was glad to get your letter.</span> は正しいですが、<span class="en">I was free to get your letter.</span> のようには言いません。形容詞が気持ちを表しているかを確かめてください。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>目的の位置に <span class="en">to</span> ＋ 原形を置けるか（<span class="en">to buy</span> ／ <span class="en">buy</span> ／ <span class="en">for buy</span>）</td></tr>
+<tr><td>選択</td><td><span class="en">Why 〜?</span> への答えとして <span class="en">To</span> ＋ 原形を選べるか</td></tr>
+<tr><td>並べかえ</td><td>目的の <span class="en">to</span> ＋ 原形を文のうしろに置く語順。<span class="en">be glad to 〜</span> の語順</td></tr>
+<tr><td>誤文訂正</td><td><span class="en">to</span> の抜け（<span class="en">glad hear</span>）、<span class="en">for</span> ＋ 動詞、<span class="en">to</span> のうしろの形</td></tr>
+<tr><td>英作文</td><td>「〜するために…する」を <span class="en">to</span> ＋ 原形で書く。語数の指定がつくことが多い</td></tr>
+<tr><td>読解</td><td>だれが何のためにそれをしたのかを読み取る。<span class="en">Why 〜?</span> の問いに <span class="en">To 〜.</span> で答える</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I went to the park to played tennis.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I went to the park to <span class="gen-w">play</span> tennis.</span></div>
+<p class="contrast-why">過去を表しているのは文の動詞 <span class="en">went</span> です。<span class="en">to</span> のうしろは過去の文でも原形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I got up early for catch the first train.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I got up early <span class="gen-w">to catch</span> the first train.</span></div>
+<p class="contrast-why"><span class="en">for</span> は前置詞なので、うしろに動詞を置けません。「〜するために」は <span class="en">to</span> ＋ 原形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My mother was very glad hear the news.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My mother was very glad <span class="gen-w">to hear</span> the news.</span></div>
+<p class="contrast-why">気持ちの原因を足すときも <span class="en">to</span> が要ります。<span class="en">glad</span> のうしろに動詞をそのまま続けることはできません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">My brother studies hard to enter to college.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">My brother studies hard to <span class="gen-w">enter college</span>.</span></div>
+<p class="contrast-why"><span class="en">enter</span> はうしろに場所を表す名詞をそのまま置きます。<span class="en">to</span> を2つ重ねません。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p><span class="en">to</span> ＋ 原形を<strong>文のうしろ</strong>に置けば「〜するために」（目的）、<strong>気持ちを表す形容詞のうしろ</strong>に置けば「〜して」（原因）です。形は Unit 9 と同じで、<span class="en">to</span> のうしろは必ず原形です。<span class="en">to</span> のすぐうしろの語が名詞なら前置詞の <span class="en">to</span>、動詞の原形なら不定詞の <span class="en">to</span> です。<span class="en">Why 〜?</span> への答えは <span class="en">To</span> ＋ 原形で始めます。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">I went to the park to play tennis.</span>／<span class="en">I got up early to catch the first train.</span>／<span class="en">My mother went to the supermarket to buy some eggs.</span>／<span class="en">I was happy to hear his words.</span>／<span class="en">He was very sad to hear the news.</span>／<span class="en">My little sister was very surprised to see the big dog.</span>／<span class="en">We were excited to visit the old castle.</span>／<span class="en">I walk to school with my sister.</span>／<span class="en">I go to the park every Sunday.</span>　文の骨組みはどこまでか、<span class="en">to</span> のうしろが名詞か原形かを確かめてください。</p>
+
+<p>ほかの例文です。<span class="en">We used gestures to communicate with each other.</span>／<span class="en">My parents support my dream.</span>／<span class="en">We walked for an hour to reach the lake.</span>／<span class="en">I respect my grandfather very much.</span>／<span class="en">I wanted to thank him for his help.</span>／<span class="en">I went to his house to say hello to his family.</span>／<span class="en">I want to visit many countries, such as France and Italy.</span>／<span class="en">I went back to the classroom to get my bag.</span>／<span class="en">My grandfather takes a walk every morning to stay healthy.</span>／<span class="en">We can study and enjoy music at the same time.</span>／<span class="en">That week was a good experience for me.</span>／<span class="en">I want to learn about the customs of other countries.</span>／<span class="en">Please tell me your opinion about this plan.</span>／<span class="en">I went to the library to get information about Australia.</span>／<span class="en">Exercise is necessary for our health.</span>／<span class="en">We must plant trees to protect the earth.</span>／<span class="en">I joined their conversation to practice English.</span>／<span class="en">Don't be afraid of mistakes when you speak English.</span>／<span class="en">The purpose of this trip is to learn about nature.</span>／<span class="en">We went to the airport early to catch our flight.</span>／<span class="en">Her opinion was different from mine.</span>／<span class="en">Several students raised their hands to answer the question.</span>／<span class="en">Both my parents work at a hospital.</span>／<span class="en">Their uniforms are similar to ours.</span>／<span class="en">You should speak clearly to communicate well.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。文の骨組みがどこまでかを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My mother went to the supermarket (　　　) some eggs for dinner.</span>
+<p class="opts"><span>ア buy</span><span>イ bought</span><span>ウ to buy</span><span>エ to bought</span></p></li>
+<li><span class="en">Why did you get up so early?　—— (　　　) the first train.</span>
+<p class="opts"><span>ア Catch</span><span>イ To catch</span><span>ウ For catch</span><span>エ Because catch</span></p></li>
+<li><span class="en">My little sister was very surprised (　　　) the big dog in the garden.</span>
+<p class="opts"><span>ア see</span><span>イ saw</span><span>ウ to see</span><span>エ for see</span></p></li>
+<li><span class="en">I go (　　　) the park every Sunday to take a walk with my dog.</span>
+<p class="opts"><span>ア to</span><span>イ for</span><span>ウ with</span><span>エ of</span></p></li>
+<li><span class="en">The students in my class (　　　) hard to win the game next month.</span>
+<p class="opts"><span>ア practices</span><span>イ practice</span><span>ウ to practice</span><span>エ is practice</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私は英語を勉強するために図書館へ行きました。<br><span class="en">[ i / went / to / the / library / to / study / english ] .</span><span class="write"></span></li>
+<li>彼は私を助けるためにジェスチャーを使いました。<br><span class="en">[ he / used / gestures / to / help / me ] .</span><span class="write"></span></li>
+<li>私たちは飛行機に乗るために早く空港へ行きました。<br><span class="en">[ we / went / to / the / airport / early / to / catch / our / flight ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたの家族に会えてとてもうれしいです。<span class="hint">1語不要</span><br><span class="en">[ i / am / very / glad / to / meet / your / family / happy ] .</span><span class="write"></span></li>
+<li data-extra="1">兄は大学に入るために一生懸命勉強しています。<span class="hint">1語不要</span><br><span class="en">[ he / studies / hard / for / to / enter / college ] .</span><span class="write"></span></li>
+<li>私は彼の手伝いに感謝したかったです。<br><span class="en">[ i / wanted / to / thank / him / for / his / help ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">I went to the park to played tennis.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My mother was very glad hear the news.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I got up early for catch the first train.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I want go to the airport to see my uncle.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My brother studies hard to enter to college.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私たちは地球を守るために木を植えなければなりません。</span><span class="write"></span></li>
+<li><span class="q-ja">彼はその知らせを聞いてとても悲しく思いました。</span><span class="write"></span></li>
+<li><span class="q-ja">祖父は健康でいるために毎朝散歩をします。</span><span class="write"></span></li>
+<li><span class="q-ja">私はオーストラリアについての情報を得るために図書館へ行きました。</span><span class="write"></span></li>
+<li>to save を使って「私たちはエネルギーを節約するために電気を消します」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li><span class="en">Why do you study English?</span> への答えとして「英語を練習するためです」と書く。<span class="cond">3語</span><span class="write"></span></li>
+<li>to communicate を使って「私たちは互いに意思を伝え合うためにジェスチャーを使いました」と書く。<span class="cond">8語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ユウタは英語の授業で、夏休みのできごとについて話しました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">マークと過ごした一週間</p>
+<p>Last summer, an exchange student stayed at my house. His name was Mark, and he came from Australia. We were his host family for a week. <span class="num">①</span><span class="ul">Before he arrived, I cleaned my room to welcome him.</span> I was a little shy at first. I studied English hard, but long sentences were difficult for me. Mark was kind. He used gestures to help me, and we talked slowly to understand each other. One evening, my mother gave Mark chopsticks. He tried to use them, but it was not easy. He said, "In my country, we don't use these." I realized that his customs were different from ours. On the last day, we went to the airport to see him. Mark said, "<span class="num">②</span><span class="ul">I am very glad to meet your family.</span> Please visit my hometown someday." I was happy to hear his words. That week was a good experience for me.</p>
+<p class="reading-wc">およそ148語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ユウタにとって英語の長い文はかんたんだった。<br>
+イ ユウタは最初は少しはずかしく感じていた。<br>
+ウ マークは日本語で話しかけてくれた。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア マークははしをかんたんに使うことができた。<br>
+イ マークの国にもはしを使う習慣がある。<br>
+ウ ユウタはマークと自分の習慣がちがうことに気づいた。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに英語3語で答える。<br><span class="en">Why did Yuta clean his room?</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>下線部②で、マークがうれしく思った原因を表す部分を、本文から英語4語で書きぬく。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>to ＋ 原形を使って、自分が何かをする目的を1文で書く。<span class="hint">例：I study English to talk with people in other countries.</span><span class="write"></span></li>
+<li>be happy to 〜 か be glad to 〜 を使って、うれしかったことを1文で書く。<span class="hint">例：I was happy to see my friends again.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>文の骨組みがどこまでか</strong>を確かめ、次に<strong>to のうしろが原形になっているか</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　to buy</span><p class="a-why"><span class="en">My mother went to the supermarket</span> までで文が成り立っています。そこに「卵を買うために」という目的を足すので <span class="en">to</span> ＋ 原形です。</p></li>
+<li><span class="a-key">イ　To catch</span><p class="a-why">目的を答えるときは <span class="en">To</span> ＋ 原形で始めます。<span class="en">For</span> のうしろに動詞は置けません。<span class="en">Because</span> を使うなら <span class="en">Because I wanted to catch the first train.</span> のように主語と動詞が要ります。</p></li>
+<li><span class="a-key">ウ　to see</span><p class="a-why"><span class="en">surprised</span> は気持ちを表す形容詞なので、うしろの <span class="en">to</span> ＋ 原形は「〜して」という原因を表します。</p></li>
+<li><span class="a-key">ア　to</span><p class="a-why">うしろが名詞（<span class="en">the park</span>）なので、ここは「〜へ」を表す前置詞の <span class="en">to</span> です。文の終わりの <span class="en">to take a walk</span> は不定詞で、うしろは原形です。1つの文に2種類の <span class="en">to</span> が入っています。</p></li>
+<li><span class="a-key">イ　practice</span><p class="a-why">主語は <span class="en">The students in my class</span> で、中心になる語は <span class="en">students</span>（複数）です。文の動詞は <span class="en">practice</span> で、<span class="en">-s</span> はつきません。<span class="en">to practice</span> にすると文の動詞が無くなります。</p></li>
+
+<li><span class="a-key">I went to the library to study English.</span><p class="a-why"><span class="en">I went to the library</span> が骨組みで、そのうしろに目的の <span class="en">to study English</span> を置きます。<span class="en">to the library</span> の <span class="en">to</span> は前置詞です。</p></li>
+<li><span class="a-key">He used gestures to help me.</span><p class="a-why">「私を助けるために」が目的なので、文のうしろに <span class="en">to help me</span> を置きます。</p></li>
+<li><span class="a-key">We went to the airport early to catch our flight.</span><p class="a-why"><span class="en">early</span> は骨組みの側に入ります。目的の <span class="en">to catch our flight</span> はその後ろです。</p></li>
+<li><span class="a-key">I am very glad to meet your family.</span><p class="a-why">不要な語は <span class="en">happy</span> です。気持ちを表す形容詞は1つだけ置きます。<span class="en">glad</span> のうしろの <span class="en">to meet</span> がうれしい原因です。</p></li>
+<li><span class="a-key">He studies hard to enter college.</span><p class="a-why">不要な語は <span class="en">for</span> です。「〜するために」は <span class="en">to</span> ＋ 原形だけで表します。<span class="en">enter</span> のうしろに <span class="en">to</span> は置きません。</p></li>
+<li><span class="a-key">I wanted to thank him for his help.</span><p class="a-why"><span class="en">want to 〜</span>（Unit 9）の形です。<span class="en">thank 人 for 〜</span> で「〜のことで人に感謝する」です。</p></li>
+
+<li><span class="a-key">I went to the park to play tennis.</span><p class="a-why">理由の例：過去を表すのは文の動詞 <span class="en">went</span> なので、<span class="en">to</span> のうしろは原形にするから。</p></li>
+<li><span class="a-key">My mother was very glad to hear the news.</span><p class="a-why">理由の例：気持ちの原因を足すときも <span class="en">to</span> が要るから。<span class="en">glad</span> のうしろに動詞をそのまま続けることはできません。</p></li>
+<li><span class="a-key">I got up early to catch the first train.</span><p class="a-why">理由の例：<span class="en">for</span> は前置詞なので、うしろに動詞を置けないから。「〜するために」は <span class="en">to</span> ＋ 原形です。</p></li>
+<li><span class="a-key">I want to go to the airport to see my uncle.</span><p class="a-why">理由の例：<span class="en">want</span> のうしろに動詞を置くときは <span class="en">to</span> をつけるから（Unit 9）。この文には3つの <span class="en">to</span> があり、<span class="en">to go</span> と <span class="en">to see</span> が不定詞、<span class="en">to the airport</span> が前置詞です。</p></li>
+<li><span class="a-key">My brother studies hard to enter college.</span><p class="a-why">理由の例：<span class="en">enter</span> はうしろに場所を表す名詞をそのまま置くから。<span class="en">to</span> を2つ重ねません。</p></li>
+
+<li><span class="a-key">We must plant trees to protect the earth.</span><p class="a-why"><span class="en">We must plant trees</span> が骨組みで、そのうしろに目的の <span class="en">to protect the earth</span> を置きます。<span class="en">must</span> のうしろも原形です（Unit 6）。</p></li>
+<li><span class="a-key">He was very sad to hear the news.</span><p class="a-why"><span class="en">sad</span> は気持ちを表す形容詞なので、原因を <span class="en">to hear</span> で足します。</p></li>
+<li><span class="a-key">My grandfather takes a walk every morning to stay healthy.</span><p class="a-why"><span class="en">take a walk</span> で「散歩をする」です。主語が三人称単数なので <span class="en">takes</span> になります。<span class="en">to stay healthy</span> が目的です。</p></li>
+<li><span class="a-key">I went to the library to get information about Australia.</span><p class="a-why"><span class="en">information</span> は数えられない名詞なので <span class="en">a</span> をつけず、複数形にもしません。</p></li>
+<li><span class="a-key">We turn off the lights to save energy.</span><p class="a-why">8語です。<span class="en">turn off 〜</span> で「〜を消す」です（中1 Unit 12 の既出語）。</p></li>
+<li><span class="a-key">To practice English.</span><p class="a-why">3語です。目的を答えるときは <span class="en">To</span> ＋ 原形で始め、主語も動詞も言いません。</p></li>
+<li><span class="a-key">We used gestures to communicate with each other.</span><p class="a-why">8語です。<span class="en">communicate with 〜</span> で「〜と意思を伝え合う」です。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">I was a little shy at first.</span> とあります。アは <span class="en">long sentences were difficult for me</span> とあるので合いません。ウについて、マークが日本語で話したとは書かれていません。</p></li>
+<li><span class="a-key">ウ</span><p class="a-why"><span class="en">I realized that his customs were different from ours.</span> とあります。アは <span class="en">it was not easy</span>、イは <span class="en">In my country, we don't use these.</span> とあるので合いません。</p></li>
+<li><span class="a-key">To welcome Mark.</span><p class="a-why"><span class="en">I cleaned my room to welcome him.</span> とあります。<span class="en">Why 〜?</span> に目的で答えるので <span class="en">To</span> ＋ 原形で始めます。<span class="en">him</span> はマークを指すので <span class="en">Mark</span> に直します。</p></li>
+<li><span class="a-key">彼が着く前に、私は彼を迎えるために自分の部屋をそうじしました。</span><p class="a-why">「彼を迎えるために」が目的の <span class="en">to welcome him</span> です。<span class="en">Before he arrived</span> は中2 Unit 4 の接続詞の形で、「彼が着く前に」です。</p></li>
+<li><span class="a-key">to meet your family</span><p class="a-why"><span class="en">glad</span> のうしろの <span class="en">to</span> ＋ 原形が、うれしく思った原因を表します。<span class="en">very glad</span> の <span class="en">very</span> は原因ではないので含めません。</p></li>
+
+<li><span class="a-key">（例）I study English to talk with people in other countries.</span><p class="a-why">骨組みのうしろに <span class="en">to</span> ＋ 原形が置かれていれば正解です。<span class="en">I get up early to walk my dog.</span> のような文でも正解です。</p></li>
+<li><span class="a-key">（例）I was happy to see my friends again.</span><p class="a-why">気持ちを表す形容詞のうしろに <span class="en">to</span> ＋ 原形が置かれていれば正解です。<span class="en">I was glad to get your letter.</span> のような文でも正解です。</p></li>
+</ol>
+</div>
+</body>
+</html>

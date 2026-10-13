@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 5　There is / There are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab05_there-is.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 5</p>
+<h1 class="unit-title">There is / There are</h1>
+<p class="unit-lead">「公園に池がある」「駅の近くに図書館がある」のように、<strong>何かがどこかに「ある・いる」と、はじめて話に出すときの形</strong>が <span class="en">There is</span> ／ <span class="en">There are</span> です。be動詞はうしろの名詞に合わせて決まります。入試では、<span class="en">is</span> と <span class="en">are</span> の選び分け、<span class="en">the</span> をつけない理由、<span class="en">Is there 〜?</span> への答え方が問われます。</p>
+</header>
+
+<h2><span>There is / There are は「〜がある・いる」</span></h2>
+
+<p>中1 Unit 1 から、be動詞の文は「主語＋be動詞」の順でした。<span class="en">There is</span> の文は、<strong>主語になる名詞が be動詞のうしろに来ます。</strong>文の先頭の <span class="en">There</span> は、「これから何かがあると言います」という合図の語です。</p>
+
+<div class="diagram">
+<p class="diagram-cap">There is の文　be動詞のうしろに「ある物」。場所はそのあと</p>
+<div class="flow">
+<span class="node">There is<span class="node-label">be動詞</span></span>
+<span class="link">
+<span class="link-word">＋</span>
+<span class="rail"></span>
+</span>
+<span class="node">a park<span class="node-label">ある物＝主語</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th></tr>
+<tr><td>1つ・1人</td><td><span class="en">There is a large park in front of our house.</span></td></tr>
+<tr><td>2つ以上</td><td><span class="en">There are two ponds and a playground in the park.</span></td></tr>
+<tr><td>人</td><td><span class="en">There is a nurse in the room.</span></td></tr>
+<tr><td>短縮形</td><td><span class="en">There's a bank on the corner.</span></td></tr>
+</table>
+</div>
+
+<p><strong>訳すときは、場所から「〜に…があります」と言います。</strong><span class="en">There is a large park in front of our house.</span> は「私たちの家の前に大きな公園があります」です。<span class="en">There</span> を「そこに」とは訳しません。</p>
+
+<h2><span>be動詞はうしろの名詞で決まる</span></h2>
+
+<p><span class="en">There</span> は主語ではありません。<strong>主語は be動詞のうしろの名詞</strong>なので、be動詞はその名詞に合わせます。1つなら <span class="en">is</span>、2つ以上なら <span class="en">are</span> です。中1 Unit 1 の決まりがそのまま働きます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>うしろの名詞</th><th>今</th><th>過去</th></tr>
+<tr><td>1つ・1人</td><td><span class="en">There is</span></td><td><span class="en">There was</span></td></tr>
+<tr><td>2つ以上</td><td><span class="en">There are</span></td><td><span class="en">There were</span></td></tr>
+<tr><td>数えられない</td><td><span class="en">There is</span></td><td><span class="en">There was</span></td></tr>
+</table>
+</div>
+
+<p><strong>名詞が2つ並ぶときは、be動詞のすぐうしろの名詞に合わせます。</strong><span class="en">There are two ponds and a playground in the park.</span> では、すぐうしろが <span class="en">two ponds</span> なので <span class="en">are</span> です。</p>
+
+<p>過去のことは中1 Unit 15 の <span class="en">was</span> ／ <span class="en">were</span> で言います。<span class="en">There was a festival at the shrine.</span>／<span class="en">There were a lot of people there.</span>　未来のことは中2 Unit 2 の <span class="en">will</span> を使い、<span class="en">There will be a summer concert at the shrine.</span> のように <span class="en">will</span> のうしろを原形の <span class="en">be</span> にします。</p>
+
+<h2><span>There is のあとの名詞に the をつけない理由</span></h2>
+
+<p>ここがこの単元の中心です。<strong><span class="en">There is</span> は、聞き手がまだ知らない物を、はじめて話に出す形です。</strong>だから、うしろの名詞には「はじめて出す」印の <span class="en">a</span> ／ <span class="en">an</span> ／ <span class="en">some</span> ／ 数（<span class="en">two</span> など）をつけます。</p>
+
+<p>中1 Unit 4 で学んだとおり、<span class="en">the</span> は「どれのことか聞き手も分かっている」印でした。<span class="en">my</span> ／ <span class="en">your</span> ／ <span class="en">our</span> も同じで、どれを指すかがもう決まっています。<strong>すでに分かっている物を「はじめて出す」ことはできないので、<span class="en">There is the 〜</span> とは言いません。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>名詞の印</th><th>使う形</th></tr>
+<tr><td><span class="en">a</span> ／ <span class="en">some</span> ／ 数</td><td><span class="en">There is a book on the desk.</span></td></tr>
+<tr><td><span class="en">the</span> ／ <span class="en">my</span> など</td><td><span class="en">My book is on the desk.</span></td></tr>
+</table>
+</div>
+
+<p><strong>分かっている物の場所を言うときは、その名詞を主語にして先頭に置きます。</strong><span class="en">My book is on the desk.</span>／<span class="en">The bank is next to the station.</span>　この2つの文に <span class="en">There</span> は要りません。</p>
+
+<h2><span>数えられない名詞と組む</span></h2>
+
+<p>中1 Unit 4 の数えられない名詞（<span class="en">water</span> ／ <span class="en">milk</span> ／ <span class="en">snow</span> など）は、1つ2つと数えないので、<strong>量が多くても be動詞は <span class="en">is</span> ／ <span class="en">was</span> です。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th></tr>
+<tr><td>少しある</td><td><span class="en">There is some milk in the refrigerator.</span></td></tr>
+<tr><td>たくさんある</td><td><span class="en">Last winter, there was a lot of snow on the roof.</span></td></tr>
+<tr><td>少しもない</td><td><span class="en">There isn't any juice in the cup.</span></td></tr>
+<tr><td>たずねる</td><td><span class="en">Is there any money in your bag?</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">a lot of</span> のうしろが数えられる名詞なら <span class="en">are</span> ／ <span class="en">were</span>、数えられない名詞なら <span class="en">is</span> ／ <span class="en">was</span> です。<span class="en">There were a lot of people there.</span> と <span class="en">There was a lot of snow on the roof.</span> を並べて見分けます。</p>
+
+<h2><span>否定文と疑問文</span></h2>
+
+<p>be動詞の文なので、中1 Unit 2 と同じ作り方です。<strong>否定文は be動詞のうしろに <span class="en">not</span>、疑問文は be動詞を <span class="en">there</span> の前に出します。</strong>答えにも <span class="en">there</span> を使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th></tr>
+<tr><td>否定文</td><td><span class="en">There aren't any convenience stores in this village.</span></td></tr>
+<tr><td><span class="en">no</span> を使う否定</td><td><span class="en">There is no bookstore in this town.</span></td></tr>
+<tr><td>疑問文（1つ）</td><td><span class="en">Is there a post office near here? —— Yes, there is.</span></td></tr>
+<tr><td>疑問文（2つ以上）</td><td><span class="en">Are there any good bookstores in your city? —— No, there aren't.</span></td></tr>
+<tr><td>数をたずねる</td><td><span class="en">How many students are there in your class? —— There are thirty-two.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">no</span> は「1つもない」をこれ1語で言う語です。</strong><span class="en">There is no bookstore in this town.</span> は <span class="en">There isn't a bookstore in this town.</span> と同じ意味です。<span class="en">no</span> を使ったら <span class="en">not</span> は重ねません。</p>
+
+<p><strong><span class="en">How many 〜 are there?</span> の <span class="en">How many</span> のうしろは複数形</strong>で、be動詞は <span class="en">are</span> です。中1 Unit 10 の <span class="en">How many</span> と同じ作りで、疑問文の語順 <span class="en">are there</span> がうしろに続きます。</p>
+
+<h2><span>場所を言う語句</span></h2>
+
+<p><span class="en">There is</span> の文の最後には、たいてい場所を言う語句が来ます。中1で学んだ <span class="en">in</span> ／ <span class="en">on</span> ／ <span class="en">under</span> ／ <span class="en">near</span> ／ <span class="en">next to 〜</span> に、この単元で次の語句を足します。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語句</th><th>例文</th></tr>
+<tr><td><span class="en">in front of 〜</span>（〜の前に）</td><td><span class="en">There is a large park in front of our house.</span></td></tr>
+<tr><td><span class="en">behind</span>（〜のうしろに）</td><td><span class="en">My new school is behind the park.</span></td></tr>
+<tr><td><span class="en">between A and B</span>（AとBの間に）</td><td><span class="en">There is a bank between the hospital and the post office.</span></td></tr>
+<tr><td><span class="en">along</span>（〜に沿って）</td><td><span class="en">There are a few benches along the river.</span></td></tr>
+<tr><td><span class="en">across</span>（〜を渡った向こうに）</td><td><span class="en">There is a cafeteria across the street.</span></td></tr>
+</table>
+</div>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">その物を、はじめて話に出すのかどうかを決める</span>
+<span class="step-d">はじめて出すなら <span class="en">There is</span> ／ <span class="en">There are</span> です。<span class="en">the</span> や <span class="en">my</span> のつく分かっている物なら、その名詞を主語にして先頭に置きます。</span>
+</li>
+<li>
+<span class="step-t">be動詞のすぐうしろの名詞を見る</span>
+<span class="step-d">1つ・数えられない名詞なら <span class="en">is</span>、2つ以上なら <span class="en">are</span> です。過去なら <span class="en">was</span> ／ <span class="en">were</span> にします。</span>
+</li>
+<li>
+<span class="step-t">名詞に a ／ some ／ 数をつけ、最後に場所を置く</span>
+<span class="step-d"><span class="en">the</span> はつけません。</span>
+</li>
+<li>
+<span class="step-t">否定文は not、疑問文は be動詞を there の前に出す</span>
+<span class="step-d">答えも <span class="en">Yes, there is.</span> ／ <span class="en">No, there aren't.</span> のように <span class="en">there</span> を使います。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>分かっている物の場所は There を使わない</h3>
+<p><span class="en">My book is on the desk.</span> の <span class="en">my book</span> は、話し手も聞き手も知っている本です。<strong>はじめて出す物ではないので <span class="en">There is my book on the desk.</span> とは言いません。</strong>人も同じで、<span class="en">My sister is in the garden.</span> と言います。</p>
+
+<h3>文の先頭の There と、場所を指す there</h3>
+<p><span class="en">There were a lot of people there.</span> には <span class="en">there</span> が2つあります。<strong>先頭の <span class="en">There</span> は合図の語で訳しません。最後の <span class="en">there</span> は中1で学んだ「そこに」です。</strong>この文は「そこにはたくさんの人がいました」です。</p>
+
+<h3>have を使う言い方</h3>
+<p><span class="en">This town has a library.</span> と <span class="en">There is a library in this town.</span> は、どちらも「この町には図書館があります」です。<span class="en">have</span> ／ <span class="en">has</span> の文は町や人が主語、<span class="en">There is</span> の文は図書館が主語です。書きかえの問題でよく出ます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">is</span> ／ <span class="en">are</span> ／ <span class="en">was</span> ／ <span class="en">were</span> のどれを入れるか</td></tr>
+<tr><td>並べかえ</td><td><span class="en">There</span> を先頭に、ある物、場所の順に並べる</td></tr>
+<tr><td>書きかえ</td><td><span class="en">have</span> の文と <span class="en">There is</span> の文、<span class="en">no</span> と <span class="en">not any</span></td></tr>
+<tr><td>対話</td><td><span class="en">Is there 〜?</span> ／ <span class="en">How many 〜 are there?</span> への答え方</td></tr>
+<tr><td>英作文</td><td>自分の町や学校にある物を紹介する</td></tr>
+<tr><td>読解</td><td>地図や絵と照らして、どこに何があるかを読み取る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">There is two ponds in the park.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">There <span class="be-w">are</span> two ponds in the park.</span></div>
+<p class="contrast-why">be動詞はうしろの名詞に合わせます。<span class="en">two ponds</span> は2つなので <span class="en">are</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">There is the book on the desk.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">There is <strong>a</strong> book on the desk.</span></div>
+<p class="contrast-why"><span class="en">There is</span> ははじめて出す物に使うので、<span class="en">the</span> はつけません。分かっている本なら <span class="en">The book is on the desk.</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">There are a lot of snow on the roof.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">There <span class="be-w">is</span> a lot of snow on the roof.</span></div>
+<p class="contrast-why"><span class="en">snow</span> は数えられない名詞なので、量が多くても <span class="en">is</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Is there any good bookstores in your city?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="be-w">Are</span> there any good bookstores in your city?</span></div>
+<p class="contrast-why">疑問文でも、be動詞は <span class="en">there</span> のうしろの名詞に合わせます。<span class="en">bookstores</span> は複数形です。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">There is a large park in front of our house.</span>／<span class="en">There are two ponds and a playground in the park.</span>／<span class="en">There is some milk in the refrigerator.</span>／<span class="en">Is there a post office near here? —— Yes, there is.</span>／<span class="en">My book is on the desk.</span>　はじめて出す物には <span class="en">There is</span> ／ <span class="en">There are</span>、分かっている物には名詞を主語にした文を使っています。</p>
+
+<p>ほかの例文です。<span class="en">There are many tall buildings in the city.</span>／<span class="en">There was a small shrine on the hill.</span>／<span class="en">There is a picture on the wall.</span>／<span class="en">There are some dictionaries on the shelf.</span>／<span class="en">There is a swimming pool at our school.</span>／<span class="en">There are three people in the photo.</span>／<span class="en">There was only one person on the bus.</span>／<span class="en">There is some paper in the box.</span>／<span class="en">Our town is quiet and peaceful.</span>／<span class="en">This station is very convenient.</span>／<span class="en">The streets here are narrow.</span>／<span class="en">The river near my house is wide.</span>／<span class="en">I counted the birds on the pond.</span>／<span class="en">This sofa is very comfortable.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。be動詞のすぐうしろの名詞を先に見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">There (　　　) two ponds and a playground in the park near my house.</span>
+<p class="opts"><span>ア is</span><span>イ are</span><span>ウ be</span><span>エ am</span></p></li>
+<li><span class="en">Last winter, there (　　　) a lot of snow on the roof of our school.</span>
+<p class="opts"><span>ア is</span><span>イ are</span><span>ウ was</span><span>エ were</span></p></li>
+<li><span class="en">There is (　　　) cafeteria across the street from the station.</span>
+<p class="opts"><span>ア the</span><span>イ a</span><span>ウ my</span><span>エ some</span></p></li>
+<li><span class="en">Is there a post office near here? —— Yes, (　　　).</span>
+<p class="opts"><span>ア it is</span><span>イ there is</span><span>ウ there are</span><span>エ it does</span></p></li>
+<li><span class="en">How many students (　　　) in your class? —— There are thirty-two.</span>
+<p class="opts"><span>ア is there</span><span>イ there is</span><span>ウ are there</span><span>エ there are</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私たちの家の前に大きな公園があります。<br><span class="en">[ there / is / a / large / park / in / front / of / our / house ] .</span><span class="write"></span></li>
+<li>川沿いにベンチがいくつかあります。<br><span class="en">[ there / are / a / few / benches / along / the / river ] .</span><span class="write"></span></li>
+<li data-extra="1">この町には本屋が1軒もありません。<span class="hint">1語不要</span><br><span class="en">[ there / is / no / bookstore / in / this / town / not ] .</span><span class="write"></span></li>
+<li>病院と郵便局の間に銀行があります。<br><span class="en">[ there / is / a / bank / between / the / hospital / and / the / post / office ] .</span><span class="write"></span></li>
+<li data-extra="1">私の本は机の上にあります。<span class="hint">1語不要</span><br><span class="en">[ my / book / is / on / the / desk / there ] .</span><span class="write"></span></li>
+<li>あなたのクラスには何人の生徒がいますか。<br><span class="en">[ how / many / students / are / there / in / your / class ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">There is many tall buildings in the city.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">There is the book on the desk.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">There are a lot of snow on the roof.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Is there any good bookstores in your city?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">There isn't no juice in the cup.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">冷蔵庫に牛乳が少しあります。</span><span class="write"></span></li>
+<li><span class="q-ja">丘の上に小さな神社がありました。</span><span class="write"></span></li>
+<li><span class="q-ja">この村にはコンビニが1軒もありません。</span><span class="write"></span></li>
+<li><span class="q-ja">その写真には3人の人が写っています。</span><span class="write"></span></li>
+<li>there を使って「この近くに郵便局はありますか」とたずねる。<span class="cond">7語</span><span class="write"></span></li>
+<li>has を使って「この町には図書館があります」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>there を使って「壁に絵が1枚かかっています」と書く。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ミカが、オーストラリアに住む友だちのルーシーにメールを書きました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">ミカのメール</p>
+<p>Dear Lucy,<br>
+Thank you for your email. Last month, my family moved to a new town. I will tell you about it.<br>
+There is a large park in front of our house. <span class="num">①</span><span class="ul">There are two ponds and a playground in the park.</span> <span class="num">②</span><span class="ul">My new school is behind the park</span>, so I walk there every day.<br>
+There is no bookstore in this town, but there is a library near the station. Are there any good bookstores in your city?<br>
+Yesterday I went to a shrine on a hill with my brother. There were a lot of people there, because there was a festival.<br>
+The streets here are narrow, but the town is quiet and peaceful. I think that you will like it. If you come to Japan next summer, please stay with us.<br>
+Your friend,<br>
+Mika</p>
+<p class="reading-wc">およそ135語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ミカの家の前には大きな公園がある。<br>
+イ ミカの町には本屋が2軒ある。<br>
+ウ ミカの学校は駅の近くにある。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ミカは昨日、友だちと丘の上の神社へ行った。<br>
+イ 神社には祭りがあったので、人がたくさんいた。<br>
+ウ ミカの町の通りは広い。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに英語で答える。<br><span class="en">Is there a library in the new town?</span><span class="write"></span></li>
+<li>下線部②が <span class="en">There is my new school behind the park.</span> の形になっていない理由として最も適切なものを1つ選ぶ。<br>
+ア <span class="en">my new school</span> は、どの学校のことかすでに分かっている名詞だから。<br>
+イ 学校は数えられない名詞だから。<br>
+ウ 過去のことを言っているから。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>There is か There are を使って、自分の町にある物を1文で書く。<span class="hint">例：There is a big supermarket near the station.</span><span class="write"></span></li>
+<li>Is there 〜? を使って、相手の町についてたずねる文を1文で書き、その答えを Yes か No で始めて書く。<span class="hint">例：Is there a zoo in your city? —— No, there isn't.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>be動詞のすぐうしろの名詞が1つか2つ以上か</strong>を確かめ、次に<strong>その名詞がはじめて出す物かどうか</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　are</span><p class="a-why">be動詞のすぐうしろが <span class="en">two ponds</span> なので <span class="en">are</span> です。<span class="en">a playground</span> は2つ目の名詞なので、be動詞を決めません。</p></li>
+<li><span class="a-key">ウ　was</span><p class="a-why"><span class="en">Last winter</span> なので過去です。<span class="en">snow</span> は数えられない名詞なので、<span class="en">a lot of</span> がついても <span class="en">was</span> です。</p></li>
+<li><span class="a-key">イ　a</span><p class="a-why"><span class="en">There is</span> ははじめて出す物に使うので、<span class="en">the</span> ／ <span class="en">my</span> はつけません。<span class="en">some</span> は数えられる名詞なら複数形と組むので、1つの <span class="en">cafeteria</span> には合いません。</p></li>
+<li><span class="a-key">イ　there is</span><p class="a-why"><span class="en">Is there 〜?</span> には <span class="en">there</span> を使って答えます。<span class="en">it</span> は使いません。</p></li>
+<li><span class="a-key">ウ　are there</span><p class="a-why"><span class="en">How many students</span> のうしろは疑問文の語順です。<span class="en">students</span> が複数形なので <span class="en">are</span> を <span class="en">there</span> の前に出します。</p></li>
+
+<li><span class="a-key">There is a large park in front of our house.</span><p class="a-why"><span class="en">There is</span> ＋ ある物 ＋ 場所の順です。<span class="en">in front of</span> は3語で「〜の前に」です。</p></li>
+<li><span class="a-key">There are a few benches along the river.</span><p class="a-why"><span class="en">a few</span> は「少しの・いくつかの」で、うしろは複数形です。名詞が複数なので <span class="en">are</span> です。</p></li>
+<li><span class="a-key">There is no bookstore in this town.</span><p class="a-why">不要な語は <span class="en">not</span> です。<span class="en">no</span> だけで「1つもない」を言うので、<span class="en">not</span> は重ねません。</p></li>
+<li><span class="a-key">There is a bank between the hospital and the post office.</span><p class="a-why"><span class="en">between A and B</span> で「AとBの間に」です。<span class="en">a bank</span> ははじめて出す物なので <span class="en">There is</span> の文です。</p></li>
+<li><span class="a-key">My book is on the desk.</span><p class="a-why">不要な語は <span class="en">there</span> です。<span class="en">my book</span> は分かっている物なので、名詞を主語にして先頭に置きます。</p></li>
+<li><span class="a-key">How many students are there in your class?</span><p class="a-why"><span class="en">How many</span> ＋ 複数形のうしろに、疑問文の語順 <span class="en">are there</span> を続けます。</p></li>
+
+<li><span class="a-key">There are many tall buildings in the city.</span><p class="a-why">理由の例：be動詞はうしろの名詞に合わせ、<span class="en">buildings</span> は複数形だから。</p></li>
+<li><span class="a-key">There is a book on the desk.</span><p class="a-why">理由の例：<span class="en">There is</span> ははじめて出す物に使うので、<span class="en">the</span> はつけないから。<span class="en">The book is on the desk.</span> でも正解です。</p></li>
+<li><span class="a-key">There is a lot of snow on the roof.</span><p class="a-why">理由の例：<span class="en">snow</span> は数えられない名詞なので、be動詞は <span class="en">is</span> だから。</p></li>
+<li><span class="a-key">Are there any good bookstores in your city?</span><p class="a-why">理由の例：疑問文でも be動詞はうしろの名詞に合わせ、<span class="en">bookstores</span> は複数形だから。</p></li>
+<li><span class="a-key">There isn't any juice in the cup.</span><p class="a-why">理由の例：<span class="en">not</span> と <span class="en">no</span> を重ねないから。<span class="en">There is no juice in the cup.</span> でも正解です。</p></li>
+
+<li><span class="a-key">There is some milk in the refrigerator.</span><p class="a-why"><span class="en">milk</span> は数えられない名詞なので <span class="en">is</span> です。「少し」は <span class="en">some</span> で言います。</p></li>
+<li><span class="a-key">There was a small shrine on the hill.</span><p class="a-why">過去のことで、神社は1つなので <span class="en">was</span> です。</p></li>
+<li><span class="a-key">There aren't any convenience stores in this village.</span><p class="a-why"><span class="en">There are no convenience stores in this village.</span> でも正解です。<span class="en">There is no convenience store in this village.</span> も正解です。</p></li>
+<li><span class="a-key">There are three people in the photo.</span><p class="a-why"><span class="en">people</span> は「人々」で、複数として扱います。be動詞は <span class="en">are</span> です。</p></li>
+<li><span class="a-key">Is there a post office near here?</span><p class="a-why">be動詞を <span class="en">there</span> の前に出します。<span class="en">post office</span> は2語で数えて7語です。</p></li>
+<li><span class="a-key">This town has a library.</span><p class="a-why">町を主語にすると <span class="en">has</span> の文になります。<span class="en">There is a library in this town.</span> と同じ意味です。5語です。</p></li>
+<li><span class="a-key">There is a picture on the wall.</span><p class="a-why"><span class="en">There's a picture on the wall.</span> は短縮形を1語と数えて6語になるので、ここでは使いません。7語です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">There is a large park in front of our house.</span> と合います。町に本屋は無く（<span class="en">There is no bookstore</span>）、学校は公園のうしろにあるので、イとウは合いません。</p></li>
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">There were a lot of people there, because there was a festival.</span> と合います。神社へ行ったのは兄（弟）とで、通りはせまい（<span class="en">narrow</span>）ので、アとウは合いません。</p></li>
+<li><span class="a-key">Yes, there is.</span><p class="a-why">本文に <span class="en">there is a library near the station</span> とあります。<span class="en">Is there 〜?</span> には <span class="en">there</span> を使って答えます。</p></li>
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">my new school</span> はミカの学校で、どれのことか決まっている名詞です。分かっている物の場所は、その名詞を主語にして言います。</p></li>
+<li><span class="a-key">公園には池が2つと遊び場が1つあります。</span><p class="a-why">先頭の <span class="en">There</span> は訳しません。場所の <span class="en">in the park</span> から「公園には」と訳します。「その公園には2つの池と1つの遊び場があります」でも正解です。</p></li>
+
+<li><span class="a-key">解答例　There is a big supermarket near the station.</span><p class="a-why">1つなら <span class="en">is</span>、2つ以上なら <span class="en">are</span> になっていて、名詞に <span class="en">the</span> がついていなければ正解です。</p></li>
+<li><span class="a-key">解答例　Is there a zoo in your city? —— No, there isn't.</span><p class="a-why">be動詞が <span class="en">there</span> の前にあり、答えにも <span class="en">there</span> を使っていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0"><span class="en">There is</span> ／ <span class="en">There are</span> は、<strong>はじめて話に出す物が「ある・いる」</strong>と言う形です。<strong>主語は be動詞のうしろの名詞</strong>で、1つ・数えられない名詞なら <span class="en">is</span>、2つ以上なら <span class="en">are</span>、過去なら <span class="en">was</span> ／ <span class="en">were</span> です。はじめて出す物なので <strong><span class="en">the</span> や <span class="en">my</span> はつけず</strong>、分かっている物の場所は <span class="en">My book is on the desk.</span> のように名詞を主語にして言います。否定文は <span class="en">not</span> か <span class="en">no</span>、疑問文は be動詞を <span class="en">there</span> の前に出し、答えにも <span class="en">there</span> を使います。</p>
+</div>
+</div>
+</body>
+</html>

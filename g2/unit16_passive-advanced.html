@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 16　受動態の発展（by 以外の前置詞・過去形との識別）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab16_passive-advanced.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 16</p>
+<h1 class="unit-title">受動態の発展（by 以外の前置詞・過去形との識別）</h1>
+<p class="unit-lead">Unit 15 では <strong>be動詞 ＋ 過去分詞</strong>の形と、する人を示す <span class="en">by</span> 〜 を扱いました。この単元では、<strong>by 以外の前置詞をとる受動態</strong>（<span class="en">be interested in</span> など）、<strong>能動態との書きかえで代名詞の形が変わること</strong>、そして<strong>同じ形の過去形と過去分詞の見分け方</strong>を扱います。中2の文法はここで一通り終わります。</p>
+</header>
+
+<h2><span>by 以外の前置詞をとる受動態</span></h2>
+
+<p>受動態のうしろの前置詞は、いつも <span class="en">by</span> とは限りません。<strong>どの前置詞をとるかは語ごとに決まっています。</strong>規則で選ぶものではないので、形のまとまりで覚えます。</p>
+
+<h3>気持ちを表す受動態</h3>
+
+<p>気持ちは「外から起こされるもの」と考えるので、英語では受動態の形で表します。日本語では「〜される」と訳しません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>例</th></tr>
+<tr><td><span class="en">be interested in 〜</span></td><td>〜に興味がある</td><td><span class="en">I am interested in old buildings.</span></td></tr>
+<tr><td><span class="en">be surprised at 〜</span></td><td>〜に驚く</td><td><span class="en">I was surprised at the number of steps.</span></td></tr>
+<tr><td><span class="en">be pleased with 〜</span></td><td>〜に満足している</td><td><span class="en">My mother was pleased with the present.</span></td></tr>
+</table>
+</div>
+
+<h3>状態を表す受動態</h3>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>例</th></tr>
+<tr><td><span class="en">be covered with 〜</span></td><td>〜でおおわれている</td><td><span class="en">The mountain was covered with snow.</span></td></tr>
+<tr><td><span class="en">be filled with 〜</span></td><td>〜でいっぱいである</td><td><span class="en">The box was filled with old tools.</span></td></tr>
+<tr><td><span class="en">be surrounded by 〜</span></td><td>〜に囲まれている</td><td><span class="en">Our town is surrounded by mountains.</span></td></tr>
+<tr><td><span class="en">be known to 〜</span></td><td>〜に知られている</td><td><span class="en">This song is known to everyone.</span></td></tr>
+<tr><td><span class="en">be known for 〜</span></td><td>〜で知られている</td><td><span class="en">Our town is known for its fireworks.</span></td></tr>
+<tr><td><span class="en">be born in 〜</span></td><td>〜で生まれる</td><td><span class="en">He was born in this town.</span></td></tr>
+</table>
+</div>
+
+<h3>材料と場所を表す受動態</h3>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>例</th></tr>
+<tr><td><span class="en">be made of 〜</span></td><td>〜で作られている（材料が見える）</td><td><span class="en">This desk is made of wood.</span></td></tr>
+<tr><td><span class="en">be made from 〜</span></td><td>〜から作られている（材料が変わる）</td><td><span class="en">Cheese is made from milk.</span></td></tr>
+<tr><td><span class="en">be made in 〜</span></td><td>〜で作られている（場所）</td><td><span class="en">This car was made in Japan.</span></td></tr>
+</table>
+</div>
+
+<p>ほかに、材料を表す語とよく組みます。<span class="en">This cloth is made of cotton.</span>（この布は綿で作られています）、<span class="en">This sweater is made of wool.</span>（このセーターは羊毛で作られています）、<span class="en">These chopsticks are made of bamboo.</span>（このはしは竹で作られています）、<span class="en">This box is made of metal.</span>（この箱は金属で作られています）、<span class="en">This bag is made of silk.</span>（このかばんは絹で作られています）のように使います。</p>
+
+<h3>場所や時刻を添える受動態</h3>
+
+<p>する人を言わない受動態には、場所や時刻を添えることがよくあります。<span class="en">Lunch is served at noon in this hall.</span>（昼食はこのホールで正午に出されます）では、時刻を <span class="en">at</span>、場所を <span class="en">in</span> で示しています。<span class="en">by</span> 〜 は出てきません。</p>
+
+<h2><span>能動態と受動態の書きかえ</span></h2>
+
+<p>能動態（主語が「する」側の文）を受動態に書きかえる手順は3つです。<strong>もとの文の目的語を主語にし、動詞を be動詞 ＋ 過去分詞にし、もとの主語を by 〜 のうしろに置きます。</strong></p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">My brother made this chair.</span>　（兄がこのいすを作った）</span>
+<span class="tf-arrow">↓　目的語 this chair を主語にし、made を was made にし、my brother を by のうしろへ</span>
+<span class="tf-line"><span class="en">This chair was made by my brother.</span>　（このいすは兄によって作られた）</span>
+</div>
+
+<h3>代名詞は形が変わる</h3>
+
+<p><strong>動かした語が代名詞のときは、形が変わります。</strong>目的語の位置にあった <span class="en">him</span> は、主語の位置に上がると <span class="en">he</span> になります。逆に、主語だった <span class="en">she</span> は <span class="en">by</span> のうしろで <span class="en">her</span> になります。中1 Unit 8 で学んだ格の表のとおりです。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">Everyone knows him.</span>　（だれもが彼を知っている）</span>
+<span class="tf-arrow">↓　him が主語の位置に上がるので he になる。knows は is known に、everyone は to のうしろへ</span>
+<span class="tf-line"><span class="en">He is known to everyone.</span>　（彼はだれにも知られている）</span>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">目的語の位置から主語の位置へ上がると、代名詞は目的格から主格になる</p>
+<div class="flow">
+<span class="node">him<span class="node-label">目的格（目的語の位置）</span></span>
+<span class="link">
+<span class="link-word">主語へ</span>
+<span class="rail"></span>
+</span>
+<span class="node">he<span class="node-label">主格（主語の位置）</span></span>
+</div>
+</div>
+
+<p>中1 Unit 8 の表をもう一度置きます。受動態の書きかえでは、<strong>主格の列と目的格の列を行き来します</strong>。</p>
+
+<div class="table-wrap">
+<table class="rule">
+  <thead>
+    <tr><th>意味</th><th>主格<br>「〜は」</th><th>所有格<br>「〜の」</th><th>目的格<br>「〜を・〜に」</th><th>所有代名詞<br>「〜のもの」</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>私</td><td class="be-cell"><span class="en">I</span></td><td class="be-cell"><span class="en">my</span></td><td class="be-cell"><span class="en">me</span></td><td class="be-cell"><span class="en">mine</span></td></tr>
+    <tr><td>あなた</td><td class="be-cell"><span class="en">you</span></td><td class="be-cell"><span class="en">your</span></td><td class="be-cell"><span class="en">you</span></td><td class="be-cell"><span class="en">yours</span></td></tr>
+    <tr><td>彼</td><td class="be-cell"><span class="en">he</span></td><td class="be-cell"><span class="en">his</span></td><td class="be-cell"><span class="en">him</span></td><td class="be-cell"><span class="en">his</span></td></tr>
+    <tr><td>彼女</td><td class="be-cell"><span class="en">she</span></td><td class="be-cell"><span class="en">her</span></td><td class="be-cell"><span class="en">her</span></td><td class="be-cell"><span class="en">hers</span></td></tr>
+    <tr><td>それ</td><td class="be-cell"><span class="en">it</span></td><td class="be-cell"><span class="en">its</span></td><td class="be-cell"><span class="en">it</span></td><td>—</td></tr>
+    <tr><td>私たち</td><td class="be-cell"><span class="en">we</span></td><td class="be-cell"><span class="en">our</span></td><td class="be-cell"><span class="en">us</span></td><td class="be-cell"><span class="en">ours</span></td></tr>
+    <tr><td>あなたたち</td><td class="be-cell"><span class="en">you</span></td><td class="be-cell"><span class="en">your</span></td><td class="be-cell"><span class="en">you</span></td><td class="be-cell"><span class="en">yours</span></td></tr>
+    <tr><td>彼ら・彼女ら・それら</td><td class="be-cell"><span class="en">they</span></td><td class="be-cell"><span class="en">their</span></td><td class="be-cell"><span class="en">them</span></td><td class="be-cell"><span class="en">theirs</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>能動態</th><th>受動態</th><th>変わった形</th></tr>
+<tr><td><span class="en">Everyone knows him.</span></td><td><span class="en">He is known to everyone.</span></td><td><span class="en">him → he</span></td></tr>
+<tr><td><span class="en">She wrote these letters.</span></td><td><span class="en">These letters were written by her.</span></td><td><span class="en">she → her</span></td></tr>
+<tr><td><span class="en">They love this song.</span></td><td><span class="en">This song is loved by them.</span></td><td><span class="en">they → them</span></td></tr>
+</table>
+</div>
+
+<h2><span>同じ形の過去形と過去分詞を見分ける</span></h2>
+
+<p>Unit 15 の一覧表の2つめ（過去形と同じ形の語）では、<span class="en">made</span>・<span class="en">built</span>・<span class="en">sold</span>・<span class="en">told</span>・<span class="en">sent</span>・<span class="en">held</span> のように、過去形と過去分詞が同じ形でした。規則動詞も同じです。<strong>形が同じなので、文の中のどこにあるかで見分けます。</strong></p>
+
+<div class="diagram">
+<p class="diagram-cap">be動詞があるかどうかで、過去形か過去分詞かが決まる</p>
+<div class="flow">
+<span class="node">My father made<span class="node-label">be動詞なし ＝ 過去形</span></span>
+<span class="link">
+<span class="link-word">この desk</span>
+<span class="rail"></span>
+</span>
+<span class="node">was made<span class="node-label">be動詞あり ＝ 過去分詞</span></span>
+</div>
+</div>
+
+<p>見分ける目印は2つです。<strong>①前に be動詞があるか。②うしろに目的語があるか。</strong>過去形なら目的語が続き、過去分詞（受動態）なら目的語は主語に上がっているので続きません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>made の働き</th><th>目印</th></tr>
+<tr><td><span class="en">My father made this desk ten years ago.</span></td><td>過去形（父が作った）</td><td>be動詞がなく、うしろに <span class="en">this desk</span> がある</td></tr>
+<tr><td><span class="en">This desk was made by my father.</span></td><td>過去分詞（机が作られた）</td><td><span class="en">was</span> があり、うしろに目的語がない</td></tr>
+<tr><td><span class="en">They built this bridge a long time ago.</span></td><td>過去形（人々が建てた）</td><td>be動詞がなく、うしろに <span class="en">this bridge</span> がある</td></tr>
+<tr><td><span class="en">This bridge was built a long time ago.</span></td><td>過去分詞（橋が建てられた）</td><td><span class="en">was</span> があり、うしろに目的語がない</td></tr>
+</table>
+</div>
+
+<p><strong>なぜこの見分けが要るのか。</strong>入試の長文では <span class="en">built</span> の1語だけを見ても判断できません。主語が「する」側か「される」側かを決めてから形を読むと、意味を取りちがえずに読めます。<span class="en">This temple was built about a thousand years ago.</span> のように年数が続く文は、主語が「される」側です。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">主語が「する」側か「される」側かを決める</span>
+<span class="step-d">「される」側なら受動態です。うしろに目的語が続くなら「する」側で、過去形のままです。</span>
+</li>
+<li>
+<span class="step-t">主語と時から be動詞を決める</span>
+<span class="step-d">単数・今なら <span class="en">is</span>、複数・今なら <span class="en">are</span>、過去なら <span class="en">was</span> ／ <span class="en">were</span> です。</span>
+</li>
+<li>
+<span class="step-t">動詞を過去分詞にする</span>
+<span class="step-d">Unit 15 の一覧表の形を使います。過去形と同じ形の語は、形を変えずにそのまま置きます。</span>
+</li>
+<li>
+<span class="step-t">うしろの前置詞を決める</span>
+<span class="step-d">する人なら <span class="en">by</span>、材料や気持ちなら語ごとに決まった前置詞を置きます。代名詞は <span class="en">by him</span> のように目的格です。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>be made of と be made from</h3>
+
+<p><strong>材料が見た目でわかるときは <span class="en">of</span>、形がすっかり変わってわからなくなるときは <span class="en">from</span> です。</strong>いすを見れば木だとわかるので <span class="en">This chair is made of wood.</span>、チーズを見ても牛乳だとはわからないので <span class="en">Cheese is made from milk.</span> です。紙も材料の形が残らないので <span class="en">Paper is made from wood.</span>・<span class="en">This material is made from wood.</span> と言います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>前置詞</th><th>理由</th></tr>
+<tr><td><span class="en">This desk is made of wood.</span></td><td><span class="en">of</span></td><td>机を見れば木だとわかる</td></tr>
+<tr><td><span class="en">Cheese is made from milk.</span></td><td><span class="en">from</span></td><td>チーズを見ても牛乳だとわからない</td></tr>
+<tr><td><span class="en">This material is made from wood.</span></td><td><span class="en">from</span></td><td>木の形が残っていない</td></tr>
+<tr><td><span class="en">This box is made of metal.</span></td><td><span class="en">of</span></td><td>箱を見れば金属だとわかる</td></tr>
+</table>
+</div>
+
+<h3>be known to と be known for</h3>
+
+<p><span class="en">to</span> のうしろには<strong>知っている人</strong>が来ます。<span class="en">for</span> のうしろには<strong>知られている中身</strong>が来ます。<span class="en">This song is known to everyone.</span> は「だれもがこの歌を知っている」、<span class="en">Our town is known for its fireworks.</span> は「私たちの町は花火で知られている」です。<span class="en">Our school is known for its music club.</span>（私たちの学校は音楽部で知られている）のように、学校や店についても使います。</p>
+
+<h3>気持ちの受動態は「〜される」と訳さない</h3>
+
+<p><span class="en">I am interested in old buildings.</span> を「私は古い建物に興味を持たされている」とは訳しません。<strong>形は受動態ですが、日本語では「〜に興味がある」という状態として訳します。</strong><span class="en">be surprised at 〜</span>・<span class="en">be pleased with 〜</span> も同じです。</p>
+
+<h3>oil や ice のような数えられない名詞</h3>
+
+<p><span class="en">This machine is filled with oil.</span>・<span class="en">In winter the river is covered with ice.</span> のように、<span class="en">oil</span> や <span class="en">ice</span> には <span class="en">a</span> をつけず、複数形にもしません。中1 Unit 4 の数えられない名詞の扱いと同じです。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">be made (　　　) wood</span> のように前置詞を4つから選ばせる</td></tr>
+<tr><td>選択</td><td>同じ形の語について、過去形と「be動詞 ＋ 過去分詞」のどちらが入るかを選ばせる</td></tr>
+<tr><td>書きかえ</td><td>能動態を受動態に直させる。代名詞の格が変わるかどうかで差がつく</td></tr>
+<tr><td>和文英訳</td><td>「〜に興味がある」「〜でおおわれている」を熟語ごと書かせる</td></tr>
+<tr><td>読解</td><td>材料や産地の説明文で、<span class="en">be made of</span> ／ <span class="en">from</span> ／ <span class="en">in</span> の区別を内容一致で問う</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">This desk is made from wood.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">This desk is made of wood.</span></div>
+<p class="contrast-why">机を見れば木だとわかるので <span class="en">of</span> です。<span class="en">from</span> は材料の形が残らないときに使います。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">Him is known to everyone.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">He is known to everyone.</span></div>
+<p class="contrast-why">主語の位置に上がったので主格の <span class="en">he</span> になります。目的格のまま置けません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">My father was made this desk ten years ago.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">My father made this desk ten years ago.</span></div>
+<p class="contrast-why">父は「作った」側なので受動態にしません。うしろに目的語 <span class="en">this desk</span> があることが目印です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">Our town is surrounded with mountains.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">Our town is surrounded by mountains.</span></div>
+<p class="contrast-why"><span class="en">surround</span> は <span class="en">by</span> をとります。前置詞は語ごとに決まっているので、形のまとまりで覚えます。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>受動態のうしろの前置詞は <span class="en">by</span> だけではありません。<span class="en">be interested in</span>・<span class="en">be covered with</span>・<span class="en">be known to</span> のように<strong>語ごとに決まっている</strong>ので、形のまとまりで覚えます。</li>
+<li>材料が見えるときは <span class="en">be made of</span>、形が変わるときは <span class="en">be made from</span>、場所なら <span class="en">be made in</span> です。</li>
+<li>能動態を受動態に直すときは、<strong>目的語を主語にし、be動詞 ＋ 過去分詞にし、もとの主語を by 〜 に置きます</strong>。代名詞は目的格から主格へ（<span class="en">him → he</span>）形が変わります。</li>
+<li>過去形と過去分詞が同じ形のときは、<strong>前に be動詞があるか、うしろに目的語があるか</strong>で見分けます。</li>
+</ul>
+</div>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。前置詞を選ぶ問題では、どの語とまとまりを作るかを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">Our town is surrounded (　　　) mountains.</span>
+<p class="opts"><span>ア by</span><span>イ of</span><span>ウ from</span><span>エ with</span></p></li>
+<li><span class="en">This cloth is made (　　　) cotton.</span>
+<p class="opts"><span>ア from</span><span>イ of</span><span>ウ in</span><span>エ to</span></p></li>
+<li><span class="en">Cheese is made (　　　) milk.</span>
+<p class="opts"><span>ア of</span><span>イ with</span><span>ウ from</span><span>エ at</span></p></li>
+<li><span class="en">My father (　　　) this desk ten years ago.</span>
+<p class="opts"><span>ア made</span><span>イ was made</span><span>ウ is made</span><span>エ making</span></p></li>
+<li><span class="en">This bridge (　　　) a long time ago.</span>
+<p class="opts"><span>ア built</span><span>イ was built</span><span>ウ build</span><span>エ builds</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私は古い建物に興味があります。<br><span class="en">[ i / am / interested / in / old / buildings ] .</span><span class="write"></span></li>
+<li>その山は雪でおおわれていました。<br><span class="en">[ the / mountain / was / covered / with / snow ] .</span><span class="write"></span></li>
+<li>この机は木で作られています。<br><span class="en">[ this / desk / is / made / of / wood ] .</span><span class="write"></span></li>
+<li data-extra="1">その手紙は彼によって書かれました。<span class="hint">1語不要</span><br><span class="en">[ the / letter / was / written / by / him / he ] .</span><span class="write"></span></li>
+<li data-extra="1">彼はこの町で生まれました。<span class="hint">1語不要</span><br><span class="en">[ he / was / born / in / this / town / is ] .</span><span class="write"></span></li>
+<li>昼食はこのホールで正午に出されます。<br><span class="en">[ lunch / is / served / at / noon / in / this / hall ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">This desk is made from wood.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">This box was fill with old tools.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Him is known to everyone.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My father was made this desk ten years ago.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Our town is surrounded with mountains.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">この箱は金属で作られています。</span><span class="write"></span></li>
+<li><span class="q-ja">チーズは牛乳から作られます。</span><span class="write"></span></li>
+<li><span class="q-ja">その箱は古い道具でいっぱいでした。</span><span class="write"></span></li>
+<li><span class="q-ja">冬にはその川は氷でおおわれます。</span><span class="write"></span></li>
+<li><span class="en">by</span> を使って「この旗は生徒たちによって作られました」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li><span class="en">He</span> で始めて「彼はその結果に満足していました」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li>能動態の <span class="en">My brother made this chair.</span> を、<span class="en">This chair</span> で始める受動態に書きかえる。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">エミは、夏に行った山の村のことを英語の授業で発表しました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">紙の村</p>
+<p>Last summer I visited a small village in the mountains with my family. The village is known for its Japanese paper. This paper is made from a plant, so it is thin but very strong. <span class="num">①</span><span class="ul">Paper from wood is cheap, but this paper is made by hand, so it is more expensive.</span> In an old factory, a man showed us the steps. First, the plants are cut and boiled. Next, they are washed in cold water. The river near the factory is very clean, and in winter it is covered with ice. Then the wet paper is dried in the sun. I was surprised at the number of steps. The man said, "Our paper is known to people all over Japan. It is used for letters, windows and art. But only ten people make it in this village now." <span class="num">②</span><span class="ul">I was not pleased with his last words.</span> I want to tell more people about this village.</p>
+<p class="reading-wc">およそ150語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 村の紙は、木から安く作られている。<br>
+イ 村の紙は、人の手で作られているので値段が高い。<br>
+ウ 村の紙は、窓には使われていない。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">What is this paper made from?</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">In winter the river is (　　　) with ice.</span><span class="write"></span></li>
+<li>下線部②でエミがそう感じた理由として合うものを1つ選ぶ。<br>
+ア 紙が高すぎると思ったから。<br>
+イ 紙を作る人が村に10人しかいないと聞いたから。<br>
+ウ 紙が日本じゅうで知られていないと聞いたから。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>自分の町や学校が何で知られているかを <span class="en">be known for 〜</span> を使って1文書く。<span class="hint">例：Our school is known for its music club.</span><span class="write"></span></li>
+<li>自分の持ち物を1つ選び、<span class="en">be made of 〜</span> を使って何でできているかを1文書く。<span class="hint">例：My bag is made of cotton.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>主語が「する」側か「される」側か</strong>に戻り、次に<strong>うしろの前置詞</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　by</span><p class="a-why"><span class="en">surround</span> は <span class="en">by</span> をとります。<span class="en">with</span> ではありません。前置詞は語ごとに決まっています。</p></li>
+<li><span class="a-key">イ　of</span><p class="a-why">布を見れば綿だとわかるので <span class="en">of</span> です。材料の形が残っているときは <span class="en">of</span> です。</p></li>
+<li><span class="a-key">ウ　from</span><p class="a-why">チーズを見ても牛乳だとはわからないので <span class="en">from</span> です。材料の形がすっかり変わっています。</p></li>
+<li><span class="a-key">ア　made</span><p class="a-why">うしろに目的語 <span class="en">this desk</span> があるので、父は「作った」側です。過去形のままにします。<span class="en">was made</span> にすると「父が作られた」になってしまいます。</p></li>
+<li><span class="a-key">イ　was built</span><p class="a-why">橋は「建てられる」側で、うしろに目的語がありません。<span class="en">built</span> だけでは be動詞が足りず、文になりません。</p></li>
+
+<li><span class="a-key">I am interested in old buildings.</span><p class="a-why">気持ちを表す受動態です。<span class="en">interested</span> のうしろは <span class="en">in</span> です。「興味を持たされている」とは訳しません。</p></li>
+<li><span class="a-key">The mountain was covered with snow.</span><p class="a-why">過去のことなので <span class="en">was</span> です。<span class="en">covered</span> のうしろは <span class="en">with</span> です。</p></li>
+<li><span class="a-key">This desk is made of wood.</span><p class="a-why">机を見れば木だとわかるので <span class="en">of</span> です。</p></li>
+<li><span class="a-key">The letter was written by him.</span><p class="a-why">不要な語は <span class="en">he</span> です。<span class="en">by</span> のうしろは目的格なので <span class="en">him</span> を使います。</p></li>
+<li><span class="a-key">He was born in this town.</span><p class="a-why">不要な語は <span class="en">is</span> です。生まれたのは過去のことなので <span class="en">was born</span> です。</p></li>
+<li><span class="a-key">Lunch is served at noon in this hall.</span><p class="a-why">昼食は「出される」側です。時刻は <span class="en">at</span>、場所は <span class="en">in</span> で示します。</p></li>
+
+<li><span class="a-key">This desk is made of wood.</span><p class="a-why">誤りは <span class="en">from</span> です。机を見れば木だとわかるので <span class="en">of</span> に直します。<span class="en">from</span> は材料の形が残らないときに使います。</p></li>
+<li><span class="a-key">This box was filled with old tools.</span><p class="a-why">誤りは <span class="en">fill</span> です。be動詞のうしろは過去分詞なので <span class="en">filled</span> に直します。原形は置けません。</p></li>
+<li><span class="a-key">He is known to everyone.</span><p class="a-why">誤りは <span class="en">Him</span> です。主語の位置なので主格の <span class="en">He</span> に直します。目的格のままにはできません。</p></li>
+<li><span class="a-key">My father made this desk ten years ago.</span><p class="a-why">誤りは <span class="en">was</span> です。うしろに目的語 <span class="en">this desk</span> があるので、父は「する」側です。<span class="en">was</span> を取って過去形にします。</p></li>
+<li><span class="a-key">Our town is surrounded by mountains.</span><p class="a-why">誤りは <span class="en">with</span> です。<span class="en">surround</span> は <span class="en">by</span> をとるので <span class="en">by</span> に直します。</p></li>
+
+<li><span class="a-key">This box is made of metal.</span><p class="a-why">箱を見れば金属だとわかるので <span class="en">of</span> です。<span class="en">metal</span> には <span class="en">a</span> をつけません。</p></li>
+<li><span class="a-key">Cheese is made from milk.</span><p class="a-why">材料の形が変わるので <span class="en">from</span> です。<span class="en">Cheese</span> も <span class="en">milk</span> も数えられない名詞なので <span class="en">a</span> をつけません。</p></li>
+<li><span class="a-key">The box was filled with old tools.</span><p class="a-why">過去のことなので <span class="en">was filled</span> です。「いっぱいである」は <span class="en">be filled with 〜</span> です。</p></li>
+<li><span class="a-key">In winter the river is covered with ice.</span><p class="a-why">「おおわれている」は <span class="en">be covered with 〜</span> です。<span class="en">The river is covered with ice in winter.</span> も正しい答えです。</p></li>
+<li><span class="a-key">This flag was made by the students.</span><p class="a-why">作ったのは生徒たちなので <span class="en">by</span> 〜 を残します。7語です。</p></li>
+<li><span class="a-key">He was pleased with the result.</span><p class="a-why">「満足している」は <span class="en">be pleased with 〜</span> です。過去のことなので <span class="en">was</span> です。6語です。</p></li>
+<li><span class="a-key">This chair was made by my brother.</span><p class="a-why">目的語 <span class="en">this chair</span> を主語にし、<span class="en">made</span> を <span class="en">was made</span> にし、<span class="en">my brother</span> を <span class="en">by</span> のうしろに置きます。7語です。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">this paper is made by hand, so it is more expensive</span> とあります。アは、安いのは木から作る紙のほうなので誤りです。ウは <span class="en">It is used for letters, windows and art.</span> と合いません。</p></li>
+<li><span class="a-key">It is made from a plant.</span><p class="a-why">本文の <span class="en">This paper is made from a plant</span> から答えます。<span class="en">This paper is made from a plant.</span> も正しい答えです。</p></li>
+<li><span class="a-key">木から作る紙は安いが、この紙は手で作られているので、もっと値段が高い。</span><p class="a-why"><span class="en">made by hand</span> は「手で作られている」です。<span class="en">more expensive</span> は Unit 14 の比較級で「もっと値段が高い」です。</p></li>
+<li><span class="a-key">covered</span><p class="a-why">本文の <span class="en">in winter it is covered with ice</span> と同じ形です。<span class="en">with</span> の前なので <span class="en">covered</span> です。</p></li>
+<li><span class="a-key">イ</span><p class="a-why">直前に <span class="en">only ten people make it in this village now</span> とあります。作る人が少ないことを聞いて残念に思ったという流れです。</p></li>
+
+<li><span class="a-key">解答例：Our school is known for its music club.</span><p class="a-why"><span class="en">be known for 〜</span> のうしろには、知られている中身を置きます。<span class="en">Our town is known for its fireworks.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：My bag is made of cotton.</span><p class="a-why">材料が見てわかるものを選べば <span class="en">of</span> です。<span class="en">My chopsticks are made of bamboo.</span> のようにも書けます。主語が複数なら <span class="en">are</span> です。</p></li>
+</ol>
+</div>
+</body>
+</html>

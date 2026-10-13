@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 15　受動態（肯定・否定・疑問）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab15_passive.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 15</p>
+<h1 class="unit-title">受動態（肯定・否定・疑問）</h1>
+<p class="unit-lead">これまでの文は、主語が「〜する」側でした。この単元では、<strong>主語が「〜される」側になる文（受動態）</strong>を扱います。形は <strong>be動詞 ＋ 過去分詞</strong>です。<span class="en">Many people visit this temple.</span> は「多くの人がこの寺を訪れる」、<span class="en">This temple is visited by many people.</span> は「この寺は多くの人に訪れられる」です。どちらも同じできごとを表していますが、文の主語がちがいます。</p>
+</header>
+
+<h2><span>受動態は be動詞 ＋ 過去分詞</span></h2>
+
+<p>「〜される」「〜された」と言うときは、<strong>be動詞のうしろに過去分詞を置きます</strong>。動作をする人は、必要なら <span class="en">by</span> のうしろに置きます。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">Many people visit this temple.</span>　（多くの人がこの寺を訪れる）</span>
+<span class="tf-arrow">↓　this temple を主語にし、visit を be動詞 ＋ 過去分詞（is visited）にし、する人を by のうしろへ移す</span>
+<span class="tf-line"><span class="en">This temple is visited by many people.</span>　（この寺は多くの人に訪れられる）</span>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">受動態の動詞は「be動詞 ＋ 過去分詞」の2語で1つのはたらきをする</p>
+<div class="flow">
+<span class="node">This temple<span class="node-label">される側（主語）</span></span>
+<span class="link">
+<span class="link-word">is visited</span>
+<span class="rail"></span>
+</span>
+<span class="node">by many people<span class="node-label">する人</span></span>
+</div>
+</div>
+
+<p><strong>なぜ受動態を使うのか。</strong>英語では、文の主語に話題の中心を置きます。寺について話しているときは、<span class="en">many people</span> よりも <span class="en">this temple</span> を主語にしたほうが話がつながります。また、だれがしたのかわからないときや、言う必要がないときにも受動態を使います。</p>
+
+<p><strong>過去分詞は、それだけでは動詞として働きません。</strong>中1 Unit 14 で「-ing形は動詞そのものとしては働かないので be動詞と組む」と学びました。過去分詞も同じで、<strong>必ず be動詞と組んで使います</strong>。<span class="en">This temple visited by many people.</span> のように be動詞を落とすと文になりません。</p>
+
+<h3>be動詞は主語と時で決まる</h3>
+
+<p>be動詞の選び方は、これまでの be動詞の文と同じです。主語が単数か複数か、今のことか過去のことかで決めます。過去分詞のほうは形が変わりません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語と時</th><th>受動態の文</th></tr>
+<tr><td>単数・今</td><td><span class="en">This room is cleaned every day.</span></td></tr>
+<tr><td>複数・今</td><td><span class="en">These rooms are cleaned every day.</span></td></tr>
+<tr><td>単数・過去</td><td><span class="en">This room was cleaned yesterday.</span></td></tr>
+<tr><td>複数・過去</td><td><span class="en">These rooms were cleaned yesterday.</span></td></tr>
+</table>
+</div>
+
+<h2><span>過去分詞の一覧表</span></h2>
+
+<p>受動態を作るには過去分詞を知っている必要があります。<strong>規則動詞の過去分詞は過去形と同じ形（-ed）です。</strong>不規則動詞は、過去形と同じ形のものと、ちがう形のものに分かれます。中1 Unit 16 の不規則変化の語に、中2で増えた語を足しています。</p>
+
+<h3>規則動詞（過去形と同じ -ed）</h3>
+<div class="table-wrap">
+<table class="rule">
+<tr><th>原形</th><th>過去形</th><th>過去分詞</th></tr>
+<tr><td><span class="en">clean</span></td><td><span class="en">cleaned</span></td><td><span class="en">cleaned</span></td></tr>
+<tr><td><span class="en">use</span></td><td><span class="en">used</span></td><td><span class="en">used</span></td></tr>
+<tr><td><span class="en">visit</span></td><td><span class="en">visited</span></td><td><span class="en">visited</span></td></tr>
+<tr><td><span class="en">love</span></td><td><span class="en">loved</span></td><td><span class="en">loved</span></td></tr>
+<tr><td><span class="en">open</span></td><td><span class="en">opened</span></td><td><span class="en">opened</span></td></tr>
+<tr><td><span class="en">invent</span></td><td><span class="en">invented</span></td><td><span class="en">invented</span></td></tr>
+<tr><td><span class="en">study</span></td><td><span class="en">studied</span></td><td><span class="en">studied</span></td></tr>
+<tr><td><span class="en">stop</span></td><td><span class="en">stopped</span></td><td><span class="en">stopped</span></td></tr>
+</table>
+</div>
+<p>綴りの決まりは過去形と同じです（<span class="en">y</span> を <span class="en">i</span> にかえて <span class="en">-ed</span>、子音字を重ねて <span class="en">-ed</span>）。</p>
+
+<h3>不規則動詞（過去形と同じ形）</h3>
+<div class="table-wrap">
+<table class="rule">
+<tr><th>原形</th><th>過去形</th><th>過去分詞</th></tr>
+<tr><td><span class="en">make</span></td><td><span class="en">made</span></td><td><span class="en">made</span></td></tr>
+<tr><td><span class="en">build</span></td><td><span class="en">built</span></td><td><span class="en">built</span></td></tr>
+<tr><td><span class="en">buy</span></td><td><span class="en">bought</span></td><td><span class="en">bought</span></td></tr>
+<tr><td><span class="en">bring</span></td><td><span class="en">brought</span></td><td><span class="en">brought</span></td></tr>
+<tr><td><span class="en">catch</span></td><td><span class="en">caught</span></td><td><span class="en">caught</span></td></tr>
+<tr><td><span class="en">teach</span></td><td><span class="en">taught</span></td><td><span class="en">taught</span></td></tr>
+<tr><td><span class="en">find</span></td><td><span class="en">found</span></td><td><span class="en">found</span></td></tr>
+<tr><td><span class="en">hear</span></td><td><span class="en">heard</span></td><td><span class="en">heard</span></td></tr>
+<tr><td><span class="en">read</span></td><td><span class="en">read</span></td><td><span class="en">read</span></td></tr>
+<tr><td><span class="en">sell</span></td><td><span class="en">sold</span></td><td><span class="en">sold</span></td></tr>
+<tr><td><span class="en">tell</span></td><td><span class="en">told</span></td><td><span class="en">told</span></td></tr>
+<tr><td><span class="en">send</span></td><td><span class="en">sent</span></td><td><span class="en">sent</span></td></tr>
+<tr><td><span class="en">hold</span></td><td><span class="en">held</span></td><td><span class="en">held</span></td></tr>
+</table>
+</div>
+
+<h3>不規則動詞（過去形とちがう形）</h3>
+<div class="table-wrap">
+<table class="rule">
+<tr><th>原形</th><th>過去形</th><th>過去分詞</th></tr>
+<tr><td><span class="en">see</span></td><td><span class="en">saw</span></td><td><span class="en">seen</span></td></tr>
+<tr><td><span class="en">eat</span></td><td><span class="en">ate</span></td><td><span class="en">eaten</span></td></tr>
+<tr><td><span class="en">take</span></td><td><span class="en">took</span></td><td><span class="en">taken</span></td></tr>
+<tr><td><span class="en">write</span></td><td><span class="en">wrote</span></td><td><span class="en">written</span></td></tr>
+<tr><td><span class="en">give</span></td><td><span class="en">gave</span></td><td><span class="en">given</span></td></tr>
+<tr><td><span class="en">sing</span></td><td><span class="en">sang</span></td><td><span class="en">sung</span></td></tr>
+<tr><td><span class="en">speak</span></td><td><span class="en">spoke</span></td><td><span class="en">spoken</span></td></tr>
+<tr><td><span class="en">know</span></td><td><span class="en">knew</span></td><td><span class="en">known</span></td></tr>
+<tr><td><span class="en">grow</span></td><td><span class="en">grew</span></td><td><span class="en">grown</span></td></tr>
+<tr><td><span class="en">break</span></td><td><span class="en">broke</span></td><td><span class="en">broken</span></td></tr>
+<tr><td><span class="en">choose</span></td><td><span class="en">chose</span></td><td><span class="en">chosen</span></td></tr>
+<tr><td><span class="en">do</span></td><td><span class="en">did</span></td><td><span class="en">done</span></td></tr>
+</table>
+</div>
+
+<p>2つめの表の語は、<strong>過去形と過去分詞が同じ形</strong>なので、形だけでは見分けられません。be動詞があれば受動態の過去分詞、be動詞が無く主語のすぐうしろにあれば過去形です（<span class="en">Ken built this house.</span> は過去形、<span class="en">This house was built by Ken.</span> は過去分詞）。3つめの表の語は、<span class="en">was wrote</span> ／ <span class="en">was took</span> のように過去形を入れるまちがいが多いので、過去分詞の形をそのまま覚えます。</p>
+
+<h2><span><span class="en">was cleaned</span> と <span class="en">was clean</span> を分ける</span></h2>
+
+<p>受動態の文は、中1 Unit 15 の be動詞の過去形の文と形が似ています。<span class="en">The room was cleaned.</span> と <span class="en">The room was clean.</span> は1字しかちがいませんが、意味は別です。</p>
+
+<div class="diagram">
+<p class="diagram-cap">be動詞のうしろが過去分詞なら「〜された」、形容詞なら「〜だった」</p>
+<div class="flow">
+<span class="node">The room was<span class="node-label">主語 ＋ be動詞</span></span>
+<span class="link">
+<span class="link-word">cleaned</span>
+<span class="rail"></span>
+</span>
+<span class="node">by my brother<span class="node-label">する人</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>be動詞のうしろ</th><th>意味</th></tr>
+<tr><td><span class="en">The room was cleaned by my brother.</span></td><td>過去分詞<br>（<span class="en">clean</span> ＋ <span class="en">-ed</span>）</td><td>部屋は兄によってそうじされた。<br>（動作）</td></tr>
+<tr><td><span class="en">The room was clean.</span></td><td>形容詞</td><td>部屋はきれいだった。<br>（ようす）</td></tr>
+<tr><td><span class="en">The window was opened by Ken.</span></td><td>過去分詞</td><td>窓はケンによって開けられた。<br>（動作）</td></tr>
+<tr><td><span class="en">The window was open.</span></td><td>形容詞</td><td>窓は開いていた。<br>（ようす）</td></tr>
+</table>
+</div>
+
+<p>見分けるときは、<strong>be動詞のうしろの語が「〜する」という動詞から作った形かどうか</strong>を見ます。<span class="en">clean</span> と <span class="en">open</span> は動詞にも形容詞にもなる語なので、<span class="en">-ed</span> がついているかを必ず確かめます。<span class="en">by</span> 〜 がついていれば、動作をした人がいるので受動態です。</p>
+
+<h2><span><span class="en">by</span> 〜 は省略できる</span></h2>
+
+<p><span class="en">by</span> 〜 は、<strong>する人がわからないとき、だれでもよいとき、言わなくてもわかるとき</strong>には省略します。実際の英文では、<span class="en">by</span> 〜 のない受動態のほうが多く使われます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>省略した理由</th></tr>
+<tr><td><span class="en">English is spoken in many countries.</span></td><td>話す人は「その国の人々」で、言わなくてもわかる</td></tr>
+<tr><td><span class="en">This temple was built about 400 years ago.</span></td><td>建てた人がわからない</td></tr>
+<tr><td><span class="en">My bike was found near the station.</span></td><td>見つけた人より自転車が話題の中心</td></tr>
+<tr><td><span class="en">The festival is held every summer.</span></td><td>開く人は町の人々で、言わなくてもわかる</td></tr>
+</table>
+</div>
+
+<p>反対に、<strong>する人が大切な情報のときは <span class="en">by</span> 〜 を残します</strong>。<span class="en">The telephone was invented by Bell.</span>（電話はベルによって発明された）では、だれが発明したかが文の中心なので省略しません。<span class="en">by</span> のうしろに代名詞を置くときは、<span class="en">by him</span> ／ <span class="en">by her</span> ／ <span class="en">by them</span> のように目的語の形にします（前置詞のうしろなので）。</p>
+
+<h2><span>否定文と疑問文は be動詞の文と同じ</span></h2>
+
+<p>受動態の文には be動詞があるので、否定文と疑問文の作り方は<strong>中1で学んだ be動詞の文と同じ</strong>です。<span class="en">do</span> ／ <span class="en">does</span> ／ <span class="en">did</span> は使いません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>種類</th><th>作り方</th><th>例</th></tr>
+<tr><td>否定文</td><td>be動詞のうしろに <span class="en">not</span></td><td><span class="en">This room is not used now.</span></td></tr>
+<tr><td>否定文（過去）</td><td><span class="en">wasn't</span> ／ <span class="en">weren't</span> も使える</td><td><span class="en">The letter wasn't written in English.</span></td></tr>
+<tr><td>疑問文</td><td>be動詞を主語の前へ</td><td><span class="en">Is this song sung in your class?</span></td></tr>
+<tr><td>疑問文（過去）</td><td>be動詞を主語の前へ</td><td><span class="en">Was this cake made by your sister?</span></td></tr>
+</table>
+</div>
+
+<p>答え方も be動詞の文と同じです。<span class="en">Was this cake made by your sister?</span> —— <span class="en">Yes, it was.</span> ／ <span class="en">No, it wasn't.</span> です。</p>
+
+<p>疑問詞を使うときは、疑問詞を文の先頭に置き、そのあとは疑問文の語順です。<span class="en">When was this temple built?</span>（この寺はいつ建てられましたか）—— <span class="en">It was built about 400 years ago.</span>、<span class="en">What language is spoken in Australia?</span>（オーストラリアでは何語が話されていますか）—— <span class="en">English is spoken there.</span> です。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">主語が「する」側か「される」側かを確かめる</span>
+<span class="step-d">主語が動作を受けるなら受動態です。<span class="en">This temple</span> は「建てる」側ではなく「建てられる」側です。</span>
+</li>
+<li>
+<span class="step-t">主語と時から be動詞を決める</span>
+<span class="step-d">単数・今なら <span class="en">is</span>、複数・今なら <span class="en">are</span>、過去なら <span class="en">was</span> ／ <span class="en">were</span> です。</span>
+</li>
+<li>
+<span class="step-t">動詞を過去分詞にする</span>
+<span class="step-d">規則動詞は <span class="en">-ed</span>、不規則動詞は一覧表の形です。原形や過去形を入れていないかを確かめます。</span>
+</li>
+<li>
+<span class="step-t">する人を言う必要があれば <span class="en">by</span> 〜 を置く</span>
+<span class="step-d">代名詞なら目的語の形（<span class="en">by him</span>）です。否定文・疑問文は be動詞の文と同じ作り方です。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>助動詞のあとは <span class="en">be</span> ＋ 過去分詞</h3>
+<p><span class="en">will</span> や <span class="en">can</span> のうしろは原形なので、be動詞は <span class="en">be</span> になります。<span class="en">The concert will be held next Sunday.</span>（コンサートは次の日曜日に開かれます）、<span class="en">Many stars can be seen from this hill.</span>（この丘からたくさんの星が見られます）です。<span class="en">will is held</span> ／ <span class="en">can is seen</span> とはしません。</p>
+
+<h3>受動態にしない動詞</h3>
+<p>受動態の主語になるのは、もとの文の<strong>目的語</strong>です。<span class="en">go</span> ／ <span class="en">come</span> ／ <span class="en">run</span> のように目的語をとらない動詞は受動態になりません。<span class="en">I went to the park.</span> の <span class="en">the park</span> は <span class="en">to</span> のうしろの名詞で、<span class="en">went</span> の目的語ではないので、受動態の主語にはなりません。</p>
+
+<h3>過去分詞と形容詞の両方になる語</h3>
+<p><span class="en">broken</span> は「こわされた」のほかに「こわれた」という形容詞としても使います。<span class="en">This window was broken by the wind.</span>（この窓は風でこわされた）は受動態、<span class="en">I found a broken cup in the kitchen.</span>（台所でこわれたカップを見つけた）は名詞を説明する形容詞です。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>be動詞のあとに原形・過去形・過去分詞・-ing形が並び、過去分詞を選ぶ。主語と時から <span class="en">is</span> ／ <span class="en">was</span> ／ <span class="en">were</span> を選ぶ</td></tr>
+<tr><td>語形変化</td><td><span class="en">write</span> ／ <span class="en">speak</span> ／ <span class="en">build</span> などを過去分詞に変える。<span class="en">wrote</span> ／ <span class="en">spoke</span> と書くと誤り</td></tr>
+<tr><td>並べかえ</td><td>be動詞 ＋ 過去分詞 ＋ <span class="en">by</span> 〜 の語順。不要な語として <span class="en">did</span> や <span class="en">does</span> が混ざる</td></tr>
+<tr><td>英問英答</td><td><span class="en">When was 〜 built?</span> ／ <span class="en">What language is spoken in 〜?</span> に受動態で答える</td></tr>
+<tr><td>読解</td><td>施設や行事の説明文で、いつ・だれによって作られたかを読み取る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">This temple built about 400 years ago.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">This temple <span class="gen-w">was</span> built about 400 years ago.</span></div>
+<p class="contrast-why">寺は「建てた」側ではなく「建てられた」側です。過去分詞は be動詞と組みます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">This letter was wrote by my grandmother.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">This letter was <span class="gen-w">written</span> by my grandmother.</span></div>
+<p class="contrast-why">be動詞のうしろは過去分詞です。<span class="en">wrote</span> は過去形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">English is speak in many countries.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">English is <span class="gen-w">spoken</span> in many countries.</span></div>
+<p class="contrast-why">be動詞のうしろに原形は置きません。<span class="en">speak</span> の過去分詞は <span class="en">spoken</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Did this cake made by your sister?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="gen-w">Was</span> this cake made by your sister?</span></div>
+<p class="contrast-why">受動態の疑問文は be動詞を主語の前に出します。<span class="en">did</span> は使いません。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p>主語が「される」側のときは<strong>be動詞 ＋ 過去分詞</strong>で表します。be動詞は主語と時で決め、過去分詞は一覧表の形を使います。<strong>過去分詞は be動詞と組まないと動詞として働きません。</strong>be動詞のうしろが形容詞なら「〜だった」というようすで、受動態ではありません（<span class="en">was clean</span> と <span class="en">was cleaned</span>）。する人は <span class="en">by</span> 〜 で示しますが、わからないときや言わなくてもわかるときは省略します。否定文・疑問文は be動詞の文と同じ作り方です。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">This temple is visited by many people.</span>／<span class="en">This room is cleaned every day.</span>／<span class="en">These rooms are cleaned every day.</span>／<span class="en">This room was cleaned yesterday.</span>／<span class="en">These rooms were cleaned yesterday.</span>／<span class="en">This house was built by Ken.</span>／<span class="en">The room was cleaned by my brother.</span>／<span class="en">The window was opened by Ken.</span>／<span class="en">English is spoken in many countries.</span>／<span class="en">This temple was built about 400 years ago.</span>／<span class="en">The festival is held every summer.</span>／<span class="en">The telephone was invented by Bell.</span>／<span class="en">This room is not used now.</span>／<span class="en">The letter wasn't written in English.</span>／<span class="en">Was this cake made by your sister?</span>／<span class="en">When was this temple built?</span>／<span class="en">The concert will be held next Sunday.</span>／<span class="en">Many stars can be seen from this hill.</span>　まず主語が「する」側か「される」側かを確かめてください。</p>
+
+<p>ほかの例文です。<span class="en">This wooden temple is very old.</span>／<span class="en">Our school was built in the last century.</span>／<span class="en">Ancient coins were found near the temple.</span>／<span class="en">A new kind of bird was discovered in this forest.</span>／<span class="en">The old bridge was repaired last year.</span>／<span class="en">The package was delivered this morning.</span>／<span class="en">The mail is delivered at ten every day.</span>／<span class="en">Rice is produced in this area.</span>／<span class="en">This product is sold all over Japan.</span>／<span class="en">These cars are made by a company in Nagoya.</span>／<span class="en">The graduation ceremony was held in the gym.</span>／<span class="en">The old castle was destroyed by a fire.</span>／<span class="en">The statue in the park was made by a famous artist.</span>／<span class="en">This stone was used for the old gate.</span>／<span class="en">Fruit is grown on the hills around our town.</span>／<span class="en">Our team leader was chosen by the members.</span>／<span class="en">The window was broken by a ball.</span>／<span class="en">The baseball games are held at the stadium.</span>／<span class="en">A guide showed us the old temple.</span>／<span class="en">The telephone was a great invention.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。主語が「する」側か「される」側かを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">This old wooden temple in our town (　　　) visited by many people every year.</span>
+<p class="opts"><span>ア is</span><span>イ are</span><span>ウ does</span><span>エ was</span></p></li>
+<li><span class="en">English is (　　　) in many countries around the world.</span>
+<p class="opts"><span>ア speak</span><span>イ spoke</span><span>ウ spoken</span><span>エ speaking</span></p></li>
+<li><span class="en">These pictures on the wall were (　　　) by my grandfather last year.</span>
+<p class="opts"><span>ア take</span><span>イ took</span><span>ウ taking</span><span>エ taken</span></p></li>
+<li><span class="en">(　　　) this letter written by your sister?</span>
+<p class="opts"><span>ア Did</span><span>イ Was</span><span>ウ Does</span><span>エ Were</span></p></li>
+<li><span class="en">The concert in the town hall will (　　　) held next Sunday.</span>
+<p class="opts"><span>ア is</span><span>イ be</span><span>ウ was</span><span>エ are</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>この寺は多くの人に訪れられます。<br><span class="en">[ this / temple / is / visited / by / many / people ] .</span><span class="write"></span></li>
+<li>電話はベルによって発明されました。<br><span class="en">[ the / telephone / was / invented / by / Bell ] .</span><span class="write"></span></li>
+<li>この部屋は今は使われていません。<br><span class="en">[ this / room / is / not / used / now ] .</span><span class="write"></span></li>
+<li data-extra="1">このケーキはあなたのお姉さんによって作られたのですか。<span class="hint">1語不要</span><br><span class="en">[ was / did / this / cake / made / by / your / sister ] ?</span><span class="write"></span></li>
+<li data-extra="1">この寺はいつ建てられましたか。<span class="hint">1語不要</span><br><span class="en">[ when / was / this / temple / built / build ] ?</span><span class="write"></span></li>
+<li>この丘からたくさんの星が見られます。<br><span class="en">[ many / stars / can / be / seen / from / this / hill ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">This temple built about 400 years ago.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">This letter was wrote by my grandmother.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">English is speak in many countries.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Did this cake made by your sister?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">These rooms is cleaned every day.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">この部屋は毎日そうじされます。</span><span class="write"></span></li>
+<li><span class="q-ja">その手紙は英語で書かれていませんでした。</span><span class="write"></span></li>
+<li><span class="q-ja">そのお祭りは毎年夏に開かれます。</span><span class="write"></span></li>
+<li><span class="q-ja">その窓はボールで割られました。</span><span class="write"></span></li>
+<li><span class="en">by</span> を使って「この家はケンによって建てられました」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li><span class="en">When</span> で始めて「この寺はいつ建てられましたか」とたずねる。<span class="cond">5語</span><span class="write"></span></li>
+<li><span class="en">What language</span> で始めて「オーストラリアでは何語が話されていますか」とたずねる。<span class="cond">6語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">リクは、オーストラリアから来た生徒たちに町を案内した日のことを英語の授業で発表しました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">町を案内した日</p>
+<p>Last month, a group of students from Australia visited our town, and I was their guide for a day. First, I took them to Midori Temple. This wooden temple was built about 400 years ago, and it is visited by many people every year. The old gate was broken in a big storm, but it was repaired by the people of the town. Next, we went to the town hall. A big statue stands in front of it. <span class="num">①</span><span class="ul">It was made by a famous artist from our town, and it is loved by the children.</span> Then we visited a small shop near the station. Fruit from our town is sold there. The oranges are grown on the hills around our town, and they are sent to many cities in Japan. One of the students said, "Oranges are not grown in my city. Can I buy some here?" Last week, I got a letter from her. <span class="num">②</span><span class="ul">It was written in Japanese!</span></p>
+<p class="reading-wc">およそ160語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 寺の古い門は、町の人々によって直された。<br>
+イ 町役場の前の像は、外国の芸術家によって作られた。<br>
+ウ 町のオレンジは、町の中だけで売られている。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">When was Midori Temple built?</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">The oranges from this town are (　　　) to many cities in Japan.</span><span class="write"></span></li>
+<li>下線部②からわかることとして合うものを1つ選ぶ。<br>
+ア オーストラリアの生徒が、日本語で手紙を書いた。<br>
+イ リクが、日本語で手紙を書いた。<br>
+ウ オーストラリアの生徒が、英語で手紙を書いた。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>自分の町や学校にある建物について、受動態を使って1文書く。<span class="hint">例：Our school was built in the last century.</span><span class="write"></span></li>
+<li>自分の町や県で作られている物について、<span class="en">by</span> を使わない受動態で1文書く。<span class="hint">例：Rice is produced in this area.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>主語が「する」側か「される」側か</strong>を確かめ、次に<strong>be動詞と過去分詞の形</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　is</span><p class="a-why">主語は <span class="en">This old wooden temple in our town</span> で単数です。<span class="en">every year</span> があるので今のことです。長い主語でも中心の語は <span class="en">temple</span> です。</p></li>
+<li><span class="a-key">ウ　spoken</span><p class="a-why">be動詞のうしろなので過去分詞です。<span class="en">speak</span> ― <span class="en">spoke</span> ― <span class="en">spoken</span> です。</p></li>
+<li><span class="a-key">エ　taken</span><p class="a-why">写真は「とられた」側なので受動態です。<span class="en">were</span> のうしろは過去分詞 <span class="en">taken</span> です。<span class="en">took</span> は過去形です。</p></li>
+<li><span class="a-key">イ　Was</span><p class="a-why">受動態の疑問文は be動詞を前に出します。主語の <span class="en">this letter</span> は単数なので <span class="en">Was</span> です。<span class="en">Did</span> は使いません。</p></li>
+<li><span class="a-key">イ　be</span><p class="a-why"><span class="en">will</span> のうしろは原形なので、be動詞は <span class="en">be</span> になります。</p></li>
+
+<li><span class="a-key">This temple is visited by many people.</span><p class="a-why">be動詞 ＋ 過去分詞 ＋ <span class="en">by</span> 〜 の語順です。</p></li>
+<li><span class="a-key">The telephone was invented by Bell.</span><p class="a-why">過去のことなので <span class="en">was</span> ＋ 過去分詞です。発明した人が大切な情報なので <span class="en">by</span> 〜 を残します。</p></li>
+<li><span class="a-key">This room is not used now.</span><p class="a-why">否定文は be動詞のうしろに <span class="en">not</span> を置きます。</p></li>
+<li><span class="a-key">Was this cake made by your sister?</span><p class="a-why">不要な語は <span class="en">did</span> です。受動態の疑問文は be動詞を前に出します。</p></li>
+<li><span class="a-key">When was this temple built?</span><p class="a-why">不要な語は <span class="en">build</span> です。be動詞のうしろは過去分詞 <span class="en">built</span> です。</p></li>
+<li><span class="a-key">Many stars can be seen from this hill.</span><p class="a-why"><span class="en">can</span> のうしろは原形なので <span class="en">be</span> ＋ 過去分詞です。</p></li>
+
+<li><span class="a-key">This temple was built about 400 years ago.</span><p class="a-why">理由の例：寺は建てられた側なので、be動詞 ＋ 過去分詞にするから。</p></li>
+<li><span class="a-key">This letter was written by my grandmother.</span><p class="a-why">理由の例：be動詞のうしろは過去分詞で、<span class="en">wrote</span> は過去形だから。</p></li>
+<li><span class="a-key">English is spoken in many countries.</span><p class="a-why">理由の例：be動詞のうしろに原形は置かず、過去分詞にするから。</p></li>
+<li><span class="a-key">Was this cake made by your sister?</span><p class="a-why">理由の例：受動態の疑問文は be動詞を主語の前に出し、<span class="en">did</span> を使わないから。</p></li>
+<li><span class="a-key">These rooms are cleaned every day.</span><p class="a-why">理由の例：主語の <span class="en">These rooms</span> は複数なので、be動詞は <span class="en">are</span> にするから。</p></li>
+
+<li><span class="a-key">This room is cleaned every day.</span><p class="a-why">今のことで主語は単数なので <span class="en">is</span> ＋ 過去分詞です。</p></li>
+<li><span class="a-key">The letter wasn't written in English.</span><p class="a-why">過去の否定文なので <span class="en">was not</span> ＋ 過去分詞です。<span class="en">was not</span> と書いても正解です。</p></li>
+<li><span class="a-key">The festival is held every summer.</span><p class="a-why"><span class="en">hold</span> ― <span class="en">held</span> ― <span class="en">held</span> です。開く人は言わなくてもわかるので <span class="en">by</span> 〜 は要りません。</p></li>
+<li><span class="a-key">The window was broken by a ball.</span><p class="a-why"><span class="en">break</span> ― <span class="en">broke</span> ― <span class="en">broken</span> です。<span class="en">was broke</span> とはしません。</p></li>
+<li><span class="a-key">This house was built by Ken.</span><p class="a-why">7語です。<span class="en">build</span> の過去分詞は <span class="en">built</span> です。</p></li>
+<li><span class="a-key">When was this temple built?</span><p class="a-why">5語です。疑問詞のあとは be動詞 ＋ 主語 ＋ 過去分詞の順です。</p></li>
+<li><span class="a-key">What language is spoken in Australia?</span><p class="a-why">6語です。<span class="en">What language</span> が主語なので、そのうしろに <span class="en">is spoken</span> を続けます。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">it was repaired by the people of the town</span> とあります。イは <span class="en">a famous artist from our town</span> なので町の芸術家です。ウは <span class="en">they are sent to many cities in Japan</span> とあります。</p></li>
+<li><span class="a-key">It was built about 400 years ago.</span><p class="a-why">本文に <span class="en">This wooden temple was built about 400 years ago</span> とあります。主語は <span class="en">It</span> にします。</p></li>
+<li><span class="a-key">それは私たちの町出身の有名な芸術家によって作られ、子どもたちに愛されています。</span><p class="a-why"><span class="en">was made by</span> は「〜によって作られた」、<span class="en">is loved by</span> は「〜に愛されている」です。</p></li>
+<li><span class="a-key">sent</span><p class="a-why">本文に <span class="en">they are sent to many cities in Japan</span> とあります。<span class="en">send</span> ― <span class="en">sent</span> ― <span class="en">sent</span> です。</p></li>
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">I got a letter from her.</span> の <span class="en">her</span> はオーストラリアの生徒です。<span class="en">It was written in Japanese!</span> なので、その生徒が日本語で書いたことがわかります。</p></li>
+
+<li><span class="a-key">（解答例）Our school was built in the last century.</span><p class="a-why">be動詞 ＋ 過去分詞になっていれば正解です。<span class="en">The library is used by many students.</span> のような文でもよいです。</p></li>
+<li><span class="a-key">（解答例）Rice is produced in this area.</span><p class="a-why"><span class="en">by</span> 〜 をつけずに、be動詞 ＋ 過去分詞で書けていれば正解です。<span class="en">Oranges are grown in my town.</span> のような文でもよいです。</p></li>
+</ol>
+</div>
+</body>
+</html>

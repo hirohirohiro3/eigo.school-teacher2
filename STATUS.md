@@ -1,233 +1,212 @@
 # 制作の記録
 
-> **2026-09-30（昼）にこのファイルを分割しました。** 09-28（夜）〜09-29（夜）の記録（工程9：中2・中3の設計 `PLAN-g2g3.md`、順1：道具の改造）は `STATUS-archive-2026-09-30.md` にそのまま入っています。それより前は `STATUS-archive-2026-09-28.md`、`STATUS-archive-2026-09-26.md`、`STATUS-archive-2026-09-24.md`、`STATUS-archive-2026-09-23-night.md`、`STATUS-archive-2026-09-23.md`、`STATUS-archive-2026-09-22.md`、`STATUS-archive-2026-09.md` です。
+> **2026-10-12（夜）にこのファイルを分割しました。** 新しい記録は上に足しています（最新は 2026-10-13（夜）の順27：中3 Unit 2）。2026-10-11（昼）の順24：中2の総まとめテスト、10-11（夜）の順23：第4部、10-10（昼）の順22：第3部の記録は `STATUS-archive-2026-10-11.md` にそのまま入っています。それより前は `STATUS-archive-2026-10-10.md`、`STATUS-archive-2026-10-08.md`、`STATUS-archive-2026-10-07.md`、`STATUS-archive-2026-10-06.md`、`STATUS-archive-2026-10-05.md`、`STATUS-archive-2026-10-03.md`、`STATUS-archive-2026-10-02.md`、`STATUS-archive-2026-10-01.md`、`STATUS-archive-2026-09-30.md`、`STATUS-archive-2026-09-28.md`、`STATUS-archive-2026-09-26.md`、`STATUS-archive-2026-09-24.md`、`STATUS-archive-2026-09-23-night.md`、`STATUS-archive-2026-09-23.md`、`STATUS-archive-2026-09-22.md`、`STATUS-archive-2026-09.md` です。
 >
-> 手順は前回と同じで、**古い `STATUS.md` を `update_file` で改名し、この新しい `STATUS.md` を置いています。**アーカイブ側の中身は1バイトも触っていません。リポジトリに反映するときは、改名されたアーカイブとこの新しい `STATUS.md` の両方を置いてください。「Drive からの復元」「Drive へのアップロード」の要点は下の最新の節に書き写してあります。
+> 手順は前回と同じで、**古い `STATUS.md` を `update_file` で `STATUS-archive-2026-10-11.md` に改名し、この新しい `STATUS.md` を置いています。** アーカイブ側の中身は1バイトも触っていません。リポジトリに反映するときは、改名されたアーカイブとこの新しい `STATUS.md` の両方を置いてください。「Drive からの復元」「Drive へのアップロード」の要点は下に書き写してあります。
 
 ---
 
-## 2026-10-01（昼の枠／JST。開始 2026-10-01 06:08 UTC ＝ 15:08 JST）　順4：中2 Unit 3（未来を表す be going to）
+## 2026-10-13（夜の枠／JST。開始 2026-10-12 16:13 UTC ＝ 2026-10-13 01:13 JST）　順27：中3 Unit 2「現在完了（完了・結果）」
 
-手順5の判定は**2番目で止まりました**。1番目（`g2/index.html` あり・`check.py --help` に `--grade` あり・`master-vocab.json` が `"g2-N"` のキーで積む作り）は通過し、N=1・2 は `python tools/check.py N --grade 2` がどちらも NG 0件、`g2/unit03_*.html` が無い N=3 で止まったので、**順4＝中2 Unit 3（未来を表す be going to、スラッグ `be-going-to`）**です。
+手順5の判定：1番目は通過（`g2/index.html` あり・`check.py --help` に `--grade` あり・`master-vocab.json` が `"g2-N"` のキーで積む作り。中1 479語／中2 567語）。2番目は `g2/` に Unit 1〜16 の2本ずつが Drive にそろい、復元した Unit 1・16 は `--grade 2` で NG 0件。3番目は `word-test.html` に `data-g="2"` があり `--word-test` が NG 0件。4番目は `GRADE_REVIEW_SPEC[2]` あり。5・6番目は `g2/review01`〜`04`・`review-final` が NG 0件。7番目は `g3/index.html` あり・`LATER_GRAMMAR_G3` あり。8番目で N=1 は2本そろって NG 0件、**N=2 で `g3/unit02_*.html` が無い**ので、**順27＝中3 Unit 2** です。N=9 ではないので whose・関係副詞の判断は要りませんでした。
 
 ### 作ったもの・変えたもの
 
 | ファイル | 種別 | 置き場所 |
 |---|---|---|
-| `g2/unit03_be-going-to.html` | **新規**（48,574バイト） | g2 |
-| `g2/vocab03_be-going-to.html` | **新規**（38,037バイト） | g2 |
-| `g2/index.html` | 変更（15,872 → 15,922バイト）Unit 3 をリンクに | g2 |
-| `tools/check.py` | 変更（61,170 → 61,265バイト）`IRREGULAR` に `built` `sold` `spent` を追加 | tools |
-| `tools/master-vocab.json` | 変更（5,020 → 5,396バイト）`"g2-3"` を追加 | tools |
-| `STATUS.md` | 変更（この節を追記） | ルート |
+| `g3/unit02_perfect-result.html` | **新規**（49,604バイト）ワークブック。31問（A6・B6・C5・D7・E5・F2） | **g3** |
+| `g3/vocab02_perfect-result.html` | **新規**（37,562バイト）単語帳。見出し語35語 | **g3** |
+| `g3/index.html` | 変更（15,875 → 15,931バイト）Unit 2 のワークブック・単語帳をリンクに（単語テストは順41まで準備中） | g3 |
+| `tools/check.py` | 変更（84,023 → 84,650バイト）`IRREGULAR` に `stood` → `stand` を追加、冒頭の履歴に追記 | tools |
+| `tools/master-vocab.json` | 変更（10,766 → 11,134バイト）`"g3-2"` に35語を追加。中1・中2・`"g3-1"` のキーは1語も変えていない（前後で機械で一致を確認） | tools |
+| `STATUS.md` | 変更（この記録） | ルート |
 
-**`units/` の中1のファイル・`index.html`・`word-test.html`・テンプレート（`tpl-workbook.html` `tpl-vocab.html`）・`build.py`・計画書類は1バイトも変えていません。**
+ほかの復元ファイル（`index.html`・`g2/index.html`・`word-test.html`・`build.py`・テンプレート2本・`units/` の22本・`g2/` の23本・`g3/` の2本・計画書類5本）は**1バイトも変えていません**（復元直後と作業後の md5 を機械で突き合わせ、差分は上の表の5本だけ＝無変更57件）。**`index.html` と `g2/index.html` は触っていません**（ヘッダーの「中3」は順26でリンクにしてあるため、この回では変える分がありません）。
 
 ### 中身
 
-- **ワークブック**：30問（A 5／B 6（うち「1語不要」2問）／C 5／D 7／E 5／F 2）。解説は「be going to ＋ 原形」→ なぜ be動詞が変わるか・なぜ原形か → 主語別の表 → 短縮形・`is going to be` → **will と be going to の使い分け表** → 否定文・疑問文 → 疑問詞と be going to → 判定手順 → 境界事例 → 入試での出方 → よくある間違い → 例文、の順です。
-- **`PLAN-g2g3.md` 3節 Unit 3 の3点はすべて入れました**：①使い分け表（前から決めていた予定＝be going to ○／will △、その場で決めた＝be going to ×／will ○、予測＝どちらも○）。Unit 2 の「意志／予測」の2分を受けて「ちがいが出るのは意志のほう」と書き、`probably`／`maybe` の段階づけはそのまま残しています。②be going to のうしろは原形で、be動詞は主語に合わせる（主語別の表・判定手順・誤文訂正・よくある間違い）。③**`going to go` の重複**：境界事例に「`I'm going to go to Kyoto` は正しい、話しことばでは `I'm going to Kyoto` とも言う、ただし `go shopping` のように場所が来ない形は省けない」と書き、あわせて「`to` のうしろが原形なら be going to、場所なら go の進行形」を見分け方として置きました。
-- **入試の書きかえ（will ＝ be going to）**も1段落と D 5番で扱いました。
-- **読解**：ミカとトムの対話（休みの北海道旅行の予定）。本文130語（話者名を含む `check.py` の数え方で140語。めやす 100〜140語）。前から決めた予定はすべて be going to、かさを借りたその場の決定だけ `I'll buy a gift for you` にして、E 4番でその理由を問いました。
-- **単語帳**：新出語 **36語**（めやす 30〜40語）。熟語の中心1（be going to 〜）・動詞9（travel return sell build pack celebrate spend perform sound）・名詞13（airport plane hotel island castle fireworks grandparents gift contest stage photo suitcase cloud）・形容詞5（special traditional wonderful crowded lucky）・副詞3（abroad later finally）・前置詞2（until around）・熟語3（stay with 〜／go shopping／at the end of 〜）。累計は中1 479語＋中2 108語＝**587語**。
+- **新出語35語**（めやす30〜40語）。動詞 `announce`・`decorate`・`reserve`・`select`、副詞 `just`・`already`・`yet`・`nearly`、名詞 `program`・`preparation`・`curtain`・`costume`・`decoration`・`ceiling`・`drum`・`drummer`・`theater`・`score`・`interview`・`headline`・`delivery`・`guest`・`mall`・`platform`・`parcel`・`taxi`・`subway`・`bicycle`・`coffee`、熟語 `not 〜 yet`・`just now`・`have gone to 〜`・`come back`・`put up 〜`・`sold out`。累計は中1 479語＋中2 567語＋中3 68語＝1,114語（重複を除くと1,113語）。
+- **読解本文は学級新聞の記事「文化祭まで一週間」159語**（めやす130〜180語）。終わった準備と終わっていない準備を読み分ける内容で、完了・結果の用法と中3 Unit 1 までの文法だけで書きました。
+- 解説：過去形との対比（`I did my homework.` ↔ `I have done my homework.`）→ **なぜ同じ形で意味が変わるか**（「持っている」中身が回数なら経験、作業の終わりなら完了）→ `just`・`already`・`yet` の意味・使う文・位置の表 → **いろいろな場面の例文（4段落16本）** → **`yet` が疑問文で「もう」、否定文で「まだ」になることを `transform` の図解と表で分ける** → **「完了」と「結果」は分けなくてよい**（下の判断1）→ `have gone to 〜` と `have been to 〜` の対比表 → 手順 → 境界（`just` と `just now`、過去の時を表す語、疑問文の `already`、`yet` と `never`）→ 入試での出方 → よくある間違い4件 → まとめ。
 
 ### 検証結果
 
-- **`check.py 3 --grade 2`：17項目 NG 0件**（パート構成・設問数30・解答数・並べ替えの語群と語数・和訳の有無・語の網羅 未収録0語・例文一致 不一致0件・375px 横スクロールなし・印刷 A4 ワークブック17ページ／単語帳5ページ）。
-- **中2の `LATER_GRAMMAR_G2` のうち first が4以上の形を、ワークブックの英文（誤答例の行・パートCの誤文・打ち消し線を除く）と読解本文に当てて実質0件**。不定詞の正規表現は `going to visit` の `to visit` を拾うので、直前が `going` のものは外して数えました（残った1件は解説の `<span class="en">` を連結したときにできた断片「not / to / be」で、文ではありません）。接続詞の `when` `if` `because` `that`、`there is`、`must` `have to`、`want to` `like to`、`than` は目でも確かめて0件（`that` は `That sounds great.` の指示代名詞だけ）。SVOO になりやすい `give you one` `tell us` は避け、`buy a gift for you`・`talk about` にしています。
-- **中1の既存の検査はすべて NG 0件**：`--index`・`--word-test`（479語）・`--review 1`〜`4`・`--review final`。`--index --grade 2`、`check.py 1 --grade 2`・`2 --grade 2`・`16`（中1 Unit 16）も NG 0件。
-- **`master-vocab.json` の中1のキー（`"1"`〜`"16"`、479語）と `"g2-1"`・`"g2-2"` は作業前と完全に一致**（`"g2-3"` を除いて書き出すと元の 5,020バイトに戻ることも確認）。
-- **playwright（Chromium）**：`g2/index.html`・`index.html`・`g2/unit03_be-going-to.html`・`g2/vocab03_be-going-to.html`・`word-test.html`・`units/review01.html`・`units/review-final.html` を375px幅で開き、**横スクロールなし・JSエラー0件**（テストページは選択して採点ボタンを押したあとも0件）。Google Fonts への接続はこの作業環境のプロキシが拒否しますが、教材側の問題ではありません。
-- 新しい2本と `g2/index.html` に `<script>` は0件。`<div class="sheet">` は各1個（二重になっていない）。
+- **`check.py 2 --grade 3`：17項目 NG 0件**（語の網羅 未収録0語・例文の一致 不一致0件・375px で横スクロールなし・A4 ワークブック16ページ／単語帳4ページ）。
+- **`LATER_GRAMMAR_G3` で first が3以上の形を、ワークブックと単語帳の全文（設問・解答・読解を含む）に機械でかけて0件**。Unit 3 の継続（`since`／`for`＋期間）と現在完了進行形も使っていません（`since` は本文に1語も出てきません）。
+- **中1の既存の検査はすべて NG 0件**：`--index`・`--word-test`・`--review 1`〜`4`・`--review final`・`check.py 1`。**中2もすべて NG 0件**：`--index --grade 2`・`--review 1`〜`4 --grade 2`・`--review final --grade 2`・`check.py 1 --grade 2`・`check.py 16 --grade 2`。**中3**は `--index --grade 3`・`check.py 1 --grade 3`・`check.py 2 --grade 3` が NG 0件。**合計19通りを、作業前（復元直後）と作業後の2回実行して、どちらも NG 0件**でした。
+- **playwright（Chromium・375px、Google Fonts は空の CSS に差し替え）**：`g3/unit02`・`g3/vocab02`・`g3/unit01`・`g3/vocab01`・`g3/index.html`・`g2/index.html`・`index.html`・`units/review01.html`・`units/review-final.html`・`g2/review01.html`・`g2/review-final.html`・`word-test.html`（`?g=1`・`?g=2`・`?unit=5`・`?unit=2-5`・`?part=2-1`）の**16通り**で、`details` をすべて展開した状態も含めて scrollWidth 375px・JS の例外0件・console エラー0件。
+- 新しい2本は `<script>` 0件、外部読み込みは Google Fonts だけ（ほか0件）。
 
 ### 自分で判断したこと
 
-1. **`check.py` の `IRREGULAR` に `built → build`・`sold → sell`・`spent → spend` を足しました**。`build` を新出語に立て、パートAの選択肢に `built` を置いたため（前回の `won` `lost` `became` と同じ扱い）。`sold` `spent` は今回のワークブックには出ませんが、同じ単元で立てた語の過去形なので一緒に入れました。
-2. **人名の所有格と未出の語を避けました**。`Mika's plane` は `kenta's` と同じ理由で `The plane` に、`OK.` は未収録になるので既出の `All right.` に、`tell us about` は `tell` が未出で SVOO（Unit 8）にも近いので `talk about` に替えました。
-3. **パートA 4番は「その場で決めた → will」を選ばせる問題にしました**。選択肢は `will answer`／`am going to answer`／`answered`／`was answering`。入試の書きかえでは両者を同じ意味として扱うことを解説に明記したうえで、使い分けを問うのはこの1問と読解の E 4番だけに絞っています。
-4. **「be going to 〜」を熟語の見出しで1つだけ立て、単語帳の先頭に置きました**（Unit 2 で助動詞 `will` を先頭にしたのと同じ並べ方）。`going` は `go` の -ing形なので単独では立てていません。
-5. **`parents` は見出しに立てませんでした**。最初は37語で組みましたが、中1 Unit 8 に `parent` が立っていることにアップロード前の見直しで気づき、外して36語にしました（`check.py` の見出し語の重複検査は単元の中だけを見るので、前の単元の見出しの複数形は NG になりません）。単語帳の末尾の注に「`parents` の `parent` は既出」と書いています。
-6. **`sound`（〜に聞こえる）を新出語に足しました**。対話の `That sounds great.` が未収録になるためで、入試の対話文でよく出る言い方なので立てる価値があると判断しました。
+1. **「完了」と「結果」を分けさせない方針を、独立した節（h2）にして明記しました。** `PLAN-g2g3.md` 4節の中3 Unit 2 に「『完了』と『結果』を無理に分類させない（設問では区別を問わない）方針を解説に書く」とあるので、表で2つの言い方を並べて見せたうえで、「この教材では2つを分けて答えさせる問題は出しません」「大事なのは『今どうなっているか』を日本語に表すこと」と書きました。設問にも用法名を答えさせる問題は置いていません。
+2. **`yet` の2つの意味は、`transform` の図解（同じ文を疑問文→否定文に変える）と4行の表の両方で分けました。** 同節の「図解で分ける」の指示に対し、図解だけだと例が1組しか示せないためです。あわせて「`yet` は終わったか／終わっていないかをたずねる語で、文の形が意味を決めている」という覚え方を1段落で書きました。
+3. **`check.py` の `IRREGULAR` に `stood` → `stand` を足しました。** 読解本文の `I have never stood on a stage before.` で、`stand`（中1 Unit 12 の `stand up` で既出）の過去分詞 `stood` の寄せ先が無く、語の網羅が1語 NG になったためです。**追加前は未収録の語なので、中1・中2の検査結果は変わりません**（追加の前後で上の19通りを再実行して確認）。`stand` は既出なので新出語には立てていません。
+4. **並べ替え（パートB）の6問目を「アヤは」から「私の姉は」に書き換えました。** 並べ替えの語群は文頭も小文字で示す決まりなので `[ aya / has / ... ]` となり、`check.py` の語の網羅が小文字の `aya` を固有名詞と見分けられずに NG になります。中1・中2・中3 Unit 1 の並べ替えも固有名詞を使っていないので、同じ扱いにそろえました（`Aya` は大文字で出てくる解説・パートC・読解ではそのまま使っています）。
+5. **`reporter`・`glasses`・`sold` は新出語に立てていません。** `report`・`glass`・`sell` が既出で、`check.py` の `lemma` がそこへ寄せるため、語の網羅には出てきません。ただし `sold out` は決まった言い方なので熟語として1件立てました。
+6. **`drum` と `drummer` を別の見出し語にしました。** 綴りの作り方（`m` を重ねる）が入試で問われる形なので、`drummer` 側に「綴り注意」のバッジを付けて独立させました。
+7. **単語テストのボタンは「準備中」のままです**（順41まで）。`g3/index.html` の共通リンクの「単語テスト（中3）」も準備中のままです。
 
 ### 気になった点（次の回への申し送り）
 
-- **次は順5＝中2 Unit 4（接続詞 when / if / because / that）です。** `PLAN-g2g3.md` の要注意事項どおり、`if`／`when` の中は未来でも現在形（`If it is sunny tomorrow, I will 〜`）を独立して説明し、中1 Unit 10 の疑問詞 when と接続詞 when を表で分けます。Unit 2・3 の `will`／`be going to` を主節に使えます。
-- **`check.py` の語の網羅は、文頭で大文字になっている語を人名・地名として外します**（`proper` の判定）。新出語が文頭にしか出てこないと「未収録」にならずに抜けるので、今回は大文字で始まる語のうち既出語にも見出し語にも当たらないものを別に取り出して確かめました（残ったのは人名・地名・曜日と `Hi` `Oh` `Thank(s)` だけ。`Thank you` は Unit 2 にも出ている扱いです）。次の回も同じ確認をすると安全です。
-- **新出語を立てるときは、前の単元の見出し語の単数形・原形と重ならないかを確かめてください。** 今回、全学年の見出しを `lemma()` で突き合わせる短いスクリプトで確かめました（中2 Unit 1 の `news`→`new`、Unit 2 の `excited`→`exciting` が当たりますが、どちらも別の語なので問題ありません）。
-- **復元は今回も中1の38本まで落としました**（前回の申し送りどおり）。サブエージェント15体、合わせて数分で済みました。
-- **中3 Unit 9 の whose・関係副詞は、`UPDATE-PLAN-g2g3.md` でまだ「保留」です。**
+- **次は順28＝中3 Unit 3（現在完了（継続）と現在完了進行形。スラッグ `perfect-continue`）です。** 要るもの：このワークブックと単語帳（`g3/unit02_perfect-result.html`・`g3/vocab02_perfect-result.html`。書きぶりの見本）、`tools/tpl-workbook.html`・`tools/tpl-vocab.html`。新出語は累計1,114語との差分で、`"g3-3"` のキーに積みます。
+- Unit 3 で使う `since`・`for`（期間）・`How long 〜?`・`have been 〜ing` は、この単元では1度も使っていません。`since` は `master-vocab.json` にも `BASIC` にも無い語なので、Unit 3 の新出語になります。
+- **`whose`・関係副詞は `UPDATE-PLAN-g2g3.md` で「保留」のままです。** 判断が要るのは中3 Unit 9（順34）の前です。`PLAN-g2g3.md` 4節の Unit 12 には「whose は扱わない」とありますが、最優先の `UPDATE-PLAN-g2g3.md` は保留なので、**和歌山の過去問での出題の有無を人が確かめて決める必要があります。**
+- **この STATUS.md は約36KBです。次の回の記録を足すと約45KBを超える見込みなので、次の回は先に `update_file` で `STATUS-archive-2026-10-13.md` に改名し、新しい `STATUS.md` を立ててください**（「Drive からの復元」「Drive へのアップロード」の2節を書き写すこと）。
+- ［参考］の「解説に出ていない出題語」が16語（中3 Unit 1 は13語）あります。どれも既出語で NG ではありませんが、`drum`・`concert`・`plates`・`city` などは設問と読解だけに出てくる語です。
+- `g2/vocab12_gerund.html` の `take part in 〜` の重複、`IRREGULAR` に無い `worse`／`worst`／`could`、過去分詞一覧に無い `thought`・`began`・`kept`・`became`、`video`・`year`（単数形）・`hi` が `master-vocab.json` にも `BASIC` にも無いこと、使われていない `tools/gen-word-test.tpl.html` は前の回からの申し送りのままです（人の判断）。
 
 ### 飛ばした操作
 
-- **なし。** 承認待ちで止まった操作はありません。5フォルダを一覧して同名の重複が無いことを確認したので、片付けは不要でした（`g3/` は空）。
-
-### Drive からの復元（今回も同じ方法で通りました）
-
-`download_file_content` を**サブエージェントに呼ばせるだけ**にして（1体に2〜4本、haiku で十分）、セッション記録から base64 を復号します。今回は55本すべてで Drive の `fileSize` とローカルのバイト数が一致しました。
-
-- 小さいファイル（おおむね30KB未満）は `subagents/*.jsonl` の `tool_result` に JSON（`{"content": "<base64>"}`）で入っています。
-- 大きいファイルは「exceeds maximum allowed tokens」になり、中身は `~/.claude/projects/<作業ディレクトリ>/<セッションID>/tool-results/*.txt` に残ります（中身の JSON に `id` が入っているので fileId でも照合できます）。**`subagents/*.jsonl` と `tool-results/*.txt` の両方から200文字以上の base64 の連続を正規表現で拾って復号し、長さが Drive の `fileSize` と一致したものだけ書き出します。** サブエージェントの「失敗」報告は無視してかまいません。
-- サイズで突き合わせる方式なので、**同じバイト数のファイルが2本あると取り違えます。** 書き出す前に重複サイズが無いことを確かめてください。
-
-### Drive へのアップロード
-
-**`textContent` で上げ、Drive の `fileSize` とローカルのバイト数を照合してから、古い同名ファイルを `trash_file` に送ります**（`create_file` は同名でも上書きしないため）。**`textContent` は末尾の改行を1つ落とすことがあります。** ファイルの末尾が空行で終わる（改行が2つ続く）場合は1バイト短く上がるので、照合して1バイト足りなければ改行を1つ足して上げ直してください。
-
-### 所要時間
-
-開始 2026-10-01 06:08（UTC）。復元（55本）・ワークブックと単語帳の作成・道具の手直し・検証（中1の既存の検査を含む）・アップロードと照合まで、作業環境の時計でおよそ30分でした。
+- **なし。** 5フォルダを一覧し、**同名ファイルの重複が無いことを確認しました**（ルート28本、`units/` は今回 vocab16本・review5本・unit01 を確認、`tools/` 11本、`g2/` 37本、`g3/` 3本）。復元は計画書類5本・`STATUS.md`・`index.html`・`word-test.html`・`tools/` の5本（`build.py`・`check.py`・`master-vocab.json`・`tpl-workbook.html`・`tpl-vocab.html`）・`units/` の22本（単語帳16本・`review01`〜`04`・`review-final`・`unit01`）・`g2/` の23本（`index`・単語帳16本・`review01`〜`04`・`review-final`・`unit01`・`unit16`）・`g3/` の3本（`index`・`unit01`・`vocab01`）の **61本**で、すべて Drive の `fileSize` とバイト数が一致しました。`check.py`・`word-test.html`・`review*.html`・`g2/unit01`・`g2/unit16`・`g3/unit01` などはサブエージェントが「大きすぎて返せなかった」と報告しましたが、`tool-results/*.txt` に残っていたので復号できました（下の節の要点どおり）。
 
 ---
 
-## 2026-10-01（夜の枠／JST。開始 2026-09-30 16:13 UTC ＝ 10-01 01:13 JST）　順3：中2 Unit 2（未来を表す will）
+## 2026-10-12（昼の枠／JST。開始 2026-10-12 06:08 UTC ＝ 15:08 JST）　順26：中3 Unit 1「現在完了（経験）」
 
-手順5の判定は**2番目で止まりました**。1番目（`g2/index.html` あり・`check.py --help` に `--grade` あり・`master-vocab.json` が `"g2-1"` のキーで積む作り）は通過し、N=1 は `python tools/check.py 1 --grade 2` が NG 0件だったので、`g2/unit02_*.html` が無い N=2 で止まり、**順3＝中2 Unit 2（未来を表す will、スラッグ `will`）**です。
+手順5の判定：1番目は通過（`g2/index.html` あり・`--grade` あり・`"g2-N"` キー）。2番目は `g2/` に Unit 1〜16 の2本ずつがそろい、復元した Unit 1・16 は `--grade 2` で NG 0件。3番目は `data-g="2"` あり・`--word-test` NG 0件。4番目は `GRADE_REVIEW_SPEC[2]` あり。5・6番目は `g2/review01`〜`04`・`review-final` がそろい NG 0件。7番目は `g3/index.html` あり・`LATER_GRAMMAR_G3` あり。8番目で **`g3/unit01_*.html` が無い**ので、**順26＝中3 Unit 1** です。
 
 ### 作ったもの・変えたもの
 
 | ファイル | 種別 | 置き場所 |
 |---|---|---|
-| `g2/unit02_will.html` | **新規**（47,518バイト） | g2 |
-| `g2/vocab02_will.html` | **新規**（37,481バイト） | g2 |
-| `g2/index.html` | 変更（15,836 → 15,872バイト）Unit 2 をリンクに | g2 |
-| `tools/check.py` | 変更（60,482 → 61,170バイト）`CONTRACTIONS` と `IRREGULAR` に追加 | tools |
-| `tools/master-vocab.json` | 変更（4,685 → 5,020バイト）`"g2-2"` を追加 | tools |
-| `STATUS.md` | 変更（この節を追記） | ルート |
+| `g3/unit01_perfect-experience.html` | **新規**（55,580バイト）ワークブック。31問（A6・B6・C5・D7・E5・F2） | **g3** |
+| `g3/vocab01_perfect-experience.html` | **新規**（35,798バイト）単語帳。見出し語33語 | **g3** |
+| `g3/index.html` | 変更（15,811 → 15,875バイト）Unit 1 のワークブック・単語帳をリンクに（単語テストは順41まで準備中） | g3 |
+| `index.html` | 変更（17,197 → 17,176バイト）ヘッダーの「中3」をリンクに（`g3/index.html`） | ルート |
+| `g2/index.html` | 変更（17,277 → 17,259バイト）ヘッダーの「中3」をリンクに（`../g3/index.html`） | g2 |
+| `tools/check.py` | 変更（81,705 → 84,023バイト）`IRREGULAR`・`CONTRACTIONS` に現在完了の形を追加、`--word-test` の学年の扱いを修正（下の判断3）、冒頭の履歴に追記 | tools |
+| `tools/master-vocab.json` | 変更（10,439 → 10,766バイト）`"g3-1"` に33語を追加。中1・中2のキーは1語も変えていない（前後で機械で一致を確認） | tools |
+| `STATUS.md` | 変更（この記録） | ルート |
 
-**`units/` の中1のファイル・`word-test.html`・`index.html`・テンプレート（`tpl-workbook.html` `tpl-vocab.html`）・`build.py`・計画書類は1バイトも変えていません。** `index.html` のヘッダーの「中2」は前の回（09-30 昼）でリンクになっているので、今回は触っていません。
+ほかの復元ファイル（`word-test.html`・`build.py`・テンプレート2本・`units/` 23本・`g2/` のほかの22本・計画書類4本）は**1バイトも変えていません**（復元直後と作業後の md5 を機械で突き合わせ）。
 
 ### 中身
 
-- **ワークブック**：30問（A 5／B 6（うち「1語不要」2問）／C 5／D 7／E 5／F 2）。解説は「will ＋ 動詞の原形」→ なぜ原形なのか（中1 Unit 13 の can と同じ理屈）→ be動詞は原形 be → **意志と予測の2つの使い方** → 短縮形の表 → 否定文・疑問文 → 疑問詞と will → 未来を表す語句 → 判定手順 → 境界事例 → 入試での出方 → よくある間違い → 例文、の順です。
-- **`PLAN-g2g3.md` 3節 Unit 2 の3点はすべて入れました**：①will のうしろは原形（図解・判定手順・誤文訂正・よくある間違いの4か所で扱い、be動詞は原形 `be` を独立して説明）、②短縮形（`I'll`〜`they'll` と `won't` の8×2の表。`willn't` と書かないことを打ち消し線つきで明示。D の条件英作文で `won't` が1語であることを語数で体感させる）、③**「意志」と「予測」を表で分け、見分け方は主語（自分で決められることか）だと書きました**。Unit 3（be going to）の使い分けの土台になるよう、予測の確かさを `probably`（高い）と `maybe`（低い）で段階づけています。
-- **読解**：ケンタのスピーチ（来週の科学館見学と天気予報）。125語（めやす 100〜140語）。
-- **単語帳**：新出語 **36語**（めやす 30〜40語）。助動詞1（will）・動詞8（leave win lose hope become move believe change）・名詞12（future forecast afternoon coat plan dream holiday match prize pilot typhoon result）・形容詞5（excited glad fine cool clear）・副詞5（soon tonight someday maybe probably）・前置詞1（near）・熟語4（next week／wake up／take part in 〜／in the future）。累計は中1 479語＋中2 72語＝**551語**。
+- **新出語33語**（めやす30〜40語）。動詞 `shake`、副詞 `ever`、名詞（`life`・`top`・`sunset`・`sunrise`・`tent`・`trail`・`bear`・`insect`・`feeling`・`whale`・`panda`・`koala`・`kangaroo`・`camel`・`desert`・`ocean`・`volcano`・`turtle`・`snake`・`medal`・`kimono`・`sushi`・`fish`）、形容詞 `gold`・`raw`・`wild`、熟語 `have been to 〜`・`how many times 〜?`・`in my life`・`shake hands with 〜`・`hear of 〜`。累計は中1 479語＋中2 567語＋中3 33語＝1,079語。
+- **読解本文はスピーチ「山の上の夜」160語**（めやす130〜180語）。経験の用法と中2までの文法だけで書きました。
+- 解説：have／has＋過去分詞（なぜ have か・主語での選び方）→ **過去分詞の一覧表（中2 Unit 15 の3表をそのまま再掲）＋この単元で足す形**（been・met・flown・ridden・swum・worn・climbed・touched・shaken）→ 経験を表す語と位置（ever・never・before・once・twice・〜 times・many times）と例文 → 否定文・疑問文と答え方（**Yes, I have. ／ No, I haven't. ／ No, never.**、How many times）→ **have been to を独立説明** → 手順 → 境界（2つの have、過去の時を表す語とは使わない、been to と gone to、once の2つの意味）→ 入試での出方 → よくある間違い → まとめ。
 
 ### 検証結果
 
-- **`check.py 2 --grade 2`：17項目 NG 0件**（パート構成・設問数30・解答数・並べ替えの語群と語数・和訳の有無・語の網羅 未収録0語・例文一致 不一致0件・375px 横スクロールなし・印刷 A4 ワークブック15ページ／単語帳5ページ）。
-- **中2の `LATER_GRAMMAR_G2` のうち first が3以上の形を、ワークブックと単語帳の英文に当てて0件**（誤答例の行を除く）。正規表現に入っていない形（接続詞の that・when、SVOC、It is 〜 to、感嘆文）は英文だけを取り出して目で確かめ、`when` は中1 Unit 10 の疑問詞の1件のみ、`to` はすべて前置詞（`come to the party`・`move to Tokyo`）でした。`because`・`if`・`going to`・`there is`・`must`・`should`・`may`・`have to`・`than`・動名詞・`shall` はいずれも0件です。**読解本文も同じ制約で書いています**（中1の文法＋過去進行形＋will だけ）。
-- **中1の既存の検査はすべて NG 0件**：`--index`（15項目）・`--word-test`（11項目）・`--review 1`〜`4`・`--review final`（各18項目）。念のため `check.py 16`（中1 Unit 16）も 17項目 NG 0件。
-- **`check.py` の変更が中1の語彙抽出を動かしていないことを確認**：変更後に中1の16単元を再検査しても `master-vocab.json` の中1のキー（`"1"`〜`"16"`、479語）と `"g2-1"`（36語）が1バイトも変わらないことを突き合わせました。
-- **playwright（Chromium）**：`g2/index.html`・`index.html`・`g2/unit02_will.html`・`g2/vocab02_will.html`・`word-test.html`・`units/review01.html`・`units/review-final.html` の7本を375px幅で開き、**横スクロールなし・JSエラー0件**。テストページは選択肢を選んで採点ボタンを押したあとの状態でも0件でした（フォントの読み込み失敗はこの作業環境のプロキシが Google Fonts を通さないためで、教材側の問題ではありません）。
-- `g2/unit02_will.html`・`g2/vocab02_will.html`・`g2/index.html` に `<script>` は0件、外部読み込みは Google Fonts だけです。
+- **`check.py 1 --grade 3`：17項目 NG 0件**（語の網羅 未収録0語・例文の一致 不一致0件・375px で横スクロールなし・A4 ワークブック19ページ／単語帳4ページ）。
+- **`LATER_GRAMMAR_G3` で first が2以上の形を、ワークブック全文（設問・解答・読解を含む）に機械でかけて0件**。完了・結果（just／already／yet）と継続（since／for＋期間）の現在完了も使っていません。
+- **中1の既存の検査はすべて NG 0件**：`--index`・`--word-test`・`--review 1`〜`4`・`--review final`・`check.py 1`。**中2もすべて NG 0件**：`--index --grade 2`・`--review 1`〜`4 --grade 2`・`--review final --grade 2`・`check.py 1 --grade 2`・`check.py 16 --grade 2`。`--index --grade 3` も NG 0件。作業前（復元直後）にも同じ検査で NG 0件のベースラインを取りました。
+- **playwright（Chromium・375px、Google Fonts は空の CSS に差し替え）**：`g3/unit01`・`g3/vocab01`・`g3/index.html`・`g2/index.html`・`index.html`・`units/review-final.html`・`g2/review01.html`・`g2/review-final.html`・`word-test.html`（`?g=1`・`?g=2`・`?unit=5`・`?unit=2-5`）の**12通り**で scrollWidth 375px・JS の例外0件。
 
 ### 自分で判断したこと
 
-1. **`check.py` の `CONTRACTIONS` に will の短縮形を足しました**（`won't` → will + not、`I'll`〜`they'll` → 代名詞 + will）。`PLAN-g2g3.md` が Unit 2 で短縮形を扱うよう指示しているのに、`won't` と `I'll` が語の網羅チェックで「未収録」になってしまうためです。中1では `wasn't` `weren't` `didn't` などが同じ仕組みで入っていたので、その並びに足しただけです。
-2. **`check.py` の `IRREGULAR` に `won → win`・`lost → lose`・`became → become` を足しました**。`win` `lose` `become` を新出語に立てたので、その不規則な過去形を見出し語に寄せる必要があります。中1の `went → go`・`made → make` と同じ扱いです。
-3. **`willn't` と `wills` の書き方**。`willn't` は「この綴りにはならない」と示す価値があるので、`<span class="strike">` で包んで誤答例として検査から外しました（`class="en strike"` では検査の除外に当たらないので、`strike` を外側の span にしています）。A 2番の選択肢にあった `wills` は存在しない語なので、**過去形の `was`** に差し替えました（未来と過去の区別を問う選択肢になり、かえって設問がよくなりました）。
-4. **`Will you 〜?` は「〜しますか」の意味だけで扱いました**。依頼の言い方（`Will you help me?`）は `PLAN-g2g3.md` 3節で Unit 7 に別枠で置くと決まっているので、この単元の例文・設問には依頼に読める文を入れていません。
-5. **読解の空所補充で人名の所有格を避けました**。`Kenta's class will 〜` と書くと `kenta's` が語の網羅チェックで未収録になるため、`Kenta and his classmates will 〜` に変えました。
-6. **`build.py` に渡す本文に `<div class="sheet">` を書かないようにしました。** 最初に書いた本文は、中1・中2 Unit 1 の**完成ファイル**から本文を切り出すときに誤ってテンプレート側の `<div class="sheet">` まで拾ってしまい、`sheet` の div が二重になっていました（開き閉じの数は合うので `check.py` も playwright も通り、見た目も崩れません）。**`tpl-workbook.html` は `<div class="sheet">{{BODY}}</div>` の形で開き閉じの両方を、`tpl-vocab.html` は `<div class="sheet">{{HEADER}}…{{BODY}}</div>` の形でやはり両方を持っています。本文に書くのは `<nav class="topnav">` から始まる中身だけです。** 気づいた時点で本文から外して作り直し、中1 Unit 1 とタグの並びが一致することを確かめました。最初に上げてしまった2本（47,545バイト・37,508バイト）はゴミ箱に送り、正しい 47,518バイト・37,481バイト を上げ直しています。**次の回は、見本にする単元の本文を切り出すときに先頭の `<div class="sheet">` を必ず落としてください。**
-7. **副詞に `maybe` と `probably` の両方を立てました**。意味が重なりますが、予測の確かさを段階で示せるので、Unit 3 の使い分けに向けて両方を入れる価値があると判断しました。単語帳のメモで互いを参照させています。
+1. **過去分詞の一覧表は中2 Unit 15 の3表を1行も変えずに再掲し、そのうしろに「この単元で足す形」の表（be-been、meet-met、fly-flown、ride-ridden、swim-swum、wear-worn、climb、touch、shake-shaken）を別に置きました。** `PLAN-g2g3.md` の「中2 Unit 15 のものを再掲する」を守りつつ、経験の文で要る形を足すためです。
+2. **`check.py` の `IRREGULAR` に been・gone・flew/flown・rode/ridden・swam/swum・wore/worn・shook/shaken を、`CONTRACTIONS` に haven't・hasn't・I've・you've・we've・they've を足しました。** 中2の各単元と同じやり方です。どれも追加前は未収録の語なので、中1・中2の検査結果は変わりません（上の再実行で確認）。
+3. **`--word-test` の検査を直しました。** 中3の単語帳ができた時点で、`--word-test` が「中3の語が一覧に無い」など8件 NG になりました（順18で作った検査が「単語帳のある学年はすべて一覧と突き合わせる」作りだったため）。このままだと**次の回の手順5の3番目（`--word-test` が NG → 順18）に当たって工程が逆戻りする**ので、**単語テストにまだ `data-g="3"` が無い学年は突き合わせから外して［参考］に出す**ようにしました（目次の `wt_ready()` と同じ判定。中3のボタンが disabled・準備中であることは引き続き見ています）。中1・中2の突き合わせは変えていません。順41で中3の語を足せば、自動的に中3も突き合わせの対象に戻ります。
+4. **「〜へ行ったことがある」の境界事例として `has gone to`（Unit 2 の結果の用法）を解説で1文だけ示し、誤文訂正で1問（gone→been）出しました。** `PLAN-g2g3.md` の「been to を独立説明」には gone to との区別が欠かせないためです。意味の説明は「行ってしまって今ここにいない（Unit 2 で扱う）」にとどめ、gone to を正解にする設問は置いていません。
+5. **「過去の時を表す語とは使わない」も境界事例として短く置きました**（くわしくは Unit 4 と明記）。Unit 1 の誤りとして多いためです。
+6. **単語テストのボタンは「準備中」のままです**（順41まで）。`g3/index.html` の共通リンクの「単語テスト（中3）」も準備中のままです。
 
 ### 気になった点（次の回への申し送り）
 
-- **`check.py` の学年切り替えの検査は、`units/` にファイルが無いと `--index --grade 2` が NG になります。** `grade_ready(1)` が「`units/` に `unit??_*.html` が1本以上あるか」で判定するためです。バグではなく、**復元の範囲が足りないときの症状**です。この回は最初 g2 の分だけ復元して NG を1件出し、中1の38本（16単元×2＋総合テスト5＋`word-test.html`）を追加で復元したら消えました。**次の回も、手順7の「中1の既存の検査が壊れていないこと」を確かめるなら、中1の38本の復元が必要です。**「その工程に要るものだけ落とす」と手順7が要求するものがここで食い違うので、**単元を作る回は中1の38本まで落とす**のを既定にしたほうが迷いません（今回の実測で、復元は2分ほど・サブエージェント15体で足りました）。
-- **中2 Unit 3（be going to）では、Unit 2 で作った意志・予測の枠をそのまま引き継いでください。** 「前から決めていた予定＝be going to、その場で決めた＝will、予測はどちらも可」という `PLAN-g2g3.md` の使い分け表が、Unit 2 の「意志／予測」の2分と噛み合うように書いてあります。`probably` と `maybe` も Unit 2 で立てた語なので、使い分け表の中で使えます。
-- **中3 Unit 9 の whose・関係副詞は、`UPDATE-PLAN-g2g3.md` でまだ「保留」です。** 順26〜40 で N=9 に当たる回までに決める必要があります（和歌山の過去問で出題の有無を確かめる、という条件です）。
+- **次は順27＝中3 Unit 2（現在完了（完了・結果）。スラッグ `perfect-result`）です。** 要るもの：このワークブックと単語帳（`g3/unit01_perfect-experience.html`・`g3/vocab01_perfect-experience.html`。書きぶりの見本）、`tools/tpl-workbook.html`・`tools/tpl-vocab.html`。新出語は累計1,079語との差分で、`"g3-2"` のキーに積みます。
+- Unit 2 で使う `just`・`already`・`yet` は未収録の語です（中3 Unit 1 では使っていません）。`gone` は `IRREGULAR` に入れてあります。
+- **`whose`・関係副詞は `UPDATE-PLAN-g2g3.md` で「保留」のままです。** 判断が要るのは中3 Unit 9（順34）の前です。
+- `fish` はこの単元の見出し語にしました（前の回からの申し送りで「master にも BASIC にも無い」とされていた語）。`video`・`year`（単数形）・`hi`・`take part in 〜` の重複・`worse`／`worst`／`could` は前の回からの申し送りのままです（人の判断）。
 
 ### 飛ばした操作
 
-- **なし。** 承認待ちで止まった操作はありません。Drive の重複ファイルも、ルート・units・tools・g2・g3 の5フォルダを一覧して同名の重複が無いことを確認したので、片付けは不要でした（`g3/` は空です）。
-
-### Drive からの復元（今回も同じ方法で通りました）
-
-`download_file_content` を**サブエージェントに呼ばせるだけ**にして（1体に3〜4本、haiku で十分）、セッション記録から base64 を復号します。今回は52本すべてで Drive の `fileSize` とローカルのバイト数が一致しました。
-
-- 小さいファイル（おおむね30KB未満）は `subagents/*.jsonl` の `tool_result` に JSON（`{"content": "<base64>"}`）で入っています。
-- 大きいファイルは「exceeds maximum allowed tokens」になり、中身は `~/.claude/projects/<作業ディレクトリ>/<セッションID>/tool-results/*.txt` に残ります。**fileId が書かれていないので、`subagents/*.jsonl` と `tool-results/*.txt` の両方から200文字以上の base64 の連続を正規表現で拾って復号し、長さが Drive の `fileSize` と一致したものだけ書き出します。** サブエージェントの「失敗」報告は無視してかまいません。
-- サイズで突き合わせる方式なので、**同じバイト数のファイルが2本あると取り違えます。** 今回の52本はすべて異なるサイズでした（書き出す前に「そのサイズの候補がちょうど1件か」を確かめています）。
-
-### Drive へのアップロード
-
-前回までと同じく **`textContent` で上げ、Drive の `fileSize` とローカルのバイト数を照合してから、古い同名ファイルを `trash_file` に送りました**（`create_file` は同名でも上書きしないため）。
-
-- **`textContent` は末尾の改行を1つ落とします。** ファイルの末尾が空行で終わる（改行が2つ続く）場合、そのまま渡すと **1バイト短く**上がります。`STATUS.md`（末尾が `---\n\n`）で実際に 25,994バイトになり、**改行を1つ余分に足して渡し直して** 25,995バイトになりました。末尾が `</html>\n` のように改行1つで終わる HTML・`.py`・`.json` はそのままで一致します。**上げたあとに必ず `fileSize` を突き合わせ、1バイト足りなければ改行を1つ足して上げ直してください。**
-
-### 所要時間
-
-開始 2026-09-30 16:13（UTC）、終了 16:4x（UTC）。復元（52本）・ワークブックと単語帳の作成・道具の手直し・検証（中1の既存の検査を含む）・アップロードと照合まで、作業環境の時計でおよそ35分でした。
+- **なし。** 5フォルダを一覧し、同名ファイルの重複が無いことを確認しました。復元は計画書類4本・`STATUS.md`・`index.html`・`word-test.html`・`tools/` の5本（`build.py`・`check.py`・`master-vocab.json`・`tpl-workbook.html`・`tpl-vocab.html`）・`units/` の23本・`g2/` の25本（`index`・単語帳16本・`review01`〜`04`・`review-final`・`unit01`・`unit15`・`unit16`）・`g3/index.html` の **61本**で、すべて Drive の `fileSize` とバイト数が一致しました。
 
 ---
 
-## 2026-09-30（昼の枠／JST。開始 2026-09-30 06:08 UTC）　順2：中2 Unit 1（過去進行形）
+## 2026-10-12（夜の枠／JST。開始 2026-10-11 16:13 UTC ＝ 2026-10-12 01:13 JST）　順25：中3の道具の準備
 
-手順5の判定は**2番目で止まりました**。1番目（`g2/index.html` あり・`check.py --help` に `--grade` あり・`vocab_key()` が中2を `"g2-N"` で積む作り）は通過し、`g2/` に `unit01_*.html` が無かったので**順2＝中2 Unit 1（過去進行形、スラッグ `past-progressive`）**です。
+手順5の判定：1番目は通過（`g2/index.html` あり・`check.py --help` に `--grade` あり・`master-vocab.json` が `"g2-N"` のキーで積む作り。中1 479語／中2 567語）。2番目は `g2/` に Unit 1〜16 の2本ずつが Drive にそろい、復元した Unit 1 は `check.py 1 --grade 2` が NG 0件。3番目は `word-test.html` に `data-g="2"` があり `--word-test` が NG 0件。4番目は `GRADE_REVIEW_SPEC[2]` あり。5番目は `g2/review01`〜`04` がそろい4本とも NG 0件。6番目は `g2/review-final.html` あり NG 0件。7番目で **`g3/index.html` が無く、`check.py` に中3の `LATER_GRAMMAR` も無い**ので、**順25＝中3の道具の準備**です。**教材は作らない回です。**
 
 ### 作ったもの・変えたもの
 
 | ファイル | 種別 | 置き場所 |
 |---|---|---|
-| `g2/unit01_past-progressive.html` | **新規**（47,475バイト） | g2 |
-| `g2/vocab01_past-progressive.html` | **新規**（37,305バイト） | g2 |
-| `g2/index.html` | 変更（15,782 → 15,836バイト）Unit 1 をリンクに | g2 |
-| `index.html` | 変更（17,007 → 16,998バイト）ヘッダーの「中2」をリンクに | ルート |
-| `tools/master-vocab.json` | 変更（4,330 → 4,685バイト）`"g2-1"` を追加 | tools |
-| `tools/check.py` | 変更（58,708 → 60,482バイト） | tools |
-| `README.md` | 変更（8,274 → 9,205バイト）フォルダ構成と `--grade` の使い方 | ルート |
-| `STATUS.md` | **新規に立て直し**（旧 `STATUS.md` は `STATUS-archive-2026-09-30.md` に改名） | ルート |
+| `g3/index.html` | **新規**（15,811バイト）中3の目次。全15単元・全テストが「準備中」 | **g3** |
+| `tools/check.py` | 変更（74,928 → 81,705バイト）中3の `LATER_GRAMMAR_G3` と `ING_STOP_G3` を追加・`GRADE_LATER_GRAMMAR` に `3:` を追加・冒頭の履歴に追記 | tools |
+| `STATUS.md` | 新規（この記録。前の版は `STATUS-archive-2026-10-11.md` に改名） | ルート |
+| `STATUS-archive-2026-10-11.md` | 改名のみ（中身は1バイトも触っていない） | ルート |
 
-**`units/` の中1のファイル・`word-test.html`・テンプレート（`tpl-workbook.html` `tpl-vocab.html`）・計画書類は1バイトも変えていません。**
+ほかのファイル（`index.html`・`word-test.html`・`g2/index.html`・`tools/build.py`・`tools/master-vocab.json`・復元した `units/` の23本・`g2/` の22本・計画書類5本）は**1バイトも変えていません**（復元直後と作業後の md5 を機械で突き合わせ、差分は `tools/check.py` だけ＋新規の `g3/index.html`）。**`build.py`・`master-vocab.json`・テンプレート3本はいっさい触っていません。** `master-vocab.json` は中1キー16件479語・中2キー16件567語のまま、中3のキーはまだありません。
 
-### 中身
+### 中身1：`g3/index.html`
 
-- **ワークブック**：30問（A 5／B 6（うち「1語不要」2問）／C 5／D 7／E 5／F 2）。解説は「was / were ＋ -ing形」→ -ing形の作り方（中1 Unit 14 の表）→ 過去形と過去進行形のちがい → 否定文・疑問文 → 疑問詞（What were you doing? と Who が主語の形）→ 判定手順 → 境界事例 → 入試での出方 → よくある間違い → 例文、の順です。
-- **`PLAN-g2g3.md` 3節 Unit 1 の3点はすべて入れました**：①中1 Unit 14（現在進行形）＋ Unit 15（be動詞の過去形）の合成であることを `.transform`（`I am reading` → `I was reading`）と図解で示した、②**「-ing形になった動詞は動詞そのものとしては働かないので be動詞と組む」を中1 Unit 14 の言い回しのまま使った**（解説とまとめの2か所）、③進行形にしない動詞 have（持っている）・know・like・want を境界事例に置いた（have＝食べる は進行形にできる例も併記。誤文訂正とパートAでも1問ずつ出題）。
-- **読解**：ハルカの日記（嵐で停電した夜）。115語（めやす 100〜140語）。
-- **単語帳**：新出語 **36語**（めやす 30〜40語）。動詞8（ring knock shout prepare relax remember feed chat）・名詞12（storm wind noise candle neighbor living room bedroom street floor magazine radio news）・形容詞4・副詞4（suddenly still quietly loudly）・前置詞2（during into）・代名詞2（someone something）・熟語4（go out／turn on 〜／look out of 〜／call 〜 back）。累計は中1 479語＋中2 36語＝**515語**。
+`g2/index.html` と同じ作り（CSS はそのまま。単元ごとに ワークブック／単語帳／単語テスト の3枠、部ごとのまとめ枠、最下段に濃い地の「中3のまとめ」）。**単元が1本も無いので、3枠とも・テスト枠とも「準備中」でリンクを張っていません。** ヘッダーの学年切り替えは「中1」「中2」がリンク、「中3」が `<span class="here">`（JS なし・ただのリンク）。共通リンクは中3の単語テストが準備中、中2・中1の単語テストと基本語リスト・総索引はリンク。
+
+| 部 | 名前 | Unit |
+|---|---|---|
+| 第1部 | 現在完了 | 1〜4 |
+| 第2部 | 不定詞の発展・原形不定詞 | 5〜8 |
+| 第3部 | まとまりで名詞を説明する | 9〜12 |
+| 第4部 | 仕上げ | 13〜15 |
+
+単元名は `PLAN-g2g3.md`「1. 単元数と部の構成」の表どおりです（Unit 5 は `It is 〜 (for 人) to …`、Unit 10 は「分詞の後置修飾（現在分詞・過去分詞）」、Unit 15 は「中1〜中3の文法の整理」）。
+
+### 中身2：`tools/check.py` の中3の `LATER_GRAMMAR_G3`（14件）
+
+`PLAN-g2g3.md` 5.2 の `first` の振り分けどおりです。**中2までの形はすべて中3の範囲内なので `first` を振っていません。**
+
+| first | 見る形 |
+|---|---|
+| 1 | 現在完了 |
+| 3 | 現在完了進行形 |
+| 5 | It is 〜 to（形式主語。be going to を拾わないよう `going` を外した） |
+| 6 | too 〜 to / 〜 enough to / so 〜 that |
+| 7 | 人 + to 不定詞（want / tell / ask） |
+| 8 | 人 + 原形（make / let / help） |
+| 9 | 間接疑問 |
+| 10 | 分詞の後置修飾（現在分詞・過去分詞の2件） |
+| 11 | 関係代名詞（主格） |
+| 12 | 関係代名詞の省略 |
+| 13 | 仮定法 |
+| 14 | 付加疑問・感嘆文（2件） |
+
+**綴りだけでは見分けられない形は、`LATER_GRAMMAR_G2` と同じ方針で入れていません**（誤検出のほうが害が大きいため）。入れていないのは、関係代名詞の that（接続詞・指示語と同じ綴り）、人以外を説明する分詞の後置修飾、疑問詞が主語の間接疑問（`I know who came.`）、`help 人 to 原形`（不定詞の目安と重なる）です。この4つは `PLAN-g2g3.md` 4節の「必ずやること」を見て人が確かめる必要があります。コードのコメントにもそう書きました。
 
 ### 検証結果
 
-- **`check.py 1 --grade 2`：17項目 NG 0件**（パート構成・設問数30・解答数・並べ替えの語群と語数・和訳の有無・語の網羅 未収録0語・例文一致 不一致0件・375px 横スクロールなし・印刷 A4 ワークブック16ページ／単語帳5ページ）。
-- **中2の `LATER_GRAMMAR`（first が2以上の形）をワークブックと単語帳の英文に当てて0件**（誤答例の行を除く）。`check.py` は単元の検査で `LATER_GRAMMAR` を使わないので、同じ表を取り出して手で走らせました。加えて接続詞の when / if / because / that、to 不定詞、will、than も目で見て0件（`that` は `at that time` だけ）。**読解本文も同じ制約で書いています**（「〜したとき」は接続詞の when を使わず、`at seven` `then` `at that time` で時点を示した）。
-- **中1の既存の検査は全部通ります（NG 0件）**：`--index` 15項目／`--word-test` 11項目／`--review 1`・`2`・`3`・`4`・`final` すべて16項目（`--no-render`）。照合のため `units/` の単語帳16本・総合テスト5本・`word-test.html` を Drive から復元して実データで走らせました。
-- **`--index --grade 2`：15項目 NG 0件。**
-- **`master-vocab.json`**：中1の16キー（479語）は中身も順序も元と一致（元ファイルの末尾 `}}` を除いた部分が新ファイルの先頭と1文字も違わないことを確認）。`"g2-1"` 36語が末尾に1つ増えただけです。`check.py 1 --grade 2` を2回走らせても md5 は同じ（冪等）。
-- **playwright（chromium）で 320 / 375 / 414px**：`index.html`・`g2/index.html`・`g2/unit01`・`g2/vocab01`・`word-test.html`・`units/review01.html`・`units/review-final.html` の**21通りすべて横スクロールなし・`pageerror` 0件**。図解3つ（`.transform` と `.diagram` 2つ）を375pxで撮って、はみ出しが無いことを目で確認しました。
-- `g2/` の3本と `index.html` の相対リンクはすべて実在します（`basic-words.html`・`word-index.html` は今回復元していないだけで Drive にあります）。
+- **中1の既存の検査はすべて NG 0件**：`--index`・`--word-test`・`--review 1`〜`4`・`--review final`・`check.py 1`。**作業前（復元直後）にも同じ検査で NG 0件のベースラインを取ってあります。**
+- **中2もすべて NG 0件**：`--index --grade 2`・`--review 1`〜`4 --grade 2`・`--review final --grade 2`・`check.py 1 --grade 2`。
+- **新規：`--index --grade 3` が 15項目 NG 0件。**
+- `--review 1 --grade 3` は想定どおり「中3 の総合テストの仕様（GRADE_REVIEW_SPEC）はまだありません（順42 で足します）」で止まります。
+- **`LATER_GRAMMAR_G3` の当たり外れを機械でテストしました**：中3で後に出る形の例文**19本すべてを正しい `first` で検出**し、中2までの形の例文**18本では1件も誤検出しませんでした**（`He made me happy`＝SVOC、`The boy was playing tennis`＝過去進行形、`It is going to rain`＝be going to、`The next day I visited 〜`、`The letter was written by Tom`＝受動態、`What time do you get up?`＝疑問詞 など）。
+- **playwright（Chromium・375px、Google Fonts は空の CSS に差し替え）**：`g3/index.html`・`g2/index.html`・`index.html`・`units/review-final.html`・`g2/review-final.html`・`g2/review01.html`・`word-test.html`（`?g=1`・`?g=2`）の**8通り**で scrollWidth 375px・JS の例外0件。
 
 ### 自分で判断したこと
 
-1. **中2の単元カードの「単語テスト」ボタンは「準備中」にしました。** 順1で入れた `--index` の検査は、単語帳が1本でもあると `../word-test.html?unit=2-1` へのリンクを要求する作りでした。しかし `word-test.html` に中2の語が入るのは順18で、今リンクを張ると**語の入っていない単語テストに飛ばす**ことになります（順1の判断4「中1の単語テストを中2の単語テストとして出すのは嘘になる」と同じ理由）。そこで `check.py` に `wt_ready(grade)`（`word-test.html` に `data-g="2"` があるか）を足し、それが偽のあいだは**単元カードの3つ目・部のまとめ・中2のまとめ・共通リンクの先頭を「準備中」で正**としました。**順18で語を足すと、自動でリンクを要求する検査に切り替わります。** 中1には影響しません（`wt_ready(1)` は常に真）。
-2. **`check.py` が `master-vocab.json` を `indent=1` で書き直していたので、元と同じ詰めた1行（末尾改行つき）で書くように直しました。** そのままだと中1の479語の行がすべて差分に出て、「中1のキーを変えていない」ことが差分で確かめられなくなるためです。中身は変わりません。
-3. **`g2/index.html` の共通リンク先頭の説明文**を「単元が完成した回から順に足していきます」から「**中2の16単元がそろったあとに足します**」に直しました。制作順序（順18）と合わせるためです。
-4. **`README.md` のフォルダ構成に `g2/` `g3/` を足し、`--grade` の使い方と中2の `nav.topnav` の書き方を1段落足しました。** 前回の申し送り（「中2 Unit 1 の回に合わせてどうぞ」）に従いました。難度基準と技術的な約束の節は触っていません。
-5. **新出語に熟語 `call 〜 back` と `look out of 〜` を立てました。** `back` と `out` は中1の既出語に無く、`back` は `came back`（読解）にも出るため、単独語ではなく入試で頻出の熟語で覆う形にしました。`news` と `living room` は綴りの上では既出語（new・live）に寄ってしまい網羅の検査では拾われませんが、意味が別なので見出し語に立てています。
-6. **不規則動詞は中1 Unit 16 の一覧にある語だけを使いました**（新しい過去形は `went out` の went だけで、これも既出）。`rang` `fed` は単語帳のメモで形だけ示しています。
+1. **第2部の名前を「不定詞の発展・原形不定詞」にしました。** `UPDATE-PLAN-g2g3.md`「部の名前」の表の「It is 〜 to・too 〜 to・人 + to・人 + 原形」は、375px の目次見出し（1.08rem）では3行に折り返して蛍光ペンの帯が崩れます。同節に「長くて目次で折り返す場合は『不定詞の発展・原形不定詞』にしてよい（制作した回が判断して STATUS.md に書く）」とあるので、短い方を採りました。
+2. **「人 + 原形」の目安は、うしろを動詞の原形の一覧に限りました。** `make 人 原形` を素朴に書くと、中2 Unit 8 の SVOC（`made me happy`）を誤って拾います。原形の一覧（約90語）に限ることで、`made me clean my room` は拾い、`made me happy` は拾わないようにしました。
+3. **「関係代名詞の省略」の目安は、時を表す名詞（day・morning・week・year・time など）を外し、うしろの動詞を他動詞の一覧に限りました。** そうしないと「The next day I visited the old temple.」のような、中1から出てくる普通の文を誤って拾います。
+4. **感嘆文は「!」で終わる形だけを拾うようにしました。** `What a 〜` `How 〜` は疑問詞（中1 Unit 10）と綴りが同じで、`What time do you 〜?` を誤って拾ってしまうためです。
+5. **`ING_STOP_G3` という名前を付けて、-ing 形に見える語の一覧（interesting・morning など18語）を中1・中2の表と同じ内容で使い回しました。** 中3は現在完了進行形と分詞の後置修飾の2か所で同じ一覧が要るためです。中1・中2の表の中身は変えていません。
+6. **`build.py` は触りませんでした。** 順1の時点で `GRADE_DIR`・`GRADE_PARTS`・`GRADE_UNITS` に中3（`g3`・1-4/5-8/9-12/13-15・15単元）が入っており、`out_dir(3)` も `review_home(3)` も中3で正しく動くので、順25で足すものがありませんでした。
+7. **`index.html`・`g2/index.html` は触りませんでした。** `UPDATE-PLAN-g2g3.md` 順25 の「ヘッダーの『中3』は準備中のまま」どおりです。`g3/index.html` を置いても、`grade_ready(3)` は単元ファイル（`g3/unit??_*.html`）を見るので False のままで、両方の目次の検査は NG 0件を保っています。
+8. **`GRADE_REVIEW_SPEC[3]`（中3の総合テストの仕様）は足していません。** 順42 の分なので、`UPDATE-PLAN-g2g3.md` の工程の区切りを守りました。
 
-### 気になった点（申し送り）
+### 気になった点（次の回への申し送り）
 
-- **次は順3＝中2 Unit 2（未来を表す will、スラッグ `will`）です。** 要注意事項は `PLAN-g2g3.md` 3節 Unit 2（will のうしろは原形／I'll・won't／**will を「意志」と「予測」に分けて説明する**）。見本は `g2/unit01_past-progressive.html` と `g2/vocab01_past-progressive.html`。`index.html` の「中2」はリンクになったので、今後は `g2/index.html` の該当単元だけ差し替えれば足ります。**単語テストのボタンは順18までは「準備中」のまま**です（上の判断1）。
-- **読解本文で接続詞 when / if / because / that を使わない制約は Unit 3 まで続きます**（Unit 4 が接続詞）。`check.py` の `LATER_GRAMMAR_G2` は when・that を入れていない（綴りで区別できないため）ので、人の目で確かめてください。今回は上の検証で使った「中2の表を単元の本文に当てるスクリプト」を毎回走らせると安全です（`GRADE_LATER_GRAMMAR[2]` の first が N より大きいものを本文に当てるだけ。十数行）。`check.py` の単元の検査に組み込むかどうかは未決定です。
-- **`may` の目安は「in May」を誤検出します**（前回からの申し送り。中2 Unit 1〜6 の読解で月名の May を避ける）。
-- 前回までの申し送り（review02 の大問5の空所の順、フッターの「各30問」表記、`REVISION-PLAN.md` 冒頭、`tpl-vocab.html` の `table.rule`（**15回目**）、単語テストの別解4組、判断が要る問題の要点表示の別属性化、語彙照合スクリプトの `check.py` 入り）は**未対応**のままです。
-- **`whose` と関係副詞の判断**は中3 Unit 9（順34）の手前までに要ります。`UPDATE-PLAN-g2g3.md` では「保留」のままです。
-- リポジトリへの反映は 09-15 以降止まったままです。**今回反映が要るのは** `g2/unit01_past-progressive.html`・`g2/vocab01_past-progressive.html`（新規）、`g2/index.html`・`index.html`・`tools/check.py`・`tools/master-vocab.json`・`README.md`・`STATUS.md`（差し替え）と、改名した `STATUS-archive-2026-09-30.md`（旧 `STATUS.md` そのもの）です。**生徒の見え方の変化**：`index.html` のヘッダーの「中2」が押せるようになり、中2の目次で Unit 1 のワークブックと単語帳が開けます。前回までの分（順1の `g2/index.html`・`tools/build.py` など、`PLAN-g2g3.md`、中1の総合テスト5本ほか）がまだなら一緒に。
+- **次は順26＝中3 Unit 1（現在完了（経験）。スラッグ `perfect-experience`）です。** 要るもの：中2 Unit 16 のワークブックと単語帳（`g2/unit16_passive-advanced.html`・`g2/vocab16_passive-advanced.html`。書きぶりの見本）、`tools/tpl-workbook.html`・`tools/tpl-vocab.html`、それに **`g2/unit15_passive.html`**（`PLAN-g2g3.md` 4節の中3 Unit 1 に「過去分詞の一覧表は中2 Unit 15 のものを再掲する」とあるため）。**中3 Unit 1 の回で、`index.html` と `g2/index.html` のヘッダーの「中3」をリンクにします。**
+- 新出語は `master-vocab.json` の累計（中1 479語＋中2 567語＝1,046語）との差分で決め、`"g3-1"` のキーで積みます。中3の1単元の新出語は30〜40語、読解本文は Unit 1〜8 が130〜180語（`PLAN-g2g3.md` 2節）です。
+- **`whose`・関係副詞は `UPDATE-PLAN-g2g3.md` で「保留」のままです。** 判断が要るのは中3 Unit 9（順34）に着手する前です。`PLAN-g2g3.md` 4節の Unit 12 には「whose は扱わない」と書いてありますが、`UPDATE-PLAN-g2g3.md`（最優先）は保留なので、**和歌山の過去問での出題の有無を人が確かめて決める必要があります。**
+- `g2/vocab12_gerund.html` の `take part in 〜` の重複、`IRREGULAR` に無い `worse`／`worst`／`could`、過去分詞一覧に無い `thought`・`began`・`kept`・`became`、`fish`・`video`・`year`（単数形）・`hi` が `master-vocab.json` にも `BASIC` にも無いこと、使われていない `tools/gen-word-test.tpl.html` は前の回からの申し送りのままです（人の判断）。
 
 ### 飛ばした操作
 
-- **`STATUS.md` を分割しました。** 今回の節を足すと 45,599バイトになり、約45KBの目安を超えるためです。旧 `STATUS.md`（32,820バイト）は `update_file` で `STATUS-archive-2026-09-30.md` に改名しただけで、中身は1バイトも触っていません。
-- **重複ファイルの片付けは不要でした。** ルート19件（フォルダ4件を含む）・`tools/` 11件・`units/` 37件・`g2/` 1件・`g3/` 0件を一覧し、同名の重複はありませんでした。
-- **`units/unit01`〜`unit15`（ワークブック15本）・`basic-words.html`・`word-index.html`・`tools/ref-*.html`・`tools/tpl-review.html`・`tools/gen-word-test.*`・`UPDATE-PLAN.md`・`REVISION-PLAN.md`・過去の `STATUS-archive-*.md` は落としていません。** 順2に要らないためです（`unit16` と `vocab16` は書きぶりの見本として落としました）。
-- **承認待ちで止まった操作はありません。**
-
-### Drive からの復元（今回も同じ方法で通りました）
-
-`download_file_content` を**サブエージェントに呼ばせるだけ**にして（1体に3本まで、haiku で十分）、セッション記録から base64 を復号します。今回は36本すべてで Drive の `fileSize` とローカルのバイト数が一致しました。
-
-- 小さいファイル（おおむね30KB未満）は `subagents/*.jsonl` の `tool_result` に JSON（`{"content": "<base64>"}`）で入っています。`tool_use` の `input.fileId` と `tool_use_id` で突き合わせれば、どのファイルか特定できます。
-- 大きいファイルは「exceeds maximum allowed tokens」になり、中身は `~/.claude/projects/<作業ディレクトリ>/<セッションID>/tool-results/*.txt` に残ります。**fileId が書かれていないので、2,000文字以上の base64 の連続を正規表現で拾って復号し、長さが Drive の `fileSize` と一致したものだけ書き出します。** サブエージェントの「失敗」報告は無視してかまいません。
-
-### Drive へのアップロード
-
-前回までと同じく **`textContent` で上げ、落とし直して md5 とバイト数を照合してから、古い同名ファイルを `trash_file` に送りました**（`create_file` は同名でも上書きしないため）。
-
-### 所要時間
-
-開始 2026-09-30 06:08（UTC）、終了 06:27（UTC）。復元（36本）・ワークブックと単語帳の作成・道具の手直し・検証・アップロードと照合まで、作業環境の時計でおよそ20分でした。
+- **なし。** 5フォルダを一覧し、**同名ファイルの重複が無いことを確認しました**（ルート27本、`units/` 37本、`tools/` 11本、`g2/` 37本、`g3/` は空）。復元は計画書類5本・`STATUS.md`・`index.html`・`word-test.html`・`tools/` の3本（`build.py`・`check.py`・`master-vocab.json`）・`units/` の23本（単語帳16本・`review01`〜`04`・`review-final`・`unit01`）・`g2/` の23本（`index`・単語帳16本・`review01`〜`04`・`review-final`・`unit01`）の **55本**で、すべて Drive の `fileSize` とバイト数が一致しました。`check.py`（74,928バイト）と `STATUS.md`（39,543バイト）はサブエージェントが「大きすぎて返せなかった」と報告しましたが、`tool-results/*.txt` に残っていたので復号できました（この節の下の要点どおり）。
 
 ---
 
+## Drive からの復元（毎回この方法で通っています）
 
+- サブエージェントに `download_file_content` だけを呼ばせ（1体に3〜4本。モデルは haiku で足ります）、`~/.claude/projects/<作業ディレクトリ>/<セッションID>/subagents/**/*.jsonl` と `tool-results/*.txt` から長い base64 の連なりを正規表現（`[A-Za-z0-9+/]{2000,}={0,2}`）で拾って復号。**復号した長さが Drive の `fileSize` と一致したものだけ書き出す。**
+- **サブエージェントが「大きすぎて返せなかった」と報告しても、記録側（`tool-results/*.txt`）には残っています。** 失敗扱いにせず、復号を試してください。親セッションで直接 `download_file_content` を呼んでも、大きいファイルは `tool-results/*.txt` に保存されるので同じ方法で復号できます。
+- **ファイルの対応づけは「復号後のバイト数」で行うのが確実です**（タイトルは `index.html` がルートと g2 で重複し、ファイルIDは `__` を含むものがある）。落とす前に `search_files` で全件のサイズを控えておき、サイズが重複しないことを確かめてから落とします。
+- `search_files` は1ページ5件ほどしか返さないので `nextPageToken` で全件を取る（`units` は8ページ）。一覧だけをサブエージェントに取らせ、「タイトル／ファイルID／サイズ」のタブ区切りで返させると速いです。
+
+## Drive へのアップロード
+
+- アップロードは `create_file` の `textContent` を使う（`base64Content` は長いと崩れる）。`disableConversionToGoogleType: true` と、`contentMimeType`（`text/html`・`text/x-python`・`application/json`・`text/markdown`）を付ける。
+- アップロード後、Drive の `fileSize` とローカルのバイト数が一致することを確かめてから、同名の古いファイルを `trash_file` でゴミ箱に移す。
+- STATUS.md が約45KBを超えそうなときは、古い版を `update_file` で `STATUS-archive-日付.md` に改名し、新しい STATUS.md を立てる（この2節を書き写す）。

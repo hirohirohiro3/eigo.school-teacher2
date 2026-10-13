@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 7　助動詞 may / should と Will you / Shall I / Shall we</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab07_may-should.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 7</p>
+<h1 class="unit-title">助動詞 may / should と Will you / Shall I / Shall we</h1>
+<p class="unit-lead">「〜してもよい」「〜かもしれない」を言う <span class="en">may</span>、「〜したほうがよい」を言う <span class="en">should</span> を学びます。あわせて、人に頼む・申し出る・さそうときの決まった言い方 <span class="en">Will you 〜?</span> ／ <span class="en">Shall I 〜?</span> ／ <span class="en">Shall we 〜?</span> を扱います。入試でいちばん問われるのは、<strong>この3つの言い方への答え方</strong>です。</p>
+</header>
+
+<h2><span>may には2つの意味がある</span></h2>
+
+<p>中2 Unit 6 の <span class="en">must</span> と同じ助動詞です。<strong><span class="en">may</span> のうしろは動詞の原形</strong>で、主語が <span class="en">he</span> や <span class="en">she</span> でも <span class="en">-s</span> はつきません。</p>
+
+<div class="diagram">
+<p class="diagram-cap">may の文　うしろは原形</p>
+<div class="flow">
+<span class="node">It may<span class="node-label">助動詞</span></span>
+<span class="link">
+<span class="link-word">＋</span>
+<span class="rail"></span>
+</span>
+<span class="node">rain<span class="node-label">原形</span></span>
+</div>
+</div>
+
+<p><span class="en">may</span> には<strong>「〜してもよい」（許可）</strong>と<strong>「〜かもしれない」（推量）</strong>の2つの意味があります。どちらの意味かは、文の中身で決まります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>意味</th><th>例文</th></tr>
+<tr><td>許可（〜してもよい）</td><td><span class="en">You may sit here.</span></td></tr>
+<tr><td>許可をもらう</td><td><span class="en">May I sit in this seat?</span></td></tr>
+<tr><td>推量（〜かもしれない）</td><td><span class="en">It may rain this afternoon.</span></td></tr>
+<tr><td>推量（〜かもしれない）</td><td><span class="en">He may be sick today.</span></td></tr>
+</table>
+</div>
+
+<p><strong>見分け方は「人がしてよいことか、そうなる見こみか」です。</strong>雨が降るかどうかは人が許すことではないので、<span class="en">It may rain this afternoon.</span> は推量です。<span class="en">You may sit here.</span> は相手に座ることを許しているので許可です。</p>
+
+<h3>May I 〜? と答え方</h3>
+
+<p><span class="en">May I 〜?</span> は「〜してもよいですか」と許可を求める、ていねいな言い方です。中1 Unit 13 の <span class="en">Can I 〜?</span> と同じ場面で使えますが、<span class="en">May I 〜?</span> のほうがていねいです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>たずねる形</th><th>答え方</th></tr>
+<tr><td><span class="en">May I see the menu, please?</span></td><td><span class="en">Sure.</span> ／ <span class="en">Of course.</span></td></tr>
+<tr><td><span class="en">May I copy your notes?</span></td><td><span class="en">Sure.</span> ／ <span class="en">I'm sorry, you can't.</span></td></tr>
+</table>
+</div>
+
+<p>断るときに <span class="en">No, you may not.</span> と言うと、かなり強い言い方になります。ふだんは <span class="en">I'm sorry, you can't.</span> のように <span class="en">I'm sorry</span> をつけて断ります。</p>
+
+<h2><span>should は「〜したほうがよい」</span></h2>
+
+<p><span class="en">should</span> も助動詞で、<strong>うしろは原形</strong>です。相手に助言するとき、するのが正しいことを言うときに使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th></tr>
+<tr><td>肯定文</td><td><span class="en">You should stay home today.</span></td></tr>
+<tr><td>否定文</td><td><span class="en">You should not be rude to your friends.</span></td></tr>
+<tr><td>疑問文</td><td><span class="en">Should I bring a towel?</span> —— <span class="en">Yes, you should.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">should</span> と <span class="en">must</span> は強さがちがいます。</strong><span class="en">must</span> は「しなければならない」で、しないという選び方を残しません。<span class="en">should</span> は「したほうがよい」で、最後に決めるのは相手です。だから、友だちへの助言には <span class="en">should</span> がよく使われます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>強さ</th></tr>
+<tr><td><span class="en">must</span> ／ <span class="en">have to</span></td><td>〜しなければならない</td><td>強い（決まり・必要）</td></tr>
+<tr><td><span class="en">should</span></td><td>〜したほうがよい・〜すべきだ</td><td>中くらい（助言）</td></tr>
+<tr><td><span class="en">may</span></td><td>〜してもよい</td><td>許すだけ</td></tr>
+</table>
+</div>
+
+<p>否定文の <span class="en">should not</span> は「〜しないほうがよい・〜すべきではない」です。短縮形は <span class="en">shouldn't</span> です。中2 Unit 6 の <span class="en">must not</span>（してはいけない）より弱い言い方です。</p>
+
+<h2><span>Will you 〜? ／ Shall I 〜? ／ Shall we 〜? は決まった言い方</span></h2>
+
+<p>この3つは、<strong>助動詞の疑問文として形から意味を考えるのではなく、決まった言い方として覚えます。</strong><span class="en">Will you 〜?</span> を「あなたは〜するでしょうか」と訳すと、頼んでいる文だと分かりません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>言い方</th><th>意味</th><th>答え方</th></tr>
+<tr><td><span class="en">Will you 〜?</span></td><td>〜してくれませんか（依頼）</td><td><span class="en">Sure.</span> ／ <span class="en">All right.</span> ／ <span class="en">I'm sorry, I can't.</span></td></tr>
+<tr><td><span class="en">Shall I 〜?</span></td><td>（私が）〜しましょうか（申し出）</td><td><span class="en">Yes, please.</span> ／ <span class="en">No, thank you.</span></td></tr>
+<tr><td><span class="en">Shall we 〜?</span></td><td>（いっしょに）〜しましょうか（さそい）</td><td><span class="en">Yes, let's.</span> ／ <span class="en">No, let's not.</span></td></tr>
+</table>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">同じ Shall でも、動く人がちがう</p>
+<div class="flow">
+<span class="node">Shall I<span class="node-label">自分が動く</span></span>
+<span class="link">
+<span class="link-word">≠</span>
+<span class="rail"></span>
+</span>
+<span class="node">Shall we<span class="node-label">いっしょに動く</span></span>
+</div>
+</div>
+
+<p><strong>答え方は「だれが動くか」から決まります。</strong><span class="en">Will you 〜?</span> は相手に動いてもらう文なので、引き受けるなら <span class="en">Sure.</span> ／ <span class="en">All right.</span> です。<span class="en">Shall I 〜?</span> は自分が動くと申し出る文なので、受ける側は <span class="en">Yes, please.</span>（お願いします）か <span class="en">No, thank you.</span>（けっこうです）で答えます。<span class="en">Shall we 〜?</span> は「いっしょに」なので、中1 Unit 12 の <span class="en">Let's 〜.</span> と同じ意味で、答えも <span class="en">Yes, let's.</span> です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>言い方</th><th>例文と答え</th></tr>
+<tr><td><span class="en">Will you 〜?</span></td><td><span class="en">Will you close the door, please?</span> —— <span class="en">Sure.</span></td></tr>
+<tr><td><span class="en">Will you 〜?</span></td><td><span class="en">Will you pass the salt, please?</span> —— <span class="en">All right.</span></td></tr>
+<tr><td><span class="en">Shall I 〜?</span></td><td><span class="en">Shall I carry your bag?</span> —— <span class="en">Yes, please.</span></td></tr>
+<tr><td><span class="en">Shall I 〜?</span></td><td><span class="en">Shall I make some tea?</span> —— <span class="en">No, thank you.</span></td></tr>
+<tr><td><span class="en">Shall we 〜?</span></td><td><span class="en">Shall we order lunch now?</span> —— <span class="en">Yes, let's.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">Will you 〜?</span> は、文の終わりに <span class="en">please</span> をつけるとていねいになります。<span class="en">Shall we go to the park?</span> は <span class="en">Let's go to the park.</span> に書きかえられます。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">頼む・申し出る・さそう文かを見る</span>
+<span class="step-d">相手に頼むなら <span class="en">Will you 〜?</span>、自分がすると申し出るなら <span class="en">Shall I 〜?</span>、いっしょにさそうなら <span class="en">Shall we 〜?</span> です。答え方もここで決まります。</span>
+</li>
+<li>
+<span class="step-t">許可か、見こみか、助言かを決める</span>
+<span class="step-d">してよいことなら <span class="en">may</span>（許可）、そうなる見こみなら <span class="en">may</span>（推量）、したほうがよいことなら <span class="en">should</span> です。しなければならないことなら中2 Unit 6 の <span class="en">must</span> ／ <span class="en">have to</span> にもどります。</span>
+</li>
+<li>
+<span class="step-t">否定なら not を助動詞のうしろに置く</span>
+<span class="step-d"><span class="en">may not</span> ／ <span class="en">should not</span> の順です。<span class="en">don't should</span> のように <span class="en">do</span> は使いません。</span>
+</li>
+<li>
+<span class="step-t">うしろの動詞を原形にする</span>
+<span class="step-d"><span class="en">may</span> のうしろも <span class="en">should</span> のうしろも原形です。主語が <span class="en">he</span> ／ <span class="en">she</span> でも <span class="en">-s</span> はつけません。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>未来をたずねる Will you 〜?</h3>
+<p>中2 Unit 2 で学んだように、<span class="en">Will you be at home tomorrow?</span> は「あなたは明日家にいますか」と未来をたずねる文です。<strong>頼む文になるのは、相手にしてほしい動作が続くとき</strong>です。<span class="en">Will you close the door, please?</span> は、ドアを閉めてほしいと頼んでいます。<span class="en">please</span> があれば頼む文だと分かります。</p>
+
+<h3>may not は2通りに読める</h3>
+<p><span class="en">You may not use this room.</span> は「この部屋を使ってはいけない」（許可の否定）です。<span class="en">He may not come today.</span> は「彼は今日来ないかもしれない」（推量の否定）です。ここでも「人がしてよいことか、そうなる見こみか」で分けます。</p>
+
+<h3>推量の may と予測の will</h3>
+<p><span class="en">It will rain tomorrow.</span> は「明日は雨が降るだろう」で、話し手はかなりそう思っています。<span class="en">It may rain tomorrow.</span> は「降るかもしれない」で、降らないこともあると考えています。<span class="en">perhaps</span>（もしかすると）も同じくらいの見こみを表します。<span class="en">Perhaps he has a cold.</span> のように使います。</p>
+
+<h3>must にも推量の意味がある</h3>
+<p><span class="en">must</span> にも「〜にちがいない」という推量の意味があります。<span class="en">He must be tired.</span> は「彼はつかれているにちがいない」です。<span class="en">He may be tired.</span>（つかれているかもしれない）より、話し手の確信が強い言い方です。この単元の問題では、<span class="en">must</span> は中2 Unit 6 の「しなければならない」の意味だけを使います。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>対話</td><td><span class="en">Shall I 〜?</span> ／ <span class="en">Shall we 〜?</span> ／ <span class="en">Will you 〜?</span> への答え方を選ぶ</td></tr>
+<tr><td>対話</td><td>答えの文から、前の空所に入る言い方を選ぶ（<span class="en">Yes, please.</span> なら <span class="en">Shall I 〜?</span>）</td></tr>
+<tr><td>選択</td><td><span class="en">may</span> ／ <span class="en">should</span> のうしろを原形にできるか</td></tr>
+<tr><td>書きかえ</td><td><span class="en">Let's 〜.</span> ↔ <span class="en">Shall we 〜?</span></td></tr>
+<tr><td>英作文</td><td>友だちに助言する文、何かを頼む文を1文で書く</td></tr>
+<tr><td>読解</td><td>対話文の中で、だれが何をすることになったかを読み取る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">He mays come to the party tomorrow.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">He <span class="be-w">may</span> come to the party tomorrow.</span></div>
+<p class="contrast-why">助動詞には <span class="en">-s</span> がつきません。主語が <span class="en">he</span> でも <span class="en">may</span> のままです。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">You should to see a doctor.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">You <span class="be-w">should</span> see a doctor.</span></div>
+<p class="contrast-why"><span class="en">should</span> のうしろに <span class="en">to</span> は置きません。すぐに原形を続けます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Shall I carry your bag? —— Yes, let's.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Shall I carry your bag? —— <span class="be-w">Yes, please.</span></span></div>
+<p class="contrast-why"><span class="en">Shall I 〜?</span> は自分が動く申し出です。<span class="en">Yes, let's.</span> は「いっしょにしよう」なので合いません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Will you pass the salt, please? —— Yes, please.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Will you pass the salt, please? —— <span class="be-w">Sure.</span></span></div>
+<p class="contrast-why">頼まれた側は引き受ける答え方をします。<span class="en">Yes, please.</span> は申し出を受けるときの答えです。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">You may sit here.</span>／<span class="en">It may rain this afternoon.</span>／<span class="en">You should stay home today.</span>／<span class="en">Will you close the door, please?</span>／<span class="en">Shall I carry your bag?</span>／<span class="en">Shall we order lunch now?</span>　だれが動くのか、許可か見こみか助言かを確かめてください。</p>
+
+<p>ほかの例文です。<span class="en">Excuse me. May I sit in this seat?</span>／<span class="en">May I copy your notes?</span>／<span class="en">Will you repeat the question, please?</span>／<span class="en">Will you write your address here, please?</span>／<span class="en">Shall I open the window?</span>／<span class="en">Shall I bring a towel?</span>／<span class="en">Shall I pick you up at the station?</span>／<span class="en">Shall we decide the place for our picnic?</span>／<span class="en">I have a headache, and my throat is sore.</span>／<span class="en">You have a fever, so you should lie down on the bed.</span>／<span class="en">You should take your temperature.</span>／<span class="en">It may be serious, so you should see a doctor.</span>／<span class="en">You should make an appointment with the dentist.</span>／<span class="en">It may be cold tonight, so you should take a jacket.</span>／<span class="en">It may rain, so we should play inside.</span>／<span class="en">I have an exam tomorrow, so I should study tonight.</span>／<span class="en">I will send a message to my teacher.</span>／<span class="en">Thank you for your advice.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。対話の問題は、だれが動くのかを先に決めます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">The sky is dark and cloudy. It (　　　) rain this afternoon.</span>
+<p class="opts"><span>ア may</span><span>イ mays</span><span>ウ is</span><span>エ does</span></p></li>
+<li><span class="en">You have a fever and a headache. You (　　　) go to school today.</span>
+<p class="opts"><span>ア should not</span><span>イ should to</span><span>ウ not should</span><span>エ don't should</span></p></li>
+<li><span class="en">Your bag looks heavy. (　　　) I carry it for you?</span>
+<p class="opts"><span>ア Will</span><span>イ Shall</span><span>ウ Do</span><span>エ Am</span></p></li>
+<li><span class="en">Shall we play tennis in the park after school? —— (　　　)</span>
+<p class="opts"><span>ア Yes, please.</span><span>イ Yes, let's.</span><span>ウ No, thank you.</span><span>エ Sure, you may.</span></p></li>
+<li><span class="en">Will you close the window in the music room, please? —— (　　　)</span>
+<p class="opts"><span>ア Sure.</span><span>イ Yes, let's.</span><span>ウ Yes, please.</span><span>エ No, thank you.</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>窓を開けましょうか。<br><span class="en">[ shall / i / open / the / window ] ?</span><span class="write"></span></li>
+<li>あなたは歯医者さんの予約をしたほうがよいです。<br><span class="en">[ you / should / make / an / appointment / with / the / dentist ] .</span><span class="write"></span></li>
+<li>質問をくり返してくれませんか。<br><span class="en">[ will / you / repeat / the / question / please ] ?</span><span class="write"></span></li>
+<li data-extra="1">この席に座ってもよいですか。<span class="hint">1語不要</span><br><span class="en">[ may / i / sit / in / this / seat / shall ] ?</span><span class="write"></span></li>
+<li data-extra="1">駅まであなたを迎えに行きましょうか。<span class="hint">1語不要</span><br><span class="en">[ shall / i / pick / you / up / at / the / station / will ] ?</span><span class="write"></span></li>
+<li>あなたは体温を測ったほうがよいです。<br><span class="en">[ you / should / take / your / temperature ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">He mays come to the party tomorrow.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">You should to see a doctor.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Shall I carry your bag? —— Yes, let's.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Will you pass the salt, please? —— Yes, please.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">You should not are rude to your friends.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">あなたはこの部屋では静かにしたほうがよいです。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたのノートを写してもよいですか。</span><span class="write"></span></li>
+<li><span class="q-ja">（いっしょに）私たちのピクニックの場所を決めましょうか。</span><span class="write"></span></li>
+<li><span class="q-ja">メニューを見てもよいですか。</span><span class="write"></span></li>
+<li>Will you を使って「ここにあなたの住所を書いてくれませんか」と書く。文の終わりに please をつける。<span class="cond">7語</span><span class="write"></span></li>
+<li>may を使って「彼女は今日病気かもしれません」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>Shall I を使って「（私が）お茶をいれましょうか」と書く。make を使う。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">カナダから来たエマは、サキの家にホームステイをしています。朝の会話を読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">サキの家の朝</p>
+<p>Mother: Good morning, Emma. You look tired. Are you all right?<br>
+Emma: I have a headache, and my throat is sore.<br>
+Mother: Oh, you have a fever, too. <span class="num">②</span><span class="ul">You should stay home today.</span><br>
+Emma: But I have an exam this afternoon.<br>
+Mother: Your health is important. <span class="num">①</span><span class="ul">Shall I call your school?</span><br>
+Emma: Yes, please. May I use your phone after that? I will send a message to my teacher.<br>
+Mother: Sure. Saki, it may rain this afternoon, so take your umbrella. And will you buy some medicine on the way home?<br>
+Saki: All right. Emma, shall we go to the clinic together tomorrow?<br>
+Emma: Yes, let's. Thank you, Saki.<br>
+Mother: You should not use your phone late at night. Go to bed early tonight.<br>
+Emma: All right. I will.</p>
+<p class="reading-wc">およそ120語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア エマは今日の午後に試験がある。<br>
+イ エマは自分で学校に電話をかける。<br>
+ウ サキは今日、エマと病院へ行く。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 母はエマに、帰りに薬を買ってくるように頼んだ。<br>
+イ 母はサキに、帰りに薬を買ってくるように頼んだ。<br>
+ウ サキはエマに、かさを持って行くように言った。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに英語で答える。<br><span class="en">Why should Saki take her umbrella?</span><span class="write"></span></li>
+<li>下線部①の意味として最も適切なものを1つ選ぶ。<br>
+ア あなたの学校に電話をしましょうか。<br>
+イ あなたの学校に電話をしてくれませんか。<br>
+ウ あなたの学校に電話をしてもよいですか。<span class="write"></span></li>
+<li>下線部②を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>should を使って、友だちに助言する文を1文で書く。<span class="hint">例：You should go to bed early.</span><span class="write"></span></li>
+<li>Shall we を使って、友だちを何かにさそう文を1文で書く。<span class="hint">例：Shall we play tennis after school?</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>だれが動くのか</strong>を確かめ、次に<strong>許可か・見こみか・助言か</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　may</span><p class="a-why">空が暗いので「雨が降るかもしれない」という推量です。助動詞に <span class="en">-s</span> はつかないので <span class="en">mays</span> は誤りです。</p></li>
+<li><span class="a-key">ア　should not</span><p class="a-why">熱と頭痛があるので「行かないほうがよい」です。<span class="en">not</span> は <span class="en">should</span> のうしろに置き、<span class="en">do</span> は使いません。</p></li>
+<li><span class="a-key">イ　Shall</span><p class="a-why">自分がかばんを運ぶと申し出ているので <span class="en">Shall I 〜?</span> です。<span class="en">Will I 〜?</span> では申し出になりません。</p></li>
+<li><span class="a-key">イ　Yes, let's.</span><p class="a-why"><span class="en">Shall we 〜?</span> は「いっしょに〜しましょうか」なので、<span class="en">Yes, let's.</span> で答えます。</p></li>
+<li><span class="a-key">ア　Sure.</span><p class="a-why"><span class="en">Will you 〜?</span> は頼む文なので、引き受けるなら <span class="en">Sure.</span> です。<span class="en">Yes, please.</span> と <span class="en">No, thank you.</span> は申し出への答えです。</p></li>
+
+<li><span class="a-key">Shall I open the window?</span><p class="a-why">自分が窓を開けると申し出る文です。<span class="en">Shall I</span> のうしろは原形の <span class="en">open</span> です。</p></li>
+<li><span class="a-key">You should make an appointment with the dentist.</span><p class="a-why"><span class="en">make an appointment with 〜</span> で「〜と会う約束をする・〜の予約をする」です。</p></li>
+<li><span class="a-key">Will you repeat the question, please?</span><p class="a-why">頼む文なので <span class="en">Will you</span> で始め、<span class="en">please</span> は最後に置きます。</p></li>
+<li><span class="a-key">May I sit in this seat?</span><p class="a-why">不要な語は <span class="en">shall</span> です。許可を求めるので <span class="en">May I 〜?</span> です。</p></li>
+<li><span class="a-key">Shall I pick you up at the station?</span><p class="a-why">不要な語は <span class="en">will</span> です。<span class="en">pick 〜 up</span> で「〜を迎えに行く」で、<span class="en">you</span> は <span class="en">pick</span> と <span class="en">up</span> の間に置きます。</p></li>
+<li><span class="a-key">You should take your temperature.</span><p class="a-why"><span class="en">take one's temperature</span> で「体温を測る」です。</p></li>
+
+<li><span class="a-key">He may come to the party tomorrow.</span><p class="a-why">理由の例：助動詞には <span class="en">-s</span> がつかないから。</p></li>
+<li><span class="a-key">You should see a doctor.</span><p class="a-why">理由の例：<span class="en">should</span> のうしろには <span class="en">to</span> を置かず、原形を続けるから。</p></li>
+<li><span class="a-key">Shall I carry your bag? —— Yes, please.</span><p class="a-why">理由の例：<span class="en">Shall I 〜?</span> は申し出なので、受けるときは <span class="en">Yes, please.</span> と答えるから。</p></li>
+<li><span class="a-key">Will you pass the salt, please? —— Sure.</span><p class="a-why">理由の例：<span class="en">Will you 〜?</span> は頼む文なので、引き受ける答え方をするから。<span class="en">All right.</span> でも正解です。</p></li>
+<li><span class="a-key">You should not be rude to your friends.</span><p class="a-why">理由の例：<span class="en">should</span> のうしろは原形なので、<span class="en">are</span> ではなく <span class="en">be</span> にするから。</p></li>
+
+<li><span class="a-key">You should be quiet in this room.</span><p class="a-why">形容詞 <span class="en">quiet</span> を使うので、<span class="en">should</span> のうしろに原形の <span class="en">be</span> を置きます。</p></li>
+<li><span class="a-key">May I copy your notes?</span><p class="a-why">許可を求めるので <span class="en">May I 〜?</span> です。<span class="en">Can I copy your notes?</span> でも意味は通じますが、ここでは <span class="en">May I</span> を使いましょう。</p></li>
+<li><span class="a-key">Shall we decide the place for our picnic?</span><p class="a-why">「いっしょに」なので <span class="en">Shall we 〜?</span> です。<span class="en">Let's decide the place for our picnic.</span> と同じ意味です。</p></li>
+<li><span class="a-key">May I see the menu?</span><p class="a-why">最後に <span class="en">please</span> をつけて <span class="en">May I see the menu, please?</span> としても正解です。</p></li>
+<li><span class="a-key">Will you write your address here, please?</span><p class="a-why">7語です。<span class="en">please</span> の前のコンマは語数に数えません。</p></li>
+<li><span class="a-key">She may be sick today.</span><p class="a-why">5語です。<span class="en">sick</span> は形容詞なので、<span class="en">may</span> のうしろに原形の <span class="en">be</span> を置きます。</p></li>
+<li><span class="a-key">Shall I make some tea?</span><p class="a-why">5語です。<span class="en">make tea</span> で「お茶をいれる」です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">But I have an exam this afternoon.</span> とあります。イは母が電話をするので合いません。ウはサキが <span class="en">tomorrow</span> と言っているので合いません。</p></li>
+<li><span class="a-key">イ</span><p class="a-why">母は <span class="en">Saki, 〜 will you buy some medicine on the way home?</span> とサキに頼んでいます。</p></li>
+<li><span class="a-key">Because it may rain this afternoon.</span><p class="a-why">母が <span class="en">it may rain this afternoon, so take your umbrella</span> と言っています。<span class="en">Why 〜?</span> には <span class="en">Because 〜.</span> で答えます。</p></li>
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">Shall I 〜?</span> は自分がすると申し出る言い方です。だからエマは <span class="en">Yes, please.</span> と答えています。</p></li>
+<li><span class="a-key">あなたは今日は家にいたほうがよいです。</span><p class="a-why"><span class="en">should</span> は「〜したほうがよい」です。「家にいるべきです」と訳しても正解です。</p></li>
+
+<li><span class="a-key">（例）You should go to bed early.</span><p class="a-why"><span class="en">should</span> のうしろが原形で、相手への助言になっていれば正解です。</p></li>
+<li><span class="a-key">（例）Shall we play tennis after school?</span><p class="a-why"><span class="en">Shall we</span> のうしろが原形で、相手をさそう文になっていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0"><span class="en">may</span> は「〜してもよい」（許可）と「〜かもしれない」（推量）、<span class="en">should</span> は「〜したほうがよい」です。どちらも<strong>うしろは原形</strong>で、<span class="en">-s</span> はつきません。<span class="en">should</span> は <span class="en">must</span> より弱く、助言に使います。<strong><span class="en">Will you 〜?</span>（依頼）／ <span class="en">Shall I 〜?</span>（申し出）／ <span class="en">Shall we 〜?</span>（さそい）は決まった言い方</strong>で、答え方は「だれが動くか」で決まります。依頼には <span class="en">Sure.</span>、申し出には <span class="en">Yes, please.</span> ／ <span class="en">No, thank you.</span>、さそいには <span class="en">Yes, let's.</span> です。</p>
+</div>
+</div>
+</body>
+</html>

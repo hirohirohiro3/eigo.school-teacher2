@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 1　現在完了（経験）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit01_perfect-experience.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 1</p>
+<h1 class="unit-title">単語帳　現在完了（経験）</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。<strong>旅行や自然の中で出会う動物・場所の名前</strong>と、<strong>経験を言うときの決まった言い方</strong>（<span class="en">have been to 〜</span>・<span class="en">how many times 〜?</span>）をまとめてあります。例文の多くは「〜したことがある」の文なので、過去分詞の形もいっしょに確かめてください。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめに動詞と副詞、次に名詞（自然・動物・食べ物の順）、形容詞、最後に経験を言うときの熟語の順です。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">shake</span><span class="v-kana">シェイク</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>振る、（手を）にぎる</p></div>
+<p class="v-ex"><span class="en">I have shaken hands with a famous soccer player.</span><span class="v-ja">　私は有名なサッカー選手と握手したことがあります。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>不規則動詞です。<span class="en">shake</span> − <span class="en">shook</span> − <span class="en">shaken</span> と変わります。現在完了では <span class="en">shaken</span> を使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">ever</span><span class="v-kana">エヴァ</span></p>
+<div class="v-sense"><span class="tag t-adv">副詞</span><p>今までに</p></div>
+<p class="v-ex"><span class="en">Have you ever seen a panda?</span><span class="v-ja">　あなたは今までにパンダを見たことがありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>疑問文で、過去分詞の前に置きます。答えは <span class="en">Yes, I have.</span> ／ <span class="en">No, I haven't.</span> ／ <span class="en">No, never.</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">life</span><span class="v-kana">ライフ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>人生、生活</p></div>
+<p class="v-ex"><span class="en">I have never seen snow in my life.</span><span class="v-ja">　私は人生で一度も雪を見たことがありません。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>複数形は <span class="en">lives</span> です（<span class="en">f</span> を <span class="en">v</span> にかえて <span class="en">-es</span>）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">top</span><span class="v-kana">トップ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>頂上、いちばん上</p></div>
+<p class="v-ex"><span class="en">We walked for six hours and reached the top in the evening.</span><span class="v-ja">　私たちは6時間歩いて、夕方に頂上に着きました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">the top of the mountain</span>（山の頂上）のように <span class="en">the</span> をつけて使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">sunset</span><span class="v-kana">サンセット</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>日の入り、夕日</p></div>
+<p class="v-ex"><span class="en">The sunset was beautiful, and at night the sky was full of stars.</span><span class="v-ja">　夕日は美しく、夜には空が星でいっぱいでした。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">sunset ↔ sunrise</span>（日の入り ↔ 日の出）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">sunrise</span><span class="v-kana">サンライズ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>日の出</p></div>
+<p class="v-ex"><span class="en">In the morning I got up at four and watched the sunrise.</span><span class="v-ja">　朝、私は4時に起きて日の出を見ました。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">sunrise ↔ sunset</span>（日の出 ↔ 日の入り）。<span class="en">sun</span>（太陽）＋ <span class="en">rise</span>（のぼる）でできた語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">tent</span><span class="v-kana">テント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>テント</p></div>
+<p class="v-ex"><span class="en">Have you ever slept in a tent?</span><span class="v-ja">　あなたは今までにテントで寝たことがありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>中で寝るので前置詞は <span class="en">in</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">trail</span><span class="v-kana">トレイル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>山道、小道</p></div>
+<p class="v-ex"><span class="en">Once he met a bear near the trail!</span><span class="v-ja">　以前あるとき、彼は山道の近くでクマに会いました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>山や森の中の歩くための道です。町の道路は <span class="en">road</span> や <span class="en">street</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">bear</span><span class="v-kana">ベア</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>クマ</p></div>
+<p class="v-ex"><span class="en">Once he met a bear near the trail!</span><span class="v-ja">　以前あるとき、彼は山道の近くでクマに会いました。</span></p>
+<p class="v-note"><span class="badge">別の品詞</span>動詞の <span class="en">bear</span>（たえる）もありますが、この単元では動物の名前です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">insect</span><span class="v-kana">インセクト</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>虫、昆虫</p></div>
+<p class="v-ex"><span class="en">It's dangerous, and there are many insects.</span><span class="v-ja">　危ないし、虫がたくさんいる。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられる名詞なので、たくさんなら <span class="en">many insects</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">feeling</span><span class="v-kana">フィーリング</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>気持ち</p></div>
+<p class="v-ex"><span class="en">I understand their feelings, but I think they should try it once.</span><span class="v-ja">　私は彼らの気持ちがわかりますが、一度やってみるべきだと思います。</span></p>
+<p class="v-note"><span class="badge">使い方</span>人の気持ちを言うときは <span class="en">feelings</span> と複数形で使うことが多い語です。動詞 <span class="en">feel</span>（感じる）の仲間です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">whale</span><span class="v-kana">ホウェイル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>クジラ</p></div>
+<p class="v-ex"><span class="en">Ken has seen a whale before.</span><span class="v-ja">　ケンは以前クジラを見たことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられる名詞です。<span class="en">a whale</span> ／ <span class="en">whales</span> と使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">panda</span><span class="v-kana">パンダ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>パンダ</p></div>
+<p class="v-ex"><span class="en">Have you ever seen a panda?</span><span class="v-ja">　あなたは今までにパンダを見たことがありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられる名詞なので <span class="en">a panda</span> と <span class="en">a</span> をつけます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">koala</span><span class="v-kana">コウアーラ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>コアラ</p></div>
+<p class="v-ex"><span class="en">Have you ever seen a koala?</span><span class="v-ja">　あなたは今までにコアラを見たことがありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>オーストラリアの動物です。日本語の「コアラ」と発音がちがうので注意します。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">kangaroo</span><span class="v-kana">キャンガルー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>カンガルー</p></div>
+<p class="v-ex"><span class="en">I have seen a kangaroo in Australia.</span><span class="v-ja">　私はオーストラリアでカンガルーを見たことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>最後の <span class="en">roo</span> を強く読みます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">camel</span><span class="v-kana">キャメル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ラクダ</p></div>
+<p class="v-ex"><span class="en">My cousin has ridden a camel in the desert.</span><span class="v-ja">　私のいとこは砂漠でラクダに乗ったことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>乗り物と同じく <span class="en">ride</span> と組みます。過去分詞は <span class="en">ridden</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">desert</span><span class="v-kana">デザト</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>砂漠</p></div>
+<p class="v-ex"><span class="en">My cousin has ridden a camel in the desert.</span><span class="v-ja">　私のいとこは砂漠でラクダに乗ったことがあります。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span><span class="en">dessert</span>（デザート）と綴りが似ています。<span class="en">s</span> が1つなら砂漠です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">ocean</span><span class="v-kana">オウシャン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>海、大洋</p></div>
+<p class="v-ex"><span class="en">We have swum in the ocean many times.</span><span class="v-ja">　私たちは何回も海で泳いだことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">the ocean</span> と <span class="en">the</span> をつけます。<span class="en">sea</span> とほぼ同じ意味で、広い海を言います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">volcano</span><span class="v-kana">ヴォルケイノウ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>火山</p></div>
+<p class="v-ex"><span class="en">My grandfather has climbed a volcano twice.</span><span class="v-ja">　私の祖父は2回火山に登ったことがあります。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>複数形は <span class="en">volcanoes</span> です（<span class="en">o</span> で終わるので <span class="en">-es</span>）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">turtle</span><span class="v-kana">タートル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>カメ</p></div>
+<p class="v-ex"><span class="en">Have you ever touched a turtle?</span><span class="v-ja">　あなたは今までにカメにさわったことがありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>海のカメも川のカメも <span class="en">turtle</span> で言えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">snake</span><span class="v-kana">スネイク</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ヘビ</p></div>
+<p class="v-ex"><span class="en">I have never touched a snake.</span><span class="v-ja">　私は一度もヘビにさわったことがありません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられる名詞なので <span class="en">a snake</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">medal</span><span class="v-kana">メドル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>メダル</p></div>
+<p class="v-ex"><span class="en">She has won a gold medal twice.</span><span class="v-ja">　彼女は2回金メダルをとったことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「メダルをとる」は <span class="en">win a medal</span> です。<span class="en">get</span> も使えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">kimono</span><span class="v-kana">キモウノウ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>着物</p></div>
+<p class="v-ex"><span class="en">I have never worn a kimono.</span><span class="v-ja">　私は一度も着物を着たことがありません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「着ている・身につける」は <span class="en">wear</span> です。過去分詞は <span class="en">worn</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">sushi</span><span class="v-kana">スーシ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>すし</p></div>
+<p class="v-ex"><span class="en">Have you ever eaten sushi?</span><span class="v-ja">　あなたは今までにすしを食べたことがありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>日本語から英語になった語です。数えられない名詞として使うので <span class="en">a</span> をつけません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">fish</span><span class="v-kana">フィッシュ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>魚</p></div>
+<p class="v-ex"><span class="en">I have eaten raw fish before.</span><span class="v-ja">　私は以前に生の魚を食べたことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>食べ物として言うときは数えられない名詞で、<span class="en">a</span> をつけません。複数形も <span class="en">fish</span> のままです。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">gold</span><span class="v-kana">ゴウルド</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>金の</p></div>
+<p class="v-ex"><span class="en">She has won a gold medal twice.</span><span class="v-ja">　彼女は2回金メダルをとったことがあります。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">gold</span>（金）・<span class="en">silver</span>（銀）の順に並びます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">raw</span><span class="v-kana">ロー</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>生の</p></div>
+<p class="v-ex"><span class="en">I have never eaten raw fish.</span><span class="v-ja">　私は一度も生の魚を食べたことがありません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>火を通していない食べ物について言います。名詞の前に置きます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">wild</span><span class="v-kana">ワイルド</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>野生の</p></div>
+<p class="v-ex"><span class="en">He has seen wild animals there, too.</span><span class="v-ja">　彼はそこで野生の動物も見たことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">wild animals</span>（野生の動物）の形でよく出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">have been to 〜</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜へ行ったことがある</p></div>
+<p class="v-ex"><span class="en">I have been to Okinawa once.</span><span class="v-ja">　私は一度沖縄へ行ったことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>経験は <span class="en">been to</span> です。<span class="en">gone to</span> にすると「行ってしまって今いない」という別の意味になります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">how many times 〜?</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>何回〜？</p></div>
+<p class="v-ex"><span class="en">How many times have you visited Kyoto?</span><span class="v-ja">　あなたは何回京都を訪れたことがありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>答えは <span class="en">Three times.</span> のように回数で答えます。1回は <span class="en">once</span>、2回は <span class="en">twice</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">in my life</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>人生で、今までに</p></div>
+<p class="v-ex"><span class="en">I have never seen such a beautiful sky in my life.</span><span class="v-ja">　私は人生で一度もあんなに美しい空を見たことがありません。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">never</span> といっしょに使うと「一度も」の意味が強くなります。主語に合わせて <span class="en">in his life</span> のようにかえます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">shake hands with 〜</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜と握手する</p></div>
+<p class="v-ex"><span class="en">I have shaken hands with a famous soccer player.</span><span class="v-ja">　私は有名なサッカー選手と握手したことがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>手は2人分なので <span class="en">hands</span> と複数形にします。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">hear of 〜</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜のことを聞く、〜について耳にする</p></div>
+<p class="v-ex"><span class="en">Have you ever heard of this writer?</span><span class="v-ja">　あなたは今までにこの作家のことを聞いたことがありますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">hear</span> の過去分詞は <span class="en">heard</span> です。<span class="en">Have you ever heard of 〜?</span> の形でよく出ます。</p>
+</li>
+</ol>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

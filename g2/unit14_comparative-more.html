@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 14　more / most と as 〜 as</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab14_comparative-more.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 14</p>
+<h1 class="unit-title">more / most と as 〜 as</h1>
+<p class="unit-lead">Unit 13 では <span class="en">tall → taller → tallest</span> のように、語尾に <span class="en">-er</span> ／ <span class="en">-est</span> をつけて比較級・最上級を作りました。この単元では、<strong>語尾を変えずに前に <span class="en">more</span> ／ <span class="en">most</span> を置く語</strong>と、<strong>2つが同じくらいだと言う形（<span class="en">as 〜 as</span>）</strong>を扱います。<span class="en">This book is more interesting than that one.</span> は「この本はあの本よりおもしろい」、<span class="en">Ken is as tall as Taro.</span> は「ケンはタロウと同じくらい背が高い」です。</p>
+</header>
+
+<h2><span>長い語は <span class="en">more</span> ／ <span class="en">most</span> を前に置く</span></h2>
+
+<p><span class="en">interesting</span> のように長い語は、<span class="en">-er</span> ／ <span class="en">-est</span> をつけません。語の形はそのままにして、<strong>前に <span class="en">more</span>（比較級）か <span class="en">most</span>（最上級）を置きます</strong>。うしろに <span class="en">than</span> を置くこと、最上級に <span class="en">the</span> をつけることは Unit 13 と同じです。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">This book is interesting.</span></span>
+<span class="tf-arrow">↓　語の形は変えず、前に more を置き、くらべる相手を than のうしろに置く</span>
+<span class="tf-line"><span class="en">This book is more interesting than that one.</span></span>
+</div>
+
+<div class="diagram is-general">
+<p class="diagram-cap">more は形容詞の前に置く。形容詞はもとの形のまま</p>
+<div class="flow">
+<span class="node">more interesting<span class="node-label">more ＋ もとの形</span></span>
+<span class="link">
+<span class="link-word">than</span>
+<span class="rail"></span>
+</span>
+<span class="node">that one<span class="node-label">くらべる相手</span></span>
+</div>
+</div>
+
+<p><strong>なぜ <span class="en">more</span> を使うのか。</strong><span class="en">interesting</span> に <span class="en">-er</span> をつけると <span class="en">interestinger</span> となり、長すぎて言いにくくなります。そこで語の形を変えず、<span class="en">more</span> という別の語で「より」の意味を足します。<span class="en">more</span> は Unit 13 で学んだ <span class="en">many</span> ／ <span class="en">much</span> の比較級と同じ語ですが、ここでは<strong>形容詞や副詞の前に置いて比較級を作る語</strong>として使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>もとの文</th><th>比較級の文</th><th>意味</th></tr>
+<tr><td><span class="en">This map is useful.</span></td><td><span class="en">This map is more useful than that book.</span></td><td>この地図はあの本より役に立つ。</td></tr>
+<tr><td><span class="en">Osaka is crowded.</span></td><td><span class="en">Osaka is more crowded than my town.</span></td><td>大阪は私の町より混んでいる。</td></tr>
+<tr><td><span class="en">He speaks slowly.</span></td><td><span class="en">He speaks more slowly than I do.</span></td><td>彼は私よりゆっくり話す。</td></tr>
+</table>
+</div>
+
+<h3><span class="en">more</span> ／ <span class="en">most</span> を使う語の見分け方</h3>
+
+<p>どちらを使うかは、<strong>語の長さと語の終わり</strong>で決まります。入試で出る語はほとんど次の表に入ります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>作り方</th><th>どんな語か</th><th>例</th></tr>
+<tr><td><span class="en">-er</span> ／ <span class="en">-est</span></td><td>短い語<br>（音のかたまりが1つ）</td><td class="be-cell"><span class="en">tall, long, high</span><br><span class="en">fast, new, big, hot</span><br><span class="en">large, nice</span><br><span class="en">thick, thin, rare</span></td></tr>
+<tr><td><span class="en">-er</span> ／ <span class="en">-est</span></td><td><span class="en">y</span> で終わる<br>音のかたまりが2つの語</td><td class="be-cell"><span class="en">easy, early, happy</span><br><span class="en">busy, heavy, noisy</span></td></tr>
+<tr><td><span class="en">more</span> ／ <span class="en">most</span></td><td><span class="en">-ful</span> ／ <span class="en">-ous</span> ／ <span class="en">-ing</span><br><span class="en">-ed</span> ／ <span class="en">-ive</span> ／ <span class="en">-ern</span><br>で終わる語</td><td class="be-cell"><span class="en">useful, careful</span><br><span class="en">helpful, famous</span><br><span class="en">dangerous</span><br><span class="en">interesting, exciting</span><br><span class="en">crowded, tired</span><br><span class="en">expensive, modern</span></td></tr>
+<tr><td><span class="en">more</span> ／ <span class="en">most</span></td><td>音のかたまりが<br>3つ以上の長い語</td><td class="be-cell"><span class="en">important, beautiful</span><br><span class="en">difficult, popular</span><br><span class="en">wonderful, delicious</span><br><span class="en">convenient, valuable</span><br><span class="en">traditional</span></td></tr>
+<tr><td><span class="en">more</span> ／ <span class="en">most</span></td><td><span class="en">-ly</span> で終わる副詞</td><td class="be-cell"><span class="en">slowly, carefully</span><br><span class="en">quickly, quietly, easily</span></td></tr>
+</table>
+</div>
+
+<p>迷ったときは<strong>声に出して <span class="en">-er</span> をつけてみる</strong>と決められます。<span class="en">taller</span> は言えますが <span class="en">beautifuler</span> は言えません。言いにくい語は <span class="en">more</span> を使います。<span class="en">early</span> のように短くて <span class="en">y</span> で終わる語は <span class="en">earlier</span> になるので、<span class="en">more early</span> とはしません。</p>
+
+<h2><span><span class="en">the most</span> ＋ もとの形で最上級</span></h2>
+
+<p>3つ以上の中で「いちばん…だ」と言うときは <span class="en">the most</span> を前に置きます。うしろの <span class="en">in</span> ／ <span class="en">of</span> の使い分けは Unit 13 と同じです。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">Soccer is popular.</span></span>
+<span class="tf-arrow">↓　前に the most を置き、くらべる範囲を in / of で示す</span>
+<span class="tf-line"><span class="en">Soccer is the most popular sport in our school.</span></span>
+</div>
+
+<p>形容詞が名詞を説明するときは、<span class="en">the most popular sport</span> のように<strong>名詞の前にまとめて置きます</strong>。<span class="en">the most</span> だけを先に置いて名詞を離すことはしません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>比較級</th><th>最上級</th></tr>
+<tr><td><span class="en">This question is more difficult than that one.</span></td><td><span class="en">This is the most difficult question of the ten.</span></td></tr>
+<tr><td><span class="en">Math is more important than music for me.</span></td><td><span class="en">Math is the most important subject for me.</span></td></tr>
+<tr><td><span class="en">This coin is more valuable than that one.</span></td><td><span class="en">This is the most valuable coin in my collection.</span></td></tr>
+</table>
+</div>
+
+<h2><span><span class="en">as 〜 as</span> で「同じくらい」</span></h2>
+
+<p>2つが同じくらいだと言うときは、形容詞や副詞を<strong>もとの形のまま</strong>にして、前後を <span class="en">as</span> ではさみます。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">Ken is tall.</span></span>
+<span class="tf-arrow">↓　tall の形は変えず、前後を as ではさむ</span>
+<span class="tf-line"><span class="en">Ken is as tall as Taro.</span></span>
+</div>
+
+<div class="diagram is-general">
+<p class="diagram-cap">2つの as の間には、もとの形の形容詞・副詞だけが入る</p>
+<div class="flow">
+<span class="node">Ken is<span class="node-label">主語と動詞</span></span>
+<span class="link">
+<span class="link-word">as 〜 as</span>
+<span class="rail"></span>
+</span>
+<span class="node">Taro<span class="node-label">くらべる相手</span></span>
+</div>
+</div>
+
+<p><strong>2つの <span class="en">as</span> の間は、必ずもとの形（原級）です。</strong><span class="en">as taller as</span> ／ <span class="en">as more interesting as</span> とはしません。比較級にしないのは、この形が「どちらが上か」ではなく「同じくらいだ」と言う形だからです。1つめの <span class="en">as</span> は「同じくらい」、2つめの <span class="en">as</span> は「〜と」の意味です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>意味</th></tr>
+<tr><td><span class="en">My dog is as big as yours.</span></td><td>私の犬はあなたの犬と同じくらい大きい。</td></tr>
+<tr><td><span class="en">This bag is as expensive as that bag.</span></td><td>このかばんはあのかばんと同じくらい値段が高い。</td></tr>
+<tr><td><span class="en">Aya can run as fast as her brother.</span></td><td>アヤは兄と同じくらい速く走れる。</td></tr>
+<tr><td><span class="en">I get up as early as my sister.</span></td><td>私は姉と同じくらい早く起きる。</td></tr>
+</table>
+</div>
+
+<p><span class="en">as</span> のうしろの代名詞は、Unit 13 の <span class="en">than</span> と同じです。動詞を続けるなら主語の形（<span class="en">as tall as I am</span>）、代名詞1語だけなら目的語の形（<span class="en">as tall as me</span>）です。</p>
+
+<h3><span class="en">not as 〜 as</span> と比較級の書きかえ</h3>
+
+<p><span class="en">as 〜 as</span> を <span class="en">not</span> で打ち消すと「…ほど〜ではない」になります。比較級の文と同じ内容を表せますが、<strong>主語が入れかわります</strong>。ここが入試でいちばん狙われるところです。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">Ken is taller than Tom.</span>　（ケンはトムより背が高い）</span>
+<span class="tf-arrow">↓　主語と than のうしろを入れかえ、as 〜 as を not で打ち消す</span>
+<span class="tf-line"><span class="en">Tom is not as tall as Ken.</span>　（トムはケンほど背が高くない）</span>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>比較級の文</th><th>同じ内容の <span class="en">not as 〜 as</span> の文</th></tr>
+<tr><td><span class="en">This river is longer than that river.</span></td><td><span class="en">That river is not as long as this river.</span></td></tr>
+<tr><td><span class="en">Osaka is more crowded than my town.</span></td><td><span class="en">My town is not as crowded as Osaka.</span></td></tr>
+<tr><td><span class="en">My bag is heavier than yours.</span></td><td><span class="en">Your bag is not as heavy as mine.</span></td></tr>
+</table>
+</div>
+
+<p>書きかえるときの手順は2つだけです。<strong>①もとの文の主語を <span class="en">than</span> のうしろへ、<span class="en">than</span> のうしろを主語へ移す。②形容詞をもとの形に戻し、<span class="en">not as 〜 as</span> ではさむ。</strong>主語を動かさずに <span class="en">not</span> をつけると、意味が逆になります。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">「同じくらい」か「どちらが上か」を確かめる</span>
+<span class="step-d">同じくらいなら <span class="en">as 〜 as</span>、どちらが上かを言うなら比較級 ＋ <span class="en">than</span>、3つ以上の中でいちばんなら最上級です。</span>
+</li>
+<li>
+<span class="step-t">語の長さと終わりを見て、<span class="en">-er</span> か <span class="en">more</span> かを決める</span>
+<span class="step-d">短い語と <span class="en">y</span> で終わる2つの音のかたまりの語は <span class="en">-er</span> ／ <span class="en">-est</span>、<span class="en">-ful</span> ／ <span class="en">-ous</span> ／ <span class="en">-ing</span> ／ <span class="en">-ed</span> ／ <span class="en">-ive</span> で終わる語と長い語、<span class="en">-ly</span> の副詞は <span class="en">more</span> ／ <span class="en">most</span> です。</span>
+</li>
+<li>
+<span class="step-t"><span class="en">as 〜 as</span> なら、間の語をもとの形に戻す</span>
+<span class="step-d"><span class="en">as tall as</span> ／ <span class="en">as interesting as</span> です。<span class="en">more</span> も <span class="en">-er</span> も入れません。</span>
+</li>
+<li>
+<span class="step-t">書きかえのときは、主語が入れかわったかを確かめる</span>
+<span class="step-d"><span class="en">A is taller than B.</span> と同じ内容は <span class="en">B is not as tall as A.</span> です。主語をそのままにしてはいけません。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3><span class="en">as 〜 as possible</span>（できるだけ〜）</h3>
+<p><span class="en">as</span> のうしろに <span class="en">possible</span> を置くと「できるだけ〜」になります。<span class="en">Please read as many books as possible.</span>（できるだけたくさんの本を読んでください）、<span class="en">I came home as early as possible.</span>（私はできるだけ早く家に帰りました）です。間に入るのはもとの形で、<span class="en">as more as possible</span> とはしません。</p>
+
+<h3><span class="en">twice as 〜 as</span>（2倍）</h3>
+<p>「…の2倍〜だ」は <span class="en">twice</span> を1つめの <span class="en">as</span> の前に置きます。<span class="en">This box is twice as heavy as that box.</span>（この箱はあの箱の2倍の重さです）です。「3倍」以上は <span class="en">three times</span> のように <span class="en">times</span> を使います。</p>
+
+<h3>比較級を強める <span class="en">much more</span></h3>
+<p><span class="en">more</span> の比較級も <span class="en">much</span> で強めます。<span class="en">This story is much more interesting than that one.</span>（この話はあの話よりずっとおもしろい）です。Unit 13 と同じで、<span class="en">very more</span> とはしません。</p>
+
+<h3><span class="en">-er</span> と <span class="en">more</span> を重ねない</h3>
+<p><span class="en">more easier</span> ／ <span class="en">more taller</span> のように、<span class="en">more</span> と <span class="en">-er</span> を同時に使ってはいけません。「より」を表すのはどちらか一方だけです。最上級も同じで、<span class="en">the most tallest</span> とはしません。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>( ) の語が長い語か短い語かを見て、<span class="en">-er</span> ／ <span class="en">-est</span> と <span class="en">more</span> ／ <span class="en">most</span> を選ぶ。<span class="en">as 〜 as</span> の間にもとの形を選ぶ</td></tr>
+<tr><td>語形変化</td><td><span class="en">interesting</span> ／ <span class="en">important</span> ／ <span class="en">careful</span> を正しい形に変える</td></tr>
+<tr><td>書きかえ</td><td>比較級の文を <span class="en">not as 〜 as</span> の文に、<span class="en">not as 〜 as</span> の文を比較級の文に直す。<strong>主語の入れかわり</strong>が採点の中心</td></tr>
+<tr><td>並べかえ</td><td><span class="en">as 〜 as possible</span> ／ <span class="en">the most</span> ＋ 形容詞 ＋ 名詞の語順。不要な語として <span class="en">than</span> や <span class="en">more</span> が混ざる</td></tr>
+<tr><td>読解</td><td>グラフや表の数と本文を照らして、どちらが多いか、どれがいちばん多いかを答える</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">This question is more easier than that one.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">This question is <span class="gen-w">easier</span> than that one.</span></div>
+<p class="contrast-why"><span class="en">easy</span> は <span class="en">y</span> で終わる短い語なので <span class="en">easier</span> です。<span class="en">more</span> と <span class="en">-er</span> を重ねません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Ken is as taller as his brother.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Ken is as <span class="gen-w">tall</span> as his brother.</span></div>
+<p class="contrast-why">2つの <span class="en">as</span> の間はもとの形です。比較級にしません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">She is the most kind girl in our class.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">She is the <span class="gen-w">kindest</span> girl in our class.</span></div>
+<p class="contrast-why"><span class="en">kind</span> は短い語なので <span class="en">-est</span> をつけます。<span class="en">most</span> は使いません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Ken is not as tall as Tom.</span>　（ケンのほうが背が高い、と言いたいとき）</div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en"><span class="gen-w">Tom</span> is not as tall as <span class="gen-w">Ken</span>.</span></div>
+<p class="contrast-why"><span class="en">not as 〜 as</span> に書きかえるときは主語が入れかわります。主語をそのままにすると意味が逆になります。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p>長い語は語尾を変えず、<strong>前に <span class="en">more</span> ／ <span class="en">the most</span> を置きます</strong>。<span class="en">-ful</span> ／ <span class="en">-ous</span> ／ <span class="en">-ing</span> ／ <span class="en">-ed</span> ／ <span class="en">-ive</span> で終わる語、3つ以上の音のかたまりを持つ語、<span class="en">-ly</span> の副詞がその仲間です。<span class="en">more</span> と <span class="en">-er</span> は重ねません。「同じくらい」は <span class="en">as</span> ＋ <strong>もとの形</strong> ＋ <span class="en">as</span> で、打ち消すと「…ほど〜ではない」になります。<span class="en">A is taller than B.</span> を <span class="en">not as 〜 as</span> に書きかえると <span class="en">B is not as tall as A.</span> で、<strong>主語が入れかわります</strong>。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">This book is more interesting than that one.</span>／<span class="en">This map is more useful than that book.</span>／<span class="en">Osaka is more crowded than my town.</span>／<span class="en">He speaks more slowly than I do.</span>／<span class="en">Soccer is the most popular sport in our school.</span>／<span class="en">This question is more difficult than that one.</span>／<span class="en">This is the most difficult question of the ten.</span>／<span class="en">Math is more important than music for me.</span>／<span class="en">Math is the most important subject for me.</span>／<span class="en">This coin is more valuable than that one.</span>／<span class="en">This is the most valuable coin in my collection.</span>／<span class="en">Ken is as tall as Taro.</span>／<span class="en">My dog is as big as yours.</span>／<span class="en">This bag is as expensive as that bag.</span>／<span class="en">Aya can run as fast as her brother.</span>／<span class="en">I get up as early as my sister.</span>／<span class="en">Tom is not as tall as Ken.</span>／<span class="en">My town is not as crowded as Osaka.</span>／<span class="en">Your bag is not as heavy as mine.</span>／<span class="en">Please read as many books as possible.</span>／<span class="en">This box is twice as heavy as that box.</span>／<span class="en">This story is much more interesting than that one.</span>　まず「同じくらい」か「どちらが上か」を確かめてください。</p>
+
+<p>ほかの例文です。<span class="en">The population of Osaka is much larger than the population of my town.</span>／<span class="en">The traffic in the city is heavier than the traffic in the countryside.</span>／<span class="en">This area is more modern than that area.</span>／<span class="en">The view from this room is more beautiful than the view from my room.</span>／<span class="en">The market near the station is larger than the shop near my house.</span>／<span class="en">The map in this book is more helpful than the map on the wall.</span>／<span class="en">Snow is more common in January than in March.</span>／<span class="en">This bird is rarer than the other birds in this park.</span>／<span class="en">The old factory is not as large as the new one.</span>／<span class="en">This book is thicker than that book.</span>／<span class="en">This paper is thinner than that paper.</span>／<span class="en">Please compare the two graphs in this report.</span>／<span class="en">The average of our class was higher than the average of their class.</span>／<span class="en">About twenty percent of the students like spring.</span>／<span class="en">The total of the votes was twenty.</span>／<span class="en">This bike costs more than that bike.</span>／<span class="en">The number of visitors is increasing every year.</span>／<span class="en">I measured the height of the tree.</span>／<span class="en">Please write the length and the weight of the box.</span>／<span class="en">The distance from my house to school is shorter than the distance from his house.</span>／<span class="en">The speed of this train is as fast as the speed of that bus.</span>／<span class="en">This box weighs more than that box.</span>／<span class="en">The sun rises earlier in summer than in winter.</span>／<span class="en">I came home as early as possible.</span>／<span class="en">The area of this park is larger than the area of that park.</span>／<span class="en">I like the countryside better than the city.</span>／<span class="en">We measured the length of the bridge.</span>／<span class="en">Look at the graph on this page.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。( ) に入る語が長い語か短い語かを先に確かめます。<span class="en">as</span> ではさまれているときはもとの形です。</p>
+<ol class="q" data-part="A">
+<li><span class="en">The new book on that shelf is (　　　) than the old one.</span>
+<p class="opts"><span>ア interesting</span><span>イ interestinger</span><span>ウ more interesting</span><span>エ most interesting</span></p></li>
+<li><span class="en">Soccer is the (　　　) sport in our school.</span>
+<p class="opts"><span>ア popular</span><span>イ popularest</span><span>ウ more popular</span><span>エ most popular</span></p></li>
+<li><span class="en">My black bag is as (　　　) as your white bag.</span>
+<p class="opts"><span>ア heavy</span><span>イ heavier</span><span>ウ heaviest</span><span>エ more heavy</span></p></li>
+<li><span class="en">This question in the test was (　　　) than that question.</span>
+<p class="opts"><span>ア easy</span><span>イ easier</span><span>ウ more easy</span><span>エ more easier</span></p></li>
+<li><span class="en">My uncle in Osaka speaks English (　　　) than my father.</span>
+<p class="opts"><span>ア slowly</span><span>イ slowlier</span><span>ウ more slowly</span><span>エ most slowly</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>この本はあの本よりおもしろいです。<br><span class="en">[ this / book / is / more / interesting / than / that / one ] .</span><span class="write"></span></li>
+<li>数学は私にとっていちばん大切な教科です。<br><span class="en">[ math / is / the / most / important / subject / for / me ] .</span><span class="write"></span></li>
+<li>私の犬はあなたの犬と同じくらい大きいです。<br><span class="en">[ my / dog / is / as / big / as / yours ] .</span><span class="write"></span></li>
+<li data-extra="1">この問題はあの問題ほど難しくありません。<span class="hint">1語不要</span><br><span class="en">[ this / question / is / not / as / difficult / than / as / that / one ] .</span><span class="write"></span></li>
+<li data-extra="1">できるだけたくさんの本を読んでください。<span class="hint">1語不要</span><br><span class="en">[ please / read / as / many / books / more / as / possible ] .</span><span class="write"></span></li>
+<li>この箱はあの箱の2倍の重さです。<br><span class="en">[ this / box / is / twice / as / heavy / as / that / box ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。かっこの中の日本語は、その文で言いたい内容です。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">This book is more easier than that book.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Ken is as taller as his brother.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">She is the most kind girl in our class.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Ken is not as tall as Tom.</span><span class="hint">ケンのほうが背が高い</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">This is most beautiful park in our city.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">この映画はあの映画よりわくわくします。</span><span class="write"></span></li>
+<li><span class="q-ja">私の自転車はあなたの自転車と同じくらい新しいです。</span><span class="write"></span></li>
+<li><span class="q-ja">この川はあの川ほど長くありません。</span><span class="write"></span></li>
+<li><span class="q-ja">この地図はあの本より役に立ちます。</span><span class="write"></span></li>
+<li><span class="en">more</span> を使って「この問題はあの問題より難しい」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li><span class="en">as 〜 as</span> を使って「私は姉と同じくらい早く起きます」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li><span class="en">not as 〜 as</span> を使って「私のかばんはあなたのかばんほど重くありません」と書く。代名詞1語で文を終える。<span class="cond">8語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ミキは英語の授業で、自分の町とおばが住む町について発表しました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">私の町とおばの町</p>
+<p>Last summer I visited my aunt in Osaka. She lives in a big city, and I live in a small town in the countryside. The two places are very different, so I made a report about them for this speech. Osaka is much larger than my town. The streets are more crowded, the buildings are taller, and the traffic is much heavier. Trains come every few minutes, so the city is more convenient than the countryside. Here, a bus comes only twice an hour. But my town is not as noisy as Osaka. <span class="num">①</span><span class="ul">The air is fresher, and the view from my window is more beautiful than the view from my aunt's window.</span> My aunt said, "Your town is as interesting as my city. It is only quieter." <span class="num">②</span><span class="ul">I don't think one place is better than the other place.</span> Each place has its own good things. Now I like my town better than before.</p>
+<p class="reading-wc">およそ150語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ミキの町では、バスは1時間に2回しか来ない。<br>
+イ 大阪の交通量は、ミキの町より少ない。<br>
+ウ ミキのおばは、ミキの町はつまらないと言った。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">Which is more convenient, the city or the countryside?</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">The streets in Osaka are (　　　) crowded than the streets in the countryside.</span><span class="write"></span></li>
+<li>下線部②の内容に合うものを1つ選ぶ。<br>
+ア ミキは大阪のほうがよい場所だと考えている。<br>
+イ ミキは、どちらか一方がよい場所だとは考えていない。<br>
+ウ ミキは自分の町のほうがよい場所だと考えている。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li><span class="en">more</span> を使って、2つの教科やスポーツをくらべる文を1つ書く。<span class="hint">例：Math is more difficult than English.</span><span class="write"></span></li>
+<li><span class="en">as 〜 as</span> を使って、自分と家族や友だちをくらべる文を1つ書く。<span class="hint">例：I am as tall as my brother.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>「同じくらい」か「どちらが上か」</strong>を確かめ、次に<strong>語の長さと終わり</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　more interesting</span><p class="a-why">うしろに <span class="en">than</span> があるので比較級です。<span class="en">interesting</span> は <span class="en">-ing</span> で終わる長い語なので <span class="en">more</span> を前に置きます。<span class="en">interestinger</span> という形はありません。</p></li>
+<li><span class="a-key">エ　most popular</span><p class="a-why">前に <span class="en">the</span>、うしろに <span class="en">in our school</span> があるので最上級です。<span class="en">popular</span> は長い語なので <span class="en">most</span> を前に置きます。</p></li>
+<li><span class="a-key">ア　heavy</span><p class="a-why">2つの <span class="en">as</span> ではさまれているので、もとの形のままです。比較級にはしません。</p></li>
+<li><span class="a-key">イ　easier</span><p class="a-why"><span class="en">easy</span> は <span class="en">y</span> で終わる短い語なので <span class="en">easier</span> です。<span class="en">more easy</span> ／ <span class="en">more easier</span> とはしません。</p></li>
+<li><span class="a-key">ウ　more slowly</span><p class="a-why"><span class="en">slowly</span> は <span class="en">-ly</span> で終わる副詞なので <span class="en">more</span> を前に置きます。うしろに <span class="en">than</span> があるので比較級です。</p></li>
+
+<li><span class="a-key">This book is more interesting than that one.</span><p class="a-why"><span class="en">more</span> は形容詞の前に置きます。<span class="en">interesting</span> の形は変えません。</p></li>
+<li><span class="a-key">Math is the most important subject for me.</span><p class="a-why">形容詞が名詞を説明するので、<span class="en">the most important</span> を <span class="en">subject</span> の前にまとめて置きます。</p></li>
+<li><span class="a-key">My dog is as big as yours.</span><p class="a-why">2つの <span class="en">as</span> の間はもとの形 <span class="en">big</span> です。くらべる相手は「あなたの犬」なので <span class="en">yours</span> です。</p></li>
+<li><span class="a-key">This question is not as difficult as that one.</span><p class="a-why">不要な語は <span class="en">than</span> です。<span class="en">not as 〜 as</span> の形では <span class="en">than</span> を使いません。</p></li>
+<li><span class="a-key">Please read as many books as possible.</span><p class="a-why">不要な語は <span class="en">more</span> です。<span class="en">as 〜 as possible</span> の間はもとの形なので <span class="en">more</span> は要りません。</p></li>
+<li><span class="a-key">This box is twice as heavy as that box.</span><p class="a-why">「2倍」の <span class="en">twice</span> は1つめの <span class="en">as</span> の前に置きます。</p></li>
+
+<li><span class="a-key">This book is easier than that book.</span><p class="a-why">理由の例：<span class="en">easy</span> は <span class="en">-er</span> をつける語で、<span class="en">more</span> と重ねて使わないから。</p></li>
+<li><span class="a-key">Ken is as tall as his brother.</span><p class="a-why">理由の例：2つの <span class="en">as</span> の間はもとの形にするから。</p></li>
+<li><span class="a-key">She is the kindest girl in our class.</span><p class="a-why">理由の例：<span class="en">kind</span> は短い語なので <span class="en">-est</span> をつけ、<span class="en">most</span> は使わないから。</p></li>
+<li><span class="a-key">Tom is not as tall as Ken.</span><p class="a-why">理由の例：<span class="en">not as 〜 as</span> の文では主語が入れかわるので、ケンのほうが背が高いなら主語は <span class="en">Tom</span> になるから。</p></li>
+<li><span class="a-key">This is the most beautiful park in our city.</span><p class="a-why">理由の例：最上級には <span class="en">the</span> をつけるから。</p></li>
+
+<li><span class="a-key">This movie is more exciting than that movie.</span><p class="a-why"><span class="en">exciting</span> は <span class="en">-ing</span> で終わる語なので <span class="en">more</span> を前に置きます。<span class="en">than that one</span> と書いても正解です。</p></li>
+<li><span class="a-key">My bike is as new as yours.</span><p class="a-why">「同じくらい」なので <span class="en">as</span> ＋ もとの形 ＋ <span class="en">as</span> です。<span class="en">as your bike</span> と書いても正解です。</p></li>
+<li><span class="a-key">This river is not as long as that river.</span><p class="a-why">「…ほど〜ではない」は <span class="en">not as 〜 as</span> です。<span class="en">That river is longer than this river.</span> と書いても同じ内容になります。</p></li>
+<li><span class="a-key">This map is more useful than that book.</span><p class="a-why"><span class="en">useful</span> は <span class="en">-ful</span> で終わる語なので <span class="en">more</span> を前に置きます。</p></li>
+<li><span class="a-key">This question is more difficult than that one.</span><p class="a-why">8語です。<span class="en">difficult</span> は長い語なので <span class="en">more</span> を使います。<span class="en">than that question</span> にすると9語になります。</p></li>
+<li><span class="a-key">I get up as early as my sister.</span><p class="a-why">8語です。<span class="en">early</span> はもとの形のまま2つの <span class="en">as</span> の間に置きます。</p></li>
+<li><span class="a-key">My bag is not as heavy as yours.</span><p class="a-why">8語です。代名詞1語で終えるので「あなたのかばん」は <span class="en">yours</span> です。<span class="en">as your bag</span> にすると9語になります。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">Here, a bus comes only twice an hour.</span> とあります。イは大阪の交通量のほうが多いので合いません。ウのおばは <span class="en">Your town is as interesting as my city.</span> と言っています。</p></li>
+<li><span class="a-key">The city is.</span><p class="a-why">本文に <span class="en">the city is more convenient than the countryside</span> とあります。<span class="en">Osaka is more convenient.</span> と書いても正解です。</p></li>
+<li><span class="a-key">空気はより新鮮で、私の窓からのながめは、おばの窓からのながめより美しいです。</span><p class="a-why"><span class="en">fresher</span> は <span class="en">fresh</span> の比較級で「より新鮮な」です。<span class="en">more beautiful</span> は「より美しい」です。</p></li>
+<li><span class="a-key">more</span><p class="a-why">本文に <span class="en">The streets are more crowded</span> とあります。<span class="en">crowded</span> は <span class="en">-ed</span> で終わる語なので <span class="en">more</span> を入れます。</p></li>
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">I don't think one place is better than the other place.</span> は「どちらか一方がよい場所だとは考えていない」という内容です。</p></li>
+
+<li><span class="a-key">（解答例）Math is more difficult than English.</span><p class="a-why">長い語の前に <span class="en">more</span> を置き、うしろに <span class="en">than</span> ＋ くらべる相手があれば正解です。<span class="en">Soccer is more popular than baseball.</span> のような文でもよいです。</p></li>
+<li><span class="a-key">（解答例）I am as tall as my brother.</span><p class="a-why">2つの <span class="en">as</span> の間がもとの形になっていれば正解です。<span class="en">I can run as fast as my friend.</span> のような文でもよいです。</p></li>
+</ol>
+</div>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 13　比較級・最上級（-er / -est）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab13_comparative-er.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 13</p>
+<h1 class="unit-title">比較級・最上級（-er / -est）</h1>
+<p class="unit-lead">中1では <span class="en">Ken is tall.</span> のように、形容詞で人やもののようすを言いました。この単元では、<strong>2つをくらべて「〜より…だ」と言う形（比較級）</strong>と、<strong>3つ以上の中で「いちばん…だ」と言う形（最上級）</strong>を扱います。<span class="en">Ken is taller than Taro.</span> は「ケンはタロウより背が高い」、<span class="en">Ken is the tallest in his class.</span> は「ケンはクラスでいちばん背が高い」です。形容詞や副詞の語尾に <span class="en">-er</span> ／ <span class="en">-est</span> をつけて作ります。</p>
+</header>
+
+<h2><span>2つをくらべる：比較級 ＋ <span class="en">than</span></span></h2>
+
+<p><span class="en">Ken is tall.</span> は、ケン1人のようすを言う文です。だれかとくらべて「〜より背が高い」と言うときは、<span class="en">tall</span> を <span class="en">taller</span> にして、くらべる相手を <span class="en">than</span> のうしろに置きます。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">Ken is tall.</span></span>
+<span class="tf-arrow">↓　tall に -er をつけ、くらべる相手を than のうしろに置く</span>
+<span class="tf-line"><span class="en">Ken is taller than Taro.</span></span>
+</div>
+
+<div class="diagram is-general">
+<p class="diagram-cap">比較級のうしろの than が、くらべる相手を示す</p>
+<div class="flow">
+<span class="node">Ken is taller<span class="node-label">主語と比較級</span></span>
+<span class="link">
+<span class="link-word">than</span>
+<span class="rail"></span>
+</span>
+<span class="node">Taro<span class="node-label">くらべる相手</span></span>
+</div>
+</div>
+
+<p><span class="en">-er</span> の形を<strong>比較級</strong>と呼びます。<span class="en">than</span> は「〜より」の意味で、比較級と組んで使います。文の動詞は <span class="en">is</span> のままです。比較級は形容詞の形が変わっただけなので、<strong>be動詞か一般動詞かの判定は、もとの文と同じ</strong>です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>もとの文</th><th>比較級の文</th><th>意味</th></tr>
+<tr><td><span class="en">This river is long.</span></td><td><span class="en">This river is longer than that river.</span></td><td>この川はあの川より長い。</td></tr>
+<tr><td><span class="en">My bag is heavy.</span></td><td><span class="en">My bag is heavier than yours.</span></td><td>私のかばんはあなたのより重い。</td></tr>
+<tr><td><span class="en">I get up early.</span></td><td><span class="en">I get up earlier than my sister.</span></td><td>私は姉より早く起きる。</td></tr>
+</table>
+</div>
+
+<p><strong>なぜ <span class="en">than</span> が要るのか。</strong><span class="en">Ken is taller.</span> だけでは、だれより背が高いのかが分かりません。比較級は「くらべる相手がいる」ことを表す形なので、相手を <span class="en">than</span> で示します。相手が会話の中ですでに分かっているときは、<span class="en">than</span> 以下を省くこともあります。</p>
+
+<h2><span>3つ以上の中でいちばん：<span class="en">the</span> ＋ 最上級</span></h2>
+
+<p>3人以上、3つ以上の中で「いちばん…だ」と言うときは、<span class="en">tall</span> を <span class="en">tallest</span> にして、前に <span class="en">the</span> をつけます。この形を<strong>最上級</strong>と呼びます。どの中でいちばんなのかは、<span class="en">in</span> か <span class="en">of</span> で示します。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">Ken is tall.</span></span>
+<span class="tf-arrow">↓　tall に -est をつけ、前に the を置く</span>
+<span class="tf-line"><span class="en">Ken is the tallest in his class.</span></span>
+</div>
+
+<div class="diagram is-general">
+<p class="diagram-cap">the ＋ 最上級のうしろに、くらべる範囲を置く</p>
+<div class="flow">
+<span class="node">Ken is the tallest<span class="node-label">主語と最上級</span></span>
+<span class="link">
+<span class="link-word">in</span>
+<span class="rail"></span>
+</span>
+<span class="node">his class<span class="node-label">くらべる範囲</span></span>
+</div>
+</div>
+
+<p><strong>なぜ <span class="en">the</span> がつくのか。</strong>「いちばん…なもの」は、その範囲の中に1つしかありません。中1 Unit 4 で学んだように、1つに決まるものには <span class="en">the</span> をつけます。最上級に <span class="en">the</span> がつくのも同じ理由です。</p>
+
+<h3><span class="en">in</span> と <span class="en">of</span> の使い分け</h3>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>うしろに来るもの</th><th>前置詞</th><th>例文</th></tr>
+<tr><td>場所・集団（1つのまとまり）</td><td><span class="en">in</span></td><td><span class="en">Ken is the tallest in his class.</span><br><span class="en">Mt. Fuji is the highest mountain in Japan.</span><br><span class="en">My mother gets up the earliest in my family.</span></td></tr>
+<tr><td>数・同じなかまの複数のもの</td><td><span class="en">of</span></td><td><span class="en">Ken is the tallest of the five boys.</span><br><span class="en">This bag is the lightest of the three.</span><br><span class="en">I like winter the best of all the seasons.</span></td></tr>
+</table>
+</div>
+
+<p>見分け方は、<strong>うしろの語が「1つのまとまり」か「いくつかの数」か</strong>です。<span class="en">class</span> ／ <span class="en">family</span> ／ <span class="en">Japan</span> ／ <span class="en">the world</span> は1つのまとまりなので <span class="en">in</span>、<span class="en">the five boys</span> ／ <span class="en">the three</span> ／ <span class="en">all the seasons</span> は数を数えられるものの集まりなので <span class="en">of</span> です。</p>
+
+<h2><span><span class="en">-er</span> ／ <span class="en">-est</span> の作り方</span></h2>
+
+<p>ほとんどの語は、そのまま <span class="en">-er</span> ／ <span class="en">-est</span> をつけます。語の終わりによって、つけ方が変わるものがあります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語の終わり</th><th>作り方</th><th>例</th></tr>
+<tr><td>ふつう</td><td>そのまま <span class="en">-er</span> ／ <span class="en">-est</span> をつける</td><td class="be-cell"><span class="en">tall → taller → tallest</span><br><span class="en">long → longer → longest</span><br><span class="en">high → higher → highest</span><br><span class="en">fast → faster → fastest</span></td></tr>
+<tr><td>e で終わる</td><td><span class="en">-r</span> ／ <span class="en">-st</span> だけをつける</td><td class="be-cell"><span class="en">large → larger → largest</span><br><span class="en">nice → nicer → nicest</span><br><span class="en">wide → wider → widest</span></td></tr>
+<tr><td>短い母音＋子音1字</td><td>最後の子音字を重ねて <span class="en">-er</span> ／ <span class="en">-est</span> をつける</td><td class="be-cell"><span class="en">big → bigger → biggest</span><br><span class="en">hot → hotter → hottest</span></td></tr>
+<tr><td>子音字＋ <span class="en">y</span></td><td><span class="en">y</span> を <span class="en">i</span> に変えて <span class="en">-er</span> ／ <span class="en">-est</span> をつける</td><td class="be-cell"><span class="en">easy → easier → easiest</span><br><span class="en">early → earlier → earliest</span><br><span class="en">heavy → heavier → heaviest</span><br><span class="en">busy → busier → busiest</span></td></tr>
+</table>
+</div>
+
+<p>子音字を重ねるのは、中1 Unit 14 の <span class="en">running</span> ／ <span class="en">swimming</span> と同じきまりです。<span class="en">y</span> を <span class="en">i</span> に変えるのは、中1 Unit 4 の <span class="en">city → cities</span> と同じきまりです。新しく覚えることは少なく、すでに学んだ綴りのきまりをそのまま使います。</p>
+
+<h3>形が大きく変わる語</h3>
+
+<p>次の語は、<span class="en">-er</span> ／ <span class="en">-est</span> をつけずに、別の形になります。入試でよく問われるので、3つの形を続けて覚えます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>もとの形</th><th>比較級</th><th>最上級</th><th>例文</th></tr>
+<tr><td><span class="en">good</span>（よい）<br><span class="en">well</span>（上手に）</td><td><span class="en">better</span></td><td><span class="en">best</span></td><td><span class="en">This dictionary is better than that one.</span><br><span class="en">Aya sings the best in our class.</span></td></tr>
+<tr><td><span class="en">many</span>（数が多い）<br><span class="en">much</span>（量が多い）</td><td><span class="en">more</span></td><td><span class="en">most</span></td><td><span class="en">I have more books than my brother.</span><br><span class="en">Spring got the most votes.</span></td></tr>
+</table>
+</div>
+
+<h2><span><span class="en">than</span> のうしろの代名詞</span></h2>
+
+<p><span class="en">than</span> のうしろに代名詞を置くとき、2つの形が使われます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th><th>説明</th></tr>
+<tr><td><span class="en">than</span> ＋ 主語の形 ＋ 動詞</td><td><span class="en">My brother is taller than I am.</span></td><td><span class="en">than</span> のうしろを文の形にしている。<span class="en">I</span> は主語なので主語の形</td></tr>
+<tr><td><span class="en">than</span> ＋ 目的語の形</td><td><span class="en">My brother is taller than me.</span></td><td>会話でよく使う形。<span class="en">than</span> のうしろに代名詞1語だけを置く</td></tr>
+</table>
+</div>
+
+<p>どちらも正しい英語です。<strong>うしろに動詞を置くなら主語の形（<span class="en">I</span> ／ <span class="en">he</span> ／ <span class="en">she</span>）、代名詞1語だけなら目的語の形（<span class="en">me</span> ／ <span class="en">him</span> ／ <span class="en">her</span>）</strong>と覚えると迷いません。<span class="en">than me am</span> のように混ぜてはいけません。代名詞の形は中1 Unit 8 の表のとおりです。</p>
+
+<h2><span>くらべる疑問文と答え方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>たずね方</th><th>答え方</th></tr>
+<tr><td><span class="en">Which is longer, this river or that river?</span><br>（この川とあの川では、どちらが長いですか）</td><td><span class="en">This river is.</span></td></tr>
+<tr><td><span class="en">Who is taller, you or Ken?</span><br>（あなたとケンでは、どちらが背が高いですか）</td><td><span class="en">Ken is.</span></td></tr>
+<tr><td><span class="en">Which do you like better, apples or bananas?</span><br>（りんごとバナナでは、どちらが好きですか）</td><td><span class="en">I like apples better.</span></td></tr>
+<tr><td><span class="en">Which season do you like the best?</span><br>（どの季節がいちばん好きですか）</td><td><span class="en">I like spring the best.</span></td></tr>
+</table>
+</div>
+
+<p>人をくらべるときは <span class="en">Who</span>、ものをくらべるときは <span class="en">Which</span> を使います。中1 Unit 10 の疑問詞と同じ使い分けです。「〜のほうが好きだ」は <span class="en">like 〜 better</span>、「〜がいちばん好きだ」は <span class="en">like 〜 the best</span> です。<span class="en">good</span> の形を使っているように見えますが、ここでは <span class="en">well</span> の比較級・最上級で、「より強く」「いちばん強く」好きだという意味です。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">くらべているのが2つか、3つ以上かを確かめる</span>
+<span class="step-d">2つなら比較級 ＋ <span class="en">than</span>、3つ以上の中でいちばんなら <span class="en">the</span> ＋ 最上級です。</span>
+</li>
+<li>
+<span class="step-t">語の終わりを見て、綴りを決める</span>
+<span class="step-d">e で終わるか、短い母音＋子音1字か、子音字＋ <span class="en">y</span> かを見ます。<span class="en">good</span> ／ <span class="en">well</span> ／ <span class="en">many</span> ／ <span class="en">much</span> は形が大きく変わります。</span>
+</li>
+<li>
+<span class="step-t">最上級なら、<span class="en">the</span> と <span class="en">in</span> ／ <span class="en">of</span> を確かめる</span>
+<span class="step-d">うしろが1つのまとまりなら <span class="en">in</span>、数や複数のなかまなら <span class="en">of</span> です。</span>
+</li>
+<li>
+<span class="step-t"><span class="en">than</span> のうしろの代名詞の形を確かめる</span>
+<span class="step-d">動詞を続けるなら主語の形、代名詞1語だけなら目的語の形です。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>比較級を強めるときは <span class="en">much</span></h3>
+<p>「ずっと〜だ」と比較級を強めるときは、<span class="en">very</span> ではなく <span class="en">much</span> を比較級の前に置きます。<span class="en">Tom is much taller than Ken.</span>（トムはケンよりずっと背が高い）です。<span class="en">very</span> は <span class="en">very tall</span> のように、もとの形を強める語です。<span class="en">very taller</span> とはしません。</p>
+
+<h3><span class="en">one of the</span> ＋ 最上級 ＋ 複数形</h3>
+<p>「いちばん…なものの1つ」は <span class="en">one of the</span> ＋ 最上級 ＋ 名詞の複数形で言います。<span class="en">Tokyo Skytree is one of the tallest towers in the world.</span>（東京スカイツリーは世界でいちばん高い塔の1つです）です。いくつかある中の1つなので、<span class="en">towers</span> と複数形にします。文の主語は <span class="en">one</span> なので、動詞は <span class="en">is</span> です。</p>
+
+<h3>副詞の比較級・最上級</h3>
+<p><span class="en">fast</span>（速く）や <span class="en">early</span>（早く）のような副詞も、同じように <span class="en">-er</span> ／ <span class="en">-est</span> の形になります。<span class="en">She runs faster than her brother.</span>（彼女は兄より速く走る）、<span class="en">She runs the fastest of the three.</span>（彼女は3人の中でいちばん速く走る）です。副詞は一般動詞のうしろに置くので、文の形は一般動詞の文のままです。</p>
+
+<h3><span class="en">than</span> のうしろの比べ方をそろえる</h3>
+<p><span class="en">My bag is heavier than yours.</span> の <span class="en">yours</span> は「あなたのかばん」です。<span class="en">than you</span> とすると「かばん」と「あなた」をくらべることになります。<strong>くらべるもの同士を同じ種類にそろえる</strong>ので、<span class="en">yours</span>（あなたのもの）を使います。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>( ) の前後に <span class="en">than</span> があるか、<span class="en">the</span> と <span class="en">in</span> ／ <span class="en">of</span> があるかで、比較級と最上級を選ぶ。<span class="en">in</span> と <span class="en">of</span> の選択</td></tr>
+<tr><td>語形変化</td><td><span class="en">big</span> ／ <span class="en">hot</span> ／ <span class="en">easy</span> ／ <span class="en">good</span> ／ <span class="en">many</span> を正しい形に変える</td></tr>
+<tr><td>並べかえ</td><td><span class="en">Which do you like better, A or B?</span> ／ <span class="en">the</span> ＋ 最上級 ＋ <span class="en">of</span> の語順。不要な語として <span class="en">in</span> や <span class="en">more</span> が混ざる</td></tr>
+<tr><td>英作文</td><td>「AはBより〜だ」「〜の中でいちばん…だ」「Aのほうが好きだ」を書く</td></tr>
+<tr><td>読解</td><td>グラフや調査の結果と本文を照らして、どれがいちばん多いか、どちらが多いかを答える</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Ken is tall than Taro.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Ken is <span class="gen-w">taller</span> than Taro.</span></div>
+<p class="contrast-why"><span class="en">than</span> を使うときは、形容詞を比較級にします。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">This is the bigest park in our city.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">This is the <span class="gen-w">biggest</span> park in our city.</span></div>
+<p class="contrast-why"><span class="en">big</span> は短い母音＋子音1字で終わるので、<span class="en">g</span> を重ねます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Ken is the tallest of his class.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Ken is the tallest <span class="gen-w">in</span> his class.</span></div>
+<p class="contrast-why"><span class="en">his class</span> は1つのまとまりなので <span class="en">in</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Tom is very taller than Ken.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Tom is <span class="gen-w">much</span> taller than Ken.</span></div>
+<p class="contrast-why">比較級を強めるのは <span class="en">much</span> です。<span class="en">very</span> は使いません。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p>2つをくらべるときは<strong>比較級 ＋ <span class="en">than</span></strong>、3つ以上の中でいちばんのときは<strong><span class="en">the</span> ＋ 最上級 ＋ <span class="en">in</span> ／ <span class="en">of</span></strong> です。うしろが1つのまとまりなら <span class="en">in</span>、数や複数のなかまなら <span class="en">of</span> です。綴りは e で終わる語・子音字を重ねる語・<span class="en">y</span> を <span class="en">i</span> に変える語に注意し、<span class="en">good</span> ／ <span class="en">well</span> → <span class="en">better</span> → <span class="en">best</span>、<span class="en">many</span> ／ <span class="en">much</span> → <span class="en">more</span> → <span class="en">most</span> は形ごと覚えます。<span class="en">than</span> のうしろは、動詞を続けるなら主語の形、1語だけなら目的語の形です。比較級を強めるのは <span class="en">much</span> です。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">Ken is taller than Taro.</span>／<span class="en">Ken is the tallest in his class.</span>／<span class="en">This river is longer than that river.</span>／<span class="en">My bag is heavier than yours.</span>／<span class="en">I get up earlier than my sister.</span>／<span class="en">Mt. Fuji is the highest mountain in Japan.</span>／<span class="en">Ken is the tallest of the five boys.</span>／<span class="en">This bag is the lightest of the three.</span>／<span class="en">I like winter the best of all the seasons.</span>／<span class="en">This dictionary is better than that one.</span>／<span class="en">Aya sings the best in our class.</span>／<span class="en">I have more books than my brother.</span>／<span class="en">My brother is taller than I am.</span>／<span class="en">My brother is taller than me.</span>／<span class="en">Which do you like better, apples or bananas?</span>／<span class="en">Tom is much taller than Ken.</span>／<span class="en">Tokyo Skytree is one of the tallest towers in the world.</span>／<span class="en">She runs faster than her brother.</span>　くらべているのが2つか3つ以上かを、まず確かめてください。</p>
+
+<p>ほかの例文です。<span class="en">Autumn is cooler than summer.</span>／<span class="en">Emi is the tallest girl in our class.</span>／<span class="en">The sun is much larger than the moon.</span>／<span class="en">Jupiter is the biggest planet of all.</span>／<span class="en">Which size is better for you, this one or that one?</span>／<span class="en">Spring got the largest number of votes.</span>／<span class="en">She ran the fastest in the race.</span>／<span class="en">This road is wider than that road.</span>／<span class="en">This lake is the deepest in Japan.</span>／<span class="en">This chair is lower than that one.</span>／<span class="en">Our team was weaker than theirs last year.</span>／<span class="en">My old computer is slower than the new one.</span>／<span class="en">Your dog is smarter than mine.</span>／<span class="en">My grandfather is the gentlest person in my family.</span>／<span class="en">The black cat is smaller than the white one.</span>／<span class="en">I like baseball better than soccer.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。( ) の前後に <span class="en">than</span> があるか、<span class="en">the</span> と <span class="en">in</span> ／ <span class="en">of</span> があるかを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">The black bag on the desk is (　　　) than my bag.</span>
+<p class="opts"><span>ア big</span><span>イ bigger</span><span>ウ biggest</span><span>エ more big</span></p></li>
+<li><span class="en">Mt. Fuji is the (　　　) mountain in Japan.</span>
+<p class="opts"><span>ア high</span><span>イ higher</span><span>ウ highest</span><span>エ more high</span></p></li>
+<li><span class="en">Kenta is the fastest runner (　　　) the five boys in our club.</span>
+<p class="opts"><span>ア in</span><span>イ of</span><span>ウ than</span><span>エ at</span></p></li>
+<li><span class="en">My little sister gets up (　　　) than my father every morning.</span>
+<p class="opts"><span>ア early</span><span>イ earlier</span><span>ウ earliest</span><span>エ more early</span></p></li>
+<li><span class="en">The new dictionary in the library is (　　　) than the old one.</span>
+<p class="opts"><span>ア good</span><span>イ well</span><span>ウ better</span><span>エ best</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私の兄は父よりも背が高いです。<br><span class="en">[ my / brother / is / taller / than / my / father ] .</span><span class="write"></span></li>
+<li>これは日本でいちばん長い川です。<br><span class="en">[ this / is / the / longest / river / in / Japan ] .</span><span class="write"></span></li>
+<li>あなたはりんごとバナナでは、どちらが好きですか。<br><span class="en">[ which / do / you / like / better / apples / or / bananas ] ?</span><span class="write"></span></li>
+<li data-extra="1">彼女は3人の中でいちばん速く走ります。<span class="hint">1語不要</span><br><span class="en">[ she / runs / the / fastest / of / in / the / three ] .</span><span class="write"></span></li>
+<li data-extra="1">今日は昨日よりも暑いです。<span class="hint">1語不要</span><br><span class="en">[ it / is / hotter / more / today / than / yesterday ] .</span><span class="write"></span></li>
+<li>私はすべての季節の中で冬がいちばん好きです。<br><span class="en">[ i / like / winter / the / best / of / all / the / seasons ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">Ken is tall than his brother.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">This is the bigest park in our city.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Yumi is the youngest of her family.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My cat is more heavy than your dog.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Tom is very taller than Ken.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">この箱はあの箱よりも重いです。</span><span class="write"></span></li>
+<li><span class="q-ja">私の家族の中で、母がいちばん早く起きます。</span><span class="write"></span></li>
+<li><span class="q-ja">琵琶湖は日本でいちばん大きい湖です。</span><span class="write"></span></li>
+<li><span class="q-ja">私はサッカーよりも野球のほうが好きです。</span><span class="write"></span></li>
+<li>than を使って「私の姉は私より年上です」と書く。代名詞1語で文を終える。<span class="cond">6語</span><span class="write"></span></li>
+<li>最上級を使って「この部屋はこの家でいちばん大きい」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li>Who を使って「あなたとケンでは、どちらが背が高いですか」と書く。<span class="cond">6語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ユイは英語の授業で、クラスで行った調査について発表しました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">いちばん好きな季節</p>
+<p>Last month, our class did a survey. We asked all the twenty students in our class one question: "Which season do you like the best?" Spring got eight votes, summer got six, autumn got four, and winter got two. So spring is the favorite season of our class. Many students said, "Spring is warmer than winter, and the days are longer." Ken is a member of the swimming club. He said, "Summer is the best season for me. The sea is warm, and I can swim every day." Only two students like winter the best. Emi is one of them. She said, <span class="num">①</span><span class="ul">"Winter is colder than the other seasons, but the stars look brighter on winter nights."</span> I didn't know that, so I looked at the sky last night. <span class="num">②</span><span class="ul">I like spring the best, but now I like winter better than before.</span> Next month, we will ask the students in the other classes the same question.</p>
+<p class="reading-wc">およそ155語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ユイのクラスは、20人全員に同じ質問をした。<br>
+イ 夏は春よりも多くの票を集めた。<br>
+ウ エミは夏がいちばん好きだ。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">Which season does Ken like the best?</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">Spring got two (　　　) votes than summer.</span><span class="write"></span></li>
+<li>下線部②の内容に合うものを1つ選ぶ。<br>
+ア ユイは冬がいちばん好きになった。<br>
+イ ユイは春がいちばん好きだが、前よりも冬が好きになった。<br>
+ウ ユイは冬より夏のほうが好きだ。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>比較級と than を使って、自分と家族や友だちをくらべる文を1つ書く。<span class="hint">例：I get up earlier than my brother.</span><span class="write"></span></li>
+<li>like 〜 the best を使って、いちばん好きなもの（季節・教科・スポーツなど）を1文で書く。<span class="hint">例：I like summer the best of all the seasons.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>くらべているのが2つか3つ以上か</strong>を確かめ、次に<strong>綴りと <span class="en">in</span> ／ <span class="en">of</span></strong> まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　bigger</span><p class="a-why">うしろに <span class="en">than</span> があるので比較級です。<span class="en">big</span> は <span class="en">g</span> を重ねて <span class="en">bigger</span> です。<span class="en">more big</span> とはしません。</p></li>
+<li><span class="a-key">ウ　highest</span><p class="a-why">前に <span class="en">the</span>、うしろに <span class="en">in Japan</span> があるので最上級です。</p></li>
+<li><span class="a-key">イ　of</span><p class="a-why"><span class="en">the five boys</span> は数を数えられる複数のなかまなので <span class="en">of</span> です。</p></li>
+<li><span class="a-key">イ　earlier</span><p class="a-why">うしろに <span class="en">than</span> があるので比較級です。<span class="en">early</span> は <span class="en">y</span> を <span class="en">i</span> に変えて <span class="en">earlier</span> です。</p></li>
+<li><span class="a-key">ウ　better</span><p class="a-why">うしろに <span class="en">than</span> があるので比較級です。<span class="en">good</span> の比較級は <span class="en">better</span> です。</p></li>
+
+<li><span class="a-key">My brother is taller than my father.</span><p class="a-why">比較級 <span class="en">taller</span> のうしろに <span class="en">than</span> ＋ くらべる相手を置きます。</p></li>
+<li><span class="a-key">This is the longest river in Japan.</span><p class="a-why"><span class="en">Japan</span> は1つのまとまりなので <span class="en">in</span> です。最上級の前に <span class="en">the</span> を置きます。</p></li>
+<li><span class="a-key">Which do you like better, apples or bananas?</span><p class="a-why">ものをくらべるので <span class="en">Which</span> です。「〜のほうが好き」は <span class="en">like 〜 better</span> です。</p></li>
+<li><span class="a-key">She runs the fastest of the three.</span><p class="a-why">不要な語は <span class="en">in</span> です。<span class="en">the three</span> は数なので <span class="en">of</span> を使います。</p></li>
+<li><span class="a-key">It is hotter today than yesterday.</span><p class="a-why">不要な語は <span class="en">more</span> です。<span class="en">hot</span> は <span class="en">t</span> を重ねて <span class="en">hotter</span> にするので、<span class="en">more</span> は要りません。</p></li>
+<li><span class="a-key">I like winter the best of all the seasons.</span><p class="a-why">「〜がいちばん好き」は <span class="en">like 〜 the best</span> です。<span class="en">all the seasons</span> は複数のなかまなので <span class="en">of</span> です。</p></li>
+
+<li><span class="a-key">Ken is taller than his brother.</span><p class="a-why">理由の例：<span class="en">than</span> を使うときは、形容詞を比較級にするから。</p></li>
+<li><span class="a-key">This is the biggest park in our city.</span><p class="a-why">理由の例：<span class="en">big</span> は短い母音＋子音1字で終わるので、<span class="en">g</span> を重ねるから。</p></li>
+<li><span class="a-key">Yumi is the youngest in her family.</span><p class="a-why">理由の例：<span class="en">her family</span> は1つのまとまりなので、<span class="en">of</span> ではなく <span class="en">in</span> を使うから。</p></li>
+<li><span class="a-key">My cat is heavier than your dog.</span><p class="a-why">理由の例：<span class="en">heavy</span> は <span class="en">y</span> を <span class="en">i</span> に変えて <span class="en">-er</span> をつける語で、<span class="en">more</span> は使わないから。</p></li>
+<li><span class="a-key">Tom is much taller than Ken.</span><p class="a-why">理由の例：比較級を強めるのは <span class="en">much</span> で、<span class="en">very</span> は使わないから。</p></li>
+
+<li><span class="a-key">This box is heavier than that box.</span><p class="a-why"><span class="en">heavy</span> は <span class="en">heavier</span> です。<span class="en">than that one</span> と書いても正解です。</p></li>
+<li><span class="a-key">My mother gets up the earliest in my family.</span><p class="a-why"><span class="en">my family</span> は1つのまとまりなので <span class="en">in</span> です。<span class="en">get up</span> は主語に合わせて <span class="en">gets up</span> にします。</p></li>
+<li><span class="a-key">Lake Biwa is the largest lake in Japan.</span><p class="a-why"><span class="en">large</span> は e で終わるので <span class="en">-st</span> だけをつけます。<span class="en">the biggest lake</span> と書いても正解です。</p></li>
+<li><span class="a-key">I like baseball better than soccer.</span><p class="a-why">「〜より…のほうが好き」は <span class="en">like … better than 〜</span> です。</p></li>
+<li><span class="a-key">My sister is older than me.</span><p class="a-why">6語です。代名詞1語で終えるので、目的語の形 <span class="en">me</span> を使います。<span class="en">than I am</span> にすると7語になります。</p></li>
+<li><span class="a-key">This room is the largest in this house.</span><p class="a-why">8語です。<span class="en">this house</span> は1つのまとまりなので <span class="en">in</span> です。<span class="en">the biggest</span> と書いても正解です。</p></li>
+<li><span class="a-key">Who is taller, you or Ken?</span><p class="a-why">6語です。人をくらべるので <span class="en">Who</span> を使います。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">We asked all the twenty students in our class one question</span> とあります。イは春が8票、夏が6票なので合いません。ウのエミは冬がいちばん好きな2人のうちの1人です。</p></li>
+<li><span class="a-key">He likes summer the best.</span><p class="a-why">ケンは <span class="en">Summer is the best season for me.</span> と言っています。主語を <span class="en">He</span> にするので <span class="en">likes</span> です。</p></li>
+<li><span class="a-key">冬はほかの季節より寒いですが、冬の夜には星がより明るく見えます。</span><p class="a-why"><span class="en">colder than the other seasons</span> は「ほかの季節より寒い」です。<span class="en">look brighter</span> は「より明るく見える」です。</p></li>
+<li><span class="a-key">more</span><p class="a-why">春は8票、夏は6票なので、春のほうが2票多いです。<span class="en">many</span> の比較級 <span class="en">more</span> を入れます。</p></li>
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">I like spring the best</span> で春がいちばん好きなことは変わらず、<span class="en">now I like winter better than before</span> で冬が前より好きになったと言っています。</p></li>
+
+<li><span class="a-key">（解答例）I get up earlier than my brother.</span><p class="a-why">比較級のうしろに <span class="en">than</span> ＋ くらべる相手を置いていれば正解です。<span class="en">My father is taller than me.</span> のような文でもよいです。</p></li>
+<li><span class="a-key">（解答例）I like summer the best of all the seasons.</span><p class="a-why"><span class="en">like 〜 the best</span> を使っていれば正解です。<span class="en">I like math the best of all the subjects.</span> のような文でもよいです。</p></li>
+</ol>
+</div>
+</body>
+</html>

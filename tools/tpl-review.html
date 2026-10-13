@@ -266,7 +266,7 @@ mark{background:var(--ng-soft);color:var(--ng);border-radius:3px;padding:0 .15re
 <div class="sheet">
 
 <nav class="topnav">
-  <a href="../index.html">目次</a>
+  <a href="{{HOME}}">目次</a>
   <a href="../word-test.html?{{WTQ}}">単語テスト</a>
 </nav>
 
@@ -369,24 +369,7 @@ mark{background:var(--ng-soft);color:var(--ng);border-radius:3px;padding:0 .15re
    ===================================================================== */
 
 const TEST = {{TEST}};
-const UNITS = [
- ["be動詞の肯定文","be-affirmative"],
- ["be動詞の否定文・疑問文","be-negative-question"],
- ["This / That / It と指示表現","this-that-it"],
- ["名詞の複数形と a / an / the","plural-articles"],
- ["一般動詞の肯定文","general-affirmative"],
- ["一般動詞の否定文・疑問文","general-negative-question"],
- ["be動詞と一般動詞の使い分け","be-vs-general"],
- ["代名詞","pronouns"],
- ["三人称単数現在","third-person-singular"],
- ["疑問詞","question-words"],
- ["時刻・曜日・日付・数の表現","time-date-numbers"],
- ["命令文・Let's","imperative-lets"],
- ["助動詞 can","can"],
- ["現在進行形","present-progressive"],
- ["be動詞の過去形","be-past"],
- ["一般動詞の過去形","general-past"]
-];
+const UNITS = {{UNITS}};
 const WEAK = 70;                       /* この％未満に「見直し」を出す */
 const KEY = "review:" + TEST.id;       /* 途中保存の置き場所（この端末の中だけ） */
 

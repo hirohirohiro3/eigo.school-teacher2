@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 4　接続詞 when / if / because / that</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab04_conjunctions.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 4</p>
+<h1 class="unit-title">接続詞 when / if / because / that</h1>
+<p class="unit-lead">中1 Unit 1 から、文は「主語＋動詞」で1つずつ作ってきました。この単元では、その文を2つつなげて1つの文にします。<strong>つなぐ語が接続詞</strong>で、ここでは <span class="en">when</span>（〜するとき）・<span class="en">if</span>（もし〜なら）・<span class="en">because</span>（〜だから）・<span class="en">that</span>（〜ということ）の4語を扱います。入試では、どの接続詞を選ぶか、つないだ側の動詞をどの形にするか、コンマをどこに置くかが問われます。</p>
+</header>
+
+<h2><span>2つの文を1つにつなぐ語</span></h2>
+
+<p>中1 Unit 4 では <span class="en">and</span> <span class="en">but</span> <span class="en">or</span> を学びました。この3語は、語と語、文と文を<strong>対等に</strong>並べます。この単元の4語はちがいます。<strong>一方の文を、もう一方の文の説明として付け足します。</strong></p>
+
+<div class="transform">
+<span class="tf-line">I lived near the forest. I was a child.</span>
+<span class="tf-arrow">↓ when でつなぐ</span>
+<span class="tf-line">I lived near the forest <strong class="en">when</strong> I was a child.</span>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">接続詞の文　中心になる文のうしろに「接続詞＋文」が付く</p>
+<div class="flow">
+<span class="node">I lived near the forest<span class="node-label">中心の文</span></span>
+<span class="link">
+<span class="link-word">when</span>
+<span class="rail"></span>
+</span>
+<span class="node">I was a child<span class="node-label">説明の文</span></span>
+</div>
+</div>
+
+<p><strong>どちらも「主語＋動詞」をそろえた文の形です。</strong>接続詞のうしろに語だけを置くことはできません。<span class="en">when a child</span> とは言えず、<span class="en">when I was a child</span> と、主語と動詞をそろえます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>接続詞</th><th>意味</th><th>付け足す内容</th></tr>
+<tr><td><span class="en"><strong>when</strong></span></td><td>〜するとき</td><td>時</td></tr>
+<tr><td><span class="en"><strong>if</strong></span></td><td>もし〜なら</td><td>条件</td></tr>
+<tr><td><span class="en"><strong>because</strong></span></td><td>〜だから</td><td>理由</td></tr>
+<tr><td><span class="en"><strong>that</strong></span></td><td>〜ということ</td><td>内容</td></tr>
+</table>
+</div>
+
+<p><strong>説明の文は、前に出すこともできます。</strong>そのときは、2つの文の境目に<strong>コンマを置きます。</strong><span class="en">When I was a child, I lived near the forest.</span>　うしろに置くときはコンマは要りません。意味は変わりません。</p>
+
+<h2><span>when は時を付け足す</span></h2>
+
+<p><span class="en">when</span> は「〜するとき」です。中心の文がいつのことなのかを示します。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th></tr>
+<tr><td>うしろに置く</td><td><span class="en">I lived near the forest when I was a child.</span></td></tr>
+<tr><td>前に出す</td><td><span class="en">When I was a child, I lived near the forest.</span></td></tr>
+<tr><td>過去進行形と組む</td><td><span class="en">When I opened the door, the wind was blowing.</span></td></tr>
+<tr><td>気づいたことを言う</td><td><span class="en">When I arrived at the river, I was very surprised.</span></td></tr>
+</table>
+</div>
+
+<p>中1 Unit 11 で学んだ <span class="en">at seven</span> や <span class="en">on Sunday</span> は、時を<strong>語句</strong>で示す言い方でした。<span class="en">when</span> を使うと、時を<strong>文</strong>で示せます。言えることの幅がここで広がります。</p>
+
+<h2><span>疑問詞の when と接続詞の when</span></h2>
+
+<p>中1 Unit 10 の疑問詞 <span class="en">when</span> と、この単元の接続詞 <span class="en">when</span> は綴りが同じです。<strong>見分けるところは2つで、文の先頭にあるかどうかと、文の終わりが <span class="en">?</span> かどうかです。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th></th><th>疑問詞の when</th><th>接続詞の when</th></tr>
+<tr><td>働き</td><td>時をたずねる</td><td>時を付け足す</td></tr>
+<tr><td>位置</td><td>文の先頭だけ</td><td>先頭と文の中</td></tr>
+<tr><td>うしろ</td><td>疑問文の語順</td><td>ふつうの語順</td></tr>
+<tr><td>終わり</td><td><span class="en">?</span></td><td><span class="en">.</span></td></tr>
+</table>
+</div>
+
+<p>疑問詞の例は <span class="en">When does the volunteer event start?</span> です。<span class="en">does</span> があり、<span class="en">?</span> で終わります。接続詞の例は <span class="en">I will call you when I get home.</span> です。<span class="en">when</span> のうしろが <span class="en">I get</span> というふつうの語順で、<span class="en">.</span> で終わります。中心の文に時を付け足しているだけです。</p>
+
+<h2><span>if は条件を付け足す</span></h2>
+
+<p><span class="en">if</span> は「もし〜なら」です。<strong>起きるかどうか決まっていないこと</strong>を条件として置きます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th></tr>
+<tr><td>前に出す</td><td><span class="en">If it is sunny tomorrow, we will clean up the river.</span></td></tr>
+<tr><td>うしろに置く</td><td><span class="en">We will work outside if the weather is sunny.</span></td></tr>
+<tr><td>できないことを言う</td><td><span class="en">If we throw away plastic bottles in the river, we cannot protect the birds and the trees.</span></td></tr>
+<tr><td>結果を言う</td><td><span class="en">If we plant seeds in spring, the vegetables grow well.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">when</span> と <span class="en">if</span> のちがいは、必ず起きることかどうかです。</strong>朝が来る、家に着くといった<strong>必ず起きること</strong>には <span class="en">when</span> を使います。晴れる、雨が降るといった<strong>起きるか分からないこと</strong>には <span class="en">if</span> を使います。</p>
+
+<h2><span>when と if の中では未来を現在形で言う</span></h2>
+
+<p>ここは中2で最も間違えやすいところです。<strong><span class="en">when</span> と <span class="en">if</span> のうしろの文では、未来のことでも <span class="en">will</span> を使わず、現在形で言います。</strong></p>
+
+<div class="diagram">
+<p class="diagram-cap">未来のことを言う文　中心の文は will、if のうしろは現在形</p>
+<div class="flow">
+<span class="node">If it rains<span class="node-label">現在形</span></span>
+<span class="link">
+<span class="link-word">,</span>
+<span class="rail"></span>
+</span>
+<span class="node">we will read<span class="node-label">will ＋ 原形</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>中心の文</th><th>when / if のうしろ</th><th>例文</th></tr>
+<tr><td>will ＋ 原形</td><td>現在形</td><td><span class="en">If it is sunny tomorrow, we will clean up the river.</span></td></tr>
+<tr><td>will ＋ 原形</td><td>現在形（3人称単数の <span class="en">-s</span> はつく）</td><td><span class="en">If it rains tomorrow, we will read about the environment in the classroom.</span></td></tr>
+<tr><td>will ＋ 原形</td><td>現在形</td><td><span class="en">I will call you when I get home.</span></td></tr>
+</table>
+</div>
+
+<p><strong>なぜ現在形なのか。</strong><span class="en">if</span> と <span class="en">when</span> のうしろは、<strong>話のはじめに置く条件や時</strong>です。これから先のことだと<strong>中心の文の <span class="en">will</span> がすでに示している</strong>ので、条件の側では未来の印を重ねません。英語はここで形を軽くします。</p>
+
+<p><strong>現在形といっても、3人称単数の <span class="en">-s</span> は落としません。</strong><span class="en">If it rains tomorrow</span> の <span class="en">rains</span> には <span class="en">-s</span> がついています。中1 Unit 9 の決まりはそのまま働きます。</p>
+
+<p>この決まりが働くのは <span class="en">when</span> と <span class="en">if</span> のうしろだけです。<span class="en">because</span> と <span class="en">that</span> のうしろでは、未来のことは <span class="en">will</span> で言います。<span class="en">I am glad because you will join the event.</span>／<span class="en">I promise that I will join the event again.</span></p>
+
+<h2><span>because は理由を付け足す</span></h2>
+
+<p>中1 Unit 10 で、<span class="en">Why 〜?</span> には <span class="en">Because 〜.</span> で答えると学びました。<span class="en">because</span> は理由を示す語で、1つの文の中でも使えます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例文</th></tr>
+<tr><td>うしろに置く</td><td><span class="en">At first I was tired, because the bags were very heavy.</span></td></tr>
+<tr><td>うしろに置く</td><td><span class="en">I like this town, because the air is fresh.</span></td></tr>
+<tr><td>うしろに置く</td><td><span class="en">I am not afraid of hard work now, because I know that it is necessary for our town.</span></td></tr>
+<tr><td><span class="en">Why 〜?</span> への答え</td><td><span class="en">Why do you collect garbage? —— Because I love this river.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">because</span> と <span class="en">so</span> を同じ文で重ねません。</strong>中1 Unit 4 の <span class="en">so</span>（だから）は、理由を<strong>前</strong>、結果を<strong>うしろ</strong>に置きます。<span class="en">because</span> はその逆で、結果を前、理由をうしろに置きます。どちらか1つで足ります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>前に来るもの</th><th>うしろに来るもの</th></tr>
+<tr><td><span class="en"><strong>because</strong></span></td><td>結果</td><td>理由</td></tr>
+<tr><td><span class="en"><strong>so</strong></span></td><td>理由</td><td>結果</td></tr>
+</table>
+</div>
+
+<h2><span>that は内容を付け足す</span></h2>
+
+<p><span class="en">that</span> は「〜ということ」です。<strong>思っている内容・知っている内容・言った内容</strong>を、1つの文のまとまりで示します。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>組む動詞</th><th>例文</th></tr>
+<tr><td><span class="en">think</span>（思う）</td><td><span class="en">I think that this volunteer event is important.</span></td></tr>
+<tr><td><span class="en">know</span>（知っている）</td><td><span class="en">We know that plastic stays in the water for many years.</span></td></tr>
+<tr><td><span class="en">say</span>（言う）</td><td><span class="en">My mother said that the weather will be dry this weekend.</span></td></tr>
+<tr><td><span class="en">hear</span>（聞く）</td><td><span class="en">I heard that the local people cleaned up the beach last year.</span></td></tr>
+<tr><td><span class="en">notice</span>（気づく）</td><td><span class="en">I noticed that the river was very dirty.</span></td></tr>
+<tr><td><span class="en">agree</span>（賛成する）</td><td><span class="en">I agree that this rule is necessary.</span></td></tr>
+<tr><td><span class="en">promise</span>（約束する）</td><td><span class="en">I promise that I will join the event again.</span></td></tr>
+</table>
+</div>
+
+<p><strong><span class="en">that</span> のうしろも「主語＋動詞」をそろえた文です。</strong><span class="en">I think that this volunteer event important.</span> のように動詞を落とすことはできません。<span class="en">is</span> が必要です。</p>
+
+<p>形容詞と組む形もよく出ます。<span class="en">I am glad that you joined us.</span>／<span class="en">I am sure that this story is true.</span>　<span class="en">glad</span>（うれしい）・<span class="en">sure</span>（確信している）のうしろに、その理由になる内容を置きます。</p>
+
+<h3>that は省けることが多い</h3>
+<p><strong>この <span class="en">that</span> は、話しことばでも書きことばでも省かれます。</strong>意味は変わりません。<span class="en">I think this event is important.</span>／<span class="en">We know plastic stays in the water for many years.</span>　<strong>動詞のうしろに、いきなり「主語＋動詞」が続いていたら、省かれた <span class="en">that</span> があると考えます。</strong>読解でこの読み方が要ります。</p>
+
+<p>省けないのは、中1 Unit 3 で学んだ指示代名詞の <span class="en">that</span>（あれ・それ）のほうです。こちらは文の主語や目的語になっているので、落とすと文が成り立ちません。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">付け足す内容が、時・条件・理由・内容のどれかを決める</span>
+<span class="step-d">時なら <span class="en">when</span>、条件なら <span class="en">if</span>、理由なら <span class="en">because</span>、内容なら <span class="en">that</span> です。</span>
+</li>
+<li>
+<span class="step-t">接続詞のうしろを「主語＋動詞」の文の形にする</span>
+<span class="step-d">語だけを置くことはできません。疑問文の語順にもしません。</span>
+</li>
+<li>
+<span class="step-t">when と if のうしろなら、未来でも現在形にする</span>
+<span class="step-d">中心の文は <span class="en">will</span> ＋ 原形のままです。3人称単数の <span class="en">-s</span> は落としません。</span>
+</li>
+<li>
+<span class="step-t">説明の文を前に出したときだけコンマを置く</span>
+<span class="step-d">うしろに置くときは要りません。<span class="en">that</span> の文は前に出しません。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>接続詞の that と指示代名詞の that</h3>
+<p><span class="en">that</span> のうしろを見ます。<strong>「主語＋動詞」が続いていれば接続詞</strong>、<strong>動詞や名詞が直接続いていれば指示代名詞</strong>です。<span class="en">I think that this event is important.</span> の <span class="en">that</span> は接続詞で、「あれ」とは訳しません。<span class="en">That is my bag.</span> の <span class="en">that</span> は指示代名詞で、文の主語です。</p>
+
+<h3>because のうしろに文が無い形</h3>
+<p><span class="en">Why 〜?</span> への答えでは <span class="en">Because I love this river.</span> のように <span class="en">Because</span> で文を始めます。これは、たずねられた中心の文が省かれているからです。<strong>答え以外の場面では、<span class="en">because</span> だけの文で終わらせません。</strong></p>
+
+<h3>if のうしろが過去形のとき</h3>
+<p>この単元の <span class="en">if</span> は、これからのことを条件として置く言い方だけです。<span class="en">If it is sunny tomorrow, we will clean up the river.</span> のように、うしろは現在形になります。過去形を置く言い方は中3で扱います。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>4語のうちどれを入れるか、<span class="en">when</span>・<span class="en">if</span> のうしろの動詞の形</td></tr>
+<tr><td>並べかえ</td><td>説明の文を前に出す形と、うしろに置く形の語順</td></tr>
+<tr><td>書きかえ</td><td><span class="en">because</span> と <span class="en">so</span> の言いかえ、2文を1文につなぐ</td></tr>
+<tr><td>対話</td><td><span class="en">Why 〜?</span> への <span class="en">Because 〜.</span> の答え方</td></tr>
+<tr><td>英作文</td><td>自分の考えとその理由を <span class="en">I think that 〜, because 〜.</span> で書く</td></tr>
+<tr><td>読解</td><td>省かれた <span class="en">that</span> を補って読む、理由や条件を読み取る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">If it will rain tomorrow, we will read about the environment in the classroom.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">If it <span class="gen-w">rains</span> tomorrow, we will read about the environment in the classroom.</span></div>
+<p class="contrast-why"><span class="en">if</span> のうしろは、未来のことでも現在形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">When I will get home, I will call you.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">When I <span class="gen-w">get</span> home, I will call you.</span></div>
+<p class="contrast-why"><span class="en">when</span> のうしろも現在形です。中心の文だけが <span class="en">will</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Because the bags were very heavy, so I was tired.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Because the bags were very heavy, I was tired.</span></div>
+<p class="contrast-why"><span class="en">because</span> と <span class="en">so</span> は重ねません。どちらか1つで理由と結果がそろいます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I think that this volunteer event important.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I think that this volunteer event <span class="be-w">is</span> important.</span></div>
+<p class="contrast-why"><span class="en">that</span> のうしろも「主語＋動詞」をそろえた文です。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">When I was a child, I lived near the forest.</span>／<span class="en">If it is sunny tomorrow, we will clean up the river.</span>／<span class="en">At first I was tired, because the bags were very heavy.</span>／<span class="en">I think that this volunteer event is important.</span>／<span class="en">I will call you when I get home.</span>　どの文も、接続詞のうしろが「主語＋動詞」の形です。</p>
+
+<p>ほかの例文です。<span class="en">Almost every student joined the event.</span>／<span class="en">For example, I collect plastic bottles every week.</span>／<span class="en">Trees cannot grow without water.</span>／<span class="en">I know that plastic does not become part of nature.</span>／<span class="en">Next month, we will plant seeds in a field near the school.</span>／<span class="en">Our teacher explained the reason.</span>／<span class="en">We collected the garbage for two hours.</span>／<span class="en">Many local people helped us.</span>／<span class="en">Please call me when you are free.</span>／<span class="en">If it rains, I will stay home.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。接続詞のうしろがどの形になるかを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">If it (　　　) sunny tomorrow, we will clean up the river.</span>
+<p class="opts"><span>ア will be</span><span>イ is</span><span>ウ was</span><span>エ be</span></p></li>
+<li><span class="en">At first I was tired, (　　　) the bags were very heavy.</span>
+<p class="opts"><span>ア and</span><span>イ but</span><span>ウ because</span><span>エ if</span></p></li>
+<li><span class="en">(　　　) does the volunteer event start? —— At nine in the morning.</span>
+<p class="opts"><span>ア When</span><span>イ That</span><span>ウ Because</span><span>エ If</span></p></li>
+<li><span class="en">I will call you when I (　　　) home.</span>
+<p class="opts"><span>ア will get</span><span>イ got</span><span>ウ get</span><span>エ getting</span></p></li>
+<li><span class="en">We know that plastic (　　　) in the water for many years.</span>
+<p class="opts"><span>ア stay</span><span>イ stays</span><span>ウ staying</span><span>エ stayed</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>もし明日雨が降ったら、私たちは教室で環境について読みます。<br><span class="en">[ if / it / rains / tomorrow / we / will / read / about / the / environment / in / the / classroom ] .</span><span class="write"></span></li>
+<li>私が子どものとき、私は森の近くに住んでいました。<br><span class="en">[ when / i / was / a / child / i / lived / near / the / forest ] .</span><span class="write"></span></li>
+<li data-extra="1">私はこのボランティア行事は大切だと思います。<span class="hint">1語不要</span><br><span class="en">[ i / think / that / this / volunteer / event / is / important / what ] .</span><span class="write"></span></li>
+<li>はじめは私は疲れていました。かばんがとても重かったからです。<br><span class="en">[ at / first / i / was / tired / because / the / bags / were / very / heavy ] .</span><span class="write"></span></li>
+<li data-extra="1">天気が晴れなら、私たちは外で働きます。<span class="hint">1語不要</span><br><span class="en">[ if / the / weather / is / sunny / we / will / work / outside / when ] .</span><span class="write"></span></li>
+<li>私は、それが私たちの町に必要だということを知っています。<br><span class="en">[ i / know / that / it / is / necessary / for / our / town ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">If it will rain tomorrow, we will read about the environment in the classroom.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">When I will get home, I will call you.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Because the bags were very heavy, so I was tired.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I think that this volunteer event important.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">We know that plastic stay in the water for many years.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">もし明日晴れたら、私たちは川をきれいに片づけます。</span><span class="write"></span></li>
+<li><span class="q-ja">私が子どものとき、私は森の近くに住んでいました。</span><span class="write"></span></li>
+<li><span class="q-ja">かばんがとても重かったので、私は疲れていました。</span><span class="write"></span></li>
+<li><span class="q-ja">私は、プラスチックは自然の一部にならないということを知っています。</span><span class="write"></span></li>
+<li>that を使わずに「私はこの行事は大切だと思います」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li>when を使って「あなたがひまなときに私に電話してください」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li>if を使って「もし雨が降ったら、私は家にいます」と書く。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ユウタが英語の授業でスピーチをしています。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">ユウタのスピーチ</p>
+<p>Hello, everyone. I will talk about a volunteer event in our town.<br>
+Last spring, I joined a clean-up event near the river. When I arrived at the river, I was very surprised. <span class="num">①</span><span class="ul">I noticed that the river was very dirty.</span> We collected the garbage for two hours. At first I was tired, because the bags were very heavy. Many local people helped us.<br>
+Our teacher explained the reason. Plastic does not become part of nature, so it stays in the water for many years. <span class="num">②</span><span class="ul">If we throw away plastic bottles in the river, we cannot protect the birds and the trees.</span><br>
+Next month, we will plant seeds in a field near the school. If it rains, we will read about the environment in the classroom. I promise that I will join the event again. Thank you.</p>
+<p class="reading-wc">およそ135語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ユウタは去年の春、川の近くの清掃活動に参加した。<br>
+イ ユウタは川で2日間ごみを集めた。<br>
+ウ ユウタは地元の人にごみの集め方を教えた。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア プラスチックは長い間水の中に残る。<br>
+イ ユウタたちは来月、学校の近くの畑に花を植える。<br>
+ウ 雨が降ったら、ユウタたちは外で働く。<span class="write"></span></li>
+<li>本文の内容に合うように、次の文の空所に入る語を1語で書く。<br><span class="en">Next month, Yuta and his classmates will (　　　) seeds in a field near the school.</span><span class="write"></span></li>
+<li>下線部②で、<span class="en">throw</span> に <span class="en">-s</span> がつかず、<span class="en">will</span> も使われていない理由として最も適切なものを1つ選ぶ。<br>
+ア <span class="en">if</span> のうしろは、未来のことでも現在形で言い、主語が <span class="en">we</span> なので <span class="en">-s</span> はつかないから。<br>
+イ 下線部②が過去の出来事を表しているから。<br>
+ウ <span class="en">throw</span> が名詞として使われているから。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>if を使って、明日の天気によって変わる自分の予定を1文で書く。<span class="hint">例：If it is sunny tomorrow, I will play tennis in the park.</span><span class="write"></span></li>
+<li>I think that 〜 と because を使って、自分の好きな教科とその理由を2文で書く。<span class="hint">例：I think that science is interesting. I like it, because I learn about nature.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>接続詞のうしろが「主語＋動詞」になっているか</strong>を確かめ、次に<strong>when と if のうしろが現在形になっているか</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　is</span><p class="a-why"><span class="en">if</span> のうしろは、未来のことでも現在形です。中心の文の <span class="en">will clean up</span> が未来を示しているので、条件の側では <span class="en">will</span> を重ねません。</p></li>
+<li><span class="a-key">ウ　because</span><p class="a-why">前が結果（疲れていた）、うしろが理由（かばんが重かった）なので <span class="en">because</span> です。</p></li>
+<li><span class="a-key">ア　When</span><p class="a-why"><span class="en">does</span> があり <span class="en">?</span> で終わるので、時をたずねる疑問詞の <span class="en">When</span> です。接続詞なら、うしろはふつうの語順になります。</p></li>
+<li><span class="a-key">ウ　get</span><p class="a-why"><span class="en">when</span> のうしろは現在形です。主語が <span class="en">I</span> なので <span class="en">-s</span> はつきません。</p></li>
+<li><span class="a-key">イ　stays</span><p class="a-why"><span class="en">that</span> のうしろもふつうの文なので、主語 <span class="en">plastic</span> は1つのものとして扱い、中1 Unit 9 の決まりで <span class="en">-s</span> がつきます。</p></li>
+
+<li><span class="a-key">If it rains tomorrow, we will read about the environment in the classroom.</span><p class="a-why">条件の文を前に出すので、境目にコンマを置きます。<span class="en">rains</span> の <span class="en">-s</span> を落としません。</p></li>
+<li><span class="a-key">When I was a child, I lived near the forest.</span><p class="a-why">説明の文を前に出した形です。<span class="en">I lived near the forest when I was a child.</span> でも同じ意味ですが、語群の並びと日本語の順からはこの形です。</p></li>
+<li><span class="a-key">I think that this volunteer event is important.</span><p class="a-why">不要な語は <span class="en">what</span> です。内容を付け足すのは <span class="en">that</span> です。<span class="en">that</span> のうしろは「主語＋動詞」をそろえます。</p></li>
+<li><span class="a-key">At first I was tired, because the bags were very heavy.</span><p class="a-why">結果を前、理由をうしろに置きます。<span class="en">at first</span> は「はじめは」です。</p></li>
+<li><span class="a-key">If the weather is sunny, we will work outside.</span><p class="a-why">不要な語は <span class="en">when</span> です。晴れるかどうかは決まっていないので <span class="en">if</span> です。</p></li>
+<li><span class="a-key">I know that it is necessary for our town.</span><p class="a-why">知っている内容を <span class="en">that</span> のうしろに文の形で置きます。</p></li>
+
+<li><span class="a-key">If it rains tomorrow, we will read about the environment in the classroom.</span><p class="a-why">理由の例：<span class="en">if</span> のうしろは、未来のことでも現在形にするから。</p></li>
+<li><span class="a-key">When I get home, I will call you.</span><p class="a-why">理由の例：<span class="en">when</span> のうしろも現在形にし、<span class="en">will</span> は中心の文だけに使うから。</p></li>
+<li><span class="a-key">Because the bags were very heavy, I was tired.</span><p class="a-why">理由の例：<span class="en">because</span> と <span class="en">so</span> を同じ文で重ねないから。<span class="en">The bags were very heavy, so I was tired.</span> でも正解です。</p></li>
+<li><span class="a-key">I think that this volunteer event is important.</span><p class="a-why">理由の例：<span class="en">that</span> のうしろも「主語＋動詞」をそろえた文にするから。</p></li>
+<li><span class="a-key">We know that plastic stays in the water for many years.</span><p class="a-why">理由の例：<span class="en">that</span> のうしろもふつうの文なので、3人称単数の <span class="en">-s</span> がつくから。</p></li>
+
+<li><span class="a-key">If it is sunny tomorrow, we will clean up the river.</span><p class="a-why"><span class="en">We will clean up the river if it is sunny tomorrow.</span> でも正解です。前に出したときだけコンマを置きます。</p></li>
+<li><span class="a-key">When I was a child, I lived near the forest.</span><p class="a-why"><span class="en">I lived near the forest when I was a child.</span> でも正解です。</p></li>
+<li><span class="a-key">I was tired, because the bags were very heavy.</span><p class="a-why"><span class="en">The bags were very heavy, so I was tired.</span> でも正解です。</p></li>
+<li><span class="a-key">I know that plastic does not become part of nature.</span><p class="a-why"><span class="en">I know plastic doesn't become part of nature.</span> でも正解です。<span class="en">that</span> は省けます。</p></li>
+<li><span class="a-key">I think this event is important.</span><p class="a-why"><span class="en">that</span> を省いた形です。動詞のうしろに「主語＋動詞」が続くので、省かれた <span class="en">that</span> があると分かります。6語です。</p></li>
+<li><span class="a-key">Please call me when you are free.</span><p class="a-why"><span class="en">when</span> のうしろは現在形です。7語です。</p></li>
+<li><span class="a-key">If it rains, I will stay home.</span><p class="a-why"><span class="en">if</span> のうしろは現在形で、<span class="en">rains</span> の <span class="en">-s</span> を落としません。7語です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">Last spring, I joined a clean-up event near the river.</span> と合います。ごみを集めたのは2時間なのでイは合わず、地元の人がユウタたちを手伝ったのでウも合いません。</p></li>
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">it stays in the water for many years</span> と合います。イは植えるのが <span class="en">seeds</span>（種）なので合わず、ウは雨なら教室で読むので合いません。</p></li>
+<li><span class="a-key">plant</span><p class="a-why">本文の <span class="en">Next month, we will plant seeds in a field near the school.</span> に合わせます。<span class="en">will</span> のうしろなので原形です。</p></li>
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">if</span> のうしろは、未来のことでも現在形で言います。主語が <span class="en">we</span> なので <span class="en">-s</span> もつきません。未来を示しているのは中心の文の <span class="en">cannot protect</span> の側です。</p></li>
+<li><span class="a-key">私は、その川がとても汚れていることに気づきました。</span><p class="a-why"><span class="en">notice</span> は「気づく」です。<span class="en">that</span> のうしろの文が、気づいた内容です。「その川がとても汚いことに気がつきました」でも正解です。</p></li>
+
+<li><span class="a-key">解答例　If it is sunny tomorrow, I will play tennis in the park.</span><p class="a-why"><span class="en">if</span> のうしろが現在形、中心の文が <span class="en">will</span> ＋ 原形になっていれば正解です。</p></li>
+<li><span class="a-key">解答例　I think that science is interesting. I like it, because I learn about nature.</span><p class="a-why">1文目の <span class="en">that</span> のうしろと、2文目の <span class="en">because</span> のうしろが、どちらも「主語＋動詞」の文になっていれば正解です。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0">接続詞 <span class="en">when</span>（時）・<span class="en">if</span>（条件）・<span class="en">because</span>（理由）・<span class="en">that</span>（内容）は、<strong>うしろに「主語＋動詞」をそろえた文</strong>を置きます。<strong><span class="en">when</span> と <span class="en">if</span> のうしろは、未来のことでも現在形</strong>で言い、3人称単数の <span class="en">-s</span> は落としません。説明の文を<strong>前に出したときだけコンマ</strong>を置きます。<span class="en">because</span> と <span class="en">so</span> は重ねません。<span class="en">that</span> は省けるので、<strong>動詞のうしろにいきなり「主語＋動詞」が続いていたら、省かれた <span class="en">that</span> がある</strong>と読みます。</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 4　接続詞 when / if / because / that</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit04_conjunctions.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 4</p>
+<h1 class="unit-title">単語帳　接続詞 when / if / because / that</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。考えや理由を述べるときに使う動詞と、身のまわりの自然をあつかう場面の名詞をまとめてあります。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめの1語がこの単元の中心になる接続詞です。次の10語は動詞で、この単元ではおもに <span class="en">that</span> のうしろの文と組んで出てきます。関連語と対義語は、それぞれの語の下のメモに入れてあります。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">if</span><span class="v-kana"><span class="ac">イ</span>フ</span></p>
+<div class="v-sense"><span class="tag t-conj">接続詞</span><p>もし〜なら<span class="sub">　起きるか決まっていない条件</span></p></div>
+<p class="v-ex"><span class="en">If it is sunny tomorrow, we will clean up the river.</span><span class="v-ja">　もし明日晴れたら、私たちは川をきれいに片づけます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>うしろは「主語＋動詞」の文です。<strong>未来のことでも現在形</strong>で言います。必ず起きることには <span class="en">when</span> を使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">think</span><span class="v-kana"><span class="ac">シン</span>ク</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>思う・考える</p></div>
+<p class="v-ex"><span class="en">I think that this volunteer event is important.</span><span class="v-ja">　私はこのボランティア行事は大切だと思います。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">think that 〜</span>（〜だと思う）。<span class="en">that</span> は省けます。過去形は <span class="en">thought</span>。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">agree</span><span class="v-kana">アグ<span class="ac">リー</span></span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>賛成する・意見が合う</p></div>
+<p class="v-ex"><span class="en">I agree that this rule is necessary.</span><span class="v-ja">　私はこの規則は必要だということに賛成します。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">agree that 〜</span>（〜ということに賛成する）。英作文で自分の立場を示すときに使えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">explain</span><span class="v-kana">イクスプ<span class="ac">レイ</span>ン</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>説明する</p></div>
+<p class="v-ex"><span class="en">Our teacher explained the reason.</span><span class="v-ja">　私たちの先生がその理由を説明しました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>うしろに説明する内容を置きます。<span class="en">reason</span>（理由）とよく組みます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">collect</span><span class="v-kana">コ<span class="ac">レ</span>クト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>集める</p></div>
+<p class="v-ex"><span class="en">We collected the garbage for two hours.</span><span class="v-ja">　私たちは2時間ごみを集めました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>散らばっているものを1か所に集める動作です。切手やカードを集める意味でも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">plant</span><span class="v-kana">プ<span class="ac">ラン</span>ト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>植える</p></div>
+<p class="v-ex"><span class="en">Next month, we will plant seeds in a field near the school.</span><span class="v-ja">　来月、私たちは学校の近くの畑に種を植えます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>名詞では「植物」の意味にもなります。<span class="en">seed</span>（種）・<span class="en">tree</span>（木）とよく組みます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">grow</span><span class="v-kana">グ<span class="ac">ロウ</span></span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>育つ・育てる</p></div>
+<p class="v-ex"><span class="en">If we plant seeds in spring, the vegetables grow well.</span><span class="v-ja">　春に種を植えれば、その野菜はよく育ちます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>主語が植物なら「育つ」、人が主語で目的語があれば「育てる」です。過去形は <span class="en">grew</span>。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">protect</span><span class="v-kana">プロ<span class="ac">テ</span>クト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>守る</p></div>
+<p class="v-ex"><span class="en">If we throw away plastic bottles in the river, we cannot protect the birds and the trees.</span><span class="v-ja">　川にペットボトルを捨てると、私たちは鳥や木を守れません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>環境や自然を話題にする読解で頻出です。<span class="en">nature</span>（自然）・<span class="en">environment</span>（環境）と組みます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">notice</span><span class="v-kana"><span class="ac">ノウ</span>ティス</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>気づく</p></div>
+<p class="v-ex"><span class="en">I noticed that the river was very dirty.</span><span class="v-ja">　私は、その川がとても汚れていることに気づきました。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">notice that 〜</span>（〜ということに気づく）。目で見て分かる場合に使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">promise</span><span class="v-kana">プ<span class="ac">ラ</span>ミス</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>約束する</p></div>
+<p class="v-ex"><span class="en">I promise that I will join the event again.</span><span class="v-ja">　私はまたその行事に参加すると約束します。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">promise that 〜</span>（〜すると約束する）。<span class="en">that</span> のうしろは未来のことなら <span class="en">will</span> を使います。名詞では「約束」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">blow</span><span class="v-kana">ブ<span class="ac">ロウ</span></span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>吹く</p></div>
+<p class="v-ex"><span class="en">When I opened the door, the wind was blowing.</span><span class="v-ja">　私がドアを開けたとき、風が吹いていました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>主語は <span class="en">wind</span>（風）が多いです。過去形は <span class="en">blew</span>。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">volunteer</span><span class="v-kana">ヴァランティ<span class="ac">ア</span></span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ボランティア</p></div>
+<p class="v-ex"><span class="en">I think that this volunteer event is important.</span><span class="v-ja">　私はこのボランティア行事は大切だと思います。</span></p>
+<p class="v-note"><span class="badge">使い方</span>名詞のまま別の名詞の前に置いて <span class="en">volunteer event</span>（ボランティア行事）のようにも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">garbage</span><span class="v-kana"><span class="ac">ガー</span>ビヂ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ごみ<span class="sub">　数えられない名詞</span></p></div>
+<p class="v-ex"><span class="en">We collected the garbage for two hours.</span><span class="v-ja">　私たちは2時間ごみを集めました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">a garbage</span> とも <span class="en">garbages</span> とも言いません。量を言うときは <span class="en">a lot of garbage</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">bottle</span><span class="v-kana"><span class="ac">バ</span>トル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>びん・ボトル</p></div>
+<p class="v-ex"><span class="en">If we throw away plastic bottles in the river, we cannot protect the birds and the trees.</span><span class="v-ja">　川にペットボトルを捨てると、私たちは鳥や木を守れません。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">plastic bottle</span> で「ペットボトル」です。日本語の「ペットボトル」はそのままでは英語になりません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">plastic</span><span class="v-kana">プ<span class="ac">ラ</span>スティク</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>プラスチック<span class="sub">　数えられない名詞</span></p></div>
+<p class="v-ex"><span class="en">We know that plastic stays in the water for many years.</span><span class="v-ja">　私たちは、プラスチックが長年水の中に残ることを知っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>形容詞として <span class="en">plastic bag</span>（ビニール袋）・<span class="en">plastic bottle</span> のようにも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">environment</span><span class="v-kana">インヴァイアロンメント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>環境</p></div>
+<p class="v-ex"><span class="en">If it rains tomorrow, we will read about the environment in the classroom.</span><span class="v-ja">　もし明日雨が降ったら、私たちは教室で環境について読みます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>ふつう <span class="en">the environment</span> と <span class="en">the</span> をつけて使います。入試の読解でよく出る語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">nature</span><span class="v-kana"><span class="ac">ネイ</span>チャ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>自然<span class="sub">　数えられない名詞</span></p></div>
+<p class="v-ex"><span class="en">I know that plastic does not become part of nature.</span><span class="v-ja">　私は、プラスチックは自然の一部にならないということを知っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">a</span> も <span class="en">the</span> もつけない形でよく使います。関連語 <span class="en">natural</span>（自然の）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">field</span><span class="v-kana"><span class="ac">フィー</span>ルド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>畑・野原</p></div>
+<p class="v-ex"><span class="en">Next month, we will plant seeds in a field near the school.</span><span class="v-ja">　来月、私たちは学校の近くの畑に種を植えます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>作物を育てる畑も、広い野原も <span class="en">field</span> です。競技場の意味でも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">seed</span><span class="v-kana"><span class="ac">シー</span>ド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>種</p></div>
+<p class="v-ex"><span class="en">Next month, we will plant seeds in a field near the school.</span><span class="v-ja">　来月、私たちは学校の近くの畑に種を植えます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられる名詞です。まとめて言うときは <span class="en">seeds</span> と複数形にします。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">reason</span><span class="v-kana"><span class="ac">リー</span>ズン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>理由</p></div>
+<p class="v-ex"><span class="en">Our teacher explained the reason.</span><span class="v-ja">　私たちの先生がその理由を説明しました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">because</span> が示すものが <span class="en">reason</span> です。読解の設問で「理由を答えなさい」と問われる場面で出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">event</span><span class="v-kana">イ<span class="ac">ヴェ</span>ント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>行事・出来事</p></div>
+<p class="v-ex"><span class="en">I promise that I will join the event again.</span><span class="v-ja">　私はまたその行事に参加すると約束します。</span></p>
+<p class="v-note"><span class="badge">使い方</span>学校行事や地域の催しを指します。<span class="en">festival</span>（祭り）より広い言い方です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">rule</span><span class="v-kana"><span class="ac">ルー</span>ル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>規則・ルール</p></div>
+<p class="v-ex"><span class="en">I agree that this rule is necessary.</span><span class="v-ja">　私はこの規則は必要だということに賛成します。</span></p>
+<p class="v-note"><span class="badge">使い方</span>学校やスポーツの決まりに使います。複数の決まりをまとめて言うときは <span class="en">rules</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">forest</span><span class="v-kana"><span class="ac">フォー</span>リスト</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>森</p></div>
+<p class="v-ex"><span class="en">When I was a child, I lived near the forest.</span><span class="v-ja">　私が子どものとき、私は森の近くに住んでいました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>木が広がっている場所です。<span class="en">tree</span>（木）が集まったものと考えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">air</span><span class="v-kana"><span class="ac">エ</span>ア</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>空気<span class="sub">　数えられない名詞</span></p></div>
+<p class="v-ex"><span class="en">I like this town, because the air is fresh.</span><span class="v-ja">　私はこの町が好きです。空気が新鮮だからです。</span></p>
+<p class="v-note"><span class="badge">使い方</span>ふつう <span class="en">the air</span> と <span class="en">the</span> をつけます。<span class="en">fresh</span>（新鮮な）・<span class="en">clean</span>（きれいな）とよく組みます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">spring</span><span class="v-kana">スプ<span class="ac">リン</span>グ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>春</p></div>
+<p class="v-ex"><span class="en">If we plant seeds in spring, the vegetables grow well.</span><span class="v-ja">　春に種を植えれば、その野菜はよく育ちます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>季節は <span class="en">in spring</span> のように <span class="en">in</span> と組み、<span class="en">the</span> はつけません。関連語 <span class="en">summer</span>（夏）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">important</span><span class="v-kana">イン<span class="ac">ポー</span>タント</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>大切な・重要な</p></div>
+<p class="v-ex"><span class="en">I think that this volunteer event is important.</span><span class="v-ja">　私はこのボランティア行事は大切だと思います。</span></p>
+<p class="v-note"><span class="badge">使い方</span>英作文で自分の考えを述べるときの中心になる語です。<span class="en">I think that 〜 is important.</span> の形で覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">necessary</span><span class="v-kana"><span class="ac">ネ</span>セセリ</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>必要な</p></div>
+<p class="v-ex"><span class="en">I know that it is necessary for our town.</span><span class="v-ja">　私は、それが私たちの町に必要だということを知っています。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">necessary for 〜</span>（〜に必要な）。<span class="en">need</span>（必要とする）は動詞、こちらは形容詞です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">afraid</span><span class="v-kana">アフ<span class="ac">レイ</span>ド</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>怖がって・心配して</p></div>
+<p class="v-ex"><span class="en">I am not afraid of hard work now, because I know that it is necessary for our town.</span><span class="v-ja">　私は今、力のいる仕事を怖がっていません。それが私たちの町に必要だと知っているからです。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">be afraid of 〜</span>（〜を怖がっている）。be動詞とセットで使い、<span class="en">of</span> のうしろに怖いものを置きます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">true</span><span class="v-kana">トゥ<span class="ac">ルー</span></span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>本当の・真実の</p></div>
+<p class="v-ex"><span class="en">I am sure that this story is true.</span><span class="v-ja">　私はこの話が本当だと確信しています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>内容が事実かどうかを言う語です。読解の内容一致で「正しいものを選べ」と問うときに使われます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">local</span><span class="v-kana"><span class="ac">ロウ</span>カル</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>地元の</p></div>
+<p class="v-ex"><span class="en">Many local people helped us.</span><span class="v-ja">　多くの地元の人が私たちを手伝ってくれました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">local people</span>（地元の人）・<span class="en">local food</span>（地元の食べ物）の形でよく出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">dry</span><span class="v-kana">ド<span class="ac">ライ</span></span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>乾いた</p></div>
+<p class="v-ex"><span class="en">My mother said that the weather will be dry this weekend.</span><span class="v-ja">　母は、この週末は天気が乾くだろうと言いました。</span></p>
+<p class="v-note"><span class="badge">対になる語</span><span class="en">dry</span> ↔ <span class="en">wet</span>（ぬれた）。動詞として「乾かす」の意味でも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">almost</span><span class="v-kana"><span class="ac">オー</span>ルモウスト</span></p>
+<div class="v-sense"><span class="tag t-adv">副詞</span><p>ほとんど</p></div>
+<p class="v-ex"><span class="en">Almost every student joined the event.</span><span class="v-ja">　ほとんどすべての生徒がその行事に参加しました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">almost every 〜</span>（ほとんどすべての〜）の形で出ます。うしろは単数形です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">without</span><span class="v-kana">ウィ<span class="ac">ザウ</span>ト</span></p>
+<div class="v-sense"><span class="tag t-prep">前置詞</span><p>〜なしで</p></div>
+<p class="v-ex"><span class="en">Trees cannot grow without water.</span><span class="v-ja">　木は水なしでは育ちません。</span></p>
+<p class="v-note"><span class="badge">対になる語</span><span class="en">without</span> ↔ <span class="en">with</span>（〜とともに）。うしろには名詞を置きます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">clean up 〜</span><span class="v-kana">ク<span class="ac">リー</span>ン <span class="ac">ア</span>プ</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜をきれいに片づける</p></div>
+<p class="v-ex"><span class="en">If it is sunny tomorrow, we will clean up the river.</span><span class="v-ja">　もし明日晴れたら、私たちは川をきれいに片づけます。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">clean</span> だけでも「そうじする」ですが、<span class="en">up</span> がつくと散らかったものを片づける意味が強くなります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">throw away 〜</span><span class="v-kana">ス<span class="ac">ロウ</span> ア<span class="ac">ウェイ</span></span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜を捨てる</p></div>
+<p class="v-ex"><span class="en">If we throw away plastic bottles in the river, we cannot protect the birds and the trees.</span><span class="v-ja">　川にペットボトルを捨てると、私たちは鳥や木を守れません。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">throw</span>（投げる）に <span class="en">away</span>（離れて）がついた形です。<span class="en">garbage</span>（ごみ）とよく組みます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">for example</span><span class="v-kana">フォ イグ<span class="ac">ザン</span>プル</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>たとえば</p></div>
+<p class="v-ex"><span class="en">For example, I collect plastic bottles every week.</span><span class="v-ja">　たとえば、私は毎週ペットボトルを集めています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>文の先頭に置き、うしろにコンマを打ちます。英作文で理由に例を足すときに使えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">at first</span><span class="v-kana">アト <span class="ac">ファー</span>スト</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>はじめは</p></div>
+<p class="v-ex"><span class="en">At first I was tired, because the bags were very heavy.</span><span class="v-ja">　はじめは私は疲れていました。かばんがとても重かったからです。</span></p>
+<p class="v-note"><span class="badge">使い方</span>あとで状況が変わることを示す言い方です。「最初に」と順番を言う <span class="en">first</span> とは使い方が別です。</p>
+</li>
+</ol>
+
+<p class="v-intro">この単元であつかう接続詞のうち、<span class="en">when</span>・<span class="en">because</span>・<span class="en">that</span> は中1で見出し語になっているので、ここでは <span class="en">if</span> だけを立てています（<span class="en">when</span> は中1 Unit 10 の疑問詞、<span class="en">because</span> も同じ Unit 10、<span class="en">that</span> は中1 Unit 3 の指示代名詞です）。<span class="en">clean</span>（clean up 〜）・<span class="en">throw</span>（throw away 〜）・<span class="en">first</span>（at first）も、語そのものはこれまでの単元で扱っています。</p>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

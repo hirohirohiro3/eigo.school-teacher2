@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 1　現在完了（経験）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab01_perfect-experience.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 1</p>
+<h1 class="unit-title">現在完了（経験）</h1>
+<p class="unit-lead">中3は<strong>現在完了</strong>から始めます。現在完了は <strong>have ／ has ＋ 過去分詞</strong>の形で、過去にしたことを「今の時点で持っている経験」として言う形です。この単元では、そのうち<strong>「（今までに）〜したことがある」という経験</strong>の言い方だけを扱います。過去分詞は中2 Unit 15（受動態）で学んだ形をそのまま使います。</p>
+</header>
+
+<h2><span>現在完了は have ／ has ＋ 過去分詞</span></h2>
+
+<p>過去形の <span class="en">I visited Kyoto.</span> は「京都を訪れた」という<strong>過去の1回の出来事</strong>を言う文です。それに対して、<span class="en">I have visited Kyoto.</span> は「京都を訪れたことがある」という<strong>今の自分の経験</strong>を言う文です。訪れたのは過去ですが、文が言っているのは今のことです。</p>
+
+<div class="diagram">
+<p class="diagram-cap">have ／ has のうしろに過去分詞を置くと「〜したことがある」になる</p>
+<div class="flow">
+<span class="node">have ／ has<span class="node-label">今の時点で</span></span>
+<span class="link">
+<span class="link-word">＋</span>
+<span class="rail"></span>
+</span>
+<span class="node">過去分詞<span class="node-label">〜したことがある</span></span>
+</div>
+</div>
+
+<p><strong>なぜ have を使うのか。</strong><span class="en">have</span> はもともと「持っている」という意味の語で、現在形です。現在完了の <span class="en">have</span> は「持っている」とは訳しませんが、<strong>現在形なので、文は今のことを言っている</strong>と考えます。過去にしたことを、今の時点での経験として言うので「現在」完了と呼びます。</p>
+
+<h3>have と has は主語で決まる</h3>
+
+<p>主語が3人称単数（<span class="en">he</span>・<span class="en">she</span>・<span class="en">it</span>・<span class="en">my sister</span> など）なら <span class="en">has</span>、それ以外は <span class="en">have</span> です。中1 Unit 9 の3人称単数現在の決まりと同じです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語</th><th>形</th><th>例</th></tr>
+<tr><td><span class="en">I</span> ／ <span class="en">you</span> ／ <span class="en">we</span> ／ <span class="en">they</span>・複数</td><td class="be-cell"><span class="en">have</span> ＋ 過去分詞</td><td><span class="en">I have visited Kyoto three times.</span></td></tr>
+<tr><td><span class="en">he</span> ／ <span class="en">she</span> ／ <span class="en">it</span>・単数</td><td class="be-cell"><span class="en">has</span> ＋ 過去分詞</td><td><span class="en">My sister has been to Canada twice.</span></td></tr>
+</table>
+</div>
+
+<p>例文を並べます。<span class="en">I have visited Kyoto three times.</span>（私は京都を3回訪れたことがあります）、<span class="en">We have climbed Mt. Fuji once.</span>（私たちは富士山に一度登ったことがあります）、<span class="en">Ken has seen a whale before.</span>（ケンは以前クジラを見たことがあります）、<span class="en">My father has met the singer twice.</span>（私の父はその歌手に2回会ったことがあります）。</p>
+
+<p>短縮形は <span class="en">I've</span>・<span class="en">you've</span>・<span class="en">we've</span>・<span class="en">they've</span>、否定は <span class="en">haven't</span> ／ <span class="en">hasn't</span> です。</p>
+
+<h2><span>過去分詞の一覧表（中2 Unit 15 の再掲）</span></h2>
+
+<p>現在完了でも、受動態と同じ過去分詞を使います。中2 Unit 15 の表をもう一度置きます。<strong>規則動詞の過去分詞は過去形と同じ形（-ed）です。</strong></p>
+
+<h3>規則動詞（過去形と同じ -ed）</h3>
+<div class="table-wrap">
+<table class="rule">
+<tr><th>原形</th><th>過去形</th><th>過去分詞</th></tr>
+<tr><td><span class="en">clean</span></td><td><span class="en">cleaned</span></td><td><span class="en">cleaned</span></td></tr>
+<tr><td><span class="en">use</span></td><td><span class="en">used</span></td><td><span class="en">used</span></td></tr>
+<tr><td><span class="en">visit</span></td><td><span class="en">visited</span></td><td><span class="en">visited</span></td></tr>
+<tr><td><span class="en">love</span></td><td><span class="en">loved</span></td><td><span class="en">loved</span></td></tr>
+<tr><td><span class="en">open</span></td><td><span class="en">opened</span></td><td><span class="en">opened</span></td></tr>
+<tr><td><span class="en">invent</span></td><td><span class="en">invented</span></td><td><span class="en">invented</span></td></tr>
+<tr><td><span class="en">study</span></td><td><span class="en">studied</span></td><td><span class="en">studied</span></td></tr>
+<tr><td><span class="en">stop</span></td><td><span class="en">stopped</span></td><td><span class="en">stopped</span></td></tr>
+</table>
+</div>
+
+<h3>不規則動詞（過去形と同じ形）</h3>
+<div class="table-wrap">
+<table class="rule">
+<tr><th>原形</th><th>過去形</th><th>過去分詞</th></tr>
+<tr><td><span class="en">make</span></td><td><span class="en">made</span></td><td><span class="en">made</span></td></tr>
+<tr><td><span class="en">build</span></td><td><span class="en">built</span></td><td><span class="en">built</span></td></tr>
+<tr><td><span class="en">buy</span></td><td><span class="en">bought</span></td><td><span class="en">bought</span></td></tr>
+<tr><td><span class="en">bring</span></td><td><span class="en">brought</span></td><td><span class="en">brought</span></td></tr>
+<tr><td><span class="en">catch</span></td><td><span class="en">caught</span></td><td><span class="en">caught</span></td></tr>
+<tr><td><span class="en">teach</span></td><td><span class="en">taught</span></td><td><span class="en">taught</span></td></tr>
+<tr><td><span class="en">find</span></td><td><span class="en">found</span></td><td><span class="en">found</span></td></tr>
+<tr><td><span class="en">hear</span></td><td><span class="en">heard</span></td><td><span class="en">heard</span></td></tr>
+<tr><td><span class="en">read</span></td><td><span class="en">read</span></td><td><span class="en">read</span></td></tr>
+<tr><td><span class="en">sell</span></td><td><span class="en">sold</span></td><td><span class="en">sold</span></td></tr>
+<tr><td><span class="en">tell</span></td><td><span class="en">told</span></td><td><span class="en">told</span></td></tr>
+<tr><td><span class="en">send</span></td><td><span class="en">sent</span></td><td><span class="en">sent</span></td></tr>
+<tr><td><span class="en">hold</span></td><td><span class="en">held</span></td><td><span class="en">held</span></td></tr>
+</table>
+</div>
+
+<h3>不規則動詞（過去形とちがう形）</h3>
+<div class="table-wrap">
+<table class="rule">
+<tr><th>原形</th><th>過去形</th><th>過去分詞</th></tr>
+<tr><td><span class="en">see</span></td><td><span class="en">saw</span></td><td><span class="en">seen</span></td></tr>
+<tr><td><span class="en">eat</span></td><td><span class="en">ate</span></td><td><span class="en">eaten</span></td></tr>
+<tr><td><span class="en">take</span></td><td><span class="en">took</span></td><td><span class="en">taken</span></td></tr>
+<tr><td><span class="en">write</span></td><td><span class="en">wrote</span></td><td><span class="en">written</span></td></tr>
+<tr><td><span class="en">give</span></td><td><span class="en">gave</span></td><td><span class="en">given</span></td></tr>
+<tr><td><span class="en">sing</span></td><td><span class="en">sang</span></td><td><span class="en">sung</span></td></tr>
+<tr><td><span class="en">speak</span></td><td><span class="en">spoke</span></td><td><span class="en">spoken</span></td></tr>
+<tr><td><span class="en">know</span></td><td><span class="en">knew</span></td><td><span class="en">known</span></td></tr>
+<tr><td><span class="en">grow</span></td><td><span class="en">grew</span></td><td><span class="en">grown</span></td></tr>
+<tr><td><span class="en">break</span></td><td><span class="en">broke</span></td><td><span class="en">broken</span></td></tr>
+<tr><td><span class="en">choose</span></td><td><span class="en">chose</span></td><td><span class="en">chosen</span></td></tr>
+<tr><td><span class="en">do</span></td><td><span class="en">did</span></td><td><span class="en">done</span></td></tr>
+</table>
+</div>
+
+<h3>経験を言うときによく使う語（この単元で足す形）</h3>
+<p>経験を言う文でよく使うのに、中2 Unit 15 の表に無かった語です。<strong><span class="en">be</span> の過去分詞は <span class="en">been</span></strong> です。</p>
+<div class="table-wrap">
+<table class="rule">
+<tr><th>原形</th><th>過去形</th><th>過去分詞</th></tr>
+<tr><td><span class="en">be</span></td><td><span class="en">was</span> ／ <span class="en">were</span></td><td><span class="en">been</span></td></tr>
+<tr><td><span class="en">meet</span></td><td><span class="en">met</span></td><td><span class="en">met</span></td></tr>
+<tr><td><span class="en">fly</span></td><td><span class="en">flew</span></td><td><span class="en">flown</span></td></tr>
+<tr><td><span class="en">ride</span></td><td><span class="en">rode</span></td><td><span class="en">ridden</span></td></tr>
+<tr><td><span class="en">swim</span></td><td><span class="en">swam</span></td><td><span class="en">swum</span></td></tr>
+<tr><td><span class="en">wear</span></td><td><span class="en">wore</span></td><td><span class="en">worn</span></td></tr>
+<tr><td><span class="en">climb</span></td><td><span class="en">climbed</span></td><td><span class="en">climbed</span></td></tr>
+<tr><td><span class="en">touch</span></td><td><span class="en">touched</span></td><td><span class="en">touched</span></td></tr>
+<tr><td><span class="en">shake</span></td><td><span class="en">shook</span></td><td><span class="en">shaken</span></td></tr>
+</table>
+</div>
+<p><span class="en">ridden</span> は <span class="en">d</span> を重ねます。<span class="en">swam</span>（過去形）と <span class="en">swum</span>（過去分詞）は母音が1文字ちがうだけなので、綴りに注意します。</p>
+
+<h2><span>経験を表す語と置く位置</span></h2>
+
+<p>「〜したことがある」の文には、回数や「今までに」を表す語がよく入ります。<strong>置く位置が語ごとに決まっています。</strong></p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>意味</th><th>位置</th><th>例</th></tr>
+<tr><td><span class="en">ever</span></td><td>今までに</td><td>疑問文で、過去分詞の前</td><td><span class="en">Have you ever seen a panda?</span></td></tr>
+<tr><td><span class="en">never</span></td><td>一度も〜ない</td><td><span class="en">have</span> と過去分詞の間</td><td><span class="en">I have never eaten raw fish.</span></td></tr>
+<tr><td><span class="en">before</span></td><td>以前に</td><td>文の終わり</td><td><span class="en">She has visited the island before.</span></td></tr>
+<tr><td><span class="en">once</span> ／ <span class="en">twice</span></td><td>1回 ／ 2回</td><td>文の終わり</td><td><span class="en">I have been to Okinawa once.</span></td></tr>
+<tr><td><span class="en">three times</span></td><td>3回（3回以上は 〜 <span class="en">times</span>）</td><td>文の終わり</td><td><span class="en">He has read the book three times.</span></td></tr>
+<tr><td><span class="en">many times</span></td><td>何回も</td><td>文の終わり</td><td><span class="en">We have watched that movie many times.</span></td></tr>
+</table>
+</div>
+
+<h3>経験を言う文の例</h3>
+
+<p>経験は、旅行・自然・人との出会いなどの話題でよく使います。<span class="en">I have seen a kangaroo in Australia.</span>（私はオーストラリアでカンガルーを見たことがあります）、<span class="en">My cousin has ridden a camel in the desert.</span>（私のいとこは砂漠でラクダに乗ったことがあります）、<span class="en">We have swum in the ocean many times.</span>（私たちは何回も海で泳いだことがあります）、<span class="en">My grandfather has climbed a volcano twice.</span>（私の祖父は2回火山に登ったことがあります）。</p>
+
+<p>人やものとの出会いも同じ形です。<span class="en">I have shaken hands with a famous soccer player.</span>（私は有名なサッカー選手と握手したことがあります）、<span class="en">She has won a gold medal twice.</span>（彼女は2回金メダルをとったことがあります）、<span class="en">Have you ever touched a turtle?</span>（あなたは今までにカメにさわったことがありますか）。<span class="en">Have you ever heard of this writer?</span>（あなたは今までにこの作家のことを聞いたことがありますか）の <span class="en">hear of 〜</span> は「〜のことを聞く、〜について耳にする」です。</p>
+
+<h3>never で「一度も〜ない」</h3>
+
+<p><strong><span class="en">never</span> はそれだけで否定の意味をもちます。</strong>なので <span class="en">not</span> といっしょには使いません。<span class="en">I have never touched a snake.</span>（私は一度もヘビにさわったことがありません）、<span class="en">I have never worn a kimono.</span>（私は一度も着物を着たことがありません）のように使います。<span class="en">in my life</span>（今までの人生で）を文の終わりに足すと、「一度も」が強くなります。<span class="en">I have never seen snow in my life.</span></p>
+
+<h2><span>否定文・疑問文と答え方</span></h2>
+
+<p>現在完了の <span class="en">have</span> ／ <span class="en">has</span> は、助動詞と同じ働きをします。<strong>否定文は <span class="en">have</span> ／ <span class="en">has</span> のうしろに <span class="en">not</span>（または <span class="en">never</span>）、疑問文は <span class="en">have</span> ／ <span class="en">has</span> を主語の前に出します。</strong><span class="en">do</span> ／ <span class="en">does</span> ／ <span class="en">did</span> は使いません。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">You have seen a koala.</span>　（あなたはコアラを見たことがある）</span>
+<span class="tf-arrow">↓　have を主語の前に出し、「今までに」の ever を過去分詞の前に置く</span>
+<span class="tf-line"><span class="en">Have you ever seen a koala?</span>　（あなたは今までにコアラを見たことがありますか）</span>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>たずね方</th><th>答え方</th></tr>
+<tr><td><span class="en">Have you ever seen a koala?</span></td><td><span class="en">Yes, I have.</span> ／ <span class="en">No, I haven't.</span> ／ <span class="en">No, never.</span></td></tr>
+<tr><td><span class="en">Has your brother ever ridden a horse?</span></td><td><span class="en">Yes, he has.</span> ／ <span class="en">No, he hasn't.</span></td></tr>
+<tr><td><span class="en">How many times have you visited Kyoto?</span></td><td><span class="en">I have visited it three times.</span> ／ <span class="en">Three times.</span></td></tr>
+</table>
+</div>
+
+<p>答えでも <span class="en">have</span> ／ <span class="en">has</span> を使います。<span class="en">Yes, I do.</span> ／ <span class="en">No, I didn't.</span> とは答えません。<span class="en">No, never.</span>（いいえ、一度もありません）は会話でよく使う短い答え方です。回数をたずねるときは <span class="en">How many times</span> で文を始めます。</p>
+
+<h2><span><span class="en">have been to</span> 〜「〜へ行ったことがある」</span></h2>
+
+<p><strong>「〜へ行ったことがある」は <span class="en">have been to 〜</span> で言います。</strong><span class="en">been</span> は <span class="en">be</span> の過去分詞で、「〜にいたことがある」がもとの意味です。そこから「（行って）〜にいたことがある」＝「〜へ行ったことがある」になります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>意味</th></tr>
+<tr><td><span class="en">I have been to Okinawa once.</span></td><td>私は一度沖縄へ行ったことがあります。</td></tr>
+<tr><td><span class="en">My sister has been to Canada twice.</span></td><td>私の姉は2回カナダへ行ったことがあります。</td></tr>
+<tr><td><span class="en">Have you ever been to a foreign country?</span></td><td>あなたは今までに外国へ行ったことがありますか。</td></tr>
+<tr><td><span class="en">I have never been abroad.</span></td><td>私は一度も外国へ行ったことがありません。</td></tr>
+</table>
+</div>
+
+<p><span class="en">abroad</span>（外国へ）は副詞なので、前に <span class="en">to</span> をつけません。中1で学んだ <span class="en">go home</span> の <span class="en">home</span> と同じ扱いです。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">「〜したことがある」という今の経験の文かを決める</span>
+<span class="step-d">過去の1回の出来事なら過去形、今までの経験なら現在完了です。</span>
+</li>
+<li>
+<span class="step-t">主語から have か has かを決める</span>
+<span class="step-d">3人称単数なら <span class="en">has</span>、それ以外は <span class="en">have</span> です。</span>
+</li>
+<li>
+<span class="step-t">動詞を過去分詞にする</span>
+<span class="step-d">上の一覧表の形を使います。「行ったことがある」は <span class="en">been to</span> です。</span>
+</li>
+<li>
+<span class="step-t">経験を表す語を正しい位置に置く</span>
+<span class="step-d"><span class="en">ever</span> ／ <span class="en">never</span> は過去分詞の前、<span class="en">before</span>・<span class="en">once</span>・〜 <span class="en">times</span> は文の終わりです。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>2つの have を見分ける</h3>
+
+<p><span class="en">I have a dog.</span> の <span class="en">have</span> は一般動詞（持っている・飼っている）です。<span class="en">I have seen a dog.</span> の <span class="en">have</span> は現在完了の <span class="en">have</span> です。<strong>うしろに過去分詞があれば現在完了</strong>です。疑問文の作り方がちがうので、ここで差がつきます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>have の働き</th><th>疑問文</th></tr>
+<tr><td><span class="en">You have a dog.</span></td><td>一般動詞</td><td><span class="en">Do you have a dog?</span></td></tr>
+<tr><td><span class="en">You have seen a whale.</span></td><td>現在完了</td><td><span class="en">Have you seen a whale?</span></td></tr>
+</table>
+</div>
+
+<h3>過去の時を表す語とは使わない</h3>
+
+<p><span class="en">yesterday</span>・<span class="en">last year</span>・〜 <span class="en">ago</span> のように<strong>過去のある時を指す語があれば、過去形</strong>を使います。現在完了は今の経験を言う形なので、過去の時を指す語とはいっしょに使えません。<span class="en">I visited Kyoto last year.</span> は正しく、<span class="en">I have visited Kyoto last year.</span> は誤りです。くわしくは Unit 4 で整理します。</p>
+
+<h3>been to と gone to</h3>
+
+<p>「〜へ行ったことがある」に <span class="en">gone</span>（<span class="en">go</span> の過去分詞）は使いません。<span class="en">He has gone to Tokyo.</span> は「彼は東京へ行ってしまって、今ここにいない」という別の意味になります（Unit 2 で扱います）。<strong>経験は <span class="en">been to</span></strong> と覚えます。</p>
+
+<h3>once の2つの意味</h3>
+
+<p><span class="en">once</span> は文の終わりなら「1回」です。文の始めに置いて過去形と使うと「かつて、以前あるとき」という意味になります。<span class="en">Once he met a bear near the trail.</span>（以前あるとき、彼は山道の近くでクマに会いました）。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">Have you ever (　　　) 〜?</span> に過去分詞を選ばせる。原形・過去形・-ing形が選択肢に並ぶ</td></tr>
+<tr><td>選択</td><td>主語に合わせて <span class="en">have</span> ／ <span class="en">has</span> を選ばせる</td></tr>
+<tr><td>対話文</td><td><span class="en">Have you ever 〜?</span> への答え方（<span class="en">Yes, I have.</span> ／ <span class="en">No, I haven't.</span>）を選ばせる</td></tr>
+<tr><td>和文英訳</td><td>「〜へ行ったことがある」を <span class="en">have been to</span> で書かせる。<span class="en">gone</span> と書くと誤り</td></tr>
+<tr><td>読解</td><td>回数（<span class="en">twice</span>・〜 <span class="en">times</span>）を本文から読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I have saw this movie three times.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I have seen this movie three times.</span></div>
+<p class="contrast-why"><span class="en">have</span> のうしろは過去分詞です。<span class="en">saw</span> は過去形なので置けません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">Did you ever eaten sushi?</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">Have you ever eaten sushi?</span></div>
+<p class="contrast-why">現在完了の疑問文は <span class="en">have</span> を主語の前に出します。<span class="en">did</span> は使いません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">My brother have been to Hokkaido twice.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">My brother has been to Hokkaido twice.</span></div>
+<p class="contrast-why">主語 <span class="en">my brother</span> は3人称単数なので <span class="en">has</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I have not never touched a snake.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I have never touched a snake.</span></div>
+<p class="contrast-why"><span class="en">never</span> だけで否定の意味になるので、<span class="en">not</span> は要りません。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>「（今までに）〜したことがある」は <strong><span class="en">have</span> ／ <span class="en">has</span> ＋ 過去分詞</strong>です。3人称単数の主語なら <span class="en">has</span> です。</li>
+<li><span class="en">ever</span> ／ <span class="en">never</span> は過去分詞の前、<span class="en">before</span>・<span class="en">once</span>・<span class="en">twice</span>・〜 <span class="en">times</span> は文の終わりに置きます。</li>
+<li>否定文・疑問文では <span class="en">have</span> ／ <span class="en">has</span> を使い、<span class="en">do</span> ／ <span class="en">did</span> は使いません。答えは <span class="en">Yes, I have.</span> ／ <span class="en">No, I haven't.</span> ／ <span class="en">No, never.</span> です。</li>
+<li>「〜へ行ったことがある」は <strong><span class="en">have been to 〜</span></strong> です。過去の時を指す語（<span class="en">yesterday</span>・<span class="en">last year</span>）があれば過去形を使います。</li>
+</ul>
+</div>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず主語を確かめ、次に have のうしろの形を見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">Have you ever (　　　) a koala?</span>
+<p class="opts"><span>ア see</span><span>イ saw</span><span>ウ seen</span><span>エ seeing</span></p></li>
+<li><span class="en">My sister and her friend from Australia (　　　) climbed Mt. Fuji twice.</span>
+<p class="opts"><span>ア has</span><span>イ have</span><span>ウ is</span><span>エ are</span></p></li>
+<li><span class="en">The tall boy in the photo (　　　) been to Canada three times.</span>
+<p class="opts"><span>ア have</span><span>イ has</span><span>ウ is</span><span>エ was</span></p></li>
+<li><span class="en">"Have you ever eaten raw fish?" "No, I (　　　)."</span>
+<p class="opts"><span>ア don't</span><span>イ didn't</span><span>ウ haven't</span><span>エ hasn't</span></p></li>
+<li><span class="en">I have (　　　) seen snow in my life.</span>
+<p class="opts"><span>ア ever</span><span>イ never</span><span>ウ don't</span><span>エ didn't</span></p></li>
+<li><span class="en">(　　　) many times have you visited Kyoto?</span>
+<p class="opts"><span>ア What</span><span>イ How</span><span>ウ When</span><span>エ Which</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>私は一度沖縄へ行ったことがあります。<br><span class="en">[ i / have / been / to / Okinawa / once ] .</span><span class="write"></span></li>
+<li>あなたは今までにパンダを見たことがありますか。<br><span class="en">[ have / you / ever / seen / a / panda ] ?</span><span class="write"></span></li>
+<li>私の父はその歌手に2回会ったことがあります。<br><span class="en">[ my / father / has / met / the / singer / twice ] .</span><span class="write"></span></li>
+<li data-extra="1">私は一度も着物を着たことがありません。<span class="hint">1語不要</span><br><span class="en">[ i / have / never / worn / a / kimono / wore ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたは何回その映画を見たことがありますか。<span class="hint">1語不要</span><br><span class="en">[ how / many / times / have / you / seen / the / movie / did ] ?</span><span class="write"></span></li>
+<li>彼女は以前その島を訪れたことがあります。<br><span class="en">[ she / has / visited / the / island / before ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">I have saw this movie three times.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My brother have been to Hokkaido twice.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Did you ever eaten sushi?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I have never visit Nara.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My uncle has gone to Australia twice.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">私は一度もヘビにさわったことがありません。</span><span class="write"></span></li>
+<li><span class="q-ja">あなたは今までにクジラを見たことがありますか。</span><span class="write"></span></li>
+<li><span class="q-ja">私の姉は2回フランスへ行ったことがあります。</span><span class="write"></span></li>
+<li><span class="q-ja">彼はその本を何回も読んだことがあります。</span><span class="write"></span></li>
+<li><span class="en">Have you ever</span> で始めて「あなたは今までに富士山に登ったことがありますか」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li>上の問いに、<span class="en">No</span> で始めて「いいえ、ありません」と答える。<span class="cond">3語</span><span class="write"></span></li>
+<li><span class="en">before</span> を使って「私は以前に生の魚を食べたことがあります」と書く。<span class="cond">6語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">リクは、英語の授業で夏の経験についてスピーチをしました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">山の上の夜</p>
+<p>Have you ever slept in a tent? I have done it only once. Last summer my uncle took me to a mountain in Nagano. We walked for six hours and reached the top in the evening. The sunset was beautiful, and at night the sky was full of stars. In the morning I got up at four and watched the sunrise. <span class="num">①</span><span class="ul">I have never seen such a beautiful sky in my life.</span> My uncle loves this mountain. He has climbed it more than twenty times. He has seen wild animals there, too. Once he met a bear near the trail! But he says, "Every trip is different. You can always find something new." Some of my friends have never been to the mountains. They say, "<span class="num">②</span><span class="ul">It's dangerous</span>, and there are many insects." I understand their feelings, but I think they should try it once. If you have a chance, please go with your family. You will never forget the experience.</p>
+<p class="reading-wc">およそ160語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア リクはテントで何回も寝たことがある。<br>
+イ リクのおじは、その山に20回より多く登ったことがある。<br>
+ウ リクのおじは、その山で動物を見たことが一度もない。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">How many times has Riku slept in a tent?</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">Riku said, "Some of my friends have (　　　) been to the mountains."</span><span class="write"></span></li>
+<li>下線部②は、だれのどんな考えか。合うものを1つ選ぶ。<br>
+ア リクのおじが、山は危ないと思っていること。<br>
+イ リクの友だちの何人かが、山は危ないと思っていること。<br>
+ウ リクが、山は危ないと思っていること。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li>自分がしたことのある経験を1つ選び、回数を表す語（<span class="en">once</span>・<span class="en">twice</span>・〜 <span class="en">times</span>）を使って1文書く。<span class="hint">例：I have been to Okinawa once.</span><span class="write"></span></li>
+<li>友だちにたずねてみたい経験を、<span class="en">Have you ever 〜?</span> の形で1文書く。<span class="hint">例：Have you ever ridden a horse?</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>主語から have か has か</strong>に戻り、次に<strong>うしろが過去分詞になっているか</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　seen</span><p class="a-why"><span class="en">have</span> のうしろは過去分詞です。<span class="en">see</span> の過去分詞は <span class="en">seen</span> です。<span class="en">saw</span> は過去形なので置けません。</p></li>
+<li><span class="a-key">イ　have</span><p class="a-why">主語は <span class="en">My sister and her friend</span> の2人なので複数です。<span class="en">from Australia</span> は <span class="en">her friend</span> の説明なので、主語の数には関係しません。</p></li>
+<li><span class="a-key">イ　has</span><p class="a-why">主語の中心は <span class="en">The tall boy</span> で、3人称単数です。<span class="en">in the photo</span> は説明なので、主語は単数のままです。</p></li>
+<li><span class="a-key">ウ　haven't</span><p class="a-why"><span class="en">Have you 〜?</span> とたずねられたら <span class="en">have</span> で答えます。主語が <span class="en">I</span> なので <span class="en">haven't</span> です。</p></li>
+<li><span class="a-key">イ　never</span><p class="a-why"><span class="en">have</span> と過去分詞の間に置けて、否定の意味になるのは <span class="en">never</span> です。<span class="en">ever</span> は疑問文で使います。<span class="en">don't</span> ／ <span class="en">didn't</span> は現在完了では使いません。</p></li>
+<li><span class="a-key">イ　How</span><p class="a-why">回数をたずねるときは <span class="en">How many times</span> で文を始めます。</p></li>
+
+<li><span class="a-key">I have been to Okinawa once.</span><p class="a-why">「〜へ行ったことがある」は <span class="en">have been to 〜</span> です。<span class="en">once</span> は文の終わりに置きます。</p></li>
+<li><span class="a-key">Have you ever seen a panda?</span><p class="a-why">疑問文なので <span class="en">have</span> を主語の前に出し、<span class="en">ever</span> を過去分詞の前に置きます。</p></li>
+<li><span class="a-key">My father has met the singer twice.</span><p class="a-why">主語 <span class="en">my father</span> は3人称単数なので <span class="en">has</span> です。<span class="en">meet</span> の過去分詞は <span class="en">met</span> です。</p></li>
+<li><span class="a-key">I have never worn a kimono.</span><p class="a-why">不要な語は <span class="en">wore</span> です。<span class="en">have</span> のうしろは過去分詞 <span class="en">worn</span> です。<span class="en">wore</span> は過去形です。</p></li>
+<li><span class="a-key">How many times have you seen the movie?</span><p class="a-why">不要な語は <span class="en">did</span> です。現在完了の疑問文は <span class="en">have</span> を主語の前に出すので、<span class="en">did</span> は使いません。</p></li>
+<li><span class="a-key">She has visited the island before.</span><p class="a-why"><span class="en">before</span>（以前に）は文の終わりに置きます。主語が <span class="en">she</span> なので <span class="en">has</span> です。</p></li>
+
+<li><span class="a-key">I have seen this movie three times.</span><p class="a-why">誤りは <span class="en">saw</span> です。<span class="en">have</span> のうしろは過去分詞なので <span class="en">seen</span> に直します。</p></li>
+<li><span class="a-key">My brother has been to Hokkaido twice.</span><p class="a-why">誤りは <span class="en">have</span> です。主語 <span class="en">my brother</span> は3人称単数なので <span class="en">has</span> に直します。</p></li>
+<li><span class="a-key">Have you ever eaten sushi?</span><p class="a-why">誤りは <span class="en">Did</span> です。<span class="en">eaten</span> は過去分詞なので現在完了の疑問文です。<span class="en">Have</span> を主語の前に置きます。</p></li>
+<li><span class="a-key">I have never visited Nara.</span><p class="a-why">誤りは <span class="en">visit</span> です。<span class="en">have</span> のうしろは過去分詞なので <span class="en">visited</span> に直します。原形は置けません。</p></li>
+<li><span class="a-key">My uncle has been to Australia twice.</span><p class="a-why">誤りは <span class="en">gone</span> です。<span class="en">twice</span> があるので「2回行ったことがある」という経験の文です。経験は <span class="en">been to</span> で言います。</p></li>
+
+<li><span class="a-key">I have never touched a snake.</span><p class="a-why">「一度も〜ない」は <span class="en">never</span> を <span class="en">have</span> と過去分詞の間に置きます。<span class="en">not</span> は要りません。</p></li>
+<li><span class="a-key">Have you ever seen a whale?</span><p class="a-why"><span class="en">Have</span> を主語の前に出し、「今までに」の <span class="en">ever</span> を過去分詞 <span class="en">seen</span> の前に置きます。</p></li>
+<li><span class="a-key">My sister has been to France twice.</span><p class="a-why">「〜へ行ったことがある」は <span class="en">has been to 〜</span> です。<span class="en">twice</span> は文の終わりです。</p></li>
+<li><span class="a-key">He has read the book many times.</span><p class="a-why"><span class="en">read</span> は原形・過去形・過去分詞が同じ綴りです。「何回も」は <span class="en">many times</span> です。</p></li>
+<li><span class="a-key">Have you ever climbed Mt. Fuji?</span><p class="a-why"><span class="en">climb</span> は規則動詞なので過去分詞は <span class="en">climbed</span> です。<span class="en">Mt.</span> と <span class="en">Fuji</span> で2語と数えて6語です。</p></li>
+<li><span class="a-key">No, I haven't.</span><p class="a-why"><span class="en">Have you 〜?</span> には <span class="en">have</span> で答えます。<span class="en">No, never.</span> も意味は合いますが、ここは3語の指定です。</p></li>
+<li><span class="a-key">I have eaten raw fish before.</span><p class="a-why"><span class="en">eat</span> の過去分詞は <span class="en">eaten</span> です。<span class="en">before</span> は文の終わりに置きます。<span class="en">fish</span> はここでは数えられない名詞として使うので <span class="en">a</span> をつけません。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">He has climbed it more than twenty times.</span> とあります。アは <span class="en">I have done it only once.</span> と合いません。ウは <span class="en">He has seen wild animals there, too.</span> と合いません。</p></li>
+<li><span class="a-key">He has slept in a tent only once.</span><p class="a-why">本文の <span class="en">I have done it only once.</span> から答えます。リクのことなので主語は <span class="en">He</span>、動詞は <span class="en">has slept</span> です。<span class="en">He has slept in a tent once.</span> も正しい答えです。</p></li>
+<li><span class="a-key">私は人生で一度もあんなに美しい空を見たことがありません。</span><p class="a-why"><span class="en">never</span> は「一度も〜ない」、<span class="en">in my life</span> は「人生で、今までに」です。<span class="en">such a beautiful sky</span> は「あんなに美しい空」です。</p></li>
+<li><span class="a-key">never</span><p class="a-why">本文の <span class="en">Some of my friends have never been to the mountains.</span> と同じ形です。<span class="en">have</span> と <span class="en">been</span> の間なので <span class="en">never</span> が入ります。</p></li>
+<li><span class="a-key">イ</span><p class="a-why">直前に <span class="en">Some of my friends have never been to the mountains. They say,</span> とあります。<span class="en">They</span> はリクの友だちの何人かを指します。</p></li>
+
+<li><span class="a-key">解答例：I have been to Okinawa once.</span><p class="a-why"><span class="en">once</span>・<span class="en">twice</span>・〜 <span class="en">times</span> は文の終わりに置きます。<span class="en">I have climbed Mt. Fuji twice.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：Have you ever ridden a horse?</span><p class="a-why"><span class="en">ride</span> の過去分詞は <span class="en">ridden</span> です。<span class="en">Have you ever been to Okinawa?</span> のようにも書けます。</p></li>
+</ol>
+</div>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 6　助動詞 must / have to</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit06_must-have-to.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 6</p>
+<h1 class="unit-title">単語帳　助動詞 must / have to</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。決まりや注意書きで使う語、学校や公共の場所でよく見る語をまとめてあります。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめの7つが <span class="en">must</span> と <span class="en">have to</span> の仲間です。次に決まりを言うときの動詞、学校や町の名詞、ようすを表す形容詞が続きます。関連語と対義語は、それぞれの語の下のメモに入れてあります。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">must</span><span class="v-kana"><span class="ac">マ</span>スト</span></p>
+<div class="v-sense"><span class="tag t-aux">助動詞</span><p>〜しなければならない</p></div>
+<p class="v-ex"><span class="en">You must follow the rules of the museum.</span><span class="v-ja">　あなたは博物館の決まりに従わなければなりません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>うしろは動詞の原形です。主語が <span class="en">he</span> ／ <span class="en">she</span> でも形は変わりません。<strong>過去形も未来形もない</strong>ので、過去は <span class="en">had to</span>、未来は <span class="en">will have to</span> を使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">have to 〜</span><span class="v-kana"><span class="ac">ハ</span>ヴ トゥ</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜しなければならない</p></div>
+<p class="v-ex"><span class="en">We have to wear a uniform at school.</span><span class="v-ja">　私たちは学校で制服を着なければなりません。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>主語が <span class="en">he</span> ／ <span class="en">she</span> なら <span class="en">has to</span>、過去は <span class="en">had to</span> です。<span class="en">to</span> のうしろは原形です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">don't have to 〜</span><span class="v-kana">ドウント <span class="ac">ハ</span>ヴ トゥ</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜しなくてよい</p></div>
+<p class="v-ex"><span class="en">You don't have to carry your textbook today.</span><span class="v-ja">　あなたは今日、教科書を運ばなくてよいです。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">must not</span>（してはいけない）とは意味が逆です。主語が <span class="en">he</span> ／ <span class="en">she</span> なら <span class="en">doesn't have to</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">hand in 〜</span><span class="v-kana"><span class="ac">ハ</span>ンド イン</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜を提出する</p></div>
+<p class="v-ex"><span class="en">We have to hand in our reports on Monday.</span><span class="v-ja">　私たちは月曜日に報告書を提出しなければなりません。</span></p>
+<p class="v-note"><span class="badge">別の品詞</span><span class="en">hand</span> は中1で名詞「手」として出ています。ここでは動詞として使っています。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">on time</span><span class="v-kana">オン <span class="ac">タ</span>イム</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>時間どおりに</p></div>
+<p class="v-ex"><span class="en">You must come to school on time.</span><span class="v-ja">　あなたは時間どおりに学校へ来なければなりません。</span></p>
+<p class="v-note"><span class="badge">対になる語</span><span class="en">on time</span> ↔ <span class="en">be late for 〜</span>（〜に遅れる）。掲示や案内でよく出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">put on 〜</span><span class="v-kana">プト <span class="ac">オ</span>ン</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜を身につける</p></div>
+<p class="v-ex"><span class="en">In the gym, we have to put on special shoes.</span><span class="v-ja">　体育館では、私たちは専用のくつをはかなければなりません。</span></p>
+<p class="v-note"><span class="badge">対になる語</span><span class="en">put on 〜</span> ↔ <span class="en">take off 〜</span>（〜を脱ぐ）。<span class="en">wear</span> は「身につけている状態」で、<span class="en">put on</span> は「身につける動作」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">once a week</span><span class="v-kana"><span class="ac">ワ</span>ンス ア <span class="ac">ウィー</span>ク</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>週に1回</p></div>
+<p class="v-ex"><span class="en">We have to clean the library once a week.</span><span class="v-ja">　私たちは週に1回図書室をそうじしなければなりません。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">twice a week</span>（週に2回）・<span class="en">once a month</span>（月に1回）も同じ作りです。回数は文の最後に置きます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">follow</span><span class="v-kana"><span class="ac">ファ</span>ロウ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜に従う・〜のあとをついて行く</p></div>
+<p class="v-ex"><span class="en">You must follow the rules of the museum.</span><span class="v-ja">　あなたは博物館の決まりに従わなければなりません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>日本語は「〜に従う」ですが、英語では前置詞を入れずに <span class="en">follow the rules</span> と続けます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">keep</span><span class="v-kana">キープ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜を守る・〜を保つ</p></div>
+<p class="v-ex"><span class="en">We have to keep our promise.</span><span class="v-ja">　私たちは約束を守らなければなりません。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>過去形は <span class="en">kept</span> です。<span class="en">keep a promise</span>（約束を守る）の形で覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">pay</span><span class="v-kana">ペイ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>（お金を）払う</p></div>
+<p class="v-ex"><span class="en">He doesn't have to pay at the gate.</span><span class="v-ja">　彼は門でお金を払わなくてよいです。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>過去形は <span class="en">paid</span> です。<span class="en">pay for 〜</span>（〜の代金を払う）の形も出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">cross</span><span class="v-kana">クロース</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜を渡る・〜を横切る</p></div>
+<p class="v-ex"><span class="en">You must not cross the street here.</span><span class="v-ja">　あなたはここで通りを渡ってはいけません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>中2 Unit 5 の前置詞 <span class="en">across</span>（〜を渡った向こうに）と同じ仲間の語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">enter</span><span class="v-kana"><span class="ac">エ</span>ンタ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜に入る</p></div>
+<p class="v-ex"><span class="en">Visitors must not enter this room.</span><span class="v-ja">　訪問者はこの部屋に入ってはいけません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>前置詞を入れずに <span class="en">enter this room</span> と続けます。<span class="en">go into 〜</span> と同じ意味です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">lock</span><span class="v-kana">ロック</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜にかぎをかける</p></div>
+<p class="v-ex"><span class="en">Do I have to lock the door?</span><span class="v-ja">　私はドアにかぎをかけなければなりませんか。</span></p>
+<p class="v-note"><span class="badge">別の品詞</span>名詞では「かぎ・錠」です。中1の <span class="en">key</span>（かぎ）は持ち歩くほうを指します。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">raise</span><span class="v-kana">レイズ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜を上げる</p></div>
+<p class="v-ex"><span class="en">You must raise your hand before you answer.</span><span class="v-ja">　答える前に手を上げなければなりません。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">raise your hand</span>（手を上げる）の形で覚えます。教室の指示でよく出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">check</span><span class="v-kana">チェック</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜を確かめる</p></div>
+<p class="v-ex"><span class="en">We will have to check the time.</span><span class="v-ja">　私たちは時間を確かめなければならないでしょう。</span></p>
+<p class="v-note"><span class="badge">別の品詞</span>名詞では「点検・確認」です。<span class="en">check the time</span>（時間を確かめる）の形で出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">rest</span><span class="v-kana">レスト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>休む</p></div>
+<p class="v-ex"><span class="en">Must I rest in bed today?</span><span class="v-ja">　私は今日、ベッドで休まなければなりませんか。</span></p>
+<p class="v-note"><span class="badge">別の品詞</span>名詞では「休み・休息」です。中1の <span class="en">relax</span>（くつろぐ）より、体を休める意味が強い語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">save</span><span class="v-kana">セイヴ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜を節約する・〜を救う</p></div>
+<p class="v-ex"><span class="en">We must save water in summer.</span><span class="v-ja">　私たちは夏に水を節約しなければなりません。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">save water</span>（水を節約する）・<span class="en">save energy</span>（エネルギーを節約する）のほか、「救う」の意味でも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">safety</span><span class="v-kana"><span class="ac">セイ</span>フティ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>安全</p></div>
+<p class="v-ex"><span class="en">Some rules are for our safety.</span><span class="v-ja">　いくつかの決まりは私たちの安全のためのものです。</span></p>
+<p class="v-note"><span class="badge">セットで</span>形容詞 <span class="en">safe</span>（安全な）の名詞形です。<span class="en">for our safety</span>（安全のために）の形で出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">health</span><span class="v-kana">ヘルス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>健康</p></div>
+<p class="v-ex"><span class="en">You have to think about your health.</span><span class="v-ja">　あなたは自分の健康について考えなければなりません。</span></p>
+<p class="v-note"><span class="badge">セットで</span>形容詞は <span class="en">healthy</span>（健康な）です。<span class="en">good for your health</span>（健康によい）の形でも出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">medicine</span><span class="v-kana"><span class="ac">メ</span>ディスン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>薬</p></div>
+<p class="v-ex"><span class="en">I have to take this medicine twice a day.</span><span class="v-ja">　私は1日に2回この薬を飲まなければなりません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「薬を飲む」は <span class="en">drink</span> ではなく <span class="en">take</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">accident</span><span class="v-kana"><span class="ac">ア</span>クシデント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>事故</p></div>
+<p class="v-ex"><span class="en">There was an accident near the bridge yesterday.</span><span class="v-ja">　昨日、橋の近くで事故がありました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">a</span> ではなく <span class="en">an</span> がつきます。中2 Unit 5 の <span class="en">There was 〜</span> と組む形でよく出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">passport</span><span class="v-kana"><span class="ac">パ</span>スポート</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>パスポート</p></div>
+<p class="v-ex"><span class="en">You have to show your passport at the airport.</span><span class="v-ja">　あなたは空港でパスポートを見せなければなりません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>空港や外国での対話文に出ます。<span class="en">show your passport</span>（パスポートを見せる）の形で覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">textbook</span><span class="v-kana"><span class="ac">テ</span>クストブック</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>教科書</p></div>
+<p class="v-ex"><span class="en">You must not forget your textbook.</span><span class="v-ja">　あなたは教科書を忘れてはいけません。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">text</span>（本文）＋ <span class="en">book</span>（本）でできた語です。1語で書きます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">entrance</span><span class="v-kana"><span class="ac">エ</span>ントランス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>入口・玄関</p></div>
+<p class="v-ex"><span class="en">We have to take off our shoes at the entrance.</span><span class="v-ja">　私たちは入口でくつを脱がなければなりません。</span></p>
+<p class="v-note"><span class="badge">セットで</span>動詞 <span class="en">enter</span>（〜に入る）の名詞形です。<span class="en">at the entrance</span>（入口で）の形で出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">gate</span><span class="v-kana">ゲイト</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>門・改札口</p></div>
+<p class="v-ex"><span class="en">The gate opens at eight o'clock.</span><span class="v-ja">　門は8時に開きます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>学校の門、駅の改札口、空港の搭乗口のどれにも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">elevator</span><span class="v-kana"><span class="ac">エ</span>レヴェイタ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>エレベーター</p></div>
+<p class="v-ex"><span class="en">Visitors must not use this elevator.</span><span class="v-ja">　訪問者はこのエレベーターを使ってはいけません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>建物の中の掲示でよく出ます。<span class="en">stairs</span>（階段）とセットで覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">report</span><span class="v-kana">リ<span class="ac">ポー</span>ト</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>報告書・レポート</p></div>
+<p class="v-ex"><span class="en">We have to hand in our reports on Monday.</span><span class="v-ja">　私たちは月曜日に報告書を提出しなければなりません。</span></p>
+<p class="v-note"><span class="badge">別の品詞</span>動詞では「報告する」です。<span class="en">hand in a report</span>（報告書を提出する）の形で出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">group</span><span class="v-kana">グループ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>集団・班</p></div>
+<p class="v-ex"><span class="en">Our group had to carry the chairs.</span><span class="v-ja">　私たちの班はいすを運ばなければなりませんでした。</span></p>
+<p class="v-note"><span class="badge">使い方</span>人のまとまりを1つと数えるので、<span class="en">has to</span> ／ <span class="en">had to</span> の形になります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">stairs</span><span class="v-kana">ステアズ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>階段</p></div>
+<p class="v-ex"><span class="en">You have to walk slowly on the stairs.</span><span class="v-ja">　あなたは階段をゆっくり歩かなければなりません。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>ふつう <span class="en">-s</span> のついた形で使います。<span class="en">on the stairs</span>（階段で）の形で出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">visitor</span><span class="v-kana"><span class="ac">ヴィ</span>ジタ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>訪問者・来客</p></div>
+<p class="v-ex"><span class="en">You must be polite to visitors.</span><span class="v-ja">　あなたは訪問者に礼儀正しくしなければなりません。</span></p>
+<p class="v-note"><span class="badge">セットで</span>動詞 <span class="en">visit</span>（訪ねる）の名詞形です。掲示では複数形の <span class="en">Visitors</span> で始まる文が多く使われます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">dangerous</span><span class="v-kana"><span class="ac">デイ</span>ンジャラス</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>危険な</p></div>
+<p class="v-ex"><span class="en">This river is dangerous, so you must not swim here.</span><span class="v-ja">　この川は危険なので、ここで泳いではいけません。</span></p>
+<p class="v-note"><span class="badge">対になる語</span><span class="en">dangerous</span> ↔ <span class="en">safe</span>（安全な）。禁止の文とセットで出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">healthy</span><span class="v-kana"><span class="ac">ヘ</span>ルスィ</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>健康な・健康によい</p></div>
+<p class="v-ex"><span class="en">You have to eat healthy food every day.</span><span class="v-ja">　あなたは毎日健康によい食べ物を食べなければなりません。</span></p>
+<p class="v-note"><span class="badge">セットで</span>名詞は <span class="en">health</span>（健康）です。<span class="en">healthy food</span>（健康によい食べ物）の形で出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">polite</span><span class="v-kana">ポ<span class="ac">ライ</span>ト</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>礼儀正しい</p></div>
+<p class="v-ex"><span class="en">You must be polite to visitors.</span><span class="v-ja">　あなたは訪問者に礼儀正しくしなければなりません。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">be polite to 〜</span>（〜に礼儀正しくする）の形で使います。中1の <span class="en">kind</span>（親切な）と近い仲間の語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">public</span><span class="v-kana"><span class="ac">パ</span>ブリック</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>公共の・公の</p></div>
+<p class="v-ex"><span class="en">You must not make a noise in a public place.</span><span class="v-ja">　公共の場所で物音を立ててはいけません。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">a public place</span>（公共の場所）・<span class="en">a public library</span>（公立図書館）の形で出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">wrong</span><span class="v-kana">ロング</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>まちがった</p></div>
+<p class="v-ex"><span class="en">Your answer is wrong, so you have to write it again.</span><span class="v-ja">　あなたの答えはまちがっているので、もう一度書かなければなりません。</span></p>
+<p class="v-note"><span class="badge">対になる語</span><span class="en">wrong</span> ↔ <span class="en">right</span>（正しい）。<span class="en">What's wrong?</span>（どうしたのですか）の形でも出ます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">twice</span><span class="v-kana">トワイス</span></p>
+<div class="v-sense"><span class="tag t-adv">副詞</span><p>2回・2度</p></div>
+<p class="v-ex"><span class="en">I have to take this medicine twice a day.</span><span class="v-ja">　私は1日に2回この薬を飲まなければなりません。</span></p>
+<p class="v-note"><span class="badge">セットで</span>1回は <span class="en">once</span>、3回以上は <span class="en">three times</span> のように <span class="en">times</span> を使います。</p>
+</li>
+</ol>
+
+<p class="v-intro"><span class="en">rule</span>（決まり）・<span class="en">uniform</span>（制服）・<span class="en">promise</span>（約束）・<span class="en">safe</span>（安全な）・<span class="en">take off 〜</span>（〜を脱ぐ）・<span class="en">be late for 〜</span>（〜に遅れる）はすでに中1・中2で出ているので見出し語に立てていません。<span class="en">hand</span>（hand in 〜）・<span class="en">time</span>（on time）・<span class="en">put</span>（put on 〜）・<span class="en">week</span>（once a week）は熟語の中で覚えます。<span class="en">must not</span> と <span class="en">don't have to</span> の区別はワークブックの解説を見てください。</p>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

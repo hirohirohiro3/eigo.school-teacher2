@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 9　不定詞（名詞的用法）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab09_infinitive-noun.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 9</p>
+<h1 class="unit-title">不定詞（名詞的用法）</h1>
+<p class="unit-lead"><span class="en">to</span> のうしろに動詞の原形を置くと、「〜すること」という<strong>名詞のまとまり</strong>になります。<span class="en">I want to play tennis.</span> は「私はテニスをすることを望む」、つまり「テニスがしたい」です。この形を<strong>不定詞</strong>と言います。不定詞には使い方が3つあり、この単元ではそのうち「〜すること」の使い方（名詞的用法）を扱います。最初に固めるのは、<strong>to のうしろは必ず原形</strong>という1点です。</p>
+</header>
+
+<h2><span>to ＋ 動詞の原形 ＝「〜すること」</span></h2>
+
+<p>中1 Unit 5 で学んだ一般動詞の文は、<span class="en">I want a new bike.</span> のように、動詞のうしろに名詞（目的語）が1つ来ました。この名詞の位置に、<strong>動作そのもの</strong>を置きたいときがあります。「自転車がほしい」ではなく「自転車を買いたい」と言いたいときです。</p>
+
+<p>動詞の <span class="en">buy</span> は、そのままでは名詞の位置に置けません。そこで <span class="en">to</span> をつけて <span class="en">to buy</span>（買うこと）という名詞のまとまりにします。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">I want a new bike.</span></span>
+<span class="tf-arrow">↓　名詞の位置に「買うこと」を置く</span>
+<span class="tf-line"><span class="en">I want to buy a new bike.</span></span>
+</div>
+
+<div class="diagram is-general">
+<p class="diagram-cap">文の動詞は wants だけ　to play は「すること」のまとまり</p>
+<div class="flow">
+<span class="node">wants<span class="node-label">文の動詞</span></span>
+<span class="link">
+<span class="link-word">→</span>
+<span class="rail"></span>
+</span>
+<span class="node">to play<span class="node-label">〜すること</span></span>
+</div>
+</div>
+
+<p><span class="en">Kenji wants to play soccer.</span> は「ケンジはサッカーをしたい」です。この文で動詞として働いているのは <span class="en">wants</span> だけです。<span class="en">to play soccer</span> は「サッカーをすること」という名詞のまとまりで、<span class="en">wants</span> の目的語になっています。</p>
+
+<h3>to のうしろは必ず原形</h3>
+
+<p>主語が三人称単数でも、文が過去でも、<strong><span class="en">to</span> のうしろの動詞は原形のまま</strong>です。形が変わるのは前の動詞だけです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>形が変わる動詞</th><th>to のうしろ</th></tr>
+<tr><td><span class="en">I want to play soccer.</span></td><td><span class="en">want</span></td><td><span class="en">play</span>（原形）</td></tr>
+<tr><td><span class="en">Kenji wants to play soccer.</span></td><td><span class="en">wants</span>（三単現）</td><td><span class="en">play</span>（原形）</td></tr>
+<tr><td><span class="en">Kenji wanted to play soccer.</span></td><td><span class="en">wanted</span>（過去）</td><td><span class="en">play</span>（原形）</td></tr>
+<tr><td><span class="en">Kenji doesn't want to play soccer.</span></td><td><span class="en">doesn't want</span>（否定）</td><td><span class="en">play</span>（原形）</td></tr>
+</table>
+</div>
+
+<p><strong>なぜ原形のままなのか。</strong>いつのことか、だれのことかは、文の動詞（<span class="en">wants</span> ／ <span class="en">wanted</span>）がすでに表しています。同じ情報を <span class="en">to</span> のうしろでもう一度表す必要はないので、<span class="en">to</span> のうしろの動詞は形を変えません。</p>
+
+<div class="diagram is-general">
+<p class="diagram-cap">中1 Unit 13 の can と同じ理屈　うしろは原形</p>
+<div class="flow">
+<span class="node">can play<span class="node-label">中1 Unit 13</span></span>
+<span class="link">
+<span class="link-word">＝</span>
+<span class="rail"></span>
+</span>
+<span class="node">to play<span class="node-label">この単元</span></span>
+</div>
+</div>
+
+<p>これは中1 Unit 13 で学んだ <span class="en">can</span> と同じ理屈です。<span class="en">He can swim.</span> では、主語が <span class="en">he</span> でも <span class="en">swim</span> に <span class="en">-s</span> はつきませんでした。<span class="en">can</span> のうしろも <span class="en">to</span> のうしろも、<strong>動詞は原形に決まっている</strong>と覚えてください。中2 Unit 2 の <span class="en">will</span>、Unit 6 の <span class="en">must</span> も同じです。</p>
+
+<h2><span>to ＋ 原形をうしろに置く動詞</span></h2>
+
+<p>「〜すること」を目的語にとる動詞はたくさんあります。入試でよく出るものを並べます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>例文</th></tr>
+<tr><td><span class="en">want to 〜</span></td><td>〜したい</td><td><span class="en">I want to learn a foreign language.</span></td></tr>
+<tr><td><span class="en">like to 〜</span></td><td>〜するのが好きだ</td><td><span class="en">I like to draw pictures on holidays.</span></td></tr>
+<tr><td><span class="en">try to 〜</span></td><td>〜しようとする</td><td><span class="en">She tried to write a novel last year.</span></td></tr>
+<tr><td><span class="en">hope to 〜</span></td><td>〜することを望む</td><td><span class="en">My brother hopes to be a chef.</span></td></tr>
+<tr><td><span class="en">need to 〜</span></td><td>〜する必要がある</td><td><span class="en">I need to improve my English.</span></td></tr>
+<tr><td><span class="en">start to 〜</span> ／ <span class="en">begin to 〜</span></td><td>〜し始める</td><td><span class="en">It began to rain in the afternoon.</span></td></tr>
+<tr><td><span class="en">decide to 〜</span></td><td>〜することに決める</td><td><span class="en">I decided to make my own robot.</span></td></tr>
+<tr><td><span class="en">would like to 〜</span></td><td>〜したいと思う（ていねい）</td><td><span class="en">I would like to introduce my family.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">would like to 〜</span> は <span class="en">want to 〜</span> をていねいにした言い方です。初めて会う人や先生に話すときに使います。<span class="en">would</span> のうしろの <span class="en">like</span> は、主語が三人称単数でも <span class="en">-s</span> がつきません。</p>
+
+<h3>want to be 〜　「〜になりたい」</h3>
+
+<p>将来の仕事を言うときは <span class="en">want to be 〜</span> を使います。<span class="en">be</span> は be動詞の原形です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>意味</th></tr>
+<tr><td><span class="en">I want to be an engineer.</span></td><td>私は技術者になりたい。</td></tr>
+<tr><td><span class="en">My sister wants to be a scientist.</span></td><td>姉は科学者になりたいと思っている。</td></tr>
+<tr><td><span class="en">What do you want to be in the future?</span></td><td>あなたは将来何になりたいですか。</td></tr>
+<tr><td><span class="en">I want to be a chef when I grow up.</span></td><td>私は大人になったら料理人になりたい。</td></tr>
+</table>
+</div>
+
+<p><span class="en">I want to a doctor.</span> は誤りです。<span class="en">to</span> のうしろには動詞が要るので、<span class="en">be</span> を入れて <span class="en">I want to be a doctor.</span> にします。</p>
+
+<h3>否定文・疑問文は文の動詞で作る</h3>
+
+<p>否定文・疑問文の作り方は、中1 Unit 6 の一般動詞の文と同じです。<strong><span class="en">do</span> ／ <span class="en">does</span> ／ <span class="en">did</span> は文の動詞（<span class="en">want</span> など）の前に置きます。</strong><span class="en">to</span> のうしろは原形のままです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文の種類</th><th>例文</th></tr>
+<tr><td>否定文</td><td><span class="en">I don't want to go out today.</span></td></tr>
+<tr><td>疑問文</td><td><span class="en">Does your sister want to study abroad?</span>　— <span class="en">Yes, she does.</span></td></tr>
+<tr><td>疑問詞の疑問文</td><td><span class="en">What do you want to do this weekend?</span>　— <span class="en">I want to go shopping.</span></td></tr>
+</table>
+</div>
+
+<h2><span>主語や補語になる to ＋ 原形</span></h2>
+
+<p>「〜すること」は名詞のまとまりなので、目的語のほかに<strong>補語</strong>や<strong>主語</strong>の位置にも置けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>位置</th><th>例文</th><th>意味</th></tr>
+<tr><td>補語（be動詞のうしろ）</td><td><span class="en">My dream is to go to space someday.</span></td><td>私の夢はいつか宇宙へ行くことです。</td></tr>
+<tr><td>補語（be動詞のうしろ）</td><td><span class="en">My goal is to make robots for people in hospitals.</span></td><td>私の目標は病院にいる人のためにロボットを作ることです。</td></tr>
+<tr><td>主語</td><td><span class="en">To read books is fun.</span></td><td>本を読むことは楽しい。</td></tr>
+</table>
+</div>
+
+<p>補語の文は <span class="en">My dream</span> ＝ <span class="en">to go to space</span> の関係です。中2 Unit 8 の補語と同じく、be動詞の前とうしろが同じものを指しています。主語になる形は書きことばで使いますが、数は多くありません。中3でもう一度扱います。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">文の動詞を1つ決める</span>
+<span class="step-d"><span class="en">want</span> ／ <span class="en">like</span> ／ <span class="en">try</span> などです。主語が三人称単数なら <span class="en">-s</span>、過去なら過去形にするのは<strong>この動詞だけ</strong>です。</span>
+</li>
+<li>
+<span class="step-t">「〜すること」の部分を to ＋ 原形にする</span>
+<span class="step-d"><span class="en">to</span> のうしろの動詞は、主語や時に関係なく原形です。「〜になりたい」なら <span class="en">to be</span> です。</span>
+</li>
+<li>
+<span class="step-t">否定・疑問は文の動詞の前で作る</span>
+<span class="step-d"><span class="en">don't want to</span> ／ <span class="en">Do you want to 〜?</span> の形です。<span class="en">to</span> のうしろに <span class="en">not</span> や <span class="en">did</span> は入れません。</span>
+</li>
+<li>
+<span class="step-t">最後に to のうしろをもう一度見る</span>
+<span class="step-d"><span class="en">to plays</span> ／ <span class="en">to went</span> になっていないか、<span class="en">to</span> のうしろに動詞があるかを確かめます。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>to のうしろが名詞なら前置詞の to</h3>
+<p><span class="en">I went to the park.</span> の <span class="en">to</span> は「〜へ」を表す前置詞で、うしろは名詞（<span class="en">the park</span>）です。<span class="en">I want to go to the park.</span> には <span class="en">to</span> が2つあり、<strong>1つ目のうしろは動詞（<span class="en">go</span>）なので不定詞、2つ目のうしろは名詞（<span class="en">the park</span>）なので前置詞</strong>です。見分けるときは、<span class="en">to</span> のすぐうしろの語が動詞か名詞かを見ます。</p>
+
+<h3>want 〜 と want to 〜</h3>
+<p><span class="en">I want a new bike.</span> は「自転車がほしい」、<span class="en">I want to buy a new bike.</span> は「自転車を買いたい」です。<span class="en">want</span> のうしろが名詞なら「〜がほしい」、<span class="en">to</span> ＋ 原形なら「〜したい」です。<span class="en">like music</span>（音楽が好き）と <span class="en">like to sing</span>（歌うのが好き）も同じ関係です。</p>
+
+<h3>have to 〜 と be going to 〜 も to ＋ 原形</h3>
+<p>中2 Unit 3 の <span class="en">be going to 〜</span>、Unit 6 の <span class="en">have to 〜</span> も、<span class="en">to</span> のうしろは原形でした。<span class="en">I have to go home.</span> ／ <span class="en">I am going to visit Kyoto.</span> です。これらは意味が決まった言い方として覚えましたが、<strong>「to のうしろは原形」という点はこの単元と同じ</strong>です。</p>
+
+<h3>try to 〜 は「しようとする」</h3>
+<p><span class="en">She tried to write a novel last year.</span> は「彼女は昨年小説を書こうとしました」です。<strong>実際に書き上げたかどうかは、この文だけではわかりません。</strong>「書いた」と訳すと意味がずれるので、「〜しようとした」と訳します。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">to</span> のうしろを原形にできるか（<span class="en">to buy</span> ／ <span class="en">to buys</span>）。文の動詞の三単現（<span class="en">wants</span>）</td></tr>
+<tr><td>並べかえ</td><td><span class="en">want to be</span> の語順。<span class="en">What do you want to be 〜?</span> の疑問文</td></tr>
+<tr><td>誤文訂正</td><td><span class="en">to</span> の抜け（<span class="en">want go</span>）、<span class="en">be</span> の抜け（<span class="en">want to a doctor</span>）</td></tr>
+<tr><td>英作文</td><td>将来の夢を <span class="en">I want to be 〜.</span> ／ <span class="en">My dream is to 〜.</span> で書く</td></tr>
+<tr><td>読解</td><td>だれが何をしたいのか、何をしようとしたのかを読み取る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">He wants to plays soccer after school.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">He wants to <span class="gen-w">play</span> soccer after school.</span></div>
+<p class="contrast-why"><span class="en">-s</span> をつけるのは文の動詞（<span class="en">wants</span>）だけです。<span class="en">to</span> のうしろは原形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I want go to the library today.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I want <span class="gen-w">to go</span> to the library today.</span></div>
+<p class="contrast-why"><span class="en">want</span> のうしろに動詞を置くときは、<span class="en">to</span> をつけて「〜すること」にします。<span class="en">want</span> と <span class="en">go</span> を並べると、動詞が2つになってしまいます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I want to a doctor in the future.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I want to <span class="gen-w">be</span> a doctor in the future.</span></div>
+<p class="contrast-why"><span class="en">to</span> のうしろには動詞が要ります。「〜になる」は be動詞の原形 <span class="en">be</span> で表します。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Did you decide to joined the club?</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Did you decide to <span class="gen-w">join</span> the club?</span></div>
+<p class="contrast-why">過去を表すのは <span class="en">Did</span> の役目です。<span class="en">to</span> のうしろは過去の文でも原形です。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">I want to buy a new bike.</span>／<span class="en">Kenji wants to play soccer.</span>／<span class="en">Kenji wanted to play soccer.</span>／<span class="en">I want to be an engineer.</span>／<span class="en">I don't want to go out today.</span>／<span class="en">My dream is to go to space someday.</span>　文の動詞はどれか、<span class="en">to</span> のうしろが原形になっているかを確かめてください。</p>
+
+<p>ほかの例文です。<span class="en">I want to continue my piano lessons.</span>／<span class="en">I have a piano lesson every Friday.</span>／<span class="en">She wants to design clothes.</span>／<span class="en">My aunt is a designer in Tokyo.</span>／<span class="en">Engineers solve many problems in the world.</span>／<span class="en">I want to travel around the world.</span>／<span class="en">I would like to visit Kyoto again.</span>／<span class="en">My dream will come true someday.</span>／<span class="en">These days I am trying to read English books.</span>／<span class="en">My father likes his job very much.</span>／<span class="en">Mr. Ito is a famous artist.</span>／<span class="en">My cousin started to play the guitar, and now he is a musician.</span>／<span class="en">She wants to be a writer like her mother.</span>／<span class="en">Firefighters must be strong.</span>／<span class="en">The police officer showed us the way to the station.</span>／<span class="en">I want to learn about Japanese culture.</span>／<span class="en">You need special skills for this job.</span>／<span class="en">I like sports, especially tennis.</span>／<span class="en">Actually, I don't want to be a doctor.</span>／<span class="en">This question is very simple.</span>／<span class="en">I want to work with engineers all over the world.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。文の動詞はどれか、<span class="en">to</span> のうしろに何が来るかを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My little brother wants (　　　) a new bike for his birthday.</span>
+<p class="opts"><span>ア buy</span><span>イ buys</span><span>ウ to buy</span><span>エ to buys</span></p></li>
+<li><span class="en">My cousin tried (　　　) a novel in English last summer.</span>
+<p class="opts"><span>ア write</span><span>イ to write</span><span>ウ to wrote</span><span>エ wrote</span></p></li>
+<li><span class="en">Kenji is good at science. He (　　　) to be a scientist in the future.</span>
+<p class="opts"><span>ア want</span><span>イ wants</span><span>ウ is want</span><span>エ to want</span></p></li>
+<li><span class="en">My dream is (　　　) a chef at a famous restaurant.</span>
+<p class="opts"><span>ア be</span><span>イ to be</span><span>ウ is</span><span>エ am</span></p></li>
+<li><span class="en">(　　　) your sister want to study abroad next year?</span>
+<p class="opts"><span>ア Is</span><span>イ Does</span><span>ウ Do</span><span>エ Are</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私は外国語を学びたい。<br><span class="en">[ i / want / to / learn / a / foreign / language ] .</span><span class="write"></span></li>
+<li>彼女は将来、服をデザインしたいと思っています。<br><span class="en">[ she / wants / to / design / clothes / in / the / future ] .</span><span class="write"></span></li>
+<li>私の目標は自分のロボットを作ることです。<br><span class="en">[ my / goal / is / to / make / my / own / robot ] .</span><span class="write"></span></li>
+<li data-extra="1">兄は料理人になることを望んでいます。<span class="hint">1語不要</span><br><span class="en">[ my / brother / hopes / to / be / a / chef / is ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたは将来何になりたいですか。<span class="hint">1語不要</span><br><span class="en">[ what / do / you / want / to / be / in / the / future / are ] ?</span><span class="write"></span></li>
+<li>私は英語を上達させる必要があります。<br><span class="en">[ i / need / to / improve / my / english ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">He wants to plays soccer after school.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I want go to the library today.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My sister want to be a designer.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I want to a doctor in the future.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Did you decide to joined the club?</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私は京都をもう一度訪れたいです。（want を使う）</span><span class="write"></span></li>
+<li><span class="q-ja">彼女は昨年、小説を書こうとしました。</span><span class="write"></span></li>
+<li><span class="q-ja">私はピアノのレッスンを続けたい。</span><span class="write"></span></li>
+<li><span class="q-ja">私の夢はいつか宇宙へ行くことです。</span><span class="write"></span></li>
+<li>like to を使って「私は休日に絵を描くのが好きです」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li>would like to を使って「私の家族を紹介したいと思います」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li>don't want to を使って「私は今日は外出したくありません」と書く。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ケンタは英語の授業で「私の夢」というスピーチをしました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">私の夢</p>
+<p>Hello, everyone. I will talk about my dream. I want to be an engineer. When I was ten, my uncle took me to a robot show. Many robots were dancing on the stage. They looked like real people. I was surprised. <span class="num">①</span><span class="ul">After the show, I decided to make my own robot.</span> I started to read books about robots, but they were very difficult for me. So I tried to ask my uncle many questions. He is an engineer, and he always answers them. Now I am in the computer club. We are trying to make a simple robot for the school festival. It must carry a cup of water to our teacher. Engineers solve many problems in the world. <span class="num">②</span><span class="ul">My goal is to make robots for people in hospitals.</span> I need to study math and science hard. English is important too, because I want to work with engineers all over the world. My dream will come true someday. Thank you.</p>
+<p class="reading-wc">およそ160語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ケンタは10歳のとき、おじとロボットのショーを見に行った。<br>
+イ ケンタはロボットの本をかんたんに読むことができた。<br>
+ウ ケンタのおじはコンピューター部の先生である。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア コンピューター部はもうロボットを完成させた。<br>
+イ コンピューター部は文化祭のためにロボットを作ろうとしている。<br>
+ウ ケンタは英語より数学が大切だと考えている。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに英語で答える。<br><span class="en">What does Kenta want to be?</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>下線部②の文で、<span class="en">My goal</span> と同じものを指している部分を、本文から英語7語で書きぬく。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>want to を使って、将来の夢を1文で書く。<span class="hint">例：I want to be a nurse.</span><span class="write"></span></li>
+<li>like to か try to を使って、自分がよくすることや、がんばっていることを1文で書く。<span class="hint">例：I like to read books on weekends.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>文の動詞はどれか</strong>を確かめ、次に<strong>to のうしろが原形になっているか</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　to buy</span><p class="a-why"><span class="en">want</span> のうしろに動作を置くときは <span class="en">to</span> ＋ 原形です。主語が三人称単数でも、<span class="en">-s</span> がつくのは <span class="en">wants</span> だけです。</p></li>
+<li><span class="a-key">イ　to write</span><p class="a-why">過去の文でも <span class="en">to</span> のうしろは原形です。過去を表しているのは <span class="en">tried</span> です。</p></li>
+<li><span class="a-key">イ　wants</span><p class="a-why">主語の <span class="en">He</span> は三人称単数なので、文の動詞は <span class="en">wants</span> です。<span class="en">is want</span> のように be動詞と一般動詞を並べることはできません。</p></li>
+<li><span class="a-key">イ　to be</span><p class="a-why"><span class="en">My dream ＝ to be a chef</span> の関係です。「〜になること」なので <span class="en">to be</span> を置きます。</p></li>
+<li><span class="a-key">イ　Does</span><p class="a-why">文の動詞は一般動詞の <span class="en">want</span> で、主語の <span class="en">your sister</span> は三人称単数なので <span class="en">Does</span> を使います。</p></li>
+
+<li><span class="a-key">I want to learn a foreign language.</span><p class="a-why"><span class="en">want to</span> ＋ 原形で「〜したい」です。<span class="en">foreign</span> は <span class="en">language</span> を説明する形容詞なので、名詞の前に置きます。</p></li>
+<li><span class="a-key">She wants to design clothes in the future.</span><p class="a-why">主語が <span class="en">She</span> なので文の動詞は <span class="en">wants</span>、<span class="en">to</span> のうしろは原形の <span class="en">design</span> です。</p></li>
+<li><span class="a-key">My goal is to make my own robot.</span><p class="a-why"><span class="en">My goal ＝ to make my own robot</span> の関係で、<span class="en">to make 〜</span> は補語です。<span class="en">my own</span> で「自分自身の」です。</p></li>
+<li><span class="a-key">My brother hopes to be a chef.</span><p class="a-why">不要な語は <span class="en">is</span> です。「〜になる」は <span class="en">to</span> のうしろの <span class="en">be</span> で表すので、<span class="en">is</span> は入りません。</p></li>
+<li><span class="a-key">What do you want to be in the future?</span><p class="a-why">不要な語は <span class="en">are</span> です。文の動詞は一般動詞の <span class="en">want</span> なので、疑問文は <span class="en">do</span> で作ります。</p></li>
+<li><span class="a-key">I need to improve my English.</span><p class="a-why"><span class="en">need to</span> ＋ 原形で「〜する必要がある」です。</p></li>
+
+<li><span class="a-key">He wants to play soccer after school.</span><p class="a-why">理由の例：<span class="en">to</span> のうしろの動詞は原形にするから。<span class="en">-s</span> は文の動詞の <span class="en">wants</span> にだけつけます。</p></li>
+<li><span class="a-key">I want to go to the library today.</span><p class="a-why">理由の例：<span class="en">want</span> のうしろに動詞を置くときは、<span class="en">to</span> をつけて「〜すること」にするから。</p></li>
+<li><span class="a-key">My sister wants to be a designer.</span><p class="a-why">理由の例：主語が三人称単数なので、文の動詞の <span class="en">want</span> に <span class="en">-s</span> をつけるから。</p></li>
+<li><span class="a-key">I want to be a doctor in the future.</span><p class="a-why">理由の例：<span class="en">to</span> のうしろには動詞が要るので、「〜になる」を表す <span class="en">be</span> を入れるから。</p></li>
+<li><span class="a-key">Did you decide to join the club?</span><p class="a-why">理由の例：過去は <span class="en">Did</span> が表しているので、<span class="en">to</span> のうしろは原形にするから。</p></li>
+
+<li><span class="a-key">I want to visit Kyoto again.</span><p class="a-why"><span class="en">want to</span> ＋ 原形で「〜したい」です。<span class="en">visit</span> のうしろの場所に <span class="en">to</span> はつけません。</p></li>
+<li><span class="a-key">She tried to write a novel last year.</span><p class="a-why">「〜しようとした」は <span class="en">tried to</span> ＋ 原形です。<span class="en">to wrote</span> にしないように気をつけます。</p></li>
+<li><span class="a-key">I want to continue my piano lessons.</span><p class="a-why"><span class="en">I want to continue my piano lesson.</span> でも正解です。</p></li>
+<li><span class="a-key">My dream is to go to space someday.</span><p class="a-why"><span class="en">to go</span> の <span class="en">to</span> は不定詞、<span class="en">to space</span> の <span class="en">to</span> は「〜へ」の前置詞です。<span class="en">someday</span> は文の最初に置いても正解です。</p></li>
+<li><span class="a-key">I like to draw pictures on holidays.</span><p class="a-why">7語です。<span class="en">draw</span> の代わりに <span class="en">paint</span> を使っても正解です。</p></li>
+<li><span class="a-key">I would like to introduce my family.</span><p class="a-why">7語です。<span class="en">would like to</span> は <span class="en">want to</span> のていねいな言い方です。</p></li>
+<li><span class="a-key">I don't want to go out today.</span><p class="a-why">7語です。否定の <span class="en">don't</span> は文の動詞 <span class="en">want</span> の前に置きます。<span class="en">go out</span> で「外出する」です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">When I was ten, my uncle took me to a robot show.</span> とあります。イは <span class="en">they were very difficult for me</span> とあるので合いません。ウのおじは技術者（<span class="en">He is an engineer</span>）です。</p></li>
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">We are trying to make a simple robot for the school festival.</span> とあります。<span class="en">are trying to make</span> は「作ろうとしている」で、まだ完成していないのでアは合いません。ウは本文にありません。</p></li>
+<li><span class="a-key">He wants to be an engineer.</span><p class="a-why"><span class="en">I want to be an engineer.</span> とあります。主語が <span class="en">Kenta</span> なので、答えは <span class="en">He wants</span> にします。</p></li>
+<li><span class="a-key">ショーのあと、私は自分のロボットを作ることに決めました。</span><p class="a-why"><span class="en">decide to 〜</span> で「〜することに決める」です。<span class="en">my own robot</span> は「自分自身のロボット」と訳しても正解です。</p></li>
+<li><span class="a-key">to make robots for people in hospitals</span><p class="a-why"><span class="en">My goal ＝ to make robots for people in hospitals</span> の関係で、<span class="en">to make 〜</span> は補語です。<span class="en">for people in hospitals</span> までが「だれのために作るか」を表すので、ここまでを含めます。</p></li>
+
+<li><span class="a-key">（例）I want to be a nurse.</span><p class="a-why"><span class="en">want to</span> のうしろが原形になっていれば正解です。仕事でなく、<span class="en">I want to travel around the world.</span> のような夢でも正解です。</p></li>
+<li><span class="a-key">（例）I like to read books on weekends.</span><p class="a-why"><span class="en">I am trying to get up early.</span> のような文でも正解です。<span class="en">to</span> のうしろが原形かを確かめます。</p></li>
+</ol>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p style="margin:0"><span class="en">to</span> ＋ 動詞の原形で「〜すること」という名詞のまとまりになります（不定詞の名詞的用法）。<span class="en">want to</span> ／ <span class="en">like to</span> ／ <span class="en">try to</span> ／ <span class="en">hope to</span> ／ <span class="en">need to</span> ／ <span class="en">start to</span> ／ <span class="en">decide to</span> のように目的語に置くほか、<span class="en">My dream is to 〜.</span> のように補語にも置けます。<strong><span class="en">to</span> のうしろは、主語が三人称単数でも、過去の文でも原形</strong>です。これは <span class="en">can</span> のうしろが原形なのと同じ理屈で、時や主語を表すのは文の動詞だけです。「〜になりたい」は <span class="en">want to be 〜</span>、否定文・疑問文は文の動詞の前で <span class="en">don't</span> ／ <span class="en">Do</span> を使います。</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 12　動名詞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab12_gerund.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 12</p>
+<h1 class="unit-title">動名詞</h1>
+<p class="unit-lead">Unit 9 から Unit 11 では、動詞を <span class="en">to</span> ＋ 原形の形にして、名詞・副詞・形容詞のはたらきをさせました。この単元では、動詞を <span class="en">-ing</span> の形にして<strong>名詞のはたらき</strong>をさせる形を扱います。<span class="en">I like playing tennis.</span> は「私はテニスをすることが好きです」です。この <span class="en">-ing</span> 形を<strong>動名詞</strong>と呼びます。形は Unit 14 で学んだ現在進行形の <span class="en">-ing</span> と同じですが、はたらきがちがいます。あわせて、<strong>前置詞のうしろは必ず動名詞になる</strong>ことと、<span class="en">to</span> ＋ 原形との使い分けを学びます。</p>
+</header>
+
+<h2><span>動詞を <span class="en">-i<span>n</span>g</span> にして名詞のはたらきをさせる</span></h2>
+
+<p><span class="en">I like tennis.</span> は「私はテニスが好きです」です。「テニスを<strong>すること</strong>が好きだ」と動作を言いたいときは、動詞 <span class="en">play</span> を <span class="en">playing</span> にして、名詞と同じ位置に置きます。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">I like tennis.</span></span>
+<span class="tf-arrow">↓　名詞 tennis の位置に「する動作」を入れる</span>
+<span class="tf-line"><span class="en">I like playing tennis.</span></span>
+</div>
+
+<p><span class="en">playing tennis</span> は全体で1つの名詞のまとまりで、<span class="en">like</span> の目的語です。Unit 9 の <span class="en">I like to play tennis.</span> と同じ位置に入ります。<strong><span class="en">-ing</span> になった動詞は、文の動詞としては働きません。</strong>この文の動詞は <span class="en">like</span> です。</p>
+
+<div class="diagram is-general">
+<p class="diagram-cap">-ing 形のまとまりが、名詞と同じ位置に入る</p>
+<div class="flow">
+<span class="node">I like<span class="node-label">主語と動詞</span></span>
+<span class="link">
+<span class="link-word">→</span>
+<span class="rail"></span>
+</span>
+<span class="node">playing tennis<span class="node-label">目的語（名詞のはたらき）</span></span>
+</div>
+</div>
+
+<p>名詞のはたらきをするので、置ける位置は3つあります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>位置</th><th>例文</th><th>意味</th></tr>
+<tr><td>主語</td><td><span class="en">Playing tennis is fun.</span></td><td>テニスをすることは楽しい。</td></tr>
+<tr><td>動詞の目的語</td><td><span class="en">I enjoy playing tennis.</span></td><td>私はテニスをすることを楽しむ。</td></tr>
+<tr><td>be動詞のうしろ</td><td><span class="en">My hobby is playing tennis.</span></td><td>私の趣味はテニスをすることです。</td></tr>
+<tr><td>前置詞の目的語</td><td><span class="en">I'm good at playing tennis.</span></td><td>私はテニスをすることが得意です。</td></tr>
+</table>
+</div>
+
+<p><strong>なぜ <span class="en">-ing</span> で名詞になるのか。</strong>動詞のままでは、1つの文に動詞が2つ並んでしまいます。<span class="en">I like play tennis.</span> では <span class="en">like</span> と <span class="en">play</span> が同居してしまい、どちらが文の動詞かが決まりません。<span class="en">play</span> を <span class="en">playing</span> にすると、<strong>動詞そのものとしては働かなくなる</strong>ので、名詞の位置に置けます。Unit 14 で現在進行形を学んだときの「<span class="en">-ing</span> 形になった動詞は動詞そのものとしては働かないので be動詞と組む」と、同じ理由です。現在進行形では be動詞と組みましたが、動名詞は be動詞と組まずに名詞の位置に入ります。</p>
+
+<h3><span class="en">-i<span>n</span>g</span> 形の作り方</h3>
+
+<p>Unit 14 の現在進行形と同じきまりです。ほとんどの動詞はそのまま <span class="en">i<span>n</span>g</span> をつけます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>動詞の終わり</th><th>作り方</th><th>例</th></tr>
+<tr><td>ふつう</td><td>そのまま <span class="en">i<span>n</span>g</span> をつける</td><td class="be-cell"><span class="en">play → playing</span><br><span class="en">read → reading</span><br><span class="en">study → studying</span></td></tr>
+<tr><td>読まない e で終わる</td><td>e を取って <span class="en">i<span>n</span>g</span> をつける</td><td class="be-cell"><span class="en">make → making</span><br><span class="en">write → writing</span><br><span class="en">take → taking</span><br><span class="en">use → using</span></td></tr>
+<tr><td>短い母音＋子音1字</td><td>最後の子音字を重ねて <span class="en">i<span>n</span>g</span> をつける</td><td class="be-cell"><span class="en">run → running</span><br><span class="en">swim → swimming</span><br><span class="en">sit → sitting</span><br><span class="en">stop → stopping</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">visit → visiting</span>、<span class="en">listen → listening</span>、<span class="en">open → opening</span> は、子音字で終わっていても重ねません。どれも<strong>前の部分を強く読む語</strong>です。<span class="en">begin → beginning</span> は、うしろの部分を強く読むので重ねます。<span class="en">study</span> は y をそのまま残して <span class="en">studying</span> です。</p>
+
+<h2><span><span class="en">to</span> ＋ 原形と動名詞の使い分け</span></h2>
+
+<p>「〜すること」は、<span class="en">to</span> ＋ 原形でも動名詞でも表せます。ただし、<strong>うしろにどちらを置くかは、前の動詞で決まります。</strong>3つに分かれます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>前の動詞</th><th>うしろの形</th><th>例文</th></tr>
+<tr><td><span class="en">enjoy</span> ／ <span class="en">finish</span> ／ <span class="en">stop</span> ／ <span class="en">practice</span></td><td>動名詞だけ</td><td><span class="en">I enjoy reading books.</span></td></tr>
+<tr><td><span class="en">want</span> ／ <span class="en">hope</span> ／ <span class="en">decide</span> ／ <span class="en">need</span></td><td><span class="en">to</span> ＋ 原形だけ</td><td><span class="en">I want to read this book.</span></td></tr>
+<tr><td><span class="en">like</span> ／ <span class="en">start</span> ／ <span class="en">begin</span> ／ <span class="en">love</span></td><td>どちらでもよい</td><td><span class="en">I like reading books.</span><br><span class="en">I like to read books.</span></td></tr>
+</table>
+</div>
+
+<p><strong>覚え方の目安。</strong>動名詞だけをとる動詞は、<span class="en">enjoy</span>（楽しむ）・<span class="en">finish</span>（終える）・<span class="en">stop</span>（やめる）・<span class="en">practice</span>（練習する）のように、<strong>すでに始まっている動作</strong>について言う語が多いです。<span class="en">to</span> ＋ 原形だけをとる動詞は、<span class="en">want</span>（したい）・<span class="en">hope</span>（望む）・<span class="en">decide</span>（決める）のように、<strong>これからの動作</strong>について言う語が多いです。ただし例外もあるので、上の表の語はそのまま覚えてください。</p>
+
+<p>入試では、この3つの区別が選択問題と誤文訂正で問われます。<span class="en">enjoy to 〜</span>、<span class="en">finish to 〜</span>、<span class="en">want 〜ing</span> は誤りです。</p>
+
+<h2><span>前置詞のうしろは動名詞</span></h2>
+
+<p><span class="en">at</span> ／ <span class="en">in</span> ／ <span class="en">of</span> ／ <span class="en">for</span> ／ <span class="en">about</span> ／ <span class="en">without</span> のような<strong>前置詞のうしろに動作を置くときは、必ず動名詞</strong>です。前置詞のうしろには名詞が入る位置なので、<span class="en">to</span> ＋ 原形は置けません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>例文</th></tr>
+<tr><td><span class="en">be good at 〜ing</span></td><td>〜するのが得意だ</td><td><span class="en">My sister is good at singing.</span></td></tr>
+<tr><td><span class="en">be interested in 〜ing</span></td><td>〜することに興味がある</td><td><span class="en">I'm interested in protecting the sea.</span></td></tr>
+<tr><td><span class="en">be afraid of 〜ing</span></td><td>〜するのをおそれる</td><td><span class="en">He was afraid of making mistakes.</span></td></tr>
+<tr><td><span class="en">Thank you for 〜ing.</span></td><td>〜してくれてありがとう</td><td><span class="en">Thank you for listening to my speech.</span></td></tr>
+<tr><td><span class="en">How about 〜ing?</span></td><td>〜してはどうですか</td><td><span class="en">How about eating lunch in the park?</span></td></tr>
+<tr><td><span class="en">without 〜ing</span></td><td>〜しないで</td><td><span class="en">He left the room without saying anything.</span></td></tr>
+<tr><td><span class="en">instead of 〜ing</span></td><td>〜する代わりに</td><td><span class="en">We bring our own boxes instead of using plastic bags.</span></td></tr>
+<tr><td><span class="en">look forward to 〜ing</span></td><td>〜するのを楽しみにする</td><td><span class="en">I'm looking forward to meeting you.</span></td></tr>
+</table>
+</div>
+
+<p><strong>最後の2つは要注意です。</strong><span class="en">instead of</span> と <span class="en">look forward to</span> の <span class="en">of</span> ／ <span class="en">to</span> は前置詞なので、うしろは動名詞です。とくに <span class="en">look forward to</span> は、形が不定詞の <span class="en">to</span> に見えますが、<strong>この <span class="en">to</span> は前置詞</strong>です。<span class="en">look forward to meet you</span> とはしません。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">その動作を置く位置が名詞の位置かを確かめる</span>
+<span class="step-d">主語・目的語・be動詞のうしろ・前置詞のうしろは、どれも名詞の位置です。文の動詞はすでに別にあります。</span>
+</li>
+<li>
+<span class="step-t">前置詞のうしろなら、まよわず動名詞にする</span>
+<span class="step-d"><span class="en">at</span> ／ <span class="en">in</span> ／ <span class="en">of</span> ／ <span class="en">for</span> ／ <span class="en">about</span> ／ <span class="en">without</span> のうしろに <span class="en">to</span> ＋ 原形は置けません。</span>
+</li>
+<li>
+<span class="step-t">動詞のうしろなら、その動詞が3つのどれかを見る</span>
+<span class="step-d"><span class="en">enjoy</span> ／ <span class="en">finish</span> ／ <span class="en">stop</span> ／ <span class="en">practice</span> は動名詞だけ、<span class="en">want</span> ／ <span class="en">hope</span> ／ <span class="en">decide</span> ／ <span class="en">need</span> は <span class="en">to</span> ＋ 原形だけです。</span>
+</li>
+<li>
+<span class="step-t">綴りと、文の動詞の形を確かめる</span>
+<span class="step-d">e を取るか、子音字を重ねるかを確かめます。動名詞が主語のときは、文の動詞を単数の形にします。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3><span class="en">stop to 〜</span> と <span class="en">stop 〜ing</span></h3>
+<p>同じ <span class="en">stop</span> でも、うしろの形で意味が変わります。<span class="en">He stopped drinking water.</span> は「水を飲むのをやめた」で、<span class="en">drinking water</span> が <span class="en">stop</span> の目的語です。<span class="en">He stopped to drink water.</span> は「水を飲むために立ち止まった」で、この <span class="en">to drink</span> は Unit 10 の「〜するために」です。<strong>やめたのか、そのためにいったん止まったのかで、形を選びます。</strong></p>
+
+<h3>現在進行形の <span class="en">-i<span>n</span>g</span> と動名詞の <span class="en">-i<span>n</span>g</span></h3>
+<p><span class="en">I am playing tennis.</span> は現在進行形で、「いまテニスをしている」です。<span class="en">-ing</span> 形は be動詞と組んで<strong>文の動詞のはたらき</strong>をしています。<span class="en">My hobby is playing tennis.</span> は動名詞で、「私の趣味はテニスをすることです」です。<span class="en">playing tennis</span> は <span class="en">is</span> のうしろの<strong>名詞のまとまり</strong>です。見分け方は、<strong>主語が動作をしているかどうか</strong>です。<span class="en">My hobby</span> はテニスをしません。</p>
+
+<h3>動名詞が主語のときの動詞の形</h3>
+<p><span class="en">Reading books is fun.</span> のように、動名詞が主語のときは、<strong>うしろにいくつ名詞が並んでいても1つのまとまり</strong>として数えます。文の動詞は <span class="en">is</span> で、<span class="en">are</span> にはしません。<span class="en">books</span> が複数形でも、主語の中心は <span class="en">Reading</span> です。</p>
+
+<h3><span class="en">go 〜ing</span> の形</h3>
+<p>「〜しに行く」は <span class="en">go 〜ing</span> と言います。<span class="en">We went swimming in the sea.</span>（海に泳ぎに行った）、<span class="en">I go shopping every Sunday.</span>（毎週日曜日に買い物に行く）です。<span class="en">go to swimming</span> とはしません。決まった言い方として覚えます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">enjoy</span> ／ <span class="en">finish</span> ／ <span class="en">want</span> ／ <span class="en">decide</span> のうしろに動名詞と <span class="en">to</span> ＋ 原形のどちらを置くか</td></tr>
+<tr><td>並べかえ</td><td><span class="en">be good at 〜ing</span> ／ <span class="en">How about 〜ing?</span> ／ <span class="en">look forward to 〜ing</span> の語順。不要な語として <span class="en">to</span> が混ざる</td></tr>
+<tr><td>誤文訂正</td><td><span class="en">enjoy to 〜</span>、前置詞のうしろの原形、動名詞が主語のときの <span class="en">are</span></td></tr>
+<tr><td>英作文</td><td>「〜するのが好きだ」「〜するのが得意だ」「〜してはどうですか」を動名詞で書く</td></tr>
+<tr><td>読解</td><td>下線部の <span class="en">-ing</span> が現在進行形か動名詞かの区別。<span class="en">Thank you for 〜ing.</span> を含む文の和訳</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I enjoyed to swim in the sea.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I enjoyed <span class="gen-w">swimming</span> in the sea.</span></div>
+<p class="contrast-why"><span class="en">enjoy</span> のうしろは動名詞だけです。<span class="en">to</span> ＋ 原形は置けません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I'm good at play the piano.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I'm good at <span class="gen-w">playing</span> the piano.</span></div>
+<p class="contrast-why"><span class="en">at</span> は前置詞なので、うしろは動名詞です。原形は置けません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">Collecting old coins are fun.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">Collecting old coins <span class="gen-w">is</span> fun.</span></div>
+<p class="contrast-why">主語の中心は <span class="en">Collecting</span> で、全体で1つのまとまりです。<span class="en">coins</span> が複数形でも <span class="en">is</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark">×</span><span class="en">I'm looking forward to see you.</span></div>
+<div class="contrast-row good"><span class="mark">○</span><span class="en">I'm looking forward to <span class="gen-w">seeing</span> you.</span></div>
+<p class="contrast-why"><span class="en">look forward to</span> の <span class="en">to</span> は前置詞です。うしろは動名詞にします。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<p>動詞を <span class="en">-ing</span> にすると<strong>名詞のはたらき</strong>になり、主語・目的語・be動詞のうしろ・前置詞のうしろに置けます。<strong>前置詞のうしろは必ず動名詞</strong>で、<span class="en">look forward to</span> の <span class="en">to</span> も前置詞です。<span class="en">enjoy</span> ／ <span class="en">finish</span> ／ <span class="en">stop</span> ／ <span class="en">practice</span> のうしろは動名詞だけ、<span class="en">want</span> ／ <span class="en">hope</span> ／ <span class="en">decide</span> ／ <span class="en">need</span> のうしろは <span class="en">to</span> ＋ 原形だけです。<span class="en">stop 〜ing</span> は「やめる」、<span class="en">stop to 〜</span> は「〜するために止まる」です。動名詞が主語のときの動詞は単数の形にします。</p>
+</div>
+
+<p>ここまでに出た文をもう一度並べます。<span class="en">I like playing tennis.</span>／<span class="en">Playing tennis is fun.</span>／<span class="en">I enjoy playing tennis.</span>／<span class="en">My hobby is playing tennis.</span>／<span class="en">I'm good at playing tennis.</span>／<span class="en">I enjoy reading books.</span>／<span class="en">I want to read this book.</span>／<span class="en">My sister is good at singing.</span>／<span class="en">I'm interested in protecting the sea.</span>／<span class="en">He was afraid of making mistakes.</span>／<span class="en">Thank you for listening to my speech.</span>／<span class="en">How about eating lunch in the park?</span>／<span class="en">He left the room without saying anything.</span>／<span class="en">I'm looking forward to meeting you.</span>／<span class="en">He stopped drinking water.</span>／<span class="en">He stopped to drink water.</span>／<span class="en">Reading books is fun.</span>／<span class="en">We went swimming in the sea.</span>／<span class="en">I go shopping every Sunday.</span>　<span class="en">-ing</span> のまとまりが名詞の位置に入っているかを確かめてください。</p>
+
+<p>ほかの例文です。<span class="en">Picking up trash on the sand is hard work.</span>／<span class="en">I found many shells on the coast.</span>／<span class="en">We made a poster for the school festival.</span>／<span class="en">Our club has many activities every month.</span>／<span class="en">Reading the newspaper every day is a good habit.</span>／<span class="en">Her effort changed our town.</span>／<span class="en">We discussed this topic in class.</span>／<span class="en">I read an article about plastic bottles.</span>／<span class="en">The piano is my favorite instrument.</span>／<span class="en">My uncle has a large collection of old coins.</span>／<span class="en">We must reduce plastic bags.</span>／<span class="en">Our town recycles paper and bottles.</span>／<span class="en">You should avoid eating too much sugar.</span>／<span class="en">I can't imagine living without music.</span>／<span class="en">Do you mind opening the window?</span>／<span class="en">I recorded the time of every practice.</span>／<span class="en">Don't waste water.</span>／<span class="en">She succeeded in making a good speech.</span>／<span class="en">I failed in my first test, but I tried again.</span>／<span class="en">My grandmother is still active.</span>／<span class="en">My art teacher is very creative.</span>／<span class="en">You must be patient when you learn a new thing.</span>／<span class="en">The waves were high that morning.</span>／<span class="en">I took part in the volunteer activity last spring.</span></p>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。その位置が名詞の位置かどうかを先に確かめます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">The students in my class enjoyed (　　　) the coast last Sunday.</span>
+<p class="opts"><span>ア clean</span><span>イ to clean</span><span>ウ cleaning</span><span>エ cleaned</span></p></li>
+<li><span class="en">My little brother finished (　　　) his homework before dinner.</span>
+<p class="opts"><span>ア do</span><span>イ doing</span><span>ウ to do</span><span>エ does</span></p></li>
+<li><span class="en">The members of our club are good at (　　　) pictures.</span>
+<p class="opts"><span>ア draw</span><span>イ draws</span><span>ウ to draw</span><span>エ drawing</span></p></li>
+<li><span class="en">My parents decided (　　　) to Kyoto next spring.</span>
+<p class="opts"><span>ア go</span><span>イ going</span><span>ウ to go</span><span>エ went</span></p></li>
+<li><span class="en">(　　　) old coins from other countries is my uncle's hobby.</span>
+<p class="opts"><span>ア Collect</span><span>イ Collects</span><span>ウ Collected</span><span>エ Collecting</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 5;">
+<li>私は音楽を聞くことが好きです。<br><span class="en">[ i / like / listening / to / music ] .</span><span class="write"></span></li>
+<li>私の姉はその本を読み終えました。<br><span class="en">[ my / sister / finished / reading / the / book ] .</span><span class="write"></span></li>
+<li>彼は10分前に泳ぐのをやめました。<br><span class="en">[ he / stopped / swimming / ten / minutes / ago ] .</span><span class="write"></span></li>
+<li data-extra="1">私はピアノを弾くのが得意ではありません。<span class="hint">1語不要</span><br><span class="en">[ i'm / not / good / at / playing / to / the / piano ] .</span><span class="write"></span></li>
+<li data-extra="1">公園で昼食を食べてはどうですか。<span class="hint">1語不要</span><br><span class="en">[ how / about / eating / to / lunch / in / the / park ] ?</span><span class="write"></span></li>
+<li>私はあなたに会うのを楽しみにしています。<br><span class="en">[ i'm / looking / forward / to / meeting / you ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りなのかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 11;">
+<li><span class="en">I enjoyed to swim in the sea last summer.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Thank you for help me with my homework.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I'm interested in collect old coins.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Reading books are fun for me.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">We hope visiting your town next spring.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 16;">
+<li><span class="q-ja">私は毎朝、走ることを楽しんでいます。</span><span class="write"></span></li>
+<li><span class="q-ja">父は新聞を読み終えました。</span><span class="write"></span></li>
+<li><span class="q-ja">私は海を守ることに興味があります。</span><span class="write"></span></li>
+<li><span class="q-ja">毎日新聞を読むことはよい習慣です。</span><span class="write"></span></li>
+<li>enjoy を使って「私たちは昨日、海岸でそうじをすることを楽しみました」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>動名詞を文の最初に置いて「貝がらを集めることは楽しいです」と書く。<span class="cond">4語</span><span class="write"></span></li>
+<li>How about を使って「いっしょに写真を撮ってはどうですか」と書く。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ミサキは英語の授業で、学校の部活動について話しました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">海岸でのそうじ</p>
+<p>Last spring, I took part in the volunteer club at my school. The members clean the coast near our town every month. <span class="num">①</span><span class="ul">Picking up trash on the sand is hard work.</span> On my first day, I was surprised. I found many plastic bottles, old bags, and small pieces of plastic between the shells. Our teacher said, "Birds sometimes eat these small pieces." I didn't know that before, so I began reading articles about the sea. Now I enjoy working with the other members. We don't use plastic bags for our activity. We bring our own boxes instead. After cleaning, we write a short report and make a poster for the school festival. Some students stopped buying plastic bottles because they saw our poster. <span class="num">②</span><span class="ul">I will never give up cleaning the coast.</span> I'm interested in protecting the sea. Thank you for listening to my speech.</p>
+<p class="reading-wc">およそ147語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 23;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ミサキの部は毎月、町の近くの海岸をそうじしている。<br>
+イ ミサキの部は毎週、学校のまわりをそうじしている。<br>
+ウ ミサキは1人で海岸をそうじしている。<span class="write"></span></li>
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ミサキの部は活動でビニール袋を使っている。<br>
+イ ミサキは初日におどろいた。<br>
+ウ ミサキは記事を読むのをやめた。<span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに英語3語で答える。<br><span class="en">What did Misaki begin reading about the sea?</span><span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>下線部②の <span class="en">cleaning</span> と同じはたらきをしている <span class="en">-ing</span> の語を、本文の最後の2文から英語1語で書きぬく。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 28;">
+<li>動名詞を使って、自分の趣味や得意なことを1文で書く。<span class="hint">例：My hobby is playing the guitar.</span><span class="write"></span></li>
+<li>How about 〜ing? を使って、友だちにすることを1つすすめる文を書く。<span class="hint">例：How about reading this article?</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、<strong>その位置が名詞の位置か</strong>を確かめ、次に<strong>前の語が前置詞か、動名詞だけをとる動詞か</strong>まで戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　cleaning</span><p class="a-why"><span class="en">enjoy</span> のうしろは動名詞だけです。主語の中心は <span class="en">students</span> ですが、選ぶ形には関係しません。</p></li>
+<li><span class="a-key">イ　doing</span><p class="a-why"><span class="en">finish</span> のうしろも動名詞だけです。<span class="en">finish to do</span> とはしません。</p></li>
+<li><span class="a-key">エ　drawing</span><p class="a-why"><span class="en">at</span> は前置詞なので、うしろは動名詞です。<span class="en">be good at 〜ing</span> で「〜するのが得意だ」です。</p></li>
+<li><span class="a-key">ウ　to go</span><p class="a-why"><span class="en">decide</span> のうしろは <span class="en">to</span> ＋ 原形だけです。これからの動作について言う語です。</p></li>
+<li><span class="a-key">エ　Collecting</span><p class="a-why">主語の位置なので名詞のはたらきが要ります。文の動詞は <span class="en">is</span> で、すでに1つあります。</p></li>
+
+<li><span class="a-key">I like listening to music.</span><p class="a-why"><span class="en">like</span> は動名詞も <span class="en">to</span> ＋ 原形もとりますが、語群に <span class="en">listening</span> があるので動名詞です。<span class="en">listen to 〜</span> の <span class="en">to</span> はそのまま残します。</p></li>
+<li><span class="a-key">My sister finished reading the book.</span><p class="a-why"><span class="en">finish</span> のうしろは動名詞です。</p></li>
+<li><span class="a-key">He stopped swimming ten minutes ago.</span><p class="a-why">「泳ぐのをやめた」なので <span class="en">stop 〜ing</span> です。<span class="en">stopped to swim</span> だと「泳ぐために立ち止まった」になります。</p></li>
+<li><span class="a-key">I'm not good at playing the piano.</span><p class="a-why">不要な語は <span class="en">to</span> です。<span class="en">at</span> のうしろは動名詞だけで、<span class="en">to</span> は入りません。</p></li>
+<li><span class="a-key">How about eating lunch in the park?</span><p class="a-why">不要な語は <span class="en">to</span> です。<span class="en">about</span> は前置詞なので、うしろは動名詞です。</p></li>
+<li><span class="a-key">I'm looking forward to meeting you.</span><p class="a-why"><span class="en">look forward to</span> の <span class="en">to</span> は前置詞なので、うしろは <span class="en">meeting</span> です。</p></li>
+
+<li><span class="a-key">I enjoyed swimming in the sea last summer.</span><p class="a-why">理由の例：<span class="en">enjoy</span> のうしろは動名詞だけだから。</p></li>
+<li><span class="a-key">Thank you for helping me with my homework.</span><p class="a-why">理由の例：<span class="en">for</span> は前置詞なので、うしろは動名詞になるから。</p></li>
+<li><span class="a-key">I'm interested in collecting old coins.</span><p class="a-why">理由の例：<span class="en">in</span> は前置詞なので、うしろは動名詞になるから。</p></li>
+<li><span class="a-key">Reading books is fun for me.</span><p class="a-why">理由の例：主語の中心は <span class="en">Reading</span> で、全体で1つのまとまりだから。<span class="en">books</span> が複数形でも <span class="en">is</span> です。</p></li>
+<li><span class="a-key">We hope to visit your town next spring.</span><p class="a-why">理由の例：<span class="en">hope</span> のうしろは <span class="en">to</span> ＋ 原形だけだから。</p></li>
+
+<li><span class="a-key">I enjoy running every morning.</span><p class="a-why"><span class="en">enjoy</span> のうしろは動名詞です。<span class="en">run</span> は子音字を重ねて <span class="en">running</span> です。</p></li>
+<li><span class="a-key">My father finished reading the newspaper.</span><p class="a-why"><span class="en">finish</span> のうしろは動名詞です。</p></li>
+<li><span class="a-key">I'm interested in protecting the sea.</span><p class="a-why"><span class="en">be interested in 〜ing</span> です。<span class="en">I am</span> と書いても正解です。</p></li>
+<li><span class="a-key">Reading the newspaper every day is a good habit.</span><p class="a-why">動名詞が主語なので、文の動詞は <span class="en">is</span> です。</p></li>
+<li><span class="a-key">We enjoyed cleaning the coast yesterday.</span><p class="a-why">5語です。<span class="en">enjoy</span> を過去形にします。</p></li>
+<li><span class="a-key">Collecting shells is fun.</span><p class="a-why">4語です。動名詞が主語なので <span class="en">is</span> です。</p></li>
+<li><span class="a-key">How about taking pictures together?</span><p class="a-why">5語です。<span class="en">about</span> のうしろは動名詞で、<span class="en">take</span> は e を取って <span class="en">taking</span> です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why"><span class="en">The members clean the coast near our town every month.</span> とあります。イの「毎週」「学校のまわり」、ウの「1人で」は本文にありません。</p></li>
+<li><span class="a-key">イ</span><p class="a-why"><span class="en">On my first day, I was surprised.</span> とあります。アは <span class="en">We don't use plastic bags</span>、ウは <span class="en">I began reading articles</span> とあるので合いません。</p></li>
+<li><span class="a-key">Articles about the sea.</span><p class="a-why"><span class="en">I began reading articles about the sea.</span> の部分です。3語で答えます。</p></li>
+<li><span class="a-key">砂の上のごみを拾うことは大変な仕事です。</span><p class="a-why"><span class="en">Picking up trash</span> が主語で「ごみを拾うこと」です。<span class="en">hard work</span> は「大変な仕事」です。</p></li>
+<li><span class="a-key">listening</span><p class="a-why">最後の2文は <span class="en">I'm interested in protecting the sea.</span> と <span class="en">Thank you for listening to my speech.</span> です。<span class="en">protecting</span> も <span class="en">listening</span> も前置詞のうしろの動名詞で、どちらも正解です。</p></li>
+
+<li><span class="a-key">（解答例）My hobby is playing the guitar.</span><p class="a-why">be動詞のうしろに動名詞のまとまりを置いた形です。<span class="en">I'm good at singing.</span> のように <span class="en">be good at 〜ing</span> を使っても正解です。</p></li>
+<li><span class="a-key">（解答例）How about reading this article?</span><p class="a-why"><span class="en">about</span> のうしろを動名詞にしていれば正解です。<span class="en">How about going to the park?</span> のような文でもよいです。</p></li>
+</ol>
+</div>
+</body>
+</html>

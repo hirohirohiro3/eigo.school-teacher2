@@ -38,33 +38,31 @@ body{
   border-radius:0 0 12px 3px;
   padding-bottom:1rem;margin-bottom:1.6rem;
 }
-.site-kicker{
-  display:inline-block;
-  font-family:"Klee One",Georgia,serif;
-  font-size:.85rem;font-weight:600;
-  background:var(--hi-be);padding:.05rem .7rem;
-  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .55rem;
-}
 .site-title{
   font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
   font-size:1.5rem;line-height:1.45;font-weight:600;margin:0 0 .45rem;
 }
 .site-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.8;}
 
-/* 学年の切り替え（2026-09-29 UPDATE-PLAN-g2g3.md 2節）。JS は使わないただのリンク */
-.grades{display:flex;gap:.4rem;flex-wrap:wrap;margin:1.05rem 0 0;padding:0;}
+/* 学年の切り替え（2026-09-29 UPDATE-PLAN-g2g3.md 2節。2026-10-01 ひろの指定で画面上部の帯に移した）。JS は使わないただのリンク */
+.topbar{
+  position:sticky;top:0;z-index:10;
+  background:var(--ink);color:var(--paper);
+  border-bottom:3px solid var(--be);
+}
+.topbar-in{max-width:34rem;margin:0 auto;padding:.6rem 1.25rem .7rem;}
+.brand{font-family:"Klee One",sans-serif;font-weight:600;font-size:.9rem;line-height:1.5;margin:0 0 .45rem;}
+.grades{display:flex;gap:.45rem;margin:0;padding:0;}
 .grades a,.grades span{
-  font-family:"Klee One",sans-serif;font-size:.86rem;font-weight:600;
-  line-height:1.6;white-space:nowrap;
-  padding:.22rem .8rem;
-  border:2px solid var(--ink);border-radius:var(--hand-2);
-  background:var(--panel);color:var(--ink);text-decoration:none;
+  flex:1 1 0;min-width:0;text-align:center;
+  font-family:"Klee One",sans-serif;font-size:1.05rem;font-weight:600;line-height:1.3;
+  padding:.5rem .2rem;
+  border:2px solid var(--ink-2);border-radius:8px;
+  color:var(--paper);text-decoration:none;
 }
-.grades span.here{background:var(--ink);border-color:var(--ink);color:var(--paper);}
-.grades span.off{
-  background:transparent;border-color:var(--rule);border-style:dashed;
-  color:var(--ink-3);font-weight:400;
-}
+.grades span.here{background:var(--paper);border-color:var(--paper);color:var(--ink);}
+.grades span.off{color:var(--ink-3);border-style:dashed;font-weight:400;font-size:.9rem;}
+.grades small{font-size:.7rem;margin-left:.2rem;}
 
 /* 共通リンク（基本語リストなど） */
 .tools{margin:0 0 2rem;padding:0;list-style:none;}
@@ -161,27 +159,31 @@ h2 span{
   body{font-size:10.5pt;background:#fff;}
   .sheet{max-width:none;padding:0;}
   .units > li,.tools li,.review{break-inside:avoid;}
-  .site-kicker{transform:none;}
+  .topbar{position:static;}
 }
 </style>
 </head>
 <body>
+<header class="topbar">
+  <div class="topbar-in">
+    <p class="brand">中学英語　リスタート</p>
+    <nav class="grades" aria-label="学年">
+      <a href="../index.html">中1</a>
+      <span class="here">中2</span>
+      <a href="../g3/index.html">中3</a>
+    </nav>
+  </div>
+</header>
 <div class="sheet">
 
 <header class="site-head">
-  <p class="site-kicker">中学英語 リスタート</p>
   <h1 class="site-title">ワークブックと単語帳　中2</h1>
-  <p class="site-lead">中2の内容を16単元に分けて積み上げる教材です。各単元はワークブック（解説＋設問＋解答）と単語帳の2本立てで、中1と同じ作りになっています。これから1単元ずつ足していきます。</p>
-  <nav class="grades" aria-label="学年">
-    <a href="../index.html">中1</a>
-    <span class="here">中2</span>
-    <span class="off">中3　準備中</span>
-  </nav>
+  <p class="site-lead">中2の内容を16単元に分けて積み上げる教材です。各単元はワークブック（解説＋設問＋解答）と単語帳の2本立てで、中1と同じ作りになっています。16単元がそろいました。部ごとの総合テストを順に足していきます。</p>
 </header>
 
 <ul class="tools">
-  <li><span class="off"><span class="label">単語テスト</span><span class="desc">中2の語は準備中　中2の16単元がそろったあとに足します</span></span></li>
-  <li><a href="../word-test.html"><span class="label">単語テスト（中1）</span><span class="desc">中1の範囲の単語テスト　単元・部・中1全体から出題</span></a></li>
+  <li><a href="../word-test.html?g=2"><span class="label">単語テスト</span><span class="desc">中2の単元・部・中2全体から範囲を選んで、ランダムに出題</span></a></li>
+  <li><a href="../word-test.html?g=1"><span class="label">単語テスト（中1）</span><span class="desc">中1の範囲の単語テスト　単元・部・中1全体から出題</span></a></li>
   <li><a href="../basic-words.html"><span class="label">基本語リスト</span><span class="desc">単語帳に立てずに使う77語　代名詞・be動詞・冠詞など</span></a></li>
   <li><a href="../word-index.html"><span class="label">総索引</span><span class="desc">中1の全16単元の見出し語479語をアルファベット順に</span></a></li>
 </ul>
@@ -195,7 +197,7 @@ h2 span{
     <p class="u-links three">
       <a class="work" href="unit01_past-progressive.html">ワークブック</a>
       <a class="vocab" href="vocab01_past-progressive.html">単語帳　36語</a>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="test" href="../word-test.html?unit=2-1">単語テスト</a>
     </p>
   </li>
   <li class="ready">
@@ -203,7 +205,7 @@ h2 span{
     <p class="u-links three">
       <a class="work" href="unit02_will.html">ワークブック</a>
       <a class="vocab" href="vocab02_will.html">単語帳　36語</a>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="test" href="../word-test.html?unit=2-2">単語テスト</a>
     </p>
   </li>
   <li class="ready">
@@ -211,15 +213,15 @@ h2 span{
     <p class="u-links three">
       <a class="work" href="unit03_be-going-to.html">ワークブック</a>
       <a class="vocab" href="vocab03_be-going-to.html">単語帳　36語</a>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="test" href="../word-test.html?unit=2-3">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 4</span><span class="u-title">接続詞 when / if / because / that</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit04_conjunctions.html">ワークブック</a>
+      <a class="vocab" href="vocab04_conjunctions.html">単語帳　37語</a>
+      <a class="test" href="../word-test.html?unit=2-4">単語テスト</a>
     </p>
   </li>
 </ul>
@@ -227,8 +229,8 @@ h2 span{
 <div class="review" id="review1">
   <p class="r-head">第1部のまとめ<small>Unit 1〜4</small></p>
   <p class="u-links">
-    <span class="soon">総合テスト　準備中</span>
-    <span class="soon">単語テスト　準備中</span>
+    <a class="test" href="review01.html">総合テスト</a>
+    <a class="test" href="../word-test.html?part=2-1">単語テスト　145語</a>
   </p>
 </div>
 
@@ -236,36 +238,36 @@ h2 span{
 <p class="part-note">主語と動詞のうしろに何が並ぶかを固めます（存在・助動詞・目的語が2つ・補語）。</p>
 
 <ul class="units">
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 5</span><span class="u-title">There is / There are</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit05_there-is.html">ワークブック</a>
+      <a class="vocab" href="vocab05_there-is.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-5">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 6</span><span class="u-title">助動詞 must / have to</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit06_must-have-to.html">ワークブック</a>
+      <a class="vocab" href="vocab06_must-have-to.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-6">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 7</span><span class="u-title">助動詞 may / should と Will you / Shall I / Shall we</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit07_may-should.html">ワークブック</a>
+      <a class="vocab" href="vocab07_may-should.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-7">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 8</span><span class="u-title">目的語が2つの文（SVOO）と 補語のある文（SVOC）</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit08_svoo-svoc.html">ワークブック</a>
+      <a class="vocab" href="vocab08_svoo-svoc.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-8">単語テスト</a>
     </p>
   </li>
 </ul>
@@ -273,8 +275,8 @@ h2 span{
 <div class="review" id="review2">
   <p class="r-head">第2部のまとめ<small>Unit 5〜8</small></p>
   <p class="u-links">
-    <span class="soon">総合テスト　準備中</span>
-    <span class="soon">単語テスト　準備中</span>
+    <a class="test" href="review02.html">総合テスト</a>
+    <a class="test" href="../word-test.html?part=2-2">単語テスト　144語</a>
   </p>
 </div>
 
@@ -282,36 +284,36 @@ h2 span{
 <p class="part-note">動詞を名詞・形容詞・副詞の位置に置く形を扱います。</p>
 
 <ul class="units">
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 9</span><span class="u-title">不定詞（名詞的用法）</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit09_infinitive-noun.html">ワークブック</a>
+      <a class="vocab" href="vocab09_infinitive-noun.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-9">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 10</span><span class="u-title">不定詞（副詞的用法）</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit10_infinitive-adverb.html">ワークブック</a>
+      <a class="vocab" href="vocab10_infinitive-adverb.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-10">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 11</span><span class="u-title">不定詞（形容詞的用法）と 疑問詞 + to 不定詞</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit11_infinitive-adjective.html">ワークブック</a>
+      <a class="vocab" href="vocab11_infinitive-adjective.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-11">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 12</span><span class="u-title">動名詞</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit12_gerund.html">ワークブック</a>
+      <a class="vocab" href="vocab12_gerund.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-12">単語テスト</a>
     </p>
   </li>
 </ul>
@@ -319,8 +321,8 @@ h2 span{
 <div class="review" id="review3">
   <p class="r-head">第3部のまとめ<small>Unit 9〜12</small></p>
   <p class="u-links">
-    <span class="soon">総合テスト　準備中</span>
-    <span class="soon">単語テスト　準備中</span>
+    <a class="test" href="review03.html">総合テスト</a>
+    <a class="test" href="../word-test.html?part=2-3">単語テスト　144語</a>
   </p>
 </div>
 
@@ -328,36 +330,36 @@ h2 span{
 <p class="part-note">比較と受動態。中2の履修範囲をここで閉じます。</p>
 
 <ul class="units">
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 13</span><span class="u-title">比較級・最上級（-er / -est）</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit13_comparative-er.html">ワークブック</a>
+      <a class="vocab" href="vocab13_comparative-er.html">単語帳　31語</a>
+      <a class="test" href="../word-test.html?unit=2-13">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 14</span><span class="u-title">more / most と as 〜 as</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit14_comparative-more.html">ワークブック</a>
+      <a class="vocab" href="vocab14_comparative-more.html">単語帳　36語</a>
+      <a class="test" href="../word-test.html?unit=2-14">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 15</span><span class="u-title">受動態（肯定・否定・疑問）</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit15_passive.html">ワークブック</a>
+      <a class="vocab" href="vocab15_passive.html">単語帳　32語</a>
+      <a class="test" href="../word-test.html?unit=2-15">単語テスト</a>
     </p>
   </li>
-  <li>
+  <li class="ready">
     <p class="u-head"><span class="u-no">Unit 16</span><span class="u-title">受動態の発展（by 以外の前置詞・過去形との識別）</span></p>
     <p class="u-links three">
-      <span class="soon">ワークブック　準備中</span>
-      <span class="soon">単語帳　準備中</span>
-      <span class="soon">単語テスト　準備中</span>
+      <a class="work" href="unit16_passive-advanced.html">ワークブック</a>
+      <a class="vocab" href="vocab16_passive-advanced.html">単語帳　35語</a>
+      <a class="test" href="../word-test.html?unit=2-16">単語テスト</a>
     </p>
   </li>
 </ul>
@@ -365,16 +367,16 @@ h2 span{
 <div class="review" id="review4">
   <p class="r-head">第4部のまとめ<small>Unit 13〜16</small></p>
   <p class="u-links">
-    <span class="soon">総合テスト　準備中</span>
-    <span class="soon">単語テスト　準備中</span>
+    <a class="test" href="review04.html">総合テスト</a>
+    <a class="test" href="../word-test.html?part=2-4">単語テスト　134語</a>
   </p>
 </div>
 
 <div class="review final" id="review-final">
   <p class="r-head">中2のまとめ<small>全16単元</small></p>
   <p class="u-links">
-    <span class="soon">総まとめテスト　準備中</span>
-    <span class="soon">単語テスト　準備中</span>
+    <a class="test" href="review-final.html">総まとめテスト</a>
+    <a class="test" href="../word-test.html?grade=2">単語テスト　567語</a>
   </p>
 </div>
 

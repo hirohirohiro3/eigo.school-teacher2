@@ -26,6 +26,7 @@ nav・ヘッダー・提出バー・結果画面・共有のモーダル・JS �
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -45,11 +46,56 @@ GRADE_PARTS = {
 }
 PARTS = GRADE_PARTS[1]
 
+# 学年ごとの単元数（PLAN-g2g3.md「1. 単元数と部の構成」）
+GRADE_UNITS = {1: 16, 2: 16, 3: 15}
+
 
 def out_dir(grade: int) -> Path:
     d = ROOT / GRADE_DIR[grade]
     d.mkdir(exist_ok=True)
     return d
+
+
+def grade_index(grade: int) -> Path:
+    """その学年の目次。中1だけルートの index.html。"""
+    return ROOT / "index.html" if grade == 1 else ROOT / GRADE_DIR[grade] / "index.html"
+
+
+def review_home(grade: int) -> str:
+    """総合テストのページから、その学年の目次へ戻る相対パス。
+
+    中1の総合テストは units/ にあり目次はルート（../index.html）。
+    中2以降は目次が同じフォルダにある（g2/index.html）。
+    """
+    return "../index.html" if grade == 1 else "index.html"
+
+
+def unit_table(grade: int) -> str:
+    """結果画面の「Unit ごとの正答率」で使う単元名と slug の表（JS のリテラル）。
+
+    その学年の目次の単元カードから機械で作る。手で二重に持たないので、
+    目次が正ならこの表も正になる（check.py --review が両者の一致を見る）。
+    """
+    path = grade_index(grade)
+    if not path.exists():
+        raise SystemExit("%s が無いので単元名の表を作れません" % path.name)
+    src = path.read_text(encoding="utf-8")
+    rows = {}
+    for li in re.findall(r'<li class="[^"]*">(.*?)</li>', src, re.S):
+        m = re.search(r'<span class="u-no">Unit (\d+)</span>'
+                      r'<span class="u-title">(.*?)</span>', li, re.S)
+        h = re.search(r'<a class="work" href="(?:units/)?unit\d\d_([a-z0-9\-]+)\.html"', li)
+        if m and h:
+            rows[int(m.group(1))] = (m.group(2), h.group(1))
+    miss = [u for u in range(1, GRADE_UNITS[grade] + 1) if u not in rows]
+    if miss:
+        raise SystemExit("%s の目次に Unit %s の単元カードが無いので、"
+                         "総合テストの単元名の表を作れません"
+                         % (GRADE_DIR[grade], "・".join(str(u) for u in miss)))
+    lines = [" [%s,%s]" % (json.dumps(rows[u][0], ensure_ascii=False),
+                           json.dumps(rows[u][1], ensure_ascii=False))
+             for u in range(1, GRADE_UNITS[grade] + 1)]
+    return "[\n" + ",\n".join(lines) + "\n]"
 
 
 def build_review(which: str, name: str, rng: str, body: str, grade: int = 1) -> Path:
@@ -73,6 +119,8 @@ def build_review(which: str, name: str, rng: str, body: str, grade: int = 1) -> 
               .replace("{{NAME}}", name)
               .replace("{{RANGE}}", rng)
               .replace("{{WTQ}}", wtq)
+              .replace("{{HOME}}", review_home(grade))
+              .replace("{{UNITS}}", unit_table(grade))
               .replace("{{TEST}}", test)
               .replace("{{BODY}}", body))
     dest = out_dir(grade) / fname

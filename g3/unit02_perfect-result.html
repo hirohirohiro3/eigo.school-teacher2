@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 2　現在完了（完了・結果）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab02_perfect-result.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 2</p>
+<h1 class="unit-title">現在完了（完了・結果）</h1>
+<p class="unit-lead">Unit 1 では <strong>have ／ has ＋ 過去分詞</strong>で「〜したことがある」という経験を言いました。この単元では同じ形を使って、<strong>「〜してしまった」「もう〜した」</strong>と言う使い方を学びます。目じるしになる語は <span class="en">just</span>・<span class="en">already</span>・<span class="en">yet</span> の3つです。形は Unit 1 とまったく同じで、<strong>新しく覚えるのは意味と、この3語の置く位置だけ</strong>です。</p>
+</header>
+
+<h2><span>「もう終わった」を言う形</span></h2>
+
+<p>過去形の <span class="en">I did my homework.</span> は「宿題をした」という<strong>過去の出来事</strong>を言う文です。それに対して <span class="en">I have done my homework.</span> は「宿題をしてしまった」、つまり<strong>その作業が今の時点で終わっている</strong>ことを言う文です。したのは過去ですが、文が伝えているのは「今はもう終わっている」という今の状態です。</p>
+
+<div class="diagram">
+<p class="diagram-cap">同じ have ／ has ＋ 過去分詞で、今の時点の「終わっている」を表す</p>
+<div class="flow">
+<span class="node">have ／ has<span class="node-label">今の時点で</span></span>
+<span class="link">
+<span class="link-word">＋</span>
+<span class="rail"></span>
+</span>
+<span class="node">過去分詞<span class="node-label">〜してしまった</span></span>
+</div>
+</div>
+
+<p><strong>なぜ同じ形で意味が変わるのか。</strong>現在完了は「過去にしたことを今の時点で持っている」という形です。その「持っている」中身が<strong>回数や体験</strong>なら Unit 1 の経験、<strong>作業の終わり</strong>なら完了になります。形が同じなので、どちらの意味かは<strong>いっしょに使われている語と話の流れ</strong>で決まります。</p>
+
+<p>例文を並べます。<span class="en">I have washed the dishes.</span>（私は皿を洗ってしまいました）、<span class="en">Aya has finished her speech.</span>（アヤはスピーチを終えました）、<span class="en">We have painted the stage.</span>（私たちは舞台をぬり終えました）、<span class="en">The guests have arrived.</span>（客は着きました）。</p>
+
+<h2><span><span class="en">just</span>・<span class="en">already</span>・<span class="en">yet</span> の意味と位置</span></h2>
+
+<p>完了の文には、この3語がよく入ります。<strong><span class="en">just</span> と <span class="en">already</span> は have ／ has と過去分詞の間、<span class="en">yet</span> は文の終わりです。</strong>位置が決まっているので、まず表で覚えます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>意味</th><th>使う文</th><th>位置</th><th>例</th></tr>
+<tr><td><span class="en">just</span></td><td>たった今</td><td>肯定文</td><td class="be-cell"><span class="en">have</span> と過去分詞の間</td><td><span class="en">He has just come back.</span></td></tr>
+<tr><td><span class="en">already</span></td><td>もう、すでに</td><td>肯定文</td><td class="be-cell"><span class="en">have</span> と過去分詞の間</td><td><span class="en">I have already printed the program.</span></td></tr>
+<tr><td><span class="en">yet</span></td><td>もう（疑問文）<br>まだ（否定文）</td><td>疑問文・否定文</td><td class="be-cell">文の終わり</td><td><span class="en">Have you printed the program yet?</span></td></tr>
+</table>
+</div>
+
+<p>例文を足します。<span class="en">The train has just left the platform.</span>（電車はたった今ホームを出ました）、<span class="en">My mother has already ordered the costumes.</span>（母はもう衣装を注文しました）、<span class="en">Taku has just reserved the seats.</span>（タクはたった今席を予約しました）、<span class="en">We have already decorated the ceiling.</span>（私たちはもう天井をかざりました）。</p>
+
+<h3>いろいろな場面の例文</h3>
+
+<p>完了の文は、準備や連絡の場面でよく使います。<span class="en">Our teacher has just announced the program.</span>（先生はたった今プログラムを発表しました）、<span class="en">Aya has already selected the music for the play.</span>（アヤはもう劇のための音楽を選びました）、<span class="en">We have nearly finished the preparation.</span>（私たちは準備をほとんど終えました）、<span class="en">The guests have already arrived at the hall.</span>（客はもう会場に着きました）。</p>
+
+<p>「今はもうこうなっている」と言いたいときにも使います。<span class="en">I have lost my glasses.</span>（私はめがねをなくしてしまいました）、<span class="en">My uncle has just sent a parcel.</span>（おじはたった今小包を送りました）、<span class="en">The tickets for the theater are sold out.</span>（劇場のチケットは売り切れです）、<span class="en">My sister has gone to the theater, so she is not at home.</span>（姉は劇場へ行ってしまったので、今家にいません）。</p>
+
+<p>乗り物や道具の話でも同じ形です。<span class="en">The subway has already left the platform.</span>（地下鉄はもうホームを出ました）、<span class="en">My father has just taken a taxi to the station.</span>（父はたった今駅までタクシーに乗りました）、<span class="en">I have already fixed my bicycle.</span>（私はもう自分の自転車を直しました）、<span class="en">My mother has just made coffee.</span>（母はたった今コーヒーをいれました）。</p>
+
+<p>新聞や部活の話題でも出ます。<span class="en">The reporter has already written the headline.</span>（記者はもう見出しを書きました）、<span class="en">He has just finished the interview.</span>（彼はたった今インタビューを終えました）、<span class="en">Our team has already got a good score.</span>（私たちのチームはもうよい得点をとりました）、<span class="en">Ken has already washed the dishes.</span>（ケンはもう皿を洗いました）。</p>
+
+<h3><span class="en">yet</span> は疑問文と否定文で意味が変わる</h3>
+
+<p><span class="en">yet</span> は、<strong>疑問文では「もう」、否定文では「まだ」</strong>になります。同じ語で意味が反対のように見えるので、ここでつまずく人が多いところです。置く位置はどちらも文の終わりです。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">Have you printed the program yet?</span>　（あなたは<strong>もう</strong>プログラムを印刷しましたか）</span>
+<span class="tf-arrow">↓　同じ yet でも、否定文に置くと意味が変わる</span>
+<span class="tf-line"><span class="en">I have not printed the program yet.</span>　（私は<strong>まだ</strong>プログラムを印刷していません）</span>
+</div>
+
+<p>覚え方はひとつです。<strong><span class="en">yet</span> は「終わったか／終わっていないか」をたずねる語</strong>だと考えます。たずねる文なら「もう（終わった？）」、打ち消す文なら「まだ（終わっていない）」になります。語そのものが2つの意味を持っているのではなく、文の形が意味を決めています。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文の形</th><th>英文</th><th>意味</th></tr>
+<tr><td>疑問文</td><td><span class="en">Have you eaten lunch yet?</span></td><td>あなたはもう昼食を食べましたか。</td></tr>
+<tr><td>否定文</td><td><span class="en">I have not eaten lunch yet.</span></td><td>私はまだ昼食を食べていません。</td></tr>
+<tr><td>疑問文</td><td><span class="en">Has the delivery arrived yet?</span></td><td>配達はもう着きましたか。</td></tr>
+<tr><td>否定文</td><td><span class="en">The delivery has not arrived yet.</span></td><td>配達はまだ着いていません。</td></tr>
+</table>
+</div>
+
+<p>答え方は Unit 1 と同じで <span class="en">have</span> ／ <span class="en">has</span> を使います。<span class="en">Yes, I have.</span> ／ <span class="en">No, I haven't.</span> です。<span class="en">No, not yet.</span>（いいえ、まだです）は会話でよく使う短い答え方です。</p>
+
+<h2><span>「完了」と「結果」は分けなくてよい</span></h2>
+
+<p>現在完了の完了の使い方には、<strong>作業が終わったことに重さを置く言い方</strong>と、<strong>終わった結果が今も続いていることに重さを置く言い方</strong>があります。前者を「完了」、後者を「結果」と呼ぶ本もあります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>英文</th><th>意味</th><th>呼び名</th></tr>
+<tr><td><span class="en">I have just printed the program.</span></td><td>私はたった今プログラムを印刷しました。</td><td>完了</td></tr>
+<tr><td><span class="en">I have lost my ticket.</span></td><td>私は切符をなくしてしまいました。（だから今持っていない）</td><td>結果</td></tr>
+</table>
+</div>
+
+<p><strong>この教材では、2つを分けて答えさせる問題は出しません。</strong>どちらも <span class="en">have</span> ／ <span class="en">has</span> ＋ 過去分詞で、形がまったく同じだからです。英語を書くときにも読むときにも、呼び名を選ぶ作業は必要ありません。<strong>大事なのは「今どうなっているか」を日本語に表すこと</strong>です。<span class="en">I have lost my ticket.</span> なら「なくしてしまった」まで訳せていればよく、それを「結果」と名づける必要はありません。</p>
+
+<h2><span><span class="en">have gone to</span> 〜「行ってしまった」</span></h2>
+
+<p>Unit 1 で、「〜へ行ったことがある」は <span class="en">have been to 〜</span> だと学びました。<strong><span class="en">have gone to 〜</span> は「〜へ行ってしまって、今ここにいない」</strong>という意味になります。行った結果が今も続いているので、完了の使い方です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>英文</th><th>意味</th><th>今どこにいるか</th></tr>
+<tr><td><span class="en">Taku has been to Osaka twice.</span></td><td>タクは2回大阪へ行ったことがあります。</td><td>今はここにいる（経験）</td></tr>
+<tr><td><span class="en">Taku has gone to Osaka.</span></td><td>タクは大阪へ行ってしまいました。</td><td>今はここにいない（完了）</td></tr>
+</table>
+</div>
+
+<p><span class="en">go</span> の過去分詞は <span class="en">gone</span> です。過去形の <span class="en">went</span> とはちがう形なので、綴りに注意します。<span class="en">My brother has gone to the mall.</span>（兄はショッピングモールへ行ってしまいました）のように使います。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">「今はもう終わっている」と言う文かを決める</span>
+<span class="step-d">過去の出来事だけを言うなら過去形、今の時点で終わっていることを言うなら現在完了です。</span>
+</li>
+<li>
+<span class="step-t">主語から have か has かを決める</span>
+<span class="step-d">3人称単数なら <span class="en">has</span>、それ以外は <span class="en">have</span> です。Unit 1 と同じです。</span>
+</li>
+<li>
+<span class="step-t">動詞を過去分詞にする</span>
+<span class="step-d">Unit 1 の一覧表の形を使います。「行ってしまった」は <span class="en">gone to</span> です。</span>
+</li>
+<li>
+<span class="step-t">just・already・yet を正しい位置に置く</span>
+<span class="step-d"><span class="en">just</span> ／ <span class="en">already</span> は過去分詞の前、<span class="en">yet</span> は文の終わりです。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3><span class="en">just</span> と <span class="en">just now</span></h3>
+
+<p><span class="en">just</span> は現在完了と使えますが、<strong><span class="en">just now</span>（たった今、さっき）は過去の時を表すので過去形と使います。</strong><span class="en">He has just come back.</span> は正しく、<span class="en">He has come back just now.</span> は誤りです。<span class="en">He came back just now.</span> と過去形にします。</p>
+
+<h3>過去の時を表す語とは使わない</h3>
+
+<p>Unit 1 と同じ規則です。<span class="en">yesterday</span>・<span class="en">last night</span>・〜 <span class="en">ago</span> のように<strong>過去のある時を指す語があれば、過去形</strong>を使います。<span class="en">I printed the program last night.</span> は正しく、<span class="en">I have printed the program last night.</span> は誤りです。くわしくは Unit 4 で整理します。</p>
+
+<h3>疑問文の <span class="en">already</span></h3>
+
+<p>疑問文の終わりに置く語はふつう <span class="en">yet</span> です。<span class="en">already</span> を疑問文に使うと、<strong>「えっ、もう？」という驚き</strong>の気持ちが入ります。<span class="en">Have you finished the decorations already?</span>（もう飾りを仕上げたの？）。入試では <span class="en">yet</span> を選ぶ問題のほうがはるかに多いので、まず <span class="en">yet</span> を身につけます。</p>
+
+<h3>否定文の <span class="en">yet</span> と <span class="en">never</span></h3>
+
+<p><span class="en">I have not eaten lunch yet.</span>（まだ昼食を食べていない）は「これから食べる」ことを含みます。<span class="en">I have never eaten raw fish.</span>（一度も生の魚を食べたことがない）は Unit 1 の経験で、回数が0だと言う文です。<strong><span class="en">yet</span> は「まだ終わっていない」、<span class="en">never</span> は「一度もない」</strong>と使い分けます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">I have (　　　) finished my homework.</span> に <span class="en">just</span> ／ <span class="en">already</span> ／ <span class="en">yet</span> から選ばせる</td></tr>
+<tr><td>選択</td><td>文の終わりの (　) に <span class="en">yet</span> を選ばせる。疑問文か否定文かを読ませる</td></tr>
+<tr><td>対話文</td><td><span class="en">Have you 〜 yet?</span> への答え（<span class="en">No, not yet.</span>）を選ばせる</td></tr>
+<tr><td>和文英訳</td><td>「まだ〜していません」を <span class="en">have not 〜 yet</span> で書かせる</td></tr>
+<tr><td>和文英訳</td><td>「行ってしまった」を <span class="en">has gone to</span> で書かせる。<span class="en">been</span> と書くと誤り</td></tr>
+<tr><td>読解</td><td>準備が終わったものと終わっていないものを、本文から読み分けさせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I have finished my homework yet.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I have already finished my homework.</span></div>
+<p class="contrast-why">肯定文に <span class="en">yet</span> は置けません。「もう」の意味の肯定文は <span class="en">already</span> を過去分詞の前に置きます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">Have you yet printed the program?</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">Have you printed the program yet?</span></div>
+<p class="contrast-why"><span class="en">yet</span> は文の終わりに置きます。<span class="en">have</span> と過去分詞の間には入れません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">My sister has been to the mall, so she is not here.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">My sister has gone to the mall, so she is not here.</span></div>
+<p class="contrast-why">今ここにいないことを言うので <span class="en">gone to</span> です。<span class="en">been to</span> は「行ったことがある」という経験です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The bus has already left ten minutes ago.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The bus left ten minutes ago.</span></div>
+<p class="contrast-why">〜 <span class="en">ago</span> は過去のある時を指すので、現在完了とはいっしょに使えません。過去形にします。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>「〜してしまった」「もう〜した」も <strong><span class="en">have</span> ／ <span class="en">has</span> ＋ 過去分詞</strong>です。形は Unit 1 の経験とまったく同じです。</li>
+<li><strong><span class="en">just</span>（たった今）・<span class="en">already</span>（もう）は <span class="en">have</span> と過去分詞の間</strong>、<strong><span class="en">yet</span> は文の終わり</strong>です。</li>
+<li><span class="en">yet</span> は<strong>疑問文で「もう」、否定文で「まだ」</strong>です。短い答えは <span class="en">No, not yet.</span> です。</li>
+<li>「完了」と「結果」を名づけて分ける必要はありません。「今どうなっているか」を日本語に表せていればよいです。</li>
+<li><strong><span class="en">have gone to 〜</span>は「行ってしまって今ここにいない」</strong>、<span class="en">have been to 〜</span> は「行ったことがある」です。</li>
+</ul>
+</div>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず文が疑問文・否定文・肯定文のどれかを確かめ、次に語の位置を見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">I have (　　　) printed the program for the festival.</span>
+<p class="opts"><span>ア yet</span><span>イ already</span><span>ウ ago</span><span>エ never</span></p></li>
+<li><span class="en">The tall girl with the drum (　　　) just come back from the hall.</span>
+<p class="opts"><span>ア have</span><span>イ has</span><span>ウ is</span><span>エ was</span></p></li>
+<li><span class="en">Have you washed the plates (　　　)?</span>
+<p class="opts"><span>ア already</span><span>イ just</span><span>ウ yet</span><span>エ ago</span></p></li>
+<li><span class="en">"Has the delivery arrived yet?" "No, (　　　)."</span>
+<p class="opts"><span>ア not yet</span><span>イ not ever</span><span>ウ I didn't</span><span>エ I don't</span></p></li>
+<li><span class="en">Taku (　　　) to Osaka, so he is not in the music room now.</span>
+<p class="opts"><span>ア has been</span><span>イ has gone</span><span>ウ have gone</span><span>エ is going</span></p></li>
+<li><span class="en">My father (　　　) the seats for the concert two days ago.</span>
+<p class="opts"><span>ア has reserved</span><span>イ has just reserved</span><span>ウ reserved</span><span>エ has already reserved</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>私はもう天井をかざりました。<br><span class="en">[ i / have / already / decorated / the / ceiling ] .</span><span class="write"></span></li>
+<li>電車はたった今ホームを出ました。<br><span class="en">[ the / train / has / just / left / the / platform ] .</span><span class="write"></span></li>
+<li>あなたはもう衣装を注文しましたか。<br><span class="en">[ have / you / ordered / the / costumes / yet ] ?</span><span class="write"></span></li>
+<li data-extra="1">私はまだ昼食を食べていません。<span class="hint">1語不要</span><br><span class="en">[ i / have / not / eaten / lunch / yet / already ] .</span><span class="write"></span></li>
+<li data-extra="1">兄はショッピングモールへ行ってしまいました。<span class="hint">1語不要</span><br><span class="en">[ my / brother / has / gone / to / the / mall / been ] .</span><span class="write"></span></li>
+<li>私の姉はたった今スピーチを終えました。<br><span class="en">[ my / sister / has / just / finished / her / speech ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">I have finished my homework yet.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Have you yet printed the program?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The bus has already left ten minutes ago.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My sister has been to the mall, so she is not here.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Aya have just reserved the seats for us.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">私はもう皿を洗いました。</span><span class="write"></span></li>
+<li><span class="q-ja">客はたった今着きました。</span><span class="write"></span></li>
+<li><span class="q-ja">私はまだ飾りを仕上げていません。</span><span class="write"></span></li>
+<li><span class="q-ja">私は切符をなくしてしまいました。</span><span class="write"></span></li>
+<li><span class="en">Have you</span> で始めて「あなたはもうその雑誌を読みましたか」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li>上の問いに「いいえ、まだです」と3語で答える。<span class="cond">3語</span><span class="write"></span></li>
+<li><span class="en">gone</span> を使って「タクは大阪へ行ってしまいました」と書く。<span class="cond">6語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">アヤは、文化祭の一週間前に学級新聞へ記事を書きました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">文化祭まで一週間</p>
+<p>Our school festival will start next Saturday. Our class has chosen a short play, and we have already finished many things. We have painted the stage, and we have made the costumes. Yesterday our teacher brought a big curtain from the gym, and we have put it up.</p>
+<p>But we have not done everything yet. <span class="num">①</span><span class="ul">We have not printed the program yet</span>, and two students have not learned their lines. Ken has just come back from the shop with paint for the decorations. "Have you bought the right color yet?" I asked. He showed me the can and smiled.</p>
+<p>One problem is the music. Taku, our drummer, has gone to Osaka with his family. He will come back on Friday night, so <span class="num">②</span><span class="ul">we have only one day for practice with him</span>. I am a little nervous, because I have never stood on a stage before. But I am excited, too. Please come to the gym and see our play!</p>
+<p class="reading-wc">およそ165語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア アヤのクラスは衣装をまだ作っていない。<br>
+イ アヤのクラスはもう舞台をぬり終えている。<br>
+ウ アヤは以前に何回も舞台に立ったことがある。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">Taku is not in the city now, because he has (　　　) to Osaka.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">When will the school festival start?</span><span class="write"></span></li>
+<li>下線部②から、タクと練習できる日が1日しかないのはなぜだと分かるか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li>今日すでに終えたことを1つ選び、<span class="en">already</span> を使って1文書く。<span class="hint">例：I have already washed the dishes.</span><span class="write"></span></li>
+<li>まだ終えていないことを1つ選び、<span class="en">yet</span> を使って1文書く。<span class="hint">例：I have not cleaned my room yet.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>肯定文・否定文・疑問文のどれか</strong>に戻り、次に<strong>just ／ already は過去分詞の前、yet は文の終わり</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　already</span><p class="a-why">肯定文で「もう」の意味になるのは <span class="en">already</span> です。<span class="en">yet</span> は疑問文・否定文で使います。〜 <span class="en">ago</span> は過去形と使います。<span class="en">never</span> は「一度もない」で意味が合いません。</p></li>
+<li><span class="a-key">イ　has</span><p class="a-why">主語の中心は <span class="en">The tall girl</span> で3人称単数です。<span class="en">with the drum</span> は説明なので、主語は単数のままです。<span class="en">come</span> は過去分詞なので現在完了の文です。</p></li>
+<li><span class="a-key">ウ　yet</span><p class="a-why">疑問文の終わりに置いて「もう」の意味になるのは <span class="en">yet</span> です。<span class="en">already</span> も文の終わりに置けますが、その場合は「えっ、もう？」という驚きの文になります。ここはふつうにたずねる文なので <span class="en">yet</span> です。</p></li>
+<li><span class="a-key">ア　not yet</span><p class="a-why"><span class="en">Has 〜 yet?</span> に「まだです」と答えるときは <span class="en">No, not yet.</span> です。<span class="en">didn't</span> ／ <span class="en">don't</span> は現在完了では使いません。</p></li>
+<li><span class="a-key">イ　has gone</span><p class="a-why">「今ここにいない」と書いてあるので <span class="en">has gone to</span> です。<span class="en">has been to</span> は「行ったことがある」という経験で、今ここにいることになります。主語 <span class="en">Taku</span> は3人称単数なので <span class="en">have</span> は置けません。</p></li>
+<li><span class="a-key">ウ　reserved</span><p class="a-why"><span class="en">two days ago</span> は過去のある時を指すので、現在完了とはいっしょに使えません。過去形の <span class="en">reserved</span> にします。</p></li>
+
+<li><span class="a-key">I have already decorated the ceiling.</span><p class="a-why"><span class="en">already</span> は <span class="en">have</span> と過去分詞 <span class="en">decorated</span> の間に置きます。</p></li>
+<li><span class="a-key">The train has just left the platform.</span><p class="a-why"><span class="en">just</span> も <span class="en">have</span> ／ <span class="en">has</span> と過去分詞の間です。<span class="en">leave</span> の過去分詞は <span class="en">left</span> です。</p></li>
+<li><span class="a-key">Have you ordered the costumes yet?</span><p class="a-why">疑問文なので <span class="en">have</span> を主語の前に出し、<span class="en">yet</span> は文の終わりに置きます。</p></li>
+<li><span class="a-key">I have not eaten lunch yet.</span><p class="a-why">不要な語は <span class="en">already</span> です。否定文で「まだ」の意味になるのは <span class="en">yet</span> で、文の終わりに置きます。</p></li>
+<li><span class="a-key">My brother has gone to the mall.</span><p class="a-why">不要な語は <span class="en">been</span> です。「行ってしまった（今ここにいない）」は <span class="en">has gone to</span> です。</p></li>
+<li><span class="a-key">My sister has just finished her speech.</span><p class="a-why">主語 <span class="en">my sister</span> は3人称単数なので <span class="en">has</span> です。<span class="en">just</span> は過去分詞 <span class="en">finished</span> の前に置きます。</p></li>
+
+<li><span class="a-key">I have already finished my homework.</span><p class="a-why">誤りは <span class="en">yet</span> です。肯定文には置けないので、<span class="en">already</span> を過去分詞の前に入れます。<span class="en">I have not finished my homework yet.</span> と否定文に直すこともできますが、そのときは2か所を変えることになります。</p></li>
+<li><span class="a-key">Have you printed the program yet?</span><p class="a-why">誤りは <span class="en">yet</span> の位置です。<span class="en">yet</span> は文の終わりに置きます。</p></li>
+<li><span class="a-key">The bus left ten minutes ago.</span><p class="a-why">誤りは <span class="en">has already left</span> です。〜 <span class="en">ago</span> は過去のある時を指すので過去形にします。</p></li>
+<li><span class="a-key">My sister has gone to the mall, so she is not here.</span><p class="a-why">誤りは <span class="en">been</span> です。今ここにいないことを言うので <span class="en">gone</span> に直します。</p></li>
+<li><span class="a-key">Aya has just reserved the seats for us.</span><p class="a-why">誤りは <span class="en">have</span> です。主語 <span class="en">Aya</span> は3人称単数なので <span class="en">has</span> に直します。</p></li>
+
+<li><span class="a-key">I have already washed the dishes.</span><p class="a-why">「もう」は <span class="en">already</span> で、過去分詞 <span class="en">washed</span> の前に置きます。</p></li>
+<li><span class="a-key">The guests have just arrived.</span><p class="a-why"><span class="en">guests</span> は複数なので <span class="en">have</span> です。「たった今」は <span class="en">just</span> で、過去分詞の前に置きます。</p></li>
+<li><span class="a-key">I have not finished the decorations yet.</span><p class="a-why">「まだ〜していません」は <span class="en">have not 〜 yet</span> です。<span class="en">haven't</span> と短縮してもよいです。</p></li>
+<li><span class="a-key">I have lost my ticket.</span><p class="a-why"><span class="en">lose</span> の過去分詞は <span class="en">lost</span> です。「なくしてしまった（だから今持っていない）」を現在完了で表します。</p></li>
+<li><span class="a-key">Have you read the magazine yet?</span><p class="a-why"><span class="en">read</span> は原形・過去形・過去分詞が同じ綴りです。<span class="en">yet</span> を文の終わりに置いて6語です。</p></li>
+<li><span class="a-key">No, not yet.</span><p class="a-why"><span class="en">Have you 〜 yet?</span> に「まだです」と答える短い言い方です。<span class="en">No, I haven't.</span> も正しい答えですが、ここは3語の指定です。</p></li>
+<li><span class="a-key">Taku has gone to Osaka.</span><p class="a-why">主語 <span class="en">Taku</span> は3人称単数なので <span class="en">has</span> です。<span class="en">go</span> の過去分詞は <span class="en">gone</span> で、<span class="en">went</span> は過去形です。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">We have painted the stage.</span> とあります。アは <span class="en">we have made the costumes</span> と合いません。ウは <span class="en">I have never stood on a stage before.</span> と合いません。</p></li>
+<li><span class="a-key">私たちはまだプログラムを印刷していません。</span><p class="a-why">否定文の <span class="en">yet</span> は「まだ」です。<span class="en">have not printed</span> は「印刷していない」です。</p></li>
+<li><span class="a-key">gone</span><p class="a-why">本文に <span class="en">Taku, our drummer, has gone to Osaka with his family.</span> とあります。今その市にいないので <span class="en">gone</span> が入ります。</p></li>
+<li><span class="a-key">It will start next Saturday.</span><p class="a-why">本文の <span class="en">Our school festival will start next Saturday.</span> から答えます。<span class="en">The school festival will start next Saturday.</span> も正しい答えです。</p></li>
+<li><span class="a-key">タクが大阪へ行ってしまっていて、金曜日の夜に帰ってくるから。</span><p class="a-why">直前に <span class="en">Taku, our drummer, has gone to Osaka with his family. He will come back on Friday night</span> とあります。文化祭は土曜日に始まるので、タクと練習できるのは土曜日の前の1日だけです。</p></li>
+
+<li><span class="a-key">解答例：I have already washed the dishes.</span><p class="a-why"><span class="en">already</span> は過去分詞の前に置きます。<span class="en">I have already done my homework.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：I have not cleaned my room yet.</span><p class="a-why"><span class="en">yet</span> は文の終わりに置きます。<span class="en">I haven't eaten dinner yet.</span> のようにも書けます。</p></li>
+</ol>
+</div>
+</body>
+</html>
