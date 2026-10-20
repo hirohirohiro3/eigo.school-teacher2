@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 10　分詞の後置修飾（現在分詞・過去分詞）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab10_participle.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 10</p>
+<h1 class="unit-title">分詞の後置修飾（現在分詞・過去分詞）</h1>
+<p class="unit-lead">中2 Unit 1 で <span class="en">The boy was playing tennis.</span> の <span class="en">-ing</span> 形を、中2 Unit 15 で <span class="en">The window was broken.</span> の過去分詞を学びました。この単元では、<strong>同じ2つの形を、名詞を説明するために使います</strong>。<span class="en">The boy playing tennis is Ken.</span>（テニスをしている男の子はケンです）のように、<strong>名詞のうしろに置いて「どんな名詞か」を足す</strong>形です。形は前に学んだものと同じで、<strong>はたらきが違います</strong>。この点がこの単元のすべてです。</p>
+</header>
+
+<h2><span>名詞をうしろから説明する</span></h2>
+
+<p>まず、中2 Unit 1 の進行形の文と、この単元の形を並べます。</p>
+
+<div class="transform">
+<span class="tf-line">The boy is playing tennis.</span>
+<span class="tf-arrow">（その男の子はテニスをしています）</span>
+<span class="tf-arrow">↓　is を取って、the boy の説明にする</span>
+<span class="tf-line">The boy playing tennis is Ken.</span>
+<span class="tf-arrow">（テニスをしている男の子はケンです）</span>
+</div>
+
+<p>上の文の <span class="en">playing tennis</span> は、<span class="en">is</span> と組んで<strong>文の動詞</strong>になっています。下の文の <span class="en">playing tennis</span> は <span class="en">is</span> と組んでいません。<span class="en">the boy</span> のうしろについて、<strong>「テニスをしている」という説明</strong>を足しているだけです。下の文の動詞は、うしろの <span class="en">is</span>（〜です）です。</p>
+
+<div class="term">
+<p class="term-name">分詞の後置修飾</p>
+<p class="term-def">動詞の <span class="en">-ing</span> 形（現在分詞）や過去分詞を、<strong>名詞のうしろに置いて名詞を説明する</strong>形です。現在分詞は「〜している」、過去分詞は「〜される・〜された」という意味を足します。分詞は<strong>文の動詞にはなりません</strong>。</p>
+<p class="term-ex"><span class="en">The boy playing tennis is Ken.</span>（テニスをしている男の子はケンです）<br><span class="en">This is a picture taken in Kyoto.</span>（これは京都で撮られた写真です）</p>
+</div>
+
+<p><strong>なぜ分詞が文の動詞にならないのか。</strong>中1 Unit 14 で「<span class="en">-ing</span> 形になった動詞は動詞そのものとしては働かないので be動詞と組む」と学びました。過去分詞も同じで、受動態では be動詞と組んで初めて文の動詞になります。<strong>be動詞と組んでいない分詞は、文の動詞になれず、名詞の説明にまわります。</strong>これが後置修飾です。</p>
+
+<h2><span>1語なら前、2語以上ならうしろ</span></h2>
+
+<p>分詞が<strong>1語だけ</strong>のときは、ふつうの形容詞と同じように<strong>名詞の前</strong>に置きます。<strong>うしろに語がついて2語以上のまとまり</strong>になったら、<strong>名詞のうしろ</strong>に置きます。</p>
+
+<div class="diagram">
+<p class="diagram-cap">1語のとき。名詞の前に置く</p>
+<div class="flow">
+<span class="node">a sleeping<span class="node-label">眠っている</span></span>
+<span class="link">
+<span class="link-word">→</span>
+<span class="rail"></span>
+</span>
+<span class="node">baby<span class="node-label">赤ちゃん</span></span>
+</div>
+<p class="diagram-cap">2語以上のまとまりのとき。名詞のうしろに置く</p>
+<div class="flow">
+<span class="node">a baby<span class="node-label">赤ちゃん</span></span>
+<span class="link">
+<span class="link-word">←</span>
+<span class="rail"></span>
+</span>
+<span class="node">sleeping in the bed<span class="node-label">ベッドで眠っている</span></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>分詞</th><th>1語（名詞の前）</th><th>2語以上（名詞のうしろ）</th></tr>
+<tr><td>現在分詞</td><td><span class="en">a sleeping baby</span><br>（眠っている赤ちゃん）</td><td><span class="en">a baby sleeping in the bed</span><br>（ベッドで眠っている赤ちゃん）</td></tr>
+<tr><td>過去分詞</td><td><span class="en">a broken window</span><br>（割れた窓）</td><td><span class="en">the window broken by the wind</span><br>（風で割られた窓）</td></tr>
+</table>
+</div>
+
+<p><strong>なぜうしろに回るのか。</strong>英語では、名詞を説明する語が長くなると名詞のうしろに置きます。中1で学んだ <span class="en">the book on the desk</span>（机の上の本）や、中2 Unit 11 の <span class="en">something to eat</span>（何か食べるもの）も、名詞のうしろから説明していました。分詞のまとまりも同じ並び方です。名詞の前に長いまとまりを置くと、どこからが名詞なのかが読み手にわからなくなるからです。</p>
+
+<p>1語で名詞の前に置く例も足します。<span class="en">a barking dog</span>（ほえている犬）、<span class="en">a burning candle</span>（燃えているろうそく）、<span class="en">a boiled egg</span>（ゆでられた卵）、<span class="en">a locked door</span>（かぎがかけられたドア）。どれも分詞が1語なので、ふつうの形容詞と同じ位置です。<span class="en">a dog barking at the gate</span>（門に向かってほえている犬）のように語が増えたら、うしろに回ります。</p>
+
+<p>例文を足します。<span class="en">Look at the cat sleeping on the sofa.</span>（ソファーで眠っているネコを見てください）。<span class="en">Who is the girl playing the guitar?</span>（ギターをひいている女の子はだれですか）。<span class="en">I know the man singing over there.</span>（向こうで歌っている男性を私は知っています）。<span class="en">The students waiting in the gym look tired.</span>（体育館で待っている生徒たちは疲れて見えます）。</p>
+
+<h2><span>現在分詞と過去分詞の区別</span></h2>
+
+<p>どちらを使うかは、<strong>説明される名詞が、その動作を「している」側か「される」側か</strong>で決まります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>名詞と動作の関係</th><th>使う形</th><th>例</th></tr>
+<tr><td>名詞がその動作を<strong>している</strong></td><td>現在分詞（<span class="en">-ing</span>）</td><td><span class="en">a man taking pictures</span><br>（写真を撮っている男性）</td></tr>
+<tr><td>名詞がその動作を<strong>される・された</strong></td><td>過去分詞</td><td><span class="en">pictures taken by my grandfather</span><br>（祖父によって撮られた写真）</td></tr>
+</table>
+</div>
+
+<p>迷ったら、名詞を主語にして文を作ってみます。<span class="en">The man is taking pictures.</span> は自然な文なので、男性は「撮っている」側です。<span class="en">The pictures were taken by my grandfather.</span> は受動態なので、写真は「撮られた」側です。<strong>受動態の文になる名詞には過去分詞</strong>、<strong>進行形の文になる名詞には現在分詞</strong>を使います。</p>
+
+<p>例文を足します。<span class="en">This is a song loved by many people.</span>（これは多くの人に愛されている歌です）。<span class="en">What is the language spoken in this country?</span>（この国で話されている言語は何ですか）。<span class="en">I received a letter written in English.</span>（私は英語で書かれた手紙を受け取りました）。<span class="en">This is a dictionary used in many countries.</span>（これは多くの国で使われている辞書です）。</p>
+
+<p>町の歴史を調べる場面でも、この形はよく出てきます。<span class="en">Our city museum has an exhibition of old photographs.</span>（私たちの市の博物館では、古い写真の展示をしています）。<span class="en">The photographs collected by local volunteers show our town seventy years ago.</span>（地元のボランティアによって集められた写真は、70年前の私たちの町を写しています）。<span class="en">You can see a fisherman carrying a heavy box at the harbor.</span>（港で重い箱を運んでいる漁師が見られます）。<span class="en">There is also a photograph of a festival held in the nineteenth century.</span>（19世紀に開かれた祭りの写真もあります）。</p>
+
+<p>写真のとなりには説明の札があります。<span class="en">Each photograph has a short label written by the museum staff.</span>（どの写真にも、博物館の職員によって書かれた短い説明の札がついています）。<span class="en">The label describes the scene seen in the photograph.</span>（その札は、写真に見られる場面を説明しています）。<span class="en">In one photograph, you can see a crowd gathering in front of a wooden temple.</span>（ある写真では、木造の寺の前に集まっている人の群れが見られます）。<span class="en">Another photograph shows a narrow road covered with stones.</span>（別の写真は、石でおおわれたせまい道を写しています）。<span class="en">Visitors compare these scenes with the modern town and try to recognize the same places.</span>（来館者はこうした場面を今の町とくらべ、同じ場所を見分けようとします）。<span class="en">You can also see a statue standing in the square and a fountain built by the citizens.</span>（広場に立っている像や、市民によって造られた噴水も見られます）。<span class="en">Some elderly visitors were sharing their memories with the children standing near them.</span>（年配の来館者の何人かは、近くに立っている子どもたちに思い出を話していました）。<span class="en">Some old buildings have already disappeared, but a few have been preserved by the citizens.</span>（古い建物のいくつかはすでに消えましたが、市民によって守られてきたものもいくつかあります）。</p>
+
+<p>写真がどこから来たかも、この形で説明できます。<span class="en">Some photographs were donated by families living in the neighborhood.</span>（写真のいくつかは、近所に住む家族から寄贈されました）。<span class="en">The original prints were damaged, so the staff made copies printed on new paper.</span>（元の写真は傷んでいたので、職員は新しい紙に印刷された複製を作りました）。<span class="en">One of them shows a parade passing through the old district.</span>（その1枚は、古い地区を通っていく行列を写しています）。<span class="en">People wearing traditional costumes are carrying lanterns.</span>（伝統的な衣装を着た人たちが、ちょうちんを運んでいます）。<span class="en">Behind them you can see a lighthouse standing on the coast.</span>（そのうしろには、海岸に立っている灯台が見えます）。<span class="en">Our town was once a port known for its silk, and many goods carried by ship were sold at the market.</span>（私たちの町はかつて絹で知られた港で、船で運ばれた多くの品物が市場で売られました）。<span class="en">The oldest photograph was taken more than a century ago by a photographer living in the town.</span>（いちばん古い写真は、町に住んでいた写真家によって100年以上前に撮られました）。<span class="en">The exhibition has attracted many tourists visiting the city this autumn.</span>（その展示は、この秋に市を訪れている多くの観光客を引きつけています）。</p>
+
+<h2><span>中2 Unit 1・Unit 15 との並び</span></h2>
+
+<p>この単元の形は、進行形・受動態と<strong>形がまったく同じ</strong>です。見分けるところは1つだけで、<strong>直前に be動詞があるかどうか</strong>です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>分詞の前の be動詞</th><th>はたらき</th></tr>
+<tr><td><span class="en">The boy is playing tennis.</span></td><td>ある（<span class="en">is</span>）</td><td>進行形。文の動詞</td></tr>
+<tr><td><span class="en">The boy playing tennis is Ken.</span></td><td>ない</td><td>後置修飾。<span class="en">the boy</span> の説明</td></tr>
+<tr><td><span class="en">The bridge was built in 1925.</span></td><td>ある（<span class="en">was</span>）</td><td>受動態。文の動詞</td></tr>
+<tr><td><span class="en">The bridge built in 1925 is still used.</span></td><td>ない</td><td>後置修飾。<span class="en">the bridge</span> の説明</td></tr>
+</table>
+</div>
+
+<p>後置修飾の文では、<strong>主語が「名詞 ＋ 分詞のまとまり」で長くなります</strong>。文の動詞は、そのまとまりが終わったところに出てきます。<span class="en">The bridge built in 1925</span> までが主語で、文の動詞は <span class="en">is</span> です。</p>
+
+<p>このとき、<strong>文の動詞は先頭の名詞に合わせます</strong>。<span class="en">The letters written by her are very long.</span>（彼女によって書かれた手紙はとても長い）の動詞は、<span class="en">her</span> ではなく <span class="en">letters</span> に合わせて <span class="en">are</span> です。直前の語に引きずられないことです。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">説明したい名詞を決める</span>
+<span class="step-d">「テニスをしている男の子」なら <span class="en">the boy</span>、「京都で撮られた写真」なら <span class="en">a picture</span> です。</span>
+</li>
+<li>
+<span class="step-t">名詞が「している」側か「される」側かを決める</span>
+<span class="step-d">している側なら <span class="en">-ing</span> 形、される側なら過去分詞です。名詞を主語にした文を作って確かめます。</span>
+</li>
+<li>
+<span class="step-t">分詞が1語か、2語以上のまとまりかを見る</span>
+<span class="step-d">1語なら名詞の前（<span class="en">a sleeping baby</span>）、2語以上なら名詞のうしろ（<span class="en">a baby sleeping in the bed</span>）に置きます。</span>
+</li>
+<li>
+<span class="step-t">分詞の前に be動詞を置かない</span>
+<span class="step-d">be動詞を置くと進行形や受動態になり、文の動詞が2つになってしまいます。</span>
+</li>
+<li>
+<span class="step-t">文の動詞を先頭の名詞に合わせる</span>
+<span class="step-d">まとまりが終わったところに文の動詞を置き、数は先頭の名詞に合わせます。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>過去形と過去分詞が同じ形の動詞</h3>
+
+<p><span class="en">made</span>・<span class="en">built</span>・<span class="en">used</span>・<span class="en">held</span> などは、過去形と過去分詞が同じ形です。<strong>文の中にほかに動詞があるかどうか</strong>で見分けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th><span class="en">made</span> のはたらき</th></tr>
+<tr><td><span class="en">My father made this chair.</span></td><td>文の動詞（過去形）。「作った」</td></tr>
+<tr><td><span class="en">This is a chair made by my father.</span></td><td>過去分詞。文の動詞は <span class="en">is</span>。「作られた」</td></tr>
+</table>
+</div>
+
+<p>下の文には <span class="en">is</span> という動詞がすでにあるので、<span class="en">made</span> は文の動詞になれません。<span class="en">a chair</span> の説明です。もう1つ例を置きます。<span class="en">A factory built near the port produced large ships.</span>（港の近くに建てられた工場は、大きな船を生産しました）。この文の動詞は <span class="en">produced</span> で、<span class="en">built near the port</span> は <span class="en">a factory</span> の説明です。読解でこの形に出会ったら、<strong>まず文の動詞を1つ見つける</strong>と、残りの分詞が説明だとわかります。</p>
+
+<h3>exciting と excited</h3>
+
+<p>気持ちを表す動詞の分詞は、名詞の前に1語で置くことが多い形です。<strong>人をわくわくさせる側には現在分詞、わくわくさせられる側には過去分詞</strong>を使います。<span class="en">It was an exciting game.</span>（それはわくわくする試合でした）。<span class="en">The excited fans stood up.</span>（わくわくしたファンたちは立ち上がりました）。<span class="en">surprising</span> と <span class="en">surprised</span>、<span class="en">interesting</span> と <span class="en">interested</span> も同じ分け方です。<span class="en">It was a disappointing result.</span>（それはがっかりする結果でした）。<span class="en">The disappointed players left the field quietly.</span>（がっかりした選手たちは静かにグラウンドを去りました）。</p>
+
+<h3>分詞のまとまりは主語のうしろにも目的語のうしろにも置ける</h3>
+
+<p>名詞であれば、文のどこにある名詞でも説明できます。主語なら <span class="en">The girl reading a book on the bench is my sister.</span>（ベンチで本を読んでいる女の子は私の妹です）、目的語なら <span class="en">Do you know the man singing over there?</span>（向こうで歌っている男性を知っていますか）です。<span class="en">The man repairing the roof is a carpenter.</span>（屋根を修理している男性は大工です）。<span class="en">We watched a carpenter repairing the roof.</span>（私たちは屋根を修理している大工を見ました）。同じまとまりが、主語にも目的語にもつきます。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">a picture (　) in Kyoto</span> の空所に <span class="en">taken</span> と <span class="en">taking</span> を並べて選ばせる</td></tr>
+<tr><td>語順</td><td>名詞と分詞のまとまりを並べさせる。余分な <span class="en">is</span>・<span class="en">was</span> を混ぜて出す</td></tr>
+<tr><td>誤文訂正</td><td>文の動詞が2つある文、現在分詞と過去分詞を取り違えた文を直させる</td></tr>
+<tr><td>英作文</td><td>「〜で作られた」「〜している人」を英語にさせる</td></tr>
+<tr><td>読解</td><td>長い主語のどこまでが主語かを読み取らせる。下線部和訳で出る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The boy plays tennis is Ken.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The boy playing tennis is Ken.</span></div>
+<p class="contrast-why">文の動詞は <span class="en">is</span> の1つだけです。<span class="en">the boy</span> を説明する部分は <span class="en">-ing</span> 形にします。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">This is a picture taking in Kyoto.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">This is a picture taken in Kyoto.</span></div>
+<p class="contrast-why">写真は「撮られた」側です。される側には過去分詞を使います。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The man is standing by the door is my uncle.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The man standing by the door is my uncle.</span></div>
+<p class="contrast-why">分詞の前に be動詞を置くと、文の動詞が2つになります。説明の部分には be動詞を入れません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">Look at the sleeping on the sofa cat.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">Look at the cat sleeping on the sofa.</span></div>
+<p class="contrast-why">2語以上のまとまりは名詞のうしろに置きます。前に置けるのは1語のときだけです。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The letters written by her is very long.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The letters written by her are very long.</span></div>
+<p class="contrast-why">文の動詞は先頭の名詞 <span class="en">letters</span> に合わせます。直前の <span class="en">her</span> に合わせません。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>分詞は be動詞と組まないとき、<strong>名詞を説明する</strong>はたらきになる。</li>
+<li>名詞が<strong>している側なら現在分詞（<span class="en">-ing</span>）、される側なら過去分詞</strong>。</li>
+<li><strong>1語なら名詞の前、2語以上のまとまりなら名詞のうしろ</strong>に置く。</li>
+<li>進行形・受動態との違いは、<strong>分詞の直前に be動詞があるかどうか</strong>。</li>
+<li>主語が長くなっても、<strong>文の動詞は先頭の名詞に合わせる</strong>。</li>
+</ul>
+</div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず、空所の名詞が「している」側か「される」側かを見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">Look at the cat (　　　) on the sofa.</span>
+<p class="opts"><span>ア sleeping</span><span>イ sleeps</span><span>ウ slept</span><span>エ is sleeping</span></p></li>
+<li><span class="en">This is a picture (　　　) by my grandfather.</span>
+<p class="opts"><span>ア taken</span><span>イ taking</span><span>ウ took</span><span>エ takes</span></p></li>
+<li><span class="en">The language (　　　) in Brazil is Portuguese.</span>
+<p class="opts"><span>ア spoken</span><span>イ speaking</span><span>ウ speaks</span><span>エ spoke</span></p></li>
+<li><span class="en">The students (　　　) in the gym look tired.</span>
+<p class="opts"><span>ア waiting</span><span>イ waited</span><span>ウ wait</span><span>エ are waiting</span></p></li>
+<li><span class="en">The books written by this author (　　　) popular among young people.</span>
+<p class="opts"><span>ア are</span><span>イ is</span><span>ウ be</span><span>エ was</span></p></li>
+<li><span class="en">(　　　) is my brother.</span>
+<p class="opts"><span>ア The boy running over there</span><span>イ The running boy over there</span><span>ウ Running the boy over there</span><span>エ The boy runs over there</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>ソファーで眠っているネコを見てください。<br><span class="en">[ look / at / the / cat / sleeping / on / the / sofa ] .</span><span class="write"></span></li>
+<li>これは私の祖父によって撮られた写真です。<br><span class="en">[ this / is / a / picture / taken / by / my / grandfather ] .</span><span class="write"></span></li>
+<li data-extra="1">向こうで走っている男の子は私の兄です。<span class="hint">1語不要</span><br><span class="en">[ the / boy / running / over / there / is / my / brother / runs ] .</span><span class="write"></span></li>
+<li>これは多くの人に愛されている歌です。<br><span class="en">[ this / is / a / song / loved / by / many / people ] .</span><span class="write"></span></li>
+<li data-extra="1">ギターをひいている女の子はだれですか。<span class="hint">1語不要</span><br><span class="en">[ who / is / the / girl / playing / the / guitar / plays ] ?</span><span class="write"></span></li>
+<li>100年前に建てられたその橋は、今も使われています。<br><span class="en">[ the / bridge / built / one / hundred / years / ago / is / still / used ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">The boy plays tennis is Ken.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">This is a picture taking in Kyoto.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The man is standing by the door is my uncle.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The letters written by her is very long.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Look at the sleeping on the sofa cat.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">ベンチで本を読んでいる女の子は私の妹です。</span><span class="write"></span></li>
+<li><span class="q-ja">これは中国で作られたカップです。</span><span class="write"></span></li>
+<li><span class="q-ja">私は英語で書かれた手紙を受け取りました。</span><span class="write"></span></li>
+<li><span class="q-ja">向こうで歌っている男性を知っていますか。</span><span class="write"></span></li>
+<li><span class="en">spoken</span> を使って「この国で話されている言語は何ですか」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li><span class="en">Look at</span> ではじめて「空を飛んでいる鳥たちを見てください」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li><span class="en">used</span> を使って「これは多くの国で使われている辞書です」と書く。<span class="cond">8語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">中学生が書いたスピーチの原稿です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">古い写真の中の町</p>
+<p>Last month my class visited an exhibition held at the city museum. It showed about fifty old photographs taken in our town around seventy years ago. Most of them were collected by local volunteers.</p>
+<p>The first photograph showed a busy harbor. Many men carrying heavy boxes were walking along the shore. There was also a small girl standing next to a boat. She was holding a fish almost as long as her arm.</p>
+<p>Another photograph showed the main street. There were no cars on the street. I could see people riding bicycles and shops covered with signs painted by hand. <span class="num">①</span><span class="ul">I was surprised to find a bridge built over the river</span>. I cross the same bridge every day. It has been there for a long time, but I have never learned about its history.</p>
+<p>A man working as a guide at the museum told us that our town has changed a lot. "These photographs keep the memories of the people living here," he said. After the visit, I decided to ask my grandmother about the town in her childhood.</p>
+<p class="reading-wc">およそ180語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 展示された写真の多くは、地元のボランティアが集めたものだった。<br>
+イ 筆者は展示を見るまで、その橋を見たことがなかった。<br>
+ウ 博物館で案内をしていたのは、筆者の祖母だった。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語をそれぞれ書く。<br><span class="en">In the first photograph, many men were (　　　) heavy boxes. In another photograph, the shops were covered with signs (　　　) by hand.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">What was the small girl in the photograph holding?</span><span class="write"></span></li>
+<li>見学のあと、筆者は何をすることに決めたか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li>身のまわりの物を1つ選び、過去分詞のまとまりを使って説明する文を1文書く。<span class="hint">例：This is a bag made in Italy.</span><span class="write"></span></li>
+<li>身のまわりの人を1人選び、<span class="en">-ing</span> 形のまとまりを使って説明する文を1文書く。<span class="hint">例：The boy sitting next to me is my best friend.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>文の動詞がどれか</strong>を1つ見つけ、次に<strong>説明される名詞が「している」側か「される」側か</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　sleeping</span><p class="a-why">ネコは「眠っている」側なので現在分詞です。文の動詞は <span class="en">look</span> なので、<span class="en">is sleeping</span> は入りません。</p></li>
+<li><span class="a-key">ア　taken</span><p class="a-why">写真は「撮られた」側なので過去分詞です。<span class="en">by my grandfather</span> が手がかりです。</p></li>
+<li><span class="a-key">ア　spoken</span><p class="a-why">言語は「話される」側なので過去分詞です。文の動詞はうしろの <span class="en">is</span> です。</p></li>
+<li><span class="a-key">ア　waiting</span><p class="a-why">生徒たちは「待っている」側なので現在分詞です。文の動詞は <span class="en">look</span> なので、<span class="en">are waiting</span> を入れると動詞が2つになります。</p></li>
+<li><span class="a-key">ア　are</span><p class="a-why">主語は <span class="en">The books written by this author</span> で、先頭の名詞は <span class="en">books</span> です。複数なので <span class="en">are</span> です。</p></li>
+<li><span class="a-key">ア　The boy running over there</span><p class="a-why"><span class="en">running over there</span> は2語以上のまとまりなので、名詞 <span class="en">the boy</span> のうしろに置きます。</p></li>
+
+<li><span class="a-key">Look at the cat sleeping on the sofa.</span><p class="a-why"><span class="en">sleeping on the sofa</span> のまとまりを <span class="en">the cat</span> のうしろに置きます。</p></li>
+<li><span class="a-key">This is a picture taken by my grandfather.</span><p class="a-why"><span class="en">taken by my grandfather</span> が <span class="en">a picture</span> を説明しています。</p></li>
+<li><span class="a-key">The boy running over there is my brother.</span><p class="a-why">不要な語は <span class="en">runs</span> です。文の動詞は <span class="en">is</span> の1つだけです。</p></li>
+<li><span class="a-key">This is a song loved by many people.</span><p class="a-why">歌は「愛されている」側なので過去分詞の <span class="en">loved</span> です。</p></li>
+<li><span class="a-key">Who is the girl playing the guitar?</span><p class="a-why">不要な語は <span class="en">plays</span> です。<span class="en">playing the guitar</span> が <span class="en">the girl</span> を説明しています。</p></li>
+<li><span class="a-key">The bridge built one hundred years ago is still used.</span><p class="a-why">主語は <span class="en">The bridge built one hundred years ago</span> までです。文の動詞は <span class="en">is (still) used</span> で、受動態です。</p></li>
+
+<li><span class="a-key">The boy playing tennis is Ken.</span><p class="a-why">誤りは <span class="en">plays</span> です。文の動詞は <span class="en">is</span> なので、説明の部分は <span class="en">-ing</span> 形にします。</p></li>
+<li><span class="a-key">This is a picture taken in Kyoto.</span><p class="a-why">誤りは <span class="en">taking</span> です。写真は「撮られた」側なので過去分詞です。</p></li>
+<li><span class="a-key">The man standing by the door is my uncle.</span><p class="a-why">誤りは最初の <span class="en">is</span> です。分詞の前に be動詞を置くと、文の動詞が2つになります。</p></li>
+<li><span class="a-key">The letters written by her are very long.</span><p class="a-why">誤りは <span class="en">is</span> です。先頭の名詞 <span class="en">letters</span> が複数なので <span class="en">are</span> です。</p></li>
+<li><span class="a-key">Look at the cat sleeping on the sofa.</span><p class="a-why">誤りは <span class="en">sleeping on the sofa</span> の位置です。2語以上のまとまりは名詞のうしろに置きます。</p></li>
+
+<li><span class="a-key">The girl reading a book on the bench is my sister.</span><p class="a-why">主語は <span class="en">The girl reading a book on the bench</span> までです。文の動詞は <span class="en">is</span> です。</p></li>
+<li><span class="a-key">This is a cup made in China.</span><p class="a-why">カップは「作られた」側なので過去分詞の <span class="en">made</span> です。</p></li>
+<li><span class="a-key">I received a letter written in English.</span><p class="a-why">手紙は「書かれた」側なので <span class="en">written</span> です。</p></li>
+<li><span class="a-key">Do you know the man singing over there?</span><p class="a-why">目的語の <span class="en">the man</span> を、うしろから <span class="en">singing over there</span> で説明します。</p></li>
+<li><span class="a-key">What is the language spoken in this country?</span><p class="a-why">全体で8語です。<span class="en">spoken in this country</span> が <span class="en">the language</span> を説明しています。</p></li>
+<li><span class="a-key">Look at the birds flying in the sky.</span><p class="a-why">全体で8語です。鳥たちは「飛んでいる」側なので現在分詞です。</p></li>
+<li><span class="a-key">This is a dictionary used in many countries.</span><p class="a-why">全体で8語です。辞書は「使われている」側なので過去分詞の <span class="en">used</span> です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">Most of them were collected by local volunteers.</span> とあります。イは <span class="en">I cross the same bridge every day.</span> と合いません。ウは <span class="en">A man working as a guide</span> と合いません。</p></li>
+<li><span class="a-key">私は川にかけられた橋を見つけて驚きました。</span><p class="a-why"><span class="en">built over the river</span> が <span class="en">a bridge</span> を説明しています。<span class="en">surprised to find</span> は「見つけて驚いた」です（中2 Unit 10）。</p></li>
+<li><span class="a-key">carrying　painted</span><p class="a-why">本文の <span class="en">Many men carrying heavy boxes</span> と <span class="en">signs painted by hand</span> から答えます。1つ目は進行形の <span class="en">were carrying</span>、2つ目は後置修飾の過去分詞です。</p></li>
+<li><span class="a-key">She was holding a fish.</span><p class="a-why">本文の <span class="en">She was holding a fish almost as long as her arm.</span> から答えます。</p></li>
+<li><span class="a-key">祖母に、子どものころの町についてたずねること。</span><p class="a-why">本文の <span class="en">I decided to ask my grandmother about the town in her childhood.</span> から答えます。</p></li>
+
+<li><span class="a-key">解答例：This is a bag made in Italy.</span><p class="a-why">物は「作られた」「もらった」側なので過去分詞です。<span class="en">This is a watch given by my uncle.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：The boy sitting next to me is my best friend.</span><p class="a-why">人が「している」側なので現在分詞です。文の動詞は <span class="en">is</span> の1つだけにします。</p></li>
+</ol>
+</div>
+</body>
+</html>

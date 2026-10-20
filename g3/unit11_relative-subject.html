@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 11　関係代名詞（主格 who / which / that）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab11_relative-subject.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 11</p>
+<h1 class="unit-title">関係代名詞（主格 who / which / that）</h1>
+<p class="unit-lead">Unit 10 では、<span class="en">The boy playing tennis is Ken.</span> のように<strong>分詞のまとまりを名詞のうしろに置いて</strong>名詞を説明しました。この単元では、同じ場所に<strong>「主語が抜けた文」を置いて</strong>名詞を説明します。<span class="en">The boy who plays tennis is Ken.</span> の <span class="en">who</span> がその印です。名詞のうしろに説明を足すという考え方は Unit 10 と同じで、<strong>置くものが「分詞のまとまり」から「文」に変わる</strong>だけです。</p>
+</header>
+
+<h2><span>名詞のうしろに「文」を置く</span></h2>
+
+<p>Unit 10 で、名詞を説明するまとまりは<strong>名詞のうしろ</strong>に置くことを学びました。そのまとまりが「分詞 ＋ 語」ではなく<strong>1つの文</strong>になることがあります。</p>
+
+<div class="transform">
+<span class="tf-line">I know a girl. She plays the piano very well.</span>
+<span class="tf-arrow">（私は女の子を知っています。彼女はとても上手にピアノをひきます）</span>
+<span class="tf-arrow">↓　2つめの文の主語 She を who に変えて、a girl のうしろにつなぐ</span>
+<span class="tf-line">I know a girl who plays the piano very well.</span>
+<span class="tf-arrow">（私はとても上手にピアノをひく女の子を知っています）</span>
+</div>
+
+<p>2つめの文の主語 <span class="en">She</span> は、1つめの文の <span class="en">a girl</span> と同じ人です。同じ人を2回言わずにすむように、<strong>主語を <span class="en">who</span> に変えて、説明したい名詞のすぐうしろに置きます</strong>。こうしてできた <span class="en">who plays the piano very well</span> が、<span class="en">a girl</span> の説明になります。</p>
+
+<div class="term">
+<p class="term-name">関係代名詞（主格）</p>
+<p class="term-def">名詞のうしろに置いて、<strong>その名詞を説明する文</strong>を続けるための語です。説明される名詞を<strong>先行詞</strong>といいます。主格の関係代名詞は、うしろに続く文の<strong>主語の代わり</strong>をしているので、関係代名詞のうしろは<strong>主語が抜けた形（動詞から始まる形）</strong>になります。</p>
+<p class="term-ex"><span class="en">I know a girl who plays the piano very well.</span>（私はとても上手にピアノをひく女の子を知っています）<br><span class="en">This is a bus which goes to the station.</span>（これは駅へ行くバスです）</p>
+</div>
+
+<p><strong>なぜ主語が抜けるのか。</strong>関係代名詞そのものが主語の役をしているからです。<span class="en">who plays the piano</span> の主語は <span class="en">who</span> です。ですから、そのあとにもう一度 <span class="en">she</span> を置く必要はありません。「主格」という名前は、<strong>関係代名詞が主語の位置にある</strong>ことを表しています。</p>
+
+<div class="diagram">
+<p class="diagram-cap">名詞のうしろに「主語が抜けた文」がつく</p>
+<div class="flow">
+<span class="node">a girl<span class="node-label">女の子（先行詞）</span></span>
+<span class="link">
+<span class="link-word">who</span>
+<span class="rail"></span>
+</span>
+<span class="node">plays the piano<span class="node-label">ピアノをひく（主語が抜けた文）</span></span>
+</div>
+<p class="diagram-cap">Unit 10 の分詞のまとまりと置く場所は同じ</p>
+<div class="flow">
+<span class="node">a girl<span class="node-label">女の子</span></span>
+<span class="link">
+<span class="link-word">←</span>
+<span class="rail"></span>
+</span>
+<span class="node">playing the piano<span class="node-label">ピアノをひいている</span></span>
+</div>
+</div>
+
+<h2><span>who・which・that の使い分け</span></h2>
+
+<p>どの語を使うかは、<strong>先行詞が人かどうか</strong>だけで決まります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>先行詞</th><th>使う関係代名詞</th><th>例</th></tr>
+<tr><td>人</td><td><span class="en">who</span>／<span class="en">that</span></td><td><span class="en">a girl who plays the piano</span></td></tr>
+<tr><td>物・動物</td><td><span class="en">which</span>／<span class="en">that</span></td><td><span class="en">a bus which goes to the station</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">that</span> は<strong>人にも物にも使えます</strong>。どちらを使うか迷ったときは <span class="en">that</span> で書いてかまいません。入試では <span class="en">who</span> と <span class="en">which</span> の選び分けを問う問題が多いので、この表の2行はそのまま覚えてください。</p>
+
+<p>先行詞が動物のときは <span class="en">which</span> を使います。<span class="en">An owl is a bird which hunts at night.</span>（フクロウは夜に狩りをする鳥です）のように、動物は「物」と同じあつかいです。</p>
+
+<h2><span>うしろの動詞の形は先行詞に合わせる</span></h2>
+
+<p>関係代名詞のうしろの動詞は、<strong>先行詞の数と人称に合わせて</strong>形を変えます。<span class="en">who</span> や <span class="en">which</span> そのものに合わせるのではありません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>先行詞</th><th>うしろの動詞</th><th>例</th></tr>
+<tr><td>3人称・単数</td><td><span class="en">-s</span> がつく</td><td><span class="en">a girl who plays the piano</span></td></tr>
+<tr><td>複数</td><td>そのままの形</td><td><span class="en">girls who play the piano</span></td></tr>
+<tr><td>3人称・単数（be動詞）</td><td><span class="en">is</span>／<span class="en">was</span></td><td><span class="en">a fox which is sleeping</span></td></tr>
+<tr><td>複数（be動詞）</td><td><span class="en">are</span>／<span class="en">were</span></td><td><span class="en">foxes which are sleeping</span></td></tr>
+</table>
+</div>
+
+<p>この規則は、関係代名詞が<strong>先行詞の代わり</strong>をしていることから出てきます。<span class="en">a girl who plays</span> の <span class="en">who</span> は <span class="en">the girl</span> のことなので、動詞は3人称単数の形になります。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>説明したい名詞（<strong>先行詞</strong>）を決める。</li>
+<li>先行詞が<strong>人なら <span class="en">who</span></strong>、<strong>物・動物なら <span class="en">which</span></strong> を、その名詞のすぐうしろに置く（どちらも <span class="en">that</span> でよい）。</li>
+<li>関係代名詞のうしろに、<strong>主語を抜いた文</strong>を続ける。</li>
+<li>うしろの動詞の形を<strong>先行詞に合わせる</strong>。</li>
+<li>最後に、<strong>文全体の動詞</strong>が1つあることを確かめる。</li>
+</ol>
+
+<h2><span>例文を読む</span></h2>
+
+<p>先行詞が人の例です。</p>
+
+<p><span class="en">The woman who rescued the cat is a ranger.</span>（そのネコを救助した女性はレンジャーです）<br>
+<span class="en">I know a girl who observes birds every weekend.</span>（私は毎週末に鳥を観察する女の子を知っています）<br>
+<span class="en">People who want to help wildlife must learn to watch and wait.</span>（野生生物を助けたい人たちは、見て待つことを学ばなければなりません）</p>
+
+<p>先行詞が物・動物の例です。</p>
+
+<p><span class="en">Animals which survive the winter come back to the stream in spring.</span>（冬を生きのびる動物たちは、春に小川へ戻ってきます）<br>
+<span class="en">Birds which have long wings can fly far.</span>（長い翼をもつ鳥は遠くまで飛べます）<br>
+<span class="en">An animal which has thick fur can live in a cold place.</span>（厚い毛をもつ動物は寒い場所で生きられます）<br>
+<span class="en">A squirrel which lives in this forest hides food under the leaves.</span>（この森に住むリスは、葉の下に食べ物をかくします）<br>
+<span class="en">The fence which surrounds the field keeps deer out of the garden.</span>（その畑を囲むさくが、シカを庭から遠ざけています）<br>
+<span class="en">Plants which are native to this island grow near the stream.</span>（この島に固有の植物は、小川の近くに育ちます）<br>
+<span class="en">We must protect endangered species which live in this forest.</span>（私たちはこの森に住む絶滅のおそれがある種を守らなければなりません）<br>
+<span class="en">A habitat is a place which gives animals food and shelter.</span>（生息地とは、動物に食べ物と隠れ場所を与える場所です）</p>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>主語が長くなったとき、文の動詞は先頭の名詞に合わせる</h3>
+
+<p>先行詞が主語になると、主語が長くなります。<strong>文全体の動詞は、先頭の名詞に合わせます</strong>。関係代名詞の直前の語ではありません。この点は Unit 10 と同じです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>先頭の名詞</th><th>文の動詞</th></tr>
+<tr><td><span class="en">The boy who plays soccer is my brother.</span></td><td><span class="en">The boy</span>（単数）</td><td><span class="en">is</span></td></tr>
+<tr><td><span class="en">The boys who play soccer are my classmates.</span></td><td><span class="en">The boys</span>（複数）</td><td><span class="en">are</span></td></tr>
+</table>
+</div>
+
+<p>この文には動詞が2つあります。<span class="en">plays</span> は<strong>説明の中の動詞</strong>、<span class="en">is</span> は<strong>文全体の動詞</strong>です。どちらがどちらかを見分けるには、関係代名詞から始まるまとまりをいったん外してみます。<span class="en">The boy is my brother.</span> が残れば、残った動詞が文全体の動詞です。</p>
+
+<h3>分詞の後置修飾との書きかえ</h3>
+
+<p>Unit 10 の分詞の後置修飾は、<strong>関係代名詞と be動詞を使った形に書きかえられます</strong>。意味は変わりません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>分詞（Unit 10）</th><th>関係代名詞（この単元）</th></tr>
+<tr><td><span class="en">the bird flying over the lake</span></td><td><span class="en">the bird which is flying over the lake</span></td></tr>
+<tr><td><span class="en">a picture taken in Kyoto</span></td><td><span class="en">a picture which was taken in Kyoto</span></td></tr>
+</table>
+</div>
+
+<p>分詞の形のほうが短いので、短く言いたいときは分詞を使います。入試では<strong>どちらの形でも書けるように</strong>練習しておきます。</p>
+
+<h3>主格の関係代名詞は省略できない</h3>
+
+<p>主格の関係代名詞は<strong>省略できません</strong>。<span class="en">who</span> や <span class="en">which</span> を取ってしまうと、うしろの文に主語が無くなり、文の形がこわれます。</p>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I know a girl plays the piano.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I know a girl who plays the piano.</span></div>
+<p class="contrast-why">主格の関係代名詞は、うしろの文の主語そのものです。取ると主語が無くなります。</p>
+</div>
+
+<p>Unit 12 では、関係代名詞が<strong>主語ではない位置</strong>にある形をあつかいます。そちらは省略できる形があります。「主格は省略できない」という区別が、Unit 12 の出発点になります。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>出し方</th><th>内容</th></tr>
+<tr><td>適語選択</td><td><span class="en">who</span> と <span class="en">which</span> のどちらが入るかを、先行詞から選ばせる</td></tr>
+<tr><td>動詞の形</td><td>関係代名詞のうしろの動詞に <span class="en">-s</span> がつくかどうかを問う</td></tr>
+<tr><td>2文を1文に</td><td>代名詞で始まる2つめの文を、関係代名詞でつなげさせる</td></tr>
+<tr><td>語順</td><td>長い主語を正しく並べさせる</td></tr>
+<tr><td>読解</td><td>長い主語のどこまでが主語かを読み取らせる。下線部和訳で出る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I know a girl who play the piano.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I know a girl who plays the piano.</span></div>
+<p class="contrast-why">うしろの動詞は先行詞 <span class="en">a girl</span> に合わせます。単数なので <span class="en">-s</span> がつきます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">This is a bird who lives in the forest.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">This is a bird which lives in the forest.</span></div>
+<p class="contrast-why">動物は物と同じあつかいです。<span class="en">who</span> は使いません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The man who he lives next door is a ranger.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The man who lives next door is a ranger.</span></div>
+<p class="contrast-why">関係代名詞が主語です。そのあとにもう一度主語を置きません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I have a friend which likes animals.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I have a friend who likes animals.</span></div>
+<p class="contrast-why">先行詞が人のときは <span class="en">who</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The boys who play soccer is my classmates.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The boys who play soccer are my classmates.</span></div>
+<p class="contrast-why">文全体の動詞は先頭の名詞 <span class="en">The boys</span> に合わせます。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>関係代名詞は、名詞のうしろに<strong>主語が抜けた文</strong>を続けて名詞を説明する。</li>
+<li>先行詞が<strong>人なら <span class="en">who</span>、物・動物なら <span class="en">which</span></strong>。<span class="en">that</span> はどちらにも使える。</li>
+<li>うしろの動詞の形は<strong>先行詞の数に合わせる</strong>。</li>
+<li>主語が長くなっても、<strong>文全体の動詞は先頭の名詞に合わせる</strong>。</li>
+<li><strong>主格の関係代名詞は省略できない</strong>。</li>
+</ul>
+</div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず、説明される名詞（先行詞）が人か物・動物かを見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">I know a girl (　　　) plays the piano very well.</span>
+<p class="opts"><span>ア who</span><span>イ which</span><span>ウ what</span><span>エ she</span></p></li>
+<li><span class="en">This is a bus (　　　) goes to the station.</span>
+<p class="opts"><span>ア which</span><span>イ who</span><span>ウ what</span><span>エ it</span></p></li>
+<li><span class="en">The boys who (　　　) soccer are my classmates.</span>
+<p class="opts"><span>ア play</span><span>イ plays</span><span>ウ playing</span><span>エ to play</span></p></li>
+<li><span class="en">An owl is a bird (　　　) hunts at night.</span>
+<p class="opts"><span>ア which</span><span>イ who</span><span>ウ what</span><span>エ it</span></p></li>
+<li><span class="en">The woman who (　　　) the cat is a ranger.</span>
+<p class="opts"><span>ア rescued</span><span>イ rescue</span><span>ウ rescuing</span><span>エ to rescue</span></p></li>
+<li><span class="en">(　　　) is my brother.</span>
+<p class="opts"><span>ア The boy who plays soccer</span><span>イ The boy plays soccer</span><span>ウ The boy who play soccer</span><span>エ Who plays soccer the boy</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>私はとても上手にピアノをひく女の子を知っています。<br><span class="en">[ i / know / a / girl / who / plays / the / piano / very / well ] .</span><span class="write"></span></li>
+<li>これは駅へ行くバスです。<br><span class="en">[ this / is / a / bus / which / goes / to / the / station ] .</span><span class="write"></span></li>
+<li>サッカーをする男の子たちは私の同級生です。<br><span class="en">[ the / boys / who / play / soccer / are / my / classmates ] .</span><span class="write"></span></li>
+<li data-extra="1">フクロウは夜に狩りをする鳥です。<span class="hint">1語不要</span><br><span class="en">[ an / owl / is / a / bird / which / hunts / at / night / who ] .</span><span class="write"></span></li>
+<li data-extra="1">そのネコを救助した女性はレンジャーです。<span class="hint">1語不要</span><br><span class="en">[ the / woman / who / rescued / the / cat / is / a / ranger / she ] .</span><span class="write"></span></li>
+<li>長い翼をもつ鳥は遠くまで飛べます。<br><span class="en">[ birds / which / have / long / wings / can / fly / far ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">I know a girl who play the piano.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">This is a bird who lives in the forest.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The man who he lives next door is a ranger.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I have a friend which likes animals.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The boys who play soccer is my classmates.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">私はとても上手にピアノをひく女の子を知っています。</span><span class="write"></span></li>
+<li><span class="q-ja">これは駅へ行くバスです。</span><span class="write"></span></li>
+<li><span class="q-ja">サッカーをする男の子たちは私の同級生です。</span><span class="write"></span></li>
+<li><span class="q-ja">隣に住んでいる男性はレンジャーです。</span><span class="write"></span></li>
+<li><span class="en">which</span> を使って「この森に住むリスは、葉の下に食べ物をかくします」と書く。<span class="cond">12語</span><span class="write"></span></li>
+<li><span class="en">who</span> を使って「私は動物が好きな友達がいます」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li><span class="en">which</span> を使って「その畑を囲むさくが、シカを庭から遠ざけています」と書く。<span class="cond">12語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">中学生が書いたスピーチの原稿です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">野生動物を見守る人たち</p>
+<p>Last summer I joined a nature program held at a wildlife center near my town. The center protects animals which live in the valley behind it.</p>
+<p>In the morning, a ranger who has worked there for twenty years took us along a narrow path. He showed us small footprints left in the muddy ground. "These are the footprints of a deer which came here last night," he said. Soon we found a nest built on a low branch.</p>
+<p>After lunch we visited a building which has several large cages. The animals in the cages were all injured. A young fox which could not use its tail well was sleeping quietly. A ranger told us that most of the animals recover and are released into the forest again.</p>
+<p><span class="num">①</span><span class="ul">The ranger who guided us said that wild animals need quiet places</span>. Food left in the park by visitors can be harmful to them. He also asked us not to disturb the birds sitting in the bushes.</p>
+<p>I learned that people who want to help wildlife must first learn to watch and wait.</p>
+<p class="reading-wc">およそ180語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 案内をしたレンジャーは、その施設で20年間働いている。<br>
+イ ケガをした動物が森へ戻されることはない。<br>
+ウ 筆者は午前中に、大きなおりのある建物を訪れた。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語をそれぞれ書く。<br><span class="en">In the morning, the students walked along a narrow (　　　). They found a nest on a low (　　　).</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">Where do most of the injured animals go after they recover?</span><span class="write"></span></li>
+<li>筆者はこの体験から何を学んだか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li>身のまわりの人を1人選び、<span class="en">who</span> を使って説明する文を1文書く。<span class="hint">例：I have a friend who plays the guitar.</span><span class="write"></span></li>
+<li>身のまわりの物を1つ選び、<span class="en">which</span> を使って説明する文を1文書く。<span class="hint">例：This is a bus which goes to my school.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>先行詞がどれか</strong>を見つけ、次に<strong>関係代名詞のうしろの動詞が先行詞に合っているか</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　who</span><p class="a-why">先行詞 <span class="en">a girl</span> は人なので <span class="en">who</span> です。<span class="en">she</span> を入れると文が2つつながってしまいます。</p></li>
+<li><span class="a-key">ア　which</span><p class="a-why">先行詞 <span class="en">a bus</span> は物なので <span class="en">which</span> です。<span class="en">that</span> でもかまいません。</p></li>
+<li><span class="a-key">ア　play</span><p class="a-why">先行詞は <span class="en">The boys</span> で複数です。うしろの動詞に <span class="en">-s</span> はつきません。文全体の動詞は <span class="en">are</span> です。</p></li>
+<li><span class="a-key">ア　which</span><p class="a-why">動物は物と同じあつかいなので <span class="en">which</span> です。<span class="en">who</span> は使いません。</p></li>
+<li><span class="a-key">ア　rescued</span><p class="a-why">関係代名詞のうしろには、主語が抜けた文が続きます。動詞の形のまま入るのは <span class="en">rescued</span> だけです。</p></li>
+<li><span class="a-key">ア　The boy who plays soccer</span><p class="a-why">主語は「サッカーをする男の子」です。主格の関係代名詞は省略できないので、イは誤りです。ウは先行詞が単数なのに <span class="en">play</span> になっています。</p></li>
+
+<li><span class="a-key">I know a girl who plays the piano very well.</span><p class="a-why"><span class="en">who plays the piano very well</span> が <span class="en">a girl</span> の説明です。</p></li>
+<li><span class="a-key">This is a bus which goes to the station.</span><p class="a-why">先行詞 <span class="en">a bus</span> が単数なので <span class="en">goes</span> です。</p></li>
+<li><span class="a-key">The boys who play soccer are my classmates.</span><p class="a-why">文全体の動詞は先頭の名詞 <span class="en">The boys</span> に合わせて <span class="en">are</span> です。</p></li>
+<li><span class="a-key">An owl is a bird which hunts at night.</span><p class="a-why">不要な語は <span class="en">who</span> です。先行詞が動物なので <span class="en">which</span> を使います。</p></li>
+<li><span class="a-key">The woman who rescued the cat is a ranger.</span><p class="a-why">不要な語は <span class="en">she</span> です。関係代名詞が主語なので、もう一度主語は置きません。</p></li>
+<li><span class="a-key">Birds which have long wings can fly far.</span><p class="a-why">先行詞 <span class="en">Birds</span> は複数なので <span class="en">have</span> です。</p></li>
+
+<li><span class="a-key">I know a girl who plays the piano.</span><p class="a-why">先行詞 <span class="en">a girl</span> が単数なので <span class="en">plays</span> です。</p></li>
+<li><span class="a-key">This is a bird which lives in the forest.</span><p class="a-why">先行詞が動物なので <span class="en">which</span> です。</p></li>
+<li><span class="a-key">The man who lives next door is a ranger.</span><p class="a-why">関係代名詞 <span class="en">who</span> が主語です。<span class="en">he</span> は不要です。</p></li>
+<li><span class="a-key">I have a friend who likes animals.</span><p class="a-why">先行詞 <span class="en">a friend</span> は人なので <span class="en">who</span> です。</p></li>
+<li><span class="a-key">The boys who play soccer are my classmates.</span><p class="a-why">文全体の動詞は <span class="en">The boys</span> に合わせます。直前の <span class="en">soccer</span> に合わせません。</p></li>
+
+<li><span class="a-key">I know a girl who plays the piano very well.</span><p class="a-why">先行詞が単数なので <span class="en">plays</span> です。</p></li>
+<li><span class="a-key">This is a bus which goes to the station.</span><p class="a-why"><span class="en">that</span> を使って <span class="en">a bus that goes to the station</span> と書いてもかまいません。</p></li>
+<li><span class="a-key">The boys who play soccer are my classmates.</span><p class="a-why">うしろの動詞は <span class="en">play</span>、文全体の動詞は <span class="en">are</span> です。</p></li>
+<li><span class="a-key">The man who lives next door is a ranger.</span><p class="a-why">「隣に住んでいる」を <span class="en">who lives next door</span> で表します。</p></li>
+<li><span class="a-key">A squirrel which lives in this forest hides food under the leaves.</span><p class="a-why">先行詞 <span class="en">A squirrel</span> が単数なので <span class="en">lives</span>、文全体の動詞も <span class="en">hides</span> です。</p></li>
+<li><span class="a-key">I have a friend who likes animals.</span><p class="a-why">6語です。先行詞が人なので <span class="en">who</span> を使います。</p></li>
+<li><span class="a-key">The fence which surrounds the field keeps deer out of the garden.</span><p class="a-why">主語は <span class="en">The fence which surrounds the field</span> です。文全体の動詞は <span class="en">keeps</span> です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">a ranger who has worked there for twenty years</span> とあります。イは「森へ戻される」と書かれているので誤り、ウは建物を訪れたのが昼食後なので誤りです。</p></li>
+<li><span class="a-key">私たちを案内してくれたレンジャーは、野生動物には静かな場所が必要だと言いました。</span><p class="a-why"><span class="en">The ranger who guided us</span> までが主語です。どこまでが主語かを先に決めると訳せます。</p></li>
+<li><span class="a-key">path　／　branch</span><p class="a-why">本文の <span class="en">took us along a narrow path</span> と <span class="en">a nest built on a low branch</span> が手がかりです。</p></li>
+<li><span class="a-key">They are released into the forest again.</span><p class="a-why">本文の <span class="en">most of the animals recover and are released into the forest again</span> から答えます。</p></li>
+<li><span class="a-key">野生生物を助けたい人は、まず見て待つことを学ばなければならない、ということ。</span><p class="a-why">最後の1文が答えです。<span class="en">people who want to help wildlife</span> までが主語です。</p></li>
+
+<li><span class="a-key">（例）I have a friend who plays tennis every day.</span><p class="a-why">先行詞が人なので <span class="en">who</span> を使い、うしろの動詞は単数に合わせます。</p></li>
+<li><span class="a-key">（例）This is a book which has many pictures.</span><p class="a-why">先行詞が物なので <span class="en">which</span> を使い、うしろの動詞は単数に合わせます。</p></li>
+</ol>
+</div>
+</body>
+</html>

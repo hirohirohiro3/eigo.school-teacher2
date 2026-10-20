@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 9　間接疑問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab09_indirect-question.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 9</p>
+<h1 class="unit-title">間接疑問</h1>
+<p class="unit-lead">中1 Unit 10 で <span class="en">What do you want?</span> のような疑問詞の疑問文を学びました。この単元では、その疑問文を<strong>別の文の中に入れる形</strong>を扱います。<span class="en">I know what you want.</span>（私はあなたが何をほしいか知っています）のように文の中に入ると、<strong>語順がふつうの文に戻り、<span class="en">do</span>・<span class="en">does</span>・<span class="en">did</span> が消えます</strong>。この2点がこの単元のすべてです。</p>
+</header>
+
+<h2><span>疑問文を文の中に入れる</span></h2>
+
+<p>まず、独立した疑問文と、文の中に入れた形を並べます。</p>
+
+<div class="transform">
+<span class="tf-line">What does he want?</span>
+<span class="tf-arrow">（彼は何をほしいのですか）</span>
+<span class="tf-arrow">↓　I know のうしろに入れる</span>
+<span class="tf-line">I know what he wants.</span>
+<span class="tf-arrow">（私は彼が何をほしいか知っています）</span>
+</div>
+
+<p>変わったところは2つです。<strong><span class="en">does</span> が消えた</strong>こと、そして<strong><span class="en">want</span> が <span class="en">wants</span> になった</strong>ことです。<span class="en">does</span> が消えたぶん、三人称単数の <span class="en">-s</span> が動詞そのものに戻ってきます。</p>
+
+<div class="term">
+<p class="term-name">間接疑問</p>
+<p class="term-def">疑問詞ではじまる疑問文を、ほかの文の一部として組みこんだ形です。<strong>語順は「疑問詞 ＋ 主語 ＋ 動詞」</strong>になり、<span class="en">do</span>・<span class="en">does</span>・<span class="en">did</span> は置きません。文の終わりは、全体が疑問文でなければ「.」です。</p>
+<p class="term-ex"><span class="en">I know what he wants.</span>（私は彼が何をほしいか知っています）</p>
+</div>
+
+<h2><span>語順が「疑問詞 ＋ 主語 ＋ 動詞」に戻る</span></h2>
+
+<p>疑問文では主語と動詞がひっくり返りますが、文の中に入れるとひっくり返りが元に戻ります。</p>
+
+<div class="diagram">
+<p class="diagram-cap">独立した疑問文。主語の前に does が出る</p>
+<div class="flow">
+<span class="node">What<span class="node-label">何を</span></span>
+<span class="link">
+<span class="link-word">does</span>
+<span class="rail"></span>
+</span>
+<span class="node">he want<span class="node-label">彼はほしい</span></span>
+</div>
+<p class="diagram-cap">文の中に入れた形。疑問詞のすぐうしろが主語</p>
+<div class="flow">
+<span class="node">I know<span class="node-label">私は知っている</span></span>
+<span class="link">
+<span class="link-word">what</span>
+<span class="rail"></span>
+</span>
+<span class="node">he wants<span class="node-label">彼がほしい</span></span>
+</div>
+</div>
+
+<p><strong>なぜ語順が戻るのか。</strong>主語と動詞をひっくり返すのは、その文が<strong>たずねる文であること</strong>を示す合図です。<span class="en">I know 〜</span> の中に入った部分は、もうたずねていません。「彼が何をほしいか」という<strong>ひとまとまりの内容</strong>に変わっています。たずねる合図が要らなくなるので、語順はふつうの文に戻ります。</p>
+
+<p>例文を足します。<span class="en">I know where she lives.</span>（私は彼女がどこに住んでいるか知っています）。<span class="en">Please tell me when the concert starts.</span>（コンサートがいつ始まるか教えてください）。<span class="en">I wonder why he looks so nervous.</span>（彼がなぜそんなに緊張して見えるのだろうと思います）。<span class="en">Do you remember how we solved this problem?</span>（私たちがこの問題をどうやって解いたか覚えていますか）。どれも疑問詞のすぐうしろに主語が来ています。</p>
+
+<p>調べ学習の場面で使うと、この形のはたらきがはっきりします。<span class="en">I know what this chart means.</span>（この図表が何を意味するか私は知っています）。<span class="en">Please tell me where you found this data.</span>（このデータをどこで見つけたか教えてください）。<span class="en">I wonder how reliable this source is.</span>（この出どころがどれくらい信頼できるのだろうと思います）。<span class="en">Could you tell me who the author is?</span>（著者がだれか教えていただけますか）。</p>
+
+<h2><span>do・does・did が消える</span></h2>
+
+<p>独立した疑問文の <span class="en">do</span>・<span class="en">does</span>・<span class="en">did</span> は、たずねる合図を出すためだけの語です。文の中に入ると役目が無くなるので消えます。消えた分の情報は、動詞そのものが引き受けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>独立した疑問文</th><th>文の中に入れた形</th><th>動詞の変化</th></tr>
+<tr><td><span class="en">What do you need?</span></td><td><span class="en">I know what you need.</span></td><td>変わらない</td></tr>
+<tr><td><span class="en">What does he need?</span></td><td><span class="en">I know what he needs.</span></td><td><span class="en">-s</span> が戻る</td></tr>
+<tr><td><span class="en">What did he need?</span></td><td><span class="en">I know what he needed.</span></td><td>過去形に戻る</td></tr>
+</table>
+</div>
+
+<p><span class="en">did</span> が消えるときがいちばん間違えやすい場所です。<span class="en">did</span> を消したら、動詞を<strong>過去形に直し忘れない</strong>ことです。<span class="en">I know what he need.</span> も <span class="en">I know what he did need.</span> も誤りで、正しくは <span class="en">I know what he needed.</span> です。</p>
+
+<p>be動詞の文には <span class="en">do</span> がもともと入りません。この場合は<strong>主語と be動詞の順を入れかえるだけ</strong>です。<span class="en">Who is that woman?</span> → <span class="en">I don't know who that woman is.</span>（あの女性がだれか私は知りません）。<span class="en">is</span> が文のいちばんうしろに来ることに注意します。</p>
+
+<h2><span>中2 Unit 4 の接続詞 that との並び</span></h2>
+
+<p>中2 Unit 4 で <span class="en">I know that he is busy.</span>（彼が忙しいことを私は知っています）を学びました。間接疑問はこれと同じ作りで、<strong>先頭の語が <span class="en">that</span> か疑問詞か</strong>だけが違います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>先頭の語</th><th>中身</th><th>例</th></tr>
+<tr><td><span class="en">that</span></td><td>決まっている内容</td><td><span class="en">I know that he is busy.</span></td></tr>
+<tr><td>疑問詞</td><td>わからない部分がある内容</td><td><span class="en">I know why he is busy.</span></td></tr>
+</table>
+</div>
+
+<p>どちらも「know の目的語がひとまとまりの文」という点では同じです。違うのは、<span class="en">that</span> が「〜ということ」と内容全体を指すのに対し、疑問詞は「どこがわからないか」を示す点です。<strong>うしろの語順はどちらも「主語 ＋ 動詞」</strong>で変わりません。</p>
+
+<p>この形をとる動詞はある程度決まっています。<span class="en">know</span>・<span class="en">tell</span>・<span class="en">ask</span>・<span class="en">wonder</span>・<span class="en">remember</span>・<span class="en">understand</span>・<span class="en">forget</span> などです。<span class="en">Could you tell me where the station is?</span>（駅がどこにあるか教えていただけますか）は道をたずねるときの言い方で、入試にもよく出ます。</p>
+
+<p>図書館でたずねるときにも同じ形を使います。<span class="en">I have no idea where the science section is.</span>（科学の区分がどこにあるのか私にはまったくわかりません）。<span class="en">Please tell me how I can look up this word.</span>（この語をどうやって調べられるか教えてください）。<span class="en">The librarian told me what method I should use.</span>（図書館員は私にどの方法を使えばよいか教えてくれました）。<span class="en">I asked her how I could connect these two facts.</span>（この2つの事実をどうつなげられるか私は彼女にたずねました）。</p>
+
+<p>調べたことを書きまとめるときにも使えます。<span class="en">I want to know what my general conclusion should include.</span>（私の全体の結論に何をふくめるべきか知りたいです）。<span class="en">I did not know how various the answers could be.</span>（答えがどれほどさまざまでありうるかを私は知りませんでした）。<span class="en">Besides, I did not know how much the detail mattered.</span>（そのうえ、その細かい点がどれほど重要かも私はわかっていませんでした）。<span class="en">It depends on how correctly you write the proper source.</span>（正しい出どころをどれだけ正確に書くかによります）。<span class="en">Our teacher showed us what knowledge we still needed.</span>（私たちにまだどんな知識が要るかを先生は示してくれました）。</p>
+
+<h2><span>全体が疑問文のとき</span></h2>
+
+<p>外側の文が疑問文のときは、<strong>外側だけを疑問文の形</strong>にします。中に入った部分は語順を変えません。</p>
+
+<div class="transform">
+<span class="tf-line">Do you know? ＋ Where does he live?</span>
+<span class="tf-arrow">↓　中の部分は語順を戻す</span>
+<span class="tf-line">Do you know where he lives?</span>
+<span class="tf-arrow">（彼がどこに住んでいるか知っていますか）</span>
+</div>
+
+<p>この文の「?」は外側の <span class="en">Do you know</span> に対するものです。<span class="en">Do you know where does he live?</span> は、ひっくり返りが二重になっているので誤りです。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">入れる部分を疑問文のまま書く</span>
+<span class="step-d">まず <span class="en">What does he want?</span> のように、独立した疑問文の形で考えます。</span>
+</li>
+<li>
+<span class="step-t">do・does・did を消す</span>
+<span class="step-d">be動詞や助動詞の <span class="en">can</span>・<span class="en">will</span> はそのまま残します。消すのは <span class="en">do</span>・<span class="en">does</span>・<span class="en">did</span> だけです。</span>
+</li>
+<li>
+<span class="step-t">消した情報を動詞に戻す</span>
+<span class="step-d"><span class="en">does</span> なら <span class="en">-s</span> を、<span class="en">did</span> なら過去形を、動詞そのものにつけます。</span>
+</li>
+<li>
+<span class="step-t">疑問詞 ＋ 主語 ＋ 動詞 の順に並べる</span>
+<span class="step-d">be動詞のときは主語のうしろに be動詞を置きます（<span class="en">who that woman is</span>）。</span>
+</li>
+<li>
+<span class="step-t">外側の文につなぐ</span>
+<span class="step-d">外側が平叙文なら「.」、外側が疑問文なら「?」で終わります。中の部分では「?」を使いません。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>疑問詞が主語のときは語順が変わらない</h3>
+
+<p>疑問詞そのものが主語のときは、もともと「疑問詞 ＋ 動詞」の順なので、<strong>文の中に入れても形が変わりません</strong>。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>独立した疑問文</th><th>文の中に入れた形</th></tr>
+<tr><td><span class="en">Who came here?</span></td><td><span class="en">I know who came here.</span></td></tr>
+<tr><td><span class="en">What happened?</span></td><td><span class="en">Please tell me what happened.</span></td></tr>
+<tr><td><span class="en">Who broke the window?</span></td><td><span class="en">Nobody knows who broke the window.</span></td></tr>
+</table>
+</div>
+
+<p>見分け方は、<strong>疑問詞のうしろに主語があるかどうか</strong>です。<span class="en">Who came here?</span> には主語にあたる語がありません。疑問詞が主語の役をしているからです。この形にはもともと <span class="en">do</span> が入らないので、消す作業もありません。</p>
+
+<h3>疑問詞が2語以上のまとまりになるとき</h3>
+
+<p><span class="en">what time</span>・<span class="en">how many</span>・<span class="en">how long</span> のように2語以上でひとまとまりになる疑問詞は、<strong>まとまりごと先頭に置きます</strong>。<span class="en">I don't know what time the meeting begins.</span>（会議が何時に始まるか私は知りません）。<span class="en">Please tell me how many people joined.</span>（何人が参加したか教えてください）。まとまりを切り離して <span class="en">how the meeting begins many</span> のようにはしません。</p>
+
+<h3>外側が過去の文のとき</h3>
+
+<p>外側の動詞が過去形のときは、中の動詞も過去形にそろえるのがふつうです。<span class="en">He asked me where I lived.</span>（彼は私がどこに住んでいるかたずねました）。日本語に直すときは「住んでいるか」と現在のように訳してかまいません。</p>
+
+<h3>答えが Yes・No になる疑問文は入れない</h3>
+
+<p>この単元で扱うのは<strong>疑問詞ではじまる疑問文</strong>だけです。<span class="en">Is he busy?</span> のような Yes・No でこたえる疑問文は、形が変わるので別に覚えます。この単元では出しません。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">I know what (　) .</span> の空所に <span class="en">he wants</span> と <span class="en">does he want</span> を並べて選ばせる</td></tr>
+<tr><td>語順</td><td>2文を1文にまとめさせる。余分な <span class="en">does</span>・<span class="en">did</span> を混ぜて出す</td></tr>
+<tr><td>誤文訂正</td><td>語順が戻っていない文、<span class="en">did</span> が残った文を直させる</td></tr>
+<tr><td>英作文</td><td><span class="en">Could you tell me where 〜</span> の形で道や時刻をたずねさせる</td></tr>
+<tr><td>読解</td><td>登場人物が何を知らなかったのかを答えさせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I know what does he want.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I know what he wants.</span></div>
+<p class="contrast-why">文の中に入れた部分では <span class="en">does</span> を置きません。消したぶん、動詞に <span class="en">-s</span> が戻ります。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I know what he need.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I know what he needs.</span></div>
+<p class="contrast-why"><span class="en">does</span> を消したまま動詞を元の形にしておく間違いです。三人称単数の <span class="en">-s</span> を忘れないことです。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">Do you know where does he live?</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">Do you know where he lives?</span></div>
+<p class="contrast-why">ひっくり返すのは外側の文だけです。中の部分まで疑問文の形にすると二重になります。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I don't know who is that woman.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I don't know who that woman is.</span></div>
+<p class="contrast-why">be動詞の文でも語順は「主語 ＋ 動詞」に戻ります。<span class="en">is</span> はうしろに回ります。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">Please tell me what did he say.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">Please tell me what he said.</span></div>
+<p class="contrast-why"><span class="en">did</span> を消したら、動詞を過去形にします。<span class="en">say</span> の過去形は <span class="en">said</span> です。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>疑問文を文の中に入れると、<strong>語順が「疑問詞 ＋ 主語 ＋ 動詞」に戻る</strong>。</li>
+<li><strong><span class="en">do</span>・<span class="en">does</span>・<span class="en">did</span> は消す。</strong>消したぶんの <span class="en">-s</span> や過去形は動詞そのものに戻す。</li>
+<li>be動詞のときは<strong>主語のうしろに be動詞</strong>を置く（<span class="en">who that woman is</span>）。</li>
+<li><strong>疑問詞が主語のときは形が変わらない</strong>（<span class="en">I know who came here.</span>）。</li>
+<li>外側が疑問文でも、<strong>ひっくり返すのは外側だけ</strong>。中の部分は語順を変えない。</li>
+</ul>
+</div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず、その部分が文の中に入っているかどうかを見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">I know what (　　　) .</span>
+<p class="opts"><span>ア he wants</span><span>イ does he want</span><span>ウ want he</span><span>エ he want</span></p></li>
+<li><span class="en">Please tell me where the museum (　　　) .</span>
+<p class="opts"><span>ア is</span><span>イ does</span><span>ウ be</span><span>エ are</span></p></li>
+<li><span class="en">Do you remember what he (　　　) at the meeting yesterday?</span>
+<p class="opts"><span>ア said</span><span>イ did say</span><span>ウ says</span><span>エ say</span></p></li>
+<li><span class="en">Nobody knows who (　　　) the window last night.</span>
+<p class="opts"><span>ア broke</span><span>イ did break</span><span>ウ breaks</span><span>エ breaking</span></p></li>
+<li><span class="en">I wonder why she (　　　) so nervous today.</span>
+<p class="opts"><span>ア looks</span><span>イ does look</span><span>ウ look</span><span>エ looking</span></p></li>
+<li><span class="en">Could you tell me (　　　) the next train leaves?</span>
+<p class="opts"><span>ア what time</span><span>イ time what</span><span>ウ what does time</span><span>エ the time what</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>私は彼女がどこに住んでいるか知っています。<br><span class="en">[ i / know / where / she / lives ] .</span><span class="write"></span></li>
+<li>会議がいつ始まるか教えてください。<br><span class="en">[ please / tell / me / when / the / meeting / begins ] .</span><span class="write"></span></li>
+<li data-extra="1">私は彼が何をほしいか知りません。<span class="hint">1語不要</span><br><span class="en">[ i / don't / know / what / he / wants / does ] .</span><span class="write"></span></li>
+<li>あの女性がだれか私にはわかりません。<br><span class="en">[ i / have / no / idea / who / that / woman / is ] .</span><span class="write"></span></li>
+<li data-extra="1">駅がどこにあるか教えていただけますか。<span class="hint">1語不要</span><br><span class="en">[ could / you / tell / me / where / the / station / is / does ] ?</span><span class="write"></span></li>
+<li>だれがその窓を割ったのかだれも知りません。<br><span class="en">[ nobody / knows / who / broke / the / window ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">I know what does he want.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Please tell me what did he say.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I don't know who is that woman.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Do you know where does he live?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I wonder why he look so tired.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">私は彼女がどこに住んでいるか知っています。</span><span class="write"></span></li>
+<li><span class="q-ja">彼が何をほしいか私にはわかりません。</span><span class="write"></span></li>
+<li><span class="q-ja">その会議が何時に始まるか教えてください。</span><span class="write"></span></li>
+<li><span class="q-ja">だれがその窓を割ったのか私たちは知りません。</span><span class="write"></span></li>
+<li><span class="en">wonder</span> を使って「私は彼がなぜ緊張しているのだろうと思います」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li><span class="en">Could you tell me</span> ではじめて「駅がどこにあるか教えていただけますか」と書く。<span class="cond">9語</span><span class="write"></span></li>
+<li><span class="en">remember</span> を使って「私たちがどうやってその問題を解いたか覚えていますか」と書く。<span class="cond">8語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">中学生が書いたスピーチの原稿です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">たずね方を学ぶ</p>
+<p>Last spring our class started a research project. Our teacher told us to choose a topic and to find the answer by ourselves. I was curious about water, because I wanted to know how much water my family uses in one day.</p>
+<p>At first I did not know where I should start. I opened a thick book, but I could not understand what the author wanted to say. I asked the librarian what I should do. <span class="num">①</span><span class="ul">She did not tell me the answer</span>. She asked me what I already knew and what I still wanted to know. Then she showed me how I could search the index of a book.</p>
+<p>She also suggested one simple method. She told me to take notes on two pages. The left page was for facts, and the right page was for questions. This method gave me a clue. I learned that a good question has two parts. The first part says what you want to know. The second part says why it matters.</p>
+<p>Certainly, my research became easier. I found the exact data in twenty minutes, and I wrote my conclusion that evening.</p>
+<p class="reading-wc">およそ190語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 図書館員は、たずねられた答えをすぐには教えなかった。<br>
+イ 筆者ははじめから調べ方がわかっていた。<br>
+ウ 筆者は本のさくいんを使わずに調べた。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語をそれぞれ書く。<br><span class="en">The librarian asked the writer what he already (　　　) and what he still (　　　) to know.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">Who suggested a simple method to the writer?</span><span class="write"></span></li>
+<li>筆者が考える「よい問い」の2つの部分とは何か。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li><span class="en">I want to know</span> ではじめて、いま知りたいことを1文書く。<span class="hint">例：I want to know how my city uses water.</span><span class="write"></span></li>
+<li><span class="en">Could you tell me</span> ではじめて、道でたずねたいことを1文書く。<span class="hint">例：Could you tell me where the museum is?</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>その部分が文の中に入っているか</strong>に戻り、次に<strong><span class="en">do</span>・<span class="en">does</span>・<span class="en">did</span> を消したあと動詞の形を直したか</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　he wants</span><p class="a-why">文の中に入れた部分は「疑問詞 ＋ 主語 ＋ 動詞」です。<span class="en">does</span> は置かず、三人称単数の <span class="en">-s</span> を動詞につけます。</p></li>
+<li><span class="a-key">ア　is</span><p class="a-why">be動詞の文なので、主語 <span class="en">the museum</span> のうしろに <span class="en">is</span> を置きます。<span class="en">does</span> は入りません。</p></li>
+<li><span class="a-key">ア　said</span><p class="a-why"><span class="en">yesterday</span> があるので過去の文です。<span class="en">did</span> は消し、動詞を過去形の <span class="en">said</span> にします。</p></li>
+<li><span class="a-key">ア　broke</span><p class="a-why">疑問詞 <span class="en">who</span> が主語なので語順は変わりません。<span class="en">last night</span> があるので過去形です。</p></li>
+<li><span class="a-key">ア　looks</span><p class="a-why"><span class="en">wonder</span> のうしろも同じ形です。<span class="en">does</span> は置かず、<span class="en">-s</span> を動詞につけます。</p></li>
+<li><span class="a-key">ア　what time</span><p class="a-why">2語でひとまとまりの疑問詞は、まとまりごと先頭に置きます。切り離しません。</p></li>
+
+<li><span class="a-key">I know where she lives.</span><p class="a-why">「疑問詞 ＋ 主語 ＋ 動詞」の順です。<span class="en">does</span> は使いません。</p></li>
+<li><span class="a-key">Please tell me when the meeting begins.</span><p class="a-why"><span class="en">tell me</span> のうしろに「疑問詞 ＋ 主語 ＋ 動詞」を続けます。主語が三人称単数なので <span class="en">begins</span> です。</p></li>
+<li><span class="a-key">I don't know what he wants.</span><p class="a-why">不要な語は <span class="en">does</span> です。文の中に入れた部分では使いません。</p></li>
+<li><span class="a-key">I have no idea who that woman is.</span><p class="a-why"><span class="en">have no idea</span> は「わからない」という言い方です。be動詞は主語 <span class="en">that woman</span> のうしろに置きます。</p></li>
+<li><span class="a-key">Could you tell me where the station is?</span><p class="a-why">不要な語は <span class="en">does</span> です。外側だけが疑問文なので「?」で終わり、中の語順は変えません。</p></li>
+<li><span class="a-key">Nobody knows who broke the window.</span><p class="a-why"><span class="en">who</span> が主語なので語順は変わりません。<span class="en">nobody</span> は単数あつかいで <span class="en">knows</span> です。</p></li>
+
+<li><span class="a-key">I know what he wants.</span><p class="a-why">誤りは <span class="en">does</span> です。消して、動詞に <span class="en">-s</span> を戻します。</p></li>
+<li><span class="a-key">Please tell me what he said.</span><p class="a-why">誤りは <span class="en">did</span> です。消して、動詞を過去形の <span class="en">said</span> にします。</p></li>
+<li><span class="a-key">I don't know who that woman is.</span><p class="a-why">誤りは <span class="en">is</span> の位置です。文の中では主語のうしろに回ります。</p></li>
+<li><span class="a-key">Do you know where he lives?</span><p class="a-why">誤りは <span class="en">does</span> です。ひっくり返すのは外側の <span class="en">Do you know</span> だけです。</p></li>
+<li><span class="a-key">I wonder why he looks so tired.</span><p class="a-why">誤りは <span class="en">look</span> です。<span class="en">does</span> が無いので、<span class="en">-s</span> は動詞そのものにつきます。</p></li>
+
+<li><span class="a-key">I know where she lives.</span><p class="a-why">「疑問詞 ＋ 主語 ＋ 動詞」の順です。<span class="en">I know where does she live.</span> は誤りです。</p></li>
+<li><span class="a-key">I don't know what he wants.</span><p class="a-why"><span class="en">I have no idea what he wants.</span> と書いてもかまいません。</p></li>
+<li><span class="a-key">Please tell me what time the meeting begins.</span><p class="a-why"><span class="en">what time</span> はまとまりで先頭に置きます。</p></li>
+<li><span class="a-key">We don't know who broke the window.</span><p class="a-why"><span class="en">who</span> が主語なので語順は変わりません。</p></li>
+<li><span class="a-key">I wonder why he is nervous.</span><p class="a-why">全体で6語です。<span class="en">wonder</span> のうしろも「疑問詞 ＋ 主語 ＋ 動詞」です。</p></li>
+<li><span class="a-key">Could you tell me where the station is?</span><p class="a-why">全体で9語です。中の部分は <span class="en">where the station is</span> の順です。</p></li>
+<li><span class="a-key">Do you remember how we solved this problem?</span><p class="a-why">全体で8語です。<span class="en">did</span> は使わず、動詞を過去形の <span class="en">solved</span> にします。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">She did not tell me the answer</span> とあります。イは <span class="en">At first I did not know where I should start</span> と合いません。ウは <span class="en">she showed me how I could search the index of a book</span> と合いません。</p></li>
+<li><span class="a-key">彼女は私にその答えを教えてくれませんでした。</span><p class="a-why">「教える」は <span class="en">tell</span> です。<span class="en">tell me the answer</span> で「私に答えを教える」です。</p></li>
+<li><span class="a-key">knew　wanted</span><p class="a-why">本文の <span class="en">She asked me what I already knew and what I still wanted to know.</span> から答えます。外側が過去なので中も過去形です。</p></li>
+<li><span class="a-key">The librarian did.</span><p class="a-why">本文の <span class="en">She also suggested one simple method.</span> の <span class="en">She</span> は、前の文の <span class="en">the librarian</span> を指します。<span class="en">The librarian suggested it.</span> と書いてもかまいません。</p></li>
+<li><span class="a-key">何を知りたいかを示す部分と、なぜそれが大切かを示す部分。</span><p class="a-why">本文の <span class="en">The first part says what you want to know. The second part says why it matters.</span> から答えます。</p></li>
+
+<li><span class="a-key">解答例：I want to know how my city uses water.</span><p class="a-why"><span class="en">know</span> のうしろは「疑問詞 ＋ 主語 ＋ 動詞」です。<span class="en">I want to know why the data changed.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：Could you tell me where the museum is?</span><p class="a-why">外側だけが疑問文です。<span class="en">Could you tell me what time the concert starts?</span> のようにも書けます。</p></li>
+</ol>
+</div>
+</body>
+</html>

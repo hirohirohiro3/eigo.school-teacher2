@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 11　関係代名詞（主格 who / which / that）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit11_relative-subject.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 11</p>
+<h1 class="unit-title">単語帳　関係代名詞（主格 who / which / that）</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。<strong>野生動物とその生息地を守る場面の語</strong>（<span class="en">wildlife</span>・<span class="en">habitat</span>・<span class="en">ranger</span>）が中心です。例文の多くは「名詞 ＋ <span class="en">who</span>／<span class="en">which</span> ＋ 文」の形になっているので、<strong>どの名詞をうしろの文が説明しているか</strong>を確かめながら覚えてください。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめに動詞、次に形容詞、最後に名詞（野生動物と自然の場面の語）の順です。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">disturb</span><span class="v-kana">ディスターブ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>じゃまをする、乱す</p></div>
+<p class="v-ex"><span class="en">He also asked us not to disturb the birds sitting in the bushes.</span><span class="v-ja">　彼は、やぶにとまっている鳥たちのじゃまをしないようにとも私たちに頼みました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">hunt</span><span class="v-kana">ハント</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>狩りをする、えさをとる</p></div>
+<p class="v-ex"><span class="en">An owl is a bird which hunts at night.</span><span class="v-ja">　フクロウは夜に狩りをする鳥です。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">observe</span><span class="v-kana">オブザーヴ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>観察する</p></div>
+<p class="v-ex"><span class="en">I know a girl who observes birds every weekend.</span><span class="v-ja">　私は毎週末に鳥を観察する女の子を知っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">watch</span> より「記録をとりながらよく見る」という意味合いが強い語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">recover</span><span class="v-kana">リカヴァ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>回復する、元気になる</p></div>
+<p class="v-ex"><span class="en">A ranger told us that most of the animals recover and are released into the forest again.</span><span class="v-ja">　レンジャーは、動物のほとんどは回復して、また森へ返されると私たちに教えてくれました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">release</span><span class="v-kana">リリース</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>放す、自然に返す</p></div>
+<p class="v-ex"><span class="en">They are released into the forest again.</span><span class="v-ja">　それらはまた森へ放されます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「放される」側を主語にするときは、中2 Unit 15 の受動態の形（<span class="en">be ＋ 過去分詞</span>）になります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">rescue</span><span class="v-kana">レスキュー</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>救助する</p></div>
+<p class="v-ex"><span class="en">The woman who rescued the cat is a ranger.</span><span class="v-ja">　そのネコを救助した女性はレンジャーです。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">survive</span><span class="v-kana">サヴァイヴ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>生きのびる</p></div>
+<p class="v-ex"><span class="en">Animals which survive the winter come back to the stream in spring.</span><span class="v-ja">　冬を生きのびる動物たちは、春に小川へ戻ってきます。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">endangered</span><span class="v-kana">インデインジャド</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>絶滅のおそれがある</p></div>
+<p class="v-ex"><span class="en">We must protect endangered species which live in this forest.</span><span class="v-ja">　私たちはこの森に住む絶滅のおそれがある種を守らなければなりません。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">endangered species</span>（絶滅のおそれがある種）のまとまりで覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">harmful</span><span class="v-kana">ハームフル</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>害になる</p></div>
+<p class="v-ex"><span class="en">Food left in the park by visitors can be harmful to them.</span><span class="v-ja">　訪れた人が公園に残した食べ物は、動物たちの害になることがあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「〜にとって害になる」は <span class="en">harmful to 〜</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">muddy</span><span class="v-kana">マディ</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>ぬかるんだ、泥だらけの</p></div>
+<p class="v-ex"><span class="en">He showed us small footprints left in the muddy ground.</span><span class="v-ja">　彼は、ぬかるんだ地面に残った小さな足あとを私たちに見せてくれました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">native</span><span class="v-kana">ネイティヴ</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>その土地に元からいる、固有の</p></div>
+<p class="v-ex"><span class="en">Plants which are native to this island grow near the stream.</span><span class="v-ja">　この島に固有の植物は、小川の近くに育ちます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「〜に固有の」は <span class="en">native to 〜</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">branch</span><span class="v-kana">ブランチ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>枝</p></div>
+<p class="v-ex"><span class="en">Soon we found a nest built on a low branch.</span><span class="v-ja">　すぐに、低い枝の上に作られた巣を見つけました。</span></p>
+<p class="v-note"><span class="badge">形</span>複数形は <span class="en">branches</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">bush</span><span class="v-kana">ブッシュ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>やぶ、低い木</p></div>
+<p class="v-ex"><span class="en">He also asked us not to disturb the birds sitting in the bushes.</span><span class="v-ja">　彼は、やぶにとまっている鳥たちのじゃまをしないようにとも私たちに頼みました。</span></p>
+<p class="v-note"><span class="badge">形</span>複数形は <span class="en">bushes</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">cage</span><span class="v-kana">ケイジ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>おり、かご</p></div>
+<p class="v-ex"><span class="en">After lunch we visited a building which has several large cages.</span><span class="v-ja">　昼食のあと、私たちは大きなおりがいくつかある建物を訪れました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">center</span><span class="v-kana">センタ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>センター、施設</p></div>
+<p class="v-ex"><span class="en">Last summer I joined a nature program held at a wildlife center near my town.</span><span class="v-ja">　昨年の夏、私は町の近くの野生生物センターで開かれた自然のプログラムに参加しました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「〜センター」という施設の名前にも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">deer</span><span class="v-kana">ディア</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>シカ</p></div>
+<p class="v-ex"><span class="en">The fence which surrounds the field keeps deer out of the garden.</span><span class="v-ja">　その畑を囲むさくが、シカを庭から遠ざけています。</span></p>
+<p class="v-note"><span class="badge">形</span>複数形も <span class="en">deer</span> で、形が変わりません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">fence</span><span class="v-kana">フェンス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>さく、へい</p></div>
+<p class="v-ex"><span class="en">The fence which surrounds the field keeps deer out of the garden.</span><span class="v-ja">　その畑を囲むさくが、シカを庭から遠ざけています。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">footprint</span><span class="v-kana">フットプリント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>足あと</p></div>
+<p class="v-ex"><span class="en">He showed us small footprints left in the muddy ground.</span><span class="v-ja">　彼は、ぬかるんだ地面に残った小さな足あとを私たちに見せてくれました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">fox</span><span class="v-kana">フォックス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>キツネ</p></div>
+<p class="v-ex"><span class="en">A young fox which could not use its tail well was sleeping quietly.</span><span class="v-ja">　しっぽをうまく使えない若いキツネが、静かに眠っていました。</span></p>
+<p class="v-note"><span class="badge">形</span>複数形は <span class="en">foxes</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">fur</span><span class="v-kana">ファー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>毛、毛皮</p></div>
+<p class="v-ex"><span class="en">An animal which has thick fur can live in a cold place.</span><span class="v-ja">　厚い毛をもつ動物は、寒い場所で生きられます。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">habitat</span><span class="v-kana">ハビタット</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>生息地</p></div>
+<p class="v-ex"><span class="en">A habitat is a place which gives animals food and shelter.</span><span class="v-ja">　生息地とは、動物に食べ物と隠れ場所を与える場所です。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">nest</span><span class="v-kana">ネスト</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>巣</p></div>
+<p class="v-ex"><span class="en">Soon we found a nest built on a low branch.</span><span class="v-ja">　すぐに、低い枝の上に作られた巣を見つけました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">owl</span><span class="v-kana">アウル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>フクロウ</p></div>
+<p class="v-ex"><span class="en">An owl is a bird which hunts at night.</span><span class="v-ja">　フクロウは夜に狩りをする鳥です。</span></p>
+<p class="v-note"><span class="badge">形</span>母音の音で始まるので、前につく冠詞は <span class="en">an</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">path</span><span class="v-kana">パス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>細い道、小道</p></div>
+<p class="v-ex"><span class="en">In the morning, a ranger who has worked there for twenty years took us along a narrow path.</span><span class="v-ja">　午前中、そこで20年間働いているレンジャーが、細い道を私たちに案内してくれました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">ranger</span><span class="v-kana">レインジャ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>レンジャー、自然保護官</p></div>
+<p class="v-ex"><span class="en">The man who lives next door is a ranger.</span><span class="v-ja">　隣に住んでいる男性はレンジャーです。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">species</span><span class="v-kana">スピーシーズ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>種（生物の種類）</p></div>
+<p class="v-ex"><span class="en">We must protect endangered species which live in this forest.</span><span class="v-ja">　私たちはこの森に住む絶滅のおそれがある種を守らなければなりません。</span></p>
+<p class="v-note"><span class="badge">形</span>単数でも複数でも <span class="en">species</span> で、形が変わりません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">squirrel</span><span class="v-kana">スクワレル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>リス</p></div>
+<p class="v-ex"><span class="en">A squirrel which lives in this forest hides food under the leaves.</span><span class="v-ja">　この森に住むリスは、葉の下に食べ物をかくします。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">stream</span><span class="v-kana">ストリーム</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>小川</p></div>
+<p class="v-ex"><span class="en">Animals which survive the winter come back to the stream in spring.</span><span class="v-ja">　冬を生きのびる動物たちは、春に小川へ戻ってきます。</span></p>
+<p class="v-note"><span class="badge">区別</span><span class="en">river</span> より細い流れを指します。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">tail</span><span class="v-kana">テイル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>しっぽ、尾</p></div>
+<p class="v-ex"><span class="en">A young fox which could not use its tail well was sleeping quietly.</span><span class="v-ja">　しっぽをうまく使えない若いキツネが、静かに眠っていました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">valley</span><span class="v-kana">ヴァリー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>谷</p></div>
+<p class="v-ex"><span class="en">The center protects animals which live in the valley behind it.</span><span class="v-ja">　そのセンターは、うしろの谷に住む動物たちを守っています。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">wildlife</span><span class="v-kana">ワイルドライフ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>野生生物</p></div>
+<p class="v-ex"><span class="en">People who want to help wildlife must learn to watch and wait.</span><span class="v-ja">　野生生物を助けたい人たちは、見て待つことを学ばなければなりません。</span></p>
+<p class="v-note"><span class="badge">形</span>数えられない名詞としてあつかい、<span class="en">-s</span> をつけません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">wing</span><span class="v-kana">ウィング</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>翼、羽</p></div>
+<p class="v-ex"><span class="en">Birds which have long wings can fly far.</span><span class="v-ja">　長い翼をもつ鳥は遠くまで飛べます。</span></p>
+</li>
+</ol>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

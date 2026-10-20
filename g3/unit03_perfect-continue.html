@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 3　現在完了（継続）と現在完了進行形</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab03_perfect-continue.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 3</p>
+<h1 class="unit-title">現在完了（継続）と現在完了進行形</h1>
+<p class="unit-lead">Unit 1・2 では <strong>have ／ has ＋ 過去分詞</strong>で経験と完了を言いました。この単元では同じ形で<strong>「（過去のある時から今まで）ずっと〜している」</strong>と言う使い方を学びます。目じるしは <span class="en">since</span>（〜から）と <span class="en">for</span>（〜の間）です。あわせて、動作が今まで続いていることを言う<strong>現在完了進行形</strong>（<span class="en">have been</span> 〜<span class="en">ing</span>）も学びます。</p>
+</header>
+
+<h2><span>「ずっと〜している」を言う形</span></h2>
+
+<p>現在形の <span class="en">I live in Wakayama.</span> は「私は和歌山に住んでいます」という<strong>今のこと</strong>だけを言う文です。<span class="en">I have lived in Wakayama for ten years.</span> は「私は10年間ずっと和歌山に住んでいます」で、<strong>10年前に始まった状態が、今も続いている</strong>ことを言う文です。</p>
+
+<div class="diagram">
+<p class="diagram-cap">過去に始まった状態が、今まで続いていることを表す</p>
+<div class="flow">
+<span class="node">始まり<span class="node-label">since 〜（〜から）</span></span>
+<span class="link">
+<span class="link-word">ずっと</span>
+<span class="rail"></span>
+</span>
+<span class="node">今<span class="node-label">have ／ has ＋ 過去分詞</span></span>
+</div>
+</div>
+
+<p><strong>なぜ現在完了を使うのか。</strong>現在完了は「過去から今の時点までのこと」を、今の時点から言う形です。Unit 1 では今までの回数（経験）、Unit 2 では今の時点での終わり（完了）を言いました。この単元では<strong>今までの長さ</strong>を言います。始まりは過去でも、その状態が今も続いているので、過去形ではなく現在完了にします。</p>
+
+<p>例文を並べます。<span class="en">My grandmother has lived in this neighborhood for fifty years.</span>（祖母は50年間この地域に住んでいます）、<span class="en">I have known Ms. Brown since I was ten.</span>（私は10歳のときからブラウン先生を知っています）、<span class="en">My parents have been married for twenty years.</span>（両親は結婚して20年になります）、<span class="en">Ken has belonged to the chess club for two years.</span>（ケンは2年間チェス部に入っています）。</p>
+
+<h2><span><span class="en">since</span> と <span class="en">for</span> の使い分け</span></h2>
+
+<p>「ずっと」の文には、<strong>いつから</strong>か、<strong>どのくらいの間</strong>かを足すことが多くあります。<strong><span class="en">since</span> のうしろは始まりの時点、<span class="en">for</span> のうしろは続いている長さ</strong>です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>意味</th><th>うしろに来るもの</th><th>例</th></tr>
+<tr><td><span class="en">since</span></td><td>〜から、〜以来</td><td class="be-cell">始まりの時点</td><td><span class="en">since 2020</span>・<span class="en">since last year</span>・<span class="en">since this morning</span>・<span class="en">since I was a child</span></td></tr>
+<tr><td><span class="en">for</span></td><td>〜の間</td><td class="be-cell">長さ（期間）</td><td><span class="en">for three years</span>・<span class="en">for two hours</span>・<span class="en">for a long time</span>・<span class="en">for a decade</span></td></tr>
+</table>
+</div>
+
+<p>例文を足します。<span class="en">I have lived in this apartment since 2020.</span>（私は2020年からこのアパートに住んでいます）、<span class="en">I have lived in this apartment for six years.</span>（私は6年間このアパートに住んでいます）、<span class="en">Our coach has been at this school since last year.</span>（コーチは去年からこの学校にいます）、<span class="en">The bakery has been in our town for a decade.</span>（そのパン屋は10年間私たちの町にあります）。</p>
+
+<h3><span class="en">since</span> のうしろに文を置く</h3>
+
+<p><span class="en">since</span> のうしろには、<strong>主語と動詞のある文</strong>も置けます。中2 Unit 4 の <span class="en">when</span> ／ <span class="en">because</span> と同じ「文をつなぐ語」の使い方です。<strong>始まりは過去なので、<span class="en">since</span> のうしろの文は過去形</strong>になります。<span class="en">We have been friends since we were in kindergarten.</span>（私たちは幼稚園にいたころから友だちです）、<span class="en">I have trusted my coach since I joined the team.</span>（私はチームに入ったときからコーチを信頼しています）。</p>
+
+<h3>いろいろな場面の例文</h3>
+
+<p>家族や友だちの話でよく使います。<span class="en">My aunt and her husband have been married for a long time.</span>（おばと夫は長い間結婚しています）、<span class="en">My uncle's wife has practiced calligraphy since her childhood.</span>（おじの妻は子どものころから書道を続けています）、<span class="en">Aya and I have been teammates for three years.</span>（アヤと私は3年間チームメイトです）、<span class="en">Our friendship has been strong since kindergarten.</span>（私たちの友情は幼稚園のときからずっと強いです）。</p>
+
+<p>家や持ち物の話でも同じ形です。<span class="en">We have had a puppy since last spring.</span>（私たちは去年の春から子犬を飼っています）、<span class="en">My sister has had a hamster for two years.</span>（姉は2年間ハムスターを飼っています）、<span class="en">I have used this smartphone for three years.</span>（私はこのスマートフォンを3年間使っています）、<span class="en">My brother has wanted a new bike for a long time.</span>（兄は長い間新しい自転車をほしがっています）。</p>
+
+<p>体の調子や天気にも使います。<span class="en">I have had a cough since last week.</span>（先週からせきが出ています）、<span class="en">My leg has hurt since the game.</span>（試合のときから足が痛みます）、<span class="en">My father has been sick for three days.</span>（父は3日間ずっと具合が悪いです）、<span class="en">It has been cold for a week.</span>（1週間ずっと寒いです）、<span class="en">My mother has been busy since yesterday.</span>（母は昨日からずっと忙しいです）。</p>
+
+<h2><span><span class="en">How long</span> 〜？ の疑問文と答え方</span></h2>
+
+<p>「どのくらいの間〜していますか」とたずねるときは、<strong><span class="en">How long</span> を文の最初に置き、うしろに現在完了の疑問文の語順</strong>を続けます。答えは <span class="en">for</span> 〜 か <span class="en">since</span> 〜 で長さか始まりを言います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>問い</th><th>答え</th></tr>
+<tr><td><span class="en">How long have you lived in this town?</span><br>あなたはどのくらいの間この町に住んでいますか。</td><td><span class="en">For ten years.</span>（10年間です）<br><span class="en">Since 2016.</span>（2016年からです）</td></tr>
+<tr><td><span class="en">How long has Ken belonged to the chess club?</span><br>ケンはどのくらいの間チェス部に入っていますか。</td><td><span class="en">For two years.</span>（2年間です）<br><span class="en">He has belonged to it since he was in the first year.</span></td></tr>
+</table>
+</div>
+
+<p>主語と動詞のある文で答えるときは、問いの <span class="en">have</span> ／ <span class="en">has</span> をそのまま使います。<span class="en">How long has your grandmother run the bakery?</span>（おばあさんはどのくらいの間パン屋を営んでいますか）には <span class="en">She has run it for forty years.</span> と答えます。<span class="en">run</span> は原形と過去分詞が同じ綴りです。</p>
+
+<h3>「ずっと〜していない」</h3>
+
+<p>否定文にすると「ずっと〜していない」という意味になります。<span class="en">I have not seen my cousin recently.</span>（最近いとこに会っていません）、<span class="en">I have not seen my cousin since last month.</span>（先月からいとこに会っていません）、<span class="en">I have not seen her for a long time.</span>（長い間彼女に会っていません）。</p>
+
+<h2><span>現在完了進行形（<span class="en">have been</span> 〜<span class="en">ing</span>）</span></h2>
+
+<p><strong>動作が今までずっと続いている</strong>ことを言うときは、<span class="en">have</span> ／ <span class="en">has</span> ＋ <span class="en">been</span> ＋ 〜<span class="en">ing</span> の形を使います。これを現在完了進行形といいます。中1 Unit 14 の進行形「〜している」と、この単元の「ずっと」を合わせた形です。</p>
+
+<div class="transform">
+<span class="tf-line"><span class="en">I am practicing the violin.</span>　（私はバイオリンを練習しています）</span>
+<span class="tf-arrow">↓　am を have been に変え、for 〜 を足す</span>
+<span class="tf-line"><span class="en">I have been practicing the violin for two hours.</span>　（私は2時間ずっとバイオリンを練習しています）</span>
+</div>
+
+<p><strong>なぜ <span class="en">been</span> が入るのか。</strong>進行形は be動詞 ＋ 〜<span class="en">ing</span> です。-ing形は動詞そのものとしては働かないので be動詞と組みます。その be動詞を現在完了にすると <span class="en">have been</span> になり、うしろに 〜<span class="en">ing</span> が残ります。<span class="en">been</span> は be動詞の過去分詞です。</p>
+
+<p>例文を並べます。<span class="en">It has been raining since this morning.</span>（今朝からずっと雨が降っています）、<span class="en">My brother has been jogging since six o'clock.</span>（兄は6時からずっとジョギングをしています）、<span class="en">My grandmother has been baking bread since four in the morning.</span>（祖母は朝の4時からずっとパンを焼いています）、<span class="en">The students have been running the marathon for an hour.</span>（生徒たちは1時間ずっとマラソンを走っています）。</p>
+
+<p>疑問文も <span class="en">How long</span> で作れます。<span class="en">How long have you been waiting here?</span>（あなたはどのくらいの間ここで待っていますか）、答えは <span class="en">For thirty minutes.</span>（30分間です）です。</p>
+
+<h2><span>状態の動詞は現在完了で「ずっと」を表す</span></h2>
+
+<p>中2 Unit 1 で、<span class="en">have</span>・<span class="en">know</span>・<span class="en">like</span>・<span class="en">want</span> のような<strong>状態を表す動詞は進行形にしない</strong>と学びました。現在完了進行形も進行形の仲間なので、同じ規則です。<strong>状態の動詞で「ずっと」を言うときは、ふつうの現在完了</strong>を使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>動詞の種類</th><th>「ずっと」の言い方</th><th>例</th></tr>
+<tr><td>動作（<span class="en">play</span>・<span class="en">read</span>・<span class="en">wait</span>・<span class="en">rain</span> など）</td><td class="be-cell"><span class="en">have been</span> 〜<span class="en">ing</span></td><td><span class="en">I have been reading this book for an hour.</span></td></tr>
+<tr><td>状態（<span class="en">know</span>・<span class="en">want</span>・<span class="en">have</span>・<span class="en">be</span> など）</td><td class="be-cell"><span class="en">have</span> ＋ 過去分詞</td><td><span class="en">I have known Ken for five years.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">live</span> は、動作としても状態としても使われる語です。<span class="en">have been living</span> の形も使われますが、入試では <span class="en">I have lived here for ten years.</span> の形がよく出るので、この教材ではこちらで書きます。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">「過去から今までずっと」と言う文かを決める</span>
+<span class="step-d">今のことだけなら現在形、過去のことだけなら過去形、過去に始まって今も続いているなら現在完了です。</span>
+</li>
+<li>
+<span class="step-t">動作か状態かを決める</span>
+<span class="step-d">動作なら <span class="en">have</span> ／ <span class="en">has been</span> 〜<span class="en">ing</span>、状態なら <span class="en">have</span> ／ <span class="en">has</span> ＋ 過去分詞です。</span>
+</li>
+<li>
+<span class="step-t">主語から have か has かを決める</span>
+<span class="step-d">3人称単数なら <span class="en">has</span>、それ以外は <span class="en">have</span> です。Unit 1 と同じです。</span>
+</li>
+<li>
+<span class="step-t">since か for かを決める</span>
+<span class="step-d">うしろが始まりの時点なら <span class="en">since</span>、長さなら <span class="en">for</span> です。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>「3年前から」は <span class="en">for three years</span></h3>
+
+<p>日本語の「3年前から」は「から」があるので <span class="en">since</span> を選びたくなりますが、<span class="en">three years</span> は長さです。<strong>長さには <span class="en">for</span></strong> を使い、<span class="en">I have lived here for three years.</span> とします。<span class="en">since three years</span> とは言いません。</p>
+
+<h3><span class="en">since</span> と <span class="en">from</span></h3>
+
+<p><span class="en">from</span> も「〜から」ですが、<span class="en">from 2015 to 2020</span>（2015年から2020年まで）のように<strong>始まりと終わりを言う語</strong>です。<strong>「〜から今まで」を現在完了で言うときは <span class="en">since</span></strong> を使います。<span class="en">I have lived here since 2020.</span> は正しく、<span class="en">I have lived here from 2020.</span> は誤りです。</p>
+
+<h3>現在形では「ずっと」を言えない</h3>
+
+<p>日本語では「私は10年間ここに住んでいます」と現在形のように言いますが、英語で <span class="en">for ten years</span> や <span class="en">since</span> 〜 を使うときは<strong>現在完了</strong>にします。<span class="en">I live here for ten years.</span> は誤りです。</p>
+
+<h3><span class="en">since then</span> と過去の時を表す語</h3>
+
+<p><span class="en">since then</span>（そのときから）、<span class="en">since last year</span>（去年から）は、過去の時を指す語に <span class="en">since</span> がついて「始まり」を表すので、現在完了と使えます。<span class="en">since</span> がつかない <span class="en">last year</span>・〜 <span class="en">ago</span> だけなら、Unit 1・2 と同じく過去形を使います。くわしくは Unit 4 で整理します。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>(　) に <span class="en">since</span> ／ <span class="en">for</span> を選ばせる。うしろが時点か長さかを読ませる</td></tr>
+<tr><td>対話文</td><td><span class="en">How long 〜?</span> の問いに合う答え（<span class="en">For 〜.</span> ／ <span class="en">Since 〜.</span>）を選ばせる</td></tr>
+<tr><td>選択</td><td><span class="en">has been raining</span> ／ <span class="en">is raining</span> から、<span class="en">since</span> がある文に合う形を選ばせる</td></tr>
+<tr><td>和文英訳</td><td>「〜年間ずっと住んでいる」を <span class="en">have lived</span> 〜 <span class="en">for</span> で書かせる</td></tr>
+<tr><td>書きかえ</td><td><span class="en">I came here three years ago. I still live here.</span> を <span class="en">I have lived here for three years.</span> にまとめさせる</td></tr>
+<tr><td>読解</td><td>「いつから」「どのくらいの間」を本文から読み取らせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I have lived here since three years.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I have lived here for three years.</span></div>
+<p class="contrast-why"><span class="en">three years</span> は長さなので <span class="en">for</span> です。<span class="en">since</span> のうしろは始まりの時点です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">My father works at the hospital for twenty years.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">My father has worked at the hospital for twenty years.</span></div>
+<p class="contrast-why">過去に始まって今も続いていることを言うので、現在完了にします。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I have been knowing Ms. Brown since I was ten.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I have known Ms. Brown since I was ten.</span></div>
+<p class="contrast-why"><span class="en">know</span> は状態の動詞なので進行形にしません。ふつうの現在完了で「ずっと」を表します。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">It is raining since last night.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">It has been raining since last night.</span></div>
+<p class="contrast-why"><span class="en">since</span> 〜 があるので「今までずっと」の文です。動作の <span class="en">rain</span> なので現在完了進行形にします。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>「（過去から今まで）ずっと〜している」は <strong><span class="en">have</span> ／ <span class="en">has</span> ＋ 過去分詞</strong>です。形は Unit 1・2 と同じです。</li>
+<li><strong><span class="en">since</span> のうしろは始まりの時点、<span class="en">for</span> のうしろは長さ</strong>です。<span class="en">since</span> のうしろには過去形の文も置けます。</li>
+<li>「どのくらいの間」は <strong><span class="en">How long have</span> ／ <span class="en">has</span> 〜?</strong> で、<span class="en">For 〜.</span> ／ <span class="en">Since 〜.</span> で答えます。</li>
+<li>動作が続いているときは <strong>現在完了進行形 <span class="en">have</span> ／ <span class="en">has been</span> 〜<span class="en">ing</span></strong> です。</li>
+<li><span class="en">know</span>・<span class="en">want</span>・<span class="en">have</span> のような<strong>状態の動詞は進行形にせず、ふつうの現在完了</strong>で「ずっと」を表します。</li>
+</ul>
+</div>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず「ずっと」の文かを確かめ、次に時点か長さか、動作か状態かを見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My cousin and I have lived in this apartment (　　　) 2019.</span>
+<p class="opts"><span>ア for</span><span>イ since</span><span>ウ from</span><span>エ ago</span></p></li>
+<li><span class="en">My grandmother has run the small bakery near the station (　　　) forty years.</span>
+<p class="opts"><span>ア since</span><span>イ for</span><span>ウ at</span><span>エ ago</span></p></li>
+<li><span class="en">"How (　　　) have you known Ms. Brown?" "For six years."</span>
+<p class="opts"><span>ア long</span><span>イ many</span><span>ウ much</span><span>エ old</span></p></li>
+<li><span class="en">It (　　　) since early this morning, so the game has stopped.</span>
+<p class="opts"><span>ア has been raining</span><span>イ was raining</span><span>ウ have been raining</span><span>エ is raining</span></p></li>
+<li><span class="en">The new coach of our team (　　　) Ken since he was a child.</span>
+<p class="opts"><span>ア has been knowing</span><span>イ has known</span><span>ウ is knowing</span><span>エ knows</span></p></li>
+<li><span class="en">The two boys in the gym (　　　) tennis for two hours.</span>
+<p class="opts"><span>ア has been playing</span><span>イ are play</span><span>ウ have been playing</span><span>エ has played</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>私は3年間ずっとこのアパートに住んでいます。<br><span class="en">[ i / have / lived / in / this / apartment / for / three / years ] .</span><span class="write"></span></li>
+<li>兄は今朝からずっとジョギングをしています。<br><span class="en">[ my / brother / has / been / jogging / since / this / morning ] .</span><span class="write"></span></li>
+<li>あなたはどのくらいの間ここで待っていますか。<br><span class="en">[ how / long / have / you / been / waiting / here ] ?</span><span class="write"></span></li>
+<li data-extra="1">私たちは幼稚園にいたころから友だちです。<span class="hint">1語不要</span><br><span class="en">[ we / have / been / friends / since / we / were / in / kindergarten / for ] .</span><span class="write"></span></li>
+<li data-extra="1">祖母は40年間そのパン屋を営んでいます。<span class="hint">1語不要</span><br><span class="en">[ my / grandmother / has / run / the / bakery / for / forty / years / since ] .</span><span class="write"></span></li>
+<li>私は先月からいとこに会っていません。<br><span class="en">[ i / have / not / seen / my / cousin / since / last / month ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">I have lived here since three years.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My father works at the hospital for twenty years.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I have been knowing Ms. Brown since I was ten.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">It is raining since last night.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">My sister have been practicing the violin since this morning.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">私は5年間ずっとこの町に住んでいます。</span><span class="write"></span></li>
+<li><span class="q-ja">母は昨日からずっと忙しいです。</span><span class="write"></span></li>
+<li><span class="q-ja">私は2時間ずっとピアノを練習しています。</span><span class="write"></span></li>
+<li><span class="q-ja">私は長い間彼女に会っていません。</span><span class="write"></span></li>
+<li><span class="en">How long</span> で始めて「あなたはどのくらいの間アヤを知っていますか」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li>上の問いに「10歳のときからです」と <span class="en">since</span> を使って答える。<span class="cond">4語</span><span class="write"></span></li>
+<li><span class="en">been</span> を使って「今朝からずっと雨が降っています」と書く。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">ユイは、英語の授業で祖母のパン屋についてスピーチをしました。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">駅前のパン屋</p>
+<p>My grandmother has a small bakery near the station. She has run it for forty years. She and my grandfather started it together when they were young, and they have been married since then. My grandfather still helps her in the shop.</p>
+<p>Every morning my grandmother gets up at four. She makes the dough with flour and water, and she puts the bread into a big oven. When I visit the bakery on weekends, the shop smells of warm bread. Many of her regular customers have come to the shop for a long time. One old man has bought the same bread every morning since his childhood.</p>
+<p>Last year my grandmother hurt her leg, so my cousin and I helped her for a few weeks. <span class="num">①</span><span class="ul">We have been learning how to bake bread since then</span>. Now I can make a good loaf. I want to work at the bakery with her in the future.</p>
+<p class="reading-wc">およそ155語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア ユイの祖母は40年間パン屋を営んでいる。<br>
+イ ユイの祖母は毎朝6時に起きる。<br>
+ウ ユイは祖母のパン屋に一度も行ったことがない。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">Her grandmother and grandfather have been married (　　　) forty years.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">How long has her grandmother run the bakery?</span><span class="write"></span></li>
+<li>ユイといとこが祖母のパン屋を手伝ったのはなぜか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li>自分が長く続けていることを1つ選び、<span class="en">for</span> か <span class="en">since</span> を使って1文書く。<span class="hint">例：I have played tennis for three years.</span><span class="write"></span></li>
+<li>クラスの友だちにたずねる文を、<span class="en">How long</span> を使って1文書く。<span class="hint">例：How long have you lived in this town?</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>「過去から今までずっと」の文か</strong>に戻り、次に<strong>since は時点・for は長さ</strong>、<strong>動作は have been 〜ing・状態は have ＋ 過去分詞</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　since</span><p class="a-why"><span class="en">2019</span> は始まりの時点なので <span class="en">since</span> です。<span class="en">from</span> は「〜から…まで」と終わりも言う語で、現在完了の「〜から今まで」には使いません。</p></li>
+<li><span class="a-key">イ　for</span><p class="a-why"><span class="en">forty years</span> は長さなので <span class="en">for</span> です。主語の中心は <span class="en">My grandmother</span> で、<span class="en">near the station</span> は <span class="en">bakery</span> の説明です。</p></li>
+<li><span class="a-key">ア　long</span><p class="a-why">答えが <span class="en">For six years.</span> と長さなので、「どのくらいの間」をたずねる <span class="en">How long</span> です。</p></li>
+<li><span class="a-key">ア　has been raining</span><p class="a-why"><span class="en">since early this morning</span> があるので「今朝からずっと」の文です。<span class="en">rain</span> は動作なので現在完了進行形にします。主語 <span class="en">It</span> は3人称単数なので <span class="en">has</span> です。</p></li>
+<li><span class="a-key">イ　has known</span><p class="a-why"><span class="en">know</span> は状態の動詞なので進行形にしません。<span class="en">since</span> があるので現在完了の <span class="en">has known</span> です。主語の中心は <span class="en">The new coach</span> で3人称単数です。</p></li>
+<li><span class="a-key">ウ　have been playing</span><p class="a-why">主語の中心は <span class="en">The two boys</span> で複数なので <span class="en">have</span> です。<span class="en">in the gym</span> は説明なので、主語の数は変わりません。<span class="en">play</span> は動作で、<span class="en">for two hours</span> があるので現在完了進行形です。</p></li>
+
+<li><span class="a-key">I have lived in this apartment for three years.</span><p class="a-why"><span class="en">three years</span> は長さなので <span class="en">for</span> を使います。</p></li>
+<li><span class="a-key">My brother has been jogging since this morning.</span><p class="a-why">動作が続いているので <span class="en">has been</span> 〜<span class="en">ing</span> です。<span class="en">this morning</span> は始まりの時点なので <span class="en">since</span> です。</p></li>
+<li><span class="a-key">How long have you been waiting here?</span><p class="a-why"><span class="en">How long</span> を文の最初に置き、うしろに疑問文の語順 <span class="en">have you been waiting</span> を続けます。</p></li>
+<li><span class="a-key">We have been friends since we were in kindergarten.</span><p class="a-why">不要な語は <span class="en">for</span> です。<span class="en">since</span> のうしろに過去形の文 <span class="en">we were in kindergarten</span> を置いて始まりを言います。</p></li>
+<li><span class="a-key">My grandmother has run the bakery for forty years.</span><p class="a-why">不要な語は <span class="en">since</span> です。<span class="en">forty years</span> は長さなので <span class="en">for</span> です。<span class="en">run</span> は過去分詞も <span class="en">run</span> です。</p></li>
+<li><span class="a-key">I have not seen my cousin since last month.</span><p class="a-why">否定文で「ずっと会っていない」を言います。<span class="en">last month</span> は始まりの時点なので <span class="en">since</span> です。</p></li>
+
+<li><span class="a-key">I have lived here for three years.</span><p class="a-why">誤りは <span class="en">since</span> です。<span class="en">three years</span> は長さなので <span class="en">for</span> に直します。</p></li>
+<li><span class="a-key">My father has worked at the hospital for twenty years.</span><p class="a-why">誤りは <span class="en">works</span> です。<span class="en">for twenty years</span> があり、過去に始まって今も続いているので現在完了 <span class="en">has worked</span> にします。</p></li>
+<li><span class="a-key">I have known Ms. Brown since I was ten.</span><p class="a-why">誤りは <span class="en">been knowing</span> です。<span class="en">know</span> は状態の動詞なので進行形にせず、<span class="en">have known</span> にします。</p></li>
+<li><span class="a-key">It has been raining since last night.</span><p class="a-why">誤りは <span class="en">is</span> です。<span class="en">since last night</span> があるので現在完了進行形 <span class="en">has been raining</span> にします。</p></li>
+<li><span class="a-key">My sister has been practicing the violin since this morning.</span><p class="a-why">誤りは <span class="en">have</span> です。主語 <span class="en">My sister</span> は3人称単数なので <span class="en">has</span> に直します。</p></li>
+
+<li><span class="a-key">I have lived in this town for five years.</span><p class="a-why">「5年間ずっと」は長さなので <span class="en">for five years</span> です。<span class="en">live</span> はこの教材では <span class="en">have lived</span> の形で書きます。</p></li>
+<li><span class="a-key">My mother has been busy since yesterday.</span><p class="a-why"><span class="en">busy</span> は状態なので <span class="en">has been busy</span> です。<span class="en">been</span> は <span class="en">is</span> の過去分詞です。<span class="en">yesterday</span> は始まりの時点なので <span class="en">since</span> です。</p></li>
+<li><span class="a-key">I have been practicing the piano for two hours.</span><p class="a-why">練習は動作なので現在完了進行形です。<span class="en">two hours</span> は長さなので <span class="en">for</span> です。</p></li>
+<li><span class="a-key">I have not seen her for a long time.</span><p class="a-why">「長い間」は <span class="en">for a long time</span> です。<span class="en">I haven't seen her for a long time.</span> と短縮してもよいです。</p></li>
+<li><span class="a-key">How long have you known Aya?</span><p class="a-why"><span class="en">know</span> は状態の動詞なので <span class="en">have known</span> です。<span class="en">How long</span> のうしろは疑問文の語順です。</p></li>
+<li><span class="a-key">Since I was ten.</span><p class="a-why"><span class="en">since</span> のうしろに過去形の文 <span class="en">I was ten</span> を置きます。<span class="en">I have known her since I was ten.</span> も正しい答えですが、ここは4語の指定です。</p></li>
+<li><span class="a-key">It has been raining since this morning.</span><p class="a-why">天気の <span class="en">It</span> を主語にします。<span class="en">rain</span> は動作なので <span class="en">has been raining</span> で7語です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">She has run it for forty years.</span> とあります。イは <span class="en">gets up at four</span>（4時に起きる）と合いません。ウは <span class="en">When I visit the bakery on weekends</span> と合いません。</p></li>
+<li><span class="a-key">私たちはそのときからずっとパンの焼き方を習っています。</span><p class="a-why"><span class="en">have been learning</span> は「ずっと習っている」です。<span class="en">since then</span> は「そのときから」で、祖母がけがをしたときを指します。<span class="en">how to bake</span> は中2 Unit 11 の「焼き方」です。</p></li>
+<li><span class="a-key">for</span><p class="a-why">2人はパン屋を始めたときから結婚していて、パン屋は40年続いています。<span class="en">forty years</span> は長さなので <span class="en">for</span> です。</p></li>
+<li><span class="a-key">She has run it for forty years.</span><p class="a-why">本文の <span class="en">She has run it for forty years.</span> から答えます。<span class="en">She has run the bakery for forty years.</span> も正しい答えです。</p></li>
+<li><span class="a-key">祖母が足をけがしたから。</span><p class="a-why">本文に <span class="en">Last year my grandmother hurt her leg, so my cousin and I helped her for a few weeks.</span> とあります。<span class="en">so</span> の前が理由です。</p></li>
+
+<li><span class="a-key">解答例：I have played tennis for three years.</span><p class="a-why">長さなら <span class="en">for</span>、始まりなら <span class="en">since</span> です。<span class="en">I have been in the brass band since last spring.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：How long have you lived in this town?</span><p class="a-why"><span class="en">How long</span> のうしろは疑問文の語順です。動作なら <span class="en">How long have you been playing the guitar?</span> のようにも書けます。</p></li>
+</ol>
+</div>
+</body>
+</html>

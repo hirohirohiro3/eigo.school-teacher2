@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 7　want / tell / ask + 人 + to 〜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit07_ask-to.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 7</p>
+<h1 class="unit-title">単語帳　want / tell / ask + 人 + to 〜</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。<strong>人 ＋ <span class="en">to</span> 〜 の形をとる動詞</strong>（<span class="en">encourage</span>・<span class="en">remind</span>・<span class="en">allow</span>・<span class="en">expect</span>）と、<strong>部活動と試合</strong>のまわりの語をまとめてあります。動詞は「だれに・何をするように」まで含めた文の形で覚えてください。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめに人 ＋ <span class="en">to</span> 〜 の形をとる動詞、次にそのほかの動詞、次に形容詞・副詞、次に名詞（試合・役割の順）、最後に熟語の順です。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">encourage</span><span class="v-kana">インカーリッジ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>はげます、〜するように勧める</p></div>
+<p class="v-ex"><span class="en">Our coach encouraged me to talk with my teammates.</span><span class="v-ja">　コーチは私にチームメートと話すようにはげましました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">encourage</span> ＋ 人 ＋ <span class="en">to</span> 〜 で「人に〜するようにはげます」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">remind</span><span class="v-kana">リマインド</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>念を押す、思い出させる</p></div>
+<p class="v-ex"><span class="en">Before practice, I reminded everyone to stretch.</span><span class="v-ja">　練習の前に、私はみんなにストレッチをするように念を押しました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">remind</span> ＋ 人 ＋ <span class="en">to</span> 〜 で「人に〜するように念を押す」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">allow</span><span class="v-kana">アラウ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>許す、許可する</p></div>
+<p class="v-ex"><span class="en">The coach allowed us to rest for a while.</span><span class="v-ja">　コーチは私たちがしばらく休むのを許しました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>読みは「アロウ」ではなく「アラウ」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">expect</span><span class="v-kana">イクスペクト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>期待する、予期する</p></div>
+<p class="v-ex"><span class="en">Our parents expect us to do our best.</span><span class="v-ja">　両親は私たちが最善をつくすことを期待しています。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">expect</span> ＋ 人 ＋ <span class="en">to</span> 〜 で「人が〜することを期待する」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">quit</span><span class="v-kana">クウィット</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>やめる</p></div>
+<p class="v-ex"><span class="en">I asked him not to quit the team.</span><span class="v-ja">　私は彼にチームをやめないように頼みました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>過去形も <span class="en">quit</span> です。<span class="en">-ing</span> 形は <span class="en">t</span> を重ねて <span class="en">quitting</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">stretch</span><span class="v-kana">ストレッチ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>ストレッチをする、のばす</p></div>
+<p class="v-ex"><span class="en">Our captain told us to stretch before practice.</span><span class="v-ja">　キャプテンは私たちに練習の前にストレッチをするように言いました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>三人称単数現在は <span class="en">stretches</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">shoot</span><span class="v-kana">シュート</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>シュートする、（ボールを）打つ</p></div>
+<p class="v-ex"><span class="en">In the second half, the coach told me to shoot more.</span><span class="v-ja">　後半に、コーチは私にもっとシュートするように言いました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>過去形は <span class="en">shot</span> です（不規則変化）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">beat</span><span class="v-kana">ビート</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>（試合で相手を）負かす</p></div>
+<p class="v-ex"><span class="en">The coach wants us to beat our opponent.</span><span class="v-ja">　コーチは私たちに相手を負かしてほしいと思っています。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">beat</span> のうしろは相手、<span class="en">win</span> のうしろは試合です（<span class="en">beat the team</span>／<span class="en">win the game</span>）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">blame</span><span class="v-kana">ブレイム</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>責める、〜のせいにする</p></div>
+<p class="v-ex"><span class="en">After the game, I blamed my teammates.</span><span class="v-ja">　試合のあと、私はチームメートを責めました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">gather</span><span class="v-kana">ギャザー</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>集める、集まる</p></div>
+<p class="v-ex"><span class="en">The next day, our coach gathered us on the court.</span><span class="v-ja">　次の日、コーチは私たちをコートに集めました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">apologize</span><span class="v-kana">アパロジャイズ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>あやまる</p></div>
+<p class="v-ex"><span class="en">I apologized to the team.</span><span class="v-ja">　私はチームにあやまりました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>あやまる相手は <span class="en">to</span> で示します（<span class="en">apologize to</span> 〜）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">forgive</span><span class="v-kana">フォギヴ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>許す</p></div>
+<p class="v-ex"><span class="en">I asked Taku not to quit, and I asked him to forgive me.</span><span class="v-ja">　私はタクにやめないように頼み、私を許してくれるように頼みました。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">allow</span> は「〜するのを許可する」、<span class="en">forgive</span> は「（したことを）許す」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">reply</span><span class="v-kana">リプライ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>返事をする、答える</p></div>
+<p class="v-ex"><span class="en">He did not reply for a while, but in the end he stayed.</span><span class="v-ja">　彼はしばらく返事をしませんでしたが、最後にはチームに残りました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>過去形は <span class="en">y</span> を <span class="en">i</span> に変えて <span class="en">replied</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">upset</span><span class="v-kana">アプセット</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>気分を害した、動揺した</p></div>
+<p class="v-ex"><span class="en">They were upset, and one member, Taku, wanted to quit the team.</span><span class="v-ja">　彼らは気分を害し、メンバーの一人のタクはチームをやめたいと思いました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">injured</span><span class="v-kana">インジャド</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>けがをした</p></div>
+<p class="v-ex"><span class="en">The coach told the injured player to rest.</span><span class="v-ja">　コーチはけがをした選手に休むように言いました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">final</span><span class="v-kana">ファイナル</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>決勝の、最後の</p></div>
+<p class="v-ex"><span class="en">We asked our coach to watch the final game.</span><span class="v-ja">　私たちはコーチに決勝の試合を見てくれるように頼みました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">seriously</span><span class="v-kana">スィリアスリ</span></p>
+<div class="v-sense"><span class="tag t-adv">副詞</span><p>真剣に、まじめに</p></div>
+<p class="v-ex"><span class="en">The coach wants us to practice seriously.</span><span class="v-ja">　コーチは私たちに真剣に練習してほしいと思っています。</span></p>
+<p class="v-note"><span class="badge">セットで</span>形容詞は <span class="en">serious</span>（真剣な）です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">basketball</span><span class="v-kana">バスケトボール</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>バスケットボール</p></div>
+<p class="v-ex"><span class="en">Last year I became the captain of our basketball team.</span><span class="v-ja">　昨年、私はバスケットボール部のキャプテンになりました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">tournament</span><span class="v-kana">トゥアナメント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>トーナメント、大会</p></div>
+<p class="v-ex"><span class="en">In the first round of a tournament, we lost to a strong opponent.</span><span class="v-ja">　ある大会の1回戦で、私たちは強い相手に負けました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">round</span><span class="v-kana">ラウンド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>（試合の）〜回戦</p></div>
+<p class="v-ex"><span class="en">In the first round of a tournament, we lost to a strong opponent.</span><span class="v-ja">　ある大会の1回戦で、私たちは強い相手に負けました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">the first round</span> で「1回戦」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">opponent</span><span class="v-kana">オポウネント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>（試合の）相手</p></div>
+<p class="v-ex"><span class="en">The coach wants us to beat our opponent.</span><span class="v-ja">　コーチは私たちに相手を負かしてほしいと思っています。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">referee</span><span class="v-kana">レフェリー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>審判</p></div>
+<p class="v-ex"><span class="en">The referee told the players to wait for the whistle.</span><span class="v-ja">　審判は選手たちに笛を待つように言いました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">whistle</span><span class="v-kana">ウィスル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>笛、笛の音</p></div>
+<p class="v-ex"><span class="en">The referee told the players to wait for the whistle.</span><span class="v-ja">　審判は選手たちに笛を待つように言いました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span><span class="en">t</span> は読みません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">court</span><span class="v-kana">コート</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>（バスケットボールなどの）コート</p></div>
+<p class="v-ex"><span class="en">The next day, our coach gathered us on the court.</span><span class="v-ja">　次の日、コーチは私たちをコートに集めました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">half</span><span class="v-kana">ハーフ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>半分、（試合の）前半・後半</p></div>
+<p class="v-ex"><span class="en">In the second half, the coach told me to shoot more.</span><span class="v-ja">　後半に、コーチは私にもっとシュートするように言いました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span><span class="en">l</span> は読みません。<span class="en">the first half</span> で「前半」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">point</span><span class="v-kana">ポイント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>点、得点</p></div>
+<p class="v-ex"><span class="en">In our last game, Taku played very well, and we won by two points.</span><span class="v-ja">　最後の試合で、タクはとても上手にプレーし、私たちは2点差で勝ちました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">win by</span> 〜 <span class="en">points</span> で「〜点差で勝つ」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">knee</span><span class="v-kana">ニー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ひざ</p></div>
+<p class="v-ex"><span class="en">The doctor told him not to play for a while because his knee hurt.</span><span class="v-ja">　ひざが痛かったので、医者は彼にしばらくプレーしないように言いました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>はじめの <span class="en">k</span> は読みません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">role</span><span class="v-kana">ロウル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>役割、役目</p></div>
+<p class="v-ex"><span class="en">"A captain's role is to encourage everyone," she said.</span><span class="v-ja">　「キャプテンの役割は、みんなをはげますことです」と彼女は言いました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">responsibility</span><span class="v-kana">リスパンスィビリティ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>責任</p></div>
+<p class="v-ex"><span class="en">Our coach expects the captain to take responsibility.</span><span class="v-ja">　コーチはキャプテンが責任を持つことを期待しています。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">take responsibility</span> で「責任を持つ、責任をとる」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">decision</span><span class="v-kana">ディスィジョン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>決定、決心</p></div>
+<p class="v-ex"><span class="en">The coach asked me to make a decision.</span><span class="v-ja">　コーチは私に決めてくれるように頼みました。</span></p>
+<p class="v-note"><span class="badge">セットで</span>動詞は <span class="en">decide</span>（決める）です。<span class="en">make a decision</span> で「決める」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">pay attention to 〜</span><span class="v-kana">ペイ アテンション トゥ</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜に注意を払う</p></div>
+<p class="v-ex"><span class="en">I want you to pay attention to the ball.</span><span class="v-ja">　私はあなたにボールに注意を払ってほしい。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">for a while</span><span class="v-kana">フォア ア ワイル</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>しばらくのあいだ</p></div>
+<p class="v-ex"><span class="en">The coach allowed us to rest for a while.</span><span class="v-ja">　コーチは私たちがしばらく休むのを許しました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">in the end</span><span class="v-kana">イン ズィ エンド</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>最後には、結局</p></div>
+<p class="v-ex"><span class="en">He did not reply for a while, but in the end he stayed.</span><span class="v-ja">　彼はしばらく返事をしませんでしたが、最後にはチームに残りました。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">at the end of</span> 〜（〜の終わりに）とは別の言い方です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">cheer up 〜</span><span class="v-kana">チア アップ</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜を元気づける</p></div>
+<p class="v-ex"><span class="en">We wanted to cheer up our injured teammate.</span><span class="v-ja">　私たちはけがをしたチームメートを元気づけたいと思いました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>代名詞が目的語のときは <span class="en">cheer him up</span> のように間に入れます。</p>
+</li>
+</ol>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 6　too 〜 to … と 〜 enough to … / so 〜 that …</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit06_too-enough.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 6</p>
+<h1 class="unit-title">単語帳　too 〜 to … と 〜 enough to … / so 〜 that …</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。<strong>程度を言う語</strong>（<span class="en">enough</span>・<span class="en">alone</span>・<span class="en">tight</span>）と、<strong>文化祭の劇と道具</strong>のまわりの語をまとめてあります。例文の多くが <span class="en">too</span> 〜 <span class="en">to</span> …、〜 <span class="en">enough to</span> …、<span class="en">so</span> 〜 <span class="en">that</span> … の形なので、文の形ごと覚えてください。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめに動詞、次に助動詞、次に形容詞・副詞、次に名詞（道具・劇・場所の順）、最後に熟語の順です。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">lift</span><span class="v-kana">リフト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>持ち上げる</p></div>
+<p class="v-ex"><span class="en">The board was too heavy to lift alone.</span><span class="v-ja">　その板は一人で持ち上げるには重すぎました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>重さを言う文でよく使います。<span class="en">too heavy to lift</span>（重すぎて持ち上げられない）の形で覚えてください。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">arrange</span><span class="v-kana">アレインジ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>並べる、整える</p></div>
+<p class="v-ex"><span class="en">We had enough time to arrange the chairs.</span><span class="v-ja">　私たちにはそのいすを並べるのに十分な時間がありました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>語尾が <span class="en">e</span> なので、<span class="en">-ing</span> 形は <span class="en">e</span> をとって <span class="en">arranging</span>、過去形は <span class="en">arranged</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">act</span><span class="v-kana">アクト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>演じる</p></div>
+<p class="v-ex"><span class="en">She acted well enough to surprise everyone.</span><span class="v-ja">　彼女はみんなを驚かせるほど上手に演じました。</span></p>
+<p class="v-note"><span class="badge">セットで</span>名詞の <span class="en">drama</span>（劇）と対にして覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">rehearse</span><span class="v-kana">リハース</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>リハーサルをする、下げいこをする</p></div>
+<p class="v-ex"><span class="en">He was too tired to rehearse again.</span><span class="v-ja">　彼はつかれすぎて、もう一度リハーサルをすることができませんでした。</span></p>
+<p class="v-note"><span class="badge">セットで</span>名詞は <span class="en">rehearsal</span>（リハーサル）です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">clap</span><span class="v-kana">クラップ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>手をたたく、拍手する</p></div>
+<p class="v-ex"><span class="en">She played the flute so well that everyone clapped.</span><span class="v-ja">　彼女はとても上手にフルートを演奏したので、みんなが手をたたきました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>最後の <span class="en">p</span> を重ねて <span class="en">clapped</span>・<span class="en">clapping</span> になります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">cheer</span><span class="v-kana">チア</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>声援を送る、はげます</p></div>
+<p class="v-ex"><span class="en">Our classmates cheered so loudly that we could not hear the music.</span><span class="v-ja">　クラスメートがとても大きな声で声援を送ったので、私たちは音楽が聞こえませんでした。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">cheer for 〜</span> で「〜に声援を送る」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">whisper</span><span class="v-kana">ウィスパー</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>ささやく、小声で言う</p></div>
+<p class="v-ex"><span class="en">He whispered so quietly that I could not hear him.</span><span class="v-ja">　彼はとても小さな声でささやいたので、私は彼の声が聞こえませんでした。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">whisper ↔ shout</span>（さけぶ）です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">cooperate</span><span class="v-kana">コウアペレイト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>協力する</p></div>
+<p class="v-ex"><span class="en">We cooperated well enough to finish the stage in time.</span><span class="v-ja">　私たちは、ステージを時間内に仕上げられるほどよく協力しました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">cooperate with 〜</span> で「〜と協力する」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">could</span><span class="v-kana">クド</span></p>
+<div class="v-sense"><span class="tag t-aux">助動詞</span><p>〜できた（<span class="en">can</span> の過去形）</p></div>
+<p class="v-ex"><span class="en">The gym was so noisy that the audience could not hear us.</span><span class="v-ja">　体育館はとても騒がしかったので、観客は私たちの声が聞こえませんでした。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span><span class="en">can</span> の過去形で、うしろは動詞の原形です。否定は <span class="en">could not</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">enough</span><span class="v-kana">イナフ</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>十分な（名詞の<strong>前</strong>に置く）</p></div>
+<div class="v-sense"><span class="tag t-adv">副詞</span><p>十分に（形容詞・副詞の<strong>うしろ</strong>に置く）</p></div>
+<p class="v-ex"><span class="en">The rope was not long enough.</span><span class="v-ja">　そのロープは十分に長くありませんでした。</span></p>
+<p class="v-note"><span class="badge">使い方</span>位置が2通りあります。形容詞・副詞につくときはうしろ（<span class="en">long enough</span>）、名詞につくときは前（<span class="en">enough time</span>）です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">alone</span><span class="v-kana">アロウン</span></p>
+<div class="v-sense"><span class="tag t-adv">副詞</span><p>一人で、自分だけで</p></div>
+<p class="v-ex"><span class="en">Some boards were too heavy to lift alone, so I carried them with my partner.</span><span class="v-ja">　いくつかの板は一人で持ち上げるには重すぎたので、私は相手と一緒に運びました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>動詞のうしろに置きます。<span class="en">live alone</span> で「一人で住む」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">silent</span><span class="v-kana">サイレント</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>静まりかえった、黙った</p></div>
+<p class="v-ex"><span class="en">On the day of the festival, the hall was silent before the curtain went up.</span><span class="v-ja">　文化祭の日、幕が上がる前、会場は静まりかえっていました。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">silent ↔ noisy</span>（騒がしい）です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">tight</span><span class="v-kana">タイト</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>（服などが）きつい、かたい</p></div>
+<p class="v-ex"><span class="en">The costume was too tight to wear.</span><span class="v-ja">　その衣装はきつすぎて着られませんでした。</span></p>
+<p class="v-note"><span class="badge">使い方</span>服・くつ・ふたなど、しめつけるものに使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">neat</span><span class="v-kana">ニート</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>きちんとした、整った</p></div>
+<p class="v-ex"><span class="en">His writing was neat enough to read from the back row.</span><span class="v-ja">　彼の字は、うしろの列から読めるほどきちんとしていました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>字・服装・部屋のようすに使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">upstairs</span><span class="v-kana">アップステアズ</span></p>
+<div class="v-sense"><span class="tag t-adv">副詞</span><p>上の階へ、上の階で</p></div>
+<p class="v-ex"><span class="en">The box was too heavy to carry upstairs.</span><span class="v-ja">　その箱は重すぎて上の階へ運べませんでした。</span></p>
+<p class="v-note"><span class="badge">使い方</span>それ自体が「上の階へ」の意味なので、前に <span class="en">to</span> をつけません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">ladder</span><span class="v-kana">ラダー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>はしご</p></div>
+<p class="v-ex"><span class="en">He is tall, so he did not need a ladder to reach the top of the wall.</span><span class="v-ja">　彼は背が高いので、壁の上までとどくのにはしごは要りませんでした。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">hammer</span><span class="v-kana">ハマー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>かなづち、ハンマー</p></div>
+<p class="v-ex"><span class="en">Ken brought a hammer and nails from home.</span><span class="v-ja">　ケンは家からかなづちとくぎを持ってきました。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">hammer</span> と <span class="en">nail</span>（くぎ）は対で使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">nail</span><span class="v-kana">ネイル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>くぎ</p></div>
+<p class="v-ex"><span class="en">After the work, we picked up the nails one by one.</span><span class="v-ja">　作業のあと、私たちはくぎを一つずつ拾いました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられる名詞です。1本なら <span class="en">a nail</span>、複数なら <span class="en">nails</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">board</span><span class="v-kana">ボード</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>板</p></div>
+<p class="v-ex"><span class="en">The board was too heavy to lift alone.</span><span class="v-ja">　その板は一人で持ち上げるには重すぎました。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">blackboard</span>（黒板）の <span class="en">board</span> と同じ語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">cardboard</span><span class="v-kana">カードボード</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>段ボール、厚紙</p></div>
+<p class="v-ex"><span class="en">We cut large pieces of cardboard and painted them.</span><span class="v-ja">　私たちは大きな段ボールを切って、色をぬりました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられない名詞なので、<span class="en">a piece of cardboard</span>・<span class="en">pieces of cardboard</span> と数えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">rope</span><span class="v-kana">ロウプ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ロープ、なわ</p></div>
+<p class="v-ex"><span class="en">We used a rope for the curtain, but the rope was not long enough.</span><span class="v-ja">　私たちは幕にロープを使いましたが、そのロープは十分に長くありませんでした。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">tape</span><span class="v-kana">テイプ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>テープ</p></div>
+<p class="v-ex"><span class="en">The tape was strong enough to hold the poster.</span><span class="v-ja">　そのテープはそのポスターをとめておけるほど強かったです。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられない名詞です。<span class="en">a piece of tape</span> と数えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">rehearsal</span><span class="v-kana">リハーサル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>リハーサル、下げいこ</p></div>
+<p class="v-ex"><span class="en">Our first rehearsal did not go well.</span><span class="v-ja">　私たちの最初のリハーサルはうまくいきませんでした。</span></p>
+<p class="v-note"><span class="badge">セットで</span>動詞は <span class="en">rehearse</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">applause</span><span class="v-kana">アプローズ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>拍手</p></div>
+<p class="v-ex"><span class="en">The applause was so loud that some of us cried.</span><span class="v-ja">　拍手がとても大きかったので、私たちの何人かは泣きました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられない名詞なので <span class="en">an applause</span>・<span class="en">applauses</span> とはしません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">success</span><span class="v-kana">サクセス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>成功</p></div>
+<p class="v-ex"><span class="en">The drama was a great success.</span><span class="v-ja">　その劇は大成功でした。</span></p>
+<p class="v-note"><span class="badge">セットで</span>動詞は <span class="en">succeed</span>（成功する）です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">drama</span><span class="v-kana">ドラーマ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>劇、演劇</p></div>
+<p class="v-ex"><span class="en">Our class performed a drama at the school festival last month.</span><span class="v-ja">　私たちのクラスは先月、文化祭で劇を上演しました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">flute</span><span class="v-kana">フルート</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>フルート</p></div>
+<p class="v-ex"><span class="en">The flute was too difficult for him to play.</span><span class="v-ja">　そのフルートは難しすぎて彼には演奏できませんでした。</span></p>
+<p class="v-note"><span class="badge">使い方</span>楽器を演奏するときは <span class="en">play the flute</span> と <span class="en">the</span> をつけます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">microphone</span><span class="v-kana">マイクロフォウン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>マイク</p></div>
+<p class="v-ex"><span class="en">Our teacher arranged the chairs in short rows and gave us a microphone.</span><span class="v-ja">　先生はいすを短い列に並べ、私たちにマイクをわたしてくれました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>日本語の「マイク」は英語の <span class="en">microphone</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">row</span><span class="v-kana">ロウ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>列、並び</p></div>
+<p class="v-ex"><span class="en">His writing was neat enough to read from the back row.</span><span class="v-ja">　彼の字は、うしろの列から読めるほどきちんとしていました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>横に並んだ列です。<span class="en">in the front row</span>（前列に）・<span class="en">in the back row</span>（後列に）の形で使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">theme</span><span class="v-kana">スィーム</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>テーマ、主題</p></div>
+<p class="v-ex"><span class="en">The theme of our drama was "Work together."</span><span class="v-ja">　私たちの劇のテーマは「力を合わせよう」でした。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>綴りは <span class="en">theme</span> ですが、読みは「テーマ」ではなく「スィーム」に近い音です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">partner</span><span class="v-kana">パートナー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>相手、組んだ相手</p></div>
+<p class="v-ex"><span class="en">Some boards were too heavy to lift alone, so I carried them with my partner.</span><span class="v-ja">　いくつかの板は一人で持ち上げるには重すぎたので、私は相手と一緒に運びました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">pick up 〜</span><span class="v-kana">ピック アップ</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜を拾い上げる、〜を取り上げる</p></div>
+<p class="v-ex"><span class="en">After the work, we picked up the nails one by one.</span><span class="v-ja">　作業のあと、私たちはくぎを一つずつ拾いました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>代名詞が目的語のときは <span class="en">pick them up</span> のように間に入れます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">in time</span><span class="v-kana">イン タイム</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>間に合って、時間内に</p></div>
+<p class="v-ex"><span class="en">The last three weeks were very busy, but we finished the stage in time.</span><span class="v-ja">　最後の3週間はとてもいそがしかったけれど、私たちは時間内にステージを仕上げました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「間に合って」です。「時間どおりに」は <span class="en">on time</span> で別の言い方です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">one by one</span><span class="v-kana">ワン バイ ワン</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>一つずつ、一人ずつ</p></div>
+<p class="v-ex"><span class="en">After the work, we picked up the nails one by one.</span><span class="v-ja">　作業のあと、私たちはくぎを一つずつ拾いました。</span></p>
+</li>
+</ol>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

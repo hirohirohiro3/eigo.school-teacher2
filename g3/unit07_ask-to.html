@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 7　want / tell / ask + 人 + to 〜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab07_ask-to.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 7</p>
+<h1 class="unit-title">want / tell / ask + 人 + to 〜</h1>
+<p class="unit-lead">中2 Unit 9 で <span class="en">I want to go.</span>（私は行きたい）の形を学びました。この単元では、<span class="en">want</span> と <span class="en">to</span> のあいだに<strong>人</strong>を入れた <span class="en">I want you to go.</span>（私はあなたに行ってほしい）の形を固めます。<span class="en">tell</span>（〜するように言う）、<span class="en">ask</span>（〜してくれるように頼む）も同じ形をとります。<strong>人が入ると、<span class="en">to</span> 以下の動作をする人が変わること</strong>が、この単元でいちばん大事な点です。</p>
+</header>
+
+<h2><span>want to 〜 と want ＋ 人 ＋ to 〜</span></h2>
+
+<p>まず、2つの文をくらべます。どちらも <span class="en">want</span> と <span class="en">to</span> ＋ 動詞の原形を使っていますが、意味は大きく違います。</p>
+
+<div class="transform">
+<span class="tf-line">I want to join the team.</span>
+<span class="tf-arrow">（私はそのチームに入りたい）</span>
+<span class="tf-arrow">↓　want と to のあいだに「人」を入れる</span>
+<span class="tf-line">I want you to join the team.</span>
+<span class="tf-arrow">（私はあなたにそのチームに入ってほしい）</span>
+</div>
+
+<div class="term">
+<p class="term-name">動詞 ＋ 人 ＋ to 〜</p>
+<p class="term-def"><span class="en">want</span>・<span class="en">tell</span>・<span class="en">ask</span> などの動詞のうしろに<strong>人</strong>を置き、そのあとに <span class="en">to</span> ＋ 動詞の原形を続ける形です。<strong><span class="en">to</span> 以下の動作をするのは、主語ではなく、あいだに入った人</strong>です。</p>
+<p class="term-ex"><span class="en">I want you to join the team.</span>（私はあなたにそのチームに入ってほしい）</p>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">want to 〜 では、チームに入るのは主語の I</p>
+<div class="flow">
+<span class="node">I want<span class="node-label">私は望む</span></span>
+<span class="link">
+<span class="link-word">入るのは I</span>
+<span class="rail"></span>
+</span>
+<span class="node">to join<span class="node-label">チームに入ること</span></span>
+</div>
+<p class="diagram-cap">want ＋ 人 ＋ to 〜 では、チームに入るのはあいだの you</p>
+<div class="flow">
+<span class="node">I want you<span class="node-label">私はあなたに望む</span></span>
+<span class="link">
+<span class="link-word">入るのは you</span>
+<span class="rail"></span>
+</span>
+<span class="node">to join<span class="node-label">チームに入ること</span></span>
+</div>
+</div>
+
+<p><strong>なぜ人を入れると動作をする人が変わるのか。</strong><span class="en">to</span> 〜 の動作には、もともと「だれがするか」を書く場所がありません。だれも書かれていなければ、動作をするのは文の主語です。<span class="en">want</span> のうしろに人を置くと、その人が「<span class="en">to</span> 以下をする人」として示されます。だから <span class="en">I want you to join</span> では、チームに入るのは <span class="en">you</span> になります。</p>
+
+<p>例文を足します。<span class="en">We wanted to cheer up our injured teammate.</span>（私たちはけがをしたチームメートを元気づけたいと思いました）は、元気づけるのが主語の <span class="en">We</span> です。<span class="en">The coach wants us to practice seriously.</span>（コーチは私たちに真剣に練習してほしいと思っています）は、練習するのが <span class="en">us</span> です。<span class="en">I want you to pay attention to the ball.</span>（私はあなたにボールに注意を払ってほしい）も同じです。</p>
+
+<h2><span>人は「〜を・〜に」の形</span></h2>
+
+<p>動詞のうしろに置く人は、動詞の目的語です。代名詞なら中1 Unit 8 の目的格（<span class="en">me</span>・<span class="en">you</span>・<span class="en">him</span>・<span class="en">her</span>・<span class="en">us</span>・<span class="en">them</span>）にします。<span class="en">I want he to come.</span> とは書きません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語の形</th><th>動詞のうしろの形</th><th>例</th></tr>
+<tr><td><span class="en">I</span></td><td class="be-cell"><span class="en">me</span></td><td><span class="en">My coach wants me to shoot more.</span></td></tr>
+<tr><td><span class="en">he</span></td><td class="be-cell"><span class="en">him</span></td><td><span class="en">I want him to come to the game.</span></td></tr>
+<tr><td><span class="en">they</span></td><td class="be-cell"><span class="en">them</span></td><td><span class="en">I want them to play well.</span></td></tr>
+</table>
+</div>
+
+<p>ていねいに言うときは <span class="en">want</span> のかわりに <span class="en">would like</span> を使います（中2 Unit 9 の <span class="en">would like to</span> 〜 と同じ考え方です）。<span class="en">I would like you to listen to me.</span>（私はあなたに私の話を聞いていただきたいのです）。</p>
+
+<h2><span>tell ＋ 人 ＋ to 〜 は「指示」、ask ＋ 人 ＋ to 〜 は「依頼」</span></h2>
+
+<p><span class="en">tell</span> と <span class="en">ask</span> も同じ形をとります。どちらも「人に〜するように言う」ですが、言い方の強さが違います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>意味</th><th>例</th></tr>
+<tr><td><span class="en">want</span> ＋ 人 ＋ <span class="en">to</span> 〜</td><td class="be-cell">人に〜してほしい</td><td><span class="en">I want him to come to the game.</span></td></tr>
+<tr><td><span class="en">tell</span> ＋ 人 ＋ <span class="en">to</span> 〜</td><td class="be-cell">人に〜するように言う（指示）</td><td><span class="en">The coach told me to shoot more.</span></td></tr>
+<tr><td><span class="en">ask</span> ＋ 人 ＋ <span class="en">to</span> 〜</td><td class="be-cell">人に〜してくれるように頼む（依頼）</td><td><span class="en">I asked my teammate to carry the water bottles.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">tell</span> は、言われた人がそのとおりにすることを前提にした言い方です。コーチや先生や親が、することを決めて伝えるときに使います。<span class="en">ask</span> は、するかどうかを相手が決められる言い方です。だから自分から人にお願いするときは <span class="en">ask</span> を使います。</p>
+
+<p><span class="en">The referee told the players to wait for the whistle.</span>（審判は選手たちに笛を待つように言いました）。<span class="en">In the second half, the coach told me to shoot more.</span>（後半に、コーチは私にもっとシュートするように言いました）。<span class="en">The coach told the injured player to rest.</span>（コーチはけがをした選手に休むように言いました）。<span class="en">We asked our coach to watch the final game.</span>（私たちはコーチに決勝の試合を見てくれるように頼みました）。<span class="en">The coach asked me to make a decision.</span>（コーチは私に決めてくれるように頼みました）。</p>
+
+<h2><span>「〜しないように」は not を to の前に置く</span></h2>
+
+<p>「〜しないように言う」「〜しないように頼む」は、<strong><span class="en">not</span> を <span class="en">to</span> の前</strong>に置きます。<span class="en">not</span> が打ち消すのは <span class="en">to</span> 以下の動作なので、その動作のすぐ前に置きます。</p>
+
+<div class="diagram">
+<p class="diagram-cap">not は to のすぐ前。「to not」の順にはしない</p>
+<div class="flow">
+<span class="node">asked him<span class="node-label">彼に頼んだ</span></span>
+<span class="link">
+<span class="link-word">しないように</span>
+<span class="rail"></span>
+</span>
+<span class="node">not to quit<span class="node-label">やめないこと</span></span>
+</div>
+</div>
+
+<p><span class="en">I asked him not to quit the team.</span>（私は彼にチームをやめないように頼みました）。<span class="en">My mother told me not to close the window.</span>（母は私にその窓を閉めないように言いました）。<span class="en">The doctor told him not to play for a while because his knee hurt.</span>（ひざが痛かったので、医者は彼にしばらくプレーしないように言いました）。</p>
+
+<p><span class="en">The coach did not tell me to shoot.</span>（コーチは私にシュートするようには言いませんでした）とすると、打ち消しているのは「言った」のほうです。<span class="en">not</span> の位置で意味が変わります。</p>
+
+<h2><span>中2 Unit 8 の「目的語が2つの文」との違い</span></h2>
+
+<p><span class="en">tell</span> と <span class="en">ask</span> は、中2 Unit 8 で「人 ＋ 物」の2つの目的語をとる動詞としても学びました。うしろに来るのが<strong>物（名詞）</strong>なのか、<strong><span class="en">to</span> ＋ 動詞の原形</strong>なのかで見分けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>人のうしろ</th><th>例</th><th>意味</th></tr>
+<tr><td>物（名詞）</td><td><span class="en">I told him the story.</span></td><td class="be-cell">彼にその話をした</td></tr>
+<tr><td><span class="en">to</span> ＋ 原形</td><td><span class="en">I told him to come.</span></td><td class="be-cell">彼に来るように言った</td></tr>
+<tr><td>物（名詞）</td><td><span class="en">She asked me a question.</span></td><td class="be-cell">私に質問をした</td></tr>
+<tr><td><span class="en">to</span> ＋ 原形</td><td><span class="en">She asked me to help her.</span></td><td class="be-cell">私に手伝ってくれるように頼んだ</td></tr>
+</table>
+</div>
+
+<p>「人 ＋ 物」の文では、人は物を受け取るだけです。「人 ＋ <span class="en">to</span> 〜」の文では、<strong>人が <span class="en">to</span> 以下の動作をします</strong>。ここが違います。</p>
+
+<h2><span>同じ形をとる動詞</span></h2>
+
+<p><span class="en">want</span>・<span class="en">tell</span>・<span class="en">ask</span> のほかにも、人 ＋ <span class="en">to</span> 〜 の形をとる動詞があります。どれも「人が <span class="en">to</span> 以下をする」点は同じです。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>動詞</th><th>意味</th><th>例</th></tr>
+<tr><td><span class="en">encourage</span></td><td class="be-cell">人に〜するようにはげます</td><td><span class="en">Our coach encouraged me to talk with my teammates.</span></td></tr>
+<tr><td><span class="en">remind</span></td><td class="be-cell">人に〜するように念を押す</td><td><span class="en">Before practice, I reminded everyone to stretch.</span></td></tr>
+<tr><td><span class="en">allow</span></td><td class="be-cell">人が〜するのを許す</td><td><span class="en">The coach allowed us to rest for a while.</span></td></tr>
+<tr><td><span class="en">expect</span></td><td class="be-cell">人が〜することを期待する</td><td><span class="en">Our coach expects the captain to take responsibility.</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">The coach wants us to beat our opponent.</span>（コーチは私たちに相手を負かしてほしいと思っています）。<span class="en">Our parents expect us to do our best.</span>（両親は私たちが最善をつくすことを期待しています）。</p>
+
+<h2><span>書き換え：said to 人, "〜." から</span></h2>
+
+<p>入試では、人のことばをそのまま書いた文を、この単元の形に書き換えさせる問題がよく出ます。<strong>ふつうの命令文なら <span class="en">tell</span>、<span class="en">Please</span> がついたお願いなら <span class="en">ask</span></strong> を使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>もとの文</th><th>書き換えた文</th></tr>
+<tr><td><span class="en">The coach said to us, "Stretch before practice."</span></td><td><span class="en">The coach told us to stretch before practice.</span></td></tr>
+<tr><td><span class="en">I said to my teammate, "Please carry these bottles."</span></td><td><span class="en">I asked my teammate to carry these bottles.</span></td></tr>
+<tr><td><span class="en">She said to me, "Don't be late."</span></td><td><span class="en">She told me not to be late.</span></td></tr>
+</table>
+</div>
+
+<p>書き換えるときは、<span class="en">said to</span> を <span class="en">told</span>・<span class="en">asked</span> に変え、命令文の動詞の原形の前に <span class="en">to</span> を置きます。<span class="en">Please</span> は書きません。<span class="en">Don't</span> 〜 は <span class="en">not to</span> 〜 になります。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">動作をするのはだれかを見る</span>
+<span class="step-d">主語自身がするなら <span class="en">want to</span> 〜、ほかの人にしてほしいなら <span class="en">want</span> ＋ 人 ＋ <span class="en">to</span> 〜 です。</span>
+</li>
+<li>
+<span class="step-t">動詞を選ぶ</span>
+<span class="step-d">「〜してほしい」なら <span class="en">want</span>（ていねいなら <span class="en">would like</span>）、「〜するように言う」なら <span class="en">tell</span>、「〜してくれるように頼む」なら <span class="en">ask</span> です。</span>
+</li>
+<li>
+<span class="step-t">人を目的格にする</span>
+<span class="step-d">代名詞は <span class="en">me</span>・<span class="en">him</span>・<span class="en">her</span>・<span class="en">us</span>・<span class="en">them</span> の形にします。</span>
+</li>
+<li>
+<span class="step-t">to のうしろは動詞の原形</span>
+<span class="step-d">主語が三人称単数でも、過去の文でも、<span class="en">to</span> のうしろは原形のままです。</span>
+</li>
+<li>
+<span class="step-t">「〜しないように」なら not を to の前に置く</span>
+<span class="step-d"><span class="en">not to</span> 〜 の順です。<span class="en">to not</span> 〜 とはしません。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>say は人 ＋ to 〜 の形をとらない</h3>
+
+<p>「人に〜するように言う」を <span class="en">say</span> で書くことはできません。<span class="en">say</span> のうしろに人を直接置けないためです。<strong>人 ＋ <span class="en">to</span> 〜 の形にするときは必ず <span class="en">tell</span> を使います</strong>。</p>
+
+<h3>Do you want me to 〜? は申し出</h3>
+
+<p><span class="en">Do you want me to open the window?</span> は「私に窓を開けてほしいですか」、つまり「窓を開けましょうか」という申し出です。中2 Unit 7 の <span class="en">Shall I</span> 〜? と近い意味で、答え方も <span class="en">Yes, please.</span>／<span class="en">No, thank you.</span> です。</p>
+
+<h3>ask は「たずねる」と「頼む」の2つ</h3>
+
+<p><span class="en">ask</span> ＋ 人 ＋ 物（質問）なら「たずねる」、<span class="en">ask</span> ＋ 人 ＋ <span class="en">to</span> 〜 なら「頼む」です。うしろの形を見て意味を決めます。</p>
+
+<h3>to の前の人は「名詞」でもよい</h3>
+
+<p>代名詞だけでなく、<span class="en">my teammate</span>・<span class="en">the players</span>・<span class="en">everyone</span> のような名詞も置けます。<span class="en">I asked the players on the bench to cheer for the team.</span>（私はベンチの選手たちにチームを応援してくれるように頼みました）では、<span class="en">the players on the bench</span> 全体が人の位置に入っています。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">told me (　) practice</span> の空所に <span class="en">to</span> を、<span class="en">want (　) to come</span> の空所に <span class="en">him</span> を選ばせる</td></tr>
+<tr><td>語順</td><td>動詞 ＋ 人 ＋ <span class="en">to</span> ＋ 原形の順に並べられるか、<span class="en">not</span> を <span class="en">to</span> の前に置けるかを見る</td></tr>
+<tr><td>書き換え</td><td><span class="en">said to</span> 人, "〜." を <span class="en">told</span>／<span class="en">asked</span> 人 <span class="en">to</span> 〜 に直す</td></tr>
+<tr><td>英作文</td><td>「〜してほしい」「〜するように頼んだ」を1文で書かせる</td></tr>
+<tr><td>読解</td><td><span class="en">to</span> 以下の動作をしたのがだれかを、日本語や英語で答えさせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I want he to come to the game.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I want him to come to the game.</span></div>
+<p class="contrast-why"><span class="en">want</span> のうしろの人は目的語なので、目的格の <span class="en">him</span> にします。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The coach told me practice harder.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The coach told me to practice harder.</span></div>
+<p class="contrast-why">人のうしろに動詞を続けるときは <span class="en">to</span> ＋ 原形です。<span class="en">to</span> を落とすと文になりません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I asked him to not quit the team.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I asked him not to quit the team.</span></div>
+<p class="contrast-why"><span class="en">not</span> は <span class="en">to</span> の前に置きます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">Our captain said us to stretch before practice.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">Our captain told us to stretch before practice.</span></div>
+<p class="contrast-why"><span class="en">say</span> は人 ＋ <span class="en">to</span> 〜 の形をとりません。<span class="en">tell</span> を使います。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li><strong>動詞 ＋ 人 ＋ <span class="en">to</span> ＋ 原形</strong>では、<span class="en">to</span> 以下の動作をするのは<strong>あいだに入った人</strong>です。</li>
+<li><span class="en">want</span> は「してほしい」、<span class="en">tell</span> は「するように言う（指示）」、<span class="en">ask</span> は「してくれるように頼む（依頼）」です。</li>
+<li>人が代名詞なら<strong>目的格</strong>（<span class="en">me</span>・<span class="en">him</span>・<span class="en">them</span>）にします。</li>
+<li>「〜しないように」は <strong><span class="en">not to</span> 〜</strong> です。</li>
+<li>人のうしろが<strong>物</strong>なら中2 Unit 8 の目的語が2つの文、<strong><span class="en">to</span> ＋ 原形</strong>ならこの単元の形です。</li>
+</ul>
+</div>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず <span class="en">to</span> 以下の動作をするのがだれかを見て、次に人の形と <span class="en">to</span> のうしろの形を決めます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My coach wants (　　　) to practice harder.</span>
+<p class="opts"><span>ア I</span><span>イ my</span><span>ウ me</span><span>エ mine</span></p></li>
+<li><span class="en">Our captain told us (　　　) before practice.</span>
+<p class="opts"><span>ア stretch</span><span>イ to stretch</span><span>ウ stretching</span><span>エ stretched</span></p></li>
+<li><span class="en">I asked him (　　　) quit the team.</span>
+<p class="opts"><span>ア not to</span><span>イ to not</span><span>ウ don't</span><span>エ no</span></p></li>
+<li><span class="en">The referee told the players (　　　) for the whistle.</span>
+<p class="opts"><span>ア wait</span><span>イ waits</span><span>ウ to wait</span><span>エ waiting</span></p></li>
+<li><span class="en">I said to my teammate, "Please carry these bottles."<br>= I (　　　) my teammate to carry these bottles.</span>
+<p class="opts"><span>ア said</span><span>イ asked</span><span>ウ spoke</span><span>エ talked</span></p></li>
+<li><span class="en">Do you want (　　　) to open the window?</span>
+<p class="opts"><span>ア I</span><span>イ me</span><span>ウ my</span><span>エ mine</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>私はあなたに私たちのチームに入ってほしいです。<br><span class="en">[ i / want / you / to / join / our / team ] .</span><span class="write"></span></li>
+<li>コーチは私たちにボールに注意を払うように言いました。<br><span class="en">[ the / coach / told / us / to / pay / attention / to / the / ball ] .</span><span class="write"></span></li>
+<li>私は彼にチームをやめないように頼みました。<br><span class="en">[ i / asked / him / not / to / quit / the / team ] .</span><span class="write"></span></li>
+<li data-extra="1">両親は私たちが最善をつくすことを期待しています。<span class="hint">1語不要</span><br><span class="en">[ our / parents / expect / us / to / do / our / best / we ] .</span><span class="write"></span></li>
+<li data-extra="1">コーチは私たちがしばらく休むのを許しました。<span class="hint">1語不要</span><br><span class="en">[ the / coach / allowed / us / to / rest / for / a / while / resting ] .</span><span class="write"></span></li>
+<li>私たちに手伝ってほしいですか。<br><span class="en">[ do / you / want / us / to / help / you ] ?</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">I want he to come to the game.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The coach told me practice harder.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I asked him to not quit the team.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Our captain said us to stretch before practice.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">Please tell him to calls me later.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">私は彼にもっとシュートしてほしいです。</span><span class="write"></span></li>
+<li><span class="q-ja">先生は私たちに静かにするように言いました。</span><span class="write"></span></li>
+<li><span class="q-ja">私は兄に宿題を手伝ってくれるように頼みました。</span><span class="write"></span></li>
+<li><span class="q-ja">母は私にその窓を閉めないように言いました。</span><span class="write"></span></li>
+<li><span class="en">ask</span> を使って「私はケンにその箱を運んでくれるように頼みました」と書く。<span class="cond">7語</span><span class="write"></span></li>
+<li><span class="en">would like</span> を使って「私はあなたに私の話を聞いていただきたいのです」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li><span class="en">remind</span> を使って「彼女は私にかさを持ってくるように念を押しました」と書く。<span class="cond">7語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">中学生が全校集会で行ったスピーチです。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">キャプテンとして学んだこと</p>
+<p>Last year I became the captain of our basketball team. I wanted my teammates to play well, so I told them to practice harder every day. In the first round of a tournament, we lost to a strong opponent. After the game, I blamed my teammates. They were upset, and one member, Taku, wanted to quit the team.</p>
+<p>The next day, our coach gathered us on the court. She told me to listen to my teammates. "A captain's role is to encourage everyone," she said. I apologized to the team. I asked Taku not to quit, and I asked him to forgive me. He did not reply for a while, but in the end he stayed.</p>
+<p>After that, I changed. Before practice, I reminded everyone to stretch. <span class="num">①</span><span class="ul">I asked the players on the bench to cheer for the team</span>. In our last game, Taku played very well, and we won by two points. Now I know that a good captain listens first.</p>
+<p class="reading-wc">およそ160語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 筆者は、チームメートにもっと練習するようには言わなかった。<br>
+イ コーチは筆者に、チームメートの話を聞くように言った。<br>
+ウ タクは、試合に負けた次の日にチームをやめた。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語2語を書く。<br><span class="en">The writer asked Taku (　　　) (　　　) quit the team.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">What did the writer remind everyone to do before practice?</span><span class="write"></span></li>
+<li>タクがチームをやめたいと思ったのはなぜか。その前に筆者がしたことを日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li><span class="en">want</span> ＋ 人 ＋ <span class="en">to</span> 〜 を使って、家族や友だちにしてほしいことを1文書く。<span class="hint">例：I want my brother to clean his room.</span><span class="write"></span></li>
+<li><span class="en">ask</span> ＋ 人 ＋ <span class="en">to</span> 〜 を使って、だれかに頼んだことを1文書く。<span class="hint">例：I asked my friend to lend me his umbrella.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong><span class="en">to</span> 以下の動作をするのがだれか</strong>に戻り、次に<strong>人の形（目的格）</strong>と<strong><span class="en">not</span> の位置</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">ウ　me</span><p class="a-why"><span class="en">want</span> のうしろの人は目的語なので、目的格の <span class="en">me</span> です。練習するのは <span class="en">me</span> です。</p></li>
+<li><span class="a-key">イ　to stretch</span><p class="a-why"><span class="en">tell</span> ＋ 人のうしろは <span class="en">to</span> ＋ 動詞の原形です。</p></li>
+<li><span class="a-key">ア　not to</span><p class="a-why">「〜しないように」は <span class="en">not</span> を <span class="en">to</span> の前に置きます。</p></li>
+<li><span class="a-key">ウ　to wait</span><p class="a-why"><span class="en">told the players</span> のうしろは <span class="en">to</span> ＋ 原形です。人が名詞でも形は同じです。</p></li>
+<li><span class="a-key">イ　asked</span><p class="a-why"><span class="en">Please</span> がついたお願いなので <span class="en">ask</span> を使います。<span class="en">said</span> は人 ＋ <span class="en">to</span> 〜 の形をとりません。</p></li>
+<li><span class="a-key">イ　me</span><p class="a-why">「私に窓を開けてほしいですか」、つまり「窓を開けましょうか」という申し出です。目的格の <span class="en">me</span> です。</p></li>
+
+<li><span class="a-key">I want you to join our team.</span><p class="a-why"><span class="en">want</span> ＋ 人 ＋ <span class="en">to</span> ＋ 原形の順です。チームに入るのは <span class="en">you</span> です。</p></li>
+<li><span class="a-key">The coach told us to pay attention to the ball.</span><p class="a-why"><span class="en">pay attention to</span> 〜 で「〜に注意を払う」です。<span class="en">to</span> が2回出てきますが、1つ目は不定詞、2つ目は前置詞です。</p></li>
+<li><span class="a-key">I asked him not to quit the team.</span><p class="a-why"><span class="en">not</span> は <span class="en">to</span> の前です。</p></li>
+<li><span class="a-key">Our parents expect us to do our best.</span><p class="a-why">不要な語は <span class="en">we</span> です。<span class="en">expect</span> のうしろの人は目的格の <span class="en">us</span> です。</p></li>
+<li><span class="a-key">The coach allowed us to rest for a while.</span><p class="a-why">不要な語は <span class="en">resting</span> です。<span class="en">to</span> のうしろは原形の <span class="en">rest</span> です。</p></li>
+<li><span class="a-key">Do you want us to help you?</span><p class="a-why"><span class="en">Do you want</span> ＋ 人 ＋ <span class="en">to</span> 〜? で「〜しましょうか」という申し出になります。</p></li>
+
+<li><span class="a-key">I want him to come to the game.</span><p class="a-why">誤りは <span class="en">he</span> です。<span class="en">want</span> の目的語なので目的格の <span class="en">him</span> にします。</p></li>
+<li><span class="a-key">The coach told me to practice harder.</span><p class="a-why">誤りは <span class="en">to</span> が無いことです。人のうしろは <span class="en">to</span> ＋ 原形です。</p></li>
+<li><span class="a-key">I asked him not to quit the team.</span><p class="a-why">誤りは <span class="en">to not</span> の順です。<span class="en">not</span> は <span class="en">to</span> の前に置きます。</p></li>
+<li><span class="a-key">Our captain told us to stretch before practice.</span><p class="a-why">誤りは <span class="en">said</span> です。人 ＋ <span class="en">to</span> 〜 の形をとるのは <span class="en">tell</span> です。</p></li>
+<li><span class="a-key">Please tell him to call me later.</span><p class="a-why">誤りは <span class="en">calls</span> です。<span class="en">to</span> のうしろは、主語が何であっても原形です。</p></li>
+
+<li><span class="a-key">I want him to shoot more.</span><p class="a-why">シュートするのは彼なので、<span class="en">want</span> と <span class="en">to</span> のあいだに <span class="en">him</span> を置きます。</p></li>
+<li><span class="a-key">The teacher told us to be quiet.</span><p class="a-why">「静かにする」は <span class="en">be quiet</span> です。<span class="en">to</span> のうしろなので <span class="en">be</span> は原形のままです。</p></li>
+<li><span class="a-key">I asked my brother to help me with my homework.</span><p class="a-why">お願いなので <span class="en">ask</span> です。「〜の宿題を手伝う」は <span class="en">help</span> 人 <span class="en">with</span> 〜 です。</p></li>
+<li><span class="a-key">My mother told me not to close the window.</span><p class="a-why">「〜しないように言う」は <span class="en">tell</span> ＋ 人 ＋ <span class="en">not to</span> 〜 です。</p></li>
+<li><span class="a-key">I asked Ken to carry the box.</span><p class="a-why">全体で7語です。<span class="en">ask</span> ＋ 人 ＋ <span class="en">to</span> ＋ 原形の順です。</p></li>
+<li><span class="a-key">I would like you to listen to me.</span><p class="a-why">全体で8語です。<span class="en">would like</span> ＋ 人 ＋ <span class="en">to</span> 〜 は <span class="en">want</span> ＋ 人 ＋ <span class="en">to</span> 〜 のていねいな言い方です。</p></li>
+<li><span class="a-key">She reminded me to bring an umbrella.</span><p class="a-why">全体で7語です。<span class="en">remind</span> ＋ 人 ＋ <span class="en">to</span> 〜 で「人に〜するように念を押す」です。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">She told me to listen to my teammates.</span> とあります。アは <span class="en">I told them to practice harder every day</span> と合いません。ウは <span class="en">in the end he stayed</span> と合いません。</p></li>
+<li><span class="a-key">私はベンチの選手たちに、チームを応援してくれるように頼みました。</span><p class="a-why"><span class="en">ask</span> ＋ 人 ＋ <span class="en">to</span> 〜 は「人に〜してくれるように頼む」です。応援するのは <span class="en">the players on the bench</span> です。</p></li>
+<li><span class="a-key">not to</span><p class="a-why">本文に <span class="en">I asked Taku not to quit</span> とあります。</p></li>
+<li><span class="a-key">The writer reminded everyone to stretch.</span><p class="a-why">本文の <span class="en">Before practice, I reminded everyone to stretch.</span> から答えます。<span class="en">He reminded everyone to stretch.</span> や <span class="en">She reminded everyone to stretch.</span> と書いてもかまいません。</p></li>
+<li><span class="a-key">試合に負けたあと、筆者がチームメートを責めたから。</span><p class="a-why">本文の <span class="en">After the game, I blamed my teammates. They were upset</span> から答えます。<span class="en">blame</span> は「責める」、<span class="en">upset</span> は「気分を害した」です。</p></li>
+
+<li><span class="a-key">解答例：I want my brother to clean his room.</span><p class="a-why">動作をする人を <span class="en">want</span> と <span class="en">to</span> のあいだに置きます。<span class="en">I want my friends to come to the game.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：I asked my friend to lend me his umbrella.</span><p class="a-why"><span class="en">ask</span> のうしろの人が、<span class="en">to</span> 以下の動作をします。<span class="en">I asked my mother to wake me up at six.</span> のようにも書けます。</p></li>
+</ol>
+</div>
+</body>
+</html>

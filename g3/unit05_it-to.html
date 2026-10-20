@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 5　It is 〜 (for 人) to …</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab05_it-to.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 5</p>
+<h1 class="unit-title">It is 〜 (for 人) to …</h1>
+<p class="unit-lead">中2 Unit 9 で、<span class="en">To play tennis is fun.</span> のように <span class="en">to</span> ＋ 動詞の原形が文の主語になる形を学びました。英語では、この長い主語を文の終わりに回し、主語の位置に <span class="en">it</span> を置いた <span class="en">It is fun to play tennis.</span> の形がよく使われます。この単元では、<strong>この <span class="en">it</span> が何も指していないこと</strong>と、<strong>「だれにとって」を <span class="en">for</span> ＋ 人で足す位置</strong>を固めます。</p>
+</header>
+
+<h2><span>主語の to 〜 を文の終わりに回す</span></h2>
+
+<p>中2 Unit 9 の形から始めます。<span class="en">To play tennis</span>（テニスをすること）が主語で、<span class="en">is fun</span>（楽しい）が述語です。この文の主語を文の終わりに回し、空いた主語の位置に <span class="en">it</span> を置きます。意味は変わりません。</p>
+
+<div class="transform">
+<span class="tf-line">To play tennis is fun.</span>
+<span class="tf-arrow">↓　主語の to play tennis を文の終わりに回し、主語の位置に it を置く</span>
+<span class="tf-line">It is fun to play tennis.</span>
+<span class="tf-arrow">（テニスをすることは楽しいです）</span>
+</div>
+
+<div class="term">
+<p class="term-name">形式主語の it</p>
+<p class="term-def">英語の文には主語が必要です。主語の <span class="en">to</span> 〜 を文の終わりに回すと主語の位置が空くので、形だけ <span class="en">it</span> を置きます。この <span class="en">it</span> は<strong>何も指していません</strong>。「それは」と訳さず、うしろの <span class="en">to</span> 〜 を主語として「〜することは」と訳します。</p>
+<p class="term-ex"><span class="en">It is important to protect your head.</span>（頭を守ることが大切です）</p>
+</div>
+
+<div class="diagram">
+<p class="diagram-cap">it は主語の位置をうめるだけで、中身はうしろの to 〜 にある</p>
+<div class="flow">
+<span class="node">It is important<span class="node-label">中身は言っていない</span></span>
+<span class="link">
+<span class="link-word">中身はうしろ</span>
+<span class="rail"></span>
+</span>
+<span class="node">to protect your head<span class="node-label">頭を守ること＝本当の主語</span></span>
+</div>
+</div>
+
+<p><strong>なぜ主語をうしろに回すのか。</strong><span class="en">To protect your head during an earthquake is important.</span> のように主語が長いと、文の中心の <span class="en">is important</span> がなかなか出てきません。英語では、<strong>短い「何がどうだ」を先に言い、長い中身をあとに置く</strong>形が好まれます。だから <span class="en">It is important</span> と先に結論を言い、<span class="en">to</span> 〜 をうしろに続けます。</p>
+
+<p>例文を足します。<span class="en">It is important to hide under a desk during an earthquake.</span>（地震のときは机の下にかくれることが大切です）、<span class="en">It is useful to keep a flashlight near your bed.</span>（ベッドの近くに懐中電灯を置いておくことは役に立ちます）、<span class="en">It is necessary to check the batteries once a month.</span>（月に一度電池を確かめることが必要です）、<span class="en">It is dangerous to push other people during a drill.</span>（訓練中にほかの人を押すことは危険です）。</p>
+
+<h2><span>この it は「それ」ではない</span></h2>
+
+<p>同じ <span class="en">It is</span> で始まっても、<span class="en">it</span> が前に出た名詞を指す文と、何も指さない文があります。見分ける手がかりは、<strong>文のうしろに <span class="en">to</span> ＋ 動詞の原形があるかどうか</strong>です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>it は何か</th><th>日本語</th></tr>
+<tr><td><span class="en">Look at this map. It is new.</span></td><td>前に出た <span class="en">this map</span> を指す</td><td class="be-cell">それは新しいです</td></tr>
+<tr><td><span class="en">It is easy to read this map.</span></td><td>何も指さない（中身は <span class="en">to read this map</span>）</td><td class="be-cell">この地図を読むことは簡単です</td></tr>
+</table>
+</div>
+
+<p>時刻や天気を言う <span class="en">It is seven.</span>・<span class="en">It is sunny.</span> の <span class="en">it</span> も「それ」とは訳しませんでした。この単元の <span class="en">it</span> も、主語の位置をうめるために置く語です。</p>
+
+<h2><span>「だれにとって」は for ＋ 人</span></h2>
+
+<p>「<strong>だれにとって</strong>〜することは…だ」と言うときは、<span class="en">to</span> の前に <span class="en">for</span> ＋ 人を置きます。<strong><span class="en">for</span> ＋ 人の「人」が、<span class="en">to</span> 以下の動作をする人</strong>です。</p>
+
+<div class="diagram">
+<p class="diagram-cap">It is ＋ 形容詞 ＋ for ＋ 人 ＋ to ＋ 動詞の原形</p>
+<div class="flow">
+<span class="node">It is hard<span class="node-label">難しい</span></span>
+<span class="link">
+<span class="link-word">だれにとって</span>
+<span class="rail"></span>
+</span>
+<span class="node">for them<span class="node-label">彼らにとって</span></span>
+</div>
+<div class="flow">
+<span class="node">for them<span class="node-label">この人が動作をする</span></span>
+<span class="link">
+<span class="link-word">何をすることが</span>
+<span class="rail"></span>
+</span>
+<span class="node">to read the map<span class="node-label">地図を読むこと</span></span>
+</div>
+</div>
+
+<p><span class="en">It is hard for them to read the map.</span>（彼らにとってその地図を読むことは難しいです）。<span class="en">them</span> が <span class="en">read the map</span> をする人です。<span class="en">It is difficult for me to understand instructions in English.</span>（英語で指示を理解することは私にとって難しいです）。<strong><span class="en">for</span> は前置詞なので、うしろの代名詞は「〜を・〜に」の形</strong>（中1 Unit 8 の目的格）にします。<span class="en">for I</span> や <span class="en">for we</span> とは言いません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語の形</th><th>for のうしろの形</th><th>例</th></tr>
+<tr><td><span class="en">I</span></td><td class="be-cell"><span class="en">for me</span></td><td><span class="en">It is fun for me to run every morning.</span></td></tr>
+<tr><td><span class="en">we</span></td><td class="be-cell"><span class="en">for us</span></td><td><span class="en">It is important for us to stay calm.</span></td></tr>
+<tr><td><span class="en">he</span>・<span class="en">she</span></td><td class="be-cell"><span class="en">for him</span>・<span class="en">for her</span></td><td><span class="en">It is not easy for her to walk fast.</span></td></tr>
+<tr><td><span class="en">they</span></td><td class="be-cell"><span class="en">for them</span></td><td><span class="en">It is hard for them to read the map.</span></td></tr>
+</table>
+</div>
+
+<p>人を表す名詞もそのまま置けます。<span class="en">It is not easy for elderly people to escape quickly.</span>（お年寄りにとってすばやく逃げることは簡単ではありません）、<span class="en">It is necessary for each family to check the route to the shelter.</span>（それぞれの家族が避難所までの道順を確かめることが必要です）、<span class="en">It is possible for everyone to leave the building safely.</span>（全員が安全に建物を出ることはできます）。</p>
+
+<h2><span>この形でよく使う語</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>意味</th><th>例</th></tr>
+<tr><td><span class="en">easy</span></td><td>簡単な</td><td><span class="en">It is easy to read this map.</span></td></tr>
+<tr><td><span class="en">difficult</span>・<span class="en">hard</span></td><td>難しい</td><td><span class="en">It is hard for them to read the map.</span></td></tr>
+<tr><td><span class="en">important</span></td><td>大切な</td><td><span class="en">It is important to protect your head.</span></td></tr>
+<tr><td><span class="en">necessary</span></td><td>必要な</td><td><span class="en">It is necessary to check the batteries once a month.</span></td></tr>
+<tr><td><span class="en">possible</span>・<span class="en">impossible</span></td><td>できる・できない</td><td><span class="en">It is impossible to stop natural disasters.</span></td></tr>
+<tr><td><span class="en">dangerous</span></td><td>危険な</td><td><span class="en">It is dangerous to push other people during a drill.</span></td></tr>
+<tr><td><span class="en">fun</span>・<span class="en">interesting</span></td><td>楽しい・おもしろい</td><td><span class="en">It is fun for me to run every morning.</span></td></tr>
+<tr><td><span class="en">useful</span></td><td>役に立つ</td><td><span class="en">It is useful to keep a flashlight near your bed.</span></td></tr>
+</table>
+</div>
+
+<p>防災の話では、この形が何度も出てきます。<span class="en">Many towns in our prefecture are near the sea.</span>（私たちの県の多くの町は海の近くにあります）。<span class="en">The siren warns people about a tsunami.</span>（サイレンは人々に津波を知らせます）。<span class="en">It is important to listen to the announcement during a drill.</span>（訓練中は放送を聞くことが大切です）。<span class="en">The whole school took part in the drill.</span>（学校全体が訓練に参加しました）。</p>
+
+<h2><span>否定文と疑問文</span></h2>
+
+<p><span class="en">It is</span> の文なので、作り方は be動詞の文と同じです。否定文は <span class="en">is</span> のうしろに <span class="en">not</span>、疑問文は <span class="en">Is it</span> 〜？ で始めます。答えるときも <span class="en">it</span> を使います。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文の種類</th><th>例</th></tr>
+<tr><td>否定文</td><td><span class="en">It is not easy for elderly people to escape quickly.</span></td></tr>
+<tr><td>疑問文</td><td><span class="en">Is it possible for anyone to join the drill?</span>（だれでもその訓練に参加することはできますか）</td></tr>
+<tr><td>答え方</td><td><span class="en">Yes, it is.</span>／<span class="en">No, it isn't.</span>（<span class="en">Yes, I am.</span> とは答えない）</td></tr>
+</table>
+</div>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">「〜することは…だ」の文かを見る</span>
+<span class="step-d">「〜すること」が主語なら、<span class="en">It is</span> ＋ 形容詞で文を始めます。</span>
+</li>
+<li>
+<span class="step-t">「だれにとって」があれば for ＋ 人を置く</span>
+<span class="step-d">代名詞は <span class="en">for me</span>・<span class="en">for us</span>・<span class="en">for him</span> のように「〜を・〜に」の形にします。</span>
+</li>
+<li>
+<span class="step-t">to ＋ 動詞の原形を続ける</span>
+<span class="step-d"><span class="en">to</span> のうしろは、主語や時に関係なくいつも原形です。中2 Unit 9 と同じです。</span>
+</li>
+<li>
+<span class="step-t">否定文・疑問文は be動詞の文と同じに作る</span>
+<span class="step-d"><span class="en">It is not</span> 〜／<span class="en">Is it</span> 〜？ です。過去のことなら <span class="en">It was</span> 〜 にします。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>動名詞の主語との書き換え</h3>
+
+<p>中2 Unit 12 の動名詞も主語になります。<span class="en">Playing tennis is fun.</span>（テニスをすることは楽しいです）は <span class="en">It is fun to play tennis.</span> と同じ意味です。<span class="en">It is</span> で始めたら、うしろは <span class="en">to</span> ＋ 原形にします。</p>
+
+<h3>人を主語にしない</h3>
+
+<p>「私は英語の指示を理解するのが難しい」を <span class="en">I am difficult to understand</span> 〜 とは書きません。<span class="en">easy</span>・<span class="en">difficult</span>・<span class="en">important</span>・<span class="en">necessary</span>・<span class="en">possible</span> は「〜することが」簡単・難しいと言う語で、人の性質を言う語ではないからです。<span class="en">It is difficult for me to understand instructions in English.</span> と書きます。</p>
+
+<h3>形容詞の位置に名詞が入る形</h3>
+
+<p><span class="en">It is a good idea to prepare an emergency bag in case of a disaster.</span>（災害にそなえて非常用の袋を準備しておくのはよい考えです）のように、<span class="en">It is</span> のうしろに名詞が来ることもあります。<span class="en">It is a good idea to decide how to contact your family.</span>（家族と連絡をとる方法を決めておくのはよい考えです）。作りは同じです。</p>
+
+<h3><span class="en">of</span> ＋ 人になる形</h3>
+
+<p><span class="en">kind</span>（親切な）のように<strong>人の性質を言う語</strong>のときは、<span class="en">for</span> ではなく <span class="en">of</span> を使って <span class="en">It is kind of you to</span> 〜（〜してくれてありがとう、親切ですね）と言います。この単元の問題では <span class="en">for</span> の形だけを扱います。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td><span class="en">It is</span> 〜 (　) <span class="en">play</span> 〜 の空所に <span class="en">to</span> を、(　) <span class="en">me</span> の空所に <span class="en">for</span> を選ばせる</td></tr>
+<tr><td>並べかえ</td><td><span class="en">it / is / for / to</span> を含む語群を、<span class="en">It is</span> ＋ 形容詞 ＋ <span class="en">for</span> ＋ 人 ＋ <span class="en">to</span> 〜 の順に並べさせる</td></tr>
+<tr><td>書き換え</td><td><span class="en">To</span> 〜 <span class="en">is</span> …／〜<span class="en">ing is</span> … を <span class="en">It is</span> … <span class="en">to</span> 〜 に書き換えさせる</td></tr>
+<tr><td>英作文</td><td>「〜することは大切だと思う」と自分の考えを書かせる。<span class="en">It is important to</span> 〜 がそのまま使える</td></tr>
+<tr><td>読解</td><td><span class="en">It is</span> 〜 <span class="en">to</span> … の文を、「〜することは…だ」と主語を正しくとらえて訳させる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">It is easy for I to use this flashlight.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">It is easy for me to use this flashlight.</span></div>
+<p class="contrast-why"><span class="en">for</span> は前置詞なので、うしろの代名詞は <span class="en">me</span> の形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">It is important for us to staying calm.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">It is important for us to stay calm.</span></div>
+<p class="contrast-why"><span class="en">to</span> のうしろは動詞の原形です。<span class="en">-ing</span> 形にはしません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">This is important to know the route to the shelter.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">It is important to know the route to the shelter.</span></div>
+<p class="contrast-why">主語の位置をうめる語は <span class="en">it</span> だけです。<span class="en">this</span> や <span class="en">that</span> は使いません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I am difficult to understand instructions in English.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">It is difficult for me to understand instructions in English.</span></div>
+<p class="contrast-why"><span class="en">difficult</span> は「〜することが難しい」と言う語なので、人を主語にしません。人は <span class="en">for</span> ＋ 人で表します。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li><span class="en">To</span> 〜 <span class="en">is</span> … の主語を文の終わりに回し、<strong><span class="en">It is</span> … <span class="en">to</span> 〜</strong> の形にします。意味は「〜することは…だ」です。</li>
+<li>この <span class="en">it</span> は<strong>何も指していません</strong>。「それは」と訳しません。</li>
+<li>「だれにとって」は <span class="en">to</span> の前に <strong><span class="en">for</span> ＋ 人</strong>を置きます。代名詞は <span class="en">for me</span>・<span class="en">for us</span> の形です。</li>
+<li><span class="en">to</span> のうしろは<strong>いつも動詞の原形</strong>です。</li>
+<li>否定文は <span class="en">It is not</span> 〜、疑問文は <span class="en">Is it</span> 〜？ で、答えは <span class="en">Yes, it is.</span>／<span class="en">No, it isn't.</span> です。</li>
+</ul>
+</div>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず文の主語の位置に何があるかを見て、本当の主語がどこにあるかを決めます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">It is fun (　　　) soccer with my friends after school.</span>
+<p class="opts"><span>ア play</span><span>イ to play</span><span>ウ played</span><span>エ plays</span></p></li>
+<li><span class="en">It is difficult (　　　) me to get up early every morning.</span>
+<p class="opts"><span>ア to</span><span>イ for</span><span>ウ at</span><span>エ with</span></p></li>
+<li><span class="en">(　　　) is important to listen to the announcement during a drill.</span>
+<p class="opts"><span>ア This</span><span>イ It</span><span>ウ That</span><span>エ There</span></p></li>
+<li><span class="en">It is necessary for (　　　) to check the route to the shelter.</span>
+<p class="opts"><span>ア we</span><span>イ our</span><span>ウ us</span><span>エ ours</span></p></li>
+<li><span class="en">"Is it easy for you to use this flashlight?" "Yes, (　　　)."</span>
+<p class="opts"><span>ア it is</span><span>イ I am</span><span>ウ it does</span><span>エ you are</span></p></li>
+<li><span class="en">To learn about natural disasters at school (　　　) important for us.</span>
+<p class="opts"><span>ア are</span><span>イ is</span><span>ウ am</span><span>エ be</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>友だちと話すことは楽しいです。<br><span class="en">[ it / is / fun / to / talk / with / my / friends ] .</span><span class="write"></span></li>
+<li>私たちにとって、すぐに高い所へ行くことが大切です。<br><span class="en">[ it / is / important / for / us / to / go / to / higher / ground / right / away ] .</span><span class="write"></span></li>
+<li>祖母にとって速く歩くことは簡単ではありません。<br><span class="en">[ it / is / not / easy / for / my / grandmother / to / walk / fast ] .</span><span class="write"></span></li>
+<li data-extra="1">自然災害を止めることは不可能です。<span class="hint">1語不要</span><br><span class="en">[ it / is / impossible / to / stop / natural / disasters / for ] .</span><span class="write"></span></li>
+<li data-extra="1">あなたにとってその地図を読むことは難しいですか。<span class="hint">1語不要</span><br><span class="en">[ is / it / difficult / for / you / to / read / the / map / are ] ?</span><span class="write"></span></li>
+<li>家族と災害について話すことが必要です。<br><span class="en">[ it / is / necessary / to / talk / with / your / family / about / disasters ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">It is easy for I to use this flashlight.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">It is dangerous push other people during a drill.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">It is important for us to staying calm.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">This is important to know the route to the shelter.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">It is necessary to us to check the batteries once a month.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">毎朝走ることは私にとって楽しいです。</span><span class="write"></span></li>
+<li><span class="q-ja">地震のときは机の下にかくれることが大切です。</span><span class="write"></span></li>
+<li><span class="q-ja">英語で指示を理解することは私にとって難しいです。</span><span class="write"></span></li>
+<li><span class="q-ja">自然災害を止めることは不可能です。</span><span class="write"></span></li>
+<li><span class="en">To</span> で始めて「非常用の袋を準備することは必要です」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li><span class="en">It</span> で始めて「私たちにとって落ち着いていることは大切です」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li><span class="en">Is</span> で始めて「あなたにとって速く走ることは簡単ですか」と書く。<span class="cond">8語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">中学生が全校集会で行ったスピーチです。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">防災訓練で学んだこと</p>
+<p>Last month our school had a disaster drill. In the morning, we heard a siren and an announcement: "This is a drill. An earthquake has just happened." We got under our desks and protected our heads. Then we left the building and walked to the hill behind the school.</p>
+<p>Our town is near the sea, so a tsunami may come after a big earthquake. It is important for us to go to higher ground right away. During the drill, some students talked and laughed. Our teacher said, "It is dangerous to talk during a drill. You must listen to the instructions."</p>
+<p>After the drill, I worried about my grandmother. It is not easy for her to walk fast. So my father and I checked the route to the shelter with her. We also put a flashlight, batteries and a blanket in an emergency bag.</p>
+<p>It is impossible to stop natural disasters. But it is possible for everyone to get ready for them. <span class="num">①</span><span class="ul">It is necessary for each family to talk about this at least once a year</span>.</p>
+<p class="reading-wc">およそ175語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 訓練の日、生徒は地震の放送のあと、すぐに海の近くへ向かった。<br>
+イ 先生は、訓練中に話をすることは危険だと言った。<br>
+ウ 話し手の祖母は、速く歩くことが簡単にできる。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">During the drill, the students walked to the (　　　) behind the school.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">What did the writer put in the emergency bag?</span><span class="write"></span></li>
+<li>話し手は、自然災害について何が不可能で、何が可能だと言っているか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li><span class="en">It is fun for me to</span> 〜 を使って、自分にとって楽しいことを1文書く。<span class="hint">例：It is fun for me to run every morning.</span><span class="write"></span></li>
+<li><span class="en">It is important to</span> 〜 を使って、災害にそなえて大切だと思うことを1文書く。<span class="hint">例：It is important to keep a flashlight near your bed.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>本当の主語がうしろの <span class="en">to</span> 〜 にあること</strong>に戻り、次に<strong><span class="en">for</span> ＋ 人の形</strong>と<strong><span class="en">to</span> のうしろが原形か</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　to play</span><p class="a-why"><span class="en">It is fun</span> のうしろに本当の主語「〜すること」を置くので、<span class="en">to</span> ＋ 原形です。</p></li>
+<li><span class="a-key">イ　for</span><p class="a-why">「私にとって」は <span class="en">for me</span> です。<span class="en">to</span> 以下の動作をする人を <span class="en">for</span> ＋ 人で表します。</p></li>
+<li><span class="a-key">イ　It</span><p class="a-why">本当の主語はうしろの <span class="en">to listen</span> 〜 です。主語の位置をうめる語は <span class="en">it</span> だけです。<span class="en">There</span> は「〜がある」の文で使う語です。</p></li>
+<li><span class="a-key">ウ　us</span><p class="a-why"><span class="en">for</span> は前置詞なので、うしろの代名詞は「〜を・〜に」の形 <span class="en">us</span> です。</p></li>
+<li><span class="a-key">ア　it is</span><p class="a-why"><span class="en">Is it</span> 〜？ の疑問文なので、<span class="en">it</span> と <span class="en">is</span> で答えます。</p></li>
+<li><span class="a-key">イ　is</span><p class="a-why">主語は <span class="en">To learn about natural disasters at school</span> で、「〜すること」は1つのまとまりなので3人称単数として扱います。<span class="en">It is important for us to learn about natural disasters at school.</span> と書き換えられます。</p></li>
+
+<li><span class="a-key">It is fun to talk with my friends.</span><p class="a-why"><span class="en">It is fun</span> を先に言い、本当の主語 <span class="en">to talk</span> 〜 をうしろに置きます。</p></li>
+<li><span class="a-key">It is important for us to go to higher ground right away.</span><p class="a-why"><span class="en">for us</span> を <span class="en">to</span> の前に置きます。<span class="en">right away</span> は「すぐに」で、文の終わりに置きます。</p></li>
+<li><span class="a-key">It is not easy for my grandmother to walk fast.</span><p class="a-why">否定文は <span class="en">is</span> のうしろに <span class="en">not</span> です。<span class="en">for</span> のうしろには人を表す名詞もそのまま置けます。</p></li>
+<li><span class="a-key">It is impossible to stop natural disasters.</span><p class="a-why">不要な語は <span class="en">for</span> です。「だれにとって」が無いので <span class="en">for</span> ＋ 人は要りません。</p></li>
+<li><span class="a-key">Is it difficult for you to read the map?</span><p class="a-why">不要な語は <span class="en">are</span> です。<span class="en">It is</span> の疑問文なので <span class="en">Is it</span> で始めます。</p></li>
+<li><span class="a-key">It is necessary to talk with your family about disasters.</span><p class="a-why"><span class="en">talk with</span> 〜 <span class="en">about</span> … で「〜と…について話す」です。</p></li>
+
+<li><span class="a-key">It is easy for me to use this flashlight.</span><p class="a-why">誤りは <span class="en">I</span> です。<span class="en">for</span> は前置詞なので <span class="en">me</span> にします。</p></li>
+<li><span class="a-key">It is dangerous to push other people during a drill.</span><p class="a-why">誤りは <span class="en">push</span> の前に <span class="en">to</span> が無いことです。本当の主語は <span class="en">to</span> ＋ 原形で表します。</p></li>
+<li><span class="a-key">It is important for us to stay calm.</span><p class="a-why">誤りは <span class="en">staying</span> です。<span class="en">to</span> のうしろは原形にします。</p></li>
+<li><span class="a-key">It is important to know the route to the shelter.</span><p class="a-why">誤りは <span class="en">This</span> です。主語の位置をうめる語は <span class="en">it</span> です。</p></li>
+<li><span class="a-key">It is necessary for us to check the batteries once a month.</span><p class="a-why">誤りは <span class="en">to us</span> の <span class="en">to</span> です。「だれにとって」は <span class="en">for</span> ＋ 人で表します。</p></li>
+
+<li><span class="a-key">It is fun for me to run every morning.</span><p class="a-why"><span class="en">for me</span> を <span class="en">to</span> の前に置きます。<span class="en">To run every morning is fun for me.</span> も正しい文ですが、<span class="en">It is</span> で始める形がふつうです。</p></li>
+<li><span class="a-key">It is important to hide under a desk during an earthquake.</span><p class="a-why">「地震のとき」は <span class="en">during an earthquake</span> で表せます。<span class="en">in an earthquake</span> も正しい答えです。</p></li>
+<li><span class="a-key">It is difficult for me to understand instructions in English.</span><p class="a-why"><span class="en">I am difficult</span> 〜 としないことが大切です。<span class="en">It is hard for me</span> 〜 も正しい答えです。</p></li>
+<li><span class="a-key">It is impossible to stop natural disasters.</span><p class="a-why"><span class="en">impossible</span> は <span class="en">possible</span>（できる）の反対の意味の語です。</p></li>
+<li><span class="a-key">To prepare an emergency bag is necessary.</span><p class="a-why">中2 Unit 9 の形です。<span class="en">To prepare an emergency bag</span> が主語で、全体で6語です。<span class="en">It is necessary to prepare an emergency bag.</span> と書き換えられます。</p></li>
+<li><span class="a-key">It is important for us to stay calm.</span><p class="a-why"><span class="en">stay calm</span> で「落ち着いている」です。全体で8語です。</p></li>
+<li><span class="a-key">Is it easy for you to run fast?</span><p class="a-why"><span class="en">Is it</span> ＋ 形容詞 ＋ <span class="en">for you</span> ＋ <span class="en">to</span> ＋ 原形の語順です。全体で8語です。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">Our teacher said, "It is dangerous to talk during a drill."</span> とあります。アは、生徒が向かったのは学校のうしろの丘なので合いません。ウは <span class="en">It is not easy for her to walk fast.</span> と合いません。</p></li>
+<li><span class="a-key">それぞれの家族が、少なくとも1年に1度はこのことについて話し合うことが必要です。</span><p class="a-why"><span class="en">It is necessary for each family to</span> 〜 は「それぞれの家族が〜することが必要だ」です。<span class="en">at least</span> は「少なくとも」です。</p></li>
+<li><span class="a-key">hill</span><p class="a-why">本文に <span class="en">we left the building and walked to the hill behind the school</span> とあります。</p></li>
+<li><span class="a-key">The writer put a flashlight, batteries and a blanket in it.</span><p class="a-why">本文の <span class="en">We also put a flashlight, batteries and a blanket in an emergency bag.</span> から答えます。<span class="en">He put</span> 〜 や <span class="en">She put</span> 〜 で答えてもかまいません。<span class="en">put</span> は過去形も <span class="en">put</span> です。</p></li>
+<li><span class="a-key">自然災害を止めることは不可能だが、だれでもそれにそなえることはできると言っている。</span><p class="a-why">本文の <span class="en">It is impossible to stop natural disasters. But it is possible for everyone to get ready for them.</span> から答えます。<span class="en">get ready for</span> 〜 は「〜にそなえる、〜の準備をする」です。</p></li>
+
+<li><span class="a-key">解答例：It is fun for me to run every morning.</span><p class="a-why"><span class="en">to</span> のうしろは原形にします。<span class="en">It is fun for me to talk with my friends.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：It is important to keep a flashlight near your bed.</span><p class="a-why"><span class="en">It is important to protect your head.</span>・<span class="en">It is important to check the route to the shelter.</span> のようにも書けます。</p></li>
+</ol>
+</div>
+</body>
+</html>

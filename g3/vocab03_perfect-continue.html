@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 3　現在完了（継続）と現在完了進行形</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit03_perfect-continue.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 3</p>
+<h1 class="unit-title">単語帳　現在完了（継続）と現在完了進行形</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。<strong>「ずっと」の文で長さや始まりを言う語</strong>（<span class="en">since</span>・<span class="en">How long 〜?</span>・<span class="en">for a long time</span>）と、<strong>家族・住まい・部活・パン屋</strong>のまわりの語をまとめてあります。<span class="en">since</span> は始まりの時点、<span class="en">for</span> は長さという区別を、例文の中で確かめてください。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめに動詞、次に副詞・前置詞・形容詞、次に名詞（人・住まい・部活と持ち物・体・パン屋の順）、最後に熟語の順です。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">trust</span><span class="v-kana">トラスト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>信頼する、信用する</p></div>
+<p class="v-ex"><span class="en">I have trusted my coach since I joined the team.</span><span class="v-ja">　私はチームに入ったときからコーチを信頼しています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>状態を表す動詞なので、「ずっと信頼している」は進行形にせず <span class="en">have trusted</span> で表します。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">hurt</span><span class="v-kana">ハート</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>けがをする、痛む</p></div>
+<p class="v-ex"><span class="en">Last year my grandmother hurt her leg, so my cousin and I helped her for a few weeks.</span><span class="v-ja">　去年祖母が足をけがしたので、いとこと私は数週間祖母を手伝いました。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>原形・過去形・過去分詞がすべて <span class="en">hurt</span> です。<span class="en">My leg has hurt since the game.</span>（試合のときから足が痛みます）のように「痛む」の意味でも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">jog</span><span class="v-kana">ジョグ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>ジョギングをする</p></div>
+<p class="v-ex"><span class="en">My brother has been jogging since six o'clock.</span><span class="v-ja">　兄は6時からずっとジョギングをしています。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>-ing形は <span class="en">g</span> を重ねて <span class="en">jogging</span> です。中1 Unit 14 の <span class="en">running</span>・<span class="en">swimming</span> と同じ作り方です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">smell</span><span class="v-kana">スメル</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>においがする</p></div>
+<p class="v-ex"><span class="en">When I visit the bakery on weekends, the shop smells of warm bread.</span><span class="v-ja">　週末にパン屋をたずねると、店は温かいパンのにおいがします。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">smell of 〜</span> で「〜のにおいがする」です。主語が3人称単数なので <span class="en">smells</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">recently</span><span class="v-kana">リースントリー</span></p>
+<div class="v-sense"><span class="tag t-adv">副詞</span><p>最近</p></div>
+<p class="v-ex"><span class="en">I have not seen my cousin recently.</span><span class="v-ja">　最近いとこに会っていません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>現在完了とも過去形とも使えます。ふつう文の終わりに置きます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">since</span><span class="v-kana">スィンス</span></p>
+<div class="v-sense"><span class="tag t-prep">前置詞</span><p>〜から、〜以来</p></div>
+<p class="v-ex"><span class="en">I have lived in this apartment since 2020.</span><span class="v-ja">　私は2020年からこのアパートに住んでいます。</span></p>
+<p class="v-note"><span class="badge">別の品詞</span>うしろに文を置くと接続詞になります。<span class="en">I have known Ms. Brown since I was ten.</span>（10歳のときから）のように、うしろの文は過去形です。長さを言うときは <span class="en">for</span> を使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">married</span><span class="v-kana">マリド</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>結婚している</p></div>
+<p class="v-ex"><span class="en">My parents have been married for twenty years.</span><span class="v-ja">　両親は結婚して20年になります。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">be married</span> で「結婚している」という状態です。「結婚して〜年」は <span class="en">have been married for 〜</span> で表します。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">regular</span><span class="v-kana">レギュラー</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>いつもの、なじみの、規則的な</p></div>
+<p class="v-ex"><span class="en">Many of her regular customers have come to the shop for a long time.</span><span class="v-ja">　なじみの客の多くは、長い間その店に来ています。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">regular customer</span> は「いつも来る客、常連客」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">husband</span><span class="v-kana">ハズバンド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>夫</p></div>
+<p class="v-ex"><span class="en">My aunt and her husband have been married for a long time.</span><span class="v-ja">　おばと夫は長い間結婚しています。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">husband</span>（夫）↔ <span class="en">wife</span>（妻）。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">wife</span><span class="v-kana">ワイフ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>妻</p></div>
+<p class="v-ex"><span class="en">My uncle's wife has practiced calligraphy since her childhood.</span><span class="v-ja">　おじの妻は子どものころから書道を続けています。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>複数形は <span class="en">f</span> を <span class="en">v</span> に変えて <span class="en">wives</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">teammate</span><span class="v-kana">チームメイト</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>チームの仲間</p></div>
+<p class="v-ex"><span class="en">Aya and I have been teammates for three years.</span><span class="v-ja">　アヤと私は3年間チームメイトです。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">team</span> と <span class="en">mate</span>（仲間）を合わせた語です。同じクラスの仲間は <span class="en">classmate</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">coach</span><span class="v-kana">コウチ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>コーチ、指導者</p></div>
+<p class="v-ex"><span class="en">Our coach has been at this school since last year.</span><span class="v-ja">　コーチは去年からこの学校にいます。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>複数形は <span class="en">es</span> をつけて <span class="en">coaches</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">friendship</span><span class="v-kana">フレンドシップ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>友情</p></div>
+<p class="v-ex"><span class="en">Our friendship has been strong since kindergarten.</span><span class="v-ja">　私たちの友情は幼稚園のときからずっと強いです。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">friend</span>（友だち）に <span class="en">-ship</span> がついて「友だちの間がら」を表す名詞になった形です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">childhood</span><span class="v-kana">チャイルドフッド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>子どものころ</p></div>
+<p class="v-ex"><span class="en">One old man has bought the same bread every morning since his childhood.</span><span class="v-ja">　ある年配の男性は、子どものころから毎朝同じパンを買っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">since his childhood</span> は <span class="en">since he was a child</span> とほぼ同じ意味です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">kindergarten</span><span class="v-kana">キンダーガートゥン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>幼稚園</p></div>
+<p class="v-ex"><span class="en">We have been friends since we were in kindergarten.</span><span class="v-ja">　私たちは幼稚園にいたころから友だちです。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>つづりが長いので <span class="en">kinder</span> ＋ <span class="en">garten</span> に分けて覚えます。<span class="en">garden</span> ではなく <span class="en">garten</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">decade</span><span class="v-kana">デケイド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>10年間</p></div>
+<p class="v-ex"><span class="en">The bakery has been in our town for a decade.</span><span class="v-ja">　そのパン屋は10年間私たちの町にあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>長さを表すので <span class="en">for a decade</span> と <span class="en">for</span> を使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">apartment</span><span class="v-kana">アパートメント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>アパート、マンション（の一部屋）</p></div>
+<p class="v-ex"><span class="en">I have lived in this apartment for six years.</span><span class="v-ja">　私は6年間このアパートに住んでいます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>英語の <span class="en">apartment</span> は、建物の中の一つの住まいを指します。日本語の「マンション」もふつう <span class="en">apartment</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">neighborhood</span><span class="v-kana">ネイバーフッド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>近所、地域</p></div>
+<p class="v-ex"><span class="en">My grandmother has lived in this neighborhood for fifty years.</span><span class="v-ja">　祖母は50年間この地域に住んでいます。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">neighbor</span>（近所の人）に <span class="en">-hood</span> がついた語です。<span class="en">childhood</span> の <span class="en">-hood</span> と同じです。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">smartphone</span><span class="v-kana">スマートフォウン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>スマートフォン</p></div>
+<p class="v-ex"><span class="en">I have used this smartphone for three years.</span><span class="v-ja">　私はこのスマートフォンを3年間使っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>英語では <span class="en">phone</span> だけで言うことも多い語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">puppy</span><span class="v-kana">パピー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>子犬</p></div>
+<p class="v-ex"><span class="en">We have had a puppy since last spring.</span><span class="v-ja">　私たちは去年の春から子犬を飼っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「飼っている」は <span class="en">have</span> で表します。状態なので「ずっと飼っている」は <span class="en">have had</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">hamster</span><span class="v-kana">ハムスター</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ハムスター</p></div>
+<p class="v-ex"><span class="en">My sister has had a hamster for two years.</span><span class="v-ja">　姉は2年間ハムスターを飼っています。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>日本語の「ハムスター」と同じ音ですが、<span class="en">ham</span> ＋ <span class="en">ster</span> とつづります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">chess</span><span class="v-kana">チェス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>チェス</p></div>
+<p class="v-ex"><span class="en">Ken has belonged to the chess club for two years.</span><span class="v-ja">　ケンは2年間チェス部に入っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>競技の名前なので <span class="en">a</span> や <span class="en">the</span> をつけずに <span class="en">play chess</span> と言います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">violin</span><span class="v-kana">ヴァイオリン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>バイオリン</p></div>
+<p class="v-ex"><span class="en">I have been practicing the violin for two hours.</span><span class="v-ja">　私は2時間ずっとバイオリンを練習しています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>楽器なので <span class="en">the</span> をつけて <span class="en">play the violin</span> と言います。<span class="en">piano</span>・<span class="en">guitar</span> と同じです。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">calligraphy</span><span class="v-kana">カリグラフィ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>書道</p></div>
+<p class="v-ex"><span class="en">My uncle's wife has practiced calligraphy since her childhood.</span><span class="v-ja">　おじの妻は子どものころから書道を続けています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>数えられない名詞なので <span class="en">a</span> をつけません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">marathon</span><span class="v-kana">マラソン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>マラソン</p></div>
+<p class="v-ex"><span class="en">The students have been running the marathon for an hour.</span><span class="v-ja">　生徒たちは1時間ずっとマラソンを走っています。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>「マラソン」の「ソ」は <span class="en">tho</span> とつづります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">leg</span><span class="v-kana">レッグ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>脚、足</p></div>
+<p class="v-ex"><span class="en">My leg has hurt since the game.</span><span class="v-ja">　試合のときから足が痛みます。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">leg</span> は脚全体、足首から先は <span class="en">foot</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">cough</span><span class="v-kana">コフ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>せき</p></div>
+<p class="v-ex"><span class="en">I have had a cough since last week.</span><span class="v-ja">　先週からせきが出ています。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span><span class="en">gh</span> を「フ」と読む語です。<span class="en">have a cough</span> で「せきが出る」です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">bakery</span><span class="v-kana">ベイカリー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>パン屋</p></div>
+<p class="v-ex"><span class="en">My grandmother has a small bakery near the station.</span><span class="v-ja">　祖母は駅の近くに小さなパン屋を持っています。</span></p>
+<p class="v-note"><span class="badge">セットで</span>動詞 <span class="en">bake</span>（焼く）、パンを焼く人は <span class="en">baker</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">customer</span><span class="v-kana">カスタマー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>（店の）客</p></div>
+<p class="v-ex"><span class="en">Many of her regular customers have come to the shop for a long time.</span><span class="v-ja">　なじみの客の多くは、長い間その店に来ています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>店で買い物をする客は <span class="en">customer</span>、家にまねいた客は <span class="en">guest</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">flour</span><span class="v-kana">フラウア</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>小麦粉</p></div>
+<p class="v-ex"><span class="en">She makes the dough with flour and water, and she puts the bread into a big oven.</span><span class="v-ja">　祖母は小麦粉と水で生地を作り、パンを大きなオーブンに入れます。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span><span class="en">flower</span>（花）と同じ音です。数えられない名詞なので <span class="en">a</span> をつけません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">dough</span><span class="v-kana">ドウ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>（パンの）生地</p></div>
+<p class="v-ex"><span class="en">She makes the dough with flour and water, and she puts the bread into a big oven.</span><span class="v-ja">　祖母は小麦粉と水で生地を作り、パンを大きなオーブンに入れます。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span><span class="en">gh</span> は読みません。<span class="en">cough</span> とつづりが似ていても読み方がちがいます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">oven</span><span class="v-kana">アヴン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>オーブン</p></div>
+<p class="v-ex"><span class="en">She makes the dough with flour and water, and she puts the bread into a big oven.</span><span class="v-ja">　祖母は小麦粉と水で生地を作り、パンを大きなオーブンに入れます。</span></p>
+<p class="v-note"><span class="badge">使い方</span>母音で始まるので <span class="en">an oven</span> です。読み方は「オーブン」ではなく「アヴン」に近い音です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">loaf</span><span class="v-kana">ロウフ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>（パンの）ひとかたまり</p></div>
+<p class="v-ex"><span class="en">Now I can make a good loaf.</span><span class="v-ja">　今では私はよいパンを1つ作ることができます。</span></p>
+<p class="v-note"><span class="badge">綴り注意</span>複数形は <span class="en">f</span> を <span class="en">v</span> に変えて <span class="en">loaves</span> です。<span class="en">a loaf of bread</span>（パン1斤）の形でもよく使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">how long 〜?</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>どのくらいの間〜</p></div>
+<p class="v-ex"><span class="en">How long have you lived in this town?</span><span class="v-ja">　あなたはどのくらいの間この町に住んでいますか。</span></p>
+<p class="v-note"><span class="badge">使い方</span>うしろは疑問文の語順です。答えは <span class="en">For ten years.</span> ／ <span class="en">Since 2016.</span> のように <span class="en">for</span> か <span class="en">since</span> で言います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">for a long time</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>長い間</p></div>
+<p class="v-ex"><span class="en">I have not seen her for a long time.</span><span class="v-ja">　長い間彼女に会っていません。</span></p>
+<p class="v-note"><span class="badge">使い方</span>長さを言う言い方なので <span class="en">for</span> です。<span class="en">since</span> とは使いません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">since then</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>そのときから、それ以来</p></div>
+<p class="v-ex"><span class="en">She and my grandfather started it together when they were young, and they have been married since then.</span><span class="v-ja">　祖母と祖父は若いころにいっしょにそれを始め、そのときから結婚しています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>前に出てきた過去の時を <span class="en">then</span> で指し、そこを始まりにします。現在完了といっしょに使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">belong to 〜</span></p>
+<div class="v-sense"><span class="tag t-idiom">熟語</span><p>〜に所属している、〜のものである</p></div>
+<p class="v-ex"><span class="en">Ken has belonged to the chess club for two years.</span><span class="v-ja">　ケンは2年間チェス部に入っています。</span></p>
+<p class="v-note"><span class="badge">使い方</span>状態を表すので進行形にしません。「ずっと所属している」は <span class="en">have belonged to 〜</span> です。</p>
+</li>
+</ol>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

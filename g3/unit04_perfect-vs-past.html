@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 4　現在完了と過去形の使い分け</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab04_perfect-vs-past.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 4</p>
+<h1 class="unit-title">現在完了と過去形の使い分け</h1>
+<p class="unit-lead">Unit 1〜3 で、現在完了の3つの使い方（経験・完了と結果・継続）を見ました。この単元では<strong>現在完了と過去形のどちらを使うか</strong>を決められるようにします。手がかりは文の中の<strong>時を表す語</strong>です。<span class="en">yesterday</span>・<span class="en">last</span> 〜・〜 <span class="en">ago</span>・<span class="en">When</span> 〜？ のように<strong>過去の一時点を指す語とは、現在完了を使えません</strong>。この規則と、3つの使い方の見分けを、ここで一本に通します。</p>
+</header>
+
+<h2><span>過去形は「点」、現在完了は「過去から今まで」</span></h2>
+
+<p>過去形は<strong>過去のある時に何があったか</strong>だけを言う形です。今どうなっているかは言いません。現在完了は<strong>過去から今の時点までのこと</strong>を、今の時点から言う形です。</p>
+
+<div class="diagram">
+<p class="diagram-cap">過去形は過去の一点を指し、現在完了は過去から今までをまとめて指す</p>
+<div class="flow">
+<span class="node">過去の一点<span class="node-label">過去形　went</span></span>
+<span class="link">
+<span class="link-word">切れている</span>
+<span class="rail"></span>
+</span>
+<span class="node">今<span class="node-label">今のことは言わない</span></span>
+</div>
+<div class="flow">
+<span class="node">過去<span class="node-label">現在完了　have gone</span></span>
+<span class="link">
+<span class="link-word">今までつながる</span>
+<span class="rail"></span>
+</span>
+<span class="node">今<span class="node-label">今どうなっているかを言う</span></span>
+</div>
+</div>
+
+<p>同じできごとでも、どちらで言うかで伝わることが変わります。<span class="en">My uncle went to Tokyo.</span>（おじは東京へ行きました）は、行ったという過去のことだけを言います。<span class="en">My uncle has gone to Tokyo.</span>（おじは東京へ行ってしまいました）は、<strong>今ここにいない</strong>という今のことまで言います。</p>
+
+<p><strong>なぜ時を表す語で決まるのか。</strong>現在完了は「今の時点から過去をふり返る」形なので、文全体が今とつながっています。ところが <span class="en">yesterday</span> や 〜 <span class="en">ago</span> は<strong>今と切れた過去の一点</strong>を指す語です。今とつながる形と、今と切れた語を同じ文に置くと中身が合いません。だから現在完了とは使えず、過去形を使います。</p>
+
+<h2><span>過去の一時点を指す語とは現在完了を使わない</span></h2>
+
+<p>次の語が文にあれば、<strong>過去形</strong>です。現在完了にはしません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>意味</th><th>例（○は正しい文）</th></tr>
+<tr><td><span class="en">yesterday</span></td><td>昨日</td><td class="be-cell">○ <span class="en">I attended the meeting yesterday.</span></td></tr>
+<tr><td><span class="en">last</span> 〜</td><td>昨〜、去年の〜</td><td class="be-cell">○ <span class="en">I learned the dance last year.</span></td></tr>
+<tr><td>〜 <span class="en">ago</span></td><td>〜前に</td><td class="be-cell">○ <span class="en">My uncle left this town three years ago.</span></td></tr>
+<tr><td><span class="en">When</span> 〜？</td><td>いつ〜しましたか</td><td class="be-cell">○ <span class="en">When did you join the dance group?</span></td></tr>
+<tr><td><span class="en">in</span> ＋ 年</td><td>〜年に</td><td class="be-cell">○ <span class="en">The festival started in 1925.</span></td></tr>
+<tr><td><span class="en">just now</span></td><td>たった今</td><td class="be-cell">○ <span class="en">The reporter came just now.</span></td></tr>
+<tr><td><span class="en">then</span>・<span class="en">at that time</span></td><td>そのとき</td><td class="be-cell">○ <span class="en">I was a child at that time.</span></td></tr>
+</table>
+</div>
+
+<p>例文を足します。<span class="en">A new article about the festival appeared in the newspaper last week.</span>（祭りについての新しい記事が先週新聞に出ました）、<span class="en">The citizens completed the new hall two years ago.</span>（市民は2年前に新しいホールを完成させました）、<span class="en">My sister graduated from this school in 2023.</span>（姉は2023年にこの学校を卒業しました）、<span class="en">A reporter from the local newspaper interviewed the mayor yesterday.</span>（地元の新聞の記者が昨日市長にインタビューしました）。</p>
+
+<h2><span>現在完了と使える語</span></h2>
+
+<p>反対に、次の語は<strong>今とつながる</strong>語なので現在完了と使います。<span class="en">yet</span>・<span class="en">just</span>・<span class="en">already</span> は Unit 2、<span class="en">since</span>・<span class="en">for</span> は Unit 3 で学びました。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>使い方</th><th>いっしょに使う語</th><th>例</th></tr>
+<tr><td>経験（Unit 1）</td><td class="be-cell"><span class="en">ever</span>・<span class="en">never</span>・〜 <span class="en">times</span>・<span class="en">several times</span>・<span class="en">once</span>・<span class="en">before</span>・<span class="en">so far</span></td><td><span class="en">I have seen the parade several times.</span></td></tr>
+<tr><td>完了・結果（Unit 2）</td><td class="be-cell"><span class="en">just</span>・<span class="en">already</span>・<span class="en">yet</span></td><td><span class="en">The mayor has not received the letter yet.</span></td></tr>
+<tr><td>継続（Unit 3）</td><td class="be-cell"><span class="en">since</span> 〜・<span class="en">for</span> 〜・<span class="en">ever since</span> 〜・<span class="en">How long</span> 〜？</td><td><span class="en">The old lanterns have remained in the shrine for fifty years.</span></td></tr>
+</table>
+</div>
+
+<p>例文を足します。<span class="en">I have visited my aunt three times so far.</span>（私は今までに3回おばをたずねました）、<span class="en">I have attended the annual festival several times.</span>（私はその毎年の祭りに何度か参加したことがあります）、<span class="en">I have seen the colorful parade only once.</span>（私はその色とりどりのパレードを一度だけ見たことがあります）、<span class="en">Up to now, nobody in my family has missed the festival.</span>（今まで、家族のだれも祭りを見のがしていません）。</p>
+
+<h2><span>3つの使い方を日本語で見分ける</span></h2>
+
+<p>現在完了は形が1つで、意味が3つに分かれます。<strong>用法の名前を覚えることが目的ではありません。</strong>日本語に直したときにどれになるかで見分けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>何を言う文か</th><th>日本語の形</th><th>目じるしの語</th><th>例</th></tr>
+<tr><td>今までにしたこと</td><td class="be-cell">〜したことがある</td><td><span class="en">ever</span>・<span class="en">never</span>・〜 <span class="en">times</span>・<span class="en">once</span></td><td><span class="en">I have seen the parade several times.</span></td></tr>
+<tr><td>今ちょうど終わったこと</td><td class="be-cell">〜したところだ、もう〜した</td><td><span class="en">just</span>・<span class="en">already</span>・<span class="en">yet</span></td><td><span class="en">The citizens have already started the parade.</span></td></tr>
+<tr><td>今どうなっているか</td><td class="be-cell">〜してしまった</td><td>（語より文の中身で決まる）</td><td><span class="en">My uncle has gone to Tokyo.</span></td></tr>
+<tr><td>今まで続いていること</td><td class="be-cell">ずっと〜している</td><td><span class="en">since</span>・<span class="en">for</span>・<span class="en">How long</span></td><td><span class="en">The festival has continued for a hundred years.</span></td></tr>
+</table>
+</div>
+
+<p>祭りや行事の話では、過去形と現在完了が同じ文章の中に並びます。<span class="en">The dancers in the parade wore colorful costumes last summer.</span>（去年の夏、パレードのおどり手は色とりどりの衣装を着ていました）は過去のできごとです。<span class="en">Our dance group has passed down this tradition for three generations.</span>（私たちのおどりの会は3世代にわたってこの伝統を受けついできました）は今まで続いていることを言います。<span class="en">Many of my relatives come to the festival every summer.</span>（親せきの多くが毎年夏にその祭りに来ます）のように、今の習慣は現在形で言います。<span class="en">The shrine near the square is a historical place in our town.</span>（広場の近くの神社は町の歴史的な場所です）。</p>
+
+<p>同じ <span class="en">have been</span> でも中身で変わります。<span class="en">I have been to the shrine twice.</span>（私はその神社へ2回行ったことがあります）は経験、<span class="en">The performance has been popular for a long period.</span>（その公演は長い間ずっと人気があります）は継続です。</p>
+
+<h2><span>形を決める手順</span></h2>
+
+<ol class="steps">
+<li>
+<span class="step-t">過去の一時点を指す語があるかを見る</span>
+<span class="step-d"><span class="en">yesterday</span>・<span class="en">last</span> 〜・〜 <span class="en">ago</span>・<span class="en">When</span> 〜？・<span class="en">in</span> ＋ 年・<span class="en">just now</span>・<span class="en">at that time</span> があれば、そこで<strong>過去形</strong>に決まります。</span>
+</li>
+<li>
+<span class="step-t">今とつながる語があるかを見る</span>
+<span class="step-d"><span class="en">ever</span>・<span class="en">never</span>・〜 <span class="en">times</span>・<span class="en">just</span>・<span class="en">already</span>・<span class="en">yet</span>・<span class="en">since</span>・<span class="en">for</span>・<span class="en">so far</span> があれば<strong>現在完了</strong>です。</span>
+</li>
+<li>
+<span class="step-t">語が無ければ、今のことを言う文かを見る</span>
+<span class="step-d">今どうなっているかまで言うなら現在完了、過去のできごとだけなら過去形です。</span>
+</li>
+<li>
+<span class="step-t">主語から have か has かを決め、動詞を過去分詞にする</span>
+<span class="step-d">3人称単数なら <span class="en">has</span>、それ以外は <span class="en">have</span> です。Unit 1 と同じです。</span>
+</li>
+</ol>
+
+<h2><span>境界になる形</span></h2>
+
+<h3><span class="en">When</span> 〜？ には必ず過去形で答える</h3>
+
+<p><span class="en">When</span> は「いつ」と過去の一点をたずねる語なので、問いも答えも過去形です。<span class="en">When did you receive the letter?</span>（あなたはいつその手紙を受け取りましたか）のように <span class="en">did</span> ＋ 原形で問います。<span class="en">When have you received the letter?</span> は誤りです。「どのくらいの間」をたずねる <span class="en">How long</span> 〜？ だけが現在完了と組みます。</p>
+
+<h3><span class="en">have been to</span> と <span class="en">went to</span></h3>
+
+<p><span class="en">I have been to the square three times.</span>（私はその広場へ3回行ったことがあります）は経験で、今までの回数を言います。<span class="en">I went to the square yesterday.</span>（私は昨日その広場へ行きました）は過去のできごとだけを言います。<span class="en">yesterday</span> があるので現在完了にはしません。</p>
+
+<h3><span class="en">today</span>・<span class="en">this morning</span> は両方に使える</h3>
+
+<p><span class="en">today</span>・<span class="en">this morning</span>・<span class="en">this week</span> は、<strong>その時間がまだ終わっていない</strong>ので現在完了と使えます。<span class="en">I have not seen the mayor today.</span>（今日はまだ市長に会っていません）は正しい文です。終わった時間を指す <span class="en">yesterday</span>・<span class="en">last week</span> とはここが違います。</p>
+
+<h3>過去形と現在完了を続けて使う</h3>
+
+<p>できごとを過去形で言い、今どうなっているかを現在完了で足す書き方があります。<span class="en">A big typhoon damaged the town in 1961.</span>（1961年に大きな台風が町に被害を与えました）と言ったあとで、<span class="en">The citizens have protected the tradition ever since.</span>（市民はそれ以来ずっとその伝統を守ってきました）と続けます。読解の本文でよく出る形です。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形式</th><th>問われ方</th></tr>
+<tr><td>選択</td><td>文の中の時を表す語を手がかりに、過去形と現在完了のどちらかを選ばせる</td></tr>
+<tr><td>選択</td><td><span class="en">When</span> 〜？ の問いに合う形（<span class="en">did</span> ＋ 原形）を選ばせる</td></tr>
+<tr><td>誤文訂正</td><td><span class="en">have</span> ＋ 過去分詞に 〜 <span class="en">ago</span>・<span class="en">last</span> 〜 がついた文を直させる</td></tr>
+<tr><td>和訳</td><td>現在完了の文を、経験・完了・継続のどの日本語にするか決めさせる</td></tr>
+<tr><td>対話文</td><td><span class="en">Have you 〜?</span> と <span class="en">Did you 〜?</span> を場面で選ばせる</td></tr>
+<tr><td>読解</td><td>過去形で書かれたできごとと、現在完了で書かれた今の様子を読み分けさせる</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I have visited my grandmother last week.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I visited my grandmother last week.</span></div>
+<p class="contrast-why"><span class="en">last week</span> は過去の一時点を指す語なので、現在完了とは使えません。過去形にします。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">When have you joined the dance group?</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">When did you join the dance group?</span></div>
+<p class="contrast-why"><span class="en">When</span> は過去の一点をたずねる語なので、<span class="en">did</span> ＋ 原形で問います。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The festival has started in 1925.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The festival started in 1925.</span></div>
+<p class="contrast-why"><span class="en">in 1925</span> は過去の一点です。「百年続いている」と言いたいときは <span class="en">The festival has continued for a hundred years.</span> と書きます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I did not see the parade yet.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I have not seen the parade yet.</span></div>
+<p class="contrast-why"><span class="en">yet</span> は「今の時点でまだ」を表す語なので、現在完了にします。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>過去形は<strong>過去の一点</strong>を言い、現在完了は<strong>過去から今まで</strong>を言います。</li>
+<li><span class="en">yesterday</span>・<span class="en">last</span> 〜・〜 <span class="en">ago</span>・<span class="en">When</span> 〜？・<span class="en">in</span> ＋ 年・<span class="en">just now</span>・<span class="en">at that time</span> があれば<strong>過去形</strong>です。</li>
+<li><span class="en">ever</span>・<span class="en">never</span>・〜 <span class="en">times</span>・<span class="en">just</span>・<span class="en">already</span>・<span class="en">yet</span>・<span class="en">since</span>・<span class="en">for</span>・<span class="en">so far</span> があれば<strong>現在完了</strong>です。</li>
+<li>現在完了の意味は、日本語に直して<strong>「〜したことがある」「もう〜した」「〜してしまった」「ずっと〜している」</strong>のどれになるかで見分けます。用法の名前は覚えなくてよいです。</li>
+<li><span class="en">today</span>・<span class="en">this morning</span> のように<strong>まだ終わっていない時間</strong>を指す語は、現在完了と使えます。</li>
+</ul>
+</div>
+
+<div class="page-break"></div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず文の中の時を表す語をさがし、過去形か現在完了かを決めます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">My grandfather (　　　) to this town fifty years ago.</span>
+<p class="opts"><span>ア has come</span><span>イ came</span><span>ウ has been coming</span><span>エ comes</span></p></li>
+<li><span class="en">The annual festival (　　　) in this square for a hundred years.</span>
+<p class="opts"><span>ア continued</span><span>イ has continued</span><span>ウ is continuing</span><span>エ continues</span></p></li>
+<li><span class="en">"When (　　　) you receive the letter from the mayor?" "Last week."</span>
+<p class="opts"><span>ア have</span><span>イ did</span><span>ウ do</span><span>エ are</span></p></li>
+<li><span class="en">My uncle (　　　) to Tokyo, so he is not here now.</span>
+<p class="opts"><span>ア went</span><span>イ has gone</span><span>ウ goes</span><span>エ is going</span></p></li>
+<li><span class="en">I (　　　) my aunt in the countryside three times so far.</span>
+<p class="opts"><span>ア visited</span><span>イ have visited</span><span>ウ visit</span><span>エ was visiting</span></p></li>
+<li><span class="en">The citizens in our town (　　　) the new hall last spring.</span>
+<p class="opts"><span>ア have completed</span><span>イ completed</span><span>ウ has completed</span><span>エ complete</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>祖父は50年前にこの町に来ました。<br><span class="en">[ my / grandfather / came / to / this / town / fifty / years / ago ] .</span><span class="write"></span></li>
+<li>その祭りは100年間ずっと続いています。<br><span class="en">[ the / festival / has / continued / for / a / hundred / years ] .</span><span class="write"></span></li>
+<li>あなたは今までにその色とりどりのパレードを見たことがありますか。<br><span class="en">[ have / you / ever / seen / the / colorful / parade ] ?</span><span class="write"></span></li>
+<li data-extra="1">私は去年その伝統的なおどりを習いました。<span class="hint">1語不要</span><br><span class="en">[ i / learned / the / traditional / dance / last / year / have ] .</span><span class="write"></span></li>
+<li data-extra="1">市長はまだその手紙を受け取っていません。<span class="hint">1語不要</span><br><span class="en">[ the / mayor / has / not / received / the / letter / yet / did ] .</span><span class="write"></span></li>
+<li>古いちょうちんは50年間ずっと神社に残っています。<br><span class="en">[ the / old / lanterns / have / remained / in / the / shrine / for / fifty / years ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">I have visited my grandmother last week.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">When have you joined the dance group?</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The festival has started in 1925.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I did not see the parade yet.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">A big typhoon has damaged the town three years ago.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">私は去年その祭りに参加しました。</span><span class="write"></span></li>
+<li><span class="q-ja">私は今までに何度かそのパレードを見たことがあります。</span><span class="write"></span></li>
+<li><span class="q-ja">おじは3年前にこの町を去りました。</span><span class="write"></span></li>
+<li><span class="q-ja">私はまだ市長に会っていません。</span><span class="write"></span></li>
+<li><span class="en">When</span> で始めて「あなたはいつその手紙を受け取りましたか」と書く。<span class="cond">6語</span><span class="write"></span></li>
+<li><span class="en">so far</span> を使って「私たちは今までに5回そのおどりを練習しました」と書く。<span class="cond">9語</span><span class="write"></span></li>
+<li><span class="en">has</span> を使って「祖母は50年間ここに住んでいます」と書く。<span class="cond">8語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">地元の新聞に出た記事です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">百年続く町の祭り</p>
+<p>Our town has an annual summer festival. It started in 1925. In those days only ten families joined it, and the parade was very small. People carried paper lanterns along the main street and danced in the square near the shrine.</p>
+<p>The festival has continued for a hundred years. A big typhoon damaged the town in 1961, and the festival disappeared for two years. Then the citizens started it again. <span class="num">①</span><span class="ul">Up to now, nobody has stopped this tradition</span>.</p>
+<p>Last year a huge crowd came to the square. Children, parents and grandparents danced together to the rhythm of the drums. The mayor said, "This festival has been important to our community ever since my grandfather was a child."</p>
+<p>Our dance group has practiced since last spring. We want to pass down this tradition to our children.</p>
+<p class="reading-wc">およそ135語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア その祭りは1925年に始まり、百年間続いている。<br>
+イ その祭りは台風のあと二度と開かれなかった。<br>
+ウ 去年その広場に来た人は十家族だけだった。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語を書く。<br><span class="en">The festival (　　　) for two years because of the big typhoon.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">When did the festival start?</span><span class="write"></span></li>
+<li>市長は祭りについて何と言っているか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li>去年したことを1つ選び、過去形で1文書く。<span class="hint">例：I joined the summer festival last year.</span><span class="write"></span></li>
+<li>今までにしたことを1つ選び、現在完了で1文書く。<span class="hint">例：I have seen the parade several times.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>文の中の時を表す語</strong>に戻り、次に<strong>過去の一時点を指す語なら過去形</strong>、<strong>今とつながる語なら現在完了</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　came</span><p class="a-why"><span class="en">fifty years ago</span> は過去の一時点を指す語なので過去形です。〜 <span class="en">ago</span> と現在完了はいっしょに使えません。</p></li>
+<li><span class="a-key">イ　has continued</span><p class="a-why"><span class="en">for a hundred years</span> は長さなので「今まで続いている」の文です。現在完了にします。</p></li>
+<li><span class="a-key">イ　did</span><p class="a-why"><span class="en">When</span> は過去の一点をたずねる語なので <span class="en">did</span> ＋ 原形です。答えが <span class="en">Last week.</span> であることも手がかりになります。</p></li>
+<li><span class="a-key">イ　has gone</span><p class="a-why">「行ってしまって今ここにいない」という今のことまで言う文なので現在完了です。<span class="en">went</span> だと今どうなっているかは言えません。</p></li>
+<li><span class="a-key">イ　have visited</span><p class="a-why"><span class="en">so far</span>（今までに）は今とつながる語なので現在完了です。<span class="en">three times</span> も経験を表す語です。</p></li>
+<li><span class="a-key">イ　completed</span><p class="a-why"><span class="en">last spring</span> は過去の一時点を指す語なので過去形です。主語の中心は <span class="en">The citizens</span> で複数なので、現在完了にするなら <span class="en">have</span> ですが、ここでは過去形を選びます。</p></li>
+
+<li><span class="a-key">My grandfather came to this town fifty years ago.</span><p class="a-why">〜 <span class="en">ago</span> があるので過去形 <span class="en">came</span> です。</p></li>
+<li><span class="a-key">The festival has continued for a hundred years.</span><p class="a-why"><span class="en">for</span> 〜 があるので現在完了です。<span class="en">continue</span> は規則動詞なので過去分詞は <span class="en">continued</span> です。</p></li>
+<li><span class="a-key">Have you ever seen the colorful parade?</span><p class="a-why">経験をたずねる文なので <span class="en">Have you ever</span> ＋ 過去分詞です。<span class="en">see</span> の過去分詞は <span class="en">seen</span> です。</p></li>
+<li><span class="a-key">I learned the traditional dance last year.</span><p class="a-why">不要な語は <span class="en">have</span> です。<span class="en">last year</span> があるので過去形にします。</p></li>
+<li><span class="a-key">The mayor has not received the letter yet.</span><p class="a-why">不要な語は <span class="en">did</span> です。<span class="en">yet</span> があるので現在完了の否定文にします。</p></li>
+<li><span class="a-key">The old lanterns have remained in the shrine for fifty years.</span><p class="a-why"><span class="en">for fifty years</span> があるので現在完了です。主語 <span class="en">The old lanterns</span> は複数なので <span class="en">have</span> です。</p></li>
+
+<li><span class="a-key">I visited my grandmother last week.</span><p class="a-why">誤りは <span class="en">have visited</span> です。<span class="en">last week</span> は過去の一時点を指す語なので過去形にします。</p></li>
+<li><span class="a-key">When did you join the dance group?</span><p class="a-why">誤りは <span class="en">have</span> です。<span class="en">When</span> は過去の一点をたずねるので <span class="en">did</span> ＋ 原形にします。</p></li>
+<li><span class="a-key">The festival started in 1925.</span><p class="a-why">誤りは <span class="en">has started</span> です。<span class="en">in 1925</span> は過去の一点なので過去形にします。</p></li>
+<li><span class="a-key">I have not seen the parade yet.</span><p class="a-why">誤りは <span class="en">did not see</span> です。<span class="en">yet</span> は今の時点を表すので現在完了の否定文にします。</p></li>
+<li><span class="a-key">A big typhoon damaged the town three years ago.</span><p class="a-why">誤りは <span class="en">has damaged</span> です。〜 <span class="en">ago</span> があるので過去形にします。</p></li>
+
+<li><span class="a-key">I joined the festival last year.</span><p class="a-why"><span class="en">last year</span> があるので過去形です。<span class="en">I took part in the festival last year.</span> も正しい答えです。</p></li>
+<li><span class="a-key">I have seen the parade several times.</span><p class="a-why">「今までに何度か」は経験なので現在完了です。<span class="en">several times</span> は「何度か」です。</p></li>
+<li><span class="a-key">My uncle left this town three years ago.</span><p class="a-why">〜 <span class="en">ago</span> があるので過去形 <span class="en">left</span> です。</p></li>
+<li><span class="a-key">I have not seen the mayor yet.</span><p class="a-why">「まだ〜していない」は現在完了の否定文に <span class="en">yet</span> を置きます。<span class="en">I haven't met the mayor yet.</span> も正しい答えです。</p></li>
+<li><span class="a-key">When did you receive the letter?</span><p class="a-why"><span class="en">When</span> ＋ <span class="en">did</span> ＋ 主語 ＋ 原形の語順で6語です。</p></li>
+<li><span class="a-key">We have practiced the dance five times so far.</span><p class="a-why"><span class="en">so far</span> があるので現在完了です。<span class="en">practice</span> の過去分詞は <span class="en">practiced</span> で、全体で9語です。</p></li>
+<li><span class="a-key">My grandmother has lived here for fifty years.</span><p class="a-why">継続の現在完了です。<span class="en">for fifty years</span> で長さを言い、全体で8語です。</p></li>
+
+<li><span class="a-key">ア</span><p class="a-why">本文に <span class="en">It started in 1925.</span> と <span class="en">The festival has continued for a hundred years.</span> とあります。イは <span class="en">Then the citizens started it again.</span> と合いません。ウの「十家族」は始まったころの話です。</p></li>
+<li><span class="a-key">今まで、だれもこの伝統を止めていません。</span><p class="a-why"><span class="en">up to now</span> は「今まで」、<span class="en">nobody</span> は「だれも〜ない」です。<span class="en">has stopped</span> は現在完了で、今の時点までのことを言っています。</p></li>
+<li><span class="a-key">disappeared</span><p class="a-why">本文に <span class="en">the festival disappeared for two years</span> とあります。台風は1961年のできごとなので過去形です。</p></li>
+<li><span class="a-key">It started in 1925.</span><p class="a-why"><span class="en">When</span> の問いには過去形で答えます。<span class="en">The festival started in 1925.</span> も正しい答えです。</p></li>
+<li><span class="a-key">祖父が子どものころからずっと、この祭りは地域にとって大切だと言っている。</span><p class="a-why">本文の <span class="en">This festival has been important to our community ever since my grandfather was a child.</span> から答えます。<span class="en">ever since</span> は「〜以来ずっと」です。</p></li>
+
+<li><span class="a-key">解答例：I joined the summer festival last year.</span><p class="a-why">過去の一時点を指す語を入れて過去形で書きます。<span class="en">I graduated from elementary school last year.</span> のようにも書けます。</p></li>
+<li><span class="a-key">解答例：I have seen the parade several times.</span><p class="a-why">経験なら <span class="en">ever</span>・<span class="en">never</span>・〜 <span class="en">times</span>、継続なら <span class="en">for</span>・<span class="en">since</span> を使います。<span class="en">I have attended the annual festival twice.</span> のようにも書けます。</p></li>
+</ol>
+</div>
+</body>
+</html>
