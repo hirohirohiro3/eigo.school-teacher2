@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 13　仮定法（If I were 〜 / I wish 〜）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit13_subjunctive.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 13</p>
+<h1 class="unit-title">単語帳　仮定法（If I were 〜 / I wish 〜）</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。<strong>町の課題を住民で話し合う場面の語</strong>（<span class="en">council</span>・<span class="en">resident</span>・<span class="en">sidewalk</span>）が中心です。例文の多くは <span class="en">If 〜 were …</span> か <span class="en">I wish 〜</span> の形になっているので、<strong>動詞が過去形になっているところ</strong>を見ながら覚えてください。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめに動詞、次に形容詞、最後に名詞（話し合い・町の道の語）の順です。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">wish</span><span class="v-kana">ウィッシュ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>〜であればよいのにと思う</p></div>
+<p class="v-ex"><span class="en">I wish I were taller.</span><span class="v-ja">　もっと背が高ければよいのに。</span></p>
+<p class="v-note"><span class="badge">区別</span>うしろは<strong>過去形</strong>です。ありうることを願うときは <span class="en">hope</span> を使い、うしろは現在形か <span class="en">will</span> になります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">provide</span><span class="v-kana">プロヴァイド</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>用意する、提供する</p></div>
+<p class="v-ex"><span class="en">If the city provided more benches, older people could rest on the way.</span><span class="v-ja">　もし市がもっとベンチを用意すれば、お年寄りは途中で休めるでしょう。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">remove</span><span class="v-kana">リムーヴ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>取り除く、どかす</p></div>
+<p class="v-ex"><span class="en">If the city removed the steps at the entrance, everyone could enter easily.</span><span class="v-ja">　もし市が入口の段差を取り除けば、だれでも楽に入れるでしょう。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">elect</span><span class="v-kana">イレクト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>（選挙で）選ぶ</p></div>
+<p class="v-ex"><span class="en">Each class elected one representative for the council.</span><span class="v-ja">　どのクラスも、議会の代表者を1人選びました。</span></p>
+<p class="v-note"><span class="badge">セットで</span>名詞は <span class="en">election</span>（選挙）です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">afford</span><span class="v-kana">アフォード</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>（お金や時間に）余裕がある</p></div>
+<p class="v-ex"><span class="en">I wish our town could afford a new library.</span><span class="v-ja">　私たちの町が新しい図書館を建てる余裕があればよいのに。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">can</span>・<span class="en">could</span> と組んで使うことが多い語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">accept</span><span class="v-kana">アクセプト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>受け入れる</p></div>
+<p class="v-ex"><span class="en">The mayor accepted our proposal and promised to study it.</span><span class="v-ja">　市長は私たちの提案を受け入れ、検討すると約束しました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">achieve</span><span class="v-kana">アチーヴ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>成しとげる、達成する</p></div>
+<p class="v-ex"><span class="en">If we worked together, we could achieve more than we imagine.</span><span class="v-ja">　もし私たちが協力すれば、想像以上のことを成しとげられるでしょう。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">organize</span><span class="v-kana">オーガナイズ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>企画する、とりまとめる</p></div>
+<p class="v-ex"><span class="en">Our teachers organized a meeting with the city staff.</span><span class="v-ja">　先生たちは市の職員との会合を企画しました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">participate</span><span class="v-kana">パーティシペイト</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>参加する</p></div>
+<p class="v-ex"><span class="en">I wish more students participated in the council.</span><span class="v-ja">　もっと多くの生徒が議会に参加すればよいのに。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「〜に参加する」は <span class="en">participate in 〜</span> です。<span class="en">in</span> を落としません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">persuade</span><span class="v-kana">パスウェイド</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>説得する</p></div>
+<p class="v-ex"><span class="en">If I were a better speaker, I could persuade more people.</span><span class="v-ja">　もし私がもっと話が上手なら、もっと多くの人を説得できるでしょう。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">suppose</span><span class="v-kana">サポーズ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>仮に〜だと考える</p></div>
+<p class="v-ex"><span class="en">Suppose you were a resident in a wheelchair.</span><span class="v-ja">　あなたが車いすの住民だと考えてみてください。</span></p>
+<p class="v-note"><span class="badge">使い方</span>この形で文を始めると、<span class="en">If 〜</span> と同じように事実とちがうことを仮に言えます。うしろは過去形です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">admit</span><span class="v-kana">アドミット</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>認める</p></div>
+<p class="v-ex"><span class="en">The officer admitted that the old system was not easy to use.</span><span class="v-ja">　その職員は、古い制度が使いやすくないことを認めました。</span></p>
+<p class="v-note"><span class="badge">つづり</span>過去形は <span class="en">admitted</span> で、<span class="en">t</span> を重ねます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">able</span><span class="v-kana">エイブル</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>（be able to の形で）〜できる</p></div>
+<p class="v-ex"><span class="en">If the bus had a ramp, more people would be able to use it.</span><span class="v-ja">　もしバスにスロープがあれば、もっと多くの人がそれを使えるでしょう。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">can</span> と意味は同じですが、<span class="en">will</span>・<span class="en">would</span> のうしろでは <span class="en">can</span> が使えないので、<span class="en">be able to</span> を使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">certain</span><span class="v-kana">サートゥン</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>確かな、確信している</p></div>
+<p class="v-ex"><span class="en">I am not certain about the budget, but I am certain about the need.</span><span class="v-ja">　予算については確かではありませんが、必要であることは確かです。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「〜について確信している」は <span class="en">be certain about 〜</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">rich</span><span class="v-kana">リッチ</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>裕福な、豊かな</p></div>
+<p class="v-ex"><span class="en">If our town were rich, it could build a new hall.</span><span class="v-ja">　もし私たちの町が裕福なら、新しい会館を建てられるでしょう。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">council</span><span class="v-kana">カウンスル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>議会、協議会</p></div>
+<p class="v-ex"><span class="en">I wish more students participated in the council.</span><span class="v-ja">　もっと多くの生徒が議会に参加すればよいのに。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">election</span><span class="v-kana">イレクション</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>選挙</p></div>
+<p class="v-ex"><span class="en">The election for the council was held in May.</span><span class="v-ja">　議会の選挙は5月に行われました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">representative</span><span class="v-kana">レプリゼンタティヴ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>代表者</p></div>
+<p class="v-ex"><span class="en">As a representative, I asked a question about the budget.</span><span class="v-ja">　代表者として、私は予算について質問しました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">committee</span><span class="v-kana">コミティー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>委員会</p></div>
+<p class="v-ex"><span class="en">The committee for a safer town meets once a month.</span><span class="v-ja">　より安全な町のための委員会は、月に1回集まります。</span></p>
+<p class="v-note"><span class="badge">つづり</span><span class="en">m</span> と <span class="en">t</span> と <span class="en">e</span> を重ねます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">proposal</span><span class="v-kana">プロポーザル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>提案</p></div>
+<p class="v-ex"><span class="en">The mayor accepted our proposal and promised to study it.</span><span class="v-ja">　市長は私たちの提案を受け入れ、検討すると約束しました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">issue</span><span class="v-kana">イシュー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>課題、論点</p></div>
+<p class="v-ex"><span class="en">The biggest issue in our town is the narrow sidewalk.</span><span class="v-ja">　私たちの町のいちばん大きな課題は、せまい歩道です。</span></p>
+<p class="v-note"><span class="badge">区別</span><span class="en">problem</span> は「困ったこと」、<span class="en">issue</span> は「話し合うべきこと」という感じで使われます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">solution</span><span class="v-kana">ソルーション</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>解決策</p></div>
+<p class="v-ex"><span class="en">If we listened to each other, we would find a better solution.</span><span class="v-ja">　もしおたがいの話を聞けば、もっとよい解決策が見つかるでしょう。</span></p>
+<p class="v-note"><span class="badge">セットで</span>動詞は <span class="en">solve</span>（解決する）です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">resident</span><span class="v-kana">レジデント</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>住民</p></div>
+<p class="v-ex"><span class="en">Eighty residents answered it, and most of them said the same thing.</span><span class="v-ja">　80人の住民がそれに答え、そのほとんどが同じことを言いました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">budget</span><span class="v-kana">バジェット</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>予算</p></div>
+<p class="v-ex"><span class="en">If the budget were larger, the city could repair more sidewalks.</span><span class="v-ja">　もし予算がもっと大きければ、市はもっと多くの歩道を直せるでしょう。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">tax</span><span class="v-kana">タックス</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>税金</p></div>
+<p class="v-ex"><span class="en">Our parents pay taxes, so the money belongs to all the residents.</span><span class="v-ja">　私たちの親は税金を払っているので、そのお金は住民全員のものです。</span></p>
+<p class="v-note"><span class="badge">つづり</span>複数形は <span class="en">taxes</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">system</span><span class="v-kana">システム</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>制度、仕組み</p></div>
+<p class="v-ex"><span class="en">At the meeting, a city officer admitted that the old system was slow.</span><span class="v-ja">　その会合で、市の職員は古い制度が遅いことを認めました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">law</span><span class="v-kana">ロー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>法律</p></div>
+<p class="v-ex"><span class="en">If the law were different, the city could change the rule faster.</span><span class="v-ja">　もし法律がちがっていれば、市はその規則をもっと早く変えられるでしょう。</span></p>
+<p class="v-note"><span class="badge">区別</span><span class="en">rule</span> は団体や学校などの規則、<span class="en">law</span> は国や市が決めた法律です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">sidewalk</span><span class="v-kana">サイドウォーク</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>歩道</p></div>
+<p class="v-ex"><span class="en">The sidewalk in front of the station is too narrow for two people.</span><span class="v-ja">　駅前の歩道は、2人には狭すぎます。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">crosswalk</span><span class="v-kana">クロスウォーク</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>横断歩道</p></div>
+<p class="v-ex"><span class="en">I wish the crosswalk near our school had a longer signal.</span><span class="v-ja">　学校の近くの横断歩道の信号が、もっと長ければよいのに。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">signal</span><span class="v-kana">シグナル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>信号</p></div>
+<p class="v-ex"><span class="en">I wish the crosswalk near our school had a longer signal.</span><span class="v-ja">　学校の近くの横断歩道の信号が、もっと長ければよいのに。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">crosswalk</span>（横断歩道）と組んで出てくることが多い語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">slope</span><span class="v-kana">スロープ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>坂</p></div>
+<p class="v-ex"><span class="en">A gentle slope is easier than steps for a person with a heavy bag.</span><span class="v-ja">　ゆるやかな坂は、重いかばんを持つ人には段差より楽です。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">handrail</span><span class="v-kana">ハンドレイル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>手すり</p></div>
+<p class="v-ex"><span class="en">If the stairs had a handrail, older people would feel safer.</span><span class="v-ja">　もし階段に手すりがあれば、お年寄りはもっと安心するでしょう。</span></p>
+<p class="v-note"><span class="badge">つづり</span><span class="en">hand</span>（手）と <span class="en">rail</span>（横棒）を合わせた語です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">ramp</span><span class="v-kana">ランプ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>スロープ、傾斜路</p></div>
+<p class="v-ex"><span class="en">If there were a ramp here, a person in a wheelchair could go up alone.</span><span class="v-ja">　もしここにスロープがあれば、車いすの人はひとりで上がれるでしょう。</span></p>
+<p class="v-note"><span class="badge">区別</span>明かりの <span class="en">lamp</span> とつづりがちがいます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">wheelchair</span><span class="v-kana">ウィールチェア</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>車いす</p></div>
+<p class="v-ex"><span class="en">If I were a person in a wheelchair, I would feel afraid on that road.</span><span class="v-ja">　もし私が車いすの人なら、あの道では不安を感じるでしょう。</span></p>
+<p class="v-note"><span class="badge">つづり</span><span class="en">wheel</span>（車輪）と <span class="en">chair</span>（いす）を合わせた語です。</p>
+</li>
+</ol>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単語帳 Unit 12　関係代名詞（目的格 which / that と省略）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --ink-3:#858B99;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+
+  /* 品詞の6系統 —— ワークブックの図解と色をそろえる */
+  --c-thing:#1F6B47;   --c-thing-bg:#E4F1EA;   /* 緑：名詞・代名詞・数詞 */
+  --c-act:#9C540F;     --c-act-bg:#FBF0E3;     /* 橙：動詞（一般動詞と同色） */
+  --c-aux:#2A5C93;     --c-aux-bg:#E9F1F8;     /* 青：助動詞（be動詞と同色） */
+  --c-desc:#67479A;    --c-desc-bg:#EDE8F7;    /* 紫：形容詞・副詞 */
+  --c-func:#5A6273;    --c-func-bg:#EDEEF1;    /* 灰：前置詞・接続詞・冠詞・間投詞 */
+  --c-wh:#93265E;      --c-wh-bg:#FAE7F0;      /* 桃：疑問詞 */
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.75;font-feature-settings:"palt" 1;
+  padding-bottom:3.2rem;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 2rem;}
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:.9rem;margin-bottom:1.4rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.45rem;line-height:1.45;font-weight:600;margin:0 0 .4rem;
+}
+.unit-lead{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.75;}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.14rem;font-weight:600;margin:1.9rem 0 .8rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 品詞タグ ---------- */
+/* 色 = 系統、線の形 = その系統の中の区別 */
+
+.tag{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.78rem;font-weight:600;
+  line-height:1.6;white-space:nowrap;text-align:center;
+  padding:.02rem .38rem;
+  border-radius:var(--hand-2);
+}
+.t-noun {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px solid var(--c-thing);}
+.t-pron {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dashed var(--c-thing);}
+.t-num  {color:var(--c-thing);background:var(--c-thing-bg);border:1.5px dotted var(--c-thing);}
+.t-verb {color:var(--c-act);  background:var(--c-act-bg);  border:2px solid var(--c-act);}
+.t-aux  {color:var(--c-aux);  background:var(--c-aux-bg);  border:3px double var(--c-aux);}
+.t-adj  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px solid var(--c-desc);}
+.t-adv  {color:var(--c-desc); background:var(--c-desc-bg); border:1.5px dashed var(--c-desc);}
+.t-prep,.t-conj,.t-art,.t-int{
+         color:var(--c-func); background:var(--c-func-bg); border:1px solid var(--c-func);}
+.t-wh   {color:var(--c-wh);   background:var(--c-wh-bg);   border:1.5px solid var(--c-wh);}
+.t-idiom{color:var(--ink-2);  background:transparent;      border:1.5px solid var(--rule);}
+
+/* ---------- 品詞ガイド ---------- */
+
+.pos-guide{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--panel);margin:0 0 1.4rem;overflow:hidden;
+}
+.pos-guide > summary{
+  list-style:none;cursor:pointer;
+  padding:.6rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.95rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.pos-guide > summary::-webkit-details-marker{display:none;}
+.pos-guide > summary::after{content:"開く";font-size:.75rem;color:var(--ink-2);font-weight:400;}
+.pos-guide[open] > summary::after{content:"閉じる";}
+.pos-guide[open] > summary{border-bottom:1px dashed var(--rule);}
+
+.pos-fam{
+  margin:0;padding:.7rem 1rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.8rem;color:var(--ink-2);
+}
+.pos-list{margin:0;padding:.2rem 1rem 1rem;}
+.pos-row{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;padding:.34rem 0;
+  border-top:1px dotted var(--rule);
+  font-size:.88rem;line-height:1.6;
+}
+.pos-row:first-child{border-top:none;}
+.pos-row .tag{align-self:start;justify-self:end;}
+.pos-row .def{margin:0;color:var(--ink-2);}
+.pos-row .def b{color:var(--ink);font-weight:600;}
+.pos-row .eg{grid-column:2;margin:0;font-family:Georgia,serif;font-size:.85rem;color:var(--ink-3);}
+
+/* 常駐ガイド（画面下部・初期状態は閉じる） */
+.pos-dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--paper);border-top:2px solid var(--ink);
+  box-shadow:0 -2px 10px rgba(32,36,47,.07);
+}
+.pos-dock > summary{
+  list-style:none;cursor:pointer;
+  padding:.45rem 1rem;
+  font-family:"Klee One",sans-serif;font-weight:600;font-size:.85rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  max-width:34rem;margin:0 auto;
+}
+.pos-dock > summary::-webkit-details-marker{display:none;}
+.pos-dock > summary::after{content:"▲ 開く";font-size:.72rem;color:var(--ink-2);font-weight:400;}
+.pos-dock[open] > summary::after{content:"▼ 閉じる";}
+.pos-dock[open] > summary{border-bottom:1px dashed var(--rule);}
+.pos-dock .pos-body{
+  max-width:34rem;margin:0 auto;
+  max-height:56vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* 印刷専用の圧縮凡例 */
+.pos-strip{display:none;}
+
+/* ---------- 単語リスト ---------- */
+
+.v-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1rem;line-height:1.75;}
+
+ol.vocab{list-style:none;counter-reset:v;margin:0;padding:0;}
+ol.vocab > li{
+  counter-increment:v;position:relative;
+  padding:.85rem 0 .9rem 2.5rem;
+  border-top:1px solid var(--rule);
+}
+ol.vocab > li:last-child{border-bottom:1px solid var(--rule);}
+ol.vocab > li::before{
+  content:counter(v,decimal-leading-zero);
+  position:absolute;left:0;top:1.15rem;
+  font-family:"Klee One",Georgia,serif;font-size:.74rem;font-weight:600;
+  color:var(--ink-3);
+}
+
+.v-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .55rem;
+  margin:0 0 .3rem;line-height:1.5;
+}
+.v-word{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.24rem;font-weight:700;letter-spacing:.01em;
+}
+.v-kana{font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;}
+.v-kana .ac{
+  color:var(--ink);font-weight:700;
+  border-bottom:2px solid var(--hi-gen);padding-bottom:1px;
+}
+
+/* 意味の行 —— 先頭に品詞 */
+.v-sense{
+  display:grid;grid-template-columns:4.1rem 1fr;
+  gap:.05rem .5rem;margin:0 0 .3rem;
+}
+.v-sense .tag{align-self:start;justify-self:end;}
+.v-sense p{margin:0;font-size:1rem;line-height:1.65;}
+.v-sense .sub{color:var(--ink-2);font-size:.9rem;}
+
+.v-ex{
+  margin:0;padding-left:4.95rem;
+  font-size:.92rem;line-height:1.7;
+}
+/* 画面が狭いときは例文を折り返しやすいよう左寄せに戻す */
+@media (max-width:520px){
+  .v-ex{padding-left:0;}
+}
+.v-ex .en{color:var(--ink);font-size:1rem;}
+.v-ja{color:var(--ink-3);}
+
+/* ひとことメモ */
+.v-note{
+  margin:.4rem 0 0;padding:.4rem .6rem .45rem;
+  background:var(--panel);border-left:3px solid var(--rule);
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;line-height:1.65;color:var(--ink-2);
+}
+.badge{
+  display:inline-block;margin-right:.4rem;
+  font-family:"Klee One",sans-serif;font-size:.72rem;font-weight:600;
+  color:var(--paper);background:var(--ink-2);
+  padding:.02rem .45rem;border-radius:var(--hand);
+  white-space:nowrap;
+}
+.v-note .en{color:var(--ink);}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--be);border-color:var(--be);background:var(--hi-be);border-radius:var(--hand);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm;}
+  body{font-size:10.5pt;line-height:1.6;background:#fff;padding-bottom:0;}
+  .sheet{max-width:none;padding:0;}
+  .pos-dock,.pos-guide{display:none;}
+
+  /* 折りたたみガイドの代わりに2行の凡例だけ刷る */
+  .pos-strip{
+    display:block;margin:0 0 1rem;padding:.5rem .7rem;
+    border:1px solid var(--rule);border-radius:4px;
+    font-size:8.5pt;line-height:1.75;color:var(--ink-2);
+  }
+  .pos-strip b{color:var(--ink);font-weight:600;}
+
+  ol.vocab{column-count:2;column-gap:7mm;}
+  ol.vocab > li{break-inside:avoid;padding:.5rem 0 .55rem 2.2rem;}
+  ol.vocab > li:last-child{border-bottom:none;}
+  ol.vocab > li::before{top:.75rem;}
+  .v-head{margin-bottom:.15rem;line-height:1.4;}
+  .v-word{font-size:1.08rem;}
+  .v-sense{grid-template-columns:3.8rem 1fr;margin-bottom:.15rem;}
+  .v-sense p{font-size:.95rem;line-height:1.5;}
+  .v-ex{padding-left:0;font-size:.88rem;line-height:1.55;}
+  .v-note{margin-top:.25rem;font-size:.82rem;line-height:1.5;}
+  h2{break-after:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="unit12_relative-object.html">← この単元のワークブック</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 12</p>
+<h1 class="unit-title">単語帳　関係代名詞（目的格 which / that と省略）</h1>
+<p class="unit-lead">この単元で新しく出てくる語です。例文はすべてワークブック本文に出てくる文です。<strong>身のまわりの物を直して長く使う場面の語</strong>（<span class="en">repair cafe</span>・<span class="en">needle</span>・<span class="en">wire</span>）が中心です。例文の多くは「名詞 ＋（<span class="en">which</span>／<span class="en">that</span>）＋ 主語 ＋ 動詞」の形になっているので、<strong>名詞のすぐうしろに主語が続くところ</strong>で区切りながら覚えてください。</p>
+</header>
+<details class="pos-guide">
+  <summary>品詞のはたらき</summary>
+  <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+  緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+  <div class="pos-list">
+    <div class="pos-row"><span class="tag t-noun">名詞</span>
+      <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+      <p class="eg">student, room, garden</p></div>
+    <div class="pos-row"><span class="tag t-pron">代名詞</span>
+      <p class="def">名詞の<b>代わり</b>に使う語</p>
+      <p class="eg">I, my, me, mine</p></div>
+    <div class="pos-row"><span class="tag t-num">数詞</span>
+      <p class="def"><b>数や順番</b>を表す語</p>
+      <p class="eg">two, fifteen</p></div>
+    <div class="pos-row"><span class="tag t-verb">動詞</span>
+      <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+      <p class="eg">play, like, know</p></div>
+    <div class="pos-row"><span class="tag t-aux">助動詞</span>
+      <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+      <p class="eg">do, does, can</p></div>
+    <div class="pos-row"><span class="tag t-adj">形容詞</span>
+      <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+      <p class="eg">kind, white, tall</p></div>
+    <div class="pos-row"><span class="tag t-adv">副詞</span>
+      <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+      <p class="eg">very, today, well</p></div>
+    <div class="pos-row"><span class="tag t-prep">前置詞</span>
+      <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+      <p class="eg">in, on, from</p></div>
+    <div class="pos-row"><span class="tag t-conj">接続詞</span>
+      <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+      <p class="eg">and, but, or</p></div>
+    <div class="pos-row"><span class="tag t-art">冠詞</span>
+      <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+      <p class="eg">a, an, the</p></div>
+    <div class="pos-row"><span class="tag t-int">間投詞</span>
+      <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+      <p class="eg">thanks, yes, oh</p></div>
+    <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+      <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+      <p class="eg">what, who, where</p></div>
+    <div class="pos-row"><span class="tag t-idiom">熟語</span>
+      <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+      <p class="eg">a little, ~ years old</p></div>
+  </div>
+</details>
+
+<div class="pos-strip">
+  <b>品詞の凡例</b>　名詞＝名前／代名詞＝名詞の代わり／数詞＝数／動詞＝動作・心の働き／助動詞＝動詞に意味を足す／形容詞＝ようす・性質／副詞＝情報を足す／前置詞＝名詞の前に置く／接続詞＝つなぐ／冠詞＝a・an・the／間投詞＝受け答え／疑問詞＝たずねる内容／熟語＝2語以上でひとまとまり
+</div>
+
+<h2><span>この単元の新出語</span></h2>
+
+<p class="v-intro">はじめに動詞、次に形容詞、最後に名詞（道具・家の中の物・家族の語）の順です。</p>
+
+<ol class="vocab">
+<li>
+<p class="v-head"><span class="v-word">attach</span><span class="v-kana">アタッチ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>取りつける</p></div>
+<p class="v-ex"><span class="en">He attached a new plug to the lamp we found in the drawer.</span><span class="v-ja">　彼は、私たちが引き出しの中で見つけたランプに新しいプラグを取りつけました。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「AをBに取りつける」は <span class="en">attach A to B</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">mend</span><span class="v-kana">メンド</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>（服などを）直す、つくろう</p></div>
+<p class="v-ex"><span class="en">At the next table, a woman was mending a jacket her son wears every day.</span><span class="v-ja">　となりのテーブルでは、女性が、息子が毎日着ているジャケットを直していました。</span></p>
+<p class="v-note"><span class="badge">区別</span>服や布を直すときによく使います。機械などを直すときは <span class="en">fix</span>・<span class="en">repair</span> を使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">polish</span><span class="v-kana">ポリッシュ</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>みがく</p></div>
+<p class="v-ex"><span class="en">She polished the old table she got from her aunt.</span><span class="v-ja">　彼女は、おばからもらった古いテーブルをみがきました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">replace</span><span class="v-kana">リプレイス</span></p>
+<div class="v-sense"><span class="tag t-verb">動詞</span><p>取りかえる、交換する</p></div>
+<p class="v-ex"><span class="en">He found a wire that was broken inside, and he showed me how to replace it.</span><span class="v-ja">　彼は中で切れている電線を見つけ、それを取りかえる方法を私に教えてくれました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">precious</span><span class="v-kana">プレシャス</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>大切な、貴重な</p></div>
+<p class="v-ex"><span class="en">The letters my grandmother wrote are precious to me.</span><span class="v-ja">　祖母が書いた手紙は、私にとって大切なものです。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「〜にとって大切な」は <span class="en">precious to 〜</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">spare</span><span class="v-kana">スペア</span></p>
+<div class="v-sense"><span class="tag t-adj">形容詞</span><p>予備の</p></div>
+<p class="v-ex"><span class="en">She keeps a spare key in the pocket of the coat she likes.</span><span class="v-ja">　彼女は、気に入っているコートのポケットに予備のかぎを入れています。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">a spare key</span>（予備のかぎ）、<span class="en">a spare tire</span>（予備のタイヤ）のように名詞の前に置きます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">cafe</span><span class="v-kana">キャフェイ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>カフェ、喫茶店</p></div>
+<p class="v-ex"><span class="en">Last month I visited a repair cafe at the community hall near my house.</span><span class="v-ja">　先月、私は家の近くの公民館で開かれた修理カフェを訪れました。</span></p>
+<p class="v-note"><span class="badge">使い方</span><span class="en">a repair cafe</span> は、持ちこんだ物をボランティアが直してくれる集まりです。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">chain</span><span class="v-kana">チェイン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>チェーン、くさり</p></div>
+<p class="v-ex"><span class="en">A man near the window was fixing the chain of a bicycle which his daughter rides to school.</span><span class="v-ja">　窓の近くの男性は、娘が学校へ乗っていく自転車のチェーンを直していました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">condition</span><span class="v-kana">コンディション</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>状態</p></div>
+<p class="v-ex"><span class="en">The toaster we bought ten years ago is still in good condition.</span><span class="v-ja">　私たちが10年前に買ったトースターは、まだよい状態です。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">in good condition</span>（よい状態で）のまとまりで覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">daughter</span><span class="v-kana">ドータ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>娘</p></div>
+<p class="v-ex"><span class="en">The doll my daughter loves needs a new button.</span><span class="v-ja">　私の娘が大好きな人形には、新しいボタンが必要です。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">son</span>（息子） ↔ <span class="en">daughter</span>（娘）</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">doll</span><span class="v-kana">ドール</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>人形</p></div>
+<p class="v-ex"><span class="en">The doll my daughter loves needs a new button.</span><span class="v-ja">　私の娘が大好きな人形には、新しいボタンが必要です。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">furniture</span><span class="v-kana">ファーニチャ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>家具</p></div>
+<p class="v-ex"><span class="en">The furniture which the owner repaired looks new again.</span><span class="v-ja">　その店主が修理した家具は、また新しく見えます。</span></p>
+<p class="v-note"><span class="badge">形</span>数えられない名詞としてあつかい、<span class="en">-s</span> をつけません。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">glue</span><span class="v-kana">グルー</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>のり、接着剤</p></div>
+<p class="v-ex"><span class="en">The glue I used was very strong.</span><span class="v-ja">　私が使ったのりは、とても強力でした。</span></p>
+<p class="v-note"><span class="badge">形</span>数えられない名詞としてあつかいます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">handle</span><span class="v-kana">ハンドル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>取っ手</p></div>
+<p class="v-ex"><span class="en">The pot my uncle uses has a long handle.</span><span class="v-ja">　おじが使うなべには、長い取っ手がついています。</span></p>
+<p class="v-note"><span class="badge">区別</span>自転車のハンドルは <span class="en">handlebars</span>、車のハンドルは <span class="en">steering wheel</span> といいます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">hole</span><span class="v-kana">ホウル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>穴</p></div>
+<p class="v-ex"><span class="en">The jacket my brother wears every day has a hole in the sleeve.</span><span class="v-ja">　兄が毎日着ているジャケットは、そでに穴があいています。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">item</span><span class="v-kana">アイテム</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>品物、物</p></div>
+<p class="v-ex"><span class="en">People bring items they want to fix, and the volunteers repair them for free.</span><span class="v-ja">　人々は直してほしい物を持ってきて、ボランティアがそれを無料で修理します。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">kettle</span><span class="v-kana">ケトル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>やかん</p></div>
+<p class="v-ex"><span class="en">The kettle we use every morning is made of metal.</span><span class="v-ja">　私たちが毎朝使うやかんは、金属でできています。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">lamp</span><span class="v-kana">ランプ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ランプ、電気スタンド</p></div>
+<p class="v-ex"><span class="en">I brought a lamp my grandfather bought forty years ago.</span><span class="v-ja">　私は、祖父が40年前に買ったランプを持っていきました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">needle</span><span class="v-kana">ニードル</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>針</p></div>
+<p class="v-ex"><span class="en">She closed a hole in the sleeve with a needle and thread.</span><span class="v-ja">　彼女は、針と糸でそでの穴をふさぎました。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">a needle and thread</span>（針と糸）のまとまりで覚えます。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">plug</span><span class="v-kana">プラグ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>（電気の）プラグ</p></div>
+<p class="v-ex"><span class="en">He attached a new plug to the lamp we found in the drawer.</span><span class="v-ja">　彼は、私たちが引き出しの中で見つけたランプに新しいプラグを取りつけました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">pocket</span><span class="v-kana">ポケット</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ポケット</p></div>
+<p class="v-ex"><span class="en">She keeps a spare key in the pocket of the coat she likes.</span><span class="v-ja">　彼女は、気に入っているコートのポケットに予備のかぎを入れています。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">pot</span><span class="v-kana">ポット</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>なべ</p></div>
+<p class="v-ex"><span class="en">The pot my uncle uses has a long handle.</span><span class="v-ja">　おじが使うなべには、長い取っ手がついています。</span></p>
+<p class="v-note"><span class="badge">区別</span>深いなべが <span class="en">pot</span>、浅いフライパンは <span class="en">pan</span> です。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">scissors</span><span class="v-kana">シザズ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>はさみ</p></div>
+<p class="v-ex"><span class="en">The scissors which I borrowed from Yuki were very sharp.</span><span class="v-ja">　私がユキから借りたはさみは、とてもよく切れました。</span></p>
+<p class="v-note"><span class="badge">形</span>刃が2枚あるので、いつも複数形であつかい、動詞は <span class="en">were</span>・<span class="en">are</span> になります。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">sleeve</span><span class="v-kana">スリーヴ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>そで</p></div>
+<p class="v-ex"><span class="en">The jacket my brother wears every day has a hole in the sleeve.</span><span class="v-ja">　兄が毎日着ているジャケットは、そでに穴があいています。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">son</span><span class="v-kana">サン</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>息子</p></div>
+<p class="v-ex"><span class="en">My son still has the toy his grandfather made.</span><span class="v-ja">　私の息子は、祖父が作ったおもちゃを今も持っています。</span></p>
+<p class="v-note"><span class="badge">セットで</span><span class="en">son</span>（息子） ↔ <span class="en">daughter</span>（娘）</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">switch</span><span class="v-kana">スウィッチ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>スイッチ</p></div>
+<p class="v-ex"><span class="en">The switch did not work, so I was going to throw it away.</span><span class="v-ja">　スイッチが動かなかったので、私はそれを捨てるつもりでした。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">thread</span><span class="v-kana">スレッド</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>糸</p></div>
+<p class="v-ex"><span class="en">She closed a hole in the sleeve with a needle and thread.</span><span class="v-ja">　彼女は、針と糸でそでの穴をふさぎました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">toaster</span><span class="v-kana">トウスタ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>トースター</p></div>
+<p class="v-ex"><span class="en">The toaster we bought ten years ago is still in good condition.</span><span class="v-ja">　私たちが10年前に買ったトースターは、まだよい状態です。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">toy</span><span class="v-kana">トイ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>おもちゃ</p></div>
+<p class="v-ex"><span class="en">My son still has the toy his grandfather made.</span><span class="v-ja">　私の息子は、祖父が作ったおもちゃを今も持っています。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">treasure</span><span class="v-kana">トレジャ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>宝物</p></div>
+<p class="v-ex"><span class="en">The watch that my grandfather wore is my treasure.</span><span class="v-ja">　私の祖父が身につけていた時計は、私の宝物です。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">wire</span><span class="v-kana">ワイア</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>電線、針金</p></div>
+<p class="v-ex"><span class="en">He found a wire that was broken inside, and he showed me how to replace it.</span><span class="v-ja">　彼は中で切れている電線を見つけ、それを取りかえる方法を私に教えてくれました。</span></p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">workshop</span><span class="v-kana">ワークショップ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>工房、作業場</p></div>
+<p class="v-ex"><span class="en">The workshop that we visited is near the station.</span><span class="v-ja">　私たちが訪れた工房は、駅の近くにあります。</span></p>
+<p class="v-note"><span class="badge">使い方</span>「参加者が作業をしながら学ぶ集まり」の意味でも使います。</p>
+</li>
+<li>
+<p class="v-head"><span class="v-word">zipper</span><span class="v-kana">ズィパ</span></p>
+<div class="v-sense"><span class="tag t-noun">名詞</span><p>ファスナー、ジッパー</p></div>
+<p class="v-ex"><span class="en">The zipper on the bag I bought last year does not work.</span><span class="v-ja">　私が去年買ったかばんのファスナーは、動きません。</span></p>
+</li>
+</ol>
+</div>
+
+<details class="pos-dock">
+  <summary>品詞のはたらき</summary>
+  <div class="pos-body">
+    <p class="pos-fam">色は仲間を、線の形はその中の区別を表します。<br>
+    緑＝人・もの・数を指す語　橙＝動作　青＝動詞に意味を足す語　紫＝説明する語　灰＝つなぐ・添える語</p>
+    <div class="pos-list">
+      <div class="pos-row"><span class="tag t-noun">名詞</span>
+        <p class="def">人・もの・ことの<b>名前</b>を表す語</p>
+        <p class="eg">student, room, garden</p></div>
+      <div class="pos-row"><span class="tag t-pron">代名詞</span>
+        <p class="def">名詞の<b>代わり</b>に使う語</p>
+        <p class="eg">I, my, me, mine</p></div>
+      <div class="pos-row"><span class="tag t-num">数詞</span>
+        <p class="def"><b>数や順番</b>を表す語</p>
+        <p class="eg">two, fifteen</p></div>
+      <div class="pos-row"><span class="tag t-verb">動詞</span>
+        <p class="def"><b>動作や心の働き</b>を表す語。文に必ず1つ入る</p>
+        <p class="eg">play, like, know</p></div>
+      <div class="pos-row"><span class="tag t-aux">助動詞</span>
+        <p class="def">動詞の前に置いて<b>意味を足す</b>語</p>
+        <p class="eg">do, does, can</p></div>
+      <div class="pos-row"><span class="tag t-adj">形容詞</span>
+        <p class="def"><b>ようす・性質</b>を表し、名詞を説明する語</p>
+        <p class="eg">kind, white, tall</p></div>
+      <div class="pos-row"><span class="tag t-adv">副詞</span>
+        <p class="def">動詞や形容詞に<b>情報を足す</b>語。いつ・どこで・どのように</p>
+        <p class="eg">very, today, well</p></div>
+      <div class="pos-row"><span class="tag t-prep">前置詞</span>
+        <p class="def">名詞の<b>前に置いて</b>、場所・時・関係を表す語</p>
+        <p class="eg">in, on, from</p></div>
+      <div class="pos-row"><span class="tag t-conj">接続詞</span>
+        <p class="def">語と語、文と文を<b>つなぐ</b>語</p>
+        <p class="eg">and, but, or</p></div>
+      <div class="pos-row"><span class="tag t-art">冠詞</span>
+        <p class="def">名詞の前に置く <b>a / an / the</b> の3語</p>
+        <p class="eg">a, an, the</p></div>
+      <div class="pos-row"><span class="tag t-int">間投詞</span>
+        <p class="def">呼びかけや<b>受け答え</b>に使う語</p>
+        <p class="eg">thanks, yes, oh</p></div>
+      <div class="pos-row"><span class="tag t-wh">疑問詞</span>
+        <p class="def"><b>たずねたい内容</b>を表す語。文頭に置く</p>
+        <p class="eg">what, who, where</p></div>
+      <div class="pos-row"><span class="tag t-idiom">熟語</span>
+        <p class="def"><b>2語以上</b>でひとまとまりの意味になる言い方</p>
+        <p class="eg">a little, ~ years old</p></div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>
