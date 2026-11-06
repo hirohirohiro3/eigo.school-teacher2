@@ -2,7 +2,8 @@
 """単語帳の見出し語・和訳から word-test.html の語の一覧を機械生成する。
 
 手で語を書き写さない。和訳は <div class="v-sense"> の <p> から取り、
-<span class="sub"> の補足は除く。意味が複数ある語は「／」でつなぐ。
+<span class="sub"> の補足は除く。ただし「buy の過去形」の補足だけは
+「買った（buy の過去形）」と和訳に残す（2026-11-06）。意味が複数ある語は「／」でつなぐ。
 
 2026-10-08 改訂（UPDATE-PLAN-g2g3.md 順18：単語テストに中2の語を足す）
   - 中1（units/）に加えて、単語帳がある学年（g2/、のちに g3/）の語も一覧に足す。
@@ -26,6 +27,12 @@ GRADES = {
     3: dict(dir="g3", index="g3/index.html", units=15,
             parts=[(1, 4), (5, 8), (9, 12), (13, 15)], sfx="_G3"),
 }
+
+
+# 2026-11-06 ひろの依頼：過去形の見出し語は、意味のあとに原形も出す（例：買った（buy の過去形））。
+# 単語帳の <span class="sub">　buy の過去形</span> を読み、和訳の末尾に「（buy の過去形）」を足す。
+# 過去分詞（「〜 の過去分詞」）も同じ扱い。そのほかの補足（sub）はこれまでどおり除く。
+FORM_SUB = re.compile(r"^(.+?) の(過去形|過去分詞)$")
 
 
 def strip_tags(s):
@@ -52,8 +59,13 @@ def entries(path):
             pm = re.search(r"<p>(.*?)</p>", sd, re.S)
             if not pm:
                 continue
+            sm = re.search(r'<span class="sub">(.*?)</span>', pm.group(1), re.S)
             p = re.sub(r'<span class="sub">.*?</span>', "", pm.group(1), flags=re.S)
             t = clean(p)
+            if t and sm:
+                fm = FORM_SUB.match(clean(sm.group(1)))
+                if fm:
+                    t += f"（{fm.group(1)} の{fm.group(2)}）"
             if t:
                 senses.append(t)
         out.append((en, "／".join(senses)))

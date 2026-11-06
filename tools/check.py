@@ -656,6 +656,12 @@ PARTS_SPEC = GRADE_PARTS[1]
 WORD_TEST = ROOT / "word-test.html"
 
 
+# 2026-11-06 ひろの依頼：過去形の見出し語は、意味のあとに原形も出す（例：買った（buy の過去形））。
+# 単語帳の <span class="sub">　buy の過去形</span> を読み、和訳の末尾に「（buy の過去形）」を足す。
+# 過去分詞（「〜 の過去分詞」）も同じ扱い。そのほかの補足（sub）はこれまでどおり除く。
+FORM_SUB = re.compile(r"^(.+?) の(過去形|過去分詞)$")
+
+
 def _wt_clean(s: str) -> str:
     """タグと実体参照を外し、全角空白と連続空白をつめる。"""
     s = htmlmod.unescape(re.sub(r"<[^>]+>", "", s))
@@ -679,8 +685,13 @@ def vocab_pairs(vpath: Path):
             pm = re.search(r"<p>(.*?)</p>", sd, re.S)
             if not pm:
                 continue
+            sm = re.search(r'<span class="sub">(.*?)</span>', pm.group(1), re.S)
             body = re.sub(r'<span class="sub">.*?</span>', "", pm.group(1), flags=re.S)
             t = _wt_clean(body)
+            if t and sm:
+                fm = FORM_SUB.match(_wt_clean(sm.group(1)))
+                if fm:
+                    t += f"（{fm.group(1)} の{fm.group(2)}）"
             if t:
                 senses.append(t)
         out.append((_wt_clean(w.group(1)), "／".join(senses)))
