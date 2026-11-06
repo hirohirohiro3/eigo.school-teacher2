@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 13　仮定法（If I were 〜 / I wish 〜）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab13_subjunctive.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 13</p>
+<h1 class="unit-title">仮定法（If I were 〜, I would … / I wish 〜）</h1>
+<p class="unit-lead">中2 Unit 4 で、<span class="en">If it is sunny tomorrow, I will go to the park.</span> のように、<strong>これから起こりうること</strong>を if で言う形を学びました。この単元で学ぶのは、<span class="en">If I were a bird, I could fly.</span> のように、<strong>事実とちがうこと</strong>を言う形です。どちらも if を使いますが、中の動詞の形がちがいます。あわせて、<span class="en">I wish 〜</span>（〜であればよいのに）も学びます。</p>
+</header>
+
+<h2><span>事実とちがうことは、動詞を過去形にして言う</span></h2>
+
+<p>今の自分は鳥ではありません。ですから空を飛ぶこともできません。この<strong>事実とちがうこと</strong>を言うときは、動詞を過去形にします。</p>
+
+<div class="transform">
+<span class="tf-line">I am not a bird. I cannot fly.</span>
+<span class="tf-arrow">（私は鳥ではありません。私は飛べません）＝事実</span>
+<span class="tf-arrow">↓　事実とちがうことにして言う。be動詞を were に、can を could に変える</span>
+<span class="tf-line">If I were a bird, I could fly.</span>
+<span class="tf-arrow">（もし私が鳥なら、飛べるでしょう）</span>
+</div>
+
+<p>ここで使っている <span class="en">were</span>・<span class="en">could</span> は<strong>過去形ですが、過去のことを言っているのではありません</strong>。言っているのは今のことです。過去形は「これは事実ではない」という<strong>印</strong>として使われています。この形を仮定法といいます。</p>
+
+<div class="term">
+<p class="term-name">仮定法</p>
+<p class="term-def">事実とちがうことを仮に言うための形です。<strong>if の中の動詞を過去形にし、うしろの文に would か could を置きます</strong>。過去形を使いますが、言っている内容は今のことです。</p>
+<p class="term-ex"><span class="en">If I were a bird, I could fly.</span>（もし私が鳥なら、飛べるでしょう）<br><span class="en">If I had more time, I would read more books.</span>（もし私にもっと時間があれば、もっと本を読むでしょう）</p>
+</div>
+
+<h2><span>be動詞は、主語が I でも were</span></h2>
+
+<p>仮定法の if の中では、<strong>主語が I・he・she でも were を使います</strong>。<span class="en">was</span> ではありません。これが「事実ではない」ことをはっきり示す印になります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>主語</th><th>ふつうの過去（事実）</th><th>仮定法（事実とちがう）</th></tr>
+<tr><td><span class="en">I</span></td><td><span class="en">I was busy yesterday.</span></td><td><span class="en">If I were free, …</span></td></tr>
+<tr><td><span class="en">he</span>・<span class="en">she</span></td><td><span class="en">He was at home.</span></td><td><span class="en">If he were here, …</span></td></tr>
+<tr><td><span class="en">you</span>・<span class="en">we</span>・<span class="en">they</span></td><td><span class="en">They were kind.</span></td><td><span class="en">If they were kind, …</span></td></tr>
+</table>
+</div>
+
+<p><span class="en">If I was a bird</span> と書いてある文を見ることもありますが、<strong>この教材では were で書きます</strong>。入試でも were が答えになります。</p>
+
+<div class="diagram">
+<p class="diagram-cap">ふつうの過去形：過去の事実を言う</p>
+<div class="flow">
+<span class="node">was<span class="node-label">過去形</span></span>
+<span class="link">
+<span class="link-word">→</span>
+<span class="rail"></span>
+</span>
+<span class="node">過去にあったこと<span class="node-label">事実</span></span>
+</div>
+<p class="diagram-cap">仮定法の過去形：今の事実とちがうことを言う</p>
+<div class="flow">
+<span class="node">were<span class="node-label">過去形</span></span>
+<span class="link">
+<span class="link-word">→</span>
+<span class="rail"></span>
+</span>
+<span class="node">今の事実とちがうこと<span class="node-label">事実ではない</span></span>
+</div>
+</div>
+
+<h2><span>中2 Unit 4 の if とのちがい</span></h2>
+
+<p>if には2つの使い方があります。<strong>中の動詞の形</strong>で見分けます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>種類</th><th>if の中</th><th>うしろの文</th><th>例</th></tr>
+<tr><td>条件（中2 Unit 4）<br>ありうること</td><td>現在形</td><td><span class="en">will</span>・<span class="en">can</span> など</td><td><span class="en">If it is sunny tomorrow, I will go to the park.</span></td></tr>
+<tr><td>仮定法（この単元）<br>事実とちがうこと</td><td>過去形</td><td><span class="en">would</span>・<span class="en">could</span></td><td><span class="en">If I were a bird, I could fly.</span></td></tr>
+</table>
+</div>
+
+<p>明日晴れることは<strong>ありうること</strong>なので、現在形で言います（中2 Unit 4 で学んだとおり、if の中では未来のことも現在形で言います）。自分が鳥であることは<strong>ありえないこと</strong>なので、過去形で言います。</p>
+
+<ol class="steps">
+<li>if の中の動詞が<strong>現在形</strong>なら、条件の if。ありうることを言っている。</li>
+<li>if の中の動詞が<strong>過去形</strong>で、うしろの文に <span class="en">would</span> か <span class="en">could</span> があれば、仮定法。事実とちがうことを言っている。</li>
+<li>be動詞が <span class="en">were</span> で、主語が <span class="en">I</span>・<span class="en">he</span>・<span class="en">she</span> なら、仮定法とわかる。</li>
+</ol>
+
+<h2><span>文の形</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>if の中</th><th>うしろの文</th><th>意味</th></tr>
+<tr><td><span class="en">If + 主語 + were 〜,</span></td><td><span class="en">主語 + would + 原形</span></td><td>もし〜なら、…するだろう</td></tr>
+<tr><td><span class="en">If + 主語 + 動詞の過去形 〜,</span></td><td><span class="en">主語 + could + 原形</span></td><td>もし〜なら、…できるだろう</td></tr>
+</table>
+</div>
+
+<p><span class="en">would</span>・<span class="en">could</span> のうしろは<strong>原形</strong>です。中1 Unit 13 の <span class="en">can</span> と同じで、助動詞のうしろは形を変えません。この単元で使う助動詞は <span class="en">would</span> と <span class="en">could</span> の2つだけです。</p>
+
+<p>if の文が前に来るときは、<strong>コンマで区切ります</strong>。うしろに置くときはコンマは要りません。</p>
+
+<div class="transform">
+<span class="tf-line">If I had more time, I would read more books.</span>
+<span class="tf-arrow">↓　if の文をうしろに置く。コンマは落とす</span>
+<span class="tf-line">I would read more books if I had more time.</span>
+</div>
+
+<h2><span>I wish 〜（〜であればよいのに）</span></h2>
+
+<p>今の事実とちがうことを<strong>願う</strong>ときは <span class="en">I wish</span> を使います。<strong>うしろの文の動詞も過去形</strong>にします。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>例</th><th>事実</th></tr>
+<tr><td><span class="en">I wish + 主語 + were 〜</span></td><td><span class="en">I wish I were taller.</span>（もっと背が高ければよいのに）</td><td>背は高くない</td></tr>
+<tr><td><span class="en">I wish + 主語 + 動詞の過去形</span></td><td><span class="en">I wish I had a piano.</span>（ピアノがあればよいのに）</td><td>ピアノは無い</td></tr>
+<tr><td><span class="en">I wish + 主語 + could 〜</span></td><td><span class="en">I wish I could swim faster.</span>（もっと速く泳げればよいのに）</td><td>速くは泳げない</td></tr>
+</table>
+</div>
+
+<p><span class="en">I hope 〜</span> とのちがいに注意します。<span class="en">hope</span> は<strong>ありうること</strong>を願うので、うしろは現在形や <span class="en">will</span> です。<span class="en">wish</span> は<strong>事実とちがうこと</strong>を願うので、うしろは過去形です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>語</th><th>うしろの形</th><th>例</th></tr>
+<tr><td><span class="en">hope</span>（ありうること）</td><td>現在形・<span class="en">will</span></td><td><span class="en">I hope it will be sunny tomorrow.</span></td></tr>
+<tr><td><span class="en">wish</span>（事実とちがうこと）</td><td>過去形</td><td><span class="en">I wish I were taller.</span></td></tr>
+</table>
+</div>
+
+<h2><span>例文を読む</span></h2>
+
+<p>町のことを考える場面の文です。まず <span class="en">If 〜 were</span> の形です。</p>
+
+<p><span class="en">If I were a bird, I could fly.</span>（もし私が鳥なら、飛べるでしょう）<br>
+<span class="en">If our town were rich, it could build a new hall.</span>（もし私たちの町が裕福なら、新しい会館を建てられるでしょう）<br>
+<span class="en">If the budget were larger, the city could repair more sidewalks.</span>（もし予算がもっと大きければ、市はもっと多くの歩道を直せるでしょう）<br>
+<span class="en">If I were a better speaker, I could persuade more people.</span>（もし私がもっと話が上手なら、もっと多くの人を説得できるでしょう）<br>
+<span class="en">If the law were different, the city could change the rule faster.</span>（もし法律がちがっていれば、市はその規則をもっと早く変えられるでしょう）<br>
+<span class="en">If I were a person in a wheelchair, I would feel afraid on that road.</span>（もし私が車いすの人なら、あの道では不安を感じるでしょう）</p>
+
+<p>次に、if の中が一般動詞の過去形の形です。</p>
+
+<p><span class="en">If I had more time, I would read more books.</span>（もし私にもっと時間があれば、もっと本を読むでしょう）<br>
+<span class="en">If the city removed the steps at the entrance, everyone could enter easily.</span>（もし市が入口の段差を取り除けば、だれでも楽に入れるでしょう）<br>
+<span class="en">If the city provided more benches, older people could rest on the way.</span>（もし市がもっとベンチを用意すれば、お年寄りは途中で休めるでしょう）<br>
+<span class="en">If the bus had a ramp, more people would be able to use it.</span>（もしバスにスロープがあれば、もっと多くの人が使えるでしょう）<br>
+<span class="en">If there were a ramp here, a person in a wheelchair could go up alone.</span>（もしここにスロープがあれば、車いすの人はひとりで上がれるでしょう）<br>
+<span class="en">If the stairs had a handrail, older people would feel safer.</span>（もし階段に手すりがあれば、お年寄りはもっと安心するでしょう）<br>
+<span class="en">If we worked together, we could achieve more than we imagine.</span>（もし私たちが協力すれば、想像以上のことを成しとげられるでしょう）<br>
+<span class="en">If we listened to each other, we would find a better solution.</span>（もしおたがいの話を聞けば、もっとよい解決策が見つかるでしょう）</p>
+
+<p>次に <span class="en">I wish 〜</span> の形です。</p>
+
+<p><span class="en">I wish I were taller.</span>（もっと背が高ければよいのに）<br>
+<span class="en">I wish I had a piano.</span>（ピアノがあればよいのに）<br>
+<span class="en">I wish I could swim faster.</span>（もっと速く泳げればよいのに）<br>
+<span class="en">I wish the crosswalk near our school had a longer signal.</span>（学校の近くの横断歩道の信号が、もっと長ければよいのに）<br>
+<span class="en">I wish our town could afford a new library.</span>（私たちの町が新しい図書館を建てる余裕があればよいのに）<br>
+<span class="en">I wish more students participated in the council.</span>（もっと多くの生徒が議会に参加すればよいのに）</p>
+
+<p>最後に、仮定法ではないふつうの文です。町の話で使う語がそろっています。</p>
+
+<p><span class="en">Each class elected one representative for the council.</span>（どのクラスも、議会の代表者を1人選びました）<br>
+<span class="en">The election for the council was held in May.</span>（議会の選挙は5月に行われました）<br>
+<span class="en">Our teachers organized a meeting with the city staff.</span>（先生たちは市の職員との会合を企画しました）<br>
+<span class="en">The committee for a safer town meets once a month.</span>（より安全な町のための委員会は、月に1回集まります）<br>
+<span class="en">The mayor accepted our proposal and promised to study it.</span>（市長は私たちの提案を受け入れ、検討すると約束しました）<br>
+<span class="en">The officer admitted that the old system was not easy to use.</span>（その職員は、古い制度が使いやすくないことを認めました）<br>
+<span class="en">The biggest issue in our town is the narrow sidewalk.</span>（私たちの町のいちばん大きな課題は、せまい歩道です）<br>
+<span class="en">The sidewalk in front of the station is too narrow for two people.</span>（駅前の歩道は、2人には狭すぎます）<br>
+<span class="en">A gentle slope is easier than steps for a person with a heavy bag.</span>（ゆるやかな坂は、重いかばんを持つ人には段差より楽です）<br>
+<span class="en">Our parents pay taxes, so the money belongs to all the residents.</span>（私たちの親は税金を払っているので、そのお金は住民全員のものです）<br>
+<span class="en">Suppose you were a resident in a wheelchair.</span>（あなたが車いすの住民だと考えてみてください）<br>
+<span class="en">As a representative, I asked a question about the budget.</span>（代表者として、私は予算について質問しました）<br>
+<span class="en">I am not certain about the budget, but I am certain about the need.</span>（予算については確かではありませんが、必要であることは確かです）</p>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>if の中に would・could は入れない</h3>
+
+<p><span class="en">would</span>・<span class="en">could</span> は<strong>うしろの文</strong>に置きます。if の中には置きません。if の中は、動詞の過去形だけです。</p>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">If I would have more time, I would read more books.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">If I had more time, I would read more books.</span></div>
+<p class="contrast-why">if の中は過去形 <span class="en">had</span> だけにします。</p>
+</div>
+
+<h3>主語が he・she のときも were</h3>
+
+<p>ふつうの過去形では <span class="en">he was</span> ですが、仮定法では <span class="en">he were</span> です。<span class="en">If he were here, he would help us.</span>（もし彼がここにいれば、手伝ってくれるでしょう）のように使います。</p>
+
+<h3>there is の文も were になる</h3>
+
+<p>中2 Unit 5 の <span class="en">There is 〜</span> も、仮定法では <span class="en">There were 〜</span> になります。うしろの名詞が単数でも <span class="en">were</span> です。<span class="en">If there were a ramp here, a person in a wheelchair could go up alone.</span> がその形です。</p>
+
+<h3>hope と wish を取りちがえない</h3>
+
+<p>これから起こりうることを願うときは <span class="en">hope</span>、事実とちがうことを願うときは <span class="en">wish</span> です。</p>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I wish it will be sunny tomorrow.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I hope it will be sunny tomorrow.</span></div>
+<p class="contrast-why">明日晴れることはありうるので <span class="en">hope</span> です。<span class="en">wish</span> のうしろに <span class="en">will</span> は置きません。</p>
+</div>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>出し方</th><th>内容</th></tr>
+<tr><td>適語選択</td><td><span class="en">If I (　) a bird</span> の空所に <span class="en">were</span> を選ばせる。<span class="en">was</span> との区別を問う</td></tr>
+<tr><td>語形変化</td><td>かっこの中の語を適切な形に直させる。<span class="en">have</span> → <span class="en">had</span>、<span class="en">can</span> → <span class="en">could</span></td></tr>
+<tr><td>語順</td><td><span class="en">I wish I could 〜</span> や <span class="en">If I were 〜, I would 〜</span> を並べさせる</td></tr>
+<tr><td>書きかえ</td><td>事実を述べた2文を仮定法の1文に直させる。<span class="en">I am not 〜. I cannot 〜.</span> → <span class="en">If I were 〜, I could 〜.</span></td></tr>
+<tr><td>条件英作文</td><td>「もし〜だったら何をしたいか」を仮定法で書かせる。スピーチや手紙の形で出る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">If I was a bird, I could fly.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">If I were a bird, I could fly.</span></div>
+<p class="contrast-why">仮定法では、主語が <span class="en">I</span> でも <span class="en">were</span> を使います。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">If I were a bird, I can fly.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">If I were a bird, I could fly.</span></div>
+<p class="contrast-why">うしろの文も過去形の助動詞にします。<span class="en">can</span> ではなく <span class="en">could</span> です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">If I were a bird, I could flew.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">If I were a bird, I could fly.</span></div>
+<p class="contrast-why"><span class="en">could</span> のうしろは原形です。過去形にはしません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I wish I am taller.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">I wish I were taller.</span></div>
+<p class="contrast-why"><span class="en">wish</span> のうしろは過去形です。事実とちがうことを願う形です。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">If it will be sunny tomorrow, I would go to the park.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">If it is sunny tomorrow, I will go to the park.</span></div>
+<p class="contrast-why">明日晴れることはありうることなので、条件の if です。if の中は現在形、うしろは <span class="en">will</span> です。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>事実とちがうことを言うときは、<strong>if の中の動詞を過去形</strong>にし、うしろの文に <span class="en">would</span> か <span class="en">could</span> を置く。</li>
+<li>be動詞は<strong>主語が I・he・she でも were</strong>。これが「事実ではない」という印。</li>
+<li><span class="en">would</span>・<span class="en">could</span> のうしろは<strong>原形</strong>。if の中には置かない。</li>
+<li>if の中が<strong>現在形</strong>なら条件（中2 Unit 4）、<strong>過去形</strong>なら仮定法。</li>
+<li><span class="en">I wish 〜</span> のうしろも過去形。ありうることを願うときは <span class="en">hope</span>。</li>
+</ul>
+</div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず、if の中の動詞が現在形か過去形かを見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">If I (　　　) a bird, I could fly.</span>
+<p class="opts"><span>ア were</span><span>イ was</span><span>ウ am</span><span>エ been</span></p></li>
+<li><span class="en">If I were a bird, I (　　　) fly.</span>
+<p class="opts"><span>ア could</span><span>イ can</span><span>ウ will</span><span>エ am</span></p></li>
+<li><span class="en">I wish I (　　　) taller.</span>
+<p class="opts"><span>ア were</span><span>イ am</span><span>ウ will be</span><span>エ to be</span></p></li>
+<li><span class="en">If I had more time, I (　　　) more books.</span>
+<p class="opts"><span>ア would read</span><span>イ will read</span><span>ウ am reading</span><span>エ have read</span></p></li>
+<li><span class="en">If the budget (　　　) larger, the city could repair more sidewalks.</span>
+<p class="opts"><span>ア were</span><span>イ was</span><span>ウ is</span><span>エ will be</span></p></li>
+<li>事実とちがうことを言っている文を1つ選ぶ。
+<p class="opts"><span>ア If I were free, I would help you.</span><span>イ If it is sunny tomorrow, I will go to the park.</span><span>ウ I hope it will be sunny tomorrow.</span><span>エ He was free yesterday.</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>もし私が鳥なら、飛べるでしょう。<br><span class="en">[ if / i / were / a / bird / i / could / fly ] .</span><span class="write"></span></li>
+<li>もし私にもっと時間があれば、もっと本を読むでしょう。<br><span class="en">[ if / i / had / more / time / i / would / read / more / books ] .</span><span class="write"></span></li>
+<li>もっと速く泳げればよいのに。<br><span class="en">[ i / wish / i / could / swim / faster ] .</span><span class="write"></span></li>
+<li data-extra="1">もし予算がもっと大きければ、市はもっと多くの歩道を直せるでしょう。<span class="hint">1語不要</span><br><span class="en">[ if / the / budget / were / larger / the / city / could / repair / more / sidewalks / was ] .</span><span class="write"></span></li>
+<li data-extra="1">もし彼がここにいれば、手伝ってくれるでしょう。<span class="hint">1語不要</span><br><span class="en">[ if / he / were / here / he / would / help / us / was ] .</span><span class="write"></span></li>
+<li>もし市が入口の段差を取り除けば、だれでも楽に入れるでしょう。<br><span class="en">[ if / the / city / removed / the / steps / at / the / entrance / everyone / could / enter / easily ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">If I was a bird, I could fly.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">If I were a bird, I can fly.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I wish I am taller.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">If I would have more time, I would read more books.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">If I were a bird, I could flew.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">もし私がもっと話が上手なら、もっと多くの人を説得できるでしょう。</span><span class="write"></span></li>
+<li><span class="q-ja">もしバスにスロープがあれば、もっと多くの人がそれを使えるでしょう。</span><span class="write"></span></li>
+<li><span class="q-ja">学校の近くの横断歩道の信号が、もっと長ければよいのに。</span><span class="write"></span></li>
+<li><span class="q-ja">もし私たちの町が裕福なら、新しい会館を建てられるでしょう。</span><span class="write"></span></li>
+<li><span class="en">I wish</span> を使って「私たちの町が新しい図書館を建てる余裕があればよいのに」と書く。<span class="cond">9語</span><span class="write"></span></li>
+<li><span class="en">There were</span> を使って「もしここにスロープがあれば、車いすの人はひとりで上がれるでしょう」と書く。<span class="cond">15語</span><span class="write"></span></li>
+<li>「もしおたがいの話を聞けば、もっとよい解決策が見つかるでしょう」と書く。<span class="cond">12語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">中学生が書いたスピーチの原稿です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">子ども議会で考えたこと</p>
+<p>Last month I joined a council for children in our city. Each class elected one representative, and I was chosen for my class. The council had twenty members, and we discussed the issues we find in our daily life.</p>
+<p>My topic was the road in front of our school. The sidewalk there is only one meter wide, and there is no handrail on the slope. One of my classmates uses a wheelchair, and he often has to use the road instead. I wish the city could make the sidewalk wider.</p>
+<p>Before the meeting, our teachers organized a short survey. Eighty residents answered it, and most of them said the same thing. One woman wrote, "<span class="num">①</span><span class="ul">If I were a person in a wheelchair, I would feel afraid on that road</span>."</p>
+<p>At the meeting, a city officer admitted that the old system was slow. He said, "If the budget were larger, we could repair more sidewalks every year." Then he accepted our proposal and promised to study it.</p>
+<p>I learned that a small voice can move a large city. If we keep talking, we will find a solution.</p>
+<p class="reading-wc">およそ190語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 子ども議会の代表者は、先生が選んだ。<br>
+イ 学校の前の歩道は、幅が1メートルしかない。<br>
+ウ 市の職員は、提案を受け入れなかった。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語をそれぞれ書く。<br><span class="en">The sidewalk in front of the school is only one meter (　　　), so the writer's classmate in a (　　　) must use the road.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">How many residents answered the survey?</span><span class="write"></span></li>
+<li>筆者はこの体験から何を学んだか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li>自分の町で変えたいところを1つ選び、<span class="en">If I were 〜, I would 〜</span> の形で1文書く。<span class="hint">例：If I were the mayor, I would build a new park.</span><span class="write"></span></li>
+<li>今できないことを1つ選び、<span class="en">I wish I could 〜</span> の形で1文書く。<span class="hint">例：I wish I could play the guitar well.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>if の中の動詞が現在形か過去形か</strong>を見て、次に<strong>うしろの文に would・could があるか</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　were</span><p class="a-why">事実とちがうことを言う形なので、主語が <span class="en">I</span> でも <span class="en">were</span> です。うしろの文に <span class="en">could</span> があることも手がかりになります。</p></li>
+<li><span class="a-key">ア　could</span><p class="a-why">if の中が <span class="en">were</span>（過去形）なので、うしろの文も過去形の助動詞 <span class="en">could</span> にします。</p></li>
+<li><span class="a-key">ア　were</span><p class="a-why"><span class="en">I wish</span> のうしろは過去形です。背が高くないという事実とちがうことを願っています。</p></li>
+<li><span class="a-key">ア　would read</span><p class="a-why">if の中が <span class="en">had</span>（過去形）なので仮定法です。うしろは <span class="en">would</span> ＋ 原形です。</p></li>
+<li><span class="a-key">ア　were</span><p class="a-why">うしろの文に <span class="en">could</span> があるので仮定法です。主語 <span class="en">the budget</span> が単数でも <span class="en">were</span> です。</p></li>
+<li><span class="a-key">ア</span><p class="a-why">アは if の中が <span class="en">were</span>、うしろが <span class="en">would</span> なので仮定法です。イは if の中が現在形なので条件の if、ウは <span class="en">hope</span> なのでありうること、エは過去の事実です。</p></li>
+
+<li><span class="a-key">If I were a bird, I could fly.</span><p class="a-why">if の文が前に来るのでコンマで区切ります。<span class="en">could</span> のうしろは原形です。</p></li>
+<li><span class="a-key">If I had more time, I would read more books.</span><p class="a-why">if の中は過去形 <span class="en">had</span>、うしろは <span class="en">would</span> ＋ 原形 <span class="en">read</span> です。</p></li>
+<li><span class="a-key">I wish I could swim faster.</span><p class="a-why"><span class="en">I wish</span> のうしろに <span class="en">could</span> ＋ 原形を続けます。</p></li>
+<li><span class="a-key">If the budget were larger, the city could repair more sidewalks.</span><p class="a-why">不要な語は <span class="en">was</span> です。仮定法では主語が単数でも <span class="en">were</span> です。</p></li>
+<li><span class="a-key">If he were here, he would help us.</span><p class="a-why">不要な語は <span class="en">was</span> です。主語が <span class="en">he</span> でも仮定法では <span class="en">were</span> です。</p></li>
+<li><span class="a-key">If the city removed the steps at the entrance, everyone could enter easily.</span><p class="a-why">if の中は一般動詞の過去形 <span class="en">removed</span> です。うしろは <span class="en">could</span> ＋ 原形です。</p></li>
+
+<li><span class="a-key">If I were a bird, I could fly.</span><p class="a-why">仮定法では、主語が <span class="en">I</span> でも <span class="en">were</span> を使います。</p></li>
+<li><span class="a-key">If I were a bird, I could fly.</span><p class="a-why">if の中が過去形なので、うしろも <span class="en">could</span> にします。<span class="en">can</span> は使いません。</p></li>
+<li><span class="a-key">I wish I were taller.</span><p class="a-why"><span class="en">wish</span> のうしろは過去形です。<span class="en">am</span> は使いません。</p></li>
+<li><span class="a-key">If I had more time, I would read more books.</span><p class="a-why">if の中に <span class="en">would</span> は置きません。動詞の過去形 <span class="en">had</span> だけにします。</p></li>
+<li><span class="a-key">If I were a bird, I could fly.</span><p class="a-why"><span class="en">could</span> のうしろは原形です。過去形にはしません。</p></li>
+
+<li><span class="a-key">If I were a better speaker, I could persuade more people.</span><p class="a-why">be動詞は <span class="en">were</span>、うしろは <span class="en">could</span> ＋ 原形です。</p></li>
+<li><span class="a-key">If the bus had a ramp, more people would be able to use it.</span><p class="a-why">if の中は <span class="en">had</span>、うしろは <span class="en">would</span> ＋ 原形 <span class="en">be</span> です。</p></li>
+<li><span class="a-key">I wish the crosswalk near our school had a longer signal.</span><p class="a-why"><span class="en">I wish</span> のうしろの動詞も過去形 <span class="en">had</span> にします。</p></li>
+<li><span class="a-key">If our town were rich, it could build a new hall.</span><p class="a-why">主語 <span class="en">our town</span> が単数でも <span class="en">were</span> です。</p></li>
+<li><span class="a-key">I wish our town could afford a new library.</span><p class="a-why">9語です。<span class="en">afford</span> のうしろは名詞か <span class="en">to</span> ＋ 原形です。</p></li>
+<li><span class="a-key">If there were a ramp here, a person in a wheelchair could go up alone.</span><p class="a-why">15語です。<span class="en">There is 〜</span> の仮定法は、うしろの名詞が単数でも <span class="en">There were 〜</span> です。</p></li>
+<li><span class="a-key">If we listened to each other, we would find a better solution.</span><p class="a-why">12語です。if の中は過去形 <span class="en">listened</span> です。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">The sidewalk there is only one meter wide</span> とあります。アは各クラスが代表者を選んだので誤り、ウは職員が提案を受け入れたので誤りです。</p></li>
+<li><span class="a-key">もし私が車いすの人なら、あの道では不安を感じるでしょう。</span><p class="a-why"><span class="en">If I were 〜</span> は事実とちがうことを言う形なので、「もし〜なら」と訳します。<span class="en">would feel</span> は「感じるでしょう」です。</p></li>
+<li><span class="a-key">wide　／　wheelchair</span><p class="a-why">本文の <span class="en">The sidewalk there is only one meter wide</span> と <span class="en">One of my classmates uses a wheelchair</span> が手がかりです。</p></li>
+<li><span class="a-key">Eighty residents answered it.</span><p class="a-why">本文の <span class="en">Eighty residents answered it</span> から答えます。</p></li>
+<li><span class="a-key">小さな声でも大きな市を動かせるということ。</span><p class="a-why">最後から2文目の <span class="en">a small voice can move a large city</span> が答えです。</p></li>
+
+<li><span class="a-key">（例）If I were the mayor, I would build a new park.</span><p class="a-why">be動詞は <span class="en">were</span>、うしろは <span class="en">would</span> ＋ 原形です。自分の町のことなら何でもかまいません。</p></li>
+<li><span class="a-key">（例）I wish I could play the guitar well.</span><p class="a-why"><span class="en">I wish I could</span> のうしろは原形です。今できないことを書きます。</p></li>
+</ol>
+</div>
+</body>
+</html>

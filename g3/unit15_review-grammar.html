@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 15　中1〜中3の文法の整理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab15_review-grammar.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 15</p>
+<h1 class="unit-title">中1〜中3の文法の整理</h1>
+<p class="unit-lead">この単元に<strong>新しい文法は出てきません</strong>。中1から中3までに習った形を、読解と英作文で使う順に並べ直します。覚え直す単元ではなく、<strong>どこに何があるかを一覧で確かめる単元</strong>です。わからない形が出てきたら、表にある単元番号に戻ってください。</p>
+</header>
+
+<h2><span>整理する5つのこと</span></h2>
+
+<p>読解でも英作文でも、迷う場所はだいたい決まっています。この単元では次の5つを順に並べます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>番号</th><th>整理すること</th><th>これで決まること</th></tr>
+<tr><td>1</td><td>be動詞と一般動詞のどちらの文か</td><td>否定文・疑問文の作り方</td></tr>
+<tr><td>2</td><td>時を表す形</td><td>動詞をどの形にするか</td></tr>
+<tr><td>3</td><td>名詞を説明する形</td><td>長い主語・長い目的語の読み方</td></tr>
+<tr><td>4</td><td>動詞のうしろの形</td><td>だれが何をするか</td></tr>
+<tr><td>5</td><td>つなぐ語</td><td>2つの文がどうつながるか</td></tr>
+</table>
+</div>
+
+<h2><span>1　be動詞と一般動詞のどちらの文か</span></h2>
+
+<p>中1 Unit 7 で決めた手順です。言い方は変えません。</p>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">日本語を見て、動作か心の働きがあるかを探す</span>
+    <span class="step-d">「〜する」「〜を好む」「〜がほしい」「〜を持っている」があれば一般動詞の文です。動作も心の働きも無く、「〜です」「〜にいます」「〜にあります」だけなら be動詞の文です。</span>
+  </li>
+  <li>
+    <span class="step-t">一般動詞の文なら、その動詞を主語のうしろに置く</span>
+    <span class="step-d">be動詞は置きません。<span class="en">We love music.</span> であって <span class="en">We are love music.</span> ではありません。</span>
+  </li>
+  <li>
+    <span class="step-t">be動詞の文なら、主語と時に合わせて形を選ぶ</span>
+    <span class="step-d">現在は <span class="en">am</span> / <span class="en">is</span> / <span class="en">are</span>、過去は <span class="en">was</span> / <span class="en">were</span> です。</span>
+  </li>
+  <li>
+    <span class="step-t">打ち消すのか、たずねるのかを決める</span>
+    <span class="step-d">be動詞の文なら be動詞自身を動かします。一般動詞の文なら <span class="en">don't</span> と <span class="en">Do</span> を借ります。助動詞のある文では、その助動詞を動かします。</span>
+  </li>
+  <li>
+    <span class="step-t">残りの語を、目的語・場所・時の順に続ける</span>
+    <span class="step-d">どちらの文でもこの順は変わりません。</span>
+  </li>
+</ol>
+
+<p><strong>1つの文に動詞は1つです。</strong>否定にするのか、たずねるのか、いつのことなのか——この合図はすべて動詞のところに集まります。動詞が2つあると、どちらの合図を読めばよいのかが決まりません。</p>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I am like this book.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I like this book.</span></div>
+  <p class="contrast-why">「好む」は心の働きなので一般動詞の文です。be動詞は置きません。</p>
+</div>
+
+<h2><span>2　時を表す形の一覧</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>作り方</th><th>例</th><th>単元</th></tr>
+<tr><td>現在</td><td>動詞の原形（3人称単数は -s）</td><td><span class="en">He walks to school.</span></td><td>中1 Unit 5</td></tr>
+<tr><td>過去</td><td>動詞の過去形</td><td><span class="en">He walked to school.</span></td><td>中1 Unit 12</td></tr>
+<tr><td>未来</td><td><span class="en">will</span> + 原形／<span class="en">be going to</span> + 原形</td><td><span class="en">He will walk to school.</span></td><td>中2 Unit 2・3</td></tr>
+<tr><td>現在進行形</td><td><span class="en">am</span>／<span class="en">is</span>／<span class="en">are</span> + -ing</td><td><span class="en">He is walking to school.</span></td><td>中1 Unit 14</td></tr>
+<tr><td>過去進行形</td><td><span class="en">was</span>／<span class="en">were</span> + -ing</td><td><span class="en">He was walking to school.</span></td><td>中2 Unit 1</td></tr>
+<tr><td>現在完了</td><td><span class="en">have</span>／<span class="en">has</span> + 過去分詞</td><td><span class="en">He has walked to school for a year.</span></td><td>中3 Unit 1〜4</td></tr>
+</table>
+</div>
+
+<p>どれを選ぶかは、文の中の<strong>時を表す語</strong>で決まります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文の中にある語</th><th>選ぶ形</th></tr>
+<tr><td><span class="en">yesterday</span>・<span class="en">last week</span>・<span class="en">two days ago</span></td><td>過去</td></tr>
+<tr><td><span class="en">tomorrow</span>・<span class="en">next month</span></td><td>未来</td></tr>
+<tr><td><span class="en">now</span>・<span class="en">at this moment</span></td><td>現在進行形</td></tr>
+<tr><td><span class="en">since</span>・<span class="en">for</span>・<span class="en">ever</span>・<span class="en">never</span>・<span class="en">already</span>・<span class="en">yet</span></td><td>現在完了</td></tr>
+<tr><td>毎日のこと・いつでも本当のこと</td><td>現在</td></tr>
+</table>
+</div>
+
+<p><strong>過去の一時点を指す語と現在完了はいっしょに使えません。</strong><span class="en">I have met him yesterday.</span> は誤りで、<span class="en">I met him yesterday.</span> とします。中3 Unit 4 の規則です。</p>
+
+<h2><span>3　名詞を説明する形の一覧</span></h2>
+
+<p>名詞を説明する形は5つあります。<strong>1語なら名詞の前、2語以上のまとまりなら名詞のうしろ</strong>に置く、という点は共通です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>説明の形</th><th>置く場所</th><th>例</th><th>単元</th></tr>
+<tr><td>形容詞</td><td>前</td><td><span class="en">a kind girl</span></td><td>中1 Unit 8</td></tr>
+<tr><td>前置詞のまとまり</td><td>うしろ</td><td><span class="en">the girl in the room</span></td><td>中1 Unit 9</td></tr>
+<tr><td>不定詞</td><td>うしろ</td><td><span class="en">something to drink</span></td><td>中2 Unit 11</td></tr>
+<tr><td>分詞</td><td>1語なら前、まとまりならうしろ</td><td><span class="en">the girl playing the piano</span></td><td>中3 Unit 10</td></tr>
+<tr><td>関係代名詞</td><td>うしろ</td><td><span class="en">the girl who plays the piano</span></td><td>中3 Unit 11・12</td></tr>
+</table>
+</div>
+
+<p>読解では、<strong>主語が長いときにどこまでが主語かを見分ける</strong>ことが要ります。名詞のうしろに説明のまとまりが続いたら、その終わりまでが主語です。</p>
+
+<div class="diagram">
+  <p class="diagram-cap">名詞 + 説明のまとまり ＝ ここまでが主語</p>
+  <div class="flow">
+    <span class="node">The girl playing the piano<span class="node-label">主語</span></span>
+    <span class="link">
+      <span class="link-word">is</span>
+      <span class="rail"></span>
+    </span>
+    <span class="node">my sister<span class="node-label">説明</span></span>
+  </div>
+</div>
+
+<p><strong>名詞のうしろに「主語 + 動詞」が続いていたら、関係代名詞が省略された形です。</strong>中3 Unit 12 で扱った読み方の手順です。<span class="en">the book I read last night</span> は <span class="en">the book which I read last night</span> と同じ意味です。</p>
+
+<h2><span>4　動詞のうしろの形の一覧</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>うしろの作り</th><th>例</th><th>単元</th></tr>
+<tr><td>SVOO</td><td>人 + 物</td><td><span class="en">She gave me a book.</span></td><td>中2 Unit 8</td></tr>
+<tr><td>SVOC</td><td>物・人 + 名詞／形容詞</td><td><span class="en">The news made me happy.</span></td><td>中2 Unit 8</td></tr>
+<tr><td>人 + to + 原形</td><td><span class="en">want</span>／<span class="en">tell</span>／<span class="en">ask</span></td><td><span class="en">She told me to wait.</span></td><td>中3 Unit 7</td></tr>
+<tr><td>人 + 原形</td><td><span class="en">make</span>／<span class="en">let</span>／<span class="en">help</span></td><td><span class="en">She let me wait.</span></td><td>中3 Unit 8</td></tr>
+</table>
+</div>
+
+<ol class="steps">
+  <li>
+    <span class="step-t">動詞のうしろの1つ目が人かどうかを見る</span>
+    <span class="step-d">人でなければ SVOO でも SVOC でもありません。ふつうの目的語です。</span>
+  </li>
+  <li>
+    <span class="step-t">人のうしろに名詞があれば SVOO、形容詞があれば SVOC</span>
+    <span class="step-d"><span class="en">She gave me a book.</span> は SVOO、<span class="en">The news made me happy.</span> は SVOC です。</span>
+  </li>
+  <li>
+    <span class="step-t">人のうしろに動詞があれば、その動詞に to が付くかを動詞で決める</span>
+    <span class="step-d"><span class="en">want</span>・<span class="en">tell</span>・<span class="en">ask</span> なら to を付け、<span class="en">make</span>・<span class="en">let</span>・<span class="en">help</span> なら付けません。</span>
+  </li>
+</ol>
+
+<div class="transform">
+  <p class="tf-line"><span class="en">I want to go.</span>（行きたいのは<strong>私</strong>）</p>
+  <p class="tf-arrow">↓ 人を入れる</p>
+  <p class="tf-line"><span class="en">I want you to go.</span>（行くのは<strong>あなた</strong>）</p>
+</div>
+
+<h2><span>5　つなぐ語の一覧</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>つなぎ方</th><th>語</th><th>うしろの形</th><th>単元</th></tr>
+<tr><td>接続詞</td><td><span class="en">and</span>・<span class="en">but</span>・<span class="en">because</span>・<span class="en">when</span>・<span class="en">if</span>・<span class="en">that</span></td><td>主語 + 動詞</td><td>中2 Unit 4</td></tr>
+<tr><td>関係代名詞</td><td><span class="en">who</span>・<span class="en">which</span>・<span class="en">that</span></td><td>名詞のうしろに置いて、その名詞を説明する</td><td>中3 Unit 11・12</td></tr>
+<tr><td>間接疑問</td><td>疑問詞</td><td>疑問詞 + 主語 + 動詞</td><td>中3 Unit 9</td></tr>
+</table>
+</div>
+
+<p>同じ <span class="en">that</span> でも働きが2つあります。<strong>うしろの文が完全なら接続詞、うしろの文に主語か目的語が足りなければ関係代名詞</strong>です。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>例</th><th>うしろの文</th><th>that の働き</th></tr>
+<tr><td><span class="en">I know that he plays tennis.</span></td><td>主語も目的語もそろっている</td><td>接続詞</td></tr>
+<tr><td><span class="en">I know the boy that plays tennis.</span></td><td>主語が足りない</td><td>関係代名詞</td></tr>
+</table>
+</div>
+
+<p>間接疑問では<strong>語順が「疑問詞 + 主語 + 動詞」に戻り、<span class="en">do</span>・<span class="en">does</span>・<span class="en">did</span> が消えます</strong>。中3 Unit 9 の規則です。</p>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I know what does he want.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I know what he wants.</span></div>
+  <p class="contrast-why">間接疑問では <span class="en">does</span> が消え、動詞が主語に合わせた形になります。</p>
+</div>
+
+<h2><span>境界になる形</span></h2>
+
+<h3><span>-ing の3つの働き</span></h3>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>働き</th><th>例</th><th>見分け方</th></tr>
+<tr><td>進行形</td><td><span class="en">The girl is playing the piano.</span></td><td>前に be動詞がある</td></tr>
+<tr><td>分詞</td><td><span class="en">the girl playing the piano</span></td><td>前が名詞で、be動詞が無い</td></tr>
+<tr><td>動名詞</td><td><span class="en">Playing the piano is fun.</span></td><td>主語や目的語の場所にある</td></tr>
+</table>
+</div>
+
+<h3><span>過去分詞の2つの働き</span></h3>
+
+<p><span class="en">The letter was written by Ken.</span> は受動態（中2 Unit 15）、<span class="en">the letter written by Ken</span> は分詞（中3 Unit 10）です。<strong>前に be動詞があれば受動態、名詞のうしろに直接続いていれば分詞</strong>です。</p>
+
+<h3><span>to + 原形の3つの働き</span></h3>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>働き</th><th>意味</th><th>例</th></tr>
+<tr><td>名詞の働き</td><td>〜すること</td><td><span class="en">I like to read books.</span></td></tr>
+<tr><td>形容詞の働き</td><td>〜するための</td><td><span class="en">I have a book to read.</span></td></tr>
+<tr><td>副詞の働き</td><td>〜するために</td><td><span class="en">I went to the library to read books.</span></td></tr>
+</table>
+</div>
+
+<h3><span>if の2つの働き</span></h3>
+
+<p><span class="en">If it is sunny tomorrow, we will go out.</span> は起こりうる条件（中2 Unit 4）、<span class="en">If I were a bird, I would fly to you.</span> は事実と違う仮定（中3 Unit 13）です。<strong>うしろが過去形なら事実と違う仮定</strong>で、主語が <span class="en">I</span> でも <span class="en">were</span> を使います。</p>
+
+<h2><span>例文を読む</span></h2>
+
+<p><span class="en">The boy who won the contest is my brother.</span>（そのコンテストに勝った少年は私の兄です）</p>
+
+<p><span class="en">My teacher told me to summarize the story in five sentences.</span>（先生は私にその話を5文で要約するように言いました）</p>
+
+<p><span class="en">I do not know when the next bus will come.</span>（次のバスがいつ来るのかわかりません）</p>
+
+<p><span class="en">The notebook filled with my own sentences became my best friend.</span>（自分の文でうまった手帳が、私のいちばんの友だちになりました）</p>
+
+<h2><span>読解と英作文で使う語</span></h2>
+
+<p>この単元の新出語は、文法そのものではなく<strong>読解と英作文で自分の勉強について書くときに使う語</strong>です。下の文はすべて、上の5つの一覧のどれかの形でできています。形を確かめながら読んでください。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>日本語</th><th>英語</th><th>使った形</th></tr>
+<tr><td>私は毎晩、手帳を見直します。</td><td><span class="en">I review my notebook every night.</span></td><td>1（一般動詞の文）</td></tr>
+<tr><td>私は毎週、ノートを整理します。</td><td><span class="en">I organize my notes every week.</span></td><td>1（一般動詞の文）</td></tr>
+<tr><td>私の語いは3年間でふえました。</td><td><span class="en">My vocabulary has grown in three years.</span></td><td>2（現在完了）</td></tr>
+<tr><td>私の文法の理解はよくなりました。</td><td><span class="en">My understanding of grammar has become better.</span></td><td>2（現在完了）・3（前置詞のまとまり）</td></tr>
+<tr><td>私の答えはより正確になりました。</td><td><span class="en">My answer became more accurate.</span></td><td>2（過去）</td></tr>
+<tr><td>これらが基本の規則です。</td><td><span class="en">These are the basic rules.</span></td><td>1（be動詞の文）</td></tr>
+<tr><td>その長い文章は私には大きな挑戦でした。</td><td><span class="en">The long passage was a big challenge for me.</span></td><td>1（be動詞の文）</td></tr>
+<tr><td>この型は多くのテストで使われます。</td><td><span class="en">This pattern is used in many tests.</span></td><td>2（受動態）</td></tr>
+<tr><td>この文の意味ははっきりしています。</td><td><span class="en">The meaning of this sentence is clear.</span></td><td>3（前置詞のまとまり）</td></tr>
+<tr><td>この規則の例を1つ書きなさい。</td><td><span class="en">Write one example of this rule.</span></td><td>3（前置詞のまとまり）</td></tr>
+<tr><td>その話のおもな点はこれです。</td><td><span class="en">This is the major point of the story.</span></td><td>3（前置詞のまとまり）</td></tr>
+<tr><td>動詞の正しい形を選びなさい。</td><td><span class="en">Choose the right form of the verb.</span></td><td>3（前置詞のまとまり）</td></tr>
+<tr><td>その文の目的語を見つけなさい。</td><td><span class="en">Find the object of that sentence.</span></td><td>3（前置詞のまとまり）</td></tr>
+<tr><td>最初の段落をもう一度読みなさい。</td><td><span class="en">Read the first paragraph again.</span></td><td>1（一般動詞の文）</td></tr>
+<tr><td>語順に注意をはらいなさい。</td><td><span class="en">Pay attention to the word order.</span></td><td>1（一般動詞の文）</td></tr>
+<tr><td>私は読めない文に印をつけます。</td><td><span class="en">I mark the sentences which I cannot read.</span></td><td>3（関係代名詞）・5（つなぐ語）</td></tr>
+<tr><td>私は自分の考えを英語で表したいです。</td><td><span class="en">I want to express my own idea in English.</span></td><td>4（不定詞）</td></tr>
+<tr><td>私は何をすべきかを正確に知っています。</td><td><span class="en">I know exactly what I should do.</span></td><td>5（間接疑問）</td></tr>
+<tr><td>私はなんとか時間内にテストを終えました。</td><td><span class="en">I managed to finish the test in time.</span></td><td>2（過去）・4（不定詞）</td></tr>
+<tr><td>うっかりした間違いは直しやすいです。</td><td><span class="en">A careless mistake is easy to fix.</span></td><td>1（be動詞の文）</td></tr>
+<tr><td>小さな失敗は問題ではありません。</td><td><span class="en">A small failure is not a problem.</span></td><td>1（be動詞の文）</td></tr>
+<tr><td>前向きな気持ちは私の勉強を助けます。</td><td><span class="en">A positive feeling helps my study.</span></td><td>1（一般動詞の文）</td></tr>
+<tr><td>正直に言うと、私は最初、英語が好きではありませんでした。</td><td><span class="en">Honestly, I did not like English at first.</span></td><td>2（過去）</td></tr>
+<tr><td>私はつかれていました。しかし、私は続けました。</td><td><span class="en">I was tired. However, I continued.</span></td><td>2（過去）</td></tr>
+<tr><td>私は長い話の代わりに短い話を読みました。</td><td><span class="en">I read a short story instead of a long one.</span></td><td>2（過去）</td></tr>
+<tr><td>1つの文には動詞が1つだけあります。</td><td><span class="en">One sentence has only one verb.</span></td><td>1（一般動詞の文）</td></tr>
+<tr><td>入試は大きな挑戦です。</td><td><span class="en">The entrance exam is a big challenge.</span></td><td>1（be動詞の文）</td></tr>
+<tr><td>私は自分の進歩に気づきました。</td><td><span class="en">I noticed my own progress.</span></td><td>2（過去）</td></tr>
+<tr><td>私は自分の弱点を見つけました。</td><td><span class="en">I found my own weakness.</span></td><td>1（一般動詞の文）</td></tr>
+<tr><td>毎日の習慣が私の強みです。</td><td><span class="en">My daily habit is my strength.</span></td><td>1（be動詞の文）</td></tr>
+<tr><td>私は英語の水準を上げたいです。</td><td><span class="en">I want to improve my English level.</span></td><td>4（不定詞）</td></tr>
+<tr><td>朝の決まった行動が私の勉強を楽にします。</td><td><span class="en">My morning routine makes my study easy.</span></td><td>4（SVOC）</td></tr>
+<tr><td>クラスの前で話すには勇気が要りました。</td><td><span class="en">It took courage to speak in front of the class.</span></td><td>4（不定詞）</td></tr>
+</table>
+</div>
+
+<p>この表の英語は、どれも<strong>新しい文法を使っていません</strong>。語を入れかえるだけで自分のことを書けるので、英作文の下書きに使ってください。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<p>この単元の内容は、独立した1問としてよりも<strong>長文の中で</strong>問われます。長い主語の終わりを見つける問題、<span class="en">that</span> の働きを答える問題、下線部を日本語に直す問題では、ここに並べた一覧がそのまま手がかりになります。英作文では、<strong>4の表のどの形を使うか</strong>を決めてから書き始めると、語順で迷いません。</p>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">The book which I read it was useful.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">The book which I read was useful.</span></div>
+  <p class="contrast-why">目的格の関係代名詞を使ったら、うしろの文に目的語を重ねて置きません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">She made me to clean the room.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">She made me clean the room.</span></div>
+  <p class="contrast-why"><span class="en">make</span> のうしろの動詞に to は付きません。</p>
+</div>
+
+<div class="contrast">
+  <div class="contrast-row bad"><span class="mark">×</span><span class="en">I have finished my homework last night.</span></div>
+  <div class="contrast-row good"><span class="mark">○</span><span class="en">I finished my homework last night.</span></div>
+  <p class="contrast-why">過去の一時点を指す語があるので、現在完了は使えません。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>文を見たら、まず<strong>be動詞の文か一般動詞の文か</strong>を決める。1つの文に動詞は1つ。</li>
+<li>動詞の形は、文の中の<strong>時を表す語</strong>で決まる。過去の一時点を指す語と現在完了はいっしょに使えない。</li>
+<li>名詞を説明する形は5つ。<strong>1語なら前、まとまりならうしろ</strong>。名詞のうしろに「主語 + 動詞」が続いたら関係代名詞の省略。</li>
+<li>動詞のうしろは、<strong>人のうしろに何があるか</strong>で決まる。名詞なら SVOO、形容詞なら SVOC、動詞なら to の有無を動詞で決める。</li>
+<li><span class="en">that</span> は、うしろの文が完全なら接続詞、足りなければ関係代名詞。間接疑問は<strong>疑問詞 + 主語 + 動詞</strong>。</li>
+</ul>
+</div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。時を表す語と、うしろの文に足りないものを見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">I (　　　) my homework last night.</span>
+<p class="opts"><span>ア have finished</span><span>イ finished</span><span>ウ am finishing</span><span>エ will finish</span></p></li>
+<li><span class="en">The boy (　　　) won the contest is my brother.</span>
+<p class="opts"><span>ア who</span><span>イ whose</span><span>ウ what</span><span>エ he</span></p></li>
+<li><span class="en">She made me (　　　) the room.</span>
+<p class="opts"><span>ア to clean</span><span>イ cleaning</span><span>ウ clean</span><span>エ cleaned</span></p></li>
+<li><span class="en">I do not know what (　　　).</span>
+<p class="opts"><span>ア does he want</span><span>イ he wants</span><span>ウ wants he</span><span>エ he want</span></p></li>
+<li><span class="en">The letter (　　　) by Ken was long.</span>
+<p class="opts"><span>ア writing</span><span>イ wrote</span><span>ウ written</span><span>エ writes</span></p></li>
+<li><span class="en">If I (　　　) a bird, I would fly to you.</span>
+<p class="opts"><span>ア am</span><span>イ was</span><span>ウ were</span><span>エ will be</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>ピアノをひいている少女は私の妹です。<br><span class="en">[ the / girl / playing / the / piano / is / my / sister ] .</span><span class="write"></span></li>
+<li>先生は私に待つように言いました。<br><span class="en">[ my / teacher / told / me / to / wait ] .</span><span class="write"></span></li>
+<li>次のバスがいつ来るのかわかりません。<br><span class="en">[ i / do / not / know / when / the / next / bus / will / come ] .</span><span class="write"></span></li>
+<li data-extra="1">私が昨夜読んだ本は役に立ちました。<span class="hint">1語不要</span><br><span class="en">[ the / book / i / read / last / night / was / useful / it ] .</span><span class="write"></span></li>
+<li data-extra="1">その知らせは私をうれしくさせました。<span class="hint">1語不要</span><br><span class="en">[ the / news / made / me / happy / to ] .</span><span class="write"></span></li>
+<li>彼女は私にその部屋をそうじさせてくれました。<br><span class="en">[ she / let / me / clean / the / room ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">I am like this book.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I have met him yesterday.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The book which I read it was useful.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">She made me to clean the room.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I know what does he want.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The girl is playing the piano is my sister.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 18;">
+<li><span class="q-ja">そのコンテストに勝った少年は私の兄です。</span><span class="write"></span></li>
+<li><span class="q-ja">私は3年間英語を勉強しています。</span><span class="write"></span></li>
+<li><span class="q-ja">先生は私にその話を要約するように言いました。</span><span class="write"></span></li>
+<li><span class="q-ja">私は読む本を1冊持っています。</span><span class="write"></span></li>
+<li><span class="en">who</span> を使って「ピアノをひく少女は私の妹です」と書く。<span class="cond">8語</span><span class="write"></span></li>
+<li><span class="en">progress</span> を使って「少しずつ進歩を感じています」と書く。<span class="cond">5語</span><span class="write"></span></li>
+<li><span class="en">confidence</span> を使って「この一覧は私に自信をくれました」と書く。<span class="cond">5語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">中学3年生が書いたスピーチの原稿です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">3年間の英語をふり返って</p>
+<p>Three years ago I was a quiet student, and English was difficult for me. I did not know how I should study it. My notebook was full of rules, but they were not in order.</p>
+<p>Now I have studied English for three years. The teacher who helped me most was Ms. Mori. She gave me a small notebook. Every day I wrote the sentences which I heard in class. The notebook filled with my own sentences became my best friend.</p>
+<p>Ms. Mori told me to read one short story every week. She also let me choose the books. The books in the school library made me happy, because I found many stories to enjoy.</p>
+<p>Last month I made five lists of grammar. <span class="num">①</span><span class="ul">Making the lists was hard work, but something changed.</span> When I read a long passage, I can see the structure of each sentence.</p>
+<p>Now I am writing short stories in English. I will study harder, because I want to be a teacher. If I were a child again, I would start this habit earlier. I know what makes me confident. It is not a special ability. It is the small effort which I have continued every day.</p>
+<p class="reading-wc">およそ200語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 25;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 筆者は3年前から英語が得意だった。<br>
+イ 森先生は筆者に本を選ばせてくれた。<br>
+ウ 筆者は来月5つの一覧を作る予定である。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語をそれぞれ書く。<br><span class="en">Ms. Mori told the writer (　　　) read one short story every week, and she also (　　　) the writer choose the books.</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">How long has the writer studied English?</span><span class="write"></span></li>
+<li>筆者は何が自分に自信を与えていると言っているか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 30;">
+<li>自分が続けている習慣を1つ選び、現在完了を使って1文書く。<span class="hint">例：I have played the piano for five years.</span><span class="write"></span></li>
+<li>自分の身近な人を1人選び、関係代名詞を使って1文で説明する。<span class="hint">例：The teacher who helped me most was Ms. Mori.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、5つの一覧のどれに当たるかを確かめてから、その単元に戻ります。</p>
+
+<ol class="a">
+<li><span class="a-key">イ　finished</span><p class="a-why"><span class="en">last night</span> は過去の一時点を指す語なので、現在完了は使えません。</p></li>
+<li><span class="a-key">ア　who</span><p class="a-why">うしろの文に主語が足りないので、主格の関係代名詞です。先行詞が人なので <span class="en">who</span> です。</p></li>
+<li><span class="a-key">ウ　clean</span><p class="a-why"><span class="en">make</span> のうしろは「人 + 原形」です。to は付きません。</p></li>
+<li><span class="a-key">イ　he wants</span><p class="a-why">間接疑問なので「疑問詞 + 主語 + 動詞」に戻り、<span class="en">does</span> が消えます。</p></li>
+<li><span class="a-key">ウ　written</span><p class="a-why">名詞のうしろに直接続いているので分詞です。「書かれた手紙」なので過去分詞を使います。</p></li>
+<li><span class="a-key">ウ　were</span><p class="a-why">事実と違う仮定なので、主語が <span class="en">I</span> でも <span class="en">were</span> を使います。</p></li>
+
+<li><span class="a-key">The girl playing the piano is my sister.</span><p class="a-why">分詞のまとまりは名詞のうしろに置きます。ここまでが主語です。</p></li>
+<li><span class="a-key">My teacher told me to wait.</span><p class="a-why"><span class="en">tell</span> のうしろは「人 + to + 原形」です。</p></li>
+<li><span class="a-key">I do not know when the next bus will come.</span><p class="a-why">間接疑問なので「疑問詞 + 主語 + 動詞」の語順です。</p></li>
+<li><span class="a-key">The book I read last night was useful.</span><p class="a-why">不要な語は <span class="en">it</span> です。関係代名詞が省略された形で、うしろの文に目的語を重ねて置きません。</p></li>
+<li><span class="a-key">The news made me happy.</span><p class="a-why">不要な語は <span class="en">to</span> です。「人 + 形容詞」なので SVOC です。</p></li>
+<li><span class="a-key">She let me clean the room.</span><p class="a-why"><span class="en">let</span> のうしろは「人 + 原形」です。</p></li>
+
+<li><span class="a-key">I like this book.</span><p class="a-why">「好む」は心の働きなので一般動詞の文です。1つの文に動詞は1つです。</p></li>
+<li><span class="a-key">I met him yesterday.</span><p class="a-why">過去の一時点を指す語があるので、現在完了ではなく過去形にします。</p></li>
+<li><span class="a-key">The book which I read was useful.</span><p class="a-why">目的格の関係代名詞を使ったので、うしろの文に目的語を重ねて置きません。</p></li>
+<li><span class="a-key">She made me clean the room.</span><p class="a-why"><span class="en">make</span> のうしろの動詞に to は付きません。</p></li>
+<li><span class="a-key">I know what he wants.</span><p class="a-why">間接疑問では <span class="en">does</span> が消え、動詞が主語に合わせた形になります。</p></li>
+<li><span class="a-key">The girl playing the piano is my sister.</span><p class="a-why">1つの文に動詞は1つです。説明のまとまりにする分詞には be動詞を付けません。</p></li>
+
+<li><span class="a-key">The boy who won the contest is my brother.</span><p class="a-why">主格の関係代名詞なので省略できません。</p></li>
+<li><span class="a-key">I have studied English for three years.</span><p class="a-why">今も続いていることなので現在完了です。期間は <span class="en">for</span> で表します。</p></li>
+<li><span class="a-key">My teacher told me to summarize the story.</span><p class="a-why">「人 + to + 原形」の形です。</p></li>
+<li><span class="a-key">I have a book to read.</span><p class="a-why">名詞のうしろに置いた不定詞で「読むための本」を表します。</p></li>
+<li><span class="a-key">The girl who plays the piano is my sister.</span><p class="a-why">先行詞が3人称単数なので、うしろの動詞は <span class="en">plays</span> です。</p></li>
+<li><span class="a-key">I feel progress gradually.</span><p class="a-why">5語です。<span class="en">gradually</span> は文の終わりに置きます。</p></li>
+<li><span class="a-key">This list gave me confidence.</span><p class="a-why">5語です。「人 + 物」の SVOO の形です。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">She also let me choose the books.</span> とあります。アは3年前は英語が難しかったので誤り、ウは一覧を作ったのは先月なので誤りです。</p></li>
+<li><span class="a-key">その一覧を作ることは大変な作業でしたが、何かが変わりました。</span><p class="a-why">主語は <span class="en">Making the lists</span>（動名詞のまとまり）です。</p></li>
+<li><span class="a-key">to　／　let</span><p class="a-why"><span class="en">tell</span> は「人 + to + 原形」、<span class="en">let</span> は「人 + 原形」です。本文と同じ過去の話なので <span class="en">let</span> の形は変わりません。</p></li>
+<li><span class="a-key">The writer has studied English for three years.</span><p class="a-why">本文の <span class="en">Now I have studied English for three years</span> から答えます。</p></li>
+<li><span class="a-key">毎日続けてきた小さな努力。</span><p class="a-why">最後の <span class="en">It is the small effort which I have continued every day</span> が答えです。</p></li>
+
+<li><span class="a-key">（例）I have played the piano for five years.</span><p class="a-why">今も続いていることなので現在完了です。</p></li>
+<li><span class="a-key">（例）The teacher who helped me most was Ms. Mori.</span><p class="a-why">主格の関係代名詞のうしろには動詞が続きます。</p></li>
+</ol>
+</div>
+</body>
+</html>

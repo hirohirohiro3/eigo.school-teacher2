@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 12　関係代名詞（目的格 which / that と省略）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20242F;
+  --ink-2:#5A6273;
+  --paper:#FFFEFB;
+  --panel:#F5F5F0;
+  --rule:#D5D3CA;
+  --be:#2A5C93;
+  --be-bg:#E9F1F8;
+  --gen:#9C540F;
+  --gen-bg:#FBF0E3;
+  --wrong:#AF2036;
+  --right:#26714C;
+  --hi-be:#CFE4F5;
+  --hi-gen:#F7DFC2;
+  --hand:255px 12px 225px 15px/15px 225px 15px 255px;
+  --hand-2:15px 225px 15px 255px/225px 15px 255px 15px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;-webkit-text-size-adjust:100%;}
+
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic Medium","Meiryo",sans-serif;
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;
+}
+
+.sheet{max-width:34rem;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+
+/* ---------- 見出し ---------- */
+
+.unit-head{
+  border-bottom:3px solid var(--ink);
+  border-radius:0 0 12px 3px;
+  padding-bottom:1rem;margin-bottom:2rem;
+}
+.unit-no{
+  display:inline-block;
+  font-family:"Klee One",Georgia,serif;
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  background:var(--hi-be);padding:.05rem .7rem;
+  border-radius:var(--hand);transform:rotate(-1.5deg);margin:0 0 .5rem;
+}
+.unit-title{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.55rem;line-height:1.45;font-weight:600;margin:0 0 .5rem;
+}
+.unit-lead{margin:0;font-size:.95rem;color:var(--ink-2);}
+
+h2{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.2rem;font-weight:600;margin:2.75rem 0 1rem;line-height:1.5;
+}
+h2 span{
+  background:linear-gradient(transparent 62%,var(--hi-be) 62%,var(--hi-be) 94%,transparent 94%);
+  padding:0 .15rem;
+}
+h3{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.02rem;font-weight:600;margin:2rem 0 .75rem;
+}
+p{margin:0 0 1rem;}
+
+/* ---------- 用語 ---------- */
+
+.term{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin:0 0 1.1rem;background:var(--be-bg);
+}
+.term.is-general{border-color:var(--gen);background:var(--gen-bg);border-radius:var(--hand-2);}
+.term-name{
+  font-family:"Klee One",sans-serif;font-size:1.08rem;font-weight:600;
+  margin:0 0 .35rem;color:var(--be);
+}
+.term.is-general .term-name{color:var(--gen);}
+.term-def{margin:0 0 .6rem;font-size:.95rem;}
+.term-ex{margin:0;font-size:.9rem;color:var(--ink-2);}
+.term-ex .en{color:var(--ink);}
+
+.en{font-family:Georgia,"Times New Roman","Noto Serif JP",serif;font-size:1.02em;}
+.be-w{color:var(--be);font-weight:700;}
+.gen-w{color:var(--gen);font-weight:700;}
+
+/* ---------- 図解（横組み） ---------- */
+
+.diagram{
+  border:2px solid var(--be);border-radius:var(--hand);
+  padding:1.2rem .9rem 1.1rem;background:var(--paper);
+  margin:0 0 1.1rem;
+}
+.diagram.is-general{border-color:var(--gen);border-radius:var(--hand-2);}
+.diagram-cap{
+  font-family:"Klee One",sans-serif;
+  font-size:.85rem;color:var(--ink-2);margin:0 0 .9rem;text-align:center;
+}
+
+.flow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.3rem;
+}
+.node{
+  flex:0 1 auto;
+  padding:.45rem .7rem;
+  border:2px solid var(--ink);
+  border-radius:var(--hand);
+  background:var(--paper);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.05rem;line-height:1.5;
+  text-align:center;white-space:nowrap;
+}
+.node:last-child{border-radius:var(--hand-2);}
+.node-label{
+  display:block;
+  font-family:"Klee One",sans-serif;
+  font-size:.68rem;line-height:1.5;color:var(--ink-2);
+  white-space:nowrap;
+}
+
+.link{
+  flex:1 1 3rem;
+  min-width:3rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.link-word{
+  font-family:Georgia,serif;font-size:1rem;font-weight:700;
+  line-height:1.3;color:var(--be);
+  background:var(--hi-be);padding:0 .4rem;
+  border-radius:var(--hand);
+}
+.is-general .link-word{color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+
+/* be動詞：連結部そのものが「＝」 */
+.rail{
+  width:100%;height:.4rem;margin-top:.3rem;
+  border-top:2.5px solid var(--be);
+  border-bottom:2.5px solid var(--be);
+}
+/* 一般動詞：矢印 */
+.is-general .rail{
+  height:0;margin-top:.55rem;position:relative;
+  border-top:2.5px solid var(--gen);
+  border-bottom:none;
+}
+.is-general .rail::after{
+  content:"";position:absolute;right:-2px;top:-5.5px;
+  border-left:9px solid var(--gen);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ---------- 一覧表 ---------- */
+
+.table-wrap{overflow-x:auto;margin:0 0 1.1rem;}
+table.rule{
+  width:100%;border-collapse:collapse;
+  font-size:.9rem;line-height:1.65;
+}
+table.rule th,table.rule td{
+  border:1px solid var(--rule);
+  padding:.5rem .55rem;text-align:left;vertical-align:top;
+}
+table.rule th{
+  background:var(--panel);
+  font-family:"Klee One",sans-serif;font-weight:600;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;
+}
+table.rule td.be-cell{
+  font-family:Georgia,serif;font-weight:700;color:var(--be);
+  text-align:center;white-space:nowrap;
+}
+
+/* ---------- 手順 ---------- */
+
+.steps{list-style:none;counter-reset:s;margin:1.25rem 0 1.5rem;padding:0;}
+.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 2.8rem;margin:0;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:.2rem;
+  width:1.9rem;height:1.9rem;
+  border:2px solid var(--ink);
+  border-radius:48% 52% 47% 53%/53% 47% 53% 47%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Klee One",serif;font-size:.95rem;font-weight:600;background:var(--paper);
+}
+.steps li::after{
+  content:"";position:absolute;left:.9rem;top:2.2rem;bottom:.2rem;
+  width:0;border-left:2px dashed var(--rule);
+}
+.steps li:last-child{padding-bottom:0;}
+.steps li:last-child::after{display:none;}
+.step-t{font-family:"Klee One",sans-serif;font-weight:600;display:block;margin-bottom:.15rem;}
+.step-d{font-size:.92rem;color:var(--ink-2);}
+
+/* ---------- 誤 / 正 ---------- */
+
+.contrast{
+  border:2px dashed var(--rule);border-radius:var(--hand);
+  margin:0 0 1.1rem;overflow:hidden;
+}
+.contrast-row{display:flex;align-items:baseline;gap:.7rem;padding:.7rem 1rem;}
+.contrast-row.bad{background:#FBF1F2;}
+.contrast-row.good{background:#F0F7F3;}
+.mark{flex:0 0 auto;font-size:1.2rem;font-weight:700;line-height:1.4;font-family:"Klee One",serif;}
+.bad .mark{color:var(--wrong);}
+.good .mark{color:var(--right);}
+.bad .en{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:1px;}
+.contrast-why{
+  padding:.55rem 1rem .7rem;font-size:.85rem;color:var(--ink-2);
+  border-top:1px dashed var(--rule);background:var(--panel);
+}
+
+/* ---------- 問題 ---------- */
+
+.q-intro{font-size:.9rem;color:var(--ink-2);margin:0 0 1.25rem;}
+ol.q{list-style:none;counter-reset:q;margin:0;padding:0;}
+ol.q > li{counter-increment:q;position:relative;padding:0 0 1.4rem 2.7rem;margin:0;}
+ol.q > li::before{
+  content:counter(q,decimal-leading-zero);
+  position:absolute;left:0;top:.15rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:47% 53% 52% 48%/52% 48% 52% 48%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.q-ja{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.1rem;}
+.choice{font-family:Georgia,serif;white-space:nowrap;}
+.write{display:block;height:2rem;margin-top:.5rem;border-bottom:2px dotted var(--rule);}
+.hint{font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);}
+
+/* ---------- 問題パートの見出し ---------- */
+
+.part-head{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:2.5rem 0 .6rem;padding-bottom:.45rem;
+  border-bottom:2px solid var(--ink);
+}
+.part-no{
+  flex:0 0 auto;
+  font-family:"Klee One",Georgia,serif;font-size:.85rem;font-weight:600;
+  color:var(--ink);background:var(--hi-gen);
+  padding:.05rem .6rem;border-radius:var(--hand-2);
+}
+.part-name{
+  font-family:"Klee One","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:1.08rem;font-weight:600;line-height:1.5;
+}
+.part-note{
+  font-size:.86rem;color:var(--ink-2);margin:0 0 1.1rem;line-height:1.75;
+}
+
+/* 選択肢（4択） */
+.opts{
+  display:flex;flex-wrap:wrap;gap:.25rem .85rem;
+  margin:.4rem 0 0;padding:0;
+  font-family:Georgia,"Times New Roman",serif;font-size:.98rem;
+}
+.opts span{white-space:nowrap;}
+
+/* 条件（使用語・語数の指定） */
+.cond{
+  display:inline-block;
+  font-family:"Klee One",sans-serif;font-size:.79rem;line-height:1.7;
+  color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule);border-radius:var(--hand-2);
+  padding:0 .45rem;margin-left:.4rem;white-space:nowrap;
+}
+
+/* 理由の記入欄（誤文訂正） */
+.why-line{
+  display:block;margin-top:.5rem;
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+}
+.why-line::after{
+  content:"";display:block;height:1.5rem;
+  border-bottom:2px dotted var(--rule);
+}
+
+/* ---------- 読解 ---------- */
+
+.reading{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  background:var(--paper);padding:1.1rem 1.2rem 1rem;
+  margin:0 0 1.4rem;
+}
+.reading-cap{
+  font-family:"Klee One",sans-serif;font-size:.82rem;color:var(--ink-2);
+  margin:0 0 .7rem;padding-bottom:.45rem;
+  border-bottom:1px dashed var(--rule);
+}
+.reading p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;line-height:2;margin:0 0 .7rem;
+}
+.reading p:last-of-type{margin-bottom:0;}
+.reading .ul{border-bottom:2px solid var(--gen);padding-bottom:1px;}
+.reading .num{
+  font-family:"Klee One",serif;font-size:.8rem;color:var(--ink-2);
+  vertical-align:.25em;padding:0 .1rem;
+}
+.reading-wc{
+  text-align:right;margin:.7rem 0 0;
+  font-family:"Klee One",sans-serif;font-size:.74rem;color:var(--ink-2);
+}
+
+/* ---------- 解答 ---------- */
+
+.answer-note{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:.9rem 1.1rem;font-size:.9rem;margin:0 0 1.5rem;background:var(--panel);
+}
+ol.a{list-style:none;counter-reset:a;margin:0;padding:0;}
+ol.a > li{
+  counter-increment:a;position:relative;
+  padding:.9rem 0 1.1rem 2.7rem;margin:0;
+  border-bottom:1px dashed var(--rule);
+}
+ol.a > li::before{
+  content:counter(a,decimal-leading-zero);
+  position:absolute;left:0;top:.95rem;
+  width:1.75rem;height:1.75rem;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--rule);
+  border-radius:52% 48% 47% 53%/48% 52% 48% 52%;
+  font-family:"Klee One",Georgia,serif;font-size:.8rem;font-weight:600;color:var(--ink-2);
+}
+.a-key{
+  font-weight:700;font-family:Georgia,serif;font-size:1.05rem;
+  display:inline-block;margin-bottom:.15rem;
+  background:linear-gradient(transparent 60%,var(--hi-gen) 60%,var(--hi-gen) 95%,transparent 95%);
+  padding:0 .2rem;
+}
+.a-why{font-size:.9rem;color:var(--ink-2);margin:.2rem 0 0;}
+
+.transform{
+  margin:.6rem 0 .2rem;padding:.8rem 1rem;
+  background:var(--panel);border:2px dashed var(--rule);
+  border-radius:var(--hand-2);font-size:.92rem;
+}
+.tf-line{font-family:Georgia,serif;font-size:1rem;display:block;}
+.tf-arrow{
+  display:block;padding:.25rem 0 .25rem .2rem;
+  font-family:"Klee One",sans-serif;font-size:.84rem;color:var(--ink-2);
+}
+.strike{color:var(--wrong);text-decoration:line-through;}
+
+.wrap-up{
+  border:2px solid var(--ink);border-radius:var(--hand);
+  padding:1.1rem 1.2rem;margin-top:2.5rem;font-size:.93rem;background:var(--paper);
+}
+.wrap-up-t{font-family:"Klee One",sans-serif;font-weight:600;margin:0 0 .4rem;}
+
+
+/* ---------- ページ間ナビ ---------- */
+.topnav{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem;padding:0;}
+.topnav a{
+  text-decoration:none;
+  font-family:"Klee One",sans-serif;font-size:.82rem;font-weight:600;
+  line-height:1.6;padding:.22rem .7rem;
+  border:1.5px solid var(--rule);border-radius:var(--hand);
+  color:var(--ink-2);background:var(--panel);
+}
+.topnav a.pair{color:var(--gen);border-color:var(--gen);background:var(--hi-gen);border-radius:var(--hand-2);}
+@media print{.topnav{display:none;}}
+
+/* ---------- 印刷 ---------- */
+
+@media print{
+  @page{size:A4 portrait;margin:16mm 15mm;}
+  body{font-size:10.5pt;line-height:1.75;background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .page-break{break-before:page;}
+  .diagram,.contrast,.term,.transform,.wrap-up,.answer-note,.table-wrap{break-inside:avoid;}
+  ol.q > li,ol.a > li,.steps li{break-inside:avoid;}
+  .reading{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .part-head{break-after:avoid;break-inside:avoid;}
+  .unit-no{transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<nav class="topnav"><a href="index.html">← 目次</a><a class="pair" href="vocab12_relative-object.html">この単元の単語帳 →</a></nav>
+
+<header class="unit-head">
+<p class="unit-no">Unit 12</p>
+<h1 class="unit-title">関係代名詞（目的格 which / that と省略）</h1>
+<p class="unit-lead">Unit 11 では、<span class="en">I know a girl who plays the piano.</span> のように、名詞のうしろに<strong>「主語が抜けた文」</strong>を置いて名詞を説明しました。この単元では、同じ場所に<strong>「目的語が抜けた文」</strong>を置きます。<span class="en">This is the bag which my grandmother made.</span> の <span class="en">which</span> がその印です。さらに、この形では<strong>関係代名詞を省略できる</strong>ことを学びます。英語の長文を読むときに、いちばん多く出てくる形です。</p>
+</header>
+
+<h2><span>名詞のうしろに「目的語が抜けた文」を置く</span></h2>
+
+<p>Unit 11 では、2つめの文の<strong>主語</strong>を関係代名詞に変えました。この単元では、2つめの文の<strong>目的語</strong>を関係代名詞に変えます。</p>
+
+<div class="transform">
+<span class="tf-line">This is the bag. My grandmother made it.</span>
+<span class="tf-arrow">（これはそのかばんです。私の祖母がそれを作りました）</span>
+<span class="tf-arrow">↓　2つめの文の目的語 it を which に変えて、the bag のすぐうしろに移す</span>
+<span class="tf-line">This is the bag which my grandmother made.</span>
+<span class="tf-arrow">（これは私の祖母が作ったかばんです）</span>
+</div>
+
+<p>2つめの文の <span class="en">it</span> は、1つめの文の <span class="en">the bag</span> と同じ物です。<span class="en">it</span> を <span class="en">which</span> に変えて、説明したい名詞のすぐうしろに移します。<span class="en">which</span> が前に移ったので、<span class="en">made</span> のうしろには<strong>何も残りません</strong>。こうしてできた <span class="en">which my grandmother made</span> が、<span class="en">the bag</span> の説明になります。</p>
+
+<div class="term">
+<p class="term-name">関係代名詞（目的格）</p>
+<p class="term-def">名詞のうしろに置いて、その名詞を説明する文を続けるための語のうち、<strong>うしろの文の目的語の代わり</strong>をしているものです。関係代名詞のうしろは<strong>「主語 ＋ 動詞」で始まり、動詞のうしろの目的語が抜けた形</strong>になります。</p>
+<p class="term-ex"><span class="en">This is the bag which my grandmother made.</span>（これは私の祖母が作ったかばんです）<br><span class="en">The girl that I met yesterday is my friend's sister.</span>（私が昨日会った女の子は私の友達の姉です）</p>
+</div>
+
+<p><strong>なぜ目的語が抜けるのか。</strong>関係代名詞そのものが目的語の役をしているからです。<span class="en">which my grandmother made</span> で、祖母が作った物は <span class="en">which</span>、つまり <span class="en">the bag</span> です。ですから、<span class="en">made</span> のうしろにもう一度 <span class="en">it</span> を置く必要はありません。「目的格」という名前は、<strong>関係代名詞が目的語の位置にある</strong>ことを表しています。</p>
+
+<div class="diagram">
+<p class="diagram-cap">主格（Unit 11）：うしろの文に主語が無い</p>
+<div class="flow">
+<span class="node">a girl<span class="node-label">女の子（先行詞）</span></span>
+<span class="link">
+<span class="link-word">who</span>
+<span class="rail"></span>
+</span>
+<span class="node">（　）plays the piano<span class="node-label">主語が無い</span></span>
+</div>
+<p class="diagram-cap">目的格（この単元）：うしろの文に目的語が無い</p>
+<div class="flow">
+<span class="node">the book<span class="node-label">本（先行詞）</span></span>
+<span class="link">
+<span class="link-word">which</span>
+<span class="rail"></span>
+</span>
+<span class="node">I read（　）<span class="node-label">目的語が無い</span></span>
+</div>
+</div>
+
+<h2><span>主格と目的格の見分け方</span></h2>
+
+<p>関係代名詞のすぐうしろを見れば、主格か目的格かが決まります。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>関係代名詞のすぐうしろ</th><th>種類</th><th>例</th></tr>
+<tr><td>動詞</td><td>主格（Unit 11）</td><td><span class="en">a girl who plays the piano</span></td></tr>
+<tr><td>主語 ＋ 動詞</td><td>目的格（この単元）</td><td><span class="en">the bag which my grandmother made</span></td></tr>
+</table>
+</div>
+
+<p>目的格のときは、<strong>うしろの文に目的語が足りない</strong>ことが目印です。<span class="en">my grandmother made</span> だけでは「何を作ったのか」がありません。その足りない目的語が、前にある先行詞です。</p>
+
+<h2><span>which・that の使い分け</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>先行詞</th><th>使う関係代名詞</th><th>例</th></tr>
+<tr><td>物・動物</td><td><span class="en">which</span>／<span class="en">that</span></td><td><span class="en">the bag which my grandmother made</span></td></tr>
+<tr><td>人</td><td><span class="en">that</span></td><td><span class="en">the girl that I met yesterday</span></td></tr>
+</table>
+</div>
+
+<p>先行詞が物・動物のときは、Unit 11 と同じく <span class="en">which</span> か <span class="en">that</span> です。先行詞が人で、関係代名詞が目的語の位置にあるときは、この教材では <span class="en">that</span> で書きます。ただし次に学ぶとおり、<strong>目的格の関係代名詞はふつう省略します</strong>。人が先行詞のときも、省略した形がいちばんよく使われます。</p>
+
+<h2><span>うしろの動詞の形は、うしろの文の主語に合わせる</span></h2>
+
+<p>ここは Unit 11 とちがうところです。主格では、うしろの動詞を<strong>先行詞</strong>に合わせました。目的格では、うしろの文に<strong>自分の主語</strong>があるので、動詞はその主語に合わせます。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>形</th><th>うしろの動詞が合わせる語</th><th>例</th></tr>
+<tr><td>主格（Unit 11）</td><td>先行詞</td><td><span class="en">the girl who <strong>plays</strong> the piano</span>（<span class="en">the girl</span> に合わせる）</td></tr>
+<tr><td>目的格（この単元）</td><td>うしろの文の主語</td><td><span class="en">the cake which my mother <strong>makes</strong></span>（<span class="en">my mother</span> に合わせる）</td></tr>
+</table>
+</div>
+
+<p><span class="en">the cakes which my mother makes</span> では、先行詞 <span class="en">the cakes</span> は複数ですが、動詞は <span class="en">my mother</span> に合わせて <span class="en">makes</span> です。</p>
+
+<h2><span>目的格の関係代名詞は省略できる</span></h2>
+
+<p>目的格の <span class="en">which</span>・<span class="en">that</span> は<strong>省略できます</strong>。省略しても、意味は変わりません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>関係代名詞あり</th><th>省略した形</th></tr>
+<tr><td><span class="en">the bag which my grandmother made</span></td><td><span class="en">the bag my grandmother made</span></td></tr>
+<tr><td><span class="en">the girl that I met yesterday</span></td><td><span class="en">the girl I met yesterday</span></td></tr>
+<tr><td><span class="en">the lamp which my grandfather bought</span></td><td><span class="en">the lamp my grandfather bought</span></td></tr>
+</table>
+</div>
+
+<p><strong>なぜ省略できるのか。</strong>目的格では、関係代名詞を取っても、うしろに「主語 ＋ 動詞」がそろった形が残るからです。名詞のすぐうしろに主語が来れば、そこから説明が始まることがわかります。一方、Unit 11 で学んだとおり、<strong>主格の関係代名詞は省略できません</strong>。取ると、うしろの文の主語が無くなるからです。</p>
+
+<div class="contrast">
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">This is the bag my grandmother made.</span></div>
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">I know a girl plays the piano.</span></div>
+<p class="contrast-why">上は目的格なので省略できます。下は主格なので、<span class="en">who</span> を取ると主語が無くなります。</p>
+</div>
+
+<h2><span>省略された関係代名詞を見つける手順</span></h2>
+
+<p>長文では、関係代名詞が省略された形がとても多く出てきます。次の手順で読みます。</p>
+
+<ol class="steps">
+<li><strong>名詞のすぐうしろに、主語</strong>（<span class="en">I</span>・<span class="en">we</span>・<span class="en">my father</span> など）<strong>が続いていないか</strong>を見る。</li>
+<li>続いていたら、<strong>名詞と主語の間に関係代名詞が省略されている</strong>と考え、そこに区切りを入れる。</li>
+<li>主語 ＋ 動詞のうしろで、<strong>目的語が足りない</strong>ことを確かめる。</li>
+<li>説明のまとまりがどこで終わるかを決め、<strong>文全体の動詞</strong>を見つける。</li>
+</ol>
+
+<div class="transform">
+<span class="tf-line">The lamp I fixed is on my desk again.</span>
+<span class="tf-arrow">↓　名詞 The lamp のすぐうしろに主語 I が続いている</span>
+<span class="tf-line">The lamp ／ (which) I fixed ／ is on my desk again.</span>
+<span class="tf-arrow">（私が修理したランプは、また私の机の上にあります）</span>
+</div>
+
+<p><span class="en">fixed</span> のうしろに目的語がありません。修理した物は <span class="en">the lamp</span> です。文全体の動詞は <span class="en">is</span> です。</p>
+
+<h2><span>例文を読む</span></h2>
+
+<p>関係代名詞がある形です。</p>
+
+<p><span class="en">The scissors which I borrowed from Yuki were very sharp.</span>（私がユキから借りたはさみは、とてもよく切れました）<br>
+<span class="en">The drawer which I opened was full of old buttons.</span>（私が開けた引き出しは、古いボタンでいっぱいでした）<br>
+<span class="en">The furniture which the owner repaired looks new again.</span>（その店主が修理した家具は、また新しく見えます）<br>
+<span class="en">The workshop that we visited is near the station.</span>（私たちが訪れた工房は、駅の近くにあります）<br>
+<span class="en">The watch that my grandfather wore is my treasure.</span>（私の祖父が身につけていた時計は、私の宝物です）</p>
+
+<p>関係代名詞を省略した形です。</p>
+
+<p><span class="en">The jacket my brother wears every day has a hole in the sleeve.</span>（兄が毎日着ているジャケットは、そでに穴があいています）<br>
+<span class="en">I lost the gloves my aunt gave me.</span>（私はおばがくれた手袋をなくしました）<br>
+<span class="en">The kettle we use every morning is made of metal.</span>（私たちが毎朝使うやかんは、金属でできています）<br>
+<span class="en">The glue I used was very strong.</span>（私が使ったのりは、とても強力でした）<br>
+<span class="en">The pot my uncle uses has a long handle.</span>（おじが使うなべには、長い取っ手がついています）<br>
+<span class="en">The zipper on the bag I bought last year does not work.</span>（私が去年買ったかばんのファスナーは、動きません）<br>
+<span class="en">He changed the tire of the bicycle his daughter rides.</span>（彼は、娘が乗る自転車のタイヤを交換しました）<br>
+<span class="en">She keeps a spare key in the pocket of the coat she likes.</span>（彼女は、気に入っているコートのポケットに予備のかぎを入れています）<br>
+<span class="en">The toaster we bought ten years ago is still in good condition.</span>（私たちが10年前に買ったトースターは、まだよい状態です）<br>
+<span class="en">The letters my grandmother wrote are precious to me.</span>（祖母が書いた手紙は、私にとって大切なものです）<br>
+<span class="en">She polished the old table she got from her aunt.</span>（彼女は、おばからもらった古いテーブルをみがきました）<br>
+<span class="en">My son still has the toy his grandfather made.</span>（私の息子は、祖父が作ったおもちゃを今も持っています）<br>
+<span class="en">The doll my daughter loves needs a new button.</span>（私の娘が大好きな人形には、新しいボタンが必要です）<br>
+<span class="en">He attached a new plug to the lamp we found in the drawer.</span>（彼は、私たちが引き出しの中で見つけたランプに新しいプラグを取りつけました）</p>
+
+<h2><span>境界になる形</span></h2>
+
+<h3>主語が長くなったとき、文の動詞は先頭の名詞に合わせる</h3>
+
+<p>Unit 11 と同じです。<strong>文全体の動詞は、先頭の名詞に合わせます</strong>。説明の中の主語に合わせるのではありません。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>文</th><th>先頭の名詞</th><th>文の動詞</th></tr>
+<tr><td><span class="en">The shoes my father bought are too small for me.</span></td><td><span class="en">The shoes</span>（複数）</td><td><span class="en">are</span></td></tr>
+<tr><td><span class="en">The book my sisters read was very interesting.</span></td><td><span class="en">The book</span>（単数）</td><td><span class="en">was</span></td></tr>
+</table>
+</div>
+
+<p>説明のまとまり（<span class="en">my father bought</span>）をいったん外すと、<span class="en">The shoes are too small for me.</span> が残ります。残った動詞が文全体の動詞です。</p>
+
+<h3>接続詞 that の省略と区別する</h3>
+
+<p>中2 Unit 4 で、接続詞の <span class="en">that</span> も省略できることを学びました。どちらも「主語 ＋ 動詞」が続く形になるので、<strong>直前にあるのが名詞か動詞か</strong>で区別します。</p>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>直前の語</th><th>省略されているもの</th><th>例</th></tr>
+<tr><td>名詞</td><td>関係代名詞（この単元）</td><td><span class="en">I know the boy you met.</span>（私はあなたが会った男の子を知っています）</td></tr>
+<tr><td>動詞</td><td>接続詞 <span class="en">that</span>（中2 Unit 4）</td><td><span class="en">I know you met the boy.</span>（私はあなたがその男の子に会ったことを知っています）</td></tr>
+</table>
+</div>
+
+<p>関係代名詞の省略では、<span class="en">met</span> のうしろに目的語がありません。接続詞の省略では、<span class="en">met the boy</span> のように目的語がそろっています。</p>
+
+<h3>前置詞が最後に残る形</h3>
+
+<p>関係代名詞が<strong>前置詞の目的語</strong>の代わりをすることもあります。そのときは、<strong>前置詞が説明のまとまりの最後に残ります</strong>。</p>
+
+<div class="transform">
+<span class="tf-line">This is the music. I often listen to it.</span>
+<span class="tf-arrow">↓　to のうしろの it を which に変えて前に移す</span>
+<span class="tf-line">This is the music which I often listen to.</span>
+<span class="tf-arrow">（これは私がよく聞く音楽です）</span>
+</div>
+
+<p><span class="en">to</span> を落とさないことに注意します。<span class="en">listen to 〜</span> のまとまりはそのまま残ります。</p>
+
+<h2><span>入試での出方</span></h2>
+
+<div class="table-wrap">
+<table class="rule">
+<tr><th>出し方</th><th>内容</th></tr>
+<tr><td>語順</td><td><span class="en">the book I read yesterday</span> のような、関係代名詞を省略した形を並べさせる。いちばん多い出し方</td></tr>
+<tr><td>2文を1文に</td><td>代名詞 <span class="en">it</span>・<span class="en">him</span> などが目的語にある2つめの文を、関係代名詞でつなげさせる</td></tr>
+<tr><td>適語選択</td><td>省略できる関係代名詞を含む文を選ばせる。主格との見分けを問う</td></tr>
+<tr><td>読解</td><td>名詞のうしろに主語が続く長い主語を読み取らせる。下線部和訳で出る</td></tr>
+</table>
+</div>
+
+<h2><span>よくある間違い</span></h2>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">This is the bag which my grandmother made it.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">This is the bag which my grandmother made.</span></div>
+<p class="contrast-why"><span class="en">which</span> が目的語の代わりです。そのあとにもう一度 <span class="en">it</span> を置きません。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The shoes my father bought is too small for me.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The shoes my father bought are too small for me.</span></div>
+<p class="contrast-why">文全体の動詞は先頭の名詞 <span class="en">The shoes</span>（複数）に合わせます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The cake which my mother make every Sunday is very good.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The cake which my mother makes every Sunday is very good.</span></div>
+<p class="contrast-why">うしろの動詞は、うしろの文の主語 <span class="en">my mother</span> に合わせます。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">The girl which I met yesterday is my friend's sister.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">The girl that I met yesterday is my friend's sister.</span></div>
+<p class="contrast-why">先行詞が人なので <span class="en">which</span> は使いません。<span class="en">that</span> にするか、省略します。</p>
+</div>
+
+<div class="contrast">
+<div class="contrast-row bad"><span class="mark bad">×</span><span class="en">This is the music which I often listen.</span></div>
+<div class="contrast-row good"><span class="mark good">○</span><span class="en">This is the music which I often listen to.</span></div>
+<p class="contrast-why"><span class="en">listen to 〜</span> の <span class="en">to</span> は最後に残します。</p>
+</div>
+
+<div class="wrap-up">
+<p class="wrap-up-t">この単元のまとめ</p>
+<ul>
+<li>目的格の関係代名詞は、名詞のうしろに<strong>目的語が抜けた文</strong>を続けて名詞を説明する。</li>
+<li>先行詞が<strong>物・動物なら <span class="en">which</span>／<span class="en">that</span>、人なら <span class="en">that</span></strong>。</li>
+<li>うしろの動詞は<strong>うしろの文の主語</strong>に合わせる。文全体の動詞は<strong>先頭の名詞</strong>に合わせる。</li>
+<li><strong>目的格の関係代名詞は省略できる</strong>。主格は省略できない。</li>
+<li>名詞のすぐうしろに<strong>主語 ＋ 動詞</strong>が続いていたら、省略された関係代名詞があると考えて区切る。</li>
+</ul>
+</div>
+
+<div class="part-head"><span class="part-no">A</span><span class="part-name">形の確認</span></div>
+<p class="part-note">正しいものを1つ選びましょう。まず、関係代名詞のうしろが「動詞」で始まるか「主語 ＋ 動詞」で始まるかを見ます。</p>
+<ol class="q" data-part="A">
+<li><span class="en">This is the bag (　　　) my grandmother made.</span>
+<p class="opts"><span>ア which</span><span>イ who</span><span>ウ what</span><span>エ it</span></p></li>
+<li><span class="en">The girl (　　　) I met yesterday is my friend's sister.</span>
+<p class="opts"><span>ア that</span><span>イ which</span><span>ウ what</span><span>エ she</span></p></li>
+<li><span class="en">The shoes my father bought (　　　) too small for me.</span>
+<p class="opts"><span>ア are</span><span>イ is</span><span>ウ was</span><span>エ has</span></p></li>
+<li><span class="en">The cake which my mother (　　　) every Sunday is very good.</span>
+<p class="opts"><span>ア makes</span><span>イ make</span><span>ウ making</span><span>エ to make</span></p></li>
+<li><span class="en">(　　　) is on my desk again.</span>
+<p class="opts"><span>ア The lamp I fixed</span><span>イ The lamp I fixed it</span><span>ウ The lamp who I fixed</span><span>エ The lamp which I fixed it</span></p></li>
+<li>関係代名詞を省略できる文を1つ選ぶ。
+<p class="opts"><span>ア This is the book which I read last week.</span><span>イ This is a book which has many pictures.</span><span>ウ I know a boy who plays the guitar.</span><span>エ The bus which goes to the station is late.</span></p></li>
+</ol>
+
+<div class="part-head"><span class="part-no">B</span><span class="part-name">語順</span></div>
+<p class="part-note">日本語に合うように語を並べかえましょう。文の最初に来る語も小文字で示してあります。「1語不要」とある問題には、使わない語が1語混ざっています。</p>
+<ol class="q" data-part="B" style="counter-reset:q 6;">
+<li>これは私の祖母が作ったかばんです。<br><span class="en">[ this / is / the / bag / which / my / grandmother / made ] .</span><span class="write"></span></li>
+<li>私が昨日会った女の子は私の友達の姉です。<br><span class="en">[ the / girl / that / i / met / yesterday / is / my / friend's / sister ] .</span><span class="write"></span></li>
+<li>私の父が買ったくつは、私には小さすぎます。<br><span class="en">[ the / shoes / my / father / bought / are / too / small / for / me ] .</span><span class="write"></span></li>
+<li data-extra="1">私たちが毎朝使うやかんは、金属でできています。<span class="hint">1語不要</span><br><span class="en">[ the / kettle / we / use / every / morning / is / made / of / metal / it ] .</span><span class="write"></span></li>
+<li data-extra="1">私が使ったのりは、とても強力でした。<span class="hint">1語不要</span><br><span class="en">[ the / glue / which / i / used / was / very / strong / who ] .</span><span class="write"></span></li>
+<li>その店主が修理した家具は、また新しく見えます。<br><span class="en">[ the / furniture / the / owner / repaired / looks / new / again ] .</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">C</span><span class="part-name">誤文訂正</span></div>
+<p class="part-note">誤りを1か所直して、正しい文を書きましょう。あわせて、なぜ誤りかを1行で書きます。</p>
+<ol class="q" data-part="C" style="counter-reset:q 12;">
+<li><span class="en">This is the bag which my grandmother made it.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The shoes my father bought is too small for me.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The cake which my mother make every Sunday is very good.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">The girl which I met yesterday is my friend's sister.</span><span class="write"></span><span class="why-line">理由</span></li>
+<li><span class="en">I know a girl plays the piano.</span><span class="write"></span><span class="why-line">理由</span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">D</span><span class="part-name">英作文</span></div>
+<p class="part-note">日本語を英語にしましょう。語数の指定がある問題は、その語数で書きます。コンマは語数に数えません。短縮形は1語と数えます。</p>
+<ol class="q" data-part="D" style="counter-reset:q 17;">
+<li><span class="q-ja">私が昨日読んだ本は、とてもおもしろかった。</span><span class="write"></span></li>
+<li><span class="q-ja">これは私の祖父が40年前に買ったランプです。</span><span class="write"></span></li>
+<li><span class="q-ja">私たちが訪れた工房は、駅の近くにあります。</span><span class="write"></span></li>
+<li><span class="q-ja">私はおばがくれた手袋をなくしました。</span><span class="write"></span></li>
+<li>関係代名詞を省略して「兄が毎日着ているジャケットは、そでに穴があいています」と書く。<span class="cond">13語</span><span class="write"></span></li>
+<li><span class="en">which</span> を使って「私が開けた引き出しは、古いボタンでいっぱいでした」と書く。<span class="cond">10語</span><span class="write"></span></li>
+<li><span class="en">that</span> を使って「私の祖父が身につけていた時計は、私の宝物です」と書く。<span class="cond">9語</span><span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">E</span><span class="part-name">読解</span></div>
+<p class="part-note">中学生が書いたスピーチの原稿です。読んで、あとの問いに答えましょう。</p>
+
+<div class="reading">
+<p class="reading-cap">修理カフェで学んだこと</p>
+<p>Last month I visited a repair cafe at the community hall near my house. It is an event which volunteers hold once a month. People bring items they want to fix, and the volunteers repair them for free.</p>
+<p>I brought a lamp my grandfather bought forty years ago. The switch did not work, so I was going to throw it away. A volunteer who worked as an engineer for many years opened it carefully. He found a wire that was broken inside, and he showed me how to replace it. The repair took only twenty minutes.</p>
+<p>At the next table, a woman was mending a jacket her son wears every day. She closed a hole in the sleeve with a needle and thread. A man near the window was fixing the chain of a bicycle which his daughter rides to school.</p>
+<p><span class="num">①</span><span class="ul">The lamp I was going to throw away is on my desk again</span>. Before I left, the volunteer said, "Many things people throw away are not really broken." I learned that the things we use every day can last for a long time if we take care of them.</p>
+<p class="reading-wc">およそ190語</p>
+</div>
+
+<ol class="q" data-part="E" style="counter-reset:q 24;">
+<li>本文の内容に合うものを1つ選ぶ。<br>
+ア 修理カフェは、毎週開かれている。<br>
+イ 筆者のランプは、中の電線が切れていた。<br>
+ウ 窓の近くの男性は、自分が乗る自転車を修理していた。<span class="write"></span></li>
+<li>下線部①を日本語に直す。<span class="write"></span></li>
+<li>本文の内容に合うように、(　) に入る英語1語をそれぞれ書く。<br><span class="en">The woman closed a hole in the (　　　) of a jacket with a needle and (　　　).</span><span class="write"></span></li>
+<li>本文の内容に合うように、次の問いに主語と動詞のある英文で答える。<br><span class="en">How often do the volunteers hold the repair cafe?</span><span class="write"></span></li>
+<li>筆者はこの体験から何を学んだか。日本語で書く。<span class="write"></span></li>
+</ol>
+
+<div class="part-head"><span class="part-no">F</span><span class="part-name">自由記述</span></div>
+<p class="part-note">自分のことばで書きましょう。</p>
+<ol class="q" data-part="F" style="counter-reset:q 29;">
+<li>自分が大切にしている物を1つ選び、関係代名詞を省略した形で説明する文を1文書く。<span class="hint">例：This is the pen my father gave me.</span><span class="write"></span></li>
+<li>最近読んだ本や見た映画を1つ選び、<span class="en">which</span> か <span class="en">that</span> を使って説明する文を1文書く。<span class="hint">例：The book which I read last week was about space.</span><span class="write"></span></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2><span>解答と解説</span></h2>
+
+<p class="answer-note">問題を解き終えてから開きましょう。まちがえた問題は、まず<strong>名詞のすぐうしろが「動詞」か「主語 ＋ 動詞」か</strong>を見て、次に<strong>うしろの文に目的語が足りないか</strong>を確かめます。</p>
+
+<ol class="a">
+<li><span class="a-key">ア　which</span><p class="a-why">先行詞 <span class="en">the bag</span> は物で、うしろの <span class="en">my grandmother made</span> に目的語がありません。目的格の <span class="en">which</span> です。<span class="en">it</span> を入れると文が2つつながってしまいます。</p></li>
+<li><span class="a-key">ア　that</span><p class="a-why">先行詞 <span class="en">The girl</span> は人で、うしろの <span class="en">I met yesterday</span> に目的語がありません。人のときは <span class="en">which</span> は使いません。</p></li>
+<li><span class="a-key">ア　are</span><p class="a-why">文全体の主語は <span class="en">The shoes</span>（複数）です。<span class="en">my father bought</span> は説明のまとまりです。</p></li>
+<li><span class="a-key">ア　makes</span><p class="a-why">うしろの動詞は、うしろの文の主語 <span class="en">my mother</span> に合わせます。3人称単数なので <span class="en">-s</span> がつきます。</p></li>
+<li><span class="a-key">ア　The lamp I fixed</span><p class="a-why">関係代名詞を省略した形です。イとエは、目的語の代わりの関係代名詞があるのに <span class="en">it</span> を重ねています。ウは物に <span class="en">who</span> を使っています。</p></li>
+<li><span class="a-key">ア</span><p class="a-why">アは <span class="en">which</span> のうしろが <span class="en">I read</span>（主語 ＋ 動詞）なので目的格で、省略できます。イ・ウ・エはどれもうしろが動詞で始まる主格なので、省略できません。</p></li>
+
+<li><span class="a-key">This is the bag which my grandmother made.</span><p class="a-why"><span class="en">which my grandmother made</span> が <span class="en">the bag</span> の説明です。</p></li>
+<li><span class="a-key">The girl that I met yesterday is my friend's sister.</span><p class="a-why">文全体の動詞は <span class="en">is</span> です。<span class="en">that I met yesterday</span> までが主語の一部です。</p></li>
+<li><span class="a-key">The shoes my father bought are too small for me.</span><p class="a-why"><span class="en">The shoes</span> のすぐうしろに主語 <span class="en">my father</span> が続く、省略の形です。</p></li>
+<li><span class="a-key">The kettle we use every morning is made of metal.</span><p class="a-why">不要な語は <span class="en">it</span> です。<span class="en">use</span> の目的語は先行詞 <span class="en">The kettle</span> なので、もう一度置きません。</p></li>
+<li><span class="a-key">The glue which I used was very strong.</span><p class="a-why">不要な語は <span class="en">who</span> です。先行詞が物なので <span class="en">which</span> を使います。</p></li>
+<li><span class="a-key">The furniture the owner repaired looks new again.</span><p class="a-why"><span class="en">The furniture</span> のすぐうしろに主語 <span class="en">the owner</span> が続きます。文全体の動詞は <span class="en">looks</span> です。</p></li>
+
+<li><span class="a-key">This is the bag which my grandmother made.</span><p class="a-why"><span class="en">which</span> が目的語の代わりなので、<span class="en">it</span> は不要です。</p></li>
+<li><span class="a-key">The shoes my father bought are too small for me.</span><p class="a-why">文全体の動詞は先頭の名詞 <span class="en">The shoes</span>（複数）に合わせて <span class="en">are</span> です。</p></li>
+<li><span class="a-key">The cake which my mother makes every Sunday is very good.</span><p class="a-why">うしろの動詞は、うしろの文の主語 <span class="en">my mother</span> に合わせて <span class="en">makes</span> です。</p></li>
+<li><span class="a-key">The girl that I met yesterday is my friend's sister.</span><p class="a-why">先行詞が人なので <span class="en">which</span> は使えません。<span class="en">that</span> を省略して <span class="en">The girl I met yesterday</span> としてもかまいません。</p></li>
+<li><span class="a-key">I know a girl who plays the piano.</span><p class="a-why">うしろが動詞で始まる主格の関係代名詞は省略できません。<span class="en">who</span>（または <span class="en">that</span>）が必要です。</p></li>
+
+<li><span class="a-key">The book I read yesterday was very interesting.</span><p class="a-why"><span class="en">The book which I read yesterday</span> と書いてもかまいません。文全体の動詞は <span class="en">was</span> です。</p></li>
+<li><span class="a-key">This is the lamp my grandfather bought forty years ago.</span><p class="a-why"><span class="en">the lamp which my grandfather bought</span> と書いてもかまいません。</p></li>
+<li><span class="a-key">The workshop we visited is near the station.</span><p class="a-why"><span class="en">The workshop that we visited</span> と書いてもかまいません。</p></li>
+<li><span class="a-key">I lost the gloves my aunt gave me.</span><p class="a-why"><span class="en">the gloves that my aunt gave me</span> と書いてもかまいません。<span class="en">gave me</span> のうしろの「物」が抜けています。</p></li>
+<li><span class="a-key">The jacket my brother wears every day has a hole in the sleeve.</span><p class="a-why">13語です。うしろの動詞は <span class="en">my brother</span> に合わせて <span class="en">wears</span>、文全体の動詞は <span class="en">The jacket</span> に合わせて <span class="en">has</span> です。</p></li>
+<li><span class="a-key">The drawer which I opened was full of old buttons.</span><p class="a-why">10語です。主語は <span class="en">The drawer which I opened</span> です。</p></li>
+<li><span class="a-key">The watch that my grandfather wore is my treasure.</span><p class="a-why">9語です。先行詞は物なので <span class="en">which</span> も使えますが、条件どおり <span class="en">that</span> で書きます。</p></li>
+
+<li><span class="a-key">イ</span><p class="a-why">本文に <span class="en">He found a wire that was broken inside</span> とあります。アは <span class="en">once a month</span>（月に1回）なので誤り、ウは娘が学校へ乗っていく自転車なので誤りです。</p></li>
+<li><span class="a-key">私が捨てようとしていたランプは、また私の机の上にあります。</span><p class="a-why"><span class="en">The lamp</span> のすぐうしろに主語 <span class="en">I</span> が続くので、<span class="en">The lamp I was going to throw away</span> までが主語です。</p></li>
+<li><span class="a-key">sleeve　／　thread</span><p class="a-why">本文の <span class="en">She closed a hole in the sleeve with a needle and thread.</span> が手がかりです。</p></li>
+<li><span class="a-key">They hold it once a month.</span><p class="a-why">本文の <span class="en">It is an event which volunteers hold once a month.</span> から答えます。</p></li>
+<li><span class="a-key">毎日使う物は、大切にすれば長い間使えるということ。</span><p class="a-why">最後の1文が答えです。<span class="en">the things we use every day</span> は、<span class="en">the things</span> のうしろに主語 <span class="en">we</span> が続く省略の形です。</p></li>
+
+<li><span class="a-key">（例）This is the watch my grandmother gave me.</span><p class="a-why">名詞のすぐうしろに「主語 ＋ 動詞」を続けます。<span class="en">gave me</span> のうしろに <span class="en">it</span> を置かないことに注意します。</p></li>
+<li><span class="a-key">（例）The movie which I saw last Sunday was very exciting.</span><p class="a-why">うしろの動詞はうしろの文の主語に、文全体の動詞は先頭の名詞に合わせます。</p></li>
+</ol>
+</div>
+</body>
+</html>
